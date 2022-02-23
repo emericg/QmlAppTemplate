@@ -25,7 +25,7 @@ jobs:
   ## GNU/Linux build ###########################################################
   build-linux:
     name: "Linux CI build"
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
       # Checkout the repository
       - name: Checkout repository and submodules
@@ -45,7 +45,7 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v2
         with:
-          version: '5.15.2'
+          version: '6.2.2'
           modules: qtcharts
           cached: ${{steps.cache-qt.outputs.cache-hit}}
 
@@ -88,7 +88,7 @@ jobs:
       # Install dependencies
       - name: Install dependencies
         run: |
-             brew install qt5
+             brew install qt6
 
       # Build application
       - name: Build application
@@ -141,7 +141,7 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v2
         with:
-          version: '5.15.2'
+          version: '6.2.2'
           modules: qtcharts
           cached: ${{steps.cache-qt.outputs.cache-hit}}
 
