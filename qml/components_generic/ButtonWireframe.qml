@@ -9,8 +9,10 @@ import ThemeEngine 1.0
 
 T.Button {
     id: control
-    implicitWidth: contentTextInvisible.contentWidth + 24
+    implicitWidth: 128
     implicitHeight: Theme.componentHeight
+
+    width: contentTextInvisible.contentWidth + 24
 
     font.pixelSize: Theme.fontSizeComponent
     font.bold: fullColor ? true : false

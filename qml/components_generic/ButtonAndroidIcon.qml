@@ -16,7 +16,7 @@ T.Button {
 
     focusPolicy: Qt.NoFocus
 
-    property string source
+    property url source
     property int sourceSize: 26
 
     property string primaryColor: Theme.colorPrimary

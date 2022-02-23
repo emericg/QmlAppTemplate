@@ -18,12 +18,7 @@
 
         <file alias="ActionMenu.qml">components_wip/ActionMenu.qml</file>
         <file alias="ActionMenuItem.qml">components_wip/ActionMenuItem.qml</file>
-        <file alias="ButtonCompactable.qml">components_wip/ButtonCompactable.qml</file>
         <file alias="DatePicker6.qml">components_wip/DatePicker6.qml</file>
-        <file alias="SelectorMenuThemed.qml">components_wip/SelectorMenuThemed.qml</file>
-        <file alias="SelectorMenuThemedItem.qml">components_wip/SelectorMenuThemedItem.qml</file>
-        <file alias="SelectorMenu.qml">components_wip/SelectorMenu.qml</file>
-        <file alias="SelectorMenuItem.qml">components_wip/SelectorMenuItem.qml</file>
         <file alias="ItemImageButton.qml">components_wip/ItemImageButton.qml</file>
         <file alias="ItemImageButtonShadow.qml">components_wip/ItemImageButtonShadow.qml</file>
         <file alias="ItemImageButtonTooltip.qml">components_wip/ItemImageButtonTooltip.qml</file>
@@ -34,6 +29,7 @@
         <file alias="DesktopSidebarItem.qml">components_generic/DesktopSidebarItem.qml</file>
         <file alias="MobileMenuItem.qml">components_generic/MobileMenuItem.qml</file>
 
+        <file alias="ButtonCompactable.qml">components_generic/ButtonCompactable.qml</file>
         <file alias="ButtonText.qml">components_generic/ButtonText.qml</file>
         <file alias="ButtonWireframe.qml">components_generic/ButtonWireframe.qml</file>
         <file alias="ButtonWireframeIcon.qml">components_generic/ButtonWireframeIcon.qml</file>
@@ -47,9 +43,10 @@
         <file alias="ProgressCircle.qml">components_generic/ProgressCircle.qml</file>
         <file alias="RangeSliderArrow.qml">components_generic/RangeSliderArrow.qml</file>
         <file alias="RangeSliderValueSolid.qml">components_generic/RangeSliderValueSolid.qml</file>
-        <file alias="SimpleShadow.qml">components_generic/SimpleShadow.qml</file>
         <file alias="SliderArrow.qml">components_generic/SliderArrow.qml</file>
         <file alias="SliderValueSolid.qml">components_generic/SliderValueSolid.qml</file>
+        <file alias="SelectorMenu.qml">components_generic/SelectorMenu.qml</file>
+        <file alias="SelectorMenuItem.qml">components_generic/SelectorMenuItem.qml</file>
 
         <file alias="ButtonAndroid.qml">components_generic/ButtonAndroid.qml</file>
         <file alias="ButtonAndroidIcon.qml">components_generic/ButtonAndroidIcon.qml</file>
@@ -71,6 +68,8 @@
         <file alias="SpinBoxThemed.qml">components_themed/SpinBoxThemed.qml</file>
         <file alias="SwitchThemedDesktop.qml">components_themed/SwitchThemed_desktop.qml</file>
         <file alias="SwitchThemedMobile.qml">components_themed/SwitchThemed_mobile.qml</file>
+        <file alias="SelectorMenuThemed.qml">components_themed/SelectorMenuThemed.qml</file>
+        <file alias="SelectorMenuThemedItem.qml">components_themed/SelectorMenuThemedItem.qml</file>
         <file alias="TextAreaThemed.qml">components_themed/TextAreaThemed.qml</file>
         <file alias="TextFieldThemed.qml">components_themed/TextFieldThemed.qml</file>
         <file alias="TumblerThemed.qml">components_themed/TumblerThemed.qml</file>

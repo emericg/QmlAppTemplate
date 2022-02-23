@@ -15,11 +15,12 @@ Item {
 
     // states
     property bool hovered: false
+    property bool pressed: false
     property bool selected: false
 
     // settings
-    property string text: ""
-    property url source: ""
+    property string text
+    property url source
     property int sourceSize: (source.length) ? 32 : 0
 
     // colors
@@ -31,7 +32,7 @@ Item {
 
     MouseArea {
         anchors.fill: control
-        hoverEnabled: true
+        hoverEnabled: isDesktop
 
         onClicked: control.clicked()
         onPressAndHold: control.pressAndHold()

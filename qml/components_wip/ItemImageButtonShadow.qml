@@ -13,15 +13,15 @@ Item {
 
     // actions
     signal clicked()
-    signal pressed()
     signal pressAndHold()
 
     // states
     property bool hovered: false
+    property bool pressed: false
     property bool selected: false
 
     // settings
-    property url source: ""
+    property url source
 
     property string highlightMode: "circle" // available: border, circle, color, both (circle+color), off
     property bool border: false
@@ -38,7 +38,7 @@ Item {
     property string backgroundColor: Theme.colorComponent
 
     // animation
-    property string animation: "" // available: rotate, fade
+    property string animation // available: rotate, fade
     property bool animationRunning: false
 
     ////////////////////////////////////////////////////////////////////////////

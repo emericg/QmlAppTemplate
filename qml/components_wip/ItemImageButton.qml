@@ -14,10 +14,11 @@ Item {
 
     // states
     property bool hovered: false
+    property bool pressed: false
     property bool selected: false
 
     // settings
-    property url source: ""
+    property url source
 
     property string highlightMode: "circle" // available: border, circle, color, both (circle+color), off
     property bool border: false
@@ -34,7 +35,7 @@ Item {
     property string backgroundColor: Theme.colorComponent
 
     // animation
-    property string animation: "" // available: rotate, fade
+    property string animation // available: rotate, fade
     property bool animationRunning: false
 
     ////////////////////////////////////////////////////////////////////////////
@@ -42,16 +43,21 @@ Item {
     MouseArea {
         anchors.fill: control
 
-        hoverEnabled: true
+        hoverEnabled: isDesktop
         propagateComposedEvents: false
 
         onClicked: control.clicked()
-        onPressed: control.pressed()
         onPressAndHold: control.pressAndHold()
+
+        onPressed: pressed = true
+        onReleased: pressed = false
 
         onEntered: hovered = true
         onExited: hovered = false
-        onCanceled: hovered = false
+        onCanceled: {
+            pressed = false
+            hovered = false
+        }
     }
 
     ////////

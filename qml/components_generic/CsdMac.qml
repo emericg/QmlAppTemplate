@@ -15,18 +15,20 @@ Item {
     MouseArea {
         id: buttonsArea
         anchors.fill: buttonsRow
+
         hoverEnabled: true
         property bool hovered: false
+
         onEntered: hovered = true
         onExited: hovered = false
+        onCanceled: hovered = false
     }
 
     ////////
 
     Row {
         id: buttonsRow
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.verticalCenter
+        anchors.centerIn: parent
         spacing: 8
 
         Rectangle {

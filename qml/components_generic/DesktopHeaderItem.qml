@@ -17,6 +17,7 @@ Item {
 
     // states
     property bool hovered: false
+    property bool pressed: false
     property bool selected: false
 
     // settings

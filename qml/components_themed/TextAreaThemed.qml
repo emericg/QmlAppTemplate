@@ -11,6 +11,7 @@ T.TextArea {
 
     padding: 12
 
+    // colors
     property string colorText: Theme.colorComponentContent
     property string colorPlaceholderText: Theme.colorSubText
     property string colorBorder: Theme.colorComponentBorder

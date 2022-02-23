@@ -15,7 +15,8 @@ T.RangeSlider {
     second.value: 0.75
     snapMode: RangeSlider.SnapAlways
 
-    property string unit: ""
+    // settings
+    property string unit
 
     // colors
     property string colorBg: Theme.colorComponent

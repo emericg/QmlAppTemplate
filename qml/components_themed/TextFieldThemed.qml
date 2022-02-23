@@ -11,6 +11,7 @@ T.TextField {
 
     padding: 12
 
+    // colors
     property string colorText: Theme.colorComponentText
     property string colorPlaceholderText: Theme.colorSubText
     property string colorBorder: Theme.colorComponentBorder

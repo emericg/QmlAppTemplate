@@ -23,7 +23,7 @@ T.Button {
     focusPolicy: Qt.NoFocus
 
     // settings
-    property string source: ""
+    property url source
     property int sourceSize: UtilsNumber.alignTo(height * 0.666, 2)
     property bool sourceRightToLeft: false
 

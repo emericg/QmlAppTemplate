@@ -16,6 +16,7 @@ Item {
     signal pressAndHold()
 
     // states
+    property bool pressed: false
     property bool selected: false
 
     // settings

@@ -14,8 +14,9 @@ T.Slider {
     value: 0.5
     snapMode: T.RangeSlider.SnapAlways
 
+    // settings
     property int hhh: 18
-    property string unit: ""
+    property string unit
     property bool kshort: false
 
     // colors

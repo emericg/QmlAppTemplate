@@ -11,44 +11,46 @@ Item {
     implicitWidth: Theme.componentHeight
     implicitHeight: Theme.componentHeight
 
-    width: compact ? height : (contentRow.width + 12 + ((source && !text) ? 0 : 16))
+    width: compact ? height : (contentRow.width + 12 + ((source.length && !text) ? 0 : 16))
 
     // actions
     signal clicked()
-    signal pressed()
     signal pressAndHold()
+
+    // states
+    property bool hovered: false
+    property bool pressed: false
 
     // settings
     property bool compact: true
-    property alias text: contentText.text
-    property alias source: contentImage.source
-    property int iconSize: UtilsNumber.alignTo(height * 0.666, 2)
+    property string text
+    property url source
+    property int sourceSize: UtilsNumber.alignTo(height * 0.666, 2)
 
     // colors
     property string iconColor: Theme.colorIcon
     property string backgroundColor: Theme.colorComponent
 
     // animation
-    property string animation: "" // available: rotate, fade
+    property string animation // available: rotate, fade
     property bool animationRunning: false
 
     // hover animation
-    property bool hovered: false
     property bool hoverAnimation: (isDesktop && !compact)
 
     // tooltip
+    property string tooltipText
     property string tooltipPosition: "bottom"
-    property string tooltipText: ""
 
     ////////////////////////////////////////////////////////////////////////////
 
     Rectangle {
-        id: bgRect
-        anchors.fill: parent
+        id: background
+        anchors.fill: control
 
-        radius: compact ? (parent.height / 2) : Theme.componentRadius
-        color: backgroundColor
-        opacity: (!compact || hovered) ? 1 : 0
+        radius: control.compact ? (control.height / 2) : Theme.componentRadius
+        color: control.backgroundColor
+        opacity: (!control.compact || control.hovered) ? 1 : 0
         Behavior on opacity { NumberAnimation { duration: 333 } }
 
         MouseArea {
@@ -57,29 +59,29 @@ Item {
 
             onClicked: control.clicked()
             onPressAndHold: control.pressAndHold()
+
             onPressed: {
-                control.pressed()
-                mouseBackground.width = bgRect.width*2
+                mouseBackground.width = background.width*2
             }
 
             hoverEnabled: isDesktop
             onEntered: {
-                hovered = true
-                if (hoverAnimation) {
+                control.hovered = true
+                if (control.hoverAnimation) {
                     mouseBackground.width = 80
                     mouseBackground.opacity = 0.16
                 }
             }
             onExited: {
-                hovered = false
-                if (hoverAnimation) {
+                control.hovered = false
+                if (control.hoverAnimation) {
                     mouseBackground.width = 0
                     mouseBackground.opacity = 0
                 }
             }
             onCanceled: {
-                hovered = false
-                if (hoverAnimation) {
+                control.hovered = false
+                if (control.hoverAnimation) {
                     mouseBackground.width = 0
                     mouseBackground.opacity = 0
                 }
@@ -98,14 +100,14 @@ Item {
             }
         }
 
-        layer.enabled: hoverAnimation
+        layer.enabled: control.hoverAnimation
         layer.effect: OpacityMask {
             maskSource: Rectangle {
-                x: bgRect.x
-                y: bgRect.y
-                width: bgRect.width
-                height: bgRect.height
-                radius: bgRect.radius
+                x: background.x
+                y: background.y
+                width: background.width
+                height: background.height
+                radius: background.radius
             }
         }
     }
@@ -114,23 +116,23 @@ Item {
 
     Row {
         id: contentRow
-        anchors.centerIn: parent
+        anchors.centerIn: control
         spacing: 8
 
         IconSvg {
             id: contentImage
-            width: iconSize
-            height: iconSize
+            width: control.sourceSize
+            height: control.sourceSize
             anchors.verticalCenter: parent.verticalCenter
 
-            opacity: control.enabled ? 1.0 : 0.4
+            opacity: enabled ? 1.0 : 0.4
             Behavior on opacity { NumberAnimation { duration: 333 } }
 
             source: control.source
-            color: iconColor
+            color: control.iconColor
 
             SequentialAnimation on opacity {
-                running: (animation === "fade" && animationRunning)
+                running: (control.animation === "fade" && control.animationRunning)
                 alwaysRunToEnd: true
                 loops: Animation.Infinite
 
@@ -138,7 +140,7 @@ Item {
                 PropertyAnimation { to: 1; duration: 666; }
             }
             NumberAnimation on rotation {
-                running: (animation === "rotate" && animationRunning)
+                running: (control.animation === "rotate" && control.animationRunning)
                 alwaysRunToEnd: true
                 loops: Animation.Infinite
 
@@ -152,8 +154,9 @@ Item {
         Text {
             id: contentText
             anchors.verticalCenter: parent.verticalCenter
-            visible: !compact
+            visible: !control.compact
 
+            text: control.text
             textFormat: Text.PlainText
             color: control.iconColor
             font.pixelSize: Theme.fontSizeComponent
@@ -166,7 +169,7 @@ Item {
 
     Item {
         id: tooltip
-        anchors.fill: bgRect
+        anchors.fill: background
 
         visible: control.tooltipText
         property bool tooltipVisible: (control.compact && control.hovered)
@@ -287,14 +290,14 @@ Item {
             id: ttA
             anchors.margins: 4
             width: 12; height: 12; rotation: 45
-            color: backgroundColor
+            color: control.backgroundColor
         }
         Rectangle {
             id: ttBg
             anchors.fill: ttT
             anchors.margins: -6
             radius: 4
-            color: backgroundColor
+            color: control.backgroundColor
         }
         Text {
             id: ttT
@@ -303,12 +306,12 @@ Item {
             anchors.rightMargin: (tooltip.state === "topRight" || tooltip.state === "bottomRight") ? 8 : 16
             anchors.bottomMargin: 16
 
-            text: tooltipText
+            text: control.tooltipText
             textFormat: Text.PlainText
-            color: iconColor
+            color: control.iconColor
 
             function checkPosition() {
-                if (!text) return
+                if (!control.tooltipText) return
                 if (!control.hovered) return
 
                 var obj = mapToItem(appContent, x, y)
