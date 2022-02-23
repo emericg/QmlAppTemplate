@@ -1,0 +1,85 @@
+<RCC>
+    <qresource prefix="/qml">
+        <file>MobileApplication.qml</file>
+        <file>MobileHeader.qml</file>
+        <file>MobileDrawer.qml</file>
+        <file>MobilePermissions.qml</file>
+        <file>MobileMenu.qml</file>
+
+        <file>DesktopApplication.qml</file>
+        <file>DesktopHeader.qml</file>
+        <file>DesktopSidebar.qml</file>
+
+        <file>MainView.qml</file>
+        <file>Settings.qml</file>
+        <file>About.qml</file>
+        <file>ThemeEngine.qml</file>
+        <file>WindowGeometrySaver.qml</file>
+
+        <file alias="ActionMenu.qml">components_wip/ActionMenu.qml</file>
+        <file alias="ActionMenuItem.qml">components_wip/ActionMenuItem.qml</file>
+        <file alias="ButtonCompactable.qml">components_wip/ButtonCompactable.qml</file>
+        <file alias="DatePicker6.qml">components_wip/DatePicker6.qml</file>
+        <file alias="SelectorMenuThemed.qml">components_wip/SelectorMenuThemed.qml</file>
+        <file alias="SelectorMenuThemedItem.qml">components_wip/SelectorMenuThemedItem.qml</file>
+        <file alias="SelectorMenu.qml">components_wip/SelectorMenu.qml</file>
+        <file alias="SelectorMenuItem.qml">components_wip/SelectorMenuItem.qml</file>
+        <file alias="ItemImageButton.qml">components_wip/ItemImageButton.qml</file>
+        <file alias="ItemImageButtonShadow.qml">components_wip/ItemImageButtonShadow.qml</file>
+        <file alias="ItemImageButtonTooltip.qml">components_wip/ItemImageButtonTooltip.qml</file>
+
+        <file alias="CsdMac.qml">components_generic/CsdMac.qml</file>
+        <file alias="CsdWindows.qml">components_generic/CsdWindows.qml</file>
+        <file alias="DesktopHeaderItem.qml">components_generic/DesktopHeaderItem.qml</file>
+        <file alias="DesktopSidebarItem.qml">components_generic/DesktopSidebarItem.qml</file>
+        <file alias="MobileMenuItem.qml">components_generic/MobileMenuItem.qml</file>
+
+        <file alias="ButtonText.qml">components_generic/ButtonText.qml</file>
+        <file alias="ButtonWireframe.qml">components_generic/ButtonWireframe.qml</file>
+        <file alias="ButtonWireframeIcon.qml">components_generic/ButtonWireframeIcon.qml</file>
+        <file alias="DataBarCompact.qml">components_generic/DataBarCompact.qml</file>
+        <file alias="DataBarSolid.qml">components_generic/DataBarSolid.qml</file>
+        <file alias="IconSvg.qml">components_generic/IconSvg.qml</file>
+        <file alias="ItemBadge.qml">components_generic/ItemBadge.qml</file>
+        <file alias="ItemTag.qml">components_generic/ItemTag.qml</file>
+        <file alias="MiddleSliderArrow.qml">components_generic/MiddleSliderArrow.qml</file>
+        <file alias="ProgressArc.qml">components_generic/ProgressArc.qml</file>
+        <file alias="ProgressCircle.qml">components_generic/ProgressCircle.qml</file>
+        <file alias="RangeSliderArrow.qml">components_generic/RangeSliderArrow.qml</file>
+        <file alias="RangeSliderValueSolid.qml">components_generic/RangeSliderValueSolid.qml</file>
+        <file alias="SimpleShadow.qml">components_generic/SimpleShadow.qml</file>
+        <file alias="SliderArrow.qml">components_generic/SliderArrow.qml</file>
+        <file alias="SliderValueSolid.qml">components_generic/SliderValueSolid.qml</file>
+
+        <file alias="ButtonAndroid.qml">components_generic/ButtonAndroid.qml</file>
+        <file alias="ButtonAndroidIcon.qml">components_generic/ButtonAndroidIcon.qml</file>
+        <file alias="TextFieldAndroid.qml">components_generic/TextFieldAndroid.qml</file>
+
+        <file alias="ButtonIconThemed.qml">components_themed/ButtonIconThemed.qml</file>
+        <file alias="ButtonThemed.qml">components_themed/ButtonThemed.qml</file>
+        <file alias="CheckBoxThemed.qml">components_themed/CheckBoxThemed.qml</file>
+        <file alias="ComboBoxThemed.qml">components_themed/ComboBoxThemed.qml</file>
+        <file alias="DialThemed.qml">components_themed/DialThemed.qml</file>
+        <file alias="PageIndicatorThemed.qml">components_themed/PageIndicatorThemed.qml</file>
+        <file alias="MiddleSliderThemed.qml">components_themed/MiddleSliderThemed.qml</file>
+        <file alias="ProgressBarThemed.qml">components_themed/ProgressBarThemed.qml</file>
+        <file alias="RadioButtonThemed.qml">components_themed/RadioButtonThemed.qml</file>
+        <file alias="RangeSliderThemed.qml">components_themed/RangeSliderThemed.qml</file>
+        <file alias="RoundButtonThemed.qml">components_themed/RoundButtonThemed.qml</file>
+        <file alias="RoundButtonIconThemed.qml">components_themed/RoundButtonIconThemed.qml</file>
+        <file alias="SliderThemed.qml">components_themed/SliderThemed.qml</file>
+        <file alias="SpinBoxThemed.qml">components_themed/SpinBoxThemed.qml</file>
+        <file alias="SwitchThemedDesktop.qml">components_themed/SwitchThemed_desktop.qml</file>
+        <file alias="SwitchThemedMobile.qml">components_themed/SwitchThemed_mobile.qml</file>
+        <file alias="TextAreaThemed.qml">components_themed/TextAreaThemed.qml</file>
+        <file alias="TextFieldThemed.qml">components_themed/TextFieldThemed.qml</file>
+        <file alias="TumblerThemed.qml">components_themed/TumblerThemed.qml</file>
+    </qresource>
+
+    <qresource prefix="/js">
+        <file alias="UtilsMedia.js">components_js/UtilsMedia.js</file>
+        <file alias="UtilsNumber.js">components_js/UtilsNumber.js</file>
+        <file alias="UtilsPath.js">components_js/UtilsPath.js</file>
+        <file alias="UtilsString.js">components_js/UtilsString.js</file>
+    </qresource>
+</RCC>

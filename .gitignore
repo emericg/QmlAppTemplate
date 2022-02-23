@@ -1,0 +1,35 @@
+# Binaries and build artifacts
+build/*
+bin/*
+contribs/*
+appdir/*
+
+# Private signatures
+assets/ios/ios_signature.pri
+assets/macos/macos_signature.pri
+
+# QtCreator temporary project files
+QmlAppTemplate.config
+QmlAppTemplate.creator*
+QmlAppTemplate.files
+QmlAppTemplate.includes
+QmlAppTemplate.pro.*
+
+# Qt Quick Compiler
+qrc_resources.cpp
+qmlcache_loader.cpp
+qml_*qml.cpp
+
+# QMake temporary project files
+Makefile
+.qmake.stash
+
+# XCode related
+Debug/*
+Release/*
+QmlAppTemplate.xcodeproj/*
+asset_catalog_compiler.Info.plist
+
+# Others
+stash/*
+.DS_Store
