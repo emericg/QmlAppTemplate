@@ -12,7 +12,7 @@ on:
 #--------------------------------------------------------------------------------
 
 env:
-  VERSION: "0.1"
+  VERSION: "0.2"
   EXECUTABLE: "QmlAppTemplate"
   APPLICATION: "QmlAppTemplate"
   QMAKE_PROJECT: "QmlAppTemplate.pro"
@@ -45,8 +45,8 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v2
         with:
-          version: '6.2.2'
-          modules: qtcharts
+          version: '6.3.0'
+          modules: qt5compat qtimageformats qtcharts
           cached: ${{steps.cache-qt.outputs.cache-hit}}
 
       # Install dependencies (from package manager)
@@ -141,8 +141,8 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v2
         with:
-          version: '6.2.2'
-          modules: qtcharts
+          version: '6.3.0'
+          modules: qt5compat qtimageformats qtcharts
           cached: ${{steps.cache-qt.outputs.cache-hit}}
 
       # Install NSIS

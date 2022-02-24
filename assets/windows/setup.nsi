@@ -8,9 +8,9 @@ Unicode True
 !define APPNAME                      "QmlAppTemplate"
 !define EXECNAME                     "QmlAppTemplate"
 !define COMPANYNAME                  "Emeric Grange"
-!define DESCRIPTION                  "A Qt6/QML application template"
+!define DESCRIPTION                  "A Qt6 / QML application template"
 !define VERSIONMAJOR                 0
-!define VERSIONMINOR                 1
+!define VERSIONMINOR                 2
 !define VERSIONBUILD                 0
 !define INSTALL_DIR_DEFAULT          "$PROGRAMFILES64\${APPNAME}"
 !define MUI_ABORTWARNING

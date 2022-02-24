@@ -1,6 +1,6 @@
 TARGET  = QmlAppTemplate
 
-VERSION = 0.1
+VERSION = 0.2
 DEFINES+= APP_VERSION=\\\"$$VERSION\\\"
 
 CONFIG += c++17
@@ -9,6 +9,7 @@ QT     += qml quick quickcontrols2 svg widgets charts
 
 # Validate Qt version
 !versionAtLeast(QT_VERSION, 6.0) : error("You need at least Qt version 6.0 for $${TARGET}")
+!versionAtLeast(QT_VERSION, 6.3) : warning("Many $${TARGET} features will require at least Qt version 6.3")
 
 # Project features #############################################################
 
