@@ -19,6 +19,7 @@ Item {
     property bool selected: false
 
     // settings
+    property int index
     property string text
     property url source
     property int sourceSize: 32
@@ -36,6 +37,7 @@ Item {
 
         onClicked: control.clicked()
         onPressAndHold: control.pressAndHold()
+
         onEntered: control.hovered = true
         onExited: control.hovered = false
         onCanceled: control.hovered = false

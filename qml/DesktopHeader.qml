@@ -105,9 +105,36 @@ Rectangle {
 
         ////////////
 
+        ButtonIcon {
+            id: buttonMenu
+            anchors.verticalCenter: parent.verticalCenter
+            source: "qrc:/assets/icons_material/baseline-more_vert-24px.svg"
+            onClicked: actionMenu.open()
+
+            ActionMenu {
+                id: actionMenu
+
+                x: appWindow.width - buttonMenu.x//mapToGlobal(buttonMenu.x, buttonMenu.y).x
+                y: buttonMenu.y
+
+                model: ListModel {
+                    id: lmActionMenu
+                    ListElement { t: "itm"; idx: 1; txt: "Action 1"; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; }
+                    ListElement { t: "itm"; idx: 2; txt: "Action 2"; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; }
+                    ListElement { t: "sep"; }
+                    ListElement { t: "itm"; idx: 3; txt: "Action 3"; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; }
+                }
+
+                onMenuSelected: (index) => {
+                    console.log("ActionMenu clicked #" + index)
+                }
+            }
+        }
+
+        ////////////
+
         ButtonCompactable {
             id: buttonRefresh
-            height: compact ? 36 : 34
             anchors.verticalCenter: parent.verticalCenter
 
             //visible: (deviceManager.bluetooth && menuMain.visible)
@@ -118,11 +145,11 @@ Rectangle {
             iconColor: Theme.colorHeaderContent
             backgroundColor: Theme.colorHeaderHighlight
             onClicked: refreshButtonClicked()
-            text: qsTr("Refresh sensors data")
+            text: qsTr("Refresh data")
             tooltipText: text
 
-            //animation: "rotate"
-            //animationRunning: deviceManager.updating
+            animation: "rotate"
+            animationRunning: true
         }
 
         ////////////

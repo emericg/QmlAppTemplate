@@ -44,7 +44,7 @@ Item {
                 anchors.left: parent.left
                 anchors.right: parent.right
 
-                ItemImageButton {
+                ButtonIcon {
                     id: button_location_test
                     width: 32
                     height: 32
@@ -133,7 +133,7 @@ Item {
                 anchors.left: parent.left
                 anchors.right: parent.right
 
-                ItemImageButton {
+                ButtonIcon {
                     id: button_gps_test
                     width: 32
                     height: 32
@@ -209,7 +209,7 @@ Item {
                 anchors.left: parent.left
                 anchors.right: parent.right
 
-                ItemImageButton {
+                ButtonIcon {
                     id: button_bluetooth_test
                     width: 32
                     height: 32

@@ -5,25 +5,57 @@ import Qt5Compat.GraphicalEffects // Qt6
 
 import ThemeEngine 1.0
 
-Rectangle {
-    id: control
-    implicitWidth: 256
+Item {
+    id: selectorMenu
+    implicitWidth: 128
     implicitHeight: 32
+    width: contentRow.width
 
-    radius: Theme.componentRadius
-    color: Theme.colorComponentBackground
+    signal menuSelected(var index)
+    property int currentSelection: 1
 
-    border.width: 1
-    border.color: Theme.colorComponentBorder
+    property var model: null
 
-    layer.enabled: true
-    layer.effect: OpacityMask {
-        maskSource: Rectangle {
-            x: control.x
-            y: control.y
-            width: control.width
-            height: control.height
-            radius: control.radius
+    Rectangle {
+        id: background
+        anchors.fill: parent
+
+        radius: Theme.componentRadius
+        color: Theme.colorComponentBackground
+
+        border.width: 1
+        border.color: Theme.colorComponentBorder
+
+        layer.enabled: true
+        layer.effect: OpacityMask {
+            maskSource: Rectangle {
+                x: background.x
+                y: background.y
+                width: background.width
+                height: background.height
+                radius: background.radius
+            }
+        }
+
+        Row {
+            id: contentRow
+            height: parent.height
+            spacing: 0
+
+            Repeater {
+                model: selectorMenu.model
+                delegate: SelectorMenuThemedItem {
+                    selected: (selectorMenu.currentSelection === idx)
+                    index: idx ?? 0
+                    text: txt ?? ""
+                    source: src ?? ""
+                    sourceSize: sz ?? 32
+                    onClicked: {
+                        selectorMenu.currentSelection = idx
+                        selectorMenu.menuSelected(idx)
+                    }
+                }
+            }
         }
     }
 }

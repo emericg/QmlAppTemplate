@@ -16,15 +16,14 @@
         <file>ThemeEngine.qml</file>
         <file>WindowGeometrySaver.qml</file>
 
-        <file alias="ActionMenu.qml">components_wip/ActionMenu.qml</file>
-        <file alias="ActionMenuItem.qml">components_wip/ActionMenuItem.qml</file>
-
         <file alias="CsdMac.qml">components_generic/CsdMac.qml</file>
         <file alias="CsdWindows.qml">components_generic/CsdWindows.qml</file>
         <file alias="DesktopHeaderItem.qml">components_generic/DesktopHeaderItem.qml</file>
         <file alias="DesktopSidebarItem.qml">components_generic/DesktopSidebarItem.qml</file>
         <file alias="MobileMenuItem.qml">components_generic/MobileMenuItem.qml</file>
 
+        <file alias="ActionMenu.qml">components_generic/ActionMenu.qml</file>
+        <file alias="ActionMenuItem.qml">components_generic/ActionMenuItem.qml</file>
         <file alias="ButtonCompactable.qml">components_generic/ButtonCompactable.qml</file>
         <file alias="ButtonIcon.qml">components_generic/ButtonIcon.qml</file>
         <file alias="ButtonImage.qml">components_generic/ButtonImage.qml</file>

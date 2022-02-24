@@ -178,28 +178,22 @@ Rectangle {
 
     ////////////
 
-    MouseArea {
-        id: actionMenuCloseArea
-        width: appWindow.width
-        height: appWindow.height
-        //anchors.fill: appWindow
-
-        enabled: actionMenu.isOpen
-        onClicked: actionMenu.close()
-    }
-
     ActionMenu {
         id: actionMenu
-        anchors.top: parent.top
-        anchors.topMargin: screenPaddingStatusbar + screenPaddingNotch + 8
-        anchors.right: parent.right
-        anchors.rightMargin: 8
 
-        //onMenuSelected: console.log(" MENU " + index)
+        x: parent.width - actionMenu.width - 12
+        y: screenPaddingStatusbar + screenPaddingNotch + 12
 
-        Connections {
-            target: appDrawer
-            function onVisibleChanged() { actionMenu.close() }
+        model: ListModel {
+            id: lmActionMenu
+            ListElement { t: "itm"; idx: 1; txt: "Action 1"; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; }
+            ListElement { t: "itm"; idx: 2; txt: "Action 2"; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; }
+            ListElement { t: "sep"; }
+            ListElement { t: "itm"; idx: 3; txt: "Action 3"; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; }
+        }
+
+        onMenuSelected: (index) => {
+            console.log("ActionMenu clicked #" + index)
         }
     }
 }

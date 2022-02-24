@@ -86,7 +86,7 @@ Item {
                 color: parent.color
             }
 
-            ItemImageButton {
+            ButtonIcon {
                 width: 48; height: 48;
                 anchors.left: parent.left
                 anchors.verticalCenter: parent.verticalCenter
@@ -111,7 +111,7 @@ Item {
                 font.pixelSize: Theme.fontSizeContentBig
                 color: Theme.colorText
             }
-            ItemImageButton {
+            ButtonIcon {
                 anchors.right: parent.right
                 width: 48; height: 48;
                 anchors.verticalCenter: parent.verticalCenter
@@ -201,7 +201,7 @@ Item {
                 }
             }
 
-            onClicked: {
+            onClicked: (date) => {
                 if (date.getMonth() === grid.month) {
                     // validate date (min / max)
                     if (minDate && maxDate) {

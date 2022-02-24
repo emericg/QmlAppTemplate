@@ -196,6 +196,8 @@ Item {
         }
     }
 
+    // DATE PICKER /////////////////////////////////////////////////////////////
+
     DatePicker6 {
         anchors.top: parent.top
         anchors.topMargin: menusArea.height + 24
@@ -424,135 +426,66 @@ Item {
                 spacing: 24
 
                 SelectorMenuThemed {
-                    anchors.verticalCenter: parent.verticalCenter
-                    width: rowLilMenuImg.width
                     height: 40
+                    anchors.verticalCenter: parent.verticalCenter
 
-                    Row {
-                        id: rowLilMenuImg
-                        height: parent.height
+                    model: ListModel {
+                        id: lmSelectorMenuImg1
+                        ListElement { idx: 1; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; sz: 20; }
+                        ListElement { idx: 2; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; sz: 26; }
+                        ListElement { idx: 3; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; sz: 32; }
+                    }
 
-                        SelectorMenuThemedItem {
-                            id: lilmenu11
-                            height: parent.height
-
-                            source: "qrc:/assets/icons_material/duotone-date_range-24px.svg"
-                            sourceSize: 18
-                            selected: true
-                            onClicked: {
-                                lilmenu11.selected = true
-                                lilmenu22.selected = false
-                                lilmenu33.selected = false
-                            }
-                        }
-                        SelectorMenuThemedItem {
-                            id: lilmenu22
-                            height: parent.height
-
-                            source: "qrc:/assets/icons_material/duotone-date_range-24px.svg"
-                            sourceSize: 22
-                            onClicked: {
-                                lilmenu11.selected = false
-                                lilmenu22.selected = true
-                                lilmenu33.selected = false
-                            }
-                        }
-                        SelectorMenuThemedItem {
-                            id: lilmenu33
-                            height: parent.height
-
-                            source: "qrc:/assets/icons_material/duotone-date_range-24px.svg"
-                            sourceSize: 26
-                            onClicked: {
-                                lilmenu11.selected = false
-                                lilmenu22.selected = false
-                                lilmenu33.selected = true
-                            }
-                        }
+                    onMenuSelected: (index) => {
+                        console.log("SelectorMenu clicked #" + index)
                     }
                 }
 
                 SelectorMenuThemed {
+                    height: 32
                     anchors.verticalCenter: parent.verticalCenter
-                    width: rowLilMenuTxt.width
 
-                    Row {
-                        id: rowLilMenuTxt
-                        height: parent.height
+                    model: ListModel {
+                        id: lmSelectorMenuTxt1
+                        ListElement { idx: 1; txt: "4/3"; src: ""; }
+                        ListElement { idx: 2; txt: "16/9"; src: ""; }
+                        ListElement { idx: 3; txt: "21/9"; src: ""; }
+                    }
 
-                        SelectorMenuThemedItem {
-                            id: lilmenu1
-
-                            text: "4/3"
-                            selected: true
-                            onClicked: {
-                                lilmenu1.selected = true
-                                lilmenu2.selected = false
-                                lilmenu3.selected = false
-                            }
-                        }
-                        SelectorMenuThemedItem {
-                            id: lilmenu2
-
-                            text: "16/9"
-                            onClicked: {
-                                lilmenu1.selected = false
-                                lilmenu2.selected = true
-                                lilmenu3.selected = false
-                            }
-                        }
-                        SelectorMenuThemedItem {
-                            id: lilmenu3
-
-                            text: "21/9"
-                            onClicked: {
-                                lilmenu1.selected = false
-                                lilmenu2.selected = false
-                                lilmenu3.selected = true
-                            }
-                        }
+                    onMenuSelected: (index) => {
+                        console.log("SelectorMenu clicked #" + index)
                     }
                 }
 
                 SelectorMenu {
+                    height: 40
                     anchors.verticalCenter: parent.verticalCenter
-                    width: rowLilMenu2Txt.width
 
-                    Row {
-                        id: rowLilMenu2Txt
-                        height: parent.height
+                    model: ListModel {
+                        id: lmSelectorMenuImg2
+                        ListElement { idx: 1; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; sz: 20; }
+                        ListElement { idx: 2; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; sz: 26; }
+                        ListElement { idx: 3; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; sz: 32; }
+                    }
 
-                        SelectorMenuItem {
-                            id: lilmenu111
+                    onMenuSelected: (index) => {
+                        console.log("SelectorMenu clicked #" + index)
+                    }
+                }
 
-                            text: "4/3"
-                            selected: true
-                            onClicked: {
-                                lilmenu111.selected = true
-                                lilmenu222.selected = false
-                                lilmenu333.selected = false
-                            }
-                        }
-                        SelectorMenuItem {
-                            id: lilmenu222
+                SelectorMenu {
+                    height: 32
+                    anchors.verticalCenter: parent.verticalCenter
 
-                            text: "16/9"
-                            onClicked: {
-                                lilmenu111.selected = false
-                                lilmenu222.selected = true
-                                lilmenu333.selected = false
-                            }
-                        }
-                        SelectorMenuItem {
-                            id: lilmenu333
+                    model: ListModel {
+                        id: lmSelectorMenuTxt2
+                        ListElement { idx: 1; txt: "4/3"; src: ""; }
+                        ListElement { idx: 2; txt: "16/9"; src: ""; }
+                        ListElement { idx: 3; txt: "21/9"; src: ""; }
+                    }
 
-                            text: "21/9"
-                            onClicked: {
-                                lilmenu111.selected = false
-                                lilmenu222.selected = false
-                                lilmenu333.selected = true
-                            }
-                        }
+                    onMenuSelected: (index) => {
+                        console.log("SelectorMenu clicked #" + index)
                     }
                 }
             }
@@ -594,7 +527,7 @@ Item {
 
                 SliderArrow {
                     anchors.verticalCenter: parent.verticalCenter
-                    value: 0.75
+                    value: 0.7
                     stepSize: 0.1
                 }
 
@@ -606,8 +539,8 @@ Item {
 
                 RangeSliderArrow {
                     anchors.verticalCenter: parent.verticalCenter
-                    second.value: 0.75
-                    first.value: 0.25
+                    second.value: 0.7
+                    first.value: 0.3
                     stepSize: 0.1
                 }
             }
@@ -619,15 +552,15 @@ Item {
 
                 SliderValueSolid {
                     anchors.verticalCenter: parent.verticalCenter
-                    value: 0.75
+                    value: 0.6
                     stepSize: 0.1
                 }
 
                 RangeSliderValueSolid {
                     anchors.verticalCenter: parent.verticalCenter
-                    second.value: 0.75
-                    first.value: 0.25
-                    //stepSize: 0.1
+                    second.value: 0.8
+                    first.value: 0.2
+                    stepSize: 0.1
                 }
             }
 
