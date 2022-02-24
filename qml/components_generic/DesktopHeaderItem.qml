@@ -39,9 +39,15 @@ Item {
         onClicked: control.clicked()
         onPressAndHold: control.pressAndHold()
 
+        onPressed: control.pressed = true
+        onReleased: control.pressed = false
+
         onEntered: control.hovered = true
         onExited: control.hovered = false
-        onCanceled: control.hovered = false
+        onCanceled: {
+            control.hovered = false
+            control.pressed = false
+        }
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -62,8 +68,9 @@ Item {
         opacity: control.hovered ? 0.5 : 0
         Behavior on opacity { OpacityAnimator { duration: 333 } }
     }
+
     Rectangle {
-        id: bgIndicator
+        id: indicator
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom

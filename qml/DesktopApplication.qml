@@ -15,11 +15,9 @@ ApplicationWindow {
     property bool isTablet: false
     property bool isHdpi: (utilsScreen.screenDpi > 128)
 
-    property var selectedDevice: null
-
     // Desktop stuff ///////////////////////////////////////////////////////////
 
-    minimumWidth: 480
+    minimumWidth: 800
     minimumHeight: 560
 
     width: {

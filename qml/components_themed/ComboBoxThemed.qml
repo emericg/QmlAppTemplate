@@ -6,7 +6,6 @@ import ThemeEngine 1.0
 
 T.ComboBox {
     id: control
-    implicitWidth: 200
     implicitHeight: Theme.componentHeight
 
     font.pixelSize: Theme.fontSizeComponent
@@ -14,17 +13,19 @@ T.ComboBox {
     leftPadding: 12
     rightPadding: 12
 
-    ////////
+    ////////////////////////////////////////////////////////////////////////////
 
     background: Rectangle {
-        anchors.fill: parent
+        implicitWidth: 200
+        implicitHeight: Theme.componentHeight
+
         radius: Theme.componentRadius
         color: control.down ? Theme.colorComponentDown : Theme.colorComponent
         border.width: 1
         border.color: Theme.colorComponentBorder
     }
 
-    ////////
+    ////////////////////////////////////////////////////////////////////////////
 
     contentItem: Text {
         text: control.displayText
@@ -35,11 +36,11 @@ T.ComboBox {
         verticalAlignment: Text.AlignVCenter
     }
 
-    ////////
+    ////////////////////////////////////////////////////////////////////////////
 
     indicator: Canvas {
         x: control.width - width - control.rightPadding
-        y: control.topPadding + (control.availableHeight - height) / 2
+        y: control.topPadding + ((control.availableHeight - height) / 2)
         width: 12
         height: 8
         rotation: control.popup.visible ? 180 : 0
@@ -61,7 +62,7 @@ T.ComboBox {
         }
     }
 
-    ////////
+    ////////////////////////////////////////////////////////////////////////////
 
     delegate: T.ItemDelegate {
         width: control.width - 2
@@ -87,7 +88,7 @@ T.ComboBox {
         }
     }
 
-    ////////
+    ////////////////////////////////////////////////////////////////////////////
 
     popup: T.Popup {
         y: control.height - 1
@@ -109,4 +110,6 @@ T.ComboBox {
             border.width: control.visualFocus ? 0 : 1
         }
     }
+
+    ////////////////////////////////////////////////////////////////////////////
 }

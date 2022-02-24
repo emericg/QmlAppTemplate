@@ -7,8 +7,13 @@ import "qrc:/js/UtilsNumber.js" as UtilsNumber
 
 T.Button {
     id: control
-    implicitWidth: contentText.contentWidth * 1.5 + sourceSize
+    implicitWidth: 128
     implicitHeight: Theme.componentHeight
+
+    width: control.sourceSize + contentText.contentWidth + 36
+
+    leftPadding: 12
+    rightPadding: 12
 
     font.pixelSize: Theme.fontSizeComponent
 
@@ -17,48 +22,41 @@ T.Button {
     property url source
     property int sourceSize: UtilsNumber.alignTo(height * 0.666, 2)
 
-    ////////////////////////////////////////////////////////////////////////////
-
     background: Rectangle {
-        anchors.fill: parent
+        implicitWidth: 128
+        implicitHeight: Theme.componentHeight
+
         radius: Theme.componentRadius
         opacity: enabled ? 1 : 0.33
         color: control.down ? Theme.colorComponentDown : Theme.colorComponent
     }
 
-    ////////////////////////////////////////////////////////////////////////////
+    contentItem: Row {
+        spacing: 8
 
-    contentItem: Item {
-        Row {
-            id: contentRow
-            height: parent.height
-            anchors.horizontalCenter: parent.horizontalCenter
-            spacing: 8
+        IconSvg {
+            width: control.sourceSize
+            height: control.sourceSize
+            anchors.verticalCenter: parent.verticalCenter
 
-            IconSvg {
-                id: contentImage
-                width: control.sourceSize
-                height: control.sourceSize
-                anchors.verticalCenter: parent.verticalCenter
+            opacity: enabled ? 1.0 : 0.33
+            source: control.source
+            color: Theme.colorComponentContent
+        }
 
-                opacity: enabled ? 1.0 : 0.33
-                source: control.source
-                color: Theme.colorComponentContent
-            }
+        Text {
+            id: contentText
+            anchors.verticalCenter: parent.verticalCenter
 
-            Text {
-                id: contentText
-                anchors.verticalCenter: parent.verticalCenter
+            text: control.text
+            textFormat: Text.PlainText
+            font: control.font
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            elide: Text.ElideRight
 
-                text: control.text
-                textFormat: Text.PlainText
-                font: control.font
-                opacity: enabled ? 1.0 : 0.33
-                color: Theme.colorComponentContent
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                elide: Text.ElideRight
-            }
+            opacity: enabled ? 1.0 : 0.33
+            color: Theme.colorComponentContent
         }
     }
 }

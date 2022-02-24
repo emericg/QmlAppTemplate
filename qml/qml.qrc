@@ -18,10 +18,6 @@
 
         <file alias="ActionMenu.qml">components_wip/ActionMenu.qml</file>
         <file alias="ActionMenuItem.qml">components_wip/ActionMenuItem.qml</file>
-        <file alias="DatePicker6.qml">components_wip/DatePicker6.qml</file>
-        <file alias="ItemImageButton.qml">components_wip/ItemImageButton.qml</file>
-        <file alias="ItemImageButtonShadow.qml">components_wip/ItemImageButtonShadow.qml</file>
-        <file alias="ItemImageButtonTooltip.qml">components_wip/ItemImageButtonTooltip.qml</file>
 
         <file alias="CsdMac.qml">components_generic/CsdMac.qml</file>
         <file alias="CsdWindows.qml">components_generic/CsdWindows.qml</file>
@@ -30,11 +26,14 @@
         <file alias="MobileMenuItem.qml">components_generic/MobileMenuItem.qml</file>
 
         <file alias="ButtonCompactable.qml">components_generic/ButtonCompactable.qml</file>
+        <file alias="ButtonIcon.qml">components_generic/ButtonIcon.qml</file>
+        <file alias="ButtonImage.qml">components_generic/ButtonImage.qml</file>
         <file alias="ButtonText.qml">components_generic/ButtonText.qml</file>
         <file alias="ButtonWireframe.qml">components_generic/ButtonWireframe.qml</file>
         <file alias="ButtonWireframeIcon.qml">components_generic/ButtonWireframeIcon.qml</file>
         <file alias="DataBarCompact.qml">components_generic/DataBarCompact.qml</file>
         <file alias="DataBarSolid.qml">components_generic/DataBarSolid.qml</file>
+        <file alias="DatePicker6.qml">components_generic/DatePicker6.qml</file>
         <file alias="IconSvg.qml">components_generic/IconSvg.qml</file>
         <file alias="ItemBadge.qml">components_generic/ItemBadge.qml</file>
         <file alias="ItemTag.qml">components_generic/ItemTag.qml</file>
@@ -47,6 +46,7 @@
         <file alias="SliderValueSolid.qml">components_generic/SliderValueSolid.qml</file>
         <file alias="SelectorMenu.qml">components_generic/SelectorMenu.qml</file>
         <file alias="SelectorMenuItem.qml">components_generic/SelectorMenuItem.qml</file>
+        <file alias="ToolTipFlat.qml">components_generic/ToolTipFlat.qml</file>
 
         <file alias="ButtonAndroid.qml">components_generic/ButtonAndroid.qml</file>
         <file alias="ButtonAndroidIcon.qml">components_generic/ButtonAndroidIcon.qml</file>

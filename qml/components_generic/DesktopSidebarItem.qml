@@ -24,7 +24,7 @@ Item {
     property url source
     property int sourceSize: 64
     property string text
-    property string highlightMode: "background" // available: background, indicator, content
+    property string highlightMode: "background" // available: background, indicator, circle, content
 
     // colors
     property string colorContent: Theme.colorSidebarContent
@@ -39,31 +39,41 @@ Item {
         onClicked: control.clicked()
         onPressAndHold: control.pressAndHold()
 
+        onPressed: control.pressed = true
+        onReleased: control.pressed = false
+
         onEntered: control.hovered = true
         onExited: control.hovered = false
-        onCanceled: control.hovered = false
+        onCanceled: {
+            control.hovered = false
+            control.pressed = false
+        }
     }
 
     ////////////////////////////////////////////////////////////////////////////
 
     Rectangle {
-        id: bgRect
-        anchors.fill: parent
+        id: background
+        anchors.centerIn: parent
 
-        visible: (control.selected && (control.highlightMode === "background" || control.highlightMode === "indicator"))
-        color: control.colorHighlight
-    }
-    Rectangle {
-        id: bgFocus
-        anchors.fill: parent
+        width: (control.highlightMode === "circle") ? height : parent.width
+        height: parent.height
+        radius: (control.highlightMode === "circle") ? width : 0
 
-        visible: (control.highlightMode === "background" || control.highlightMode === "indicator")
+        visible: (control.highlightMode === "background" ||
+                  control.highlightMode === "indicator" ||
+                  control.highlightMode === "circle")
         color: control.colorHighlight
-        opacity: control.hovered ? 0.5 : 0
-        Behavior on opacity { OpacityAnimator { duration: 333 } }
+        opacity: {
+            if (control.selected) return 1
+            if (control.hovered) return 0.5
+            return 0
+        }
+        Behavior on opacity { OpacityAnimator { duration: 233 } }
     }
+
     Rectangle {
-        id: bgIndicator
+        id: indicator
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.bottom: parent.bottom

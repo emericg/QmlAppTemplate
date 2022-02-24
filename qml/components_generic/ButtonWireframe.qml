@@ -39,37 +39,34 @@ T.Button {
         property bool hovered: false
 
         onClicked: control.clicked()
+        onPressAndHold: control.pressAndHold()
 
         onPressed: {
+            control.down = true
             mouseBackground.width = (control.width * 2)
             mouseBackground.opacity = 0.16
-            control.down = true
-        }
-        onPressAndHold: {
-            control.down = true
-            control.pressAndHold()
         }
         onReleased: {
+            control.down = false
             //mouseBackground.width = 0
             //mouseBackground.opacity = 0
-            control.down = false
         }
         onEntered: {
+            mousearea.hovered = true
             mouseBackground.width = 72
             mouseBackground.opacity = 0.16
-            mousearea.hovered = true
         }
         onExited: {
+            mousearea.hovered = false
+            control.down = false
             mouseBackground.width = 0
             mouseBackground.opacity = 0
-            control.down = false
-            mousearea.hovered = false
         }
         onCanceled: {
+            mousearea.hovered = false
+            control.down = false
             mouseBackground.width = 0
             mouseBackground.opacity = 0
-            control.down = false
-            mousearea.hovered = false
         }
     }
 
@@ -111,8 +108,6 @@ T.Button {
     ////////////////////////////////////////////////////////////////////////////
 
     contentItem: Item {
-        anchors.fill: control
-
         Text { // this one is just used for size reference
             id: contentTextInvisible
             text: control.text

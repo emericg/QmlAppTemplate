@@ -10,12 +10,14 @@ import "qrc:/js/UtilsNumber.js" as UtilsNumber
 
 T.Button {
     id: control
-    implicitWidth: {
-        if (source && text) return contentTextInvisible.contentWidth + sourceSize + 32
-        if (!source && text) return contentTextInvisible.contentWidth + 24
+    implicitWidth: 128
+    implicitHeight: Theme.componentHeight
+
+    width: {
+        if (source.toString().length && text) return contentTextInvisible.contentWidth + sourceSize + 32
+        if (source.toString().length <= 0 && text) return contentTextInvisible.contentWidth + 24
         return height
     }
-    implicitHeight: Theme.componentHeight
 
     font.pixelSize: Theme.fontSizeComponent
     font.bold: fullColor ? true : false
@@ -47,42 +49,35 @@ T.Button {
         property bool hovered: false
 
         onClicked: control.clicked()
-/*
         onPressAndHold: control.pressAndHold()
-        onEntered: control.hovered = true
-        onExited: control.hovered = false
-        onCanceled: control.hovered = false
-*/
+
         onPressed: {
+            control.down = true
             mouseBackground.width = (control.width * 2)
             mouseBackground.opacity = 0.16
-            control.down = true
-        }
-        onPressAndHold: {
-            control.down = true
-            control.pressAndHold()
         }
         onReleased: {
+            control.down = false
             //mouseBackground.width = 0
             //mouseBackground.opacity = 0
-            control.down = false
         }
+
         onEntered: {
+            mousearea.hovered = true
             mouseBackground.width = 72
             mouseBackground.opacity = 0.16
-            mousearea.hovered = true
         }
         onExited: {
+            mousearea.hovered = false
+            control.down = false
             mouseBackground.width = 0
             mouseBackground.opacity = 0
-            control.down = false
-            mousearea.hovered = false
         }
         onCanceled: {
+            mousearea.hovered = false
+            control.down = false
             mouseBackground.width = 0
             mouseBackground.opacity = 0
-            control.down = false
-            mousearea.hovered = false
         }
     }
 
@@ -99,11 +94,6 @@ T.Button {
         Rectangle {
             id: mouseBackground
             width: 0; height: width; radius: width;
-
-            //width: mousearea.pressed ? (control.width * 2) : 0
-            //height: width; radius: width;
-            //opacity: (control.down || control.hovered) ? 0.16 : 0
-
             x: mousearea.mouseX - (width / 2)
             y: mousearea.mouseY - (width / 2)
 
@@ -129,9 +119,7 @@ T.Button {
     ////////////////////////////////////////////////////////////////////////////
 
     contentItem: Item {
-        anchors.fill: control
-
-        Text { // this one is just used for reference
+        Text { // this one is just used for size reference
             id: contentTextInvisible
             text: control.text
             textFormat: Text.PlainText
@@ -141,9 +129,7 @@ T.Button {
 
         Row {
             id: contentRow
-            height: parent.height
-            anchors.horizontalCenter: parent.horizontalCenter
-
+            anchors.centerIn: parent
             layoutDirection: (control.sourceRightToLeft) ? Qt.RightToLeft : Qt.LeftToRight
             spacing: 8
 
@@ -153,15 +139,14 @@ T.Button {
                 height: control.sourceSize
                 anchors.verticalCenter: parent.verticalCenter
 
-                visible: control.source
+                visible: control.source.toString().length
                 source: control.source
                 opacity: enabled ? 1.0 : 0.66
                 color: control.fullColor ? control.fulltextColor : control.primaryColor
             }
             Text {
                 id: contentText
-                height: parent.height
-                width: (control.implicitWidth - 24 - (control.source ? control.sourceSize + 8 : 0))
+                height: control.height
                 visible: control.text
                 anchors.verticalCenter: parent.verticalCenter
 

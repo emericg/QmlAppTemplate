@@ -115,4 +115,6 @@ T.RangeSlider {
             verticalAlignment: Text.AlignVCenter
         }
     }
+
+    ////////////////////////////////////////////////////////////////////////////
 }

@@ -199,7 +199,7 @@ Item {
                     anchors.rightMargin: 0
                     anchors.verticalCenter: desc.verticalCenter
 
-                    text: qsTr("A plant monitoring application that reads and plots data from compatible Bluetooth sensors and thermometers like Xiaomi 'Flower Care' or Parrot 'Flower Power'.")
+                    text: qsTr("A Qt6 / QML application template, with a full set of visual controls.")
                     textFormat: Text.PlainText
                     wrapMode: Text.WordWrap
                     color: Theme.colorText

@@ -114,6 +114,7 @@ Rectangle {
             //enabled: !deviceManager.scanning
 
             source: "qrc:/assets/icons_material/baseline-autorenew-24px.svg"
+            textColor: Theme.colorHeaderContent
             iconColor: Theme.colorHeaderContent
             backgroundColor: Theme.colorHeaderHighlight
             onClicked: refreshButtonClicked()
@@ -228,7 +229,7 @@ Rectangle {
 
     ////////////
 
-    //CsdWindows { }
+    CsdWindows { }
 
     ////////////
 

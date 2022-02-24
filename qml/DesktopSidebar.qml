@@ -23,11 +23,9 @@ Rectangle {
     }
 
     CsdMac {
-        id: macosWindowButtons
-        height: 48
         anchors.top: parent.top
-        anchors.left: parent.left
-        anchors.right: parent.right
+        anchors.topMargin: 0
+        anchors.horizontalCenter: parent.horizontalCenter
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -35,7 +33,7 @@ Rectangle {
     Column {
         id: topMenu
         anchors.top: parent.top
-        anchors.topMargin: 24
+        anchors.topMargin: 32
         anchors.left: parent.left
         anchors.right: parent.right
 
@@ -79,6 +77,7 @@ Rectangle {
         DesktopSidebarItem {
             source: "qrc:/assets/icons_material/duotone-exit_to_app-24px.svg"
             sourceSize: sideBar.width
+            highlightMode: "circle"
 
             onClicked: appWindow.close()
         }

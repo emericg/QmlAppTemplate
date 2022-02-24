@@ -4,7 +4,7 @@ import ThemeEngine 1.0
 
 Item {
     id: control
-    implicitWidth: 16 + contentText.width + sourceSize + 16
+    implicitWidth: 16 + contentText.width + (source.toString().length ? sourceSize : 0) + 16
     implicitHeight: 32
 
     height: parent.height
@@ -21,7 +21,7 @@ Item {
     // settings
     property string text
     property url source
-    property int sourceSize: (source.length) ? 32 : 0
+    property int sourceSize: 32
 
     // colors
     property string colorContent: Theme.colorComponentText
@@ -87,4 +87,6 @@ Item {
         color: control.selected ? control.colorContentHighlight : control.colorContent
         opacity: control.selected ? 1 : 0.6
     }
+
+    ////////////////////////////////////////////////////////////////////////////
 }

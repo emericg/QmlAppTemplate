@@ -47,6 +47,33 @@ Item {
                 verticalAlignment: Text.AlignVCenter
             }
 
+            // middle
+
+            Row {
+                anchors.centerIn: parent
+                spacing: 16
+
+                ButtonCompactable {
+                    text: "oneone"
+                    source: "qrc:/assets/icons_material/baseline-warning-24px.svg"
+
+                    textColor: Theme.colorActionbarContent
+                    iconColor: Theme.colorActionbarContent
+                    backgroundColor: Theme.colorActionbarHighlight
+
+                    compact: false
+                    onClicked: compact = !compact
+                }
+
+                ButtonCompactable {
+                    text: "twotwo"
+                    source: "qrc:/assets/icons_material/baseline-warning-24px.svg"
+
+                    compact: false
+                    onClicked: compact = !compact
+                }
+            }
+
             // right
 
             Row {
@@ -80,7 +107,7 @@ Item {
                 }
             }
 
-            ItemImageButton {
+            ButtonIcon {
                 id: itemImageButtonX
                 width: 40
                 height: 40
@@ -112,8 +139,8 @@ Item {
         width: 64 + 4
         height: 6*64 + 4
 
-        z: 10
-        color: "white"
+        z: 5
+        color: Theme.colorHighContrast
         visible: isDesktop
 
         Column {
@@ -167,6 +194,16 @@ Item {
                 color: Theme.colorError
             }
         }
+    }
+
+    DatePicker6 {
+        anchors.top: parent.top
+        anchors.topMargin: menusArea.height + 24
+        anchors.right: rectangleColors.left
+        anchors.rightMargin: 24
+
+        z: 5
+        visible: isDesktop
     }
 
     // CONTENT /////////////////////////////////////////////////////////////////
@@ -330,21 +367,21 @@ Item {
                     height: 48
                     spacing: 16
 
-                    ItemImageButton {
+                    ButtonIcon {
                         width: 48
                         height: 48
                         source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
                         background: true
                         highlightMode: "color"
                     }
-                    ItemImageButton {
+                    ButtonIcon {
                         width: 48
                         height: 48
                         source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
                         background: false
                         highlightMode: "circle"
                     }
-                    ItemImageButtonTooltip {
+                    ButtonIcon {
                         width: 48
                         height: 48
                         source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
@@ -360,16 +397,16 @@ Item {
                     height: 48
                     spacing: 16
 
-                    ItemImageButton {
+                    ButtonIcon {
                         source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
                         highlightMode: "color"
                     }
-                    ItemImageButton {
+                    ButtonIcon {
                         source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
                         background: true
                         highlightMode: "circle"
                     }
-                    ItemImageButtonTooltip {
+                    ButtonIcon {
                         source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
                         highlightMode: "color"
                         highlightColor: Theme.colorError
@@ -645,6 +682,15 @@ Item {
                     width: 112
                     value: 0.33
                 }
+/*
+                ButtonImage {
+                    width: 128
+                    height: 128
+                    hoverMode: "glow"
+                    source: "qrc:/assets/button.png"
+                    sourceSize: 96
+                }
+*/
             }
 
             ////////////////////////

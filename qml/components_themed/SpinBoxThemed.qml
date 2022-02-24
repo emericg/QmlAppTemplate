@@ -123,7 +123,7 @@ T.SpinBox {
         }
     }
 
-    ////////
+    ////////////////////////////////////////////////////////////////////////////
 
     down.indicator: Item {
         implicitWidth: Theme.componentHeight
@@ -138,4 +138,6 @@ T.SpinBox {
             color: enabled ? Theme.colorComponentContent : Theme.colorSubText
         }
     }
+
+    ////////////////////////////////////////////////////////////////////////////
 }
