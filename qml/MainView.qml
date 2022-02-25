@@ -243,6 +243,7 @@ Item {
 
                 Text {
                     anchors.verticalCenter: parent.verticalCenter
+                    visible: isDesktop
 
                     text: "Application theme"
                     font.pixelSize: Theme.fontSizeContent
