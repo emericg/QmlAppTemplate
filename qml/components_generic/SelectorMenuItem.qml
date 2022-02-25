@@ -72,7 +72,7 @@ Item {
 
         source: control.source
         color: control.selected ? control.colorContentHighlight : control.colorContent
-        opacity: control.selected ? 1 : 0.5
+        opacity: control.selected ? 1 : 0.66
     }
 
     Text {
@@ -85,7 +85,7 @@ Item {
         verticalAlignment: Text.AlignVCenter
 
         color: control.selected ? control.colorContentHighlight : control.colorContent
-        opacity: control.selected ? 1 : 0.6
+        opacity: control.selected ? 1 : 0.66
     }
 
     ////////////////////////////////////////////////////////////////////////////

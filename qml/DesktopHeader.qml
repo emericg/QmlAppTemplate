@@ -108,14 +108,18 @@ Rectangle {
         ButtonIcon {
             id: buttonMenu
             anchors.verticalCenter: parent.verticalCenter
+
             source: "qrc:/assets/icons_material/baseline-more_vert-24px.svg"
-            onClicked: actionMenu.open()
+            onClicked: {
+                actionMenu.x = mapToItem(appWindow.contentItem, buttonMenu.x, buttonMenu.y).x - actionMenu.width
+                actionMenu.y = mapToItem(appWindow.contentItem, buttonMenu.x, buttonMenu.y).y + 16
+                actionMenu.open()
+            }
 
             ActionMenu {
                 id: actionMenu
-
-                x: appWindow.width - buttonMenu.x//mapToGlobal(buttonMenu.x, buttonMenu.y).x
-                y: buttonMenu.y
+                //x: mapToItem(appWindow.contentItem, buttonMenu.x, buttonMenu.y).x - actionMenu.width
+                //y: mapToItem(appWindow.contentItem, buttonMenu.x, buttonMenu.y).y + 16
 
                 model: ListModel {
                     id: lmActionMenu
@@ -126,7 +130,7 @@ Rectangle {
                 }
 
                 onMenuSelected: (index) => {
-                    console.log("ActionMenu clicked #" + index)
+                    //console.log("ActionMenu clicked #" + index)
                 }
             }
         }
@@ -144,12 +148,14 @@ Rectangle {
             textColor: Theme.colorHeaderContent
             iconColor: Theme.colorHeaderContent
             backgroundColor: Theme.colorHeaderHighlight
-            onClicked: refreshButtonClicked()
             text: qsTr("Refresh data")
             tooltipText: text
 
+            property bool isclicked: false
+            onClicked: isclicked = !isclicked
+
             animation: "rotate"
-            animationRunning: true
+            animationRunning: isclicked
         }
 
         ////////////

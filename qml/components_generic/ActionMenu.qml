@@ -6,20 +6,25 @@ import ThemeEngine 1.0
 
 Popup {
     id: actionMenu
-    width: 220
+    width: 200
 
     padding: 0
     margins: 0
 
-    modal: true
-    focus: isMobile
-    closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
     parent: Overlay.overlay
+    modal: true
+    dim: false
+    focus: isMobile
     locale: Qt.locale()
+    closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
 
-    signal menuSelected(var index)
+    enter: Transition { NumberAnimation { property: "opacity"; from: 0.0; to: 1.0; duration: 133; } }
+    exit: Transition { NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; duration: 133; } }
 
     property var model: null
+    property int layoutDirection: Qt.LeftToRight
+
+    signal menuSelected(var index)
 
     ////////////////////////////////////////////////////////////////////////////
 
@@ -34,6 +39,9 @@ Popup {
 
     contentItem: Column {
         padding: Theme.componentBorderWidth
+
+        topPadding: 8
+        bottomPadding: 8
         spacing: 4
 
         DelegateChooser {
@@ -54,6 +62,7 @@ Popup {
                     index: idx
                     text: txt
                     source: src
+                    layoutDirection: actionMenu.layoutDirection
                     onClicked: {
                         actionMenu.menuSelected(idx)
                         actionMenu.close()

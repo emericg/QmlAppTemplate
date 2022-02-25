@@ -437,7 +437,7 @@ Item {
                     }
 
                     onMenuSelected: (index) => {
-                        console.log("SelectorMenu clicked #" + index)
+                        //console.log("SelectorMenu clicked #" + index)
                     }
                 }
 
@@ -447,13 +447,13 @@ Item {
 
                     model: ListModel {
                         id: lmSelectorMenuTxt1
-                        ListElement { idx: 1; txt: "4/3"; src: ""; }
-                        ListElement { idx: 2; txt: "16/9"; src: ""; }
-                        ListElement { idx: 3; txt: "21/9"; src: ""; }
+                        ListElement { idx: 1; txt: "4/3"; src: ""; sz: 0; }
+                        ListElement { idx: 2; txt: "16/9"; src: ""; sz: 0; }
+                        ListElement { idx: 3; txt: "21/9"; src: ""; sz: 0; }
                     }
 
                     onMenuSelected: (index) => {
-                        console.log("SelectorMenu clicked #" + index)
+                        //console.log("SelectorMenu clicked #" + index)
                     }
                 }
 
@@ -469,7 +469,7 @@ Item {
                     }
 
                     onMenuSelected: (index) => {
-                        console.log("SelectorMenu clicked #" + index)
+                        //console.log("SelectorMenu clicked #" + index)
                     }
                 }
 
@@ -479,13 +479,13 @@ Item {
 
                     model: ListModel {
                         id: lmSelectorMenuTxt2
-                        ListElement { idx: 1; txt: "4/3"; src: ""; }
-                        ListElement { idx: 2; txt: "16/9"; src: ""; }
-                        ListElement { idx: 3; txt: "21/9"; src: ""; }
+                        ListElement { idx: 1; txt: "4/3"; src: ""; sz: 0; }
+                        ListElement { idx: 2; txt: "16/9"; src: ""; sz: 0; }
+                        ListElement { idx: 3; txt: "21/9"; src: ""; sz: 0; }
                     }
 
                     onMenuSelected: (index) => {
-                        console.log("SelectorMenu clicked #" + index)
+                        //console.log("SelectorMenu clicked #" + index)
                     }
                 }
             }

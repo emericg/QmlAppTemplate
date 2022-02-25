@@ -193,7 +193,7 @@ Rectangle {
         }
 
         onMenuSelected: (index) => {
-            console.log("ActionMenu clicked #" + index)
+            //console.log("ActionMenu clicked #" + index)
         }
     }
 }

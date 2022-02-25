@@ -85,6 +85,7 @@ T.Button {
 
     background: Rectangle {
         anchors.fill: control
+
         radius: Theme.componentRadius
         opacity: enabled ? (control.down && !control.hoverAnimation ? 0.8 : 1.0) : 0.4
         color: control.fullColor ? control.primaryColor : control.secondaryColor

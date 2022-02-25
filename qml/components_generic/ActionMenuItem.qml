@@ -1,4 +1,5 @@
 import QtQuick 2.15
+import QtQuick.Layouts 1.15
 
 import ThemeEngine 1.0
 
@@ -11,7 +12,7 @@ Rectangle {
     anchors.right: parent.right
     anchors.rightMargin: Theme.componentBorderWidth
 
-    radius: Theme.componentRadius
+    radius: 0
     color: Theme.colorBackground
 
     // actions
@@ -23,35 +24,9 @@ Rectangle {
     property string text
     property url source
     property int sourceSize: 20
+    property int layoutDirection: Qt.RightToLeft
 
     ////////////////////////////////////////////////////////////////////////////
-
-    IconSvg {
-        id: iButton
-        width: actionMenuItem.sourceSize
-        height: actionMenuItem.sourceSize
-        anchors.left: parent.left
-        anchors.leftMargin: 12
-        anchors.verticalCenter: parent.verticalCenter
-
-        source: actionMenuItem.source
-        color: Theme.colorIcon
-    }
-
-    Text {
-        id: tButton
-        anchors.left: iButton.right
-        anchors.leftMargin: 12
-        anchors.right: parent.right
-        anchors.rightMargin: 12
-        anchors.verticalCenter: parent.verticalCenter
-
-        text: actionMenuItem.text
-        font.bold: false
-        font.pixelSize: Theme.fontSizeComponent
-        elide: Text.ElideRight
-        color: Theme.colorText
-    }
 
     MouseArea {
         anchors.fill: parent
@@ -63,6 +38,42 @@ Rectangle {
         onEntered: actionMenuItem.state = "hovered"
         onExited: actionMenuItem.state = "normal"
         onCanceled: actionMenuItem.state = "normal"
+    }
+
+    RowLayout {
+        id: layout
+        anchors.fill: parent
+        anchors.leftMargin: 12
+        anchors.rightMargin: 12
+        spacing: 6
+        layoutDirection: actionMenuItem.layoutDirection
+
+        IconSvg {
+            id: iButton
+            width: actionMenuItem.sourceSize
+            height: actionMenuItem.sourceSize
+
+            Layout.maximumWidth: actionMenuItem.sourceSize
+            Layout.minimumHeight: actionMenuItem.sourceSize
+            Layout.fillWidth: false
+
+            source: actionMenuItem.source
+            color: Theme.colorIcon
+        }
+
+        Text {
+            id: tButton
+
+            Layout.fillWidth: true
+
+            text: actionMenuItem.text
+            font.bold: false
+            font.pixelSize: Theme.fontSizeComponent
+            horizontalAlignment: Text.AlignLeft
+            verticalAlignment: Text.AlignVCenter
+            elide: Text.ElideRight
+            color: Theme.colorText
+        }
     }
 
     ////////////////////////////////////////////////////////////////////////////

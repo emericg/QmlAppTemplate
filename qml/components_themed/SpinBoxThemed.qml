@@ -66,16 +66,18 @@ T.SpinBox {
         TextInput {
             width: parent.width - (control.height * 2)
             height: parent.height
-            anchors.centerIn: parent
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.horizontalCenterOffset: control.legend ? -(contentWidth / 2) : 0
+            anchors.verticalCenter: parent.verticalCenter
+
+            color: Theme.colorComponentText
+            selectionColor: Theme.colorText
+            selectedTextColor: "white"
 
             text: control.textFromValue(control.value, control.locale)
             font: control.font
             horizontalAlignment: Qt.AlignHCenter
             verticalAlignment: Qt.AlignVCenter
-
-            color: Theme.colorComponentText
-            selectionColor: Theme.colorText
-            selectedTextColor: "white"
 
             readOnly: !control.editable
             validator: control.validator
@@ -87,14 +89,17 @@ T.SpinBox {
             }
 
             Text {
+                height: parent.height
                 anchors.horizontalCenter: parent.horizontalCenter
-                anchors.horizontalCenterOffset: parent.contentWidth - 4
+                anchors.horizontalCenterOffset: parent.contentWidth
                 anchors.verticalCenter: parent.verticalCenter
 
                 visible: control.legend
-                text: control.legend
-                font: control.font
                 color: Theme.colorComponentText
+
+                text: control.legend
+                textFormat: Text.PlainText
+                font: control.font
                 horizontalAlignment: Qt.AlignHCenter
                 verticalAlignment: Qt.AlignVCenter
             }
@@ -106,6 +111,8 @@ T.SpinBox {
     up.indicator: Item {
         implicitWidth: Theme.componentHeight
         implicitHeight: Theme.componentHeight
+        width: control.height
+        height: control.height
         anchors.verticalCenter: control.verticalCenter
         x: control.mirrored ? 0 : control.width - width
 
@@ -128,6 +135,8 @@ T.SpinBox {
     down.indicator: Item {
         implicitWidth: Theme.componentHeight
         implicitHeight: Theme.componentHeight
+        width: control.height
+        height: control.height
         anchors.verticalCenter: control.verticalCenter
         x: control.mirrored ? control.width - width : 0
 

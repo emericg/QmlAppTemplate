@@ -66,7 +66,7 @@ Item {
 
         onEntered: {
             control.hovered = true
-            mouseBackground.width = (control.width * 2)
+            mouseBackground.width = 72
             mouseBackground.opacity = 0.16
         }
         onExited: {
@@ -100,10 +100,10 @@ Item {
             y: mousearea.mouseY - (width / 2)
 
             visible: !control.compact
-            color: "#fff"
+            color: "white"
             opacity: 0
-            Behavior on opacity { NumberAnimation { duration: 133 } }
-            Behavior on width { NumberAnimation { duration: 133 } }
+            Behavior on opacity { NumberAnimation { duration: 333 } }
+            Behavior on width { NumberAnimation { duration: 200 } }
         }
 
         layer.enabled: control.hoverAnimation
