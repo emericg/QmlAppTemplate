@@ -32,57 +32,57 @@ Item {
     ////////////////
 
     property int themeStatusbar
-    property string colorStatusbar
+    property color colorStatusbar
 
     // Header
-    property string colorHeader
-    property string colorHeaderContent
-    property string colorHeaderHighlight
+    property color colorHeader
+    property color colorHeaderContent
+    property color colorHeaderHighlight
 
     // Sidebar
-    property string colorSidebar
-    property string colorSidebarContent
-    property string colorSidebarHighlight
+    property color colorSidebar
+    property color colorSidebarContent
+    property color colorSidebarHighlight
 
     // Action bar
-    property string colorActionbar
-    property string colorActionbarContent
-    property string colorActionbarHighlight
+    property color colorActionbar
+    property color colorActionbarContent
+    property color colorActionbarHighlight
 
     // Tablet bar
-    property string colorTabletmenu
-    property string colorTabletmenuContent
-    property string colorTabletmenuHighlight
+    property color colorTabletmenu
+    property color colorTabletmenuContent
+    property color colorTabletmenuHighlight
 
     // Content
-    property string colorBackground
-    property string colorForeground
+    property color colorBackground
+    property color colorForeground
 
-    property string colorPrimary
-    property string colorSecondary
-    property string colorSuccess
-    property string colorWarning
-    property string colorError
+    property color colorPrimary
+    property color colorSecondary
+    property color colorSuccess
+    property color colorWarning
+    property color colorError
 
-    property string colorText
-    property string colorSubText
-    property string colorIcon
-    property string colorSeparator
+    property color colorText
+    property color colorSubText
+    property color colorIcon
+    property color colorSeparator
 
-    property string colorLowContrast
-    property string colorHighContrast
+    property color colorLowContrast
+    property color colorHighContrast
 
     // App specific
-    property string colorDeviceWidget
+    property color colorDeviceWidget
     property string sidebarSelector // 'arrow' or 'bar'
 
     // Qt Quick controls & theming
-    property string colorComponent
-    property string colorComponentText
-    property string colorComponentContent
-    property string colorComponentBorder
-    property string colorComponentDown
-    property string colorComponentBackground
+    property color colorComponent
+    property color colorComponentText
+    property color colorComponentContent
+    property color colorComponentBorder
+    property color colorComponentDown
+    property color colorComponentBackground
 
     property int componentHeight: 40
     property int componentRadius: 4
@@ -91,31 +91,31 @@ Item {
     ////////////////
 
     // Palette colors
-    property string colorLightGreen: "#09debc" // unused
-    property string colorGreen
-    property string colorDarkGreen: "#1ea892" // unused
-    property string colorBlue
-    property string colorYellow
-    property string colorOrange
-    property string colorRed
-    property string colorGrey: "#555151" // unused
-    property string colorLightGrey: "#a9bcb8" // unused
+    property color colorLightGreen: "#09debc" // unused
+    property color colorGreen
+    property color colorDarkGreen: "#1ea892" // unused
+    property color colorBlue
+    property color colorYellow
+    property color colorOrange
+    property color colorRed
+    property color colorGrey: "#555151" // unused
+    property color colorLightGrey: "#a9bcb8" // unused
 
     // Fixed colors
-    readonly property string colorMaterialBlue: "#2196f3"
-    readonly property string colorMaterialThisblue: "#448aff"
-    readonly property string colorMaterialIndigo: "#3f51b5"
-    readonly property string colorMaterialPurple: "#9c27b0"
-    readonly property string colorMaterialDeepPurple: "#673ab7"
-    readonly property string colorMaterialRed: "#f44336"
-    readonly property string colorMaterialOrange: "#ff9800"
-    readonly property string colorMaterialLightGreen: "#8bc34a"
+    readonly property color colorMaterialBlue: "#2196f3"
+    readonly property color colorMaterialThisblue: "#448aff"
+    readonly property color colorMaterialIndigo: "#3f51b5"
+    readonly property color colorMaterialPurple: "#9c27b0"
+    readonly property color colorMaterialDeepPurple: "#673ab7"
+    readonly property color colorMaterialRed: "#f44336"
+    readonly property color colorMaterialOrange: "#ff9800"
+    readonly property color colorMaterialLightGreen: "#8bc34a"
 
-    readonly property string colorMaterialLightGrey: "#f8f8f8"
-    readonly property string colorMaterialGrey: "#eeeeee"
-    readonly property string colorMaterialDarkGrey: "#ececec"
-    readonly property string colorNeutralDay: "#e4e4e4"
-    readonly property string colorNeutralNight: "#ffb300"
+    readonly property color colorMaterialLightGrey: "#f8f8f8"
+    readonly property color colorMaterialGrey: "#eeeeee"
+    readonly property color colorMaterialDarkGrey: "#ececec"
+    readonly property color colorNeutralDay: "#e4e4e4"
+    readonly property color colorNeutralNight: "#ffb300"
 
     ////////////////
 
@@ -446,6 +446,9 @@ Item {
 
         if (themeIndex === ThemeEngine.THEME_LIGHT_AND_WARM) {
 
+            themeStatusbar = Material.Dark
+            colorStatusbar = "#BBB"
+
             colorHeader =               "#DADADA"
             colorHeaderContent =        "#353637"
             colorHeaderHighlight =      Qt.darker(colorHeader, 1.1)
@@ -457,6 +460,10 @@ Item {
             colorActionbar =            "#8CD200"
             colorActionbarContent =     "white"
             colorActionbarHighlight =   "#73AD00"
+
+            colorTabletmenu =           "#f3f3f3"
+            colorTabletmenuContent =    "#9d9d9d"
+            colorTabletmenuHighlight =  "#0079fe"
 
             colorBackground =           "#F4F4F4"
             colorForeground =           "#E5E5E5"
@@ -487,6 +494,9 @@ Item {
 
         } else if (themeIndex === ThemeEngine.THEME_DARK_AND_SPOOKY) {
 
+            themeStatusbar = Material.Dark
+            colorStatusbar = "black"
+
             colorHeader =               "#282828"
             colorHeaderContent =        "#C0C0C0"
             colorHeaderHighlight =      Qt.lighter(colorHeader, 1.4)
@@ -498,6 +508,10 @@ Item {
             colorActionbar =            "#FEC759"
             colorActionbarContent =     "white"
             colorActionbarHighlight =   "#FFAF00"
+
+            colorTabletmenu =           "#f3f3f3"
+            colorTabletmenuContent =    "#9d9d9d"
+            colorTabletmenuHighlight =  "#FF9F1A"
 
             colorBackground =           "#404040"
             colorForeground =           "#555555"
@@ -528,6 +542,9 @@ Item {
 
         } else if (themeIndex === ThemeEngine.THEME_PLAIN_AND_BORING) {
 
+            themeStatusbar = Material.Dark
+            colorStatusbar = "#E4E4E4"
+
             colorHeader =               "#E8E8E8"
             colorHeaderContent =        "#353637"
             colorHeaderHighlight =      Qt.darker(colorHeader, 1.06)
@@ -539,6 +556,10 @@ Item {
             colorActionbar =            "#FFD54A"
             colorActionbarContent =     "white"
             colorActionbarHighlight =   "#FFC831"
+
+            colorTabletmenu =           "#f3f3f3"
+            colorTabletmenuContent =    "#9d9d9d"
+            colorTabletmenuHighlight =  "#0079fe"
 
             colorBackground =           "#FEFEFE"
             colorForeground =           "#F0F0F0"
@@ -569,6 +590,9 @@ Item {
 
         } else if (themeIndex === ThemeEngine.THEME_BLOOD_AND_TEARS) {
 
+            themeStatusbar = Material.Dark
+            colorStatusbar = "black"
+
             colorHeader =               "#141414"
             colorHeaderContent =        "white"
             colorHeaderHighlight =      "#222"
@@ -580,6 +604,10 @@ Item {
             colorActionbar =            "#009EE2"
             colorActionbarContent =     "white"
             colorActionbarHighlight =   "#0089C3"
+
+            colorTabletmenu =           "#f3f3f3"
+            colorTabletmenuContent =    "#9d9d9d"
+            colorTabletmenuHighlight =  "#009EE2"
 
             colorBackground =           "#222"
             colorForeground =           "#333"
@@ -610,17 +638,24 @@ Item {
 
         } else if (themeIndex === ThemeEngine.THEME_MIGHTY_KITTENS) {
 
+            themeStatusbar = Material.Dark
+            colorStatusbar = "#944197"
+
             colorHeader =               "#FFB4DC"
             colorHeaderContent =        "#944197"
             colorHeaderHighlight =      Qt.darker(colorHeader, 1.1)
 
             colorSidebar =              "#E31D8D"
-            colorSidebarContent =       "#FFF06D"
+            colorSidebarContent =       "#FF99CC"
             colorSidebarHighlight =     Qt.darker(colorSidebar, 1.2)
 
             colorActionbar =            "#FFE400"
             colorActionbarContent =     "white"
             colorActionbarHighlight =   "#FFBF00"
+
+            colorTabletmenu =           "white"
+            colorTabletmenuContent =    "#FFAAD4"
+            colorTabletmenuHighlight =  "#944197"
 
             colorBackground =           "white"
             colorForeground =           "#FFDDEE"
@@ -655,8 +690,8 @@ Item {
 
         if (themeIndex === ThemeEngine.THEME_LIGHT_DESKTOP) {
 
-            themeStatusbar = Material.Light
-            colorStatusbar = colorMaterialDarkGrey
+            themeStatusbar = Material.Dark
+            colorStatusbar = "#BBB"
 
             colorHeader =               "#CBCBCB"
             colorHeaderContent =        "#353637"
@@ -669,6 +704,10 @@ Item {
             colorActionbar =            "#8cd200"
             colorActionbarContent =     "white"
             colorActionbarHighlight =   "#73AD00"
+
+            colorTabletmenu =           "#f3f3f3"
+            colorTabletmenuContent =    "#9d9d9d"
+            colorTabletmenuHighlight =  "#0079fe"
 
             colorBackground =           "#EEEEEE"
             colorForeground =           "#E0E0E0"
@@ -713,6 +752,10 @@ Item {
             colorActionbar =            "#fed859"
             colorActionbarContent =     "white"
             colorActionbarHighlight =   "#FFBA00"
+
+            colorTabletmenu =           "#f3f3f3"
+            colorTabletmenuContent =    "#9d9d9d"
+            colorTabletmenuHighlight =  "#0079fe"
 
             colorBackground =           "#404040"
             colorForeground =           "#555555"

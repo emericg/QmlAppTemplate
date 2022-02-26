@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.emeric.qmlapptemplate" android:installLocation="auto" android:versionCode="000101" android:versionName="01">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.emeric.qmlapptemplate" android:installLocation="auto" android:versionCode="000201" android:versionName="02">
 
     <!-- %%INSERT_PERMISSIONS -->
 

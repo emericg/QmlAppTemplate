@@ -242,7 +242,7 @@ Item {
                     onLinkActivated: Qt.openUrlExternally(link)
                     font.pixelSize: Theme.fontSizeContent
                     color: Theme.colorText
-                    linkColor: Theme.colorText
+                    linkColor: Theme.colorIcon
 
                     MouseArea {
                         anchors.fill: parent
@@ -284,7 +284,7 @@ Item {
                     anchors.verticalCenter: parent.verticalCenter
 
                     source: "qrc:/assets/icons_material/baseline-stars-24px.svg"
-                    color: Theme.colorText
+                    color: Theme.colorIcon
                 }
 
                 Text {

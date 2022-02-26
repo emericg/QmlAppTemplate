@@ -48,8 +48,8 @@ Rectangle {
             colorHighlight: Theme.colorTabletmenuHighlight
 
             text: qsTr("MainView")
-            selected: (appContent.state === "MainView")
             source: "qrc:/assets/icons_material/duotone-touch_app-24px.svg"
+            selected: (appContent.state === "MainView")
             onClicked: appContent.state = "MainView"
         }
         MobileMenuItem {
@@ -61,8 +61,8 @@ Rectangle {
             colorHighlight: Theme.colorTabletmenuHighlight
 
             text: qsTr("Settings")
-            selected: (appContent.state === "Settings")
             source: "qrc:/assets/icons_material/baseline-settings-20px.svg"
+            selected: (appContent.state === "Settings" || appContent.state === "Permissions")
             onClicked: appContent.state = "Settings"
         }
         MobileMenuItem {
@@ -74,8 +74,8 @@ Rectangle {
             colorHighlight: Theme.colorTabletmenuHighlight
 
             text: qsTr("About")
-            selected: (appContent.state === "About")
             source: "qrc:/assets/icons_material/outline-info-24px.svg"
+            selected: (appContent.state === "About")
             onClicked: appContent.state = "About"
         }
     }

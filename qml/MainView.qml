@@ -39,6 +39,7 @@ Item {
                 anchors.left: parent.left
                 anchors.leftMargin: 24
                 anchors.verticalCenter: parent.verticalCenter
+                visible: wideWideMode
 
                 text: "Action bar"
                 font.bold: true
@@ -51,6 +52,7 @@ Item {
 
             Row {
                 anchors.centerIn: parent
+                visible: wideWideMode
                 spacing: 16
 
                 ButtonCompactable {

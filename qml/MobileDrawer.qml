@@ -117,6 +117,25 @@ Drawer {
 
                 ////////
 
+                Item { // spacer
+                    height: 8
+                    anchors.right: parent.right
+                    anchors.left: parent.left
+                }
+                Rectangle {
+                    height: 1
+                    anchors.right: parent.right
+                    anchors.left: parent.left
+                    color: Theme.colorSeparator
+                }
+                Item {
+                    height: 8
+                    anchors.right: parent.right
+                    anchors.left: parent.left
+                }
+
+                ////////
+
                 Rectangle {
                     id: rectangleMainView
                     height: 48

@@ -289,7 +289,17 @@ ApplicationWindow {
         state: "MainView"
 
         onStateChanged: {
-            //
+            if (state === "MainView")
+                appHeader.leftMenuMode = "drawer"
+            else if (state === "Tutorial")
+                appHeader.leftMenuMode = "close"
+            else
+                appHeader.leftMenuMode = "back"
+
+            if (state === "Tutorial")
+                appDrawer.interactive = false
+            else
+                appDrawer.interactive = true
         }
 
         states: [

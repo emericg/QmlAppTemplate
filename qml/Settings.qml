@@ -452,16 +452,7 @@ Item {
                 }
             }
 
-            ////////
-
-            Rectangle {
-                height: 1
-                anchors.left: parent.left
-                anchors.right: parent.right
-                color: Theme.colorSeparator
-            }
-
-            ////////
+            ////////////////
 
             Rectangle {
                 height: 48
