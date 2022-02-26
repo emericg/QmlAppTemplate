@@ -109,7 +109,7 @@ Item {
                 }
             }
 
-            ButtonIcon {
+            RoundButtonIcon {
                 id: itemImageButtonX
                 width: 40
                 height: 40
@@ -368,25 +368,24 @@ Item {
                 spacing: 24
 
                 Row {
-                    width: 400
                     height: 48
                     spacing: 16
 
-                    ButtonIcon {
+                    RoundButtonIcon {
                         width: 48
                         height: 48
                         source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
                         background: true
                         highlightMode: "color"
                     }
-                    ButtonIcon {
+                    RoundButtonIcon {
                         width: 48
                         height: 48
                         source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
                         background: false
                         highlightMode: "circle"
                     }
-                    ButtonIcon {
+                    RoundButtonIcon {
                         width: 48
                         height: 48
                         source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
@@ -397,26 +396,94 @@ Item {
                     }
                 }
 
+                Item {
+                    width: 16
+                    height: 16
+                }
+
                 Row {
-                    width: 400
                     height: 48
                     spacing: 16
 
-                    ButtonIcon {
+                    RoundButtonText {
+                        width: 48
+                        height: 48
+                        text: "+"
+                        background: true
+                        highlightMode: "color"
+                    }
+                    RoundButtonText {
+                        width: 48
+                        height: 48
+                        text: "-"
+                        background: false
+                        highlightMode: "circle"
+                    }
+                    RoundButtonText {
+                        width: 48
+                        height: 48
+                        text: "a"
+                        highlightMode: "color"
+                        highlightColor: Theme.colorError
+                        border: true
+
+                        tooltipText: "this one has a tooltip!"
+                    }
+                }
+
+                Item {
+                    width: 16
+                    height: 16
+                }
+
+                Row {
+                    height: 48
+                    spacing: 16
+
+                    RoundButtonIcon {
                         source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
                         highlightMode: "color"
                     }
-                    ButtonIcon {
+                    RoundButtonIcon {
                         source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
                         background: true
                         highlightMode: "circle"
                     }
-                    ButtonIcon {
+                    RoundButtonIcon {
                         source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
                         highlightMode: "color"
                         highlightColor: Theme.colorError
 
                         tooltipText: "another tooltip!"
+                    }
+                }
+
+                Item {
+                    width: 16
+                    height: 16
+                }
+
+                Row {
+                    height: 48
+                    spacing: 16
+
+                    RoundButtonText {
+                        text: "+"
+                        background: true
+                        highlightMode: "color"
+                    }
+                    RoundButtonText {
+                        text: "-"
+                        background: false
+                        highlightMode: "circle"
+                    }
+                    RoundButtonText {
+                        text: "a"
+                        highlightMode: "color"
+                        highlightColor: Theme.colorError
+                        border: true
+
+                        tooltipText: "this one has a tooltip!"
                     }
                 }
             }
@@ -432,6 +499,7 @@ Item {
                     height: 40
                     anchors.verticalCenter: parent.verticalCenter
 
+                    currentSelection: 1
                     model: ListModel {
                         id: lmSelectorMenuImg1
                         ListElement { idx: 1; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; sz: 20; }
@@ -441,6 +509,7 @@ Item {
 
                     onMenuSelected: (index) => {
                         //console.log("SelectorMenu clicked #" + index)
+                        currentSelection = index
                     }
                 }
 
@@ -448,6 +517,7 @@ Item {
                     height: 32
                     anchors.verticalCenter: parent.verticalCenter
 
+                    currentSelection: 1
                     model: ListModel {
                         id: lmSelectorMenuTxt1
                         ListElement { idx: 1; txt: "4/3"; src: ""; sz: 0; }
@@ -457,6 +527,7 @@ Item {
 
                     onMenuSelected: (index) => {
                         //console.log("SelectorMenu clicked #" + index)
+                        currentSelection = index
                     }
                 }
 
@@ -464,6 +535,7 @@ Item {
                     height: 40
                     anchors.verticalCenter: parent.verticalCenter
 
+                    currentSelection: 1
                     model: ListModel {
                         id: lmSelectorMenuImg2
                         ListElement { idx: 1; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; sz: 20; }
@@ -473,6 +545,7 @@ Item {
 
                     onMenuSelected: (index) => {
                         //console.log("SelectorMenu clicked #" + index)
+                        currentSelection = index
                     }
                 }
 
@@ -489,6 +562,7 @@ Item {
 
                     onMenuSelected: (index) => {
                         //console.log("SelectorMenu clicked #" + index)
+                        currentSelection = index
                     }
                 }
             }
@@ -517,6 +591,18 @@ Item {
                 ItemTag {
                     anchors.verticalCenter: parent.verticalCenter
                     text: "TAG2"
+                    //color: Theme.colorForeground
+                }
+
+                ItemTagButton {
+                    anchors.verticalCenter: parent.verticalCenter
+                    text: "TAG3"
+                    //color: Theme.colorForeground
+                }
+
+                ItemTagButton {
+                    anchors.verticalCenter: parent.verticalCenter
+                    text: "TAG4"
                     //color: Theme.colorForeground
                 }
             }
@@ -752,10 +838,10 @@ Item {
                     text: "Button"
                 }
 
-                ButtonIconThemed {
+                RoundButtonIconThemed {
                     anchors.verticalCenter: parent.verticalCenter
 
-                    text: "ButtonIcon"
+                    text: "RoundButtonIcon"
                     source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
                 }
 

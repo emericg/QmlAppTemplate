@@ -39,7 +39,7 @@ Rectangle {
 
         DesktopSidebarItem {
             source: "qrc:/assets/icons_material/duotone-touch_app-24px.svg"
-            sourceSize: sideBar.width
+            sourceSize: 40
             highlightMode: "indicator"
 
             selected: (appContent.state === "MainView")
@@ -58,7 +58,7 @@ Rectangle {
 
         DesktopSidebarItem {
             source: "qrc:/assets/icons_material/baseline-settings-20px.svg"
-            sourceSize: sideBar.width
+            sourceSize: 40
             highlightMode: "indicator"
 
             selected: (appContent.state === "Settings")
@@ -67,7 +67,7 @@ Rectangle {
 
         DesktopSidebarItem {
             source: "qrc:/assets/icons_material/outline-info-24px.svg"
-            sourceSize: sideBar.width
+            sourceSize: 40
             highlightMode: "indicator"
 
             selected: (appContent.state === "About")
@@ -76,7 +76,7 @@ Rectangle {
 
         DesktopSidebarItem {
             source: "qrc:/assets/icons_material/duotone-exit_to_app-24px.svg"
-            sourceSize: sideBar.width
+            sourceSize: 40
             highlightMode: "circle"
 
             onClicked: appWindow.close()

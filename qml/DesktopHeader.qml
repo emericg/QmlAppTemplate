@@ -105,7 +105,7 @@ Rectangle {
 
         ////////////
 
-        ButtonIcon {
+        RoundButtonIcon {
             id: buttonMenu
             anchors.verticalCenter: parent.verticalCenter
 
@@ -263,6 +263,8 @@ Rectangle {
     ////////////
 
     CsdWindows { }
+
+    CsdLinux { }
 
     ////////////
 

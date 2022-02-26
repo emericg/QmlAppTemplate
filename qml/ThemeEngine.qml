@@ -132,46 +132,42 @@ Item {
     ////////////////////////////////////////////////////////////////////////////
 
     function getThemeIndex(name) {
-        var index = -1
+        if (name === "THEME_PLANT") return ThemeEngine.THEME_PLANT
+        if (name === "THEME_SNOW") return ThemeEngine.THEME_SNOW
+        if (name === "THEME_DAY") return ThemeEngine.THEME_DAY
+        if (name === "THEME_NIGHT") return ThemeEngine.THEME_NIGHT
 
-        if (name === "THEME_PLANT") index = ThemeEngine.THEME_PLANT
-        else if (name === "THEME_SNOW") index = ThemeEngine.THEME_SNOW
-        else if (name === "THEME_DAY") index = ThemeEngine.THEME_DAY
-        else if (name === "THEME_NIGHT") index = ThemeEngine.THEME_NIGHT
+        if (name === "THEME_LIGHT_AND_WARM") return ThemeEngine.THEME_LIGHT_AND_WARM
+        if (name === "THEME_DARK_AND_SPOOKY") return ThemeEngine.THEME_DARK_AND_SPOOKY
+        if (name === "THEME_PLAIN_AND_BORING") return ThemeEngine.THEME_PLAIN_AND_BORING
+        if (name === "THEME_BLOOD_AND_TEARS") return ThemeEngine.THEME_BLOOD_AND_TEARS
+        if (name === "THEME_MIGHTY_KITTENS") return ThemeEngine.THEME_MIGHTY_KITTENS
 
-        else if (name === "THEME_LIGHT_AND_WARM") index = ThemeEngine.THEME_LIGHT_AND_WARM
-        else if (name === "THEME_DARK_AND_SPOOKY") index = ThemeEngine.THEME_DARK_AND_SPOOKY
-        else if (name === "THEME_PLAIN_AND_BORING") index = ThemeEngine.THEME_PLAIN_AND_BORING
-        else if (name === "THEME_BLOOD_AND_TEARS") index = ThemeEngine.THEME_BLOOD_AND_TEARS
-        else if (name === "THEME_MIGHTY_KITTENS") index = ThemeEngine.THEME_MIGHTY_KITTENS
+        if (name === "THEME_LIGHT_DESKTOP") return ThemeEngine.THEME_LIGHT_DESKTOP
+        if (name === "THEME_DARK_DESKTOP") return ThemeEngine.THEME_DARK_DESKTOP
+        if (name === "THEME_LIGHT_MOBILE") return ThemeEngine.THEME_LIGHT_MOBILE
+        if (name === "THEME_DARK_MOBILE") return ThemeEngine.THEME_DARK_MOBILE
 
-        else if (name === "THEME_LIGHT_DESKTOP") index = ThemeEngine.THEME_LIGHT_DESKTOP
-        else if (name === "THEME_DARK_DESKTOP") index = ThemeEngine.THEME_DARK_DESKTOP
-        else if (name === "THEME_LIGHT_MOBILE") index = ThemeEngine.THEME_LIGHT_MOBILE
-        else if (name === "THEME_DARK_MOBILE") index = ThemeEngine.THEME_DARK_MOBILE
-
-        return index
+        return -1
     }
     function getThemeName(index) {
-        var name = ""
+        if (index === ThemeEngine.THEME_PLANT) return "THEME_PLANT"
+        if (index === ThemeEngine.THEME_SNOW) return "THEME_SNOW"
+        if (index === ThemeEngine.THEME_DAY) return "THEME_DAY"
+        if (index === ThemeEngine.THEME_NIGHT) return "THEME_NIGHT"
 
-        if (index === ThemeEngine.THEME_PLANT) name = "THEME_PLANT"
-        else if (index === ThemeEngine.THEME_SNOW) name = "THEME_SNOW"
-        else if (index === ThemeEngine.THEME_DAY) name = "THEME_DAY"
-        else if (index === ThemeEngine.THEME_NIGHT) name = "THEME_NIGHT"
+        if (index === ThemeEngine.THEME_LIGHT_AND_WARM) return "THEME_LIGHT_AND_WARM"
+        if (index === ThemeEngine.THEME_DARK_AND_SPOOKY) return "THEME_DARK_AND_SPOOKY"
+        if (index === ThemeEngine.THEME_PLAIN_AND_BORING) return "THEME_PLAIN_AND_BORING"
+        if (index === ThemeEngine.THEME_BLOOD_AND_TEARS) return "THEME_BLOOD_AND_TEARS"
+        if (index === ThemeEngine.THEME_MIGHTY_KITTENS) return "THEME_MIGHTY_KITTENS"
 
-        else if (index === ThemeEngine.THEME_LIGHT_AND_WARM) name = "THEME_LIGHT_AND_WARM"
-        else if (index === ThemeEngine.THEME_DARK_AND_SPOOKY) name = "THEME_DARK_AND_SPOOKY"
-        else if (index === ThemeEngine.THEME_PLAIN_AND_BORING) name = "THEME_PLAIN_AND_BORING"
-        else if (index === ThemeEngine.THEME_BLOOD_AND_TEARS) name = "THEME_BLOOD_AND_TEARS"
-        else if (index === ThemeEngine.THEME_MIGHTY_KITTENS) name = "THEME_MIGHTY_KITTENS"
+        if (index === ThemeEngine.THEME_LIGHT_DESKTOP) return "THEME_LIGHT_DESKTOP"
+        if (index === ThemeEngine.THEME_DARK_DESKTOP) return "THEME_DARK_DESKTOP"
+        if (index === ThemeEngine.THEME_LIGHT_MOBILE) return "THEME_LIGHT_MOBILE"
+        if (index === ThemeEngine.THEME_DARK_MOBILE) return "THEME_DARK_MOBILE"
 
-        else if (index === ThemeEngine.THEME_LIGHT_DESKTOP) name = "THEME_LIGHT_DESKTOP"
-        else if (index === ThemeEngine.THEME_DARK_DESKTOP) name = "THEME_DARK_DESKTOP"
-        else if (index === ThemeEngine.THEME_LIGHT_MOBILE) name = "THEME_LIGHT_MOBILE"
-        else if (index === ThemeEngine.THEME_DARK_MOBILE) name = "THEME_DARK_MOBILE"
-
-        return name
+        return ""
     }
 
     ////////////////////////////////////////////////////////////////////////////
