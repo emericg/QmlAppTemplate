@@ -6,117 +6,111 @@ import ThemeEngine 1.0
 
 Loader {
     anchors.top: parent.top
-    anchors.topMargin: 0
+    anchors.topMargin: 6
     anchors.right: parent.right
-    anchors.rightMargin: 0
+    anchors.rightMargin: 6
 
-    width: 96
-    height: 32
+    width: active ? 94 : 0
+    height: active ? 26 : 0
 
-    //enabled: (settingsManager.appThemeCSD && Qt.platform.os !== "windows" && Qt.platform.os !== "osx")
-    //visible: (settingsManager.appThemeCSD && Qt.platform.os !== "windows" && Qt.platform.os !== "osx")
+    active: (settingsManager.appThemeCSD && Qt.platform.os !== "windows" && Qt.platform.os !== "osx")
 
     asynchronous: true
-    sourceComponent: (settingsManager.appThemeCSD && Qt.platform.os !== "windows" && Qt.platform.os !== "osx")
-                         ? componentCsdLinux : null
+    sourceComponent: Row {
+        id: csdLinux
+        spacing: 8
 
-    Component {
-        id: componentCsdLinux
+        ////////
 
-        Row {
-            id: csdLinux
-            anchors.centerIn: parent
-            spacing: 4
+        Rectangle { // button minimize
+            width: 26; height: 26; radius: 26;
+            color: hovered ? "#66aaaaaa" : "#33aaaaaa"
+            Behavior on color { ColorAnimation { duration: 233; easing.type: Easing.InOutCirc; } }
 
-            ////////
+            property bool hovered: false
 
-            Rectangle { // button minimize
-                width: 28; height: 28; radius: 28;
-                color: hovered ? "#33aaaaaa" : "transparent"
-
-                property bool hovered: false
-
-                Rectangle {
-                    width: 10; height: 1;
-                    anchors.centerIn: parent
-                    color: "transparent"
-                    border.width: 1
-                    border.color: parent.hovered ? Theme.colorHighContrast : Theme.colorIcon
-                }
-
-                MouseArea {
-                    anchors.fill: parent
-
-                    hoverEnabled: true
-                    onEntered: parent.hovered = true
-                    onExited: parent.hovered = false
-                    onCanceled: parent.hovered = false
-                    onClicked: appWindow.showMinimized()
-                }
+            Rectangle {
+                width: 10; height: 2;
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.verticalCenterOffset: 4
+                color: parent.hovered ? Theme.colorHighContrast : Theme.colorIcon
             }
 
-            ////////
+            MouseArea {
+                anchors.fill: parent
 
-            Rectangle { // button maximize
-                width: 28; height: 28; radius: 28;
-                color: hovered ? "#33aaaaaa" : "transparent"
+                hoverEnabled: true
+                onEntered: parent.hovered = true
+                onExited: parent.hovered = false
+                onCanceled: parent.hovered = false
+                onClicked: appWindow.showMinimized()
+            }
+        }
 
-                property bool hovered: false
+        ////////
 
-                Rectangle {
-                    width: 11; height: 11;
-                    anchors.centerIn: parent
-                    color: "transparent"
-                    border.width: 1
-                    border.color: parent.hovered ? Theme.colorHighContrast : Theme.colorIcon
-                }
+        Rectangle { // button maximize
+            width: 26; height: 26; radius: 26;
+            color: hovered ? "#66aaaaaa" : "#33aaaaaa"
+            Behavior on color { ColorAnimation { duration: 233; easing.type: Easing.InOutCirc; } }
 
-                MouseArea {
-                    anchors.fill: parent
+            property bool hovered: false
 
-                    hoverEnabled: true
-                    onEntered: parent.hovered = true
-                    onExited: parent.hovered = false
-                    onCanceled: parent.hovered = false
-                    onClicked: {
-                        if (appWindow.visibility === ApplicationWindow.Maximized)
-                            appWindow.showNormal()
-                        else
-                            appWindow.showMaximized()
-                    }
-                }
+            Rectangle {
+                width: 10; height: 10;
+                anchors.centerIn: parent
+                color: "transparent"
+                border.width: 2
+                border.color: parent.hovered ? Theme.colorHighContrast : Theme.colorIcon
             }
 
-            ////////
+            MouseArea {
+                anchors.fill: parent
 
-            Rectangle { // button close
-                width: 28; height: 28; radius: 28;
-                color: hovered ? "red" : "transparent"
-
-                property bool hovered: false
-
-                Rectangle {
-                    width: 14; height: 1; radius: 1;
-                    anchors.centerIn: parent
-                    rotation: 45
-                    color: parent.hovered ? "white" : Theme.colorIcon
+                hoverEnabled: true
+                onEntered: parent.hovered = true
+                onExited: parent.hovered = false
+                onCanceled: parent.hovered = false
+                onClicked: {
+                    if (appWindow.visibility === ApplicationWindow.Maximized)
+                        appWindow.showNormal()
+                    else
+                        appWindow.showMaximized()
                 }
-                Rectangle {
-                    width: 14; height: 1; radius: 1;
-                    anchors.centerIn: parent
-                    rotation: -45
-                    color: parent.hovered ? "white" : Theme.colorIcon
-                }
+            }
+        }
 
-                MouseArea {
-                    anchors.fill: parent
+        ////////
 
-                    hoverEnabled: true
-                    onEntered: parent.hovered = true
-                    onExited: parent.hovered = false
-                    onCanceled: parent.hovered = false
-                    onClicked: appWindow.close()
-                }
+        Rectangle { // button close
+            width: 26; height: 26; radius: 26;
+            color: hovered ? "red" : "#33aaaaaa"
+            Behavior on color { ColorAnimation { duration: 233; easing.type: Easing.InOutCirc; } }
+
+            property bool hovered: false
+
+            Rectangle {
+                width: 13; height: 2; radius: 2;
+                anchors.centerIn: parent
+                rotation: 45
+                color: parent.hovered ? "white" : Theme.colorIcon
+            }
+            Rectangle {
+                width: 13; height: 2; radius: 2;
+                anchors.centerIn: parent
+                rotation: -45
+                color: parent.hovered ? "white" : Theme.colorIcon
+            }
+
+            MouseArea {
+                anchors.fill: parent
+
+                hoverEnabled: true
+                onEntered: parent.hovered = true
+                onExited: parent.hovered = false
+                onCanceled: parent.hovered = false
+                onClicked: appWindow.close()
             }
         }
     }

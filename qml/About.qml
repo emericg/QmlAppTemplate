@@ -7,7 +7,7 @@ import "qrc:/js/UtilsNumber.js" as UtilsNumber
 Item {
     id: aboutScreen
     width: 480
-    height: 640
+    height: 720
     anchors.fill: parent
 
     ////////////////////////////////////////////////////////////////////////////
@@ -88,7 +88,7 @@ Item {
                     visible: wideWideMode
                     spacing: 16
 
-                    ButtonWireframeIcon {
+                    ButtonWireframeIconCentered {
                         width: 160
 
                         sourceSize: 28
@@ -100,7 +100,7 @@ Item {
                         onClicked: Qt.openUrlExternally("https://emeric.io/")
                     }
 
-                    ButtonWireframeIcon {
+                    ButtonWireframeIconCentered {
                         width: 160
 
                         sourceSize: 22
@@ -112,7 +112,7 @@ Item {
                         onClicked: Qt.openUrlExternally("https://emeric.io/")
                     }
 
-                    ButtonWireframeIcon {
+                    ButtonWireframeIconCentered {
                         visible: (appWindow.width > 800)
                         width: 160
 
@@ -141,7 +141,7 @@ Item {
                 visible: !wideWideMode
                 spacing: 16
 
-                ButtonWireframeIcon {
+                ButtonWireframeIconCentered {
                     width: ((parent.width - 16) / 2)
                     anchors.verticalCenter: parent.verticalCenter
 
@@ -153,7 +153,7 @@ Item {
                     source: "qrc:/assets/icons_material/baseline-insert_link-24px.svg"
                     onClicked: Qt.openUrlExternally("https://emeric.io/")
                 }
-                ButtonWireframeIcon {
+                ButtonWireframeIconCentered {
                     width: ((parent.width - 16) / 2)
                     anchors.verticalCenter: parent.verticalCenter
 

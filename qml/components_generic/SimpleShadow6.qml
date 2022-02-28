@@ -1,9 +1,8 @@
 import QtQuick
 import Qt5Compat.GraphicalEffects
 
-import ThemeEngine 1.0
-
 Item {
+    anchors.fill: parent
     z: -1
 
     property string color: "#666"
@@ -17,19 +16,15 @@ Item {
         visible: false
         color: parent.filled ? parent.color : "transparent"
 
-        border.width: parent.filled ? 0 : 1
+        border.width: parent.filled ? 0 : 4
         border.color: parent.color
     }
     DropShadow {
-        //anchors.fill: shadowarea
-        anchors.top: parent.top
-        anchors.left: parent.left
-        anchors.right: parent.right
-        height: 8
+        anchors.fill: parent
 
         source: shadowarea
         cached: true
-        radius: 12.0
+        radius: 16.0
         //spread: 24
         //samples: 25 // (radius*2 + 1)
         color: parent.color

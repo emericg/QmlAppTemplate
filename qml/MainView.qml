@@ -222,7 +222,7 @@ Item {
         contentHeight: columnComponents.height
 
         boundsBehavior: isDesktop ? Flickable.OvershootBounds : Flickable.DragAndOvershootBounds
-        ScrollBar.vertical: ScrollBar { visible: isDesktop; }
+        ScrollBar.vertical: ScrollBarThemed { visible: isDesktop; }
 
         Column {
             id: columnComponents
@@ -349,6 +349,7 @@ Item {
                 }
 
                 ButtonWireframeIcon {
+                    width: 128
                     anchors.verticalCenter: parent.verticalCenter
                     text: "ButtonWireframeIcon"
                     source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
@@ -731,25 +732,22 @@ Item {
                 anchors.right: parent.right
                 spacing: 24
 
-                ButtonAndroid {
+                AndroidButton {
                     anchors.verticalCenter: parent.verticalCenter
-
-                    text: "ButtonAndroid"
+                    text: "AndroidButton"
                 }
 
-                ButtonAndroidIcon {
+                AndroidButtonIcon {
                     anchors.verticalCenter: parent.verticalCenter
-
-                    text: "ButtonAndroidIcon"
+                    text: "AndroidButtonIcon"
                     source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
                 }
 
-                TextFieldAndroid {
+                AndroidTextField {
                     anchors.verticalCenter: parent.verticalCenter
-
-                    width: 256
-                    title: "TextFieldAndroid"
+                    title: "AndroidTextField"
                     text: "some text"
+                    placeholderText: "placeholder text"
                 }
             }
 
@@ -821,6 +819,7 @@ Item {
                 TextFieldThemed {
                     anchors.verticalCenter: parent.verticalCenter
                     width: 256
+                    placeholderText: "placeholder text"
                 }
 
                 ComboBoxThemed {
@@ -835,13 +834,12 @@ Item {
 
                 ButtonThemed {
                     anchors.verticalCenter: parent.verticalCenter
-                    text: "Button"
+                    text: "ButtonThemed"
                 }
 
-                RoundButtonIconThemed {
+                ButtonIconThemed {
                     anchors.verticalCenter: parent.verticalCenter
-
-                    text: "RoundButtonIcon"
+                    text: "ButtonIconThemed"
                     source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
                 }
 

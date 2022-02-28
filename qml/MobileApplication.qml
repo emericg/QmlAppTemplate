@@ -264,6 +264,10 @@ ApplicationWindow {
             anchors.fill: parent
             id: screenMainView
         }
+        FontList {
+            anchors.fill: parent
+            id: screenFontList
+        }
 
         Settings {
             id: screenSettings
@@ -306,7 +310,17 @@ ApplicationWindow {
             State {
                 name: "MainView"
                 PropertyChanges { target: appHeader; title: "QmlAppTemplate"; }
-                PropertyChanges { target: screenMainView; enabled: true; visible: true; }
+                PropertyChanges { target: screenMainView; visible: true; enabled: true; }
+                PropertyChanges { target: screenFontList; visible: false; enabled: false; }
+                PropertyChanges { target: screenSettings; visible: false; enabled: false; }
+                PropertyChanges { target: screenPermissions; visible: false; enabled: false; }
+                PropertyChanges { target: screenAbout; visible: false; enabled: false; }
+            },
+            State {
+                name: "FontList"
+                PropertyChanges { target: appHeader; title: "Font list"; }
+                PropertyChanges { target: screenMainView; visible: false; enabled: false; }
+                PropertyChanges { target: screenFontList; visible: true; enabled: true; }
                 PropertyChanges { target: screenSettings; visible: false; enabled: false; }
                 PropertyChanges { target: screenPermissions; visible: false; enabled: false; }
                 PropertyChanges { target: screenAbout; visible: false; enabled: false; }
@@ -315,6 +329,7 @@ ApplicationWindow {
                 name: "Settings"
                 PropertyChanges { target: appHeader; title: qsTr("Settings"); }
                 PropertyChanges { target: screenMainView; visible: false; enabled: false; }
+                PropertyChanges { target: screenFontList; visible: false; enabled: false; }
                 PropertyChanges { target: screenSettings; visible: true; enabled: true; }
                 PropertyChanges { target: screenPermissions; visible: false; enabled: false; }
                 PropertyChanges { target: screenAbout; visible: false; enabled: false; }
@@ -323,6 +338,7 @@ ApplicationWindow {
                 name: "Permissions"
                 PropertyChanges { target: appHeader; title: qsTr("Permissions"); }
                 PropertyChanges { target: screenMainView; visible: false; enabled: false; }
+                PropertyChanges { target: screenFontList; visible: false; enabled: false; }
                 PropertyChanges { target: screenSettings; visible: false; enabled: false; }
                 PropertyChanges { target: screenPermissions; visible: true; enabled: true; }
                 PropertyChanges { target: screenAbout; visible: false; enabled: false; }
@@ -331,6 +347,7 @@ ApplicationWindow {
                 name: "About"
                 PropertyChanges { target: appHeader; title: qsTr("About"); }
                 PropertyChanges { target: screenMainView; visible: false; enabled: false; }
+                PropertyChanges { target: screenFontList; visible: false; enabled: false; }
                 PropertyChanges { target: screenSettings; visible: false; enabled: false; }
                 PropertyChanges { target: screenPermissions; visible: false; enabled: false; }
                 PropertyChanges { target: screenAbout; visible: true; enabled: true; }

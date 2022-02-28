@@ -110,6 +110,9 @@ Rectangle {
             anchors.verticalCenter: parent.verticalCenter
 
             source: "qrc:/assets/icons_material/baseline-more_vert-24px.svg"
+            iconColor: Theme.colorHeaderContent
+            backgroundColor: Theme.colorHeaderHighlight
+
             onClicked: {
                 actionMenu.x = mapToItem(appWindow.contentItem, buttonMenu.x, buttonMenu.y).x - actionMenu.width
                 actionMenu.y = mapToItem(appWindow.contentItem, buttonMenu.x, buttonMenu.y).y + 16
@@ -268,7 +271,7 @@ Rectangle {
 
     ////////////
 
-    Rectangle {
+    Rectangle { // separator
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
@@ -280,7 +283,6 @@ Rectangle {
 /*
         Rectangle { // shadow
             anchors.top: parent.bottom
-            anchors.topMargin: -parent.height
             anchors.left: parent.left
             anchors.right: parent.right
 

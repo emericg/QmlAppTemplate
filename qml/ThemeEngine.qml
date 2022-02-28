@@ -247,7 +247,7 @@ Item {
 
             colorText = "#474747"
             colorSubText = "#666666"
-            colorIcon = "#606060"
+            colorIcon = "#474747"
             colorSeparator = colorMaterialDarkGrey
             colorLowContrast = "white"
             colorHighContrast = "#303030"
@@ -303,7 +303,7 @@ Item {
 
             colorText = "#333333"
             colorSubText = "#666666"
-            colorIcon = "#606060"
+            colorIcon = "#333333"
             colorSeparator = colorMaterialDarkGrey
             colorLowContrast = "white"
             colorHighContrast = "black"
@@ -359,7 +359,7 @@ Item {
 
             colorText = "#474747"
             colorSubText = "#666666"
-            colorIcon = "#606060"
+            colorIcon = "#474747"
             colorSeparator = colorMaterialDarkGrey
             colorLowContrast = "white"
             colorHighContrast = "#303030"
@@ -415,7 +415,7 @@ Item {
 
             colorText = "#EEE"
             colorSubText = "#AAA"
-            colorIcon = "#b9babe"
+            colorIcon = "#EEE"
             colorSeparator = "#404040"
             colorLowContrast = "#111"
             colorHighContrast = "white"
@@ -451,7 +451,7 @@ Item {
 
             colorSidebar =              "#3A3A3A"
             colorSidebarContent =       "white"
-            colorSidebarHighlight =     Qt.darker(colorSidebar, 1.5)
+            colorSidebarHighlight =     Qt.lighter(colorSidebar, 1.5)
 
             colorActionbar =            "#8CD200"
             colorActionbarContent =     "white"
@@ -499,7 +499,7 @@ Item {
 
             colorSidebar =              "#2E2E2E"
             colorSidebarContent =       "white"
-            colorSidebarHighlight =     Qt.lighter(colorSidebar, 1.4)
+            colorSidebarHighlight =     Qt.lighter(colorSidebar, 1.5)
 
             colorActionbar =            "#FEC759"
             colorActionbarContent =     "white"
@@ -547,7 +547,7 @@ Item {
 
             colorSidebar =              "#2A5D92"
             colorSidebarContent =       "white"
-            colorSidebarHighlight =     Qt.darker(colorSidebar, 1.3)
+            colorSidebarHighlight =     Qt.darker(colorSidebar, 1.25)
 
             colorActionbar =            "#FFD54A"
             colorActionbarContent =     "white"
@@ -595,7 +595,7 @@ Item {
 
             colorSidebar =              "#181818"
             colorSidebarContent =       "#DDD"
-            colorSidebarHighlight =     "#222"
+            colorSidebarHighlight =     "#333"
 
             colorActionbar =            "#009EE2"
             colorActionbarContent =     "white"
@@ -643,7 +643,7 @@ Item {
 
             colorSidebar =              "#E31D8D"
             colorSidebarContent =       "#FF99CC"
-            colorSidebarHighlight =     Qt.darker(colorSidebar, 1.2)
+            colorSidebarHighlight =     Qt.darker(colorSidebar, 1.15)
 
             colorActionbar =            "#FFE400"
             colorActionbarContent =     "white"

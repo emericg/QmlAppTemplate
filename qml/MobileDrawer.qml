@@ -176,6 +176,45 @@ Drawer {
                 ////////
 
                 Rectangle {
+                    id: rectangleFontList
+                    height: 48
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    color: (appContent.state === "FontList") ? Theme.colorForeground : "transparent"
+
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            appContent.state = "FontList"
+                            appDrawer.close()
+                        }
+                    }
+
+                    IconSvg {
+                        width: 24
+                        height: 24
+                        anchors.left: parent.left
+                        anchors.leftMargin: screenPaddingLeft + 16
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        source: "qrc:/assets/icons_material/duotone-format_size-24px.svg"
+                        color: Theme.colorText
+                    }
+                    Label {
+                        anchors.left: parent.left
+                        anchors.leftMargin: screenPaddingLeft + 56
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        text: qsTr("FontList")
+                        font.pixelSize: 13
+                        font.bold: true
+                        color: Theme.colorText
+                    }
+                }
+
+                ////////
+
+                Rectangle {
                     id: rectangleSettings
                     height: 48
                     anchors.left: parent.left

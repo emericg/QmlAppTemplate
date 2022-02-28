@@ -229,6 +229,10 @@ ApplicationWindow {
             anchors.fill: parent
             id: screenMainView
         }
+        FontList {
+            anchors.fill: parent
+            id: screenFontList
+        }
 
         Settings {
             anchors.fill: parent
@@ -253,19 +257,29 @@ ApplicationWindow {
         states: [
             State {
                 name: "MainView"
-                PropertyChanges { target: screenMainView; enabled: true; visible: true; focus: true; }
+                PropertyChanges { target: screenMainView; visible: true; enabled: true; focus: true; }
+                PropertyChanges { target: screenFontList; visible: false; enabled: false; }
+                PropertyChanges { target: screenSettings; visible: false; enabled: false; }
+                PropertyChanges { target: screenAbout; visible: false; enabled: false; }
+            },
+            State {
+                name: "FontList"
+                PropertyChanges { target: screenMainView; visible: false; enabled: false; }
+                PropertyChanges { target: screenFontList; visible: true; enabled: true; focus: true; }
                 PropertyChanges { target: screenSettings; visible: false; enabled: false; }
                 PropertyChanges { target: screenAbout; visible: false; enabled: false; }
             },
             State {
                 name: "Settings"
-                PropertyChanges { target: screenMainView; enabled: false; visible: false; }
+                PropertyChanges { target: screenMainView; visible: false; enabled: false; }
+                PropertyChanges { target: screenFontList; visible: false; enabled: false; }
                 PropertyChanges { target: screenSettings; visible: true; enabled: true; focus: true; }
                 PropertyChanges { target: screenAbout; visible: false; enabled: false; }
             },
             State {
                 name: "About"
-                PropertyChanges { target: screenMainView; enabled: false; visible: false; }
+                PropertyChanges { target: screenMainView; visible: false; enabled: false; }
+                PropertyChanges { target: screenFontList; visible: false; enabled: false; }
                 PropertyChanges { target: screenSettings; visible: false; enabled: false; }
                 PropertyChanges { target: screenAbout; visible: true; enabled: true; focus: true; }
             }

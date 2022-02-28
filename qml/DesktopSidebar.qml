@@ -90,7 +90,7 @@ Rectangle {
         anchors.right: parent.left
         anchors.bottom: parent.bottom
 
-        height: 8
+        width: 8
         opacity: 0.66
 
         gradient: Gradient {
