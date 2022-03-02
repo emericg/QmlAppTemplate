@@ -152,6 +152,8 @@ macx {
     ENTITLEMENTS.value = $${PWD}/assets/macos/$$lower($${TARGET}).entitlements
     QMAKE_MAC_XCODE_SETTINGS += ENTITLEMENTS
 
+    QMAKE_APPLE_DEVICE_ARCHS = "x86_64 arm64"
+
     #======== Automatic bundle packaging
 
     # Deploy step (app bundle packaging)
