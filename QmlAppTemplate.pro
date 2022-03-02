@@ -131,7 +131,7 @@ macx {
     QMAKE_BUNDLE = qmlapptemplate
 
     # OS icons
-    ICON = $${PWD}/assets/macos/$$lower($${TARGET}).icns
+    #ICON = $${PWD}/assets/macos/$$lower($${TARGET}).icns
     #QMAKE_ASSET_CATALOGS_APP_ICON = "AppIcon"
     #QMAKE_ASSET_CATALOGS = $${PWD}/assets/macos/Images.xcassets
 
@@ -236,7 +236,7 @@ win32 {
     HEADERS += src/utils/utils_os_windows.h
 
     # OS icon
-    RC_ICONS = $${PWD}/assets/windows/$$lower($${TARGET}).ico
+    #RC_ICONS = $${PWD}/assets/windows/$$lower($${TARGET}).ico
 
     # Deploy step
     deploy.commands = $$quote(windeployqt $${OUT_PWD}/$${DESTDIR}/ --qmldir qml/)
@@ -309,13 +309,3 @@ ios {
         include($${PWD}/assets/ios/ios_signature.pri)
     }
 }
-
-DISTFILES += \
-    assets/android/AndroidManifest.xml \
-    assets/android/build.gradle \
-    assets/android/gradle.properties \
-    assets/android/gradle/wrapper/gradle-wrapper.jar \
-    assets/android/gradle/wrapper/gradle-wrapper.properties \
-    assets/android/gradlew \
-    assets/android/gradlew.bat \
-    assets/android/res/values/libs.xml
