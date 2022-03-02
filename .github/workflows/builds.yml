@@ -54,6 +54,7 @@ jobs:
         run: |
              sudo apt-get install libxkbcommon-x11-0 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-render-util0 libxcb-xinerama0 libzstd-dev -y;
              sudo apt-get install libgl1-mesa-dev -y;
+             sudo apt-get install appstream -y;
 
       # Build application
       - name: Build application

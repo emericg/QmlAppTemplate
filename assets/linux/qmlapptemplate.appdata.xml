@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2022 Emeric Grange <emeric.grange@gmail.com> -->
+
+<component type="desktop-application">
+  <id>io.emeric.qmlapptemplate</id>
+  <name>QmlAppTemplate</name>
+  <launchable type="desktop-id">qmlapptemplate.desktop</launchable>
+
+  <summary>Qt6 / QML Application Template</summary>
+  <description>
+    <p>QmlAppTemplate is a Qt6 / QML Application Template</p>
+  </description>
+
+  <project_license>GPL-3.0+</project_license>
+  <metadata_license>CC0-1.0</metadata_license>
+  <content_rating type="oars-1.1" />
+
+  <developer_name>Emeric Grange</developer_name>
+  <updatecontact>emeric.grange@gmail.com</updatecontact>
+  <url type="homepage">https://emeric.io/</url>
+  <url type="bugtracker">https://github.com/emericg/QmlAppTemplate/issues</url>
+  <url type="translate">https://github.com/emericg/QmlAppTemplate/blob/master/i18n/README.md</url>
+  <url type="donation">https://paypal.me/EmericGrange</url>
+
+  <releases>
+    <release version="0.1" date="2022-02-02" />
+  </releases>
+
+  <screenshots>
+    <screenshot type="default">
+      <image>https://i.imgur.com/tqCeaEC.png</image>
+      <caption>Device screen</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://i.imgur.com/96E5Y29.png</image>
+      <caption>Detail screen</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://i.imgur.com/wnG32fh.png</image>
+      <caption>GPS screen</caption>
+    </screenshot>
+  </screenshots>
+
+  <categories>
+    <category>Utility</category>
+  </categories>
+
+  <keywords>
+    <keyword>qt</keyword>
+    <keyword>qml</keyword>
+    <keyword>template</keyword>
+  </keywords>
+</component>
