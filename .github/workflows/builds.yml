@@ -12,7 +12,7 @@ on:
 #--------------------------------------------------------------------------------
 
 env:
-  VERSION: "0.2"
+  VERSION: "0.3"
   EXECUTABLE: "QmlAppTemplate"
   APPLICATION: "QmlAppTemplate"
   QMAKE_PROJECT: "QmlAppTemplate.pro"
@@ -48,6 +48,7 @@ jobs:
           version: '6.3.0'
           modules: qt5compat qtimageformats qtcharts
           cached: ${{steps.cache-qt.outputs.cache-hit}}
+          aqtversion: '==2.0.6'
 
       # Install dependencies (from package manager)
       - name: Install dependencies (from package manager)
@@ -145,6 +146,7 @@ jobs:
           version: '6.3.0'
           modules: qt5compat qtimageformats qtcharts
           cached: ${{steps.cache-qt.outputs.cache-hit}}
+          aqtversion: '==2.0.6'
 
       # Install NSIS
       - name: Install NSIS
