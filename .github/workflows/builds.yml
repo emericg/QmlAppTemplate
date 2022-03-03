@@ -123,22 +123,14 @@ jobs:
           arch: x64
           spectre: true
 
-      # Cache Qt
-      - name: Cache Qt
-        id: cache-qt
-        uses: actions/cache@v1
-        with:
-          path: ../Qt
-          key: ${{runner.os}}-QtCache
-
       # Install Qt
       - name: Install Qt
         uses: jurplel/install-qt-action@v2
         with:
+          aqtversion: '==2.0.6'
           version: '6.3.0'
           modules: qt5compat qtimageformats qtcharts
-          cached: ${{steps.cache-qt.outputs.cache-hit}}
-          aqtversion: '==2.0.6'
+          cached: 'false'
 
       # Install NSIS
       - name: Install NSIS
