@@ -39,7 +39,7 @@ Rectangle {
         anchors.verticalCenterOffset: -screenPaddingBottom
         spacing: (!appWindow.wideMode || (appWindow.isPhone && utilsScreen.screenSize < 5.0)) ? -8 : 24
 
-        MobileMenuItem {
+        MobileMenuItem_horizontal {
             id: menuMainView
             height: mobileMenu.hhh
             sourceSize: mobileMenu.hhi
@@ -52,7 +52,7 @@ Rectangle {
             selected: (appContent.state === "MainView")
             onClicked: appContent.state = "MainView"
         }
-        MobileMenuItem {
+        MobileMenuItem_horizontal {
             id: menuSettings
             height: mobileMenu.hhh
             sourceSize: mobileMenu.hhi
@@ -65,7 +65,7 @@ Rectangle {
             selected: (appContent.state === "Settings" || appContent.state === "Permissions")
             onClicked: appContent.state = "Settings"
         }
-        MobileMenuItem {
+        MobileMenuItem_horizontal {
             id: menuAbout
             height: mobileMenu.hhh
             sourceSize: mobileMenu.hhi
