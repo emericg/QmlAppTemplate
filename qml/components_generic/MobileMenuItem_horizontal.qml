@@ -42,36 +42,33 @@ Item {
 
     RowLayout {
         id: content
-        anchors.centerIn: parent
-        spacing: appWindow.isPhone ? 6 : 12
+        anchors.centerIn: control
+        spacing: isPhone ? 6 : 12
 
-        IconSvg {
-            id: contentImage
+        IconSvg { // contentImage
             width: control.sourceSize
             height: control.sourceSize
-
             Layout.maximumWidth: control.sourceSize
             Layout.maximumHeight: control.sourceSize
-
             visible: source.toString().length
 
             source: control.source
-            color: control.selected ? control.colorHighlight : control.colorContent
             opacity: control.enabled ? 1.0 : 0.33
+            color: control.selected ? control.colorHighlight : control.colorContent
+            Behavior on color { ColorAnimation { duration: 133 } }
         }
 
-        Text {
-            id: contentText
-            height: parent.height
-
+        Text { // contentText
+            height: control.height
+            Layout.alignment: Qt.AlignVCenter
             visible: text
 
             text: control.text
             textFormat: Text.PlainText
-            color: control.selected ? control.colorHighlight : control.colorContent
             font.pixelSize: Theme.fontSizeComponent
             font.bold: true
-            verticalAlignment: Text.AlignVCenter
+            color: control.selected ? control.colorHighlight : control.colorContent
+            Behavior on color { ColorAnimation { duration: 133 } }
         }
     }
 

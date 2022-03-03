@@ -23,9 +23,11 @@
         <file alias="CsdLinux.qml">components_generic/CsdLinux.qml</file>
         <file alias="DesktopHeaderItem.qml">components_generic/DesktopHeaderItem.qml</file>
         <file alias="DesktopSidebarItem.qml">components_generic/DesktopSidebarItem.qml</file>
-        <file alias="MobileMenuItem.qml">components_generic/MobileMenuItem.qml</file>
+        <file alias="MobileMenuItem_horizontal.qml">components_generic/MobileMenuItem_horizontal.qml</file>
+        <file alias="MobileMenuItem_vertical.qml">components_generic/MobileMenuItem_vertical.qml</file>
 
-        <file alias="ActionMenu.qml">components_generic/ActionMenu.qml</file>
+        <file alias="ActionMenu_bottom.qml">components_generic/ActionMenu_bottom.qml</file>
+        <file alias="ActionMenu_floating.qml">components_generic/ActionMenu_floating.qml</file>
         <file alias="ActionMenuItem.qml">components_generic/ActionMenuItem.qml</file>
         <file alias="ButtonCompactable.qml">components_generic/ButtonCompactable.qml</file>
         <file alias="ButtonImage.qml">components_generic/ButtonImage.qml</file>

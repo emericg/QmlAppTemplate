@@ -119,7 +119,7 @@ Rectangle {
                 actionMenu.open()
             }
 
-            ActionMenu {
+            ActionMenu_floating {
                 id: actionMenu
                 //x: mapToItem(appWindow.contentItem, buttonMenu.x, buttonMenu.y).x - actionMenu.width
                 //y: mapToItem(appWindow.contentItem, buttonMenu.x, buttonMenu.y).y + 16

@@ -178,7 +178,7 @@ Rectangle {
 
     ////////////
 
-    ActionMenu {
+    ActionMenu_bottom {
         id: actionMenu
 
         x: parent.width - actionMenu.width - 12
