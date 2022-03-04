@@ -54,6 +54,15 @@ jobs:
         with:
           aqtversion: '==2.0.6'
           version: '6.3.0'
+          modules: qt5compat qtimageformats qtcharts
+          cached: 'false'
+
+      # Install Qt
+      - name: Install Qt (Android)
+        uses: jurplel/install-qt-action@v2
+        with:
+          aqtversion: '==2.0.6'
+          version: '6.3.0'
           host: 'linux'
           target: 'android'
           arch: 'android_arm64_v8a'
@@ -62,7 +71,10 @@ jobs:
 
       # Build application
       - name: Build application
-        run: qmake --version
+        run: |
+             qmake --version
+             qmake ${{env.QMAKE_PROJECT}} -r -spec android-g++ CONFIG+=release
+             make -j$(nproc)
 
   ## iOS build #################################################################
   build-ios:
