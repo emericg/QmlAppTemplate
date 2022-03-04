@@ -130,14 +130,6 @@ macx {
     QMAKE_TARGET_BUNDLE_PREFIX = com.emeric
     QMAKE_BUNDLE = qmlapptemplate
 
-    # OS icons
-    ICON = $${PWD}/assets/macos/$$lower($${TARGET}).icns
-    #QMAKE_ASSET_CATALOGS_APP_ICON = "AppIcon"
-    #QMAKE_ASSET_CATALOGS = $${PWD}/assets/macos/Images.xcassets
-
-    # OS infos
-    QMAKE_INFO_PLIST = $${PWD}/assets/macos/Info.plist
-
     # macOS utils
     SOURCES += src/utils/utils_os_macos.mm
     HEADERS += src/utils/utils_os_macos.h
@@ -146,6 +138,14 @@ macx {
     SOURCES += src/utils/utils_os_macosdock.mm
     HEADERS += src/utils/utils_os_macosdock.h
     LIBS    += -framework AppKit
+
+    # OS icons
+    ICON = $${PWD}/assets/macos/$$lower($${TARGET}).icns
+    #QMAKE_ASSET_CATALOGS_APP_ICON = "AppIcon"
+    #QMAKE_ASSET_CATALOGS = $${PWD}/assets/macos/Images.xcassets
+
+    # OS infos
+    QMAKE_INFO_PLIST = $${PWD}/assets/macos/Info.plist
 
     # OS entitlement (sandbox and stuff)
     ENTITLEMENTS.name = CODE_SIGN_ENTITLEMENTS
@@ -257,13 +257,12 @@ android {
     # ANDROID_TARGET_ARCH: [x86_64, armeabi-v7a, arm64-v8a]
     #message("ANDROID_TARGET_ARCH: $$ANDROID_TARGET_ARCH")
 
-    QT += core-private
-
     # Bundle name
     QMAKE_TARGET_BUNDLE_PREFIX = com.emeric
     QMAKE_BUNDLE = qmlapptemplate
 
     # android utils
+    QT += core-private
     SOURCES += src/utils/utils_os_android_qt6.cpp
     HEADERS += src/utils/utils_os_android.h
 

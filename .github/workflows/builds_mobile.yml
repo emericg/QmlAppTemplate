@@ -1,0 +1,68 @@
+#--------------------------------------------------------------------------------
+# Workflow configuration
+#--------------------------------------------------------------------------------
+
+name: "CI builds"
+on:
+  push:
+  pull_request:
+
+#--------------------------------------------------------------------------------
+# Define application name & version
+#--------------------------------------------------------------------------------
+
+env:
+  VERSION: "0.3"
+  EXECUTABLE: "QmlAppTemplate"
+  APPLICATION: "QmlAppTemplate"
+  QMAKE_PROJECT: "QmlAppTemplate.pro"
+
+#--------------------------------------------------------------------------------
+# Workflow jobs
+#--------------------------------------------------------------------------------
+
+jobs:
+  ## Android build ###########################################################
+  build-android:
+    name: "Android CI build"
+    runs-on: ubuntu-20.04
+    steps:
+      # Checkout the repository
+      - name: Checkout repository and submodules
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - name: Install JDK environment
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v2
+
+      - name: Install NDK
+        run: sdkmanager "platforms;android-32"
+        run: sdkmanager "build-tools;30.0.3"
+        run: sdkmanager "ndk;23.1.7779620"
+
+      # Install Qt
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v2
+        with:
+          aqtversion: '==2.0.6'
+          version: '6.3.0'
+          target: 'android'
+          arch: 'android_armv7'
+          modules: qt5compat qtimageformats qtcharts
+          cached: 'false'
+
+      # Build application
+      - name: Build application
+        run: |
+             qmake --version
+             export ANDROID_SDK_ROOT=$ANDROID_HOME
+             export ANDROID_NDK_ROOT=$ANDROID_HOME/ndk-bundle
+             qmake ${{env.QMAKE_PROJECT}} CONFIG+=release PREFIX=/usr
+             make -j$(nproc)
+
