@@ -22,51 +22,30 @@ env:
 #-------------------------------------------------------------------------------
 
 jobs:
-  ## Android build #############################################################
-  build-android:
-    name: "Android CI build"
-    runs-on: ubuntu-20.04
-    steps:
-      # Checkout the repository
-      - name: Checkout repository and submodules
-        uses: actions/checkout@v2
-        with:
-          submodules: recursive
+  ## iOS build #################################################################
+  build-ios:
+    name: "iOS CI build"
+    runs-on: macos-11
 
-      # Java environment
-      - name: Install JDK environment
-        uses: actions/setup-java@v2
-        with:
-          distribution: 'zulu'
-          java-version: '11'
+    # Checkout the repository
+    - name: Checkout repository and submodules
+      uses: actions/checkout@v2
+      with:
+        submodules: recursive
 
-       # Android environment
-       - name: Setup Android SDK
-         uses: android-actions/setup-android@v2
+    # Install Qt
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v2
+      with:
+        aqtversion: '==2.0.6'
+        version: '6.3.0'
+        target: 'ios'
+        modules: qt5compat qtimageformats qtcharts
+        cached: 'false'
 
-       - name: Install Android SDK / NDK / tools
-         run: |
-              sdkmanager "platforms;android-32"
-              sdkmanager "ndk;23.1.7779620"
-              sdkmanager "build-tools;30.0.3"
-
-      # Install Qt
-      - name: Install Qt
-        uses: jurplel/install-qt-action@v2
-        with:
-          aqtversion: '==2.0.6'
-          version: '6.3.0'
-          target: 'android'
-          arch: 'android_armv7'
-          modules: qt5compat qtimageformats qtcharts
-          cached: 'false'
-
-      # Build application
-      - name: Build application
-        run: |
-             qmake --version
-             export ANDROID_SDK_ROOT=$ANDROID_HOME
-             export ANDROID_NDK_ROOT=$ANDROID_HOME/ndk-bundle
-             qmake ${{env.QMAKE_PROJECT}} -r -spec android-g++ CONFIG+=release
-             make -j$(nproc)
-
+    # Build application
+    - name: Build application
+      run: |
+           qmake --version
+           qmake ${{env.QMAKE_PROJECT}} -r -spec macx-ios-clang CONFIG+=release
+           make -j$(nproc)
