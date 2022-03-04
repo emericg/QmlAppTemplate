@@ -2,7 +2,7 @@
 # Workflow configuration
 #--------------------------------------------------------------------------------
 
-name: "CI builds"
+name: "Mobile CI builds"
 on:
   push:
   pull_request:
@@ -40,11 +40,12 @@ jobs:
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
-
-      - name: Install NDK
+      - name: Install Android SDK
         run: sdkmanager "platforms;android-32"
-        run: sdkmanager "build-tools;30.0.3"
+      - name: Install Android NDK
         run: sdkmanager "ndk;23.1.7779620"
+      - name: Install Android build tools
+        run: sdkmanager "build-tools;30.0.3"
 
       # Install Qt
       - name: Install Qt
@@ -63,6 +64,6 @@ jobs:
              qmake --version
              export ANDROID_SDK_ROOT=$ANDROID_HOME
              export ANDROID_NDK_ROOT=$ANDROID_HOME/ndk-bundle
-             qmake ${{env.QMAKE_PROJECT}} CONFIG+=release PREFIX=/usr
+             qmake ${{env.QMAKE_PROJECT}} CONFIG+=release
              make -j$(nproc)
 

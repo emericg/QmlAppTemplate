@@ -2,7 +2,7 @@
 # Workflow configuration
 #--------------------------------------------------------------------------------
 
-name: "CI builds"
+name: "Desktop CI builds"
 on:
   push:
   pull_request:
