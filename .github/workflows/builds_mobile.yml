@@ -33,11 +33,12 @@ jobs:
         with:
           submodules: recursive
 
+      # Android environment
       - name: Install JDK environment
         uses: actions/setup-java@v2
         with:
+          distribution: 'zulu'
           java-version: '11'
-
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
       - name: Install Android SDK
@@ -64,6 +65,33 @@ jobs:
              qmake --version
              export ANDROID_SDK_ROOT=$ANDROID_HOME
              export ANDROID_NDK_ROOT=$ANDROID_HOME/ndk-bundle
-             qmake ${{env.QMAKE_PROJECT}} CONFIG+=release
+             qmake ${{env.QMAKE_PROJECT}} -r -spec android-g++ CONFIG+=release
              make -j$(nproc)
 
+  ## iOS build ###########################################################
+  build-ios:
+    name: "iOS CI build"
+    runs-on: macos-11
+
+    # Checkout the repository
+    - name: Checkout repository and submodules
+      uses: actions/checkout@v2
+      with:
+        submodules: recursive
+
+    # Install Qt
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v2
+      with:
+        aqtversion: '==2.0.6'
+        version: '6.3.0'
+        target: 'ios'
+        modules: qt5compat qtimageformats qtcharts
+        cached: 'false'
+
+    # Build application
+    - name: Build application
+      run: |
+           qmake --version
+           qmake ${{env.QMAKE_PROJECT}} -r -spec macx-ios-clang CONFIG+=release
+           make -j$(nproc)
