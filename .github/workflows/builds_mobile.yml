@@ -62,10 +62,11 @@ jobs:
       # Build application
       - name: Build application
         run: |
-             /home/runner/work/QmlAppTemplate/Qt/6.3.0/android_armv7/bin/qmake --version
              export ANDROID_SDK_ROOT=$ANDROID_HOME
              export ANDROID_NDK_ROOT=$ANDROID_HOME/ndk-bundle
-             /home/runner/work/QmlAppTemplate/Qt/6.3.0/android_armv7/bin/qmake ${{env.QMAKE_PROJECT}} -r -spec android-g++ CONFIG+=release
+             export PATH=/home/runner/work/QmlAppTemplate/Qt/6.3.0/android_armv7/bin:$PATH
+             qmake --version
+             qmake ${{env.QMAKE_PROJECT}} -r -spec android-g++ CONFIG+=release
              make -j$(nproc)
 
   ## iOS build #################################################################
@@ -97,6 +98,7 @@ jobs:
       # Build application
       - name: Build application
         run: |
-             /Users/runner/work/QmlAppTemplate/Qt/6.3.0/ios/bin/qmake --version
-             /Users/runner/work/QmlAppTemplate/Qt/6.3.0/ios/bin/qmake ${{env.QMAKE_PROJECT}} -r -spec macx-ios-clang CONFIG+=release
+             export PATH=/Users/runner/work/QmlAppTemplate/Qt/6.3.0/ios/bin:$PATH
+             qmake --version
+             qmake ${{env.QMAKE_PROJECT}} -r -spec macx-ios-clang CONFIG+=release
              make -j$(nproc)
