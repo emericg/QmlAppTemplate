@@ -22,29 +22,29 @@ env:
 
 jobs:
   ## iOS build #################################################################
-  build:
+  build-ios:
     name: "iOS CI build"
     runs-on: macos-11
+    steps:
+      # Checkout the repository
+      - name: Checkout repository and submodules
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
 
-    # Checkout the repository
-    - name: Checkout repository and submodules
-      uses: actions/checkout@v2
-      with:
-        submodules: recursive
+      # Install Qt
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v2
+        with:
+          aqtversion: '==2.0.6'
+          version: '6.3.0'
+          target: 'ios'
+          modules: qt5compat qtimageformats qtcharts
+          cached: 'false'
 
-    # Install Qt
-    - name: Install Qt
-      uses: jurplel/install-qt-action@v2
-      with:
-        aqtversion: '==2.0.6'
-        version: '6.3.0'
-        target: 'ios'
-        modules: qt5compat qtimageformats qtcharts
-        cached: 'false'
-
-    # Build application
-    - name: Build application
-      run: |
-           qmake --version
-           qmake ${{env.QMAKE_PROJECT}} -r -spec macx-ios-clang CONFIG+=release
-           make -j$(nproc)
+      # Build application
+      - name: Build application
+        run: |
+             qmake --version
+             qmake ${{env.QMAKE_PROJECT}} -r -spec macx-ios-clang CONFIG+=release
+             make -j$(nproc)
