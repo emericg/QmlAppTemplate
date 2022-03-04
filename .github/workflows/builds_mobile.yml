@@ -14,7 +14,6 @@ on:
 env:
   VERSION: "0.3"
   EXECUTABLE: "QmlAppTemplate"
-  APPLICATION: "QmlAppTemplate"
   QMAKE_PROJECT: "QmlAppTemplate.pro"
 
 #-------------------------------------------------------------------------------
@@ -23,7 +22,7 @@ env:
 
 jobs:
   ## iOS build #################################################################
-  build-ios:
+  build:
     name: "iOS CI build"
     runs-on: macos-11
 

@@ -14,7 +14,6 @@ on:
 env:
   VERSION: "0.3"
   EXECUTABLE: "QmlAppTemplate"
-  APPLICATION: "QmlAppTemplate"
   QMAKE_PROJECT: "QmlAppTemplate.pro"
 
 #-------------------------------------------------------------------------------
