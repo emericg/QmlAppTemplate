@@ -56,19 +56,13 @@ jobs:
           version: '6.3.0'
           host: 'linux'
           target: 'android'
-          arch: 'android_armv7'
+          arch: 'android_arm64_v8a'
           modules: qt5compat qtimageformats qtcharts
           cached: 'false'
 
       # Build application
       - name: Build application
-        run: |
-             export ANDROID_SDK_ROOT=$ANDROID_HOME
-             export ANDROID_NDK_ROOT=$ANDROID_HOME/ndk-bundle
-             export PATH=$Qt6_DIR/bin:$PATH
-             qmake --version
-             qmake ${{env.QMAKE_PROJECT}} -r -spec android-g++ CONFIG+=release
-             make -j$(nproc)
+        run: qmake --version
 
   ## iOS build #################################################################
   build-ios:
