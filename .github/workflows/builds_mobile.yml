@@ -48,8 +48,8 @@ jobs:
       #       sdkmanager "ndk;23.1.7779620"
       #       sdkmanager "build-tools;30.0.3"
 
-      # Install Qt
-      - name: Install Qt
+      # Install Qt (desktop)
+      - name: Install Qt (desktop)
         uses: jurplel/install-qt-action@v2
         with:
           aqtversion: '==2.0.6'
@@ -57,7 +57,7 @@ jobs:
           modules: qt5compat qtimageformats qtcharts
           cached: 'false'
 
-      # Install Qt
+      # Install Qt (Android)
       - name: Install Qt (Android)
         uses: jurplel/install-qt-action@v2
         with:
@@ -73,7 +73,7 @@ jobs:
       - name: Build application
         run: |
              qmake --version
-             qmake ${{env.QMAKE_PROJECT}} -r -spec android-g++ CONFIG+=release
+             qmake ${{env.QMAKE_PROJECT}} CONFIG+=release
              make -j$(nproc)
 
   ## iOS build #################################################################
@@ -87,8 +87,17 @@ jobs:
         with:
           submodules: recursive
 
-      # Install Qt
-      - name: Install Qt
+      # Install Qt (desktop)
+      - name: Install Qt (desktop)
+        uses: jurplel/install-qt-action@v2
+        with:
+          aqtversion: '==2.0.6'
+          version: '6.3.0'
+          modules: qt5compat qtimageformats qtcharts
+          cached: 'false'
+
+      # Install Qt (iOS)
+      - name: Install Qt (iOS)
         uses: jurplel/install-qt-action@v2
         with:
           aqtversion: '==2.0.6'
@@ -102,5 +111,5 @@ jobs:
       - name: Build application
         run: |
              export PATH=$Qt6_DIR/bin:/Users/runner/work/QmlAppTemplate/Qt/6.3.0/ios/bin:$PATH
-             qmake ${{env.QMAKE_PROJECT}} -r -spec macx-ios-clang CONFIG+=release
+             qmake ${{env.QMAKE_PROJECT}} CONFIG+=release
              make -j$(nproc)
