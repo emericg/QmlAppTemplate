@@ -93,7 +93,7 @@ ApplicationWindow {
         }
     }
 
-    onClosing: {
+    onClosing: (close) =>  {
         if (Qt.platform.os === "osx") {
             close.accepted = false
             appWindow.hide()

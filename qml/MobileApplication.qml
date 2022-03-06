@@ -10,7 +10,7 @@ ApplicationWindow {
     minimumWidth: 480
     minimumHeight: 960
 
-    flags: Qt.Window // | Qt.MaximizeUsingFullscreenGeometryHint
+    flags: (Qt.platform.os === "ios") ? Qt.Window | Qt.MaximizeUsingFullscreenGeometryHint : Qt.Window
     color: Theme.colorBackground
     visible: true
 
