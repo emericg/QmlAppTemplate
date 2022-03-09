@@ -47,7 +47,7 @@ modules:
       - tests
     sources:
       - type: archive
-        url: https://download.qt.io/development_releases/qt/6.3/6.3.0-beta2/submodules/qtbase-everywhere-src-6.3.0.tar.xz
+        url: https://download.qt.io/development_releases/qt/6.3/6.3.0-beta2/submodules/qtbase-everywhere-src-6.3.0-beta2.tar.xz
         sha256: 8ef4200449eb8ceb0334966aa07720466966acce6b1d97ac34d3eba40fa8f697
     cleanup:
       - /bin
@@ -60,7 +60,7 @@ modules:
       - -DINPUT_egl_extension_platform_wayland=no
     sources:
       - type: archive
-        url: https://download.qt.io/development_releases/qt/6.3/6.3.0-beta2/submodules/qtwayland-everywhere-src-6.3.0.tar.xz
+        url: https://download.qt.io/development_releases/qt/6.3/6.3.0-beta2/submodules/qtwayland-everywhere-src-6.3.0-beta2.tar.xz
         sha256: 3b4469f6a9ab8906b3b4bba4020ff501d8468b62e4000483fa5191d0d9d434e7
     cleanup:
       - /bin
@@ -71,7 +71,7 @@ modules:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
       - type: archive
-        url: https://download.qt.io/development_releases/qt/6.3/6.3.0-beta2/submodules/qtimageformats-everywhere-src-6.3.0.tar.xz
+        url: https://download.qt.io/development_releases/qt/6.3/6.3.0-beta2/submodules/qtimageformats-everywhere-src-6.3.0-beta2.tar.xz
         sha256: 13d306bc6427ae182871343489ea8393a33646438780caa479c865d9d23919ef
 
   - name: qtsvg
@@ -80,7 +80,7 @@ modules:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
       - type: archive
-        url: https://download.qt.io/development_releases/qt/6.3/6.3.0-beta2/submodules/qtsvg-everywhere-src-6.3.0.tar.xz
+        url: https://download.qt.io/development_releases/qt/6.3/6.3.0-beta2/submodules/qtsvg-everywhere-src-6.3.0-beta2.tar.xz
         sha256: 13d306bc6427ae182871343489ea8393a33646438780caa479c865d9d23919ef
 
   - name: qt5compat
@@ -89,7 +89,7 @@ modules:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
       - type: archive
-        url: https://download.qt.io/development_releases/qt/6.3/6.3.0-beta2/submodules/qt5compat-everywhere-src-6.3.0.tar.xz
+        url: https://download.qt.io/development_releases/qt/6.3/6.3.0-beta2/submodules/qt5compat-everywhere-src-6.3.0-beta2.tar.xz
         sha256: fb2719630d9ae3ca16a8c9f2226b38492d88fc9df04dd74d70e5a83452877088
 
   - name: qmlapptemplate

@@ -112,7 +112,7 @@ jobs:
       - name: Build application
         run: |
              export PATH=$Qt6_DIR/bin:$PATH
-             ln -s /Users/runner/work/QmlAppTemplate/Qt/6.3.0/macos /Users/runner/work/QmlAppTemplate/Qt/6.3.0/clang_64
+             ln -s /Users/runner/work/${{env.QMAKE_PROJECT}}/Qt/6.3.0/macos /Users/runner/work/${{env.QMAKE_PROJECT}}/Qt/6.3.0/clang_64
              qmake --version
              qmake ${{env.QMAKE_PROJECT}} CONFIG+=release
              make -j$(nproc)
