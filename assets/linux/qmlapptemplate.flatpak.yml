@@ -53,6 +53,15 @@ modules:
       - /bin
       - /lib/plugins/platformthemes/libqxdgdesktopportal.so
 
+  - name: qtdeclarative
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+    sources:
+      - type: archive
+        url: https://download.qt.io/development_releases/qt/6.3/6.3.0-beta2/submodules/qtdeclarative-everywhere-src-6.3.0-beta2.tar.xz
+        sha256: f64b20bb801a353c3cd51d174a181078cee78d018ffe1b29e20b87476bc047e0
+
   - name: qtwayland
     buildsystem: cmake-ninja
     config-opts:
@@ -82,6 +91,15 @@ modules:
       - type: archive
         url: https://download.qt.io/development_releases/qt/6.3/6.3.0-beta2/submodules/qtsvg-everywhere-src-6.3.0-beta2.tar.xz
         sha256: 7e137694dd93dc205093dcf0ba386c80dddde915ce8e09667ea10c6057fe6736
+
+  - name: qtcharts
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+    sources:
+      - type: archive
+        url: https://download.qt.io/development_releases/qt/6.3/6.3.0-beta2/submodules/qtcharts-everywhere-src-6.3.0-beta2.tar.xz
+        sha256: c06df00a22df532d11e4bf5e6db2497bbc923753cfe4f43f5fb8e91f782769e7
 
   - name: qt5compat
     buildsystem: cmake-ninja

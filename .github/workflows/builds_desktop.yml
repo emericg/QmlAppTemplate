@@ -13,7 +13,7 @@ on:
 
 env:
   VERSION: "0.3"
-  EXECUTABLE: "QmlAppTemplate"
+  APPLICATION: "QmlAppTemplate"
   QMAKE_PROJECT: "QmlAppTemplate.pro"
 
 #-------------------------------------------------------------------------------
@@ -64,8 +64,8 @@ jobs:
       - name: Upload AppImage
         uses: actions/upload-artifact@v2
         with:
-          name: ${{env.EXECUTABLE}}-${{env.VERSION}}-linux64.AppImage
-          path: ${{env.EXECUTABLE}}*.AppImage
+          name: ${{env.APPLICATION}}-${{env.VERSION}}-linux64.AppImage
+          path: ${{env.APPLICATION}}*.AppImage
 
   ## macOS build ###############################################################
   build-mac:
@@ -101,8 +101,8 @@ jobs:
       - name: Upload app zip
         uses: actions/upload-artifact@v2
         with:
-          name: ${{env.EXECUTABLE}}-${{env.VERSION}}-macOS.zip
-          path: bin/${{env.EXECUTABLE}}-${{env.VERSION}}-macOS.zip
+          name: ${{env.APPLICATION}}-${{env.VERSION}}-macOS.zip
+          path: bin/${{env.APPLICATION}}-${{env.VERSION}}-macOS.zip
 
   ## Windows build #############################################################
   build-windows:
@@ -154,12 +154,12 @@ jobs:
       - name: Upload ZIP
         uses: actions/upload-artifact@v2
         with:
-          name: ${{env.EXECUTABLE}}-${{env.VERSION}}-win64.zip
-          path: ${{env.EXECUTABLE}}-${{env.VERSION}}-win64.zip
+          name: ${{env.APPLICATION}}-${{env.VERSION}}-win64.zip
+          path: ${{env.APPLICATION}}-${{env.VERSION}}-win64.zip
 
       # Upload NSIS installer
       - name: Upload NSIS installer
         uses: actions/upload-artifact@v2
         with:
-          name: ${{env.EXECUTABLE}}-${{env.VERSION}}-win64.exe
-          path: ${{env.EXECUTABLE}}-${{env.VERSION}}-win64.exe
+          name: ${{env.APPLICATION}}-${{env.VERSION}}-win64.exe
+          path: ${{env.APPLICATION}}-${{env.VERSION}}-win64.exe
