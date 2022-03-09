@@ -213,7 +213,7 @@ Item {
                 height: 15
                 anchors.verticalCenter: textIndicator.verticalCenter
                 anchors.leftMargin: 8
-                anchors.left:  textIndicator.right
+                anchors.left: textIndicator.right
 
                 color: Theme.colorRed
                 opacity: (warning && value > -20 && value < limitMin) ? 1 : 0
