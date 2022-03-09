@@ -47,8 +47,8 @@ modules:
       - tests
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.2/6.2.3/submodules/qtbase-everywhere-src-6.2.3.tar.xz
-        sha256: 34d6d0072e197241463c417ad72610c3d44e2efd6062868e9a95283103d75df4
+        url: https://download.qt.io/development_releases/qt/6.3/6.3.0-beta2/submodules/qtbase-everywhere-src-6.3.0.tar.xz
+        sha256: 8ef4200449eb8ceb0334966aa07720466966acce6b1d97ac34d3eba40fa8f697
     cleanup:
       - /bin
       - /lib/plugins/platformthemes/libqxdgdesktopportal.so
@@ -60,8 +60,8 @@ modules:
       - -DINPUT_egl_extension_platform_wayland=no
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.2/6.2.3/submodules/qtwayland-everywhere-src-6.2.3.tar.xz
-        sha256: 48fdc52b1241d35532a24beebf5856d78eadc0f1f88a0a48b51a51e279c4ce72
+        url: https://download.qt.io/development_releases/qt/6.3/6.3.0-beta2/submodules/qtwayland-everywhere-src-6.3.0.tar.xz
+        sha256: 3b4469f6a9ab8906b3b4bba4020ff501d8468b62e4000483fa5191d0d9d434e7
     cleanup:
       - /bin
 
@@ -71,8 +71,8 @@ modules:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.2/6.2.3/submodules/qtimageformats-everywhere-src-6.2.3.tar.xz
-        sha256: 9150bce23e6002e3c08229222142374b24db91132e1ff5c05bce028fc8fc0af6
+        url: https://download.qt.io/development_releases/qt/6.3/6.3.0-beta2/submodules/qtimageformats-everywhere-src-6.3.0.tar.xz
+        sha256: 13d306bc6427ae182871343489ea8393a33646438780caa479c865d9d23919ef
 
   - name: qtsvg
     buildsystem: cmake-ninja
@@ -80,8 +80,8 @@ modules:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.2/6.2.3/submodules/qtsvg-everywhere-src-6.2.3.tar.xz
-        sha256: 4a6bc9eeafa231ee9516f0fe84ddb0fbe8fba94844f4e7bd34c381e01610e2ee
+        url: https://download.qt.io/development_releases/qt/6.3/6.3.0-beta2/submodules/qtsvg-everywhere-src-6.3.0.tar.xz
+        sha256: 13d306bc6427ae182871343489ea8393a33646438780caa479c865d9d23919ef
 
   - name: qt5compat
     buildsystem: cmake-ninja
@@ -89,12 +89,12 @@ modules:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.2/6.2.3/submodules/qt5compat-everywhere-src-6.2.3.tar.xz
-        sha256: 1cf89198cf2cf8a5c15336ccd69fa1f39b779feb64117d6bbf5509c21c123f53
+        url: https://download.qt.io/development_releases/qt/6.3/6.3.0-beta2/submodules/qt5compat-everywhere-src-6.3.0.tar.xz
+        sha256: fb2719630d9ae3ca16a8c9f2226b38492d88fc9df04dd74d70e5a83452877088
 
   - name: qmlapptemplate
     buildsystem: qmake
     sources:
       - type: archive
         url: https://github.com/emericg/QmlAppTemplate/archive/refs/tags/v0.3.tar.gz
-        sha256: 1cf89198cf2cf8a5c15336ccd69fa1f39b779feb64117d6bbf5509c21c123f53
+        sha256: 8152e2f965039607a2f0e49ec11e655311e4ae43cb4dd7f47abd6693a672f0ee
