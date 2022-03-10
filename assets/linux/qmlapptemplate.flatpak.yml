@@ -19,44 +19,54 @@ finish-args:
   # Needs to talk to the network
   - --share=network
 
+build-options:
+  append-ld-library-path: /app/lib
+
 modules:
-  - name: qtbase
-    build-options:
-      arch:
-        x86_64:
-          config-opts:
-            - -force-debug-info
-        aarch64:
-          cflags: -g0
-          cxxflags: -g0
+  - name: qt-base
+    buildsystem: cmake-ninja
+    builddir: true
     config-opts:
-      - -archdatadir
-      - /app/lib/
-      - -release
-      - -opensource
-      - -confirm-license
-      - -cmake-use-default-generator
-      - -openssl-linked
-      - -no-feature-getentropy
-      - -no-feature-renameat2
-      - -no-feature-statx
-      - -no-feature-highdpiscaling
-      - -nomake
-      - examples
-      - -nomake
-      - tests
+      - -DQT_BUILD_EXAMPLES=OFF
+      - -DQT_BUILD_TESTS=OFF
     sources:
       - type: archive
         url: https://download.qt.io/development_releases/qt/6.3/6.3.0-beta2/submodules/qtbase-everywhere-src-6.3.0-beta2.tar.xz
         sha256: 3913e15adf6fe83ff377566e7effcbf5304f889dba18c6c67a8ce4f51af58674
     cleanup:
       - /bin
-      - /lib/plugins/platformthemes/libqxdgdesktopportal.so
+
+  - name: qt-tools
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_PREFIX_PATH=/app
+      - -DQT_BUILD_EXAMPLES=OFF
+      - -DQT_BUILD_TESTS=OFF
+    sources:
+      - type: archive
+        url: https://download.qt.io/development_releases/qt/6.3/6.3.0-beta2/submodules/qttools-everywhere-src-6.3.0-beta2.tar.xz
+        sha256: 982cafe9ab73a685a7343472d6db86ab794f8f307a7245234935a77adffe8622
+
+  - name: qt-shadertools
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DQT_BUILD_EXAMPLES=OFF
+      - -DQT_BUILD_TESTS=OFF
+    sources:
+      - type: archive
+        url: https://download.qt.io/development_releases/qt/6.3/6.3.0-beta2/submodules/qtshadertools-everywhere-src-6.3.0-beta2.tar.xz
+        sha256: 7237e3f04bd2ac585f98cece0cf97ead0d45082429d776539da9838195bf14e4
 
   - name: qtdeclarative
     buildsystem: cmake-ninja
+    builddir: true
     config-opts:
+      - -DCMAKE_PREFIX_PATH=/app
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DQT_BUILD_EXAMPLES=OFF
+      - -DQT_BUILD_TESTS=OFF
     sources:
       - type: archive
         url: https://download.qt.io/development_releases/qt/6.3/6.3.0-beta2/submodules/qtdeclarative-everywhere-src-6.3.0-beta2.tar.xz
@@ -66,7 +76,8 @@ modules:
     buildsystem: cmake-ninja
     config-opts:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
-      - -DINPUT_egl_extension_platform_wayland=no
+      - -DQT_BUILD_EXAMPLES=OFF
+      - -DQT_BUILD_TESTS=OFF
     sources:
       - type: archive
         url: https://download.qt.io/development_releases/qt/6.3/6.3.0-beta2/submodules/qtwayland-everywhere-src-6.3.0-beta2.tar.xz
@@ -78,6 +89,8 @@ modules:
     buildsystem: cmake-ninja
     config-opts:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DQT_BUILD_EXAMPLES=OFF
+      - -DQT_BUILD_TESTS=OFF
     sources:
       - type: archive
         url: https://download.qt.io/development_releases/qt/6.3/6.3.0-beta2/submodules/qtimageformats-everywhere-src-6.3.0-beta2.tar.xz
@@ -87,6 +100,8 @@ modules:
     buildsystem: cmake-ninja
     config-opts:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DQT_BUILD_EXAMPLES=OFF
+      - -DQT_BUILD_TESTS=OFF
     sources:
       - type: archive
         url: https://download.qt.io/development_releases/qt/6.3/6.3.0-beta2/submodules/qtsvg-everywhere-src-6.3.0-beta2.tar.xz
@@ -96,6 +111,8 @@ modules:
     buildsystem: cmake-ninja
     config-opts:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DQT_BUILD_EXAMPLES=OFF
+      - -DQT_BUILD_TESTS=OFF
     sources:
       - type: archive
         url: https://download.qt.io/development_releases/qt/6.3/6.3.0-beta2/submodules/qtcharts-everywhere-src-6.3.0-beta2.tar.xz
@@ -105,6 +122,8 @@ modules:
     buildsystem: cmake-ninja
     config-opts:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DQT_BUILD_EXAMPLES=OFF
+      - -DQT_BUILD_TESTS=OFF
     sources:
       - type: archive
         url: https://download.qt.io/development_releases/qt/6.3/6.3.0-beta2/submodules/qt5compat-everywhere-src-6.3.0-beta2.tar.xz
