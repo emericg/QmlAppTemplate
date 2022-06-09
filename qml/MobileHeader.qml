@@ -181,9 +181,6 @@ Rectangle {
     ActionMenu_bottom {
         id: actionMenu
 
-        x: parent.width - actionMenu.width - 12
-        y: screenPaddingStatusbar + screenPaddingNotch + 12
-
         model: ListModel {
             id: lmActionMenu
             ListElement { t: "itm"; idx: 1; txt: "Action 1"; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; }

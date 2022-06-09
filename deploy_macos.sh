@@ -66,7 +66,7 @@ else
 fi
 
 echo '---- Running macdeployqt'
-macdeployqt bin/$APP_NAME.app -qmldir=qml/ -appstore-compliant;
+macdeployqt bin/$APP_NAME.app -qmldir=qml/ -hardened-runtime -timestamp -appstore-compliant;
 
 #echo '---- Installation directory content recap:'
 #find bin/;
@@ -76,7 +76,7 @@ macdeployqt bin/$APP_NAME.app -qmldir=qml/ -appstore-compliant;
 if [[ $create_package = true ]] ; then
   echo '---- Compressing package'
   cd bin/;
-  zip -r -X $APP_NAME-$APP_VERSION-macos.zip $APP_NAME.app;
+  zip -r -y -X $APP_NAME-$APP_VERSION-macos.zip $APP_NAME.app;
 fi
 
 ## UPLOAD ######################################################################

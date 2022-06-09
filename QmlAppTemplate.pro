@@ -153,7 +153,7 @@ macx {
     QMAKE_MAC_XCODE_SETTINGS += ENTITLEMENTS
 
     # Target architecture
-    #QMAKE_APPLE_DEVICE_ARCHS = x86_64 # x86_64, arm64
+    #QMAKE_APPLE_DEVICE_ARCHS = "x86_64;arm64" # x86_64, arm64
 
     #======== Automatic bundle packaging
 

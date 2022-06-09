@@ -161,7 +161,7 @@ Drawer {
                         source: "qrc:/assets/icons_material/duotone-touch_app-24px.svg"
                         color: Theme.colorText
                     }
-                    Label {
+                    Text {
                         anchors.left: parent.left
                         anchors.leftMargin: screenPaddingLeft + 56
                         anchors.verticalCenter: parent.verticalCenter
@@ -200,7 +200,7 @@ Drawer {
                         source: "qrc:/assets/icons_material/duotone-format_size-24px.svg"
                         color: Theme.colorText
                     }
-                    Label {
+                    Text {
                         anchors.left: parent.left
                         anchors.leftMargin: screenPaddingLeft + 56
                         anchors.verticalCenter: parent.verticalCenter
@@ -239,7 +239,7 @@ Drawer {
                         source: "qrc:/assets/icons_material/outline-settings-24px.svg"
                         color: Theme.colorText
                     }
-                    Label {
+                    Text {
                         anchors.left: parent.left
                         anchors.leftMargin: screenPaddingLeft + 56
                         anchors.verticalCenter: parent.verticalCenter
@@ -276,7 +276,7 @@ Drawer {
                         source: "qrc:/assets/icons_material/outline-info-24px.svg"
                         color: Theme.colorText
                     }
-                    Label {
+                    Text {
                         anchors.left: parent.left
                         anchors.leftMargin: screenPaddingLeft + 56
                         anchors.verticalCenter: parent.verticalCenter

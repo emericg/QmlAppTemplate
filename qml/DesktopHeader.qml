@@ -113,16 +113,10 @@ Rectangle {
             iconColor: Theme.colorHeaderContent
             backgroundColor: Theme.colorHeaderHighlight
 
-            onClicked: {
-                actionMenu.x = mapToItem(appWindow.contentItem, buttonMenu.x, buttonMenu.y).x - actionMenu.width
-                actionMenu.y = mapToItem(appWindow.contentItem, buttonMenu.x, buttonMenu.y).y + 16
-                actionMenu.open()
-            }
+            onClicked: actionMenu.open()
 
-            ActionMenu_floating {
+            ActionMenu_bottom {
                 id: actionMenu
-                //x: mapToItem(appWindow.contentItem, buttonMenu.x, buttonMenu.y).x - actionMenu.width
-                //y: mapToItem(appWindow.contentItem, buttonMenu.x, buttonMenu.y).y + 16
 
                 model: ListModel {
                     id: lmActionMenu
