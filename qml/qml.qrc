@@ -12,6 +12,7 @@
 
         <file>MainView.qml</file>
         <file>FontList.qml</file>
+        <file>HostInfos.qml</file>
         <file>Settings.qml</file>
         <file>About.qml</file>
 

@@ -46,6 +46,14 @@ Rectangle {
             onClicked: appContent.state = "MainView"
         }
         DesktopSidebarItem {
+            source: "qrc:/assets/icons_material/duotone-memory-24px.svg"
+            sourceSize: 40
+            highlightMode: "indicator"
+
+            selected: (appContent.state === "HostInfos")
+            onClicked: appContent.state = "HostInfos"
+        }
+        DesktopSidebarItem {
             source: "qrc:/assets/icons_material/duotone-format_size-24px.svg"
             sourceSize: 40
             highlightMode: "indicator"

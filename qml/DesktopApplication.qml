@@ -130,11 +130,11 @@ ApplicationWindow {
         onActivated: backAction()
     }
     Shortcut {
-        sequence: StandardKey.Forward
+        sequences: [StandardKey.Forward]
         onActivated: forwardAction()
     }
     Shortcut {
-        sequence: StandardKey.Refresh
+        sequences: [StandardKey.Refresh]
         //onActivated: //
     }
     Shortcut {
@@ -229,9 +229,14 @@ ApplicationWindow {
             anchors.fill: parent
             id: screenMainView
         }
+
         FontList {
             anchors.fill: parent
             id: screenFontList
+        }
+        HostInfos {
+            anchors.fill: parent
+            id: screenHostInfos
         }
 
         Settings {
@@ -259,6 +264,7 @@ ApplicationWindow {
                 name: "MainView"
                 PropertyChanges { target: screenMainView; visible: true; enabled: true; focus: true; }
                 PropertyChanges { target: screenFontList; visible: false; enabled: false; }
+                PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenSettings; visible: false; enabled: false; }
                 PropertyChanges { target: screenAbout; visible: false; enabled: false; }
             },
@@ -266,6 +272,15 @@ ApplicationWindow {
                 name: "FontList"
                 PropertyChanges { target: screenMainView; visible: false; enabled: false; }
                 PropertyChanges { target: screenFontList; visible: true; enabled: true; focus: true; }
+                PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
+                PropertyChanges { target: screenSettings; visible: false; enabled: false; }
+                PropertyChanges { target: screenAbout; visible: false; enabled: false; }
+            },
+            State {
+                name: "HostInfos"
+                PropertyChanges { target: screenMainView; visible: false; enabled: false; }
+                PropertyChanges { target: screenFontList; visible: false; enabled: false; }
+                PropertyChanges { target: screenHostInfos; visible: true; enabled: true; focus: true; }
                 PropertyChanges { target: screenSettings; visible: false; enabled: false; }
                 PropertyChanges { target: screenAbout; visible: false; enabled: false; }
             },
@@ -273,6 +288,7 @@ ApplicationWindow {
                 name: "Settings"
                 PropertyChanges { target: screenMainView; visible: false; enabled: false; }
                 PropertyChanges { target: screenFontList; visible: false; enabled: false; }
+                PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenSettings; visible: true; enabled: true; focus: true; }
                 PropertyChanges { target: screenAbout; visible: false; enabled: false; }
             },
@@ -280,6 +296,7 @@ ApplicationWindow {
                 name: "About"
                 PropertyChanges { target: screenMainView; visible: false; enabled: false; }
                 PropertyChanges { target: screenFontList; visible: false; enabled: false; }
+                PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenSettings; visible: false; enabled: false; }
                 PropertyChanges { target: screenAbout; visible: true; enabled: true; focus: true; }
             }

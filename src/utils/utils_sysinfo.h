@@ -35,20 +35,26 @@ class UtilsSysinfo: public QObject
 {
     Q_OBJECT
 
-    Q_PROPERTY(int coreCount_physical READ getCoreCount_physical CONSTANT)
-    Q_PROPERTY(int coreCount_logical READ getCoreCount_logical CONSTANT)
-    Q_PROPERTY(quint64 ramTotal READ getRamTotal CONSTANT)
+    Q_PROPERTY(QString cpu_arch READ getCpuArch CONSTANT)
+    Q_PROPERTY(int cpu_coreCount_physical READ getCpuCoreCountPhysical CONSTANT)
+    Q_PROPERTY(int cpu_coreCount_logical READ getCpuCoreCountLogical CONSTANT)
+    Q_PROPERTY(quint64 ram_total READ getRamTotal CONSTANT)
+    Q_PROPERTY(QString os_name READ getOs CONSTANT)
 
-    int m_coreCount_physical = 0;
-    int m_coreCount_logical = 0;
-    uint64_t m_ramTotal = 0;
+    QString m_cpu_arch;
+    int m_cpu_core_physical = 0;
+    int m_cpu_core_logical = 0;
+
+    uint64_t m_ram_total = 0;
+
+    QString m_os_name;
 
     // Singleton
     static UtilsSysinfo *instance;
     UtilsSysinfo();
     ~UtilsSysinfo();
 
-    void getCoreInfos();
+    void getCpuInfos();
     void getRamInfos();
 
 public:
@@ -56,11 +62,16 @@ public:
 
     void printInfos();
 
-    Q_INVOKABLE int getCoreCount_physical() const { return m_coreCount_physical; };
+    Q_INVOKABLE QString getCpuArch() const { return m_cpu_arch; };
 
-    Q_INVOKABLE int getCoreCount_logical() const { return m_coreCount_logical; };
+    Q_INVOKABLE int getCpuCoreCountPhysical() const { return m_cpu_core_physical; };
 
-    Q_INVOKABLE uint64_t getRamTotal() const  { return m_ramTotal; };
+    Q_INVOKABLE int getCpuCoreCountLogical() const { return m_cpu_core_logical; };
+
+    Q_INVOKABLE uint64_t getRamTotal() const  { return m_ram_total; };
+
+    Q_INVOKABLE QString getOs() const { return m_os_name; };
+
 };
 
 /* ************************************************************************** */

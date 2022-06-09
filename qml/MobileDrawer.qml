@@ -176,6 +176,45 @@ Drawer {
                 ////////
 
                 Rectangle {
+                    id: rectangleHostInfos
+                    height: 48
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    color: (appContent.state === "HostInfos") ? Theme.colorForeground : "transparent"
+
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            appContent.state = "HostInfos"
+                            appDrawer.close()
+                        }
+                    }
+
+                    IconSvg {
+                        width: 24
+                        height: 24
+                        anchors.left: parent.left
+                        anchors.leftMargin: screenPaddingLeft + 16
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        source: "qrc:/assets/icons_material/duotone-memory-24px.svg"
+                        color: Theme.colorText
+                    }
+                    Text {
+                        anchors.left: parent.left
+                        anchors.leftMargin: screenPaddingLeft + 56
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        text: qsTr("Host Infos")
+                        font.pixelSize: 13
+                        font.bold: true
+                        color: Theme.colorText
+                    }
+                }
+
+                ////////
+
+                Rectangle {
                     id: rectangleFontList
                     height: 48
                     anchors.left: parent.left
@@ -205,7 +244,7 @@ Drawer {
                         anchors.leftMargin: screenPaddingLeft + 56
                         anchors.verticalCenter: parent.verticalCenter
 
-                        text: qsTr("FontList")
+                        text: qsTr("Font List")
                         font.pixelSize: 13
                         font.bold: true
                         color: Theme.colorText
@@ -256,7 +295,7 @@ Drawer {
                     height: 48
                     anchors.right: parent.right
                     anchors.left: parent.left
-                    color: (appContent.state === "About") ? Theme.colorForeground : "transparent"
+                    color: (appContent.state === "About" || appContent.state === "Permissions") ? Theme.colorForeground : "transparent"
 
                     MouseArea {
                         anchors.fill: parent

@@ -21,6 +21,7 @@
 #include "SettingsManager.h"
 #include "utils/utils_app.h"
 #include "utils/utils_screen.h"
+#include "utils/utils_sysinfo.h"
 #include "utils/utils_language.h"
 #include "utils/utils_os_macosdock.h"
 
@@ -78,6 +79,7 @@ int main(int argc, char *argv[])
     }
 
     // Init generic utils
+    UtilsSysinfo *utilsSysinfo = UtilsSysinfo::getInstance();
     UtilsScreen *utilsScreen = UtilsScreen::getInstance();
     UtilsApp *utilsApp = UtilsApp::getInstance();
     UtilsLanguage *utilsLanguage = UtilsLanguage::getInstance();
@@ -105,6 +107,7 @@ int main(int argc, char *argv[])
     engine_context->setContextProperty("utilsApp", utilsApp);
     engine_context->setContextProperty("utilsLanguage", utilsLanguage);
     engine_context->setContextProperty("utilsScreen", utilsScreen);
+    engine_context->setContextProperty("utilsSysinfo", utilsSysinfo);
 
     // Load the main view
 #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(FORCE_MOBILE_UI)

@@ -8,7 +8,9 @@ Item {
     width: 1280
     height: 720
 
-    // helper to list available fonts
+    ////////////////////////////////////////////////////////////////////////////
+
+    // helper to list available fonts available on the host OS
     ListView {
         anchors.fill: parent
         anchors.margins: 0
@@ -17,11 +19,30 @@ Item {
         topMargin: 16
         bottomMargin: 16
 
-        model: Qt.fontFamilies()
+        header: Rectangle {
+            height: 40
+            width: parent.width
 
-        delegate: Item {
-            height: 24
+            color: Theme.colorForeground
+
+            Text {
+                anchors.left: parent.left
+                anchors.leftMargin: 16
+                anchors.verticalCenter: parent.verticalCenter
+
+                text: "Available fonts:"
+                font.pixelSize: Theme.fontSizeContentBig
+                font.bold: true
+                color: Theme.colorText
+            }
+        }
+
+        model: Qt.fontFamilies()
+        delegate: Rectangle {
+            height: 32
             width: ListView.view.width
+
+            color: (index % 2) ? Theme.colorForeground :Theme.colorBackground
 
             Text {
                 anchors.left: parent.left
@@ -34,4 +55,6 @@ Item {
             }
         }
     }
+
+    ////////////////////////////////////////////////////////////////////////////
 }
