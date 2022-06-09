@@ -1,5 +1,5 @@
 /*!
- * COPYRIGHT (C) 2022 Emeric Grange - All Rights Reserved
+ * Copyright (c) 2022 Emeric Grange - All Rights Reserved
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -46,6 +46,8 @@ public:
     QString getAppPath() const { return m_appPath; }
     void setAppPath(const QString &value);
 
+    // app related
+
     static Q_INVOKABLE QString appVersion();
     static Q_INVOKABLE QString appBuildDate();
     static Q_INVOKABLE QString appBuildDateTime();
@@ -60,6 +62,12 @@ public:
     static Q_INVOKABLE QUrl getStandardPath_url(const QString &type);
     static Q_INVOKABLE QString getStandardPath_string(const QString &type);
 
+    // mobile related
+
+    static Q_INVOKABLE int getAndroidSdkVersion();
+
+    static Q_INVOKABLE void openAndroidAppInfo(const QString &packageName);
+
     static Q_INVOKABLE bool checkMobileStoragePermissions();
     static Q_INVOKABLE bool getMobileStoragePermissions();
     static Q_INVOKABLE bool checkMobileStorageReadPermission();
@@ -72,6 +80,9 @@ public:
 
     static Q_INVOKABLE bool checkMobileBleLocationPermission();
     static Q_INVOKABLE bool getMobileBleLocationPermission();
+
+    static Q_INVOKABLE bool checkMobileBackgroundLocationPermission();
+    static Q_INVOKABLE bool getMobileBackgroundLocationPermission();
 
     static Q_INVOKABLE bool checkMobilePhoneStatePermission();
     static Q_INVOKABLE bool getMobilePhoneStatePermission();

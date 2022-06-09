@@ -1,5 +1,5 @@
 /*!
- * COPYRIGHT (C) 2022 Emeric Grange - All Rights Reserved
+ * Copyright (c) 2022 Emeric Grange - All Rights Reserved
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,13 +30,20 @@
 
 /* ************************************************************************** */
 
+int UtilsAndroid::getSdkVersion()
+{
+    return QNativeInterface::QAndroidApplication::sdkVersion();
+}
+
+/* ************************************************************************** */
+
 bool UtilsAndroid::checkPermissions_storage()
 {
     QFuture<QtAndroidPrivate::PermissionResult> r = QtAndroidPrivate::checkPermission("android.permission.READ_EXTERNAL_STORAGE");
     QFuture<QtAndroidPrivate::PermissionResult> w = QtAndroidPrivate::checkPermission("android.permission.WRITE_EXTERNAL_STORAGE");
 
-    r.waitForFinished();
-    w.waitForFinished();
+    //r.waitForFinished();
+    //w.waitForFinished();
 
     return (r.result() == QtAndroidPrivate::PermissionResult::Authorized && w.result() == QtAndroidPrivate::PermissionResult::Authorized);
 }
@@ -44,7 +51,7 @@ bool UtilsAndroid::checkPermissions_storage()
 bool UtilsAndroid::checkPermission_storage_read()
 {
     QFuture<QtAndroidPrivate::PermissionResult> r = QtAndroidPrivate::checkPermission("android.permission.READ_EXTERNAL_STORAGE");
-    r.waitForFinished();
+    //r.waitForFinished();
 
     return (r.result() == QtAndroidPrivate::PermissionResult::Authorized);
 }
@@ -52,7 +59,7 @@ bool UtilsAndroid::checkPermission_storage_read()
 bool UtilsAndroid::checkPermission_storage_write()
 {
     QFuture<QtAndroidPrivate::PermissionResult> w = QtAndroidPrivate::checkPermission("android.permission.WRITE_EXTERNAL_STORAGE");
-    w.waitForFinished();
+    //w.waitForFinished();
 
     return (w.result() == QtAndroidPrivate::PermissionResult::Authorized);
 }
@@ -67,14 +74,14 @@ bool UtilsAndroid::getPermission_storage_read()
     bool status = true;
 
     QFuture<QtAndroidPrivate::PermissionResult> r = QtAndroidPrivate::checkPermission("android.permission.READ_EXTERNAL_STORAGE");
-    r.waitForFinished();
+    //r.waitForFinished();
 
     if (r.result() == QtAndroidPrivate::PermissionResult::Denied)
     {
         QtAndroidPrivate::requestPermission("android.permission.READ_EXTERNAL_STORAGE");
 
         r = QtAndroidPrivate::checkPermission("android.permission.READ_EXTERNAL_STORAGE");
-        r.waitForFinished();
+        //r.waitForFinished();
 
         if (r.result() == QtAndroidPrivate::PermissionResult::Denied)
         {
@@ -91,14 +98,14 @@ bool UtilsAndroid::getPermission_storage_write()
     bool status = true;
 
     QFuture<QtAndroidPrivate::PermissionResult> w = QtAndroidPrivate::checkPermission("android.permission.WRITE_EXTERNAL_STORAGE");
-    w.waitForFinished();
+    //w.waitForFinished();
 
     if (w.result() == QtAndroidPrivate::PermissionResult::Denied)
     {
         QtAndroidPrivate::requestPermission("android.permission.WRITE_EXTERNAL_STORAGE");
 
         w = QtAndroidPrivate::checkPermission("android.permission.WRITE_EXTERNAL_STORAGE");
-        w.waitForFinished();
+        //w.waitForFinished();
 
         if (w.result() == QtAndroidPrivate::PermissionResult::Denied)
         {
@@ -115,7 +122,8 @@ bool UtilsAndroid::getPermission_storage_write()
 bool UtilsAndroid::checkPermission_camera()
 {
     QFuture<QtAndroidPrivate::PermissionResult> cam = QtAndroidPrivate::checkPermission("android.permission.CAMERA");
-    cam.waitForFinished();
+    //cam.waitForFinished();
+
     return (cam.result() == QtAndroidPrivate::PermissionResult::Authorized);
 }
 
@@ -124,12 +132,14 @@ bool UtilsAndroid::getPermission_camera()
     bool status = true;
 
     QFuture<QtAndroidPrivate::PermissionResult> cam = QtAndroidPrivate::checkPermission("android.permission.CAMERA");
-    cam.waitForFinished();
+    //cam.waitForFinished();
+
     if (cam.result() == QtAndroidPrivate::PermissionResult::Denied)
     {
         QtAndroidPrivate::requestPermission("android.permission.CAMERA");
         cam = QtAndroidPrivate::checkPermission("android.permission.CAMERA");
-        cam.waitForFinished();
+        //cam.waitForFinished();
+
         if (cam.result() == QtAndroidPrivate::PermissionResult::Denied)
         {
             qWarning() << "CAMERA PERMISSION DENIED";
@@ -145,7 +155,8 @@ bool UtilsAndroid::getPermission_camera()
 bool UtilsAndroid::checkPermission_location()
 {
     QFuture<QtAndroidPrivate::PermissionResult> loc = QtAndroidPrivate::checkPermission("android.permission.ACCESS_FINE_LOCATION");
-    loc.waitForFinished();
+    //loc.waitForFinished();
+
     return (loc.result() == QtAndroidPrivate::PermissionResult::Authorized);
 }
 
@@ -154,15 +165,17 @@ bool UtilsAndroid::getPermission_location()
     bool status = true;
 
     QFuture<QtAndroidPrivate::PermissionResult> loc = QtAndroidPrivate::checkPermission("android.permission.ACCESS_FINE_LOCATION");
-    loc.waitForFinished();
+    //loc.waitForFinished();
+
     if (loc.result() == QtAndroidPrivate::PermissionResult::Denied)
     {
         QtAndroidPrivate::requestPermission("android.permission.ACCESS_FINE_LOCATION");
         loc = QtAndroidPrivate::checkPermission("android.permission.ACCESS_FINE_LOCATION");
-        loc.waitForFinished();
+        //loc.waitForFinished();
+
         if (loc.result() == QtAndroidPrivate::PermissionResult::Denied)
         {
-            qWarning() << "LOCATION READ PERMISSION DENIED";
+            qWarning() << "FINE LOCATION PERMISSION DENIED";
             status = false;
         }
     }
@@ -179,6 +192,8 @@ bool UtilsAndroid::checkPermission_location_ble()
     else
         loc = QtAndroidPrivate::checkPermission("android.permission.ACCESS_COARSE_LOCATION");
 
+    //loc.waitForFinished();
+
     return (loc.result() == QtAndroidPrivate::PermissionResult::Authorized);
 }
 
@@ -188,15 +203,56 @@ bool UtilsAndroid::getPermission_location_ble()
 
     if (!UtilsAndroid::checkPermission_location_ble())
     {
+        QFuture<QtAndroidPrivate::PermissionResult> res;
+
         if (QNativeInterface::QAndroidApplication::sdkVersion() >= 29)
-            QtAndroidPrivate::requestPermission("android.permission.ACCESS_FINE_LOCATION");
+            res = QtAndroidPrivate::requestPermission("android.permission.ACCESS_FINE_LOCATION");
         else
-            QtAndroidPrivate::requestPermission("android.permission.ACCESS_COARSE_LOCATION");
+            res = QtAndroidPrivate::requestPermission("android.permission.ACCESS_COARSE_LOCATION");
+
+        //res.waitForFinished();
 
         if (!UtilsAndroid::checkPermission_location_ble())
         {
-            qWarning() << "LOCATION READ PERMISSION DENIED";
+            qWarning() << "FINE/COARSE LOCATION PERMISSION DENIED";
             status = false;
+        }
+    }
+
+    return status;
+}
+
+bool UtilsAndroid::checkPermission_location_background()
+{
+    if (QNativeInterface::QAndroidApplication::sdkVersion() >= 29)
+    {
+        QFuture<QtAndroidPrivate::PermissionResult> loc;
+        loc = QtAndroidPrivate::checkPermission("android.permission.ACCESS_BACKGROUND_LOCATION");
+        //loc.waitForFinished();
+
+        return (loc.result() == QtAndroidPrivate::PermissionResult::Authorized);
+    }
+
+    return true;
+}
+
+bool UtilsAndroid::getPermission_location_background()
+{
+    bool status = true;
+
+    if (QNativeInterface::QAndroidApplication::sdkVersion() >= 29)
+    {
+        if (!UtilsAndroid::checkPermission_location_background())
+        {
+            QFuture<QtAndroidPrivate::PermissionResult> res;
+            res = QtAndroidPrivate::requestPermission("android.permission.ACCESS_BACKGROUND_LOCATION");
+            //res.waitForFinished();
+
+            if (!UtilsAndroid::checkPermission_location_background())
+            {
+                qWarning() << "ACCESS_BACKGROUND_LOCATION PERMISSION DENIED";
+                status = false;
+            }
         }
     }
 
@@ -207,8 +263,10 @@ bool UtilsAndroid::getPermission_location_ble()
 
 bool UtilsAndroid::checkPermission_phonestate()
 {
-    QFuture<QtAndroidPrivate::PermissionResult> ps = QtAndroidPrivate::checkPermission("android.permission.READ_PHONE_STATE");
-    ps.waitForFinished();
+    QFuture<QtAndroidPrivate::PermissionResult> ps;
+    ps = QtAndroidPrivate::checkPermission("android.permission.READ_PHONE_STATE");
+    //ps.waitForFinished();
+
     return (ps.result() == QtAndroidPrivate::PermissionResult::Authorized);
 }
 
@@ -216,17 +274,42 @@ bool UtilsAndroid::getPermission_phonestate()
 {
     bool status = true;
 
-    QFuture<QtAndroidPrivate::PermissionResult> ps = QtAndroidPrivate::checkPermission("android.permission.READ_PHONE_STATE");
-    ps.waitForFinished();
-    if (ps.result() == QtAndroidPrivate::PermissionResult::Denied)
+    if (!checkPermission_phonestate())
     {
-        QtAndroidPrivate::requestPermission("android.permission.READ_PHONE_STATE");
-        ps = QtAndroidPrivate::checkPermission("android.permission.READ_PHONE_STATE");
-        ps.waitForFinished();
-        if (ps.result() == QtAndroidPrivate::PermissionResult::Denied)
+        QFuture<QtAndroidPrivate::PermissionResult> req;
+        req = QtAndroidPrivate::requestPermission("android.permission.READ_PHONE_STATE");
+        //req.waitForFinished();
+
+        if (!checkPermission_phonestate())
         {
             qWarning() << "READ_PHONE_STATE PERMISSION DENIED";
             status = false;
+        }
+    }
+
+    return status;
+}
+
+/* ************************************************************************** */
+
+bool UtilsAndroid::isGpsEnabled()
+{
+    bool status = false;
+
+    QJniObject activity = QNativeInterface::QAndroidApplication::context();
+    if (activity.isValid())
+    {
+        QJniObject appCtx = activity.callObjectMethod("getApplicationContext", "()Landroid/content/Context;");
+        if (appCtx.isValid())
+        {
+            QJniObject locationString = QJniObject::fromString("location");
+            QJniObject locationService = appCtx.callObjectMethod("getSystemService",
+                                                                 "(Ljava/lang/String;)Ljava/lang/Object;",
+                                                                 locationString.object<jstring>());
+            if (locationService.callMethod<jboolean>("isLocationEnabled", "()Z"))
+            {
+                status = true;
+            }
         }
     }
 
@@ -302,67 +385,11 @@ QString UtilsAndroid::getDeviceSerial()
         QJniObject serialField = QJniObject::callStaticObjectMethod("android/os/Build",
                                                                     "getSerial",
                                                                     "()Ljava/lang/String;");
-        QString device_serial = serialField.toString();
+        device_serial = serialField.toString();
     }
 
     //qDebug() << "> getDeviceSerial()" << device_serial;
     return device_serial;
-}
-
-/* ************************************************************************** */
-
-void UtilsAndroid::vibrate(int milliseconds)
-{
-    if (milliseconds > 100) milliseconds = 100;
-
-    QNativeInterface::QAndroidApplication::runOnAndroidMainThread([=]() {
-        QJniObject activity = QNativeInterface::QAndroidApplication::context();
-        if (activity.isValid())
-        {
-            QJniObject appCtx = activity.callObjectMethod("getApplicationContext", "()Landroid/content/Context;");
-            if (appCtx.isValid())
-            {
-                QJniObject vibratorString = QJniObject::fromString("vibrator");
-                QJniObject vibratorService = appCtx.callObjectMethod("getSystemService",
-                                                                     "(Ljava/lang/String;)Ljava/lang/Object;",
-                                                                     vibratorString.object<jstring>());
-                if (vibratorService.callMethod<jboolean>("hasVibrator", "()Z"))
-                {
-                    jlong ms = milliseconds;
-                    vibratorService.callMethod<void>("vibrate", "(J)V", ms);
-                }
-            }
-        }
-        QJniEnvironment env;
-        if (env->ExceptionCheck())
-        {
-            env->ExceptionClear();
-        }
-    });
-}
-
-bool UtilsAndroid::isGpsEnabled()
-{
-    bool status = false;
-
-    QJniObject activity = QNativeInterface::QAndroidApplication::context();
-    if (activity.isValid())
-    {
-        QJniObject appCtx = activity.callObjectMethod("getApplicationContext", "()Landroid/content/Context;");
-        if (appCtx.isValid())
-        {
-            QJniObject locationString = QJniObject::fromString("location");
-            QJniObject locationService = appCtx.callObjectMethod("getSystemService",
-                                                                 "(Ljava/lang/String;)Ljava/lang/Object;",
-                                                                 locationString.object<jstring>());
-            if (locationService.callMethod<jboolean>("isLocationEnabled", "()Z"))
-            {
-                status = true;
-            }
-        }
-    }
-
-    return status;
 }
 
 /* ************************************************************************** */
@@ -445,6 +472,76 @@ void UtilsAndroid::screenLockOrientation(int orientation, bool autoRotate)
     if (activity.isValid())
     {
         activity.callMethod<void>("setRequestedOrientation", "(I)V", value);
+    }
+}
+
+/* ************************************************************************** */
+
+void UtilsAndroid::vibrate(int milliseconds)
+{
+    if (milliseconds > 100) milliseconds = 100;
+
+    QNativeInterface::QAndroidApplication::runOnAndroidMainThread([=]() {
+        QJniObject activity = QNativeInterface::QAndroidApplication::context();
+        if (activity.isValid())
+        {
+            QJniObject appCtx = activity.callObjectMethod("getApplicationContext", "()Landroid/content/Context;");
+            if (appCtx.isValid())
+            {
+                QJniObject vibratorString = QJniObject::fromString("vibrator");
+                QJniObject vibratorService = appCtx.callObjectMethod("getSystemService",
+                                                                     "(Ljava/lang/String;)Ljava/lang/Object;",
+                                                                     vibratorString.object<jstring>());
+                if (vibratorService.callMethod<jboolean>("hasVibrator", "()Z"))
+                {
+                    jlong ms = milliseconds;
+                    vibratorService.callMethod<void>("vibrate", "(J)V", ms);
+                }
+            }
+        }
+        QJniEnvironment env;
+        if (env->ExceptionCheck())
+        {
+            env->ExceptionClear();
+        }
+    });
+}
+
+/* ************************************************************************** */
+
+void UtilsAndroid::openApplicationInfo(const QString &packageName)
+{
+    //qDebug() << "> openApplicationInfo(" << packageName << ")";
+
+    QJniObject jpackageName = QJniObject::fromString("package:" + packageName);
+    QJniObject jintentName = QJniObject::fromString("android.settings.APPLICATION_DETAILS_SETTINGS");
+
+    //if (QNativeInterface::QAndroidApplication::sdkVersion() >= 28)
+    {
+        QJniObject activity = QNativeInterface::QAndroidApplication::context();
+        if (activity.isValid())
+        {
+            QJniObject juri = QJniObject::callStaticObjectMethod("android/net/Uri", "parse",
+                                                                "(Ljava/lang/String;)Landroid/net/Uri;",
+                                                                jpackageName.object<jstring>());
+            if (!juri.isValid())
+            {
+                qWarning("Unable to create Uri object");
+                return;
+            }
+
+            QJniObject intent("android/content/Intent","(Ljava/lang/String;)V", jintentName.object<jstring>());
+            if (!intent.isValid())
+            {
+                qWarning("Unable to create Intent object");
+                return;
+            }
+            intent.callObjectMethod("addCategory", "(Ljava/lang/String;)Landroid/content/Intent;",
+                                    QJniObject::fromString("android.intent.category.DEFAULT").object<jstring>());
+            intent.callObjectMethod("setData", "(Landroid/net/Uri;)Landroid/content/Intent;", juri.object<jobject>());
+
+            QtAndroidPrivate::startActivity(intent.object<jobject>(), 10101);
+        }
     }
 }
 

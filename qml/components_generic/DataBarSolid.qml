@@ -30,7 +30,6 @@ Item {
     property int legendContentWidth: item_legend.contentWidth
 
     // colors
-    property string colorText: Theme.colorText
     property string colorForeground: Theme.colorPrimary
     property string colorBackground: Theme.colorForeground
 
@@ -49,8 +48,8 @@ Item {
 
             text: legend
             textFormat: Text.PlainText
+            font.pixelSize: Theme.fontSizeContentVerySmall
             font.bold: true
-            font.pixelSize: 12
             font.capitalization: Font.AllUppercase
             color: Theme.colorSubText
             horizontalAlignment: Text.AlignRight
@@ -136,7 +135,7 @@ Item {
                 text: qsTr("min")
                 textFormat: Text.PlainText
 
-                font.pixelSize: 12
+                font.pixelSize: Theme.fontSizeContentVerySmall
                 color: (limitMin <= value) ? Theme.colorLowContrast : Theme.colorHighContrast
                 opacity: (limitMin <= value) ? 0.75 : 0.25
                 Behavior on color { ColorAnimation { duration: animated ? 333 : 0 } }
@@ -193,7 +192,7 @@ Item {
                 text: qsTr("max")
                 textFormat: Text.PlainText
 
-                font.pixelSize: 12
+                font.pixelSize: Theme.fontSizeContentVerySmall
                 color: (limitMax < value) ? Theme.colorLowContrast : Theme.colorHighContrast
                 opacity: (limitMax < value) ? 0.75 : 0.25
                 Behavior on color { ColorAnimation { duration: animated ? 333 : 0 } }
@@ -221,10 +220,9 @@ Item {
             Rectangle {
                 id: indicator
                 anchors.verticalCenter: parent.verticalCenter
-                anchors.verticalCenterOffset: 0
 
-                height: hhh
                 width: textIndicator.width + 12
+                height: hhh
                 radius: (value <= 0 || item_data.width > indicator.width) ? hhh : 0
                 color: {
                     if (value <= 0)
@@ -244,11 +242,10 @@ Item {
 
                 Text {
                     id: textIndicator
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.verticalCenterOffset: 1
-                    anchors.horizontalCenter: parent.horizontalCenter
+                    height: hhh
+                    anchors.centerIn: parent
 
-                    color: (item_data.width > indicator.width) ? "white" : Theme.colorText
+                    color: (item_data.width > indicator.width) ? "white" : Theme.colorSubText
 
                     text: {
                         if (value < -20)
@@ -262,7 +259,8 @@ Item {
                     }
                     textFormat: Text.PlainText
                     font.bold: true
-                    font.pixelSize: 12
+                    font.pixelSize: isDesktop ? 12 : 13
+                    fontSizeMode: Text.VerticalFit
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                 }

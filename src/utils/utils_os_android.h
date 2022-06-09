@@ -1,5 +1,5 @@
 /*!
- * COPYRIGHT (C) 2022 Emeric Grange - All Rights Reserved
+ * Copyright (c) 2022 Emeric Grange - All Rights Reserved
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -41,6 +41,12 @@
 class UtilsAndroid
 {
 public:
+    /*!
+     * \brief getSdkVersion
+     * \return
+     */
+    static int getSdkVersion();
+
     /*!
      * \note DEPRECATED in Android 12
      * \return True if R/W permissions on main storage have been previously obtained.
@@ -88,6 +94,16 @@ public:
     static bool getPermission_location_ble();
 
     /*!
+     * \return True if ACCESS_BACKGROUND_LOCATION permission has been previously obtained (for Android 10+).
+     */
+    static bool checkPermission_location_background();
+
+    /*!
+     * \return True if ACCESS_BACKGROUND_LOCATION permission has been explicitly obtained (for Android 10+).
+     */
+    static bool getPermission_location_background();
+
+    /*!
      * \return True if READ_PHONE_STATE permission has been previously obtained.
      */
     static bool checkPermission_phonestate();
@@ -96,6 +112,11 @@ public:
      * \return True if READ_PHONE_STATE permission has been explicitly obtained.
      */
     static bool getPermission_phonestate();
+
+    /*!
+     * \return True if device GPS is turned on.
+     */
+    static bool isGpsEnabled();
 
     /* ********************************************************************** */
 
@@ -149,20 +170,7 @@ public:
      */
     static QString getDeviceSerial();
 
-    /*!
-     * \param milliseconds: vibration duration.
-     *
-     * Need VIBRATE permission.
-     *
-     * - 25 is a small 'keyboard like' vibration
-     * - 100 is a regular 'notification' vibration
-     */
-    static void vibrate(int milliseconds);
-
-    /*!
-     * \return True if device GPS is turned on.
-     */
-    static bool isGpsEnabled();
+    /* ********************************************************************** */
 
     /*!
      * \param on: screen on or off.
@@ -185,6 +193,27 @@ public:
      * \param autoRotate: false to disable auto-rotation completely, true to let some degree of auto-rotation.
      */
     static void screenLockOrientation(int orientation, bool autoRotate);
+
+    /* ********************************************************************** */
+
+    /*!
+     * \param milliseconds: vibration duration.
+     *
+     * Need VIBRATE permission.
+     *
+     * - 25 is a small 'keyboard like' vibration
+     * - 100 is a regular 'notification' vibration
+     */
+    static void vibrate(int milliseconds);
+
+    /* ********************************************************************** */
+
+    /*!
+     * \param packageName: the application package, for instance 'com.application.identifier'.
+     *
+     * Open the Android application info intent for the given package name.
+     */
+    static void openApplicationInfo(const QString &packageName);
 };
 
 /* ************************************************************************** */

@@ -15,34 +15,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * \author    Emeric Grange <emeric.grange@gmail.com>
- * \date      2021
+ * \date      2022
  */
 
-#ifndef UTILS_MACOS_H
-#define UTILS_MACOS_H
+#include "utils_bits.h"
 
-#include <QtGlobal>
-
-#if defined(Q_OS_MACOS)
 /* ************************************************************************** */
 
-#include <QString>
-
-/*!
- * \brief macOS utils
- *
- * Use with "LIBS += -framework IOKit"
- */
-class UtilsMacOS
+uint16_t endian_flip_16(uint16_t src)
 {
-public:
-    /*!
-     * - https://developer.apple.com/library/archive/qa/qa1340/_index.html
-     */
-    static uint32_t screenKeepOn(const QString &application, const QString &reason);
-    static void screenKeepAuto(uint32_t screensaverId);
-};
+    return ( ((src & 0x00FF) << 8) | ((src & 0xFF00) >> 8) );
+}
 
 /* ************************************************************************** */
-#endif // Q_OS_MACOS
-#endif // UTILS_MACOS_H
