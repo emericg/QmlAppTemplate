@@ -136,13 +136,13 @@ void UtilsSysinfo::getRamInfos()
 
     if (sysctlbyname("hw.memsize", &memsize, &size, NULL, 0) != -1)
     {
-        m_ramTotal = memsize / 1048576; // bytes to MB
+        m_ram_total = memsize / 1048576; // bytes to MB
     }
 
 #elif defined(Q_OS_WINDOWS)
 
-    GetPhysicallyInstalledSystemMemory(&m_ramTotal);
-    m_ramTotal /= 1024; // KB to MB
+    GetPhysicallyInstalledSystemMemory(&m_ram_total);
+    m_ram_total /= 1024; // KB to MB
 
 #endif
 }
