@@ -19,12 +19,12 @@
  */
 
 #include "SettingsManager.h"
-#include "utils/utils_app.h"
-#include "utils/utils_screen.h"
-#include "utils/utils_sysinfo.h"
-#include "utils/utils_language.h"
-#include "utils/utils_os_macosdock.h"
 
+#include <utils_app.h>
+#include <utils_screen.h>
+#include <utils_sysinfo.h>
+#include <utils_language.h>
+#include <utils_os_macosdock.h>
 #include <MobileUI.h>
 //#include <SharingUtils.h>
 #include <singleapplication.h>
@@ -80,7 +80,7 @@ int main(int argc, char *argv[])
 
     // Init generic utils
     UtilsSysinfo *utilsSysinfo = UtilsSysinfo::getInstance();
-    UtilsScreen *utilsScreen = UtilsScreen::getInstance();
+    UtilsScreen *utilsScreen = UtilsScreen::getInstance(&app);
     UtilsApp *utilsApp = UtilsApp::getInstance();
     UtilsLanguage *utilsLanguage = UtilsLanguage::getInstance();
     if (!utilsScreen || !utilsApp || !utilsLanguage)

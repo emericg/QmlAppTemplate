@@ -103,7 +103,7 @@ Item {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: utilsApp.appBuildMode()
+                            text: utilsApp.appBuildModeFull()
                             textFormat: Text.PlainText
                             font.pixelSize: Theme.fontSizeContentBig
                             color: Theme.colorHighContrast
@@ -165,7 +165,41 @@ Item {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: utilsScreen.screenDpi
+                            text: utilsScreen.screenPar.toFixed(1)
+                            textFormat: Text.PlainText
+                            font.pixelSize: Theme.fontSizeContentBig
+                            color: Theme.colorHighContrast
+                        }
+                    }
+
+                    Column {
+                        Text {
+                            text: qsTr("Screen geometry")
+                            textFormat: Text.PlainText
+                            color: Theme.colorSubText
+                            font.bold: true
+                            font.pixelSize: Theme.fontSizeContentVerySmall
+                            font.capitalization: Font.AllUppercase
+                        }
+                        Text {
+                            text: utilsScreen.screenWidth + " x " + utilsScreen.screenHeight
+                            textFormat: Text.PlainText
+                            font.pixelSize: Theme.fontSizeContentBig
+                            color: Theme.colorHighContrast
+                        }
+                    }
+
+                    Column {
+                        Text {
+                            text: qsTr("Screen depth & rate")
+                            textFormat: Text.PlainText
+                            color: Theme.colorSubText
+                            font.bold: true
+                            font.pixelSize: Theme.fontSizeContentVerySmall
+                            font.capitalization: Font.AllUppercase
+                        }
+                        Text {
+                            text: utilsScreen.screenDepth + " bpp @ " + utilsScreen.screenRefreshRate.toFixed(1) + " Hz"
                             textFormat: Text.PlainText
                             font.pixelSize: Theme.fontSizeContentBig
                             color: Theme.colorHighContrast
@@ -182,7 +216,7 @@ Item {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: utilsScreen.screenSize
+                            text: utilsScreen.screenSize.toFixed(1) + " inches"
                             textFormat: Text.PlainText
                             font.pixelSize: Theme.fontSizeContentBig
                             color: Theme.colorHighContrast

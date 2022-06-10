@@ -1,11 +1,11 @@
 TARGET  = QmlAppTemplate
 
-VERSION = 0.3
+VERSION = 0.4
 DEFINES+= APP_VERSION=\\\"$$VERSION\\\"
+DEFINES+= APP_NAME=\\\"$$TARGET\\\"
 
 CONFIG += c++17
-QT     += core
-QT     += qml quick quickcontrols2 svg widgets charts
+QT     += core qml quick quickcontrols2 svg
 
 # Validate Qt version
 !versionAtLeast(QT_VERSION, 6.0) : error("You need at least Qt version 6.0 for $${TARGET}")
@@ -18,31 +18,23 @@ ios | android { CONFIG += qtquickcompiler }
 
 win32 { DEFINES += _USE_MATH_DEFINES }
 
+# AppUtils
+include(src/thirdparty/AppUtils/AppUtils.pri)
+
 # MobileUI and MobileSharing for mobile OS
 include(src/thirdparty/MobileUI/MobileUI.pri)
 include(src/thirdparty/MobileSharing/MobileSharing.pri)
 
 # SingleApplication for desktop OS
+DEFINES += QAPPLICATION_CLASS=QGuiApplication
 include(src/thirdparty/SingleApplication/singleapplication.pri)
-DEFINES += QAPPLICATION_CLASS=QApplication
 
 # Project files ################################################################
 
 SOURCES  += src/main.cpp \
-            src/SettingsManager.cpp  \
-            src/utils/utils_app.cpp \
-            src/utils/utils_language.cpp \
-            src/utils/utils_maths.cpp \
-            src/utils/utils_screen.cpp \
-            src/utils/utils_sysinfo.cpp
+            src/SettingsManager.cpp
 
-HEADERS  += src/SettingsManager.h \
-            src/utils/utils_app.h \
-            src/utils/utils_language.h \
-            src/utils/utils_maths.h \
-            src/utils/utils_screen.h \
-            src/utils/utils_sysinfo.h \
-            src/utils/utils_versionchecker.h
+HEADERS  += src/SettingsManager.h
 
 INCLUDEPATH += src/
 
@@ -78,11 +70,14 @@ CONFIG(release, debug|release) : DEFINES += NDEBUG QT_NO_DEBUG QT_NO_DEBUG_OUTPU
 
 # Build artifacts ##############################################################
 
-OBJECTS_DIR = build/$${QT_ARCH}/
-MOC_DIR     = build/$${QT_ARCH}/
-RCC_DIR     = build/$${QT_ARCH}/
-UI_DIR      = build/$${QT_ARCH}/
-QMLCACHE_DIR= build/$${QT_ARCH}/
+CONFIG(release, debug|release) : BUILD_MODE = "RELEASE"
+CONFIG(debug, debug|release) : BUILD_MODE = "DEBUG"
+
+OBJECTS_DIR = build/$${BUILD_MODE}_$${QT_ARCH}/obj/
+MOC_DIR     = build/$${BUILD_MODE}_$${QT_ARCH}/moc/
+RCC_DIR     = build/$${BUILD_MODE}_$${QT_ARCH}/rcc/
+UI_DIR      = build/$${BUILD_MODE}_$${QT_ARCH}/ui/
+QMLCACHE_DIR= build/$${BUILD_MODE}_$${QT_ARCH}/qml/
 
 DESTDIR     = bin/
 
@@ -91,11 +86,6 @@ DESTDIR     = bin/
 
 linux:!android {
     TARGET = $$lower($${TARGET})
-
-    # Linux utils
-    SOURCES += src/utils/utils_os_linux.cpp
-    HEADERS += src/utils/utils_os_linux.h
-    QT += dbus
 
     # Automatic application packaging # Needs linuxdeployqt installed
     #system(linuxdeployqt $${OUT_PWD}/$${DESTDIR}/ -qmldir=qml/)
@@ -132,15 +122,6 @@ macx {
     QMAKE_TARGET_BUNDLE_PREFIX = com.emeric
     QMAKE_BUNDLE = qmlapptemplate
 
-    # macOS utils
-    SOURCES += src/utils/utils_os_macos.mm
-    HEADERS += src/utils/utils_os_macos.h
-    LIBS    += -framework IOKit
-    # macOS dock click handler
-    SOURCES += src/utils/utils_os_macosdock.mm
-    HEADERS += src/utils/utils_os_macosdock.h
-    LIBS    += -framework AppKit
-
     # OS icons
     ICON = $${PWD}/assets/macos/$$lower($${TARGET}).icns
     #QMAKE_ASSET_CATALOGS_APP_ICON = "AppIcon"
@@ -175,10 +156,6 @@ macx {
 }
 
 win32 {
-    # Windows utils
-    SOURCES += src/utils/utils_os_windows.cpp
-    HEADERS += src/utils/utils_os_windows.h
-
     # OS icon
     RC_ICONS = $${PWD}/assets/windows/$$lower($${TARGET}).ico
 
@@ -202,11 +179,6 @@ android {
     QMAKE_TARGET_BUNDLE_PREFIX = com.emeric
     QMAKE_BUNDLE = qmlapptemplate
 
-    # android utils
-    QT += core-private
-    SOURCES += src/utils/utils_os_android_qt6.cpp
-    HEADERS += src/utils/utils_os_android.h
-
     OTHER_FILES += assets/android/src/com/emeric/utils/QShareUtils.java \
                    assets/android/src/com/emeric/utils/QSharePathResolver.java
 
@@ -220,13 +192,6 @@ android {
 ios {
     #QMAKE_IOS_DEPLOYMENT_TARGET = 11.0
     #message("QMAKE_IOS_DEPLOYMENT_TARGET: $$QMAKE_IOS_DEPLOYMENT_TARGET")
-
-    CONFIG += no_autoqmake
-
-    # iOS utils
-    SOURCES += src/utils/utils_os_ios.mm
-    HEADERS += src/utils/utils_os_ios.h
-    LIBS    += -framework UIKit
 
     # Bundle name
     QMAKE_TARGET_BUNDLE_PREFIX = com.emeric.ios
