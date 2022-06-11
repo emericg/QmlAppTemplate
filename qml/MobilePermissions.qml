@@ -4,9 +4,7 @@ import QtQuick.Controls 2.15
 import ThemeEngine 1.0
 
 Item {
-    id: permissionsScreen
-    width: 480
-    height: 720
+    id: screenPermissions
     anchors.fill: parent
     anchors.leftMargin: screenPaddingLeft
     anchors.rightMargin: screenPaddingRight

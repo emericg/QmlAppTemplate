@@ -91,6 +91,8 @@ QString UtilsApp::appBuildMode()
 #if !defined(QT_NO_DEBUG) && !defined(NDEBUG)
     return "DEBUG";
 #endif
+
+    return "";
 }
 
 QString UtilsApp::appBuildModeFull()

@@ -5,9 +5,10 @@ import ThemeEngine 1.0
 import "qrc:/js/UtilsString.js" as UtilsString
 
 Item {
-    id: screenComponent
-    width: 1280
-    height: 720
+    id: screenComponents
+    anchors.fill: parent
+    anchors.leftMargin: screenPaddingLeft
+    anchors.rightMargin: screenPaddingRight
 
     // MENUS ///////////////////////////////////////////////////////////////////
 

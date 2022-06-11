@@ -256,7 +256,7 @@ Item {
                     verticalAlignment: Text.AlignVCenter
                 }
 
-                SwitchThemedMobile {
+                SwitchThemedDesktop {
                     id: switch_appThemeAuto
                     anchors.right: parent.right
                     anchors.rightMargin: 0
@@ -327,7 +327,7 @@ Item {
                     verticalAlignment: Text.AlignVCenter
                 }
 
-                SwitchThemedMobile {
+                SwitchThemedDesktop {
                     id: switch_appThemeCSD
                     anchors.right: parent.right
                     anchors.rightMargin: 0
@@ -407,7 +407,6 @@ Item {
                 ComboBoxThemed {
                     id: combobox_language
                     width: wideMode ? 256 : 160
-                    height: 36
                     anchors.right: parent.right
                     anchors.rightMargin: 12
                     anchors.verticalCenter: parent.verticalCenter
@@ -577,7 +576,6 @@ Item {
                     anchors.right: parent.right
                     anchors.rightMargin: 12
                     anchors.verticalCenter: parent.verticalCenter
-                    height: 36
                     z: 1
 
                     from: 1

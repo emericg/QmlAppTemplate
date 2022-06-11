@@ -5,8 +5,9 @@ import ThemeEngine 1.0
 
 Item {
     id: screenFontList
-    width: 1280
-    height: 720
+    anchors.fill: parent
+    anchors.leftMargin: screenPaddingLeft
+    anchors.rightMargin: screenPaddingRight
 
     ////////////////////////////////////////////////////////////////////////////
 

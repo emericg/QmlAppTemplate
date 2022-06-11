@@ -199,7 +199,7 @@ Item {
                     anchors.rightMargin: 0
                     anchors.verticalCenter: desc.verticalCenter
 
-                    text: qsTr("A Qt6 / QML application template, with a full set of visual controls.")
+                    text: qsTr("A Qt6 / QML application template, with a full set of visual controls, as well as build and deploy scripts and CI setups.")
                     textFormat: Text.PlainText
                     wrapMode: Text.WordWrap
                     color: Theme.colorText
@@ -502,7 +502,7 @@ Item {
                         anchors.right: parent.right
                         anchors.rightMargin: 12
 
-                        text: "- Qt (LGPL 3)"
+                        text: "- Qt6 (LGPL 3)"
                         textFormat: Text.PlainText
                         color: Theme.colorText
                         font.pixelSize: Theme.fontSizeContent
