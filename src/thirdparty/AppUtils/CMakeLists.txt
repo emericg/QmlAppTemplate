@@ -48,7 +48,7 @@ if(CMAKE_SYSTEM_NAME STREQUAL Linux)
     set(PLATFORM_LIBRARIES Qt::DBus)
 endif()
 
-if(CMAKE_SYSTEM_NAME STREQUAL Android)
+if(ANDROID)
 if(QT_DEFAULT_MAJOR_VERSION EQUAL 6)
     set(PLATFORM_SOURCES
         utils_os_android_qt6.cpp
@@ -65,33 +65,31 @@ elseif(QT_DEFAULT_MAJOR_VERSION EQUAL 5)
 endif()
 endif()
 
-if(CMAKE_SYSTEM_NAME STREQUAL Windows)
+if(WIN32)
     set(PLATFORM_SOURCES
         utils_os_windows.cpp
         utils_os_windows.h)
 endif()
 
-if(CMAKE_SYSTEM_NAME STREQUAL macOS)
+if(APPLE AND NOT IOS)
     set(PLATFORM_SOURCES
         utils_os_macos.mm
         utils_os_macos.h
         utils_os_macosdock.mm
         utils_os_macosdock.h)
-    target_link_libraries(AppUtils PRIVATE
-        "-framework AppKit"
-        "-framework UIKit"
-    )
+
+    set(PLATFORM_LIBRARIES "-framework AppKit")
 endif()
 
-if(CMAKE_SYSTEM_NAME STREQUAL iOS)
+if(IOS)
     set(PLATFORM_SOURCES
         utils_os_ios.mm
         utils_os_ios.h)
 
+    find_package(Qt${QT_DEFAULT_MAJOR_VERSION} REQUIRED COMPONENTS Quick)
+    set(PLATFORM_LIBRARIES Qt::Quick)
     set(PLATFORM_LIBRARIES Qt::GuiPrivate)
-    target_link_libraries(AppUtils PRIVATE
-        "-framework UIKit"
-    )
+    set(PLATFORM_LIBRARIES "-framework UIKit")
 endif()
 
 ################################################################################

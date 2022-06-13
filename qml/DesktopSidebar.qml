@@ -95,7 +95,7 @@ Rectangle {
             sourceSize: 40
             highlightMode: "circle"
 
-            onClicked: appWindow.close()
+            onClicked: utilsApp.appExit()
         }
     }
 

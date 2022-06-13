@@ -85,7 +85,7 @@ endif()
 ## iOS
 if(IOS)
     target_link_libraries(QmlAppTemplate PRIVATE
-        "-framework Qt::GuiPrivate"
+        Qt::GuiPrivate
         "-framework UIKit"
     )
 endif()

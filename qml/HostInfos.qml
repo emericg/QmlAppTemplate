@@ -14,7 +14,6 @@ Item {
     property int flow_divider: Math.round(flow_width / 512)
     property int www: ((flow_width - (flow.spacing * flow_divider)) / flow_divider)
 
-
     // QLibraryInfo Class
 
     Flickable {
