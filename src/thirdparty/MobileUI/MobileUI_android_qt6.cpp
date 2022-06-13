@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2016 J-P Nurmi
- * COPYRIGHT (C) 2022 Emeric Grange
+ * Copyright (c) 2022 Emeric Grange
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -66,12 +66,12 @@ static QJniObject getAndroidWindow()
     return window;
 }
 
-/* ************************************************************************** */
-
 bool MobileUIPrivate::isAvailable_sys()
 {
-    return true; // Qt6 must be built with Android SDK 23, enough for everything we use
+    return true; // Qt6 must be built with Android SDK 23 anyway, enough for everything MobileUI use
 }
+
+/* ************************************************************************** */
 
 void MobileUIPrivate::setColor_statusbar(const QColor &color)
 {
@@ -106,10 +106,10 @@ void MobileUIPrivate::setTheme_statusbar(MobileUI::Theme theme)
     });
 }
 
+/* ************************************************************************** */
+
 void MobileUIPrivate::setColor_navbar(const QColor &color)
 {
-    if (QNativeInterface::QAndroidApplication::sdkVersion() < 21) return;
-
     QNativeInterface::QAndroidApplication::runOnAndroidMainThread([=]() {
         QJniObject window = getAndroidWindow();
         window.callMethod<void>("setNavigationBarColor", "(I)V", color.rgba());
@@ -140,3 +140,5 @@ void MobileUIPrivate::setTheme_navbar(MobileUI::Theme theme)
         view.callMethod<void>("setSystemUiVisibility", "(I)V", visibility);
     });
 }
+
+/* ************************************************************************** */

@@ -25,10 +25,10 @@
 #define SHARINGAPPLICATION_H
 /* ************************************************************************** */
 
-#include <SharingUtils.h>
-
 #include <QGuiApplication>
-#include <QQmlContext>
+
+class QQmlContext;
+class ShareUtils;
 
 /* ************************************************************************** */
 

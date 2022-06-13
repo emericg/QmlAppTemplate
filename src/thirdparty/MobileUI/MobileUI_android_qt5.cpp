@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2016 J-P Nurmi
- * COPYRIGHT (C) 2022 Emeric Grange
+ * Copyright (c) 2022 Emeric Grange
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -64,12 +64,12 @@ static QAndroidJniObject getAndroidWindow()
     return window;
 }
 
-/* ************************************************************************** */
-
 bool MobileUIPrivate::isAvailable_sys()
 {
     return QtAndroid::androidSdkVersion() >= 21;
 }
+
+/* ************************************************************************** */
 
 void MobileUIPrivate::setColor_statusbar(const QColor &color)
 {
@@ -110,6 +110,8 @@ void MobileUIPrivate::setTheme_statusbar(MobileUI::Theme theme)
     });
 }
 
+/* ************************************************************************** */
+
 void MobileUIPrivate::setColor_navbar(const QColor &color)
 {
     if (QtAndroid::androidSdkVersion() < 21) return;
@@ -148,3 +150,5 @@ void MobileUIPrivate::setTheme_navbar(MobileUI::Theme theme)
         view.callMethod<void>("setSystemUiVisibility", "(I)V", visibility);
     });
 }
+
+/* ************************************************************************** */

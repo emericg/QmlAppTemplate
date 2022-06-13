@@ -1,4 +1,4 @@
-## QmlAppTemplate
+# QmlAppTemplate
 
 [![GitHub action](https://img.shields.io/github/workflow/status/emericg/QmlAppTemplate/Desktop%20CI%20builds.svg?style=flat-square)](https://github.com/emericg/QmlAppTemplate/actions/workflows/builds_desktop.yml)
 [![GitHub action](https://img.shields.io/github/workflow/status/emericg/QmlAppTemplate/Mobile%20CI%20builds.svg?style=flat-square)](https://github.com/emericg/QmlAppTemplate/actions/workflows/builds_mobile.yml)
@@ -6,6 +6,28 @@
 [![License: GPL v3](https://img.shields.io/badge/license-GPL%20v3-blue.svg?style=flat-square)](http://www.gnu.org/licenses/gpl-3.0)
 
 A Qt6 / QML application template, with a full set of visual controls, as well as build and deploy scripts and CI setups.
+
+## Documentation
+
+### Application
+
+> TODO
+
+### C++ modules
+
+> TODO
+
+### QML components
+
+> TODO
+
+### Deploy scripts
+
+> TODO
+
+### GitHub CI workflows
+
+> TODO
 
 ## License
 

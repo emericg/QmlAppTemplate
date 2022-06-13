@@ -27,13 +27,13 @@ linux:!android {
 
 macx {
     # macOS OS utils
-    SOURCES += src/utils/utils_os_macos.mm
-    HEADERS += src/utils/utils_os_macos.h
+    SOURCES += $${PWD}/utils/utils_os_macos.mm
+    HEADERS += $${PWD}/utils/utils_os_macos.h
     LIBS    += -framework IOKit
 
     # macOS dock click handler
-    SOURCES += src/utils/utils_os_macosdock.mm
-    HEADERS += src/utils/utils_os_macosdock.h
+    SOURCES += $${PWD}/utils/utils_os_macosdock.mm
+    HEADERS += $${PWD}/utils/utils_os_macosdock.h
     LIBS    += -framework AppKit
 }
 

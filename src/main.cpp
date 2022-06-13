@@ -25,9 +25,10 @@
 #include <utils_sysinfo.h>
 #include <utils_language.h>
 #include <utils_os_macosdock.h>
-#include <MobileUI.h>
-//#include <SharingUtils.h>
-#include <singleapplication.h>
+
+#include <MobileUI>
+#include <MobileSharing>
+#include <SingleApplication>
 
 #include <QtGlobal>
 #include <QLibraryInfo>

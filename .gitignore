@@ -24,6 +24,9 @@ qml_*qml.cpp
 Makefile
 .qmake.stash
 
+# CMake temporary project files
+CMakeLists.txt.user
+
 # XCode related
 Debug/*
 Release/*

@@ -60,12 +60,7 @@ target_link_libraries(QmlAppTemplate PRIVATE SingleApplication)
 
 ################################################################################
 
-## LINUX
-if(UNIX AND NOT APPLE AND NOT ANDROID)
-    set(LINUX TRUE)
-endif()
-
-## ANDROID
+## Android
 if(ANDROID)
     set_target_properties(QmlAppTemplate PROPERTIES
         QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/assets/android"

@@ -22,9 +22,12 @@
  */
 
 #include "SharingApplication.h"
+#include "SharingUtils.h"
 
-#include <QtQml>
 #include <QGuiApplication>
+#include <QQmlContext>
+#include <QtQml>
+
 #include <QDir>
 #include <QFile>
 #include <QFileOpenEvent>

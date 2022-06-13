@@ -27,7 +27,7 @@ include(src/thirdparty/MobileSharing/MobileSharing.pri)
 
 # SingleApplication for desktop OS
 DEFINES += QAPPLICATION_CLASS=QGuiApplication
-include(src/thirdparty/SingleApplication/singleapplication.pri)
+include(src/thirdparty/SingleApplication/SingleApplication.pri)
 
 # Project files ################################################################
 
