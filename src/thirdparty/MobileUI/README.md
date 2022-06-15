@@ -1,12 +1,12 @@
 # MobileUI
 
-MobileUI allows mobile QML applications to interacts with Android and iOS `status bar` and Android `navigation bar`.
+MobileUI allows mobile QML applications to interacts with Android and iOS `status bar` and Android `navigation bar`. Works with Qt5 and Qt6.
 
 MobileUI module is based on qtstatusbar by jpnurmi, with several improvements and additions.
 
-> https://github.com/jpnurmi/qtstatusbar
+> https://github.com/jpnurmi/qtstatusbar  
 
-## Quick Documentation
+## Quick start
 
 ### Build
 
@@ -55,6 +55,8 @@ MobileUI {
     navbarColor: "white"
 }
 ```
+
+There is no navigation bar on iOS obviously, so it won't have any effects there.
 
 ## License
 

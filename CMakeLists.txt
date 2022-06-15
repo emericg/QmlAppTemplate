@@ -23,11 +23,6 @@ qt_add_executable(QmlAppTemplate
 
 target_include_directories(QmlAppTemplate PRIVATE src)
 
-set_target_properties(QmlAppTemplate PROPERTIES
-    WIN32_EXECUTABLE ON
-    MACOSX_BUNDLE ON
-)
-
 target_link_libraries(QmlAppTemplate PRIVATE
     Qt::Core
     Qt::Gui
@@ -113,6 +108,11 @@ if(CMAKE_BUILD_TYPE STREQUAL Release)
         QT_NO_DEBUG_OUTPUT
     )
 endif()
+
+set_target_properties(QmlAppTemplate PROPERTIES
+    WIN32_EXECUTABLE ON
+    MACOSX_BUNDLE ON
+)
 
 install(TARGETS QmlAppTemplate
     BUNDLE DESTINATION .    # used by macOS

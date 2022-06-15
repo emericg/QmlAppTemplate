@@ -53,7 +53,7 @@ jobs:
         uses: jurplel/install-qt-action@v2
         with:
           aqtversion: '==2.0.6'
-          version: '6.3.0'
+          version: '6.3.1'
           modules: qt5compat qtimageformats qtcharts
           cached: 'false'
 
@@ -62,18 +62,22 @@ jobs:
         uses: jurplel/install-qt-action@v2
         with:
           aqtversion: '==2.0.6'
-          version: '6.3.0'
+          version: '6.3.1'
           host: 'linux'
           target: 'android'
           arch: 'android_arm64_v8a'
           modules: qt5compat qtimageformats qtcharts
           cached: 'false'
 
-      # Build application
-      - name: Build application
+      # Setup env
+      - name: Setup env
         run: |
              export PATH=$Qt6_DIR/bin:$PATH
              qmake --version
+
+      # Build application
+      - name: Build application
+        run: |
              qmake ${{env.QMAKE_PROJECT}} CONFIG+=release
              make -j$(nproc)
 
@@ -93,7 +97,7 @@ jobs:
         uses: jurplel/install-qt-action@v2
         with:
           aqtversion: '==2.0.6'
-          version: '6.3.0'
+          version: '6.3.1'
           modules: qt5compat qtimageformats qtcharts
           cached: 'false'
 
@@ -102,17 +106,21 @@ jobs:
         uses: jurplel/install-qt-action@v2
         with:
           aqtversion: '==2.0.6'
-          version: '6.3.0'
+          version: '6.3.1'
           host: 'mac'
           target: 'ios'
           modules: qt5compat qtimageformats qtcharts
           cached: 'false'
 
+      # Setup env
+      - name: Setup env
+        run: |
+             export PATH=$Qt6_DIR/bin:$PATH
+             ln -s /Users/runner/work/${{env.APPLICATION}}/Qt/6.3.1/macos /Users/runner/work/${{env.APPLICATION}}/Qt/6.3.1/clang_64
+             qmake --version
+
       # Build application
       - name: Build application
         run: |
-             export PATH=$Qt6_DIR/bin:$PATH
-             ln -s /Users/runner/work/${{env.APPLICATION}}/Qt/6.3.0/macos /Users/runner/work/${{env.APPLICATION}}/Qt/6.3.0/clang_64
-             qmake --version
              qmake ${{env.QMAKE_PROJECT}} CONFIG+=release
              make -j$(nproc)

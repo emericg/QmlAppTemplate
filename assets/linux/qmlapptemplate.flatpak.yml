@@ -31,8 +31,8 @@ modules:
       - -DQT_BUILD_TESTS=OFF
     sources:
       - type: archive
-        url: https://download.qt.io/development_releases/qt/6.3/6.3.0-beta2/submodules/qtbase-everywhere-src-6.3.0-beta2.tar.xz
-        sha256: 3913e15adf6fe83ff377566e7effcbf5304f889dba18c6c67a8ce4f51af58674
+        url: https://download.qt.io/official_releases/qt/6.3/6.3.1/submodules/qtbase-everywhere-src-6.3.1.tar.xz
+        sha256: 0a64421d9c2469c2c48490a032ab91d547017c9cc171f3f8070bc31888f24e03
     cleanup:
       - /bin
 
@@ -45,8 +45,8 @@ modules:
       - -DQT_BUILD_TESTS=OFF
     sources:
       - type: archive
-        url: https://download.qt.io/development_releases/qt/6.3/6.3.0-beta2/submodules/qttools-everywhere-src-6.3.0-beta2.tar.xz
-        sha256: 982cafe9ab73a685a7343472d6db86ab794f8f307a7245234935a77adffe8622
+        url: https://download.qt.io/official_releases/qt/6.3/6.3.1/submodules/qttools-everywhere-src-6.3.1.tar.xz
+        sha256: c412750f2aa3beb93fce5f30517c607f55daaeb7d0407af206a8adf917e126c1
 
   - name: qt-shadertools
     buildsystem: cmake-ninja
@@ -56,8 +56,8 @@ modules:
       - -DQT_BUILD_TESTS=OFF
     sources:
       - type: archive
-        url: https://download.qt.io/development_releases/qt/6.3/6.3.0-beta2/submodules/qtshadertools-everywhere-src-6.3.0-beta2.tar.xz
-        sha256: 7237e3f04bd2ac585f98cece0cf97ead0d45082429d776539da9838195bf14e4
+        url: https://download.qt.io/official_releases/qt/6.3/6.3.1/submodules/qtshadertools-everywhere-src-6.3.1.tar.xz
+        sha256: 59b77176961528cc7b0c9325134655e273aa87b4cb386c0f4683d8f2852e435a
 
   - name: qtdeclarative
     buildsystem: cmake-ninja
@@ -69,8 +69,8 @@ modules:
       - -DQT_BUILD_TESTS=OFF
     sources:
       - type: archive
-        url: https://download.qt.io/development_releases/qt/6.3/6.3.0-beta2/submodules/qtdeclarative-everywhere-src-6.3.0-beta2.tar.xz
-        sha256: f64b20bb801a353c3cd51d174a181078cee78d018ffe1b29e20b87476bc047e0
+        url: https://download.qt.io/official_releases/qt/6.3/6.3.1/submodules/qtdeclarative-everywhere-src-6.3.1.tar.xz
+        sha256: 03e7694123820fcca397f95ce312e0b7f3039493c8754c836da098a1a04346e8
 
   - name: qtwayland
     buildsystem: cmake-ninja
@@ -80,8 +80,8 @@ modules:
       - -DQT_BUILD_TESTS=OFF
     sources:
       - type: archive
-        url: https://download.qt.io/development_releases/qt/6.3/6.3.0-beta2/submodules/qtwayland-everywhere-src-6.3.0-beta2.tar.xz
-        sha256: 3b4469f6a9ab8906b3b4bba4020ff501d8468b62e4000483fa5191d0d9d434e7
+        url: https://download.qt.io/official_releases/qt/6.3/6.3.1/submodules/qtwayland-everywhere-src-6.3.1.tar.xz
+        sha256: 6f14fea2d172a5b4170be3efcb0e58535f6605b61bcd823f6d5c9d165bb8c0f0
     cleanup:
       - /bin
 
@@ -93,8 +93,8 @@ modules:
       - -DQT_BUILD_TESTS=OFF
     sources:
       - type: archive
-        url: https://download.qt.io/development_releases/qt/6.3/6.3.0-beta2/submodules/qtimageformats-everywhere-src-6.3.0-beta2.tar.xz
-        sha256: 13d306bc6427ae182871343489ea8393a33646438780caa479c865d9d23919ef
+        url: https://download.qt.io/official_releases/qt/6.3/6.3.1/submodules/qtimageformats-everywhere-src-6.3.1.tar.xz
+        sha256: ad0312b8dfbbb67f729bfadbfcd47246ee4a128b717731ba158c41d01fde212f
 
   - name: qtsvg
     buildsystem: cmake-ninja
@@ -104,8 +104,8 @@ modules:
       - -DQT_BUILD_TESTS=OFF
     sources:
       - type: archive
-        url: https://download.qt.io/development_releases/qt/6.3/6.3.0-beta2/submodules/qtsvg-everywhere-src-6.3.0-beta2.tar.xz
-        sha256: 7e137694dd93dc205093dcf0ba386c80dddde915ce8e09667ea10c6057fe6736
+        url: https://download.qt.io/official_releases/qt/6.3/6.3.1/submodules/qtsvg-everywhere-src-6.3.1.tar.xz
+        sha256: 7b19f418e6f7b8e23344082dd04440aacf5da23c5a73980ba22ae4eba4f87df7
 
   - name: qtcharts
     buildsystem: cmake-ninja
@@ -115,8 +115,8 @@ modules:
       - -DQT_BUILD_TESTS=OFF
     sources:
       - type: archive
-        url: https://download.qt.io/development_releases/qt/6.3/6.3.0-beta2/submodules/qtcharts-everywhere-src-6.3.0-beta2.tar.xz
-        sha256: c06df00a22df532d11e4bf5e6db2497bbc923753cfe4f43f5fb8e91f782769e7
+        url: https://download.qt.io/official_releases/qt/6.3/6.3.1/submodules/qtcharts-everywhere-src-6.3.1.tar.xz
+        sha256: f330cc2328729104d79b2088990ce0840f2da89d9d989360d4c352e797d27cf7
 
   - name: qt5compat
     buildsystem: cmake-ninja
@@ -126,8 +126,8 @@ modules:
       - -DQT_BUILD_TESTS=OFF
     sources:
       - type: archive
-        url: https://download.qt.io/development_releases/qt/6.3/6.3.0-beta2/submodules/qt5compat-everywhere-src-6.3.0-beta2.tar.xz
-        sha256: fb2719630d9ae3ca16a8c9f2226b38492d88fc9df04dd74d70e5a83452877088
+        url: https://download.qt.io/official_releases/qt/6.3/6.3.1/submodules/qt5compat-everywhere-src-6.3.1.tar.xz
+        sha256: a43ec62bd778eaecf88ad7847118d1c2a471b0fcb820f93beb311d7ab9566cfd
 
   - name: qmlapptemplate
     buildsystem: qmake

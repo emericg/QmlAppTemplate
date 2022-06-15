@@ -1,8 +1,8 @@
 TARGET  = QmlAppTemplate
 
 VERSION = 0.4
-DEFINES+= APP_VERSION=\\\"$$VERSION\\\"
 DEFINES+= APP_NAME=\\\"$$TARGET\\\"
+DEFINES+= APP_VERSION=\\\"$$VERSION\\\"
 
 CONFIG += c++17
 QT     += core qml quick quickcontrols2 svg

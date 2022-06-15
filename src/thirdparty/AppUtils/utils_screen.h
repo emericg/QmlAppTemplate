@@ -90,7 +90,6 @@ public:
     //Q_INVOKABLE void getScreenInfos(QScreen *scr);
     Q_INVOKABLE void printScreenInfos();
 
-
     Q_INVOKABLE QVariantMap getSafeAreaMargins(QQuickWindow *window);
 
     /*!

@@ -37,7 +37,7 @@ jobs:
         uses: jurplel/install-qt-action@v2
         with:
           aqtversion: '==2.0.6'
-          version: '6.3.0'
+          version: '6.3.1'
           modules: qt5compat qtimageformats qtcharts
           cached: 'false'
 
@@ -93,7 +93,6 @@ jobs:
       # Deploy application
       - name: Deploy application
         run: |
-             export PATH=$PATH:/usr/local/opt/qt@5/bin:/usr/local/bin
              ./deploy_macos.sh -c -p
 
       # Upload app zip
@@ -126,7 +125,7 @@ jobs:
         uses: jurplel/install-qt-action@v2
         with:
           aqtversion: '==2.0.6'
-          version: '6.3.0'
+          version: '6.3.1'
           modules: qt5compat qtimageformats qtcharts
           cached: 'false'
 

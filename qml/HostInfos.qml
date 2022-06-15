@@ -14,8 +14,6 @@ Item {
     property int flow_divider: Math.round(flow_width / 512)
     property int www: ((flow_width - (flow.spacing * flow_divider)) / flow_divider)
 
-    // QLibraryInfo Class
-
     Flickable {
         anchors.fill: parent
 
@@ -133,10 +131,6 @@ Item {
                     anchors.rightMargin: 12
                     spacing: 8
 
-                    // 3440x1440 pixels (910x381 millimeters)
-                    // 96x96 dots per inch
-                    // 24
-
                     Column {
                         Text {
                             text: qsTr("Screen DPI")
@@ -182,6 +176,25 @@ Item {
                         }
                         Text {
                             text: utilsScreen.screenWidth + " x " + utilsScreen.screenHeight
+                            textFormat: Text.PlainText
+                            font.pixelSize: Theme.fontSizeContentBig
+                            color: Theme.colorHighContrast
+                        }
+                    }
+
+                    Column {
+                        visible: utilsScreen.screenPar != 1
+
+                        Text {
+                            text: qsTr("Screen geometry (physical)")
+                            textFormat: Text.PlainText
+                            color: Theme.colorSubText
+                            font.bold: true
+                            font.pixelSize: Theme.fontSizeContentVerySmall
+                            font.capitalization: Font.AllUppercase
+                        }
+                        Text {
+                            text: utilsScreen.screenWidth*utilsScreen.screenPar + " x " + utilsScreen.screenHeight*utilsScreen.screenPar
                             textFormat: Text.PlainText
                             font.pixelSize: Theme.fontSizeContentBig
                             color: Theme.colorHighContrast

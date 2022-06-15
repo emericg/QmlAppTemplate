@@ -1,18 +1,18 @@
 # SingleApplication
 
-SingleApplication is a replacement of the QtSingleApplication for `Qt5` and `Qt6`.
+SingleApplication is a replacement of the QtSingleApplication. Works with Qt5 and Qt6.
 
 Keeps the Primary Instance of your Application and kills each subsequent
 instances. It can (if enabled) spawn secondary (non-related to the primary)
 instances and can send data to the primary instance from secondary instances.
 
-This is just a quick guide, you can find everything on the project official GitHub page and documentation:
+This README is just a quick start guide, you can find everything on the project official GitHub page and documentation:
 
-> https://github.com/itay-grudev/SingleApplication
+> https://github.com/itay-grudev/SingleApplication  
 
-> https://itay-grudev.github.io/SingleApplication/classSingleApplication.html
+> https://itay-grudev.github.io/SingleApplication/classSingleApplication.html  
 
-## Quick Documentation
+## Quick start
 
 ### Build
 
@@ -36,11 +36,11 @@ The `SingleApplication` class inherits from whatever `Q[Core|Gui]Application`
 class you specify via the `QAPPLICATION_CLASS` macro (`QCoreApplication` is the
 default). Further usage is similar to the use of the `Q[Core|Gui]Application` classes.
 
-> QCoreApplication - base class. Use it in command line applications.
-> QGuiApplication - base class + GUI capabilities. Use it in QML applications.
-> QApplication - base class + GUI + support for widgets. Use it in QtWidgets applications.
+> QCoreApplication - base class. Use it in command line applications  
+> QGuiApplication - base class + GUI capabilities. Use it in QML applications  
+> QApplication - base class + GUI + support for widgets. Use it in QtWidgets applications  
 
-You can use the library as if you use any other `QCoreApplication` derived class:
+You can use the library as if you were using any other `QCoreApplication` derived class:
 
 ```cpp
 #include <SingleApplication>
