@@ -262,17 +262,20 @@ ApplicationWindow {
         Keys.onBackPressed: backAction()
 
         MainView {
-            anchors.fill: parent
             id: screenMainView
+            anchors.fill: parent
+            anchors.bottomMargin: mobileMenu.hhv
         }
 
         FontList {
-            anchors.fill: parent
             id: screenFontList
+            anchors.fill: parent
+            anchors.bottomMargin: mobileMenu.hhv
         }
         HostInfos {
-            anchors.fill: parent
             id: screenHostInfos
+            anchors.fill: parent
+            anchors.bottomMargin: mobileMenu.hhv
         }
 
         Settings {

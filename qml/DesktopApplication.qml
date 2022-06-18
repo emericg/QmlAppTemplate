@@ -150,12 +150,12 @@ ApplicationWindow {
         onActivated: appContent.state = "Settings"
     }
     Shortcut {
-        sequence: StandardKey.Close
+        sequences: [StandardKey.Close]
         onActivated: appWindow.close()
     }
     Shortcut {
         sequence: StandardKey.Quit
-        onActivated: utilsApp.appExit()
+        onActivated: appWindow.exit(0)
     }
 
     // UI sizes ////////////////////////////////////////////////////////////////

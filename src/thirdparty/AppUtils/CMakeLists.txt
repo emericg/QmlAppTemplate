@@ -20,6 +20,7 @@ set(CORE_LIBRARIES
     Qt::Gui
     Qt::Qml
     Qt::Quick
+    m
 )
 
 # Generic sources
