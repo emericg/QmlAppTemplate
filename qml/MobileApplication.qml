@@ -146,6 +146,7 @@ ApplicationWindow {
         id: appDrawer
         width: (appWindow.screenOrientation === Qt.PortraitOrientation || appWindow.width < 480) ? 0.8 * appWindow.width : 0.5 * appWindow.width
         height: appWindow.height
+        interactive: (appContent.state !== "Tutorial")
     }
 
     // Events handling /////////////////////////////////////////////////////////
@@ -304,11 +305,6 @@ ApplicationWindow {
                 appHeader.leftMenuMode = "close"
             else
                 appHeader.leftMenuMode = "back"
-
-            if (state === "Tutorial")
-                appDrawer.interactive = false
-            else
-                appDrawer.interactive = true
         }
 
         states: [
@@ -386,27 +382,30 @@ ApplicationWindow {
 
     ////////////////
 
-    Text {
+    Rectangle {
         id: exitWarning
+
+        anchors.left: parent.left
+        anchors.right: parent.right
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 32
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.margins: 12
 
-        visible: opacity
+        height: 40
+        radius: 4
+
+        color: Theme.colorComponentBackground
+        border.color: Theme.colorSeparator
+        border.width: Theme.componentBorderWidth
+
         opacity: 0
-        Behavior on opacity { OpacityAnimator { duration: 333 } }
+        Behavior on opacity { OpacityAnimator { duration: 233 } }
 
-        text: qsTr("Press one more time to exit...")
-        textFormat: Text.PlainText
-        font.pixelSize: Theme.fontSizeContent
-        color: Theme.colorForeground
-
-        Rectangle {
-            anchors.fill: parent
-            anchors.margins: -8
-            z: -1
-            radius: 4
-            color: Theme.colorSubText
+        Text {
+            anchors.centerIn: parent
+            text: qsTr("Press one more time to exit...")
+            textFormat: Text.PlainText
+            font.pixelSize: Theme.fontSizeContent
+            color: Theme.colorText
         }
     }
 }

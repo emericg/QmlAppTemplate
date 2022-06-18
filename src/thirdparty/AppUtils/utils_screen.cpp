@@ -49,19 +49,19 @@
 
 UtilsScreen *UtilsScreen::instance = nullptr;
 
-UtilsScreen *UtilsScreen::getInstance(QGuiApplication *app)
+UtilsScreen *UtilsScreen::getInstance()
 {
     if (instance == nullptr)
     {
-        instance = new UtilsScreen(app);
+        instance = new UtilsScreen();
     }
 
     return instance;
 }
 
-UtilsScreen::UtilsScreen(QGuiApplication *app)
+UtilsScreen::UtilsScreen()
 {
-    setAppWindow(app);
+    setAppWindow(qApp);
 }
 
 UtilsScreen::~UtilsScreen()

@@ -29,6 +29,7 @@ if (ANDROID)
             SharingUtils_android_qt6.cpp
             SharingUtils_android.h)
 
+        set(PLATFORM_LIBRARIES Qt::CorePrivate)
     elseif(QT_DEFAULT_MAJOR_VERSION EQUAL 5)
         set(PLATFORM_SOURCES
             SharingUtils_android_qt5.cpp

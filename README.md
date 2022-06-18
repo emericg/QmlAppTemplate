@@ -13,29 +13,28 @@ A Qt6 / QML application template, with a full set of visual controls, helper mod
 
 A simple template application.
 
-You will need a C++17 compiler and Qt 6.3+.  
+You will need a C++17 compiler and Qt 6.3+. Qt 5 Compatibility Module is required.  
 For macOS and iOS builds, you'll need Xcode installed.  
 For Android builds, you'll need the appropriates JDK (11) SDK (23+) and NDK (22+). You can customize Android build environment using the `assets/android/gradle.properties` file.  
 
-Qt 6 'Additional Librairies':
-- Qt 5 Compatibility Module
-
+Clone and build:
 ```bash
 $ git clone https://github.com/emericg/QmlAppTemplate.git
-$ cd QmlAppTemplate/
-$ qmake
+$ cd QmlAppTemplate/build/
+$ qmake .. # configure with QMake
+$ cmake .. # or with CMake
 $ make
 ```
 
 ### C++ modules
 
-> [AppUtils](src/thirdparty/AppUtils/README.md)
+> [AppUtils](src/thirdparty/AppUtils/README.md) Various general purpose helpers
 
-> [MobileUI](src/thirdparty/MobileUI/README.md)
+> [MobileUI](src/thirdparty/MobileUI/README.md) Interract with Android and iOS UI
 
-> [MobileSharing](src/thirdparty/MobileSharing/README.md)
+> [MobileSharing](src/thirdparty/MobileSharing/README.md) Use Android and iOS "sharing" features
 
-> [SingleApplication](src/thirdparty/SingleApplication/README.md)
+> [SingleApplication](src/thirdparty/SingleApplication/README.md) Keep only one active instance of your application
 
 ### QML components
 
@@ -45,17 +44,17 @@ $ make
 
 > [Linux](deploy_linux.sh) AppImage
 
-> [macOS](deploy_macos.sh) zip
+> [macOS](deploy_macos.sh) application zip
 
-> [Windows](deploy_windows.sh) zip and NSIS installer
+> [Windows](deploy_windows.sh) application zip and NSIS installer
 
 ### GitHub CI workflows
 
 These files are also useful to get an idea about the whole build and deploy process.
 
-> [Desktop](.github/workflows/builds_desktop.yml)
+> [Desktop](.github/workflows/builds_desktop.yml) Linux, macOS and Windows workflow
 
-> [Mobile](.github/workflows/builds_mobile.yml)
+> [Mobile](.github/workflows/builds_mobile.yml) Android and iOS workflow
 
 > [Linux flatpak](.github/workflows/flatpak.yml)
 

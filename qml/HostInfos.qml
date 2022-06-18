@@ -133,7 +133,7 @@ Item {
 
                     Column {
                         Text {
-                            text: qsTr("Screen DPI")
+                            text: qsTr("Screen size")
                             textFormat: Text.PlainText
                             color: Theme.colorSubText
                             font.bold: true
@@ -141,7 +141,7 @@ Item {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: utilsScreen.screenDpi
+                            text: utilsScreen.screenSize.toFixed(1) + " " + qsTr("inches")
                             textFormat: Text.PlainText
                             font.pixelSize: Theme.fontSizeContentBig
                             color: Theme.colorHighContrast
@@ -150,7 +150,7 @@ Item {
 
                     Column {
                         Text {
-                            text: qsTr("Screen Pixel Aspect Ratio")
+                            text: qsTr("Screen depth & rate")
                             textFormat: Text.PlainText
                             color: Theme.colorSubText
                             font.bold: true
@@ -158,7 +158,7 @@ Item {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: utilsScreen.screenPar.toFixed(1)
+                            text: utilsScreen.screenDepth + " bpp @ " + utilsScreen.screenRefreshRate.toFixed(1) + " Hz"
                             textFormat: Text.PlainText
                             font.pixelSize: Theme.fontSizeContentBig
                             color: Theme.colorHighContrast
@@ -194,7 +194,8 @@ Item {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: utilsScreen.screenWidth*utilsScreen.screenPar + " x " + utilsScreen.screenHeight*utilsScreen.screenPar
+                            text: (utilsScreen.screenWidth*utilsScreen.screenPar).toFixed(1) + " x "
+                                  + (utilsScreen.screenHeight*utilsScreen.screenPar).toFixed(1)
                             textFormat: Text.PlainText
                             font.pixelSize: Theme.fontSizeContentBig
                             color: Theme.colorHighContrast
@@ -203,7 +204,7 @@ Item {
 
                     Column {
                         Text {
-                            text: qsTr("Screen depth & rate")
+                            text: qsTr("Screen DPI")
                             textFormat: Text.PlainText
                             color: Theme.colorSubText
                             font.bold: true
@@ -211,7 +212,26 @@ Item {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: utilsScreen.screenDepth + " bpp @ " + utilsScreen.screenRefreshRate.toFixed(1) + " Hz"
+                            text: utilsScreen.screenDpi
+                            textFormat: Text.PlainText
+                            font.pixelSize: Theme.fontSizeContentBig
+                            color: Theme.colorHighContrast
+                        }
+                    }
+
+                    Column {
+                        visible: utilsScreen.screenPar != 1
+
+                        Text {
+                            text: qsTr("Screen DPI (physical)")
+                            textFormat: Text.PlainText
+                            color: Theme.colorSubText
+                            font.bold: true
+                            font.pixelSize: Theme.fontSizeContentVerySmall
+                            font.capitalization: Font.AllUppercase
+                        }
+                        Text {
+                            text: (utilsScreen.screenDpi*utilsScreen.screenPar).toFixed(0)
                             textFormat: Text.PlainText
                             font.pixelSize: Theme.fontSizeContentBig
                             color: Theme.colorHighContrast
@@ -220,7 +240,7 @@ Item {
 
                     Column {
                         Text {
-                            text: qsTr("Screen size")
+                            text: qsTr("Screen Pixel Aspect Ratio")
                             textFormat: Text.PlainText
                             color: Theme.colorSubText
                             font.bold: true
@@ -228,7 +248,7 @@ Item {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: utilsScreen.screenSize.toFixed(1) + " inches"
+                            text: utilsScreen.screenPar.toFixed(1)
                             textFormat: Text.PlainText
                             font.pixelSize: Theme.fontSizeContentBig
                             color: Theme.colorHighContrast
@@ -321,7 +341,7 @@ Item {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: utilsSysinfo.ram_total + qsTr("MB")
+                            text: utilsSysinfo.ram_total + " " + qsTr("MB")
                             textFormat: Text.PlainText
                             color: Theme.colorHighContrast
                             font.pixelSize: Theme.fontSizeContentBig

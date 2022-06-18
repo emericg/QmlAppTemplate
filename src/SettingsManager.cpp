@@ -60,7 +60,7 @@ bool SettingsManager::readSettings()
 
     if (settings.status() == QSettings::NoError)
     {
-#if defined(Q_OS_LINUX) || defined(Q_OS_MACOS) || defined(Q_OS_WINDOWS)
+#if !defined(Q_OS_ANDROID) && !defined(Q_OS_IOS)
         if (settings.contains("ApplicationWindow/x"))
             m_appPosition.setWidth(settings.value("ApplicationWindow/x").toInt());
         if (settings.contains("ApplicationWindow/y"))

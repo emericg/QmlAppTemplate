@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
 {
     // GUI application /////////////////////////////////////////////////////////
 
-#if defined(Q_OS_LINUX)
+#if defined(Q_OS_LINUX) && !defined(Q_OS_ANDROID)
     // NVIDIA driver suspend&resume hack
     auto format = QSurfaceFormat::defaultFormat();
     format.setOption(QSurfaceFormat::ResetNotification);
@@ -80,9 +80,9 @@ int main(int argc, char *argv[])
     }
 
     // Init generic utils
-    UtilsSysinfo *utilsSysinfo = UtilsSysinfo::getInstance();
-    UtilsScreen *utilsScreen = UtilsScreen::getInstance(&app);
     UtilsApp *utilsApp = UtilsApp::getInstance();
+    UtilsScreen *utilsScreen = UtilsScreen::getInstance();
+    UtilsSysinfo *utilsSysinfo = UtilsSysinfo::getInstance();
     UtilsLanguage *utilsLanguage = UtilsLanguage::getInstance();
     if (!utilsScreen || !utilsApp || !utilsLanguage)
     {
