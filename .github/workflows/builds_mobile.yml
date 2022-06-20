@@ -97,7 +97,7 @@ jobs:
         uses: jurplel/install-qt-action@v2
         with:
           aqtversion: '==2.0.6'
-          version: '6.3.1'
+          version: '6.3.0'
           modules: qt5compat qtimageformats qtcharts
           cached: 'false'
 
@@ -106,7 +106,7 @@ jobs:
         uses: jurplel/install-qt-action@v2
         with:
           aqtversion: '==2.0.6'
-          version: '6.3.1'
+          version: '6.3.0'
           host: 'mac'
           target: 'ios'
           modules: qt5compat qtimageformats qtcharts
@@ -116,7 +116,7 @@ jobs:
       - name: Setup env
         run: |
              export PATH=$Qt6_DIR/bin:$PATH
-             ln -s /Users/runner/work/${{env.APPLICATION}}/Qt/6.3.1/macos /Users/runner/work/${{env.APPLICATION}}/Qt/6.3.1/clang_64
+             ln -s /Users/runner/work/${{env.APPLICATION}}/Qt/6.3.0/macos /Users/runner/work/${{env.APPLICATION}}/Qt/6.3.0/clang_64
              qmake --version
 
       # Build application
