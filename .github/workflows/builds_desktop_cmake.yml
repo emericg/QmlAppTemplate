@@ -35,7 +35,7 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v2
         with:
-          aqtversion: '==2.0.6'
+          aqtversion: '==2.1.0'
           version: '6.3.1'
           modules: qt5compat qtimageformats qtcharts
           cached: 'false'
@@ -43,9 +43,8 @@ jobs:
       # Install dependencies (from package manager)
       - name: Install dependencies (from package manager)
         run: |
-             sudo apt-get install libxkbcommon-x11-0 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-render-util0 libxcb-xinerama0 libx11-xcb1 -y;
              sudo apt-get install libgl1-mesa-dev libxkbcommon-x11-dev libx11-xcb-dev libzstd-dev -y;
-             sudo apt-get install cmake ninja-build pkgconf appstream -y;
+             sudo apt-get install cmake ninja-build pkgconf libtool appstream -y;
 
       # Build application
       - name: Build application
@@ -85,6 +84,8 @@ jobs:
       # Build application
       - name: Build application
         run: |
+             alias nproc="sysctl -n hw.logicalcpu"
+             export CMAKE_BUILD_PARALLEL_LEVEL=$(nproc)
              cd build/
              cmake ..
              make -j$(nproc)
@@ -123,7 +124,7 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v2
         with:
-          aqtversion: '==2.0.6'
+          aqtversion: '==2.1.0'
           version: '6.3.1'
           modules: qt5compat qtimageformats qtcharts
           cached: 'false'

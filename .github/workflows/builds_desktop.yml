@@ -36,7 +36,7 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v2
         with:
-          aqtversion: '==2.0.6'
+          aqtversion: '==2.1.0'
           version: '6.3.1'
           modules: qt5compat qtimageformats qtcharts
           cached: 'false'
@@ -124,7 +124,7 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v2
         with:
-          aqtversion: '==2.0.6'
+          aqtversion: '==2.1.0'
           version: '6.3.1'
           modules: qt5compat qtimageformats qtcharts
           cached: 'false'
