@@ -73,8 +73,8 @@ endif()
 
 ## macOS
 if(MACOS)
-    #set(CMAKE_OSX_ARCHITECTURES "x86_64;arm64")
-    #set(CMAKE_OSX_DEPLOYMENT_TARGET "10.15")
+    set(CMAKE_OSX_ARCHITECTURES "x86_64;arm64")
+    set(CMAKE_OSX_DEPLOYMENT_TARGET "10.14")
 endif()
 
 ## iOS
