@@ -30,7 +30,7 @@ find_package(Qt${QT_DEFAULT_MAJOR_VERSION} COMPONENTS ${CORE_COMPONENTS} REQUIRE
 if(WIN32)
     if(MSVC)
         set(PLATFORM_LIBRARIES Advapi32.lib)
-    endif()s
+    endif()
     if(GCC)
         set(PLATFORM_LIBRARIES advapi32)
     endif()
