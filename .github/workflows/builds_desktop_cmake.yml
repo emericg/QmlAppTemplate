@@ -2,7 +2,7 @@
 # Workflow configuration
 #-------------------------------------------------------------------------------
 
-name: "Desktop CI builds"
+name: "Desktop CI builds (cmake)"
 on:
   push:
   pull_request:
@@ -14,7 +14,6 @@ on:
 env:
   VERSION: "0.4"
   APPLICATION: "QmlAppTemplate"
-  QMAKE_PROJECT: "QmlAppTemplate.pro"
 
 #-------------------------------------------------------------------------------
 # Workflow jobs
@@ -51,8 +50,8 @@ jobs:
       # Build application
       - name: Build application
         run: |
-             qmake --version
-             qmake ${{env.QMAKE_PROJECT}} CONFIG+=release PREFIX=/usr
+             cd build/
+             cmake ..
              make -j$(nproc)
 
       # Deploy application
@@ -86,8 +85,8 @@ jobs:
       # Build application
       - name: Build application
         run: |
-             qmake --version
-             qmake ${{env.QMAKE_PROJECT}} CONFIG+=release
+             cd build/
+             cmake ..
              make -j$(nproc)
 
       # Deploy application
@@ -139,8 +138,8 @@ jobs:
       # Build application
       - name: Build application
         run: |
-             qmake --version
-             qmake ${{env.QMAKE_PROJECT}} CONFIG+=release
+             cd build/
+             cmake ..
              nmake
 
       # Deploy application
