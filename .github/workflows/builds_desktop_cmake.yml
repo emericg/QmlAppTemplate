@@ -44,8 +44,8 @@ jobs:
       - name: Install dependencies (from package manager)
         run: |
              sudo apt-get install libxkbcommon-x11-0 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-render-util0 libxcb-xinerama0 libx11-xcb1 -y;
-             sudo apt-get install libgl1-mesa-dev libx11-xcb-dev libzstd-dev -y;
-             sudo apt-get install cmake ninja pkgconf appstream -y;
+             sudo apt-get install libgl1-mesa-dev libxkbcommon-x11-dev libx11-xcb-dev libzstd-dev -y;
+             sudo apt-get install cmake ninja-build pkgconf appstream -y;
 
       # Build application
       - name: Build application
