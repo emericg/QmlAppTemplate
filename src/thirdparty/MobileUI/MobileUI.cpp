@@ -27,8 +27,11 @@
 
 /* ************************************************************************** */
 
+bool MobileUIPrivate::areIosSlotsConnected = false;
+
 QColor MobileUIPrivate::statusbarColor;
 MobileUI::Theme MobileUIPrivate::statusbarTheme = MobileUI::Light;
+
 QColor MobileUIPrivate::navbarColor;
 MobileUI::Theme MobileUIPrivate::navbarTheme = MobileUI::Light;
 

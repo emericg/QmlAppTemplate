@@ -40,6 +40,8 @@ public:
     static void setColor_navbar(const QColor &color);
     static void setTheme_navbar(MobileUI::Theme theme);
 
+    static bool areIosSlotsConnected;
+
     static QColor statusbarColor;
     static MobileUI::Theme statusbarTheme;
 

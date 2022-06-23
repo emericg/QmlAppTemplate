@@ -49,7 +49,6 @@ void UtilsIOS::screenKeepOn(bool on)
         UIInterfaceOrientationLandscapeRight,   // The device is in landscape mode, with the device upright and the Home button on the right.
     };
 */
-
 void UtilsIOS::screenLockOrientation(int orientation)
 {
     NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeRight];
