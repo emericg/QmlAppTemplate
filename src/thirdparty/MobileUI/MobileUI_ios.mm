@@ -47,7 +47,19 @@ UIStatusBarStyle statusBarStyle(MobileUI::Theme theme)
         return UIStatusBarStyleDefault;
 }
 
-void setPreferredStatusBarStyle(UIWindow *window, UIStatusBarStyle style)
+bool MobileUIPrivate::isAvailable_sys()
+{
+    return true;
+}
+
+int MobileUIPrivate::getDeviceTheme_sys()
+{
+    return 0;
+}
+
+/* ************************************************************************** */
+
+static void setPreferredStatusBarStyle(UIWindow *window, UIStatusBarStyle style)
 {
     QIOSViewController *viewController = static_cast<QIOSViewController *>([window rootViewController]);
     if (!viewController || viewController.preferredStatusBarStyle == style)
@@ -73,11 +85,6 @@ void togglePreferredStatusBarStyle()
 
 /* ************************************************************************** */
 
-bool MobileUIPrivate::isAvailable_sys()
-{
-    return true;
-}
-
 void MobileUIPrivate::setColor_statusbar(const QColor &color)
 {
     Q_UNUSED(color)
@@ -102,6 +109,8 @@ void MobileUIPrivate::setTheme_statusbar(MobileUI::Theme theme)
     }
 }
 
+/* ************************************************************************** */
+
 void MobileUIPrivate::setColor_navbar(const QColor &color)
 {
     Q_UNUSED(color)
@@ -110,6 +119,20 @@ void MobileUIPrivate::setColor_navbar(const QColor &color)
 void MobileUIPrivate::setTheme_navbar(MobileUI::Theme theme)
 {
     Q_UNUSED(theme)
+}
+
+/* ************************************************************************** */
+
+void MobileUIPrivate::screenKeepOn(bool on)
+{
+    if (on)
+    {
+        [[UIApplication sharedApplication] setIdleTimerDisabled: YES];
+    }
+    else
+    {
+        [[UIApplication sharedApplication] setIdleTimerDisabled: NO];
+    }
 }
 
 /* ************************************************************************** */
