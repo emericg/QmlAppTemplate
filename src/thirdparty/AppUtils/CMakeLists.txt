@@ -21,7 +21,6 @@ set(CORE_LIBRARIES
     Qt::GuiPrivate
     Qt::Qml
     Qt::Quick
-    m
 )
 
 # Generic sources
@@ -41,6 +40,10 @@ set(CORE_SOURCES
     utils_versionchecker.h)
 
 # OS specific sources & dependencies
+if(!WIN32)
+    set(CORE_LIBRARIES m )
+endif()
+
 if(CMAKE_SYSTEM_NAME STREQUAL Linux)
     set(PLATFORM_SOURCES
         utils_os_linux.cpp

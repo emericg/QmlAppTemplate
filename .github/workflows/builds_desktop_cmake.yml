@@ -77,9 +77,18 @@ jobs:
           submodules: recursive
 
       # Install dependencies
-      - name: Install dependencies
-        run: |
-             brew install qt6
+      #- name: Install dependencies
+      #  run: |
+      #       brew install qt6
+
+      # Install Qt
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v2
+        with:
+          aqtversion: '==2.1.0'
+          version: '6.3.1'
+          modules: qt5compat qtimageformats qtcharts
+          cached: 'false'
 
       # Build application
       - name: Build application
