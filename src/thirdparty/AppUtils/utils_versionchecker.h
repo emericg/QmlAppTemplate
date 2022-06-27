@@ -25,24 +25,24 @@
 #include <QString>
 #include <QDebug>
 
-struct UtilsVersionChecker
+struct VersionChecker
 {
     int major = 0, minor = 0, revision = 0, build = 0;
 
-    UtilsVersionChecker(const QString &version_qstr)
+    VersionChecker(const QString &version_qstr)
     {
         sscanf(version_qstr.toLatin1().constData(), "%d.%d.%d.%d",
                &major, &minor, &revision, &build);
     }
 
-    bool operator == (const UtilsVersionChecker &other)
+    bool operator == (const VersionChecker &other)
     {
         return (major == other.major
                 && minor == other.minor
                 && revision == other.revision
                 && build == other.build);
     }
-    bool operator < (const UtilsVersionChecker &other)
+    bool operator < (const VersionChecker &other)
     {
 /*
         qDebug() << "operator <";
@@ -68,21 +68,21 @@ struct UtilsVersionChecker
 
         return false;
     }
-    bool operator <= (const UtilsVersionChecker &other)
+    bool operator <= (const VersionChecker &other)
     {
         if (*this < other || *this == other)
             return true;
 
         return false;
     }
-    bool operator >= (const UtilsVersionChecker &other)
+    bool operator >= (const VersionChecker &other)
     {
         if (*this > other || *this == other)
             return true;
 
         return false;
     }
-    bool operator > (const UtilsVersionChecker &other)
+    bool operator > (const VersionChecker &other)
     {
         if (!(*this == other) && !(*this < other))
             return true;
@@ -93,42 +93,42 @@ struct UtilsVersionChecker
 /*
 static void testUtilsVersionStringComparison()
 {
-    assert( (UtilsVersionChecker("3.7.8.0")  ==  UtilsVersionChecker("3.7.8.0") )   == true);
-    assert( (UtilsVersionChecker("3.7.8.0")  ==  UtilsVersionChecker("3.7.8") )     == true);
-    assert( (UtilsVersionChecker("3.7.8.0")  ==  UtilsVersionChecker("3.7.8") )     == true);
-    assert( (UtilsVersionChecker("3.7.0.0")  ==  UtilsVersionChecker("3.7") )       == true);
-    assert( (UtilsVersionChecker("3.0.0.0")  ==  UtilsVersionChecker("3") )         == true);
-    assert( (UtilsVersionChecker("3")        ==  UtilsVersionChecker("3.0.0.0") )   == true);
-    assert( (UtilsVersionChecker("3.7.8.0")  ==  UtilsVersionChecker("3.7") )       == false);
-    assert( (UtilsVersionChecker("3.7.8.0")  ==  UtilsVersionChecker("3.6.8") )     == false);
-    assert( (UtilsVersionChecker("3.7.8.0")  ==  UtilsVersionChecker("5") )         == false);
-    assert( (UtilsVersionChecker("3.7.8.0")  ==  UtilsVersionChecker("2.7.8") )     == false);
-    assert( (UtilsVersionChecker("01.02.03") ==  UtilsVersionChecker("01.02.03") )  == true);
-    assert( (UtilsVersionChecker("01.02.03") ==  UtilsVersionChecker("02.02.03") )  == false);
+    assert( (VersionChecker("3.7.8.0")  ==  VersionChecker("3.7.8.0") )   == true);
+    assert( (VersionChecker("3.7.8.0")  ==  VersionChecker("3.7.8") )     == true);
+    assert( (VersionChecker("3.7.8.0")  ==  VersionChecker("3.7.8") )     == true);
+    assert( (VersionChecker("3.7.0.0")  ==  VersionChecker("3.7") )       == true);
+    assert( (VersionChecker("3.0.0.0")  ==  VersionChecker("3") )         == true);
+    assert( (VersionChecker("3")        ==  VersionChecker("3.0.0.0") )   == true);
+    assert( (VersionChecker("3.7.8.0")  ==  VersionChecker("3.7") )       == false);
+    assert( (VersionChecker("3.7.8.0")  ==  VersionChecker("3.6.8") )     == false);
+    assert( (VersionChecker("3.7.8.0")  ==  VersionChecker("5") )         == false);
+    assert( (VersionChecker("3.7.8.0")  ==  VersionChecker("2.7.8") )     == false);
+    assert( (VersionChecker("01.02.03") ==  VersionChecker("01.02.03") )  == true);
+    assert( (VersionChecker("01.02.03") ==  VersionChecker("02.02.03") )  == false);
 
-    assert( (UtilsVersionChecker("3")         <  UtilsVersionChecker("3.7.9") )     == true);
-    assert( (UtilsVersionChecker("1.7.9")     <  UtilsVersionChecker("3.1") )       == true);
-    assert( (UtilsVersionChecker("3.7.8.0")   <  UtilsVersionChecker("3.7.8") )     == false);
-    assert( (UtilsVersionChecker("3.7.9")     <  UtilsVersionChecker("3.7.8") )     == false);
-    assert( (UtilsVersionChecker("3.7.8")     <  UtilsVersionChecker("3.7.9") )     == true);
-    assert( (UtilsVersionChecker("3.7")       <  UtilsVersionChecker("3.7.0") )     == false);
-    assert( (UtilsVersionChecker("3.7.8.0")   <  UtilsVersionChecker("3.7.8") )     == false);
-    assert( (UtilsVersionChecker("2.7.9")     <  UtilsVersionChecker("3.8.8") )     == true);
-    assert( (UtilsVersionChecker("3.7.9")     <  UtilsVersionChecker("3.8.8") )     == true);
-    assert( (UtilsVersionChecker("4")         <  UtilsVersionChecker("3.7.9") )     == false);
-    assert( (UtilsVersionChecker("01.02.03")  <  UtilsVersionChecker("01.02.03") )  == false);
-    assert( (UtilsVersionChecker("01.02.03")  <  UtilsVersionChecker("02.02.03") )  == true);
+    assert( (VersionChecker("3")         <  VersionChecker("3.7.9") )     == true);
+    assert( (VersionChecker("1.7.9")     <  VersionChecker("3.1") )       == true);
+    assert( (VersionChecker("3.7.8.0")   <  VersionChecker("3.7.8") )     == false);
+    assert( (VersionChecker("3.7.9")     <  VersionChecker("3.7.8") )     == false);
+    assert( (VersionChecker("3.7.8")     <  VersionChecker("3.7.9") )     == true);
+    assert( (VersionChecker("3.7")       <  VersionChecker("3.7.0") )     == false);
+    assert( (VersionChecker("3.7.8.0")   <  VersionChecker("3.7.8") )     == false);
+    assert( (VersionChecker("2.7.9")     <  VersionChecker("3.8.8") )     == true);
+    assert( (VersionChecker("3.7.9")     <  VersionChecker("3.8.8") )     == true);
+    assert( (VersionChecker("4")         <  VersionChecker("3.7.9") )     == false);
+    assert( (VersionChecker("01.02.03")  <  VersionChecker("01.02.03") )  == false);
+    assert( (VersionChecker("01.02.03")  <  VersionChecker("02.02.03") )  == true);
 
-    assert( (UtilsVersionChecker("4")         >  UtilsVersionChecker("3.7.9") )     == true);
-    assert( (UtilsVersionChecker("3.7.9")     >  UtilsVersionChecker("3.7.8") )     == true);
-    assert( (UtilsVersionChecker("4.7.9")     >  UtilsVersionChecker("3.1") )       == true);
-    assert( (UtilsVersionChecker("3.10")      >  UtilsVersionChecker("3.8.8") )     == true);
-    assert( (UtilsVersionChecker("3.7")       >  UtilsVersionChecker("3.7.0") )     == false);
-    assert( (UtilsVersionChecker("3.7.8.0")   >  UtilsVersionChecker("3.7.8") )     == false);
-    assert( (UtilsVersionChecker("2.7.9")     >  UtilsVersionChecker("3.8.8") )     == false);
-    assert( (UtilsVersionChecker("3.7.9")     >  UtilsVersionChecker("3.8.8") )     == false);
-    assert( (UtilsVersionChecker("02.02.03")  >  UtilsVersionChecker("01.02.03") )  == true);
-    assert( (UtilsVersionChecker("01.02.03")  >  UtilsVersionChecker("02.02.03") )  == false);
+    assert( (VersionChecker("4")         >  VersionChecker("3.7.9") )     == true);
+    assert( (VersionChecker("3.7.9")     >  VersionChecker("3.7.8") )     == true);
+    assert( (VersionChecker("4.7.9")     >  VersionChecker("3.1") )       == true);
+    assert( (VersionChecker("3.10")      >  VersionChecker("3.8.8") )     == true);
+    assert( (VersionChecker("3.7")       >  VersionChecker("3.7.0") )     == false);
+    assert( (VersionChecker("3.7.8.0")   >  VersionChecker("3.7.8") )     == false);
+    assert( (VersionChecker("2.7.9")     >  VersionChecker("3.8.8") )     == false);
+    assert( (VersionChecker("3.7.9")     >  VersionChecker("3.8.8") )     == false);
+    assert( (VersionChecker("02.02.03")  >  VersionChecker("01.02.03") )  == true);
+    assert( (VersionChecker("01.02.03")  >  VersionChecker("02.02.03") )  == false);
 }
 */
 /* ************************************************************************** */
