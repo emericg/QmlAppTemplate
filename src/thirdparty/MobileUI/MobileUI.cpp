@@ -108,9 +108,9 @@ void MobileUI::setNavbarTheme(Theme theme)
 
 /* ************************************************************************** */
 
-void MobileUI::keepScreenOn(bool on)
+void MobileUI::screenKeepOn(bool on)
 {
-    MobileUIPrivate::keepScreenOn(on);
+    MobileUIPrivate::screenKeepOn(on);
 }
 
 /* ************************************************************************** */

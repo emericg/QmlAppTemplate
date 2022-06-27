@@ -181,7 +181,7 @@ void MobileUIPrivate::setTheme_navbar(MobileUI::Theme theme)
 
 /* ************************************************************************** */
 
-void MobileUIPrivate::keepScreenOn(bool on)
+void MobileUIPrivate::screenKeepOn(bool on)
 {
     QtAndroid::runOnAndroidThread([=]() {
         QAndroidJniObject window = getAndroidWindow();

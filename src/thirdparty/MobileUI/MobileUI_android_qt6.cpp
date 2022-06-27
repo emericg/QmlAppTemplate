@@ -163,7 +163,7 @@ void MobileUIPrivate::setTheme_navbar(MobileUI::Theme theme)
 
 /* ************************************************************************** */
 
-void MobileUIPrivate::keepScreenOn(bool on)
+void MobileUIPrivate::screenKeepOn(bool on)
 {
     QNativeInterface::QAndroidApplication::runOnAndroidMainThread([=]() {
         QJniObject window = getAndroidWindow();

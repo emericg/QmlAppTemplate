@@ -78,7 +78,7 @@ public:
     static void setNavbarTheme(Theme theme);
 
     // Screen helpers
-    Q_INVOKABLE static void keepScreenOn(bool on);
+    Q_INVOKABLE static void screenKeepOn(bool on);
 };
 
 /* ************************************************************************** */

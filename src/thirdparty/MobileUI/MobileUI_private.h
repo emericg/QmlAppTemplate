@@ -52,7 +52,7 @@ public:
     static QColor navbarColor;
     static MobileUI::Theme navbarTheme;
 
-    static void keepScreenOn(bool on);
+    static void screenKeepOn(bool on);
 };
 
 /* ************************************************************************** */
