@@ -42,7 +42,6 @@ MobileUI::Theme MobileUIPrivate::navbarTheme = MobileUI::Light;
 void MobileUI::registerQML()
 {
     qRegisterMetaType<MobileUI::Theme>("MobileUI::Theme");
-    qRegisterMetaType<MobileUI::Orientation>("MobileUI::Orientation");
 
     qmlRegisterType<MobileUI>("MobileUI", 1, 0, "MobileUI");
 }
