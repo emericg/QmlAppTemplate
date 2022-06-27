@@ -2,7 +2,7 @@
 # Workflow configuration
 #-------------------------------------------------------------------------------
 
-name: "Desktop CI builds"
+name: "Desktop CI builds (qmake)"
 on:
   push:
   pull_request:
@@ -77,8 +77,8 @@ jobs:
         with:
           submodules: recursive
 
-      # Install dependencies
-      #- name: Install dependencies
+      # Install dependencies (from package manager)
+      #- name: Install dependencies (from package manager)
       #  run: |
       #       brew install qt6
 

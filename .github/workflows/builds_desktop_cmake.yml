@@ -76,8 +76,8 @@ jobs:
         with:
           submodules: recursive
 
-      # Install dependencies
-      #- name: Install dependencies
+      # Install dependencies (from package manager)
+      #- name: Install dependencies (from package manager)
       #  run: |
       #       brew install qt6
 
@@ -149,7 +149,7 @@ jobs:
       - name: Build application
         run: |
              cd build/
-             cmake ..
+             cmake .. -G"NMake Makefiles"
              nmake
 
       # Deploy application

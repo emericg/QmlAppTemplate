@@ -2,7 +2,7 @@
 # Workflow configuration
 #-------------------------------------------------------------------------------
 
-name: "Mobile CI builds (qmake)"
+name: "Mobile CI builds (cmake)"
 on:
   push:
   pull_request:
@@ -14,7 +14,6 @@ on:
 env:
   VERSION: "0.4"
   APPLICATION: "QmlAppTemplate"
-  QMAKE_PROJECT: "QmlAppTemplate.pro"
 
 #-------------------------------------------------------------------------------
 # Workflow jobs
@@ -69,6 +68,11 @@ jobs:
           modules: qt5compat qtimageformats qtcharts
           cached: 'false'
 
+      # Install dependencies (from package manager)
+      - name: Install dependencies (from package manager)
+        run: |
+             sudo apt-get install cmake ninja-build -y;
+
       # Setup env
       - name: Setup env
         run: |
@@ -78,7 +82,7 @@ jobs:
       # Build application
       - name: Build application
         run: |
-             qmake ${{env.QMAKE_PROJECT}} CONFIG+=release
+             cmake ..
              make -j$(nproc)
 
   ## iOS build #################################################################
@@ -112,6 +116,11 @@ jobs:
           modules: qt5compat qtimageformats qtcharts
           cached: 'false'
 
+      # Install dependencies (from package manager)
+      - name: Install dependencies (from package manager)
+        run: |
+             brew install cmake
+
       # Setup env
       - name: Setup env
         run: |
@@ -122,5 +131,5 @@ jobs:
       # Build application
       - name: Build application
         run: |
-             qmake ${{env.QMAKE_PROJECT}} CONFIG+=release
+             cmake ..
              make -j$(nproc)
