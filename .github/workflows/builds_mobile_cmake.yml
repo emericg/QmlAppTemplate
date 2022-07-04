@@ -82,6 +82,7 @@ jobs:
       # Build application
       - name: Build application
         run: |
+             cd build/
              cmake ..
              make -j$(nproc)
 
@@ -131,5 +132,6 @@ jobs:
       # Build application
       - name: Build application
         run: |
+             cd build/
              cmake ..
              make -j$(nproc)

@@ -17,6 +17,7 @@ qt_add_executable(QmlAppTemplate
     src/SettingsManager.cpp src/SettingsManager.h
     src/main.cpp
     qml/qml.qrc
+    qml/components.qrc
     i18n/i18n.qrc
     assets/assets.qrc
 )

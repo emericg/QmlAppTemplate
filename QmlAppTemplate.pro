@@ -39,6 +39,7 @@ HEADERS  += src/SettingsManager.h
 INCLUDEPATH += src/
 
 RESOURCES   += qml/qml.qrc \
+               qml/components.qrc \
                i18n/i18n.qrc \
                assets/assets.qrc
 
