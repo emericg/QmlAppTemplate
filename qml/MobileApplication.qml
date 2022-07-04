@@ -383,25 +383,22 @@ ApplicationWindow {
 
     Rectangle {
         id: exitWarning
+        height: 40
 
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
         anchors.margins: 12
 
-        height: 40
         radius: 4
-
-        color: Theme.colorComponentBackground
-        border.color: Theme.colorSeparator
-        border.width: Theme.componentBorderWidth
-
+        color: Theme.colorSeparator
+        visible: opacity
         opacity: 0
-        Behavior on opacity { OpacityAnimator { duration: 233 } }
+        Behavior on opacity { OpacityAnimator { duration: 333 } }
 
         Text {
             anchors.centerIn: parent
-            text: qsTr("Press one more time to exit...")
+            text: qsTr("Appuyer encore une fois pour quitter...")
             textFormat: Text.PlainText
             font.pixelSize: Theme.fontSizeContent
             color: Theme.colorText

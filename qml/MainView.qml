@@ -107,6 +107,8 @@ Item {
                     fullColor: true
                     primaryColor: Theme.colorActionbarHighlight
                     text: "Action 2"
+
+                    onClicked: flflfl.enabled = !flflfl.enabled
                 }
             }
 
@@ -214,6 +216,7 @@ Item {
     // CONTENT /////////////////////////////////////////////////////////////////
 
     Flickable {
+        id: flflfl
         anchors.top: menusArea.bottom
         anchors.left: parent.left
         anchors.right: parent.right
@@ -326,38 +329,44 @@ Item {
 
             ////
 
-            Row {
+            Rectangle { // separator
+                height: 2
+                color: Theme.colorSeparator
+                anchors.left: parent.left
+                anchors.leftMargin: -24
+                anchors.right: parent.right
+                anchors.rightMargin: -24
+            }
+
+            ////
+
+            Flow {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 spacing: 24
 
                 ButtonWireframe {
-                    anchors.verticalCenter: parent.verticalCenter
                     fullColor: true
                     text: "ButtonWireframe"
                 }
 
                 ButtonWireframeIcon {
-                    anchors.verticalCenter: parent.verticalCenter
                     fullColor: true
                     text: "ButtonWireframeIcon"
                     source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
                 }
 
                 ButtonWireframe {
-                    anchors.verticalCenter: parent.verticalCenter
                     text: "ButtonWireframe"
                 }
 
                 ButtonWireframeIcon {
                     width: 128
-                    anchors.verticalCenter: parent.verticalCenter
                     text: "ButtonWireframeIcon"
                     source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
                 }
 
                 ButtonText {
-                    anchors.verticalCenter: parent.verticalCenter
                     text: "ButtonText"
                 }
             }
