@@ -39,7 +39,7 @@ SOURCES  += src/main.cpp \
 
 HEADERS  += src/SettingsManager.h
 
-INCLUDEPATH += src/
+INCLUDEPATH += src/ src/thirdparty/
 
 RESOURCES   += qml/qml.qrc \
                qml/components.qrc \

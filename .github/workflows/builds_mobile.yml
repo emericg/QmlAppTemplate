@@ -50,23 +50,21 @@ jobs:
 
       # Install Qt (desktop)
       - name: Install Qt (desktop)
-        uses: jurplel/install-qt-action@v2
+        uses: jurplel/install-qt-action@v3
         with:
-          aqtversion: '==2.1.0'
           version: '6.3.1'
-          modules: qt5compat qtimageformats qtcharts
+          modules: qt5compat
           cached: 'false'
 
       # Install Qt (Android)
       - name: Install Qt (Android)
-        uses: jurplel/install-qt-action@v2
+        uses: jurplel/install-qt-action@v3
         with:
-          aqtversion: '==2.1.0'
           version: '6.3.1'
           host: 'linux'
           target: 'android'
           arch: 'android_arm64_v8a'
-          modules: qt5compat qtimageformats qtcharts
+          modules: qt5compat
           cached: 'false'
 
       # Setup env
@@ -94,22 +92,20 @@ jobs:
 
       # Install Qt (desktop)
       - name: Install Qt (desktop)
-        uses: jurplel/install-qt-action@v2
+        uses: jurplel/install-qt-action@v3
         with:
-          aqtversion: '==2.1.0'
           version: '6.3.0'
-          modules: qt5compat qtimageformats qtcharts
+          modules: qt5compat
           cached: 'false'
 
       # Install Qt (iOS)
       - name: Install Qt (iOS)
-        uses: jurplel/install-qt-action@v2
+        uses: jurplel/install-qt-action@v3
         with:
-          aqtversion: '==2.1.0'
           version: '6.3.0'
           host: 'mac'
           target: 'ios'
-          modules: qt5compat qtimageformats qtcharts
+          modules: qt5compat
           cached: 'false'
 
       # Setup env

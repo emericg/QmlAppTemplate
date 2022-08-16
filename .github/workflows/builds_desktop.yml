@@ -38,7 +38,7 @@ jobs:
         with:
           aqtversion: '==2.1.0'
           version: '6.3.1'
-          modules: qt5compat qtimageformats qtcharts
+          modules: qt5compat
           cached: 'false'
 
       # Install dependencies (from package manager)
@@ -84,11 +84,10 @@ jobs:
 
       # Install Qt
       - name: Install Qt
-        uses: jurplel/install-qt-action@v2
+        uses: jurplel/install-qt-action@v3
         with:
-          aqtversion: '==2.1.0'
           version: '6.3.1'
-          modules: qt5compat qtimageformats qtcharts
+          modules: qt5compat
           cached: 'false'
 
       # Build application
@@ -130,11 +129,10 @@ jobs:
 
       # Install Qt
       - name: Install Qt
-        uses: jurplel/install-qt-action@v2
+        uses: jurplel/install-qt-action@v3
         with:
-          aqtversion: '==2.1.0'
           version: '6.3.1'
-          modules: qt5compat qtimageformats qtcharts
+          modules: qt5compat
           cached: 'false'
 
       # Install NSIS (already installed in 'windows-2022')
