@@ -23,6 +23,7 @@
 
 #include "MobileUI.h"
 #include "MobileUI_private.h"
+
 #include <QQmlEngine>
 
 /* ************************************************************************** */
@@ -108,9 +109,9 @@ void MobileUI::setNavbarTheme(Theme theme)
 
 /* ************************************************************************** */
 
-void MobileUI::screenKeepOn(bool on)
+void MobileUI::keepScreenOn(bool on)
 {
-    MobileUIPrivate::screenKeepOn(on);
+    MobileUIPrivate::keepScreenOn(on);
 }
 
 /* ************************************************************************** */

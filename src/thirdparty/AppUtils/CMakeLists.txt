@@ -41,7 +41,7 @@ set(CORE_SOURCES
     utils_versionchecker.h)
 
 # OS specific sources & dependencies
-if(LINUX AND NOT ANDROID)
+if(CMAKE_SYSTEM_NAME STREQUAL Linux)
     set(PLATFORM_SOURCES
         utils_os_linux.cpp
         utils_os_linux.h)

@@ -1,14 +1,13 @@
 QT += core network
 CONFIG += c++11
 
-SOURCES += $${PWD}/singleapplication.cpp \
-           $${PWD}/singleapplication_p.cpp
+SOURCES += $${PWD}/SingleApplication.cpp \
+           $${PWD}/SingleApplication_private.cpp
 
-HEADERS += $${PWD}/SingleApplication \
-           $${PWD}/singleapplication.h \
-           $${PWD}/singleapplication_p.h
+HEADERS += $${PWD}/SingleApplication.h \
+           $${PWD}/SingleApplication_private.h
 
-INCLUDEPATH += $${PWD}
+#INCLUDEPATH += $${PWD}
 
 win32 {
     msvc: LIBS += Advapi32.lib
