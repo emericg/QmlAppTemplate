@@ -97,6 +97,10 @@ target_link_libraries(QmlAppTemplate PRIVATE
     Qt::Svg
 )
 
+# QmlRadialBar
+add_subdirectory(src/thirdparty/QmlRadialBar)
+target_link_libraries(QmlAppTemplate PRIVATE QmlRadialBar)
+
 ################################################################################
 
 if(lupdate_only)

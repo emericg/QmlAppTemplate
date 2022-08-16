@@ -15,7 +15,7 @@ A simple template application.
 
 You will need a C++17 compiler and Qt 6.3+. Qt 5 Compatibility Module is required.  
 For macOS and iOS builds, you'll need Xcode installed.  
-For Android builds, you'll need the appropriates JDK (11) SDK (23+) and NDK (22+). You can customize Android build environment using the `assets/android/gradle.properties` file.  
+For Android builds, you'll need the appropriates JDK (11) SDK (23+) and NDK (21+). You can customize Android build environment using the `assets/android/gradle.properties` file.  
 
 Clone and build:
 ```bash
@@ -35,6 +35,8 @@ $ make
 > [MobileSharing](src/thirdparty/MobileSharing/README.md) Use Android and iOS "sharing" features
 
 > [SingleApplication](src/thirdparty/SingleApplication/README.md) Keep only one active instance of your application
+
+> [QmlRadialBar](src/thirdparty/QmlRadialBar/README.md) A radial bar reusable component for QML
 
 ### QML components
 
