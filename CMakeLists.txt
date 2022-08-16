@@ -23,6 +23,7 @@ qt_add_executable(QmlAppTemplate
 )
 
 target_include_directories(QmlAppTemplate PRIVATE src)
+target_include_directories(QmlAppTemplate PUBLIC src/thirdparty)
 
 ################################################################################
 
