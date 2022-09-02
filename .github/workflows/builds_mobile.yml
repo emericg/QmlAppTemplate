@@ -54,7 +54,6 @@ jobs:
         with:
           version: '6.3.1'
           modules: qt5compat
-          cached: 'false'
 
       # Install Qt (Android)
       - name: Install Qt (Android)
@@ -65,7 +64,6 @@ jobs:
           target: 'android'
           arch: 'android_arm64_v8a'
           modules: qt5compat
-          cached: 'false'
 
       # Setup env
       - name: Setup env
@@ -96,7 +94,6 @@ jobs:
         with:
           version: '6.3.0'
           modules: qt5compat
-          cached: 'false'
 
       # Install Qt (iOS)
       - name: Install Qt (iOS)
@@ -106,7 +103,6 @@ jobs:
           host: 'mac'
           target: 'ios'
           modules: qt5compat
-          cached: 'false'
 
       # Setup env
       - name: Setup env

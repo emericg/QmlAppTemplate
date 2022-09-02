@@ -37,7 +37,6 @@ jobs:
         with:
           version: '6.3.1'
           modules: qt5compat
-          cached: 'false'
 
       # Install dependencies (from package manager)
       - name: Install dependencies (from package manager)
@@ -86,7 +85,6 @@ jobs:
         with:
           version: '6.3.1'
           modules: qt5compat
-          cached: 'false'
 
       # Build application
       - name: Build application
@@ -133,7 +131,6 @@ jobs:
         with:
           version: '6.3.1'
           modules: qt5compat
-          cached: 'false'
 
       # Install NSIS (already installed in 'windows-2022')
       #- name: Install NSIS
