@@ -106,7 +106,7 @@ Item {
                 ButtonWireframeIcon {
                     fullColor: true
                     primaryColor: Theme.colorActionbarHighlight
-                    text: "Action 2"
+                    text: "Enable components"
 
                     onClicked: flflfl.enabled = !flflfl.enabled
                 }
