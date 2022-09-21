@@ -715,15 +715,14 @@ Item {
                     width: 112
                     value: 0.33
                 }
-/*
+
                 ButtonImage {
                     width: 128
                     height: 128
                     hoverMode: "glow"
-                    source: "qrc:/assets/button.png"
+                    source: "qrc:/assets/logos/logo.svg"
                     sourceSize: 96
                 }
-*/
             }
 
             ////////////////////////
