@@ -33,8 +33,7 @@ Item {
 
             ////////////////
 
-            Rectangle {
-                id: rectangleHeader
+            Rectangle { // header
                 anchors.left: parent.left
                 anchors.leftMargin: -(screenPaddingLeft + 16)
                 anchors.right: parent.right
@@ -44,16 +43,15 @@ Item {
                 color: Theme.colorForeground
 
                 Row {
-                    id: logo
                     anchors.left: parent.left
                     anchors.leftMargin: 16
+                    anchors.verticalCenter: parent.verticalCenter
 
                     z: 2
                     height: 92
                     spacing: 24
 
-                    Image {
-                        id: imageLogo
+                    Image { // logo
                         width: 92
                         height: 92
                         anchors.verticalCenter: parent.verticalCenter
@@ -258,8 +256,9 @@ Item {
                     anchors.rightMargin: 0
                     anchors.verticalCenter: parent.verticalCenter
                     visible: singleColumn
-                    color: Theme.colorIcon
+
                     source: "qrc:/assets/icons_material/duotone-launch-24px.svg"
+                    color: Theme.colorIcon
                 }
             }
 
@@ -306,8 +305,9 @@ Item {
                     anchors.rightMargin: 0
                     anchors.verticalCenter: parent.verticalCenter
                     visible: singleColumn
-                    color: Theme.colorIcon
+
                     source: "qrc:/assets/icons_material/duotone-launch-24px.svg"
+                    color: Theme.colorIcon
                 }
 
                 MouseArea {
@@ -351,6 +351,18 @@ Item {
                     textFormat: Text.PlainText
                     font.pixelSize: Theme.fontSizeContent
                     color: Theme.colorText
+                }
+
+                IconSvg {
+                    width: 24
+                    height: 24
+                    anchors.right: parent.right
+                    anchors.rightMargin: -2
+                    anchors.verticalCenter: parent.verticalCenter
+                    visible: singleColumn
+
+                    source: "qrc:/assets/icons_material/baseline-chevron_right-24px.svg"
+                    color: Theme.colorIcon
                 }
 
                 MouseArea {
@@ -420,7 +432,7 @@ Item {
                     width: 24
                     height: 24
                     anchors.right: parent.right
-                    anchors.rightMargin: 0
+                    anchors.rightMargin: -2
                     anchors.verticalCenter: parent.verticalCenter
 
                     source: "qrc:/assets/icons_material/baseline-chevron_right-24px.svg"

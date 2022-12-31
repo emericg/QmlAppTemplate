@@ -25,6 +25,7 @@ Item {
     signal updateDate(var newdate)
 
     function openDate(date) {
+        //console.log("openDate(" + date + ")")
         minDate = null
         maxDate = null
 
@@ -32,6 +33,7 @@ Item {
         currentDate = date
 
         today = new Date()
+        grid.month = date.getMonth()
 
         printDate()
     }
@@ -60,7 +62,7 @@ Item {
         id: background
         anchors.fill: parent
 
-        clip: true
+        clip: false
         radius: Theme.componentRadius*2
         color: Theme.colorBackground
         border.width: Theme.componentBorderWidth
@@ -141,11 +143,13 @@ Item {
 
             z: 2
             height: 48
-            color: Qt.lighter(Theme.colorSeparator, 1.05)
+            color: Qt.lighter(Theme.colorSeparator, 1.1)
 
             DayOfWeekRow {
                 anchors.left: parent.left
+                anchors.leftMargin: 4
                 anchors.right: parent.right
+                anchors.rightMargin: 4
                 anchors.verticalCenter: parent.verticalCenter
 
                 //locale: datePicker.locale
@@ -175,7 +179,7 @@ Item {
             //locale: datePicker.locale
 
             delegate: Text {
-                width: (grid.width / 7)
+                width: ((grid.width - 8) / 7)
                 height: (grid.height / 6)
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
@@ -183,6 +187,7 @@ Item {
                 opacity: (model.month === grid.month ? 1 : 0.2)
                 text: model.day
                 font: grid.font
+                //font.bold: model.isToday
                 color: selected ? "white" : Theme.colorSubText
 
                 property bool selected: (model.day === currentDate.getDate() &&
@@ -192,12 +197,12 @@ Item {
                 Rectangle {
                     z: -1
                     anchors.centerIn: parent
-                    width: parent.width
-                    height: parent.width
-                    radius: parent.width
+                    width: Math.min(parent.width, parent.height)
+                    height: width
+                    radius: width
                     color: selected ? Theme.colorSecondary : "transparent" //Theme.colorBackground
                     border.color: Theme.colorSecondary
-                    border.width: (model.today) ? 1 : 0
+                    border.width: model.isToday ? Theme.componentBorderWidth : 0
                 }
             }
 
@@ -222,7 +227,7 @@ Item {
                     } else {
                         const diffTime = (today - date)
                         const diffDays = -Math.ceil(diffTime / (1000 * 60 * 60 * 24) - 1)
-                        //console.log(diffDays + " days");
+                        //console.log(diffDays + " days")
 
                         // validate date (-15 / today)
                         if (diffDays > -15 && diffDays < 1) {

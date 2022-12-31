@@ -58,6 +58,8 @@ ApplicationWindow {
 
     // Events handling /////////////////////////////////////////////////////////
 
+    //onActiveFocusItemChanged: print("activeFocusItem", activeFocusItem)
+
     Component.onCompleted: {
         //
     }
