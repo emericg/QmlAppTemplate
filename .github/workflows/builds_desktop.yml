@@ -12,9 +12,9 @@ on:
 #-------------------------------------------------------------------------------
 
 env:
-  VERSION: "0.4"
   APPLICATION: "QmlAppTemplate"
-  QMAKE_PROJECT: "QmlAppTemplate.pro"
+  APPLICATION_VERSION: "0.4"
+  QT_VERSION: "6.4.1"
 
 #-------------------------------------------------------------------------------
 # Workflow jobs
@@ -36,7 +36,7 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:
-          version: '6.3.1'
+          version: ${{env.QT_VERSION}}
           modules: qt5compat
 
       # Install dependencies (from package manager)
@@ -49,7 +49,7 @@ jobs:
       - name: Build application
         run: |
              qmake --version
-             qmake ${{env.QMAKE_PROJECT}} CONFIG+=release PREFIX=/usr
+             qmake ${{env.APPLICATION}}.pro CONFIG+=release PREFIX=/usr
              make -j$(nproc)
 
       # Deploy application
@@ -61,7 +61,7 @@ jobs:
       - name: Upload AppImage
         uses: actions/upload-artifact@v3
         with:
-          name: ${{env.APPLICATION}}-${{env.VERSION}}-linux64.AppImage
+          name: ${{env.APPLICATION}}-${{env.APPLICATION_VERSION}}-linux64.AppImage
           path: ${{env.APPLICATION}}*.AppImage
 
   ## macOS build ###############################################################
@@ -84,14 +84,14 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:
-          version: '6.3.1'
+          version: ${{env.QT_VERSION}}
           modules: qt5compat
 
       # Build application
       - name: Build application
         run: |
              qmake --version
-             qmake ${{env.QMAKE_PROJECT}} CONFIG+=release
+             qmake ${{env.APPLICATION}}.pro CONFIG+=release
              make -j$(nproc)
 
       # Deploy application
@@ -103,8 +103,8 @@ jobs:
       - name: Upload app zip
         uses: actions/upload-artifact@v3
         with:
-          name: ${{env.APPLICATION}}-${{env.VERSION}}-macOS.zip
-          path: bin/${{env.APPLICATION}}-${{env.VERSION}}-macOS.zip
+          name: ${{env.APPLICATION}}-${{env.APPLICATION_VERSION}}-macOS.zip
+          path: bin/${{env.APPLICATION}}-${{env.APPLICATION_VERSION}}-macOS.zip
 
   ## Windows build #############################################################
   build-windows:
@@ -128,7 +128,7 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:
-          version: '6.3.1'
+          version: ${{env.QT_VERSION}}
           modules: qt5compat
 
       # Install NSIS (already installed in 'windows-2022')
@@ -142,7 +142,7 @@ jobs:
       - name: Build application
         run: |
              qmake --version
-             qmake ${{env.QMAKE_PROJECT}} CONFIG+=release
+             qmake ${{env.APPLICATION}}.pro CONFIG+=release
              nmake
 
       # Deploy application
@@ -154,12 +154,12 @@ jobs:
       - name: Upload ZIP
         uses: actions/upload-artifact@v3
         with:
-          name: ${{env.APPLICATION}}-${{env.VERSION}}-win64.zip
-          path: ${{env.APPLICATION}}-${{env.VERSION}}-win64.zip
+          name: ${{env.APPLICATION}}-${{env.APPLICATION_VERSION}}-win64.zip
+          path: ${{env.APPLICATION}}-${{env.APPLICATION_VERSION}}-win64.zip
 
       # Upload NSIS installer
       - name: Upload NSIS installer
         uses: actions/upload-artifact@v3
         with:
-          name: ${{env.APPLICATION}}-${{env.VERSION}}-win64.exe
-          path: ${{env.APPLICATION}}-${{env.VERSION}}-win64.exe
+          name: ${{env.APPLICATION}}-${{env.APPLICATION_VERSION}}-win64.exe
+          path: ${{env.APPLICATION}}-${{env.APPLICATION_VERSION}}-win64.exe
