@@ -214,7 +214,6 @@ ApplicationWindow {
 
         anchors.top: parent.top
         anchors.left: appSidebar.right
-        //anchors.left: parent.left
         anchors.right: parent.right
     }
 
@@ -223,7 +222,6 @@ ApplicationWindow {
 
         anchors.top: appHeader.bottom
         anchors.left: appSidebar.right
-        //anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
 
