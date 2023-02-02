@@ -14,7 +14,7 @@ on:
 env:
   APPLICATION: "QmlAppTemplate"
   APPLICATION_VERSION: "0.4"
-  QT_VERSION: "6.4.1"
+  QT_VERSION: "6.4.2"
 
 #-------------------------------------------------------------------------------
 # Workflow jobs
@@ -48,15 +48,8 @@ jobs:
       #       sdkmanager "ndk;23.1.7779620"
       #       sdkmanager "build-tools;30.0.3"
 
-      # Install Qt (desktop)
-      - name: Install Qt (desktop)
-        uses: jurplel/install-qt-action@v3
-        with:
-          version: ${{env.QT_VERSION}}
-          modules: qt5compat
-
-      # Install Qt (Android)
-      - name: Install Qt (Android)
+      # Install Qt (Android & desktop)
+      - name: Install Qt (Android & desktop)
         uses: jurplel/install-qt-action@v3
         with:
           version: ${{env.QT_VERSION}}
@@ -64,6 +57,9 @@ jobs:
           target: 'android'
           arch: 'android_arm64_v8a'
           modules: qt5compat
+          aqtversion: '==3.1.*'
+          py7zrversion: '==0.20.*'
+          extra: '--autodesktop'
 
       # Install dependencies (from package manager)
       - name: Install dependencies (from package manager)
@@ -94,21 +90,17 @@ jobs:
         with:
           submodules: recursive
 
-      # Install Qt (desktop)
-      - name: Install Qt (desktop)
-        uses: jurplel/install-qt-action@v3
-        with:
-          version: ${{env.QT_VERSION}}
-          modules: qt5compat
-
-      # Install Qt (iOS)
-      - name: Install Qt (iOS)
+      # Install Qt (iOS & desktop)
+      - name: Install Qt (iOS & desktop)
         uses: jurplel/install-qt-action@v3
         with:
           version: ${{env.QT_VERSION}}
           host: 'mac'
           target: 'ios'
           modules: qt5compat
+          aqtversion: '==3.1.*'
+          py7zrversion: '==0.20.*'
+          extra: '--autodesktop'
 
       # Install dependencies (from package manager)
       - name: Install dependencies (from package manager)
