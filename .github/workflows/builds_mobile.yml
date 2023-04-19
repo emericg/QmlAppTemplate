@@ -13,7 +13,7 @@ on:
 
 env:
   APPLICATION: "QmlAppTemplate"
-  APPLICATION_VERSION: "0.4"
+  APPLICATION_VERSION: "0.5"
   QT_VERSION: "6.5.0"
 
 #-------------------------------------------------------------------------------
@@ -44,9 +44,9 @@ jobs:
       #  uses: android-actions/setup-android@v2
       #- name: Install Android SDK / NDK / tools
       #  run: |
-      #       sdkmanager "platforms;android-32"
-      #       sdkmanager "ndk;23.1.7779620"
-      #       sdkmanager "build-tools;30.0.3"
+      #       sdkmanager "platforms;android-33"
+      #       sdkmanager "ndk;25.1.8937393"
+      #       sdkmanager "build-tools;31.0.1"
 
       # Install Qt (Android & desktop)
       - name: Install Qt (Android & desktop)
@@ -64,7 +64,6 @@ jobs:
       # Setup env
       - name: Setup env
         run: |
-             export PATH=$Qt6_DIR/bin:$PATH
              qmake --version
 
       # Build application
@@ -76,7 +75,7 @@ jobs:
   ## iOS build #################################################################
   build-ios:
     name: "iOS CI build"
-    runs-on: macos-12
+    runs-on: macos-11
     steps:
       # Checkout the repository
       - name: Checkout repository and submodules
@@ -99,7 +98,6 @@ jobs:
       # Setup env
       - name: Setup env
         run: |
-             export PATH=$Qt6_DIR/bin:$PATH
              ln -s /Users/runner/work/${{env.APPLICATION}}/Qt/${{env.QT_VERSION}}/macos /Users/runner/work/${{env.APPLICATION}}/Qt/${{env.QT_VERSION}}/clang_64
              qmake --version
 

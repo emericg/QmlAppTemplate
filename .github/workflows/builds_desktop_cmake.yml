@@ -13,7 +13,7 @@ on:
 
 env:
   APPLICATION: "QmlAppTemplate"
-  APPLICATION_VERSION: "0.4"
+  APPLICATION_VERSION: "0.5"
   QT_VERSION: "6.5.0"
 
 #-------------------------------------------------------------------------------
@@ -149,6 +149,11 @@ jobs:
       #       Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
       #       scoop bucket add extras
       #       scoop install nsis
+
+      # Setup env
+      - name: Setup env
+        run: |
+             cmake --version
 
       # Build application
       - name: Build application

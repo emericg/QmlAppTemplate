@@ -8,8 +8,8 @@ CONFIG += c++17
 QT     += core qml quick quickcontrols2 svg
 
 # Validate Qt version
-!versionAtLeast(QT_VERSION, 6.0) : error("You need at least Qt version 6.0 for $${TARGET}")
-!versionAtLeast(QT_VERSION, 6.3) : warning("Many $${TARGET} features will require at least Qt version 6.3")
+!versionAtLeast(QT_VERSION, 6.2) : error("You need at least Qt version 6.2 for $${TARGET}")
+!versionAtLeast(QT_VERSION, 6.5) : warning("Many $${TARGET} features will require at least Qt version 6.5")
 
 # Project features #############################################################
 

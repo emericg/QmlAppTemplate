@@ -13,7 +13,7 @@ on:
 
 env:
   APPLICATION: "QmlAppTemplate"
-  APPLICATION_VERSION: "0.4"
+  APPLICATION_VERSION: "0.5"
   QT_VERSION: "6.5.0"
 
 #-------------------------------------------------------------------------------
@@ -45,10 +45,14 @@ jobs:
              sudo apt-get install libgl1-mesa-dev libxkbcommon-x11-dev libx11-xcb-dev libzstd-dev -y;
              sudo apt-get install appstream -y;
 
+      # Setup env
+      - name: Setup env
+        run: |
+             qmake --version
+
       # Build application
       - name: Build application
         run: |
-             qmake --version
              qmake ${{env.APPLICATION}}.pro CONFIG+=release PREFIX=/usr
              make -j$(nproc)
 
@@ -78,7 +82,7 @@ jobs:
       # Install dependencies (from package manager)
       #- name: Install dependencies (from package manager)
       #  run: |
-      #       brew install qt6
+      #       brew install qt6 cmake
 
       # Install Qt
       - name: Install Qt
@@ -87,10 +91,14 @@ jobs:
           version: ${{env.QT_VERSION}}
           modules: qt5compat
 
+      # Setup env
+      - name: Setup env
+        run: |
+             qmake --version
+
       # Build application
       - name: Build application
         run: |
-             qmake --version
              qmake ${{env.APPLICATION}}.pro CONFIG+=release
              make -j$(nproc)
 
@@ -138,10 +146,14 @@ jobs:
       #       scoop bucket add extras
       #       scoop install nsis
 
+      # Setup env
+      - name: Setup env
+        run: |
+             qmake --version
+
       # Build application
       - name: Build application
         run: |
-             qmake --version
              qmake ${{env.APPLICATION}}.pro CONFIG+=release
              nmake
 
