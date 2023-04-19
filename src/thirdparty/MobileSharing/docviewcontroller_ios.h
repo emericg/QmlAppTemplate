@@ -1,4 +1,4 @@
-/*
+/*!
  * Copyright (c) 2017 Ekkehard Gentz (ekke)
  * Copyright (c) 2020 Emeric Grange
  *
@@ -25,8 +25,9 @@
 #define DOCVIEWCONTROLLER_IOS_H
 /* ************************************************************************** */
 
+#import "SharingUtils_ios.h"
+
 #import <UIKit/UIKit.h>
-#import <SharingUtils_ios.h>
 
 /* ************************************************************************** */
 

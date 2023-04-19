@@ -38,9 +38,8 @@ if (ANDROID)
         find_package(Qt${QT_DEFAULT_MAJOR_VERSION} REQUIRED COMPONENTS AndroidExtras)
         set(PLATFORM_LIBRARIES Qt::AndroidExtras)
     endif()
-endif()
 
-if (IOS)
+elseif (IOS)
     find_package(Qt${QT_DEFAULT_MAJOR_VERSION} REQUIRED COMPONENTS Quick)
     set(PLATFORM_LIBRARIES Qt::Quick)
     set(PLATFORM_SOURCES

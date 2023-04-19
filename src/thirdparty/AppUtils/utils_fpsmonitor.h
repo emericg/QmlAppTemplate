@@ -1,6 +1,6 @@
 /*!
- * Copyright (c) 2017 Ekkehard Gentz (ekke)
- * Copyright (c) 2020 Emeric Grange
+ * Copyright (c) 2022 Luca Carlon
+ * Copyright (c) 2023 Emeric Grange
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,45 +21,53 @@
  * SOFTWARE.
  */
 
-#ifndef SHARINGAPPLICATION_H
-#define SHARINGAPPLICATION_H
+#ifndef UTILS_FPSMONITOR_H
+#define UTILS_FPSMONITOR_H
 /* ************************************************************************** */
 
-#include <QGuiApplication>
+#include <QObject>
+#include <QList>
+#include <QMutex>
+#include <QDateTime>
 
-class QQmlContext;
-class ShareUtils;
+class QTimer;
+class QQuickWindow;
 
 /* ************************************************************************** */
 
-class SharingApplication : public QGuiApplication
+/*!
+ * \brief The FrameRateMonitor class
+ *
+ * This class use the QQuickWindow::frameSwapped method from Luca Carlon.
+ * - https://github.com/carlonluca/lqtutils/blob/master/lqtutils_freq.h
+ *
+ * The FrameMonitor widget uses a simplier and pure QML method from qnanopainter.
+ * - https://github.com/QUItCoding/qnanopainter/blob/master/examples/qnanopainter_vs_qpainter_demo/qml/FpsItem.qml
+ */
+class FrameRateMonitor : public QObject
 {
     Q_OBJECT
 
-     ShareUtils *mShareUtils = nullptr;
-     bool mPendingIntentsChecked = false;
+    Q_PROPERTY(int fps READ fps NOTIFY fpsChanged)
 
-     QString mAppDataFilesPath;
-     QString mDocumentsWorkPath;
+    QMutex m_mutex;
+    QList <QDateTime> m_timestamps;
+    QTimer *m_refreshTimer = nullptr;
+
+    int m_fps = 0;
+    int fps() const { return m_fps; }
+
+Q_SIGNALS:
+    void fpsChanged();
 
 public:
-    explicit SharingApplication(int &argc, char **argv);
-    ~SharingApplication();
-
-     void registerQML(QQmlContext *context);
-     //Q_INVOKABLE QString filePathDocumentsLocation(const int requestId);
-     //Q_INVOKABLE bool deleteFromDocumentsLocation(const int requestId);
-     //Q_INVOKABLE bool updateFileFromDocumentsLocation(const int requestId);
-
-signals:
-     void noDocumentsWorkLocation();
+    FrameRateMonitor(QQuickWindow *window = nullptr, QObject *parent = nullptr);
+    Q_INVOKABLE void setWindow(QQuickWindow *window);
 
 public slots:
-    void onApplicationStateChanged(Qt::ApplicationState state);
-
-protected:
-    bool event(QEvent *e);
+    void registerSample();
+    void refresh();
 };
 
 /* ************************************************************************** */
-#endif // SHARINGAPPLICATION_H
+#endif // UTILS_FPSMONITOR_H

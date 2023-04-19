@@ -1,4 +1,4 @@
-/*
+/*!
  * Copyright (c) 2016 J-P Nurmi
  * Copyright (c) 2022 Emeric Grange
  *
@@ -50,16 +50,6 @@
 bool MobileUIPrivate::isAvailable_sys()
 {
     return (QtAndroid::androidSdkVersion() >= 21);
-}
-
-static bool isColorLight(int color)
-{
-    int r = (color & 0x00FF0000) >> 16;
-    int g = (color & 0x0000FF00) >> 8;
-    int b = (color & 0x000000FF);
-
-    double darkness = 1.0 - (0.299 * r + 0.587 * g + 0.114 * b) / 255.0;
-    return (darkness < 0.2);
 }
 
 static bool isQColorLight(QColor color)
