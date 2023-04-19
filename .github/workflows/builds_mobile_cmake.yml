@@ -110,7 +110,7 @@ jobs:
       # Setup env
       - name: Setup env
         run: |
-             echo "QT_HOST_PATH=/Users/runner/work/${{env.APPLICATION}}/Qt/${{env.QT_VERSION}}/clang_64" >> $GITHUB_ENV
+             echo "QT_HOST_PATH=/Users/runner/work/${{env.APPLICATION}}/Qt/${{env.QT_VERSION}}/macos" >> $GITHUB_ENV
              cmake --version
 
       # Build application
