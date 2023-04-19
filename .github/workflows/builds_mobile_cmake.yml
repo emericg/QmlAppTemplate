@@ -69,7 +69,7 @@ jobs:
       # Setup env
       - name: Setup env
         run: |
-             echo "{QT_HOST_PATH}={/home/runner/work/${{env.APPLICATION}}/Qt/${{env.QT_VERSION}}/gcc_64}" >> $GITHUB_ENV
+             echo "QT_HOST_PATH=/home/runner/work/${{env.APPLICATION}}/Qt/${{env.QT_VERSION}}/gcc_64" >> $GITHUB_ENV
              qmake --version
 
       # Build application
@@ -110,7 +110,7 @@ jobs:
       # Setup env
       - name: Setup env
         run: |
-             echo "{QT_HOST_PATH}={/home/runner/work/${{env.APPLICATION}}/Qt/${{env.QT_VERSION}}/clang_64}" >> $GITHUB_ENV
+             echo "QT_HOST_PATH=/home/runner/work/${{env.APPLICATION}}/Qt/${{env.QT_VERSION}}/clang_64" >> $GITHUB_ENV
              cmake --version
 
       # Build application
