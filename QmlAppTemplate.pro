@@ -1,5 +1,5 @@
 TARGET  = QmlAppTemplate
-VERSION = 0.4
+VERSION = 0.5
 
 DEFINES+= APP_NAME=\\\"$$TARGET\\\"
 DEFINES+= APP_VERSION=\\\"$$VERSION\\\"
@@ -198,7 +198,7 @@ ios {
     #message("QMAKE_IOS_DEPLOYMENT_TARGET: $$QMAKE_IOS_DEPLOYMENT_TARGET")
 
     # Bundle name
-    QMAKE_TARGET_BUNDLE_PREFIX = com.emeric.ios
+    QMAKE_TARGET_BUNDLE_PREFIX = com.emeric
     QMAKE_BUNDLE = qmlapptemplate
 
     # OS infos

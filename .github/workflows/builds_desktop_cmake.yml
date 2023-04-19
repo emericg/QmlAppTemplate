@@ -14,7 +14,7 @@ on:
 env:
   APPLICATION: "QmlAppTemplate"
   APPLICATION_VERSION: "0.4"
-  QT_VERSION: "6.4.1"
+  QT_VERSION: "6.5.0"
 
 #-------------------------------------------------------------------------------
 # Workflow jobs
@@ -67,7 +67,7 @@ jobs:
   ## macOS build ###############################################################
   build-mac:
     name: "macOS CI build"
-    runs-on: macos-11
+    runs-on: macos-12
     steps:
       # Checkout the repository
       - name: Checkout repository and submodules

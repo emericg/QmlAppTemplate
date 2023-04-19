@@ -6,18 +6,16 @@
 	<string>QmlAppTemplate</string>
 	<key>CFBundleIconFile</key>
 	<string>qmlapptemplate.icns</string>
-	<key>CFBundleGetInfoString</key>
-	<string>Created by Qt/QMake</string>
 	<key>CFBundleIdentifier</key>
-	<string>${PRODUCT_BUNDLE_IDENTIFIER}</string>
+	<string>com.emeric.qmlapptemplate</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.4</string>
+	<string>0.5</string>
 	<key>CFBundleSignature</key>
-	<string>${QMAKE_PKGINFO_TYPEINFO}</string>
+	<string>10.15</string>
 	<key>CFBundleVersion</key>
-	<string>000401</string>
+	<string>000501</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.utilities</string>
 	<key>LSMinimumSystemVersion</key>
