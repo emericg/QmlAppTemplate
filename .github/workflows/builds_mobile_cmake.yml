@@ -70,6 +70,7 @@ jobs:
       - name: Setup env
         run: |
              export PATH=$Qt6_DIR/bin:$PATH
+             export QT_HOST_PATH=/home/runner/work/${{env.APPLICATION}}/Qt/${{env.QT_VERSION}}/gcc_64
              qmake --version
 
       # Build application
@@ -111,8 +112,8 @@ jobs:
       - name: Setup env
         run: |
              export PATH=$Qt6_DIR/bin:$PATH
-             ln -s /Users/runner/work/${{env.APPLICATION}}/Qt/${{env.QT_VERSION}}/macos /Users/runner/work/${{env.APPLICATION}}/Qt/${{env.QT_VERSION}}/clang_64
-             qmake --version
+             export QT_HOST_PATH=/Users/runner/work/${{env.APPLICATION}}/Qt/${{env.QT_VERSION}}/clang_64
+             cmake --version
 
       # Build application
       - name: Build application

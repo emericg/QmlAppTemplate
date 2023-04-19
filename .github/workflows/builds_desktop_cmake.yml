@@ -45,6 +45,11 @@ jobs:
              sudo apt-get install libgl1-mesa-dev libxkbcommon-x11-dev libx11-xcb-dev libzstd-dev -y;
              sudo apt-get install cmake ninja-build pkgconf libtool appstream -y;
 
+      # Setup env
+      - name: Setup env
+        run: |
+             cmake --version
+
       # Build application
       - name: Build application
         run: |
@@ -75,11 +80,6 @@ jobs:
         with:
           submodules: recursive
 
-      # Install dependencies (from package manager)
-      #- name: Install dependencies (from package manager)
-      #  run: |
-      #       brew install qt6
-
       # Install Qt
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
@@ -87,11 +87,21 @@ jobs:
           version: ${{env.QT_VERSION}}
           modules: qt5compat
 
+      # Install dependencies (from package manager)
+      - name: Install dependencies (from package manager)
+        run: |
+             brew install cmake
+
+      # Setup env
+      - name: Setup env
+        run: |
+             cmake --version
+             alias nproc="sysctl -n hw.logicalcpu"
+             export CMAKE_BUILD_PARALLEL_LEVEL=$(nproc)
+
       # Build application
       - name: Build application
         run: |
-             alias nproc="sysctl -n hw.logicalcpu"
-             export CMAKE_BUILD_PARALLEL_LEVEL=$(nproc)
              cd build/
              cmake ..
              make -j$(nproc)
