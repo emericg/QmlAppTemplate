@@ -57,8 +57,7 @@ UtilsApp::UtilsApp()
     // Set default application path
     m_appPath = QCoreApplication::applicationDirPath();
 
-    //m_appPath = newpath.absolutePath();
-    // Make sure the path is terminated with a separator.
+    // Make sure the path is terminated with a separator?
     //if (!m_appPath.endsWith('/')) m_appPath += '/';
 }
 
@@ -117,6 +116,12 @@ bool UtilsApp::isDebugBuild()
     return true;
 }
 
+QString UtilsApp::qtVersion()
+{
+    return QString(qVersion());
+}
+
+/* ************************************************************************** */
 /* ************************************************************************** */
 
 void UtilsApp::appExit()
@@ -263,7 +268,8 @@ void UtilsApp::openAndroidAppInfo(const QString &packageName)
 void UtilsApp::openAndroidLocationSettings()
 {
 #if defined(Q_OS_ANDROID)
-    return UtilsAndroid::openLocationSettings();
+    //UtilsAndroid::openLocationSettings();
+    UtilsAndroid::gpsutils_openLocationSettings();
 #endif
 }
 
@@ -440,9 +446,16 @@ bool UtilsApp::getMobileCameraPermission()
 bool UtilsApp::isMobileGpsEnabled()
 {
 #if defined(Q_OS_ANDROID)
-    return UtilsAndroid::isGpsEnabled();
+    return UtilsAndroid::gpsutils_isGpsEnabled();
 #else
     return false;
+#endif
+}
+
+void UtilsApp::forceMobileGpsEnabled()
+{
+#if defined(Q_OS_ANDROID)
+    UtilsAndroid::gpsutils_forceGpsEnabled();
 #endif
 }
 

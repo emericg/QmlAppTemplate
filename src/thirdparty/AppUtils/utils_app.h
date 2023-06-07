@@ -57,6 +57,8 @@ public:
     static Q_INVOKABLE QString appBuildModeFull();
     static Q_INVOKABLE bool isDebugBuild();
 
+    static Q_INVOKABLE QString qtVersion();
+
     // tools
     QString getAppPath() const { return m_appPath; }
     void setAppPath(const QString &value);
@@ -102,6 +104,7 @@ public:
     static Q_INVOKABLE bool getMobileCameraPermission();
 
     static Q_INVOKABLE bool isMobileGpsEnabled();
+    static Q_INVOKABLE void forceMobileGpsEnabled();
 
     static Q_INVOKABLE QString getMobileDeviceModel();
     static Q_INVOKABLE QString getMobileDeviceSerial();
