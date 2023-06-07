@@ -31,6 +31,7 @@
         <file alias="RoundButtonText.qml">components_generic/RoundButtonText.qml</file>
         <file alias="RangeSliderArrow.qml">components_generic/RangeSliderArrow.qml</file>
         <file alias="RangeSliderValueSolid.qml">components_generic/RangeSliderValueSolid.qml</file>
+        <file alias="SectionTitle.qml">components_generic/SectionTitle.qml</file>
         <file alias="SelectorMenu.qml">components_generic/SelectorMenu.qml</file>
         <file alias="SelectorMenuItem.qml">components_generic/SelectorMenuItem.qml</file>
         <file alias="SliderArrow.qml">components_generic/SliderArrow.qml</file>
