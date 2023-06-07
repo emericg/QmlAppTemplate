@@ -1,14 +1,21 @@
-import QtQuick 2.15
-import QtQuick.Controls 2.15
+import QtQuick
+import QtQuick.Controls
 
 import ThemeEngine 1.0
 import "qrc:/js/UtilsString.js" as UtilsString
 
 Item {
-    id: screenComponents
+    id: screenMainView
     anchors.fill: parent
-    anchors.leftMargin: screenPaddingLeft
-    anchors.rightMargin: screenPaddingRight
+
+    function loadScreen() {
+        // change screen
+        appContent.state = "MainView"
+    }
+
+    function backAction() {
+        //
+    }
 
     // MENUS ///////////////////////////////////////////////////////////////////
 

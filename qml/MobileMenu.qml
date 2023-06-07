@@ -50,7 +50,7 @@ Rectangle {
             text: qsTr("MainView")
             source: "qrc:/assets/icons_material/duotone-touch_app-24px.svg"
             selected: (appContent.state === "MainView")
-            onClicked: appContent.state = "MainView"
+            onClicked: screenMainView.loadScreen()
         }
         MobileMenuItem_horizontal {
             id: menuSettings
@@ -63,7 +63,7 @@ Rectangle {
             text: qsTr("Settings")
             source: "qrc:/assets/icons_material/baseline-settings-20px.svg"
             selected: (appContent.state === "Settings")
-            onClicked: appContent.state = "Settings"
+            onClicked: screenSettings.loadScreen()
         }
         MobileMenuItem_horizontal {
             id: menuAbout
@@ -76,7 +76,7 @@ Rectangle {
             text: qsTr("About")
             source: "qrc:/assets/icons_material/outline-info-24px.svg"
             selected: (appContent.state === "About" || appContent.state === "Permissions")
-            onClicked: appContent.state = "About"
+            onClicked: screenAbout.loadScreen()
         }
     }
 }

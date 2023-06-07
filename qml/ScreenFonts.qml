@@ -1,24 +1,43 @@
-import QtQuick 2.15
-import QtQuick.Controls 2.15
+import QtQuick
+import QtQuick.Controls
 
 import ThemeEngine 1.0
 
-Item {
-    id: screenFontList
+Loader {
+    id: screenFonts
     anchors.fill: parent
-    anchors.leftMargin: screenPaddingLeft
-    anchors.rightMargin: screenPaddingRight
+
+    function loadScreen() {
+        // load screen
+        screenFonts.active = true
+
+        // change screen
+        appContent.state = "FontList"
+    }
+
+    function backAction() {
+        if (screenFonts.status === Loader.Ready)
+            screenFonts.item.backAction()
+    }
 
     ////////////////////////////////////////////////////////////////////////////
 
+    active: false
+    asynchronous: false
+
     // helper to list available fonts available on the host OS
-    ListView {
+    sourceComponent: ListView {
         anchors.fill: parent
         anchors.margins: 0
-        ScrollBar.vertical: ScrollBar { }
 
         topMargin: 16
         bottomMargin: 16
+
+        ScrollBar.vertical: ScrollBar { }
+
+        function backAction() {
+            //
+        }
 
         header: Rectangle {
             height: 40

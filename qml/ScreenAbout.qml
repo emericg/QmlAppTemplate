@@ -1,27 +1,46 @@
-import QtQuick 2.15
-import QtQuick.Controls 2.15
+import QtQuick
+import QtQuick.Controls
 
 import ThemeEngine 1.0
 import "qrc:/js/UtilsNumber.js" as UtilsNumber
 
-Item {
-    id: aboutScreen
-    width: 480
-    height: 720
+Loader {
+    id: screenAbout
     anchors.fill: parent
+
+    function loadScreen() {
+        // load screen
+        screenAbout.active = true
+
+        // change screen
+        appContent.state = "About"
+    }
+
+    function backAction() {
+        if (screenAbout.status === Loader.Ready)
+            screenAbout.item.backAction()
+    }
 
     ////////////////////////////////////////////////////////////////////////////
 
-    Flickable {
+    active: false
+    asynchronous: false
+
+    sourceComponent: Flickable {
         anchors.fill: parent
-        contentWidth: parent.width
-        contentHeight: column.height
+
+        contentWidth: -1
+        contentHeight: contentColumn.height
 
         boundsBehavior: isDesktop ? Flickable.OvershootBounds : Flickable.DragAndOvershootBounds
         ScrollBar.vertical: ScrollBar { visible: isDesktop; }
 
+        function backAction() {
+            //
+        }
+
         Column {
-            id: column
+            id: contentColumn
             anchors.left: parent.left
             anchors.leftMargin: screenPaddingLeft + 16
             anchors.right: parent.right
@@ -33,13 +52,13 @@ Item {
 
             ////////////////
 
-            Rectangle { // header
+            Rectangle { // header area
                 anchors.left: parent.left
                 anchors.leftMargin: -(screenPaddingLeft + 16)
                 anchors.right: parent.right
                 anchors.rightMargin: -(screenPaddingRight + 16)
 
-                height: 92
+                height: 96
                 color: Theme.colorForeground
 
                 Row {
@@ -48,7 +67,7 @@ Item {
                     anchors.verticalCenter: parent.verticalCenter
 
                     z: 2
-                    height: 92
+                    height: 96
                     spacing: 24
 
                     Image { // logo
@@ -88,10 +107,9 @@ Item {
 
                     ButtonWireframeIconCentered {
                         width: 160
-
                         sourceSize: 28
                         fullColor: true
-                        primaryColor: (Theme.currentTheme === ThemeEngine.THEME_NIGHT) ? Theme.colorHeader : "#5483EF"
+                        primaryColor: Theme.colorMaterialBlue
 
                         text: qsTr("WEBSITE")
                         source: "qrc:/assets/icons_material/baseline-insert_link-24px.svg"
@@ -100,10 +118,9 @@ Item {
 
                     ButtonWireframeIconCentered {
                         width: 160
-
                         sourceSize: 22
                         fullColor: true
-                        primaryColor: (Theme.currentTheme === ThemeEngine.THEME_NIGHT) ? Theme.colorHeader : "#5483EF"
+                        primaryColor: Theme.colorMaterialBlue
 
                         text: qsTr("SUPPORT")
                         source: "qrc:/assets/icons_material/baseline-support-24px.svg"
@@ -111,17 +128,25 @@ Item {
                     }
 
                     ButtonWireframeIconCentered {
-                        visible: (appWindow.width > 800)
                         width: 160
-
                         sourceSize: 22
                         fullColor: true
-                        primaryColor: (Theme.currentTheme === ThemeEngine.THEME_NIGHT) ? Theme.colorHeader : "#5483EF"
+                        primaryColor: Theme.colorMaterialBlue
+                        visible: (appWindow.width > 800)
 
                         text: qsTr("GitHub")
                         source: "qrc:/assets/logos/github.svg"
                         onClicked: Qt.openUrlExternally("https://github.com/emericg/QmlAppTemplate")
                     }
+                }
+
+                Rectangle { // bottom separator
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.bottom: parent.bottom
+                    height: 2
+                    visible: isDesktop
+                    border.color: Qt.darker(parent.color, 1.03)
                 }
             }
 
@@ -145,7 +170,7 @@ Item {
 
                     sourceSize: 28
                     fullColor: true
-                    primaryColor: (Theme.currentTheme === ThemeEngine.THEME_NIGHT) ? Theme.colorHeader : "#5483EF"
+                    primaryColor: Theme.colorMaterialBlue
 
                     text: qsTr("WEBSITE")
                     source: "qrc:/assets/icons_material/baseline-insert_link-24px.svg"
@@ -157,7 +182,7 @@ Item {
 
                     sourceSize: 22
                     fullColor: true
-                    primaryColor: (Theme.currentTheme === ThemeEngine.THEME_NIGHT) ? Theme.colorHeader : "#5483EF"
+                    primaryColor: Theme.colorMaterialBlue
 
                     text: qsTr("SUPPORT")
                     source: "qrc:/assets/icons_material/baseline-support-24px.svg"
@@ -217,8 +242,8 @@ Item {
 
                 IconSvg {
                     id: authorImg
-                    width: 31
-                    height: 31
+                    width: 32
+                    height: 32
                     anchors.left: parent.left
                     anchors.leftMargin: 0
                     anchors.verticalCenter: parent.verticalCenter
@@ -237,7 +262,7 @@ Item {
 
                     text: qsTr("Application by <a href=\"https://emeric.io\">Emeric Grange</a>")
                     textFormat: Text.StyledText
-                    onLinkActivated: Qt.openUrlExternally(link)
+                    onLinkActivated: (link) => { Qt.openUrlExternally(link) }
                     font.pixelSize: Theme.fontSizeContent
                     color: Theme.colorText
                     linkColor: Theme.colorIcon
@@ -276,8 +301,8 @@ Item {
 
                 IconSvg {
                     id: rateImg
-                    width: 31
-                    height: 31
+                    width: 32
+                    height: 32
                     anchors.left: parent.left
                     anchors.leftMargin: 0
                     anchors.verticalCenter: parent.verticalCenter
@@ -331,8 +356,8 @@ Item {
                 anchors.rightMargin: 0
 
                 IconSvg {
-                    width: 27
-                    height: 27
+                    width: 28
+                    height: 28
                     anchors.left: parent.left
                     anchors.leftMargin: 2
                     anchors.verticalCenter: parent.verticalCenter

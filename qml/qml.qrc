@@ -10,11 +10,11 @@
         <file>DesktopHeader.qml</file>
         <file>DesktopSidebar.qml</file>
 
-        <file>MainView.qml</file>
-        <file>FontList.qml</file>
-        <file>HostInfos.qml</file>
-        <file>Settings.qml</file>
-        <file>About.qml</file>
+        <file>ScreenMainView.qml</file>
+        <file>ScreenFonts.qml</file>
+        <file>ScreenHostInfos.qml</file>
+        <file>ScreenSettings.qml</file>
+        <file>ScreenAbout.qml</file>
 
         <file>ThemeEngine.qml</file>
         <file>WindowGeometrySaver.qml</file>

@@ -159,9 +159,9 @@ ApplicationWindow {
                 appDrawer.open()
             } else {
                 if (appContent.state === "Permissions")
-                    appContent.state = "About"
+                    screenAbout.loadScreen()
                 else
-                    appContent.state = "MainView"
+                    screenMainView.loadScreen()
             }
         }
         function onRightMenuClicked() {
@@ -213,9 +213,9 @@ ApplicationWindow {
             else
                 exitTimer.start()
         } else if (appContent.state === "Permissions") {
-            appContent.state = "About"
+            screenAbout.loadScreen()
         } else if (appContent.state !== "MainView") {
-            appContent.state = "MainView"
+            screenMainView.loadScreen()
         }
     }
     function forwardAction() {
@@ -249,6 +249,7 @@ ApplicationWindow {
 
     FocusScope {
         id: appContent
+
         anchors.top: appHeader.bottom
         anchors.left: parent.left
         anchors.right: parent.right
@@ -257,45 +258,35 @@ ApplicationWindow {
         focus: true
         Keys.onBackPressed: backAction()
 
-        MainView {
+        ScreenMainView {
             id: screenMainView
-            anchors.fill: parent
             anchors.bottomMargin: mobileMenu.hhv
         }
-
-        FontList {
+        ScreenFonts {
             id: screenFontList
-            anchors.fill: parent
             anchors.bottomMargin: mobileMenu.hhv
         }
-        HostInfos {
+        ScreenHostInfos {
             id: screenHostInfos
-            anchors.fill: parent
             anchors.bottomMargin: mobileMenu.hhv
         }
 
-        Settings {
+        ScreenSettings {
             id: screenSettings
-            anchors.fill: parent
             anchors.bottomMargin: mobileMenu.hhv
         }
         MobilePermissions {
             id: screenPermissions
-            anchors.fill: parent
             anchors.bottomMargin: mobileMenu.hhv
         }
-        About {
+        ScreenAbout {
             id: screenAbout
-            anchors.fill: parent
             anchors.bottomMargin: mobileMenu.hhv
         }
 
         Component.onCompleted: {
             //
         }
-
-        // Initial state
-        state: "MainView"
 
         onStateChanged: {
             if (state === "MainView")
@@ -305,6 +296,9 @@ ApplicationWindow {
             else
                 appHeader.leftMenuMode = "back"
         }
+
+        // Initial state
+        state: "MainView"
 
         states: [
             State {

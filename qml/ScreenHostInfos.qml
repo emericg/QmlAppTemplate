@@ -1,38 +1,61 @@
-import QtQuick 2.15
-import QtQuick.Controls 2.15
+import QtQuick
+import QtQuick.Controls
 
 import ThemeEngine 1.0
 
-Item {
+Loader {
     id: screenHostInfos
-    width: 1280
-    height: 720
+    anchors.fill: parent
+
+    function loadScreen() {
+        // load screen
+        screenHostInfos.active = true
+
+        // change screen
+        appContent.state = "HostInfos"
+    }
+
+    function backAction() {
+        if (screenHostInfos.status === Loader.Ready)
+            screenHostInfos.item.backAction()
+    }
 
     ////////////////////////////////////////////////////////////////////////////
 
-    property int flow_width: (flow.width - flow.spacing)
-    property int flow_divider: Math.round(flow_width / 512)
-    property int www: ((flow_width - (flow.spacing * flow_divider)) / flow_divider)
+    active: false
+    asynchronous: false
 
-    Flickable {
+    sourceComponent: Flickable {
         anchors.fill: parent
 
         contentWidth: -1
-        contentHeight: flow.height
+        contentHeight: contentFlow.height
+
+        boundsBehavior: isDesktop ? Flickable.OvershootBounds : Flickable.DragAndOvershootBounds
+        ScrollBar.vertical: ScrollBar { visible: isDesktop; }
+
+        function backAction() {
+            //
+        }
+
+        property int flow_width: (contentFlow.width - contentFlow.spacing)
+        property int flow_divider: Math.round(flow_width / 512)
+        property int www: ((flow_width - (contentFlow.spacing * flow_divider)) / flow_divider)
 
         Flow {
-            id: flow
+            id: contentFlow
             anchors.left: parent.left
             anchors.right: parent.right
-            height: singleColumn ? maxheight : screenHostInfos.height
 
             property int maxheight: 2*topPadding + 3*spacing + itemSwInfo.height + itemHwInfo.height + itemScreen.height + itemApp.height
+
+            height: singleColumn ? maxheight : screenHostInfos.height
+            spacing: 12
+            flow: Flow.TopToBottom
 
             topPadding: 14
             padding: 12
             bottomPadding: 14
-            spacing: 12
-            flow: Flow.TopToBottom
 
             ////////////////////////////////
 
@@ -55,6 +78,23 @@ Item {
                     anchors.right: parent.right
                     anchors.rightMargin: 12
                     spacing: 8
+
+                    Column {
+                        Text {
+                            text: qsTr("App name")
+                            textFormat: Text.PlainText
+                            color: Theme.colorSubText
+                            font.bold: true
+                            font.pixelSize: Theme.fontSizeContentVerySmall
+                            font.capitalization: Font.AllUppercase
+                        }
+                        Text {
+                            text: utilsApp.appName()
+                            textFormat: Text.PlainText
+                            font.pixelSize: Theme.fontSizeContentBig
+                            color: Theme.colorHighContrast
+                        }
+                    }
 
                     Column {
                         Text {
@@ -112,9 +152,9 @@ Item {
             ////////////////////////////////
 
             Rectangle {
-                id: itemScreen
+                id: itemQt
                 width: www
-                height: itemScreenContent.height + 24
+                height: itemQtContent.height + 24
 
                 radius: Theme.componentRadius
                 color: Theme.colorForeground
@@ -122,7 +162,7 @@ Item {
                 border.color: Theme.colorSeparator
 
                 Column {
-                    id: itemScreenContent
+                    id: itemQtContent
                     anchors.top: parent.top
                     anchors.topMargin: 12
                     anchors.left: parent.left
@@ -133,7 +173,7 @@ Item {
 
                     Column {
                         Text {
-                            text: qsTr("Screen size")
+                            text: qsTr("Qt version")
                             textFormat: Text.PlainText
                             color: Theme.colorSubText
                             font.bold: true
@@ -141,16 +181,41 @@ Item {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: utilsScreen.screenSize.toFixed(1) + " " + qsTr("inches")
+                            text: utilsApp.qtVersion()
                             textFormat: Text.PlainText
                             font.pixelSize: Theme.fontSizeContentBig
                             color: Theme.colorHighContrast
                         }
                     }
+                }
+            }
+
+            ////////////////////////////////
+
+            Rectangle {
+                id: itemSwInfo
+                width: www
+                height: itemSwInfoContent.height + 24
+
+                radius: Theme.componentRadius
+                color: Theme.colorForeground
+                border.width: 2
+                border.color: Theme.colorSeparator
+
+                Column {
+                    id: itemSwInfoContent
+                    anchors.top: parent.top
+                    anchors.topMargin: 12
+                    anchors.left: parent.left
+                    anchors.leftMargin: 12
+                    anchors.right: parent.right
+                    anchors.rightMargin: 12
+
+                    spacing: 12
 
                     Column {
                         Text {
-                            text: qsTr("Screen depth & rate")
+                            text: qsTr("Operating System")
                             textFormat: Text.PlainText
                             color: Theme.colorSubText
                             font.bold: true
@@ -158,16 +223,18 @@ Item {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: utilsScreen.screenDepth + " bpp @ " + utilsScreen.screenRefreshRate.toFixed(1) + " Hz"
+                            text: utilsSysinfo.os_name
                             textFormat: Text.PlainText
-                            font.pixelSize: Theme.fontSizeContentBig
                             color: Theme.colorHighContrast
+                            font.pixelSize: Theme.fontSizeContentBig
                         }
                     }
 
                     Column {
+                        visible: utilsSysinfo.os_version !== "unknown"
+
                         Text {
-                            text: qsTr("Screen geometry")
+                            text: qsTr("Operating System VERSION")
                             textFormat: Text.PlainText
                             color: Theme.colorSubText
                             font.bold: true
@@ -175,18 +242,18 @@ Item {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: utilsScreen.screenWidth + " x " + utilsScreen.screenHeight
+                            text: utilsSysinfo.os_version
                             textFormat: Text.PlainText
-                            font.pixelSize: Theme.fontSizeContentBig
                             color: Theme.colorHighContrast
+                            font.pixelSize: Theme.fontSizeContentBig
                         }
                     }
 
                     Column {
-                        visible: utilsScreen.screenPar != 1
+                        visible: utilsApp.getAndroidSdkVersion() !== 0
 
                         Text {
-                            text: qsTr("Screen geometry (physical)")
+                            text: qsTr("Android SDK version")
                             textFormat: Text.PlainText
                             color: Theme.colorSubText
                             font.bold: true
@@ -194,64 +261,10 @@ Item {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: (utilsScreen.screenWidth*utilsScreen.screenPar).toFixed(1) + " x "
-                                  + (utilsScreen.screenHeight*utilsScreen.screenPar).toFixed(1)
+                            text: utilsApp.getAndroidSdkVersion()
                             textFormat: Text.PlainText
-                            font.pixelSize: Theme.fontSizeContentBig
                             color: Theme.colorHighContrast
-                        }
-                    }
-
-                    Column {
-                        Text {
-                            text: qsTr("Screen DPI")
-                            textFormat: Text.PlainText
-                            color: Theme.colorSubText
-                            font.bold: true
-                            font.pixelSize: Theme.fontSizeContentVerySmall
-                            font.capitalization: Font.AllUppercase
-                        }
-                        Text {
-                            text: utilsScreen.screenDpi
-                            textFormat: Text.PlainText
                             font.pixelSize: Theme.fontSizeContentBig
-                            color: Theme.colorHighContrast
-                        }
-                    }
-
-                    Column {
-                        visible: utilsScreen.screenPar != 1
-
-                        Text {
-                            text: qsTr("Screen DPI (physical)")
-                            textFormat: Text.PlainText
-                            color: Theme.colorSubText
-                            font.bold: true
-                            font.pixelSize: Theme.fontSizeContentVerySmall
-                            font.capitalization: Font.AllUppercase
-                        }
-                        Text {
-                            text: (utilsScreen.screenDpi*utilsScreen.screenPar).toFixed(0)
-                            textFormat: Text.PlainText
-                            font.pixelSize: Theme.fontSizeContentBig
-                            color: Theme.colorHighContrast
-                        }
-                    }
-
-                    Column {
-                        Text {
-                            text: qsTr("Screen Pixel Aspect Ratio")
-                            textFormat: Text.PlainText
-                            color: Theme.colorSubText
-                            font.bold: true
-                            font.pixelSize: Theme.fontSizeContentVerySmall
-                            font.capitalization: Font.AllUppercase
-                        }
-                        Text {
-                            text: utilsScreen.screenPar.toFixed(1)
-                            textFormat: Text.PlainText
-                            font.pixelSize: Theme.fontSizeContentBig
-                            color: Theme.colorHighContrast
                         }
                     }
                 }
@@ -353,9 +366,9 @@ Item {
             ////////////////////////////////
 
             Rectangle {
-                id: itemSwInfo
+                id: itemScreen
                 width: www
-                height: itemSwInfoContent.height + 24
+                height: itemScreenContent.height + 24
 
                 radius: Theme.componentRadius
                 color: Theme.colorForeground
@@ -363,19 +376,18 @@ Item {
                 border.color: Theme.colorSeparator
 
                 Column {
-                    id: itemSwInfoContent
+                    id: itemScreenContent
                     anchors.top: parent.top
                     anchors.topMargin: 12
                     anchors.left: parent.left
                     anchors.leftMargin: 12
                     anchors.right: parent.right
                     anchors.rightMargin: 12
-
-                    spacing: 12
+                    spacing: 8
 
                     Column {
                         Text {
-                            text: qsTr("Operating System")
+                            text: qsTr("Screen size")
                             textFormat: Text.PlainText
                             color: Theme.colorSubText
                             font.bold: true
@@ -383,10 +395,134 @@ Item {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: utilsSysinfo.os_name
+                            text: utilsScreen.screenSize.toFixed(1) + " " + qsTr("inches")
                             textFormat: Text.PlainText
-                            color: Theme.colorHighContrast
                             font.pixelSize: Theme.fontSizeContentBig
+                            color: Theme.colorHighContrast
+                        }
+                    }
+
+                    Column {
+                        Text {
+                            text: qsTr("Screen geometry")
+                            textFormat: Text.PlainText
+                            color: Theme.colorSubText
+                            font.bold: true
+                            font.pixelSize: Theme.fontSizeContentVerySmall
+                            font.capitalization: Font.AllUppercase
+                        }
+                        Text {
+                            text: utilsScreen.screenWidth + " x " + utilsScreen.screenHeight
+                            textFormat: Text.PlainText
+                            font.pixelSize: Theme.fontSizeContentBig
+                            color: Theme.colorHighContrast
+                        }
+                    }
+
+                    Column {
+                        Text {
+                            text: qsTr("Screen refresh rate")
+                            textFormat: Text.PlainText
+                            color: Theme.colorSubText
+                            font.bold: true
+                            font.pixelSize: Theme.fontSizeContentVerySmall
+                            font.capitalization: Font.AllUppercase
+                        }
+                        Text {
+                            text: utilsScreen.screenRefreshRate.toFixed(1) + " Hz"
+                            textFormat: Text.PlainText
+                            font.pixelSize: Theme.fontSizeContentBig
+                            color: Theme.colorHighContrast
+                        }
+                    }
+
+                    Column {
+                        Text {
+                            text: qsTr("Screen color depth")
+                            textFormat: Text.PlainText
+                            color: Theme.colorSubText
+                            font.bold: true
+                            font.pixelSize: Theme.fontSizeContentVerySmall
+                            font.capitalization: Font.AllUppercase
+                        }
+                        Text {
+                            text: utilsScreen.screenDepth + " bpp"
+                            textFormat: Text.PlainText
+                            font.pixelSize: Theme.fontSizeContentBig
+                            color: Theme.colorHighContrast
+                        }
+                    }
+
+                    Column {
+                        visible: utilsScreen.screenPar != 1
+
+                        Text {
+                            text: qsTr("Screen geometry (physical)")
+                            textFormat: Text.PlainText
+                            color: Theme.colorSubText
+                            font.bold: true
+                            font.pixelSize: Theme.fontSizeContentVerySmall
+                            font.capitalization: Font.AllUppercase
+                        }
+                        Text {
+                            text: (utilsScreen.screenWidth*utilsScreen.screenPar).toFixed(1) + " x "
+                                  + (utilsScreen.screenHeight*utilsScreen.screenPar).toFixed(1)
+                            textFormat: Text.PlainText
+                            font.pixelSize: Theme.fontSizeContentBig
+                            color: Theme.colorHighContrast
+                        }
+                    }
+
+                    Column {
+                        Text {
+                            text: qsTr("Screen DPI")
+                            textFormat: Text.PlainText
+                            color: Theme.colorSubText
+                            font.bold: true
+                            font.pixelSize: Theme.fontSizeContentVerySmall
+                            font.capitalization: Font.AllUppercase
+                        }
+                        Text {
+                            text: utilsScreen.screenDpi
+                            textFormat: Text.PlainText
+                            font.pixelSize: Theme.fontSizeContentBig
+                            color: Theme.colorHighContrast
+                        }
+                    }
+
+                    Column {
+                        visible: utilsScreen.screenPar != 1
+
+                        Text {
+                            text: qsTr("Screen DPI (physical)")
+                            textFormat: Text.PlainText
+                            color: Theme.colorSubText
+                            font.bold: true
+                            font.pixelSize: Theme.fontSizeContentVerySmall
+                            font.capitalization: Font.AllUppercase
+                        }
+                        Text {
+                            text: (utilsScreen.screenDpi*utilsScreen.screenPar).toFixed(0)
+                            textFormat: Text.PlainText
+                            font.pixelSize: Theme.fontSizeContentBig
+                            color: Theme.colorHighContrast
+                        }
+                    }
+
+                    Column {
+                        Text {
+                            text: qsTr("Screen Pixel Aspect Ratio")
+                            textFormat: Text.PlainText
+                            color: Theme.colorSubText
+                            font.bold: true
+                            font.pixelSize: Theme.fontSizeContentVerySmall
+                            font.capitalization: Font.AllUppercase
+                        }
+                        Text {
+                            text: utilsScreen.screenPar.toFixed(1)
+                            textFormat: Text.PlainText
+                            font.pixelSize: Theme.fontSizeContentBig
+                            color: Theme.colorHighContrast
                         }
                     }
                 }

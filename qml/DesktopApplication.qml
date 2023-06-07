@@ -68,7 +68,7 @@ ApplicationWindow {
         target: appHeader
         function onBackButtonClicked() {
             if (appContent.state !== "MainView") {
-                appContent.state = "MainView"
+                screenMainView.loadScreen()
             }
         }
 
@@ -76,9 +76,9 @@ ApplicationWindow {
             //
         }
 
-        function onMainButtonClicked() { appContent.state = "MainView" }
-        function onSettingsButtonClicked() { appContent.state = "Settings" }
-        function onAboutButtonClicked() { appContent.state = "About" }
+        function onMainButtonClicked() { screenMainView.loadScreen() }
+        function onSettingsButtonClicked() { screenSettings.loadScreen() }
+        function onAboutButtonClicked() { screenAbout.loadScreen() }
     }
 
     Connections {
@@ -149,7 +149,7 @@ ApplicationWindow {
     }
     Shortcut {
         sequence: StandardKey.Preferences
-        onActivated: appContent.state = "Settings"
+        onActivated: screenSettings.loadScreen()
     }
     Shortcut {
         sequences: [StandardKey.Close]
@@ -217,7 +217,7 @@ ApplicationWindow {
         anchors.right: parent.right
     }
 
-    Item {
+    Rectangle {
         id: appContent
 
         anchors.top: appHeader.bottom
@@ -225,26 +225,22 @@ ApplicationWindow {
         anchors.right: parent.right
         anchors.bottom: parent.bottom
 
-        MainView {
-            anchors.fill: parent
+        color: Theme.colorBackground
+
+        ScreenMainView {
             id: screenMainView
         }
-
-        FontList {
-            anchors.fill: parent
+        ScreenFonts {
             id: screenFontList
         }
-        HostInfos {
-            anchors.fill: parent
+        ScreenHostInfos {
             id: screenHostInfos
         }
 
-        Settings {
-            anchors.fill: parent
+        ScreenSettings {
             id: screenSettings
         }
-        About {
-            anchors.fill: parent
+        ScreenAbout {
             id: screenAbout
         }
 
@@ -252,12 +248,12 @@ ApplicationWindow {
             //
         }
 
-        // Initial state
-        state: "MainView"
-
         onStateChanged: {
             //
         }
+
+        // Initial state
+        state: "MainView"
 
         states: [
             State {

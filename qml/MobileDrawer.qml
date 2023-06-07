@@ -97,6 +97,8 @@ Drawer {
                 }
             }
         }
+
+        // prevent clicks below this area
         MouseArea { anchors.fill: rectangleHeader; acceptedButtons: Qt.AllButtons; }
 
         ////////////////////////////////////////////////////////////////////////////
@@ -108,10 +110,10 @@ Drawer {
             anchors.bottom: parent.bottom
 
             contentWidth: -1
-            contentHeight: column.height
+            contentHeight: contentColumn.height
 
             Column {
-                id: column
+                id: contentColumn
                 anchors.left: parent.left
                 anchors.right: parent.right
 
@@ -146,7 +148,7 @@ Drawer {
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
-                            appContent.state = "MainView"
+                            screenMainView.loadScreen()
                             appDrawer.close()
                         }
                     }
@@ -185,7 +187,7 @@ Drawer {
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
-                            appContent.state = "HostInfos"
+                            screenHostInfos.loadScreen()
                             appDrawer.close()
                         }
                     }
@@ -224,7 +226,7 @@ Drawer {
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
-                            appContent.state = "FontList"
+                            screenFontList.loadScreen()
                             appDrawer.close()
                         }
                     }
@@ -253,6 +255,25 @@ Drawer {
 
                 ////////
 
+                Item { // spacer
+                    height: 8
+                    anchors.right: parent.right
+                    anchors.left: parent.left
+                }
+                Rectangle {
+                    height: 1
+                    anchors.right: parent.right
+                    anchors.left: parent.left
+                    color: Theme.colorSeparator
+                }
+                Item {
+                    height: 8
+                    anchors.right: parent.right
+                    anchors.left: parent.left
+                }
+
+                ////////
+
                 Rectangle {
                     id: rectangleSettings
                     height: 48
@@ -263,7 +284,7 @@ Drawer {
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
-                            appContent.state = "Settings"
+                            screenSettings.loadScreen()
                             appDrawer.close()
                         }
                     }
@@ -295,12 +316,13 @@ Drawer {
                     height: 48
                     anchors.right: parent.right
                     anchors.left: parent.left
-                    color: (appContent.state === "About" || appContent.state === "Permissions") ? Theme.colorForeground : "transparent"
+                    color: (appContent.state === "About" ||
+                            appContent.state === "Permissions") ? Theme.colorForeground : "transparent"
 
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
-                            appContent.state = "About"
+                            screenAbout.loadScreen()
                             appDrawer.close()
                         }
                     }

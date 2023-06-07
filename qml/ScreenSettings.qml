@@ -1,27 +1,45 @@
-import QtQuick 2.15
-import QtQuick.Controls 2.15
+import QtQuick
+import QtQuick.Controls
 
 import ThemeEngine 1.0
-import "qrc:/js/UtilsNumber.js" as UtilsNumber
 
-Item {
-    id: settingsScreen
-    width: 480
-    height: 720
+Loader {
+    id: screenSettings
     anchors.fill: parent
+
+    function loadScreen() {
+        // load screen
+        screenSettings.active = true
+
+        // change screen
+        appContent.state = "Settings"
+    }
+
+    function backAction() {
+        if (screenSettings.status === Loader.Ready)
+            screenSettings.item.backAction()
+    }
 
     ////////////////////////////////////////////////////////////////////////////
 
-    Flickable {
+    active: false
+    asynchronous: false
+
+    sourceComponent: Flickable {
         anchors.fill: parent
+
         contentWidth: -1
-        contentHeight: column.height
+        contentHeight: contentColumn.height
 
         boundsBehavior: isDesktop ? Flickable.OvershootBounds : Flickable.DragAndOvershootBounds
         ScrollBar.vertical: ScrollBar { visible: isDesktop; }
 
+        function backAction() {
+            //
+        }
+
         Column {
-            id: column
+            id: contentColumn
             anchors.left: parent.left
             anchors.right: parent.right
 
@@ -31,39 +49,12 @@ Item {
 
             ////////////////
 
-            Rectangle {
-                height: 48
-                anchors.left: parent.left
-                anchors.right: parent.right
+            SectionTitle {
+                anchors.leftMargin: singleColumn ? 0 : 12
+                anchors.rightMargin: singleColumn ? 0 : 12
 
-                color: Theme.colorForeground
-
-                IconSvg {
-                    id: image_appsettings
-                    width: 24
-                    height: 24
-                    anchors.left: parent.left
-                    anchors.leftMargin: screenPaddingLeft + 16
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    color: Theme.colorIcon
-                    source: "qrc:/assets/icons_material/baseline-settings-20px.svg"
-                }
-
-                Text {
-                    id: text_appsettings
-                    anchors.left: image_appsettings.right
-                    anchors.leftMargin: 24
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    text: qsTr("Application")
-                    textFormat: Text.PlainText
-                    font.pixelSize: Theme.fontSizeContent
-                    font.bold: false
-                    color: Theme.colorText
-                    wrapMode: Text.WordWrap
-                    verticalAlignment: Text.AlignVCenter
-                }
+                text: qsTr("Application")
+                source: "qrc:/assets/icons_material/baseline-settings-20px.svg"
             }
 
             ////////////////
@@ -137,31 +128,6 @@ Item {
                         MouseArea {
                             anchors.fill: parent
                             onClicked: settingsManager.appTheme = "THEME_SNOW"
-                        }
-                    }
-                    Rectangle {
-                        id: rectangleGreen
-                        width: wideWideMode ? 80 : 32
-                        height: 32
-                        anchors.verticalCenter: parent.verticalCenter
-
-                        radius: 2
-                        color: "#09debc" // green theme colorSecondary
-                        border.color: Theme.colorPrimary
-                        border.width: (settingsManager.appTheme === "THEME_PLANT") ? 2 : 0
-
-                        Text {
-                            anchors.centerIn: parent
-                            visible: wideWideMode
-                            text: qsTr("plant")
-                            textFormat: Text.PlainText
-                            color: "white"
-                            font.bold: true
-                            font.pixelSize: Theme.fontSizeContentSmall
-                        }
-                        MouseArea {
-                            anchors.fill: parent
-                            onClicked: settingsManager.appTheme = "THEME_PLANT"
                         }
                     }
                     Rectangle {
@@ -357,14 +323,14 @@ Item {
             }
 
             ////////
-
-            Rectangle {
+/*
+            Rectangle { // separator
                 height: 1
                 anchors.left: parent.left
                 anchors.right: parent.right
                 color: Theme.colorSeparator
             }
-
+*/
             ////////
 
             Item {
@@ -453,39 +419,12 @@ Item {
 
             ////////////////
 
-            Rectangle {
-                height: 48
-                anchors.left: parent.left
-                anchors.right: parent.right
+            SectionTitle {
+                anchors.leftMargin: singleColumn ? 0 : 12
+                anchors.rightMargin: singleColumn ? 0 : 12
 
-                color: Theme.colorForeground
-
-                IconSvg {
-                    id: image_fakesettings
-                    width: 24
-                    height: 24
-                    anchors.left: parent.left
-                    anchors.leftMargin: screenPaddingLeft + 16
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    color: Theme.colorIcon
-                    source: "qrc:/assets/icons_material/baseline-settings-20px.svg"
-                }
-
-                Text {
-                    id: text_fakesettings
-                    anchors.left: image_fakesettings.right
-                    anchors.leftMargin: 24
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    text: qsTr("Other fake settings")
-                    textFormat: Text.PlainText
-                    font.pixelSize: Theme.fontSizeContent
-                    font.bold: false
-                    color: Theme.colorText
-                    wrapMode: Text.WordWrap
-                    verticalAlignment: Text.AlignVCenter
-                }
+                text: qsTr("Other fake settings")
+                source: "qrc:/assets/icons_material/baseline-settings-20px.svg"
             }
 
             ////////////////

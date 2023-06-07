@@ -1,7 +1,7 @@
 pragma Singleton
 
-import QtQuick 2.15
-import QtQuick.Controls.Material 2.15
+import QtQuick
+import QtQuick.Controls.Material
 
 Item {
     enum ThemeNames {
@@ -76,7 +76,7 @@ Item {
     property color colorDeviceWidget
     property string sidebarSelector // 'arrow' or 'bar'
 
-    // Qt Quick controls & theming
+    // Qt Quick Controls & theming
     property color colorComponent
     property color colorComponentText
     property color colorComponentContent
@@ -91,15 +91,15 @@ Item {
     ////////////////
 
     // Palette colors
-    property color colorLightGreen: "#09debc" // unused
+    property color colorLightGreen: "#09debc"
     property color colorGreen
-    property color colorDarkGreen: "#1ea892" // unused
+    property color colorDarkGreen: "#1ea892"
     property color colorBlue
     property color colorYellow
     property color colorOrange
     property color colorRed
-    property color colorGrey: "#555151" // unused
-    property color colorLightGrey: "#a9bcb8" // unused
+    property color colorGrey: "#555151"
+    property color colorLightGrey: "#a9bcb8"
 
     // Fixed colors
     readonly property color colorMaterialBlue: "#2196f3"

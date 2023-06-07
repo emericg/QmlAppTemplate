@@ -43,7 +43,7 @@ Rectangle {
             highlightMode: "indicator"
 
             selected: (appContent.state === "MainView")
-            onClicked: appContent.state = "MainView"
+            onClicked: screenMainView.loadScreen()
         }
         DesktopSidebarItem {
             source: "qrc:/assets/icons_material/duotone-memory-24px.svg"
@@ -51,7 +51,7 @@ Rectangle {
             highlightMode: "indicator"
 
             selected: (appContent.state === "HostInfos")
-            onClicked: appContent.state = "HostInfos"
+            onClicked: screenHostInfos.loadScreen()
         }
         DesktopSidebarItem {
             source: "qrc:/assets/icons_material/duotone-format_size-24px.svg"
@@ -59,7 +59,7 @@ Rectangle {
             highlightMode: "indicator"
 
             selected: (appContent.state === "FontList")
-            onClicked: appContent.state = "FontList"
+            onClicked: screenFontList.loadScreen()
         }
     }
 
@@ -78,7 +78,7 @@ Rectangle {
             highlightMode: "indicator"
 
             selected: (appContent.state === "Settings")
-            onClicked: appContent.state = "Settings"
+            onClicked: screenSettings.loadScreen()
         }
 
         DesktopSidebarItem {
@@ -87,7 +87,7 @@ Rectangle {
             highlightMode: "indicator"
 
             selected: (appContent.state === "About")
-            onClicked: appContent.state = "About"
+            onClicked: screenAbout.loadScreen()
         }
 
         DesktopSidebarItem {
@@ -95,7 +95,7 @@ Rectangle {
             sourceSize: 40
             highlightMode: "circle"
 
-            onClicked: utilsApp.appExit()
+            onClicked: appWindow.close()
         }
     }
 
