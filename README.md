@@ -21,7 +21,7 @@ For Android builds, you'll need the appropriates JDK (11) SDK (24+) and NDK (25+
 $ git clone https://github.com/emericg/QmlAppTemplate.git
 $ cd QmlAppTemplate/build/
 $ qmake .. # configure with QMake
-$ cmake .. # OR with CMake
+$ cmake .. # OR configure with CMake
 $ make
 ```
 
@@ -29,11 +29,11 @@ $ make
 
 > [AppUtils](src/thirdparty/AppUtils/README.md) Various general purpose helpers
 
-> [MobileUI](src/thirdparty/MobileUI/README.md) Interract with Android and iOS UI
+> [MobileUI](src/thirdparty/MobileUI/README.md) Interact with Android and iOS UI
 
 > [MobileSharing](src/thirdparty/MobileSharing/README.md) Use Android and iOS "sharing" features
 
-> [SingleApplication](src/thirdparty/SingleApplication/README.md) Keep only one active instance of your application
+> [SingleApplication](src/thirdparty/SingleApplication/README.md) Keep only one instance of your application active at a time
 
 > [QmlRadialBar](src/thirdparty/QmlRadialBar/README.md) A radial bar reusable component for QML
 
@@ -45,7 +45,7 @@ $ make
 
 > [Linux](deploy_linux.sh) AppImage
 
-> [macOS](deploy_macos.sh) application zip
+> [macOS](deploy_macos.sh) application zip (unsigned)
 
 > [Windows](deploy_windows.sh) application zip and NSIS installer
 
@@ -53,11 +53,15 @@ $ make
 
 These files are also useful to get an idea about the whole build and deploy process.
 
-> [Desktop](.github/workflows/builds_desktop.yml) Linux, macOS and Windows workflow
+> [Desktop (qmake)](.github/workflows/builds_desktop.yml) Linux, macOS and Windows workflow
 
-> [Mobile](.github/workflows/builds_mobile.yml) Android and iOS workflow
+> [Desktop (cmake)](.github/workflows/builds_desktop_cmake.yml) Linux, macOS and Windows workflow
 
-> [Linux flatpak](.github/workflows/flatpak.yml)
+> [Mobile (qmake)](.github/workflows/builds_mobile.yml) Android and iOS workflow
+
+> [Mobile (cmake)](.github/workflows/builds_mobile_cmake.yml) Linux, macOS and Windows workflow
+
+> [Linux flatpak](.github/workflows/flatpak.yml) "on demand" workflow
 
 ## License
 

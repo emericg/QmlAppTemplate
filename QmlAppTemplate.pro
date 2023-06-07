@@ -46,30 +46,36 @@ RESOURCES   += qml/qml.qrc \
                i18n/i18n.qrc \
                assets/assets.qrc
 
-OTHER_FILES += .gitignore \
-               .github/workflows/builds.yml \
+OTHER_FILES += README.md \
                deploy_linux.sh \
                deploy_macos.sh \
                deploy_windows.sh
 
+OTHER_FILES += .gitignore \
+               .github/workflows/builds_desktop.yml \
+               .github/workflows/builds_desktop_cmake.yml \
+               .github/workflows/builds_mobile.yml \
+               .github/workflows/builds_mobile_cmake.yml
+
 lupdate_only {
-    SOURCES += qml/*.qml qml/*.js \
+    SOURCES += qml/*.qml qml/popup/.qml qml/*.js \
                qml/components/*.qml qml/components_generic/*.qml qml/components_js/*.js
 }
 
 # Build settings ###############################################################
 
+# Enables AddressSanitizer
 unix {
-    # Enables AddressSanitizer
     #QMAKE_CXXFLAGS += -fsanitize=address,undefined
-    #QMAKE_LFLAGS += -fsanitize=address,undefined
-
     #QMAKE_CXXFLAGS += -Wno-nullability-completeness
+    #QMAKE_LFLAGS += -fsanitize=address,undefined
 }
 
+# Deprecated Warnings
 DEFINES += QT_DEPRECATED_WARNINGS
 DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+# Debug indication macros
 CONFIG(release, debug|release) : DEFINES += NDEBUG QT_NO_DEBUG QT_NO_DEBUG_OUTPUT
 
 # Build artifacts ##############################################################
@@ -81,7 +87,6 @@ OBJECTS_DIR = build/$${BUILD_MODE}_$${QT_ARCH}/obj/
 MOC_DIR     = build/$${BUILD_MODE}_$${QT_ARCH}/moc/
 RCC_DIR     = build/$${BUILD_MODE}_$${QT_ARCH}/rcc/
 UI_DIR      = build/$${BUILD_MODE}_$${QT_ARCH}/ui/
-QMLCACHE_DIR= build/$${BUILD_MODE}_$${QT_ARCH}/qml/
 
 DESTDIR     = bin/
 
@@ -101,20 +106,20 @@ linux:!android {
 
     # Installation steps
     isEmpty(PREFIX) { PREFIX = /usr/local }
-    target_app.files       += $${OUT_PWD}/$${DESTDIR}/$$lower($${TARGET})
+    target_app.files       += $${OUT_PWD}/$${DESTDIR}/$${TARGET}
     target_app.path         = $${PREFIX}/bin/
-    target_appentry.files  += $${OUT_PWD}/assets/linux/$$lower($${TARGET}).desktop
+    target_appentry.files  += $${OUT_PWD}/assets/linux/$${TARGET}.desktop
     target_appentry.path    = $${PREFIX}/share/applications
-    target_appdata.files   += $${OUT_PWD}/assets/linux/$$lower($${TARGET}).appdata.xml
+    target_appdata.files   += $${OUT_PWD}/assets/linux/$${TARGET}.appdata.xml
     target_appdata.path     = $${PREFIX}/share/appdata
-    target_icon_appimage.files += $${OUT_PWD}/assets/linux/$$lower($${TARGET}).svg
+    target_icon_appimage.files += $${OUT_PWD}/assets/linux/$${TARGET}.svg
     target_icon_appimage.path   = $${PREFIX}/share/pixmaps/
-    target_icon_flatpak.files  += $${OUT_PWD}/assets/linux/$$lower($${TARGET}).svg
+    target_icon_flatpak.files  += $${OUT_PWD}/assets/linux/$${TARGET}.svg
     target_icon_flatpak.path    = $${PREFIX}/share/icons/hicolor/scalable/apps/
     INSTALLS += target_app target_appentry target_appdata target_icon_appimage target_icon_flatpak
 
     # Clean appdir/ and bin/ directories
-    #QMAKE_CLEAN += $${OUT_PWD}/$${DESTDIR}/$$lower($${TARGET})
+    #QMAKE_CLEAN += $${OUT_PWD}/$${DESTDIR}/$${TARGET}
     #QMAKE_CLEAN += $${OUT_PWD}/appdir/
 }
 
@@ -124,7 +129,7 @@ macx {
     QMAKE_BUNDLE = qmlapptemplate
 
     # OS icons
-    ICON = $${PWD}/assets/macos/$$lower($${TARGET}).icns
+    ICON = $${PWD}/assets/macos/$${TARGET}.icns
     #QMAKE_ASSET_CATALOGS_APP_ICON = "AppIcon"
     #QMAKE_ASSET_CATALOGS = $${PWD}/assets/macos/Images.xcassets
 
@@ -133,7 +138,7 @@ macx {
 
     # OS entitlement (sandbox and stuff)
     ENTITLEMENTS.name = CODE_SIGN_ENTITLEMENTS
-    ENTITLEMENTS.value = $${PWD}/assets/macos/$$lower($${TARGET}).entitlements
+    ENTITLEMENTS.value = $${PWD}/assets/macos/$${TARGET}.entitlements
     QMAKE_MAC_XCODE_SETTINGS += ENTITLEMENTS
 
     # Target architecture(s)
@@ -161,7 +166,7 @@ macx {
 
 win32 {
     # OS icon
-    RC_ICONS = $${PWD}/assets/windows/$$lower($${TARGET}).ico
+    RC_ICONS = $${PWD}/assets/windows/$${TARGET}.ico
 
     # Deploy step
     deploy.commands = $$quote(windeployqt $${OUT_PWD}/$${DESTDIR}/ --qmldir qml/)
