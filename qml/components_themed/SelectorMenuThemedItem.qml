@@ -28,7 +28,7 @@ Item {
     property string colorContentHighlight: Theme.colorComponentContent
     property string colorBackgroundHighlight: Theme.colorComponentDown
 
-    ////////////////////////////////////////////////////////////////////////////
+    ////////////////
 
     MouseArea {
         id: mouseArea
@@ -40,7 +40,7 @@ Item {
         onPressAndHold: control.pressAndHold()
     }
 
-    ////////////////////////////////////////////////////////////////////////////
+    ////////////////
 
     Rectangle {
         id: background
@@ -62,7 +62,7 @@ Item {
         Behavior on opacity { OpacityAnimator { duration: 133 } }
     }
 
-    ////////////////////////////////////////////////////////////////////////////
+    ////////////////
 
     IconSvg {
         id: contentImage
@@ -88,5 +88,5 @@ Item {
         opacity: control.selected ? 1 : 0.6
     }
 
-    ////////////////////////////////////////////////////////////////////////////
+    ////////////////
 }

@@ -40,6 +40,19 @@ T.TextArea {
     property string colorSelection: Theme.colorPrimary
     property string colorSelectedText: Theme.colorHighContrast
 
+    ////////////////
+
+    background: Rectangle {
+        implicitWidth: 256
+        implicitHeight: Theme.componentHeight*2
+
+        radius: Theme.componentRadius
+        color: control.colorBackground
+
+        border.width: 2
+        border.color: control.activeFocus ? control.colorSelection : control.colorBorder
+    }
+
     PlaceholderText {
         id: placeholder
         x: control.leftPadding
@@ -56,14 +69,5 @@ T.TextArea {
         renderType: control.renderType
     }
 
-    background: Rectangle {
-        implicitWidth: 256
-        implicitHeight: Theme.componentHeight*2
-
-        radius: Theme.componentRadius
-        color: control.colorBackground
-
-        border.width: 2
-        border.color: control.activeFocus ? control.colorSelection : control.colorBorder
-    }
+    ////////////////
 }

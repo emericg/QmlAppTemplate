@@ -21,6 +21,8 @@ T.Button {
 
     focusPolicy: Qt.NoFocus
 
+    ////////////////
+
     background: Rectangle {
         implicitWidth: 80
         implicitHeight: Theme.componentHeight
@@ -29,6 +31,8 @@ T.Button {
         opacity: enabled ? 1 : 0.33
         color: control.down ? Theme.colorComponentDown : Theme.colorComponent
     }
+
+    ////////////////
 
     contentItem: Text {
         text: control.text
@@ -43,4 +47,6 @@ T.Button {
         opacity: enabled ? 1.0 : 0.33
         color: control.down ? Theme.colorComponentContent : Theme.colorComponentContent
     }
+
+    ////////////////
 }

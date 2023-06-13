@@ -42,6 +42,10 @@
         <file alias="AndroidButtonIcon.qml">components_generic/AndroidButtonIcon.qml</file>
         <file alias="AndroidTextField.qml">components_generic/AndroidTextField.qml</file>
 
+        <file alias="PaneThemed.qml">components_generic/PaneThemed.qml</file>
+        <file alias="FrameThemed.qml">components_generic/FrameThemed.qml</file>
+        <file alias="GroupBoxThemed.qml">components_generic/GroupBoxThemed.qml</file>
+
         <file alias="ButtonIconThemed.qml">components_themed/ButtonIconThemed.qml</file>
         <file alias="ButtonThemed.qml">components_themed/ButtonThemed.qml</file>
         <file alias="CheckBoxThemed.qml">components_themed/CheckBoxThemed.qml</file>

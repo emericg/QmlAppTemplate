@@ -12,6 +12,8 @@ T.Slider {
 
     value: 0.5
 
+    ////////////////
+
     background: Rectangle {
         x: control.leftPadding
         y: control.topPadding + (control.availableHeight / 2) - (height / 2)
@@ -27,6 +29,8 @@ T.Slider {
             color: Theme.colorPrimary
         }
     }
+
+    ////////////////
 
     handle: Rectangle {
         x: control.leftPadding + (control.visualPosition * (control.availableWidth - width))
@@ -55,4 +59,6 @@ T.Slider {
             }
         }
     }
+
+    ////////////////
 }

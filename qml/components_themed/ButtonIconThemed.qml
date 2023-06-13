@@ -28,6 +28,8 @@ T.Button {
     property int sourceSize: UtilsNumber.alignTo(height * 0.666, 2)
     property int layoutDirection: Qt.LeftToRight
 
+    ////////////////
+
     background: Rectangle {
         implicitWidth: 80
         implicitHeight: Theme.componentHeight
@@ -36,6 +38,8 @@ T.Button {
         opacity: enabled ? 1 : 0.33
         color: control.down ? Theme.colorComponentDown : Theme.colorComponent
     }
+
+    ////////////////
 
     contentItem: RowLayout {
         spacing: control.spacing
@@ -73,4 +77,6 @@ T.Button {
             color: Theme.colorComponentContent
         }
     }
+
+    ////////////////
 }

@@ -12,16 +12,23 @@ Rectangle {
 
     height: (isDesktop && isHdpi) ? 44 : 48
     radius: singleColumn ? 0 : Theme.componentRadius
-    color: Theme.colorForeground
+    color: control.backgroundColor
 
     border.width: singleColumn ? 0 : Theme.componentBorderWidth
-    border.color: Qt.darker(color, 1.03)
+    border.color: control.borderColor
 
     property string text
     property string source
 
+    // font
     property int fontSize: source ? Theme.fontSizeContentBig :
                                     Theme.fontSizeContentVeryBig
+
+    // colors
+    property string backgroundColor: Theme.colorForeground
+    property string borderColor: Qt.darker(control.backgroundColor, 1.03)
+
+    ////////////////////////////////////////////////////////////////////////////
 
     Row {
         anchors.left: parent.left
@@ -51,4 +58,6 @@ Rectangle {
             verticalAlignment: Text.AlignVCenter
         }
     }
+
+    ////////////////////////////////////////////////////////////////////////////
 }

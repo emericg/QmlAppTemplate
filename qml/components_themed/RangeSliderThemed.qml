@@ -6,6 +6,7 @@ import ThemeEngine 1.0
 
 T.RangeSlider {
     id: control
+
     implicitWidth: 200
     implicitHeight: Theme.componentHeight
     padding: 8
@@ -13,6 +14,8 @@ T.RangeSlider {
     first.value: 0.25
     second.value: 0.75
     snapMode: T.RangeSlider.SnapAlways
+
+    ////////////////
 
     background: Rectangle {
         x: control.leftPadding
@@ -30,6 +33,8 @@ T.RangeSlider {
             color: Theme.colorPrimary
         }
     }
+
+    ////////////////
 
     first.handle: Rectangle {
         x: control.leftPadding + (first.visualPosition * (control.availableWidth - width))
@@ -59,6 +64,8 @@ T.RangeSlider {
         }
     }
 
+    ////////////////
+
     second.handle: Rectangle {
         x: control.leftPadding + (second.visualPosition * (control.availableWidth - width))
         y: control.topPadding + (control.availableHeight / 2) - (height / 2)
@@ -86,4 +93,6 @@ T.RangeSlider {
             }
         }
     }
+
+    ////////////////
 }

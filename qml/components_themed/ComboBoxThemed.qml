@@ -19,7 +19,7 @@ T.ComboBox {
     font.pixelSize: Theme.fontSizeComponent
     opacity: enabled ? 1.0 : 0.4
 
-    ////////////////////////////////////////////////////////////////////////////
+    ////////////////
 
     background: Rectangle {
         implicitWidth: 200
@@ -31,7 +31,7 @@ T.ComboBox {
         border.color: Theme.colorComponentBorder
     }
 
-    ////////////////////////////////////////////////////////////////////////////
+    ////////////////
 
     contentItem: Text {
         text: control.displayText
@@ -44,7 +44,7 @@ T.ComboBox {
         color: Theme.colorComponentContent
     }
 
-    ////////////////////////////////////////////////////////////////////////////
+    ////////////////
 
     indicator: Canvas {
         x: control.width - width - control.rightPadding
@@ -70,7 +70,7 @@ T.ComboBox {
         }
     }
 
-    ////////////////////////////////////////////////////////////////////////////
+    ////////////////
 
     delegate: T.ItemDelegate {
         width: control.width - 2
@@ -97,7 +97,7 @@ T.ComboBox {
         }
     }
 
-    ////////////////////////////////////////////////////////////////////////////
+    ////////////////
 
     popup: T.Popup {
         y: control.height - 1
@@ -120,5 +120,5 @@ T.ComboBox {
         }
     }
 
-    ////////////////////////////////////////////////////////////////////////////
+    ////////////////
 }
