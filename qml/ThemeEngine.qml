@@ -31,6 +31,15 @@ Item {
 
     ////////////////
 
+    property bool isHdpi: (utilsScreen.screenDpi >= 128 || utilsScreen.screenPar >= 2.0)
+    property bool isDesktop: (Qt.platform.os !== "ios" && Qt.platform.os !== "android")
+    property bool isMobile: (Qt.platform.os === "ios" || Qt.platform.os === "android")
+    property bool isPhone: ((Qt.platform.os === "ios" || Qt.platform.os === "android") && (utilsScreen.screenSize < 7.0))
+    property bool isTablet: ((Qt.platform.os === "ios" || Qt.platform.os === "android") && (utilsScreen.screenSize >= 7.0))
+
+    ////////////////
+
+    // Status bar (mobile)
     property int themeStatusbar
     property color colorStatusbar
 
@@ -39,7 +48,7 @@ Item {
     property color colorHeaderContent
     property color colorHeaderHighlight
 
-    // Sidebar
+    // Side bar (desktop)
     property color colorSidebar
     property color colorSidebarContent
     property color colorSidebarHighlight
@@ -49,7 +58,7 @@ Item {
     property color colorActionbarContent
     property color colorActionbarHighlight
 
-    // Tablet bar
+    // Tablet bar (mobile)
     property color colorTabletmenu
     property color colorTabletmenuContent
     property color colorTabletmenuHighlight
@@ -75,6 +84,8 @@ Item {
     // App specific
     property color colorDeviceWidget
     property string sidebarSelector // 'arrow' or 'bar'
+
+    ////////////////
 
     // Qt Quick Controls & theming
     property color colorComponent
@@ -114,12 +125,13 @@ Item {
     readonly property color colorMaterialLightGrey: "#f8f8f8"
     readonly property color colorMaterialGrey: "#eeeeee"
     readonly property color colorMaterialDarkGrey: "#ececec"
+
     readonly property color colorNeutralDay: "#e4e4e4"
     readonly property color colorNeutralNight: "#ffb300"
 
     ////////////////
 
-    // Fonts (sizes in pixel) (WIP)
+    // Fonts (sizes in pixel)
     readonly property int fontSizeHeader: (Qt.platform.os === "ios" || Qt.platform.os === "android") ? 22 : 26
     readonly property int fontSizeTitle: 24
     readonly property int fontSizeContentVeryVerySmall: 10
@@ -256,7 +268,6 @@ Item {
 
             colorDeviceWidget = "#fdfdfd"
 
-            componentHeight = 40
             componentRadius = 20
             componentBorderWidth = 2
 
@@ -312,7 +323,6 @@ Item {
 
             colorDeviceWidget = "#fdfdfd"
 
-            componentHeight = 40
             componentRadius = 4
             componentBorderWidth = 2
 
@@ -368,7 +378,6 @@ Item {
 
             colorDeviceWidget = "#fdfdfd"
 
-            componentHeight = 40
             componentRadius = 8
             componentBorderWidth = 2
 
@@ -424,7 +433,6 @@ Item {
 
             colorDeviceWidget = "#333"
 
-            componentHeight = 40
             componentRadius = 4
             componentBorderWidth = 2
 
@@ -730,7 +738,6 @@ Item {
             colorComponentDown =        "#E4E4E4"
             colorComponentBackground =  "#FAFAFA"
 
-            componentHeight = 40
             componentRadius = 4
             componentBorderWidth = 2
 
@@ -778,7 +785,6 @@ Item {
             colorComponentDown =        "#333333"
             colorComponentBackground =  "#505050"
 
-            componentHeight = 40
             componentRadius = 4
             componentBorderWidth = 2
 

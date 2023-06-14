@@ -4,13 +4,13 @@ import QtQuick.Controls 2.15
 import ThemeEngine 1.0
 
 Rectangle {
-    id: sideBar
+    id: appSidebar
     anchors.top: parent.top
     anchors.left: parent.left
     anchors.bottom: parent.bottom
 
     z: 10
-    width: isHdpi ? 80 : 92
+    width: isHdpi ? 72 : 80
     color: Theme.colorSidebar
 
     ////////////////////////////////////////////////////////////////////////////
@@ -30,8 +30,7 @@ Rectangle {
 
     ////////////////////////////////////////////////////////////////////////////
 
-    Column {
-        id: topMenu
+    Column { // top menu
         anchors.top: parent.top
         anchors.topMargin: 32
         anchors.left: parent.left
@@ -42,8 +41,16 @@ Rectangle {
             sourceSize: 40
             highlightMode: "indicator"
 
-            selected: (appContent.state === "MainView")
-            onClicked: screenMainView.loadScreen()
+            selected: (appContent.state === "DesktopComponents")
+            onClicked: screenDesktopComponents.loadScreen()
+        }
+        DesktopSidebarItem {
+            source: "qrc:/assets/icons_material/duotone-touch_app-24px.svg"
+            sourceSize: 40
+            highlightMode: "indicator"
+
+            selected: (appContent.state === "MobileComponents")
+            onClicked: screenMobileComponents.loadScreen()
         }
         DesktopSidebarItem {
             source: "qrc:/assets/icons_material/duotone-memory-24px.svg"
@@ -58,22 +65,21 @@ Rectangle {
             sourceSize: 40
             highlightMode: "indicator"
 
-            selected: (appContent.state === "FontList")
-            onClicked: screenFontList.loadScreen()
+            selected: (appContent.state === "FontInfos")
+            onClicked: screenFontInfos.loadScreen()
         }
     }
 
     ////////////////////////////////////////////////////////////////////////////
 
-    Column {
-        id: bottomMenu
+    Column { // bottom menu
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 12
 
         DesktopSidebarItem {
-            source: "qrc:/assets/icons_material/baseline-settings-20px.svg"
+            source: "qrc:/assets/icons_material/duotone-tune-24px.svg"
             sourceSize: 40
             highlightMode: "indicator"
 
@@ -82,7 +88,7 @@ Rectangle {
         }
 
         DesktopSidebarItem {
-            source: "qrc:/assets/icons_material/outline-info-24px.svg"
+            source: "qrc:/assets/icons_material/duotone-info-24px.svg"
             sourceSize: 40
             highlightMode: "indicator"
 

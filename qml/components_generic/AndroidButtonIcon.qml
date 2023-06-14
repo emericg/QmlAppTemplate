@@ -45,7 +45,7 @@ T.Button {
     ////////////////////////////////////////////////////////////////////////////
 
     background: Item {
-        implicitWidth: 96
+        implicitWidth: 128
         implicitHeight: 48
 
         ////////

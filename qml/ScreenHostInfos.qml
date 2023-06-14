@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Layouts
 
 import ThemeEngine 1.0
 
@@ -47,7 +48,9 @@ Loader {
             anchors.left: parent.left
             anchors.right: parent.right
 
-            property int maxheight: 2*topPadding + 3*spacing + itemSwInfo.height + itemHwInfo.height + itemScreen.height + itemApp.height
+            property int maxheight: topPadding + bottomPadding + 4*spacing +
+                                    itemAppInfo.height + itemQtInfo.height +
+                                    itemOsInfo.height + itemHwInfo.height + itemScreenInfo.height
 
             height: singleColumn ? maxheight : screenHostInfos.height
             spacing: 12
@@ -59,25 +62,13 @@ Loader {
 
             ////////////////////////////////
 
-            Rectangle {
-                id: itemApp
+            FrameThemed {
+                id: itemAppInfo
                 width: www
-                height: itemAppContent.height + 24
 
-                radius: Theme.componentRadius
-                color: Theme.colorForeground
-                border.width: 2
-                border.color: Theme.colorSeparator
-
-                Column {
-                    id: itemAppContent
-                    anchors.top: parent.top
-                    anchors.topMargin: 12
-                    anchors.left: parent.left
-                    anchors.leftMargin: 12
-                    anchors.right: parent.right
-                    anchors.rightMargin: 12
-                    spacing: 8
+                ColumnLayout {
+                    anchors.fill: parent
+                    spacing: 12
 
                     Column {
                         Text {
@@ -151,25 +142,13 @@ Loader {
 
             ////////////////////////////////
 
-            Rectangle {
-                id: itemQt
+            FrameThemed {
+                id: itemQtInfo
                 width: www
-                height: itemQtContent.height + 24
 
-                radius: Theme.componentRadius
-                color: Theme.colorForeground
-                border.width: 2
-                border.color: Theme.colorSeparator
-
-                Column {
-                    id: itemQtContent
-                    anchors.top: parent.top
-                    anchors.topMargin: 12
-                    anchors.left: parent.left
-                    anchors.leftMargin: 12
-                    anchors.right: parent.right
-                    anchors.rightMargin: 12
-                    spacing: 8
+                ColumnLayout {
+                    anchors.fill: parent
+                    spacing: 12
 
                     Column {
                         Text {
@@ -192,25 +171,12 @@ Loader {
 
             ////////////////////////////////
 
-            Rectangle {
-                id: itemSwInfo
+            FrameThemed {
+                id: itemOsInfo
                 width: www
-                height: itemSwInfoContent.height + 24
 
-                radius: Theme.componentRadius
-                color: Theme.colorForeground
-                border.width: 2
-                border.color: Theme.colorSeparator
-
-                Column {
-                    id: itemSwInfoContent
-                    anchors.top: parent.top
-                    anchors.topMargin: 12
-                    anchors.left: parent.left
-                    anchors.leftMargin: 12
-                    anchors.right: parent.right
-                    anchors.rightMargin: 12
-
+                ColumnLayout {
+                    anchors.fill: parent
                     spacing: 12
 
                     Column {
@@ -272,25 +238,12 @@ Loader {
 
             ////////////////////////////////
 
-            Rectangle {
+            FrameThemed {
                 id: itemHwInfo
                 width: www
-                height: itemHwInfoContent.height + 24
 
-                radius: Theme.componentRadius
-                color: Theme.colorForeground
-                border.width: 2
-                border.color: Theme.colorSeparator
-
-                Column {
-                    id: itemHwInfoContent
-                    anchors.top: parent.top
-                    anchors.topMargin: 12
-                    anchors.left: parent.left
-                    anchors.leftMargin: 12
-                    anchors.right: parent.right
-                    anchors.rightMargin: 12
-
+                ColumnLayout {
+                    anchors.fill: parent
                     spacing: 12
 
                     Column {
@@ -365,25 +318,13 @@ Loader {
 
             ////////////////////////////////
 
-            Rectangle {
-                id: itemScreen
+            FrameThemed {
+                id: itemScreenInfo
                 width: www
-                height: itemScreenContent.height + 24
 
-                radius: Theme.componentRadius
-                color: Theme.colorForeground
-                border.width: 2
-                border.color: Theme.colorSeparator
-
-                Column {
-                    id: itemScreenContent
-                    anchors.top: parent.top
-                    anchors.topMargin: 12
-                    anchors.left: parent.left
-                    anchors.leftMargin: 12
-                    anchors.right: parent.right
-                    anchors.rightMargin: 12
-                    spacing: 8
+                ColumnLayout {
+                    anchors.fill: parent
+                    spacing: 12
 
                     Column {
                         Text {
@@ -454,7 +395,7 @@ Loader {
                     }
 
                     Column {
-                        visible: utilsScreen.screenPar != 1
+                        visible: (utilsScreen.screenPar != 1)
 
                         Text {
                             text: qsTr("Screen geometry (physical)")
@@ -491,7 +432,7 @@ Loader {
                     }
 
                     Column {
-                        visible: utilsScreen.screenPar != 1
+                        visible: (utilsScreen.screenPar != 1)
 
                         Text {
                             text: qsTr("Screen DPI (physical)")
@@ -528,7 +469,7 @@ Loader {
                 }
             }
 
-            ////////////////////////////////
+            ////////////////////////////////////////////////////////////////
         }
     }
 }

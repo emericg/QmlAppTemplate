@@ -12,7 +12,7 @@ Rectangle {
     property int hhi: (hhh * 0.666)
     property int hhv: visible ? hhh : 0
 
-    //z: 10
+    z: 10
     height: hhh + screenPaddingBottom
     color: appWindow.isTablet ? Theme.colorTabletmenu : Theme.colorBackground
 
@@ -40,17 +40,17 @@ Rectangle {
         spacing: (!appWindow.wideMode || (appWindow.isPhone && utilsScreen.screenSize < 5.0)) ? -8 : 24
 
         MobileMenuItem_horizontal {
-            id: menuMainView
+            id: menuComponents
             height: mobileMenu.hhh
             sourceSize: mobileMenu.hhi
 
             colorContent: Theme.colorTabletmenuContent
             colorHighlight: Theme.colorTabletmenuHighlight
 
-            text: qsTr("MainView")
+            text: qsTr("Components")
             source: "qrc:/assets/icons_material/duotone-touch_app-24px.svg"
-            selected: (appContent.state === "MainView")
-            onClicked: screenMainView.loadScreen()
+            selected: (appContent.state === "MobileComponents")
+            onClicked: screenMobileComponents.loadScreen()
         }
         MobileMenuItem_horizontal {
             id: menuSettings
@@ -75,7 +75,7 @@ Rectangle {
 
             text: qsTr("About")
             source: "qrc:/assets/icons_material/outline-info-24px.svg"
-            selected: (appContent.state === "About" || appContent.state === "Permissions")
+            selected: (appContent.state === "About" || appContent.state === "AboutPermissions")
             onClicked: screenAbout.loadScreen()
         }
     }

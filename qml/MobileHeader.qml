@@ -3,14 +3,18 @@ import QtQuick 2.15
 import ThemeEngine 1.0
 
 Rectangle {
-    id: rectangleHeaderBar
-    width: parent.width
-    height: screenPaddingStatusbar + screenPaddingNotch + headerHeight
+    id: appHeader
+    anchors.top: parent.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+
     z: 10
+    height: screenPaddingStatusbar + screenPaddingNotch + headerHeight
     color: Theme.colorHeader
 
     property int headerHeight: 52
-    property string title: "QmlAppTemplate"
+
+    property string headerTitle: "QmlAppTemplate"
 
     ////////////////////////////////////////////////////////////////////////////
 
@@ -33,24 +37,6 @@ Rectangle {
 
     function rightMenuIsOpen() { return actionMenu.visible; }
     function rightMenuClose() { actionMenu.close(); }
-
-    signal deviceRebootButtonClicked()
-    signal deviceCalibrateButtonClicked()
-    signal deviceWateringButtonClicked()
-    signal deviceLedButtonClicked()
-    signal deviceRefreshButtonClicked()
-    signal deviceRefreshRealtimeButtonClicked()
-    signal deviceRefreshHistoryButtonClicked()
-    signal deviceClearButtonClicked()
-    signal deviceDataButtonClicked() // compatibility
-    signal deviceHistoryButtonClicked() // compatibility
-    signal devicePlantButtonClicked() // compatibility
-    signal deviceSettingsButtonClicked() // compatibility
-
-    function setActiveDeviceData() { } // compatibility
-    function setActiveDeviceHistory() { } // compatibility
-    function setActiveDevicePlant() { } // compatibility
-    function setActiveDeviceSettings() { } // compatibility
 
     ////////////////////////////////////////////////////////////////////////////
 
@@ -84,13 +70,13 @@ Rectangle {
             }
         }
 
-        Text {
+        Text { // title
             height: parent.height
             anchors.left: parent.left
             anchors.leftMargin: 64
             anchors.verticalCenter: parent.verticalCenter
 
-            text: title
+            text: appHeader.headerTitle
             color: Theme.colorHeaderContent
             font.bold: true
             font.pixelSize: Theme.fontSizeHeader
@@ -114,7 +100,7 @@ Rectangle {
                 width: parent.height
                 height: width
                 anchors.verticalCenter: parent.verticalCenter
-                visible: (appContent.state === "MainView")
+                visible: (appContent.state === "MobileComponents")
 
                 IconSvg {
                     id: workingIndicator
@@ -156,7 +142,7 @@ Rectangle {
                 width: headerHeight
                 height: headerHeight
 
-                visible: appContent.state === "MainView"
+                visible: appContent.state === "MobileComponents"
                 onClicked: {
                     rightMenuClicked()
                     actionMenu.open()
@@ -172,25 +158,25 @@ Rectangle {
                     source: "qrc:/assets/icons_material/baseline-more_vert-24px.svg"
                     color: Theme.colorHeaderContent
                 }
+
+                ActionMenu_bottom {
+                    id: actionMenu
+
+                    model: ListModel {
+                        id: lmActionMenu
+                        ListElement { t: "itm"; idx: 1; txt: "Action 1"; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; }
+                        ListElement { t: "itm"; idx: 2; txt: "Action 2"; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; }
+                        ListElement { t: "sep"; }
+                        ListElement { t: "itm"; idx: 3; txt: "Action 3"; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; }
+                    }
+
+                    onMenuSelected: (index) => {
+                        //console.log("ActionMenu clicked #" + index)
+                    }
+                }
             }
         }
     }
 
     ////////////
-
-    ActionMenu_bottom {
-        id: actionMenu
-
-        model: ListModel {
-            id: lmActionMenu
-            ListElement { t: "itm"; idx: 1; txt: "Action 1"; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; }
-            ListElement { t: "itm"; idx: 2; txt: "Action 2"; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; }
-            ListElement { t: "sep"; }
-            ListElement { t: "itm"; idx: 3; txt: "Action 3"; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; }
-        }
-
-        onMenuSelected: (index) => {
-            //console.log("ActionMenu clicked #" + index)
-        }
-    }
 }

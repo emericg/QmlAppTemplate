@@ -40,6 +40,7 @@ Loader {
 
         Column {
             id: contentColumn
+
             anchors.left: parent.left
             anchors.right: parent.right
 
@@ -179,6 +180,67 @@ Loader {
                             anchors.fill: parent
                             onClicked: settingsManager.appTheme = "THEME_NIGHT"
                         }
+                    }
+                }
+            }
+
+            ////////
+
+            ComboBoxThemed {
+                id: comboBoxAppTheme
+                anchors.left: parent.left
+                anchors.leftMargin: screenPaddingLeft + 64
+                anchors.right: parent.right
+                anchors.rightMargin: screenPaddingRight + 16
+
+                //height: 48
+                visible: isMobile
+
+                model: ListModel {
+                    id: cbAppTheme
+                    ListElement { text: "PLANT"; }
+                    ListElement { text: "SNOW"; }
+                    ListElement { text: "DAY"; }
+                    ListElement { text: "NIGHT"; }
+
+                    ListElement { text: "LIGHT (desktop)"; }
+                    ListElement { text: "DARK (desktop)"; }
+                    ListElement { text: "LIGHT (mobile)"; }
+                    ListElement { text: "DARK (mobile)"; }
+
+                    ListElement { text: "LIGHT AND WARM"; }
+                    ListElement { text: "DARK AND SPOOKY"; }
+                    ListElement { text: "PLAIN AND BORING"; }
+                    ListElement { text: "BLOOD AND TEARS"; }
+                    ListElement { text: "MIGHTY KITTENS"; }
+                }
+
+                Component.onCompleted: {
+                    currentIndex = Theme.getThemeIndex(settingsManager.appTheme)
+                    if (currentIndex === -1) { currentIndex = 0 }
+                }
+
+                property bool cbinit: false
+
+                onCurrentTextChanged: {
+                    if (cbinit) {
+                        if (currentText === "PLANT") settingsManager.appTheme = "THEME_PLANT"
+                        else if (currentText === "SNOW") settingsManager.appTheme = "THEME_SNOW"
+                        else if (currentText === "DAY") settingsManager.appTheme = "THEME_DAY"
+                        else if (currentText === "NIGHT") settingsManager.appTheme = "THEME_NIGHT"
+
+                        else if (currentText === "LIGHT AND WARM") settingsManager.appTheme = "THEME_LIGHT_AND_WARM"
+                        else if (currentText === "DARK AND SPOOKY") settingsManager.appTheme = "THEME_DARK_AND_SPOOKY"
+                        else if (currentText === "PLAIN AND BORING") settingsManager.appTheme = "THEME_PLAIN_AND_BORING"
+                        else if (currentText === "BLOOD AND TEARS") settingsManager.appTheme = "THEME_BLOOD_AND_TEARS"
+                        else if (currentText === "MIGHTY KITTENS") settingsManager.appTheme = "THEME_MIGHTY_KITTENS"
+
+                        else if (currentText === "LIGHT (desktop)") settingsManager.appTheme = "THEME_LIGHT_DESKTOP"
+                        else if (currentText === "DARK (desktop)") settingsManager.appTheme = "THEME_DARK_DESKTOP"
+                        else if (currentText === "LIGHT (mobile)") settingsManager.appTheme = "THEME_LIGHT_MOBILE"
+                        else if (currentText === "DARK (mobile)") settingsManager.appTheme = "THEME_DARK_MOBILE"
+                    } else {
+                        cbinit = true
                     }
                 }
             }
@@ -464,7 +526,7 @@ Loader {
                     verticalAlignment: Text.AlignVCenter
                 }
 
-                SwitchThemedDesktop {
+                SwitchThemedMobile {
                     id: switch_aaa
                     anchors.right: parent.right
                     anchors.rightMargin: 0
@@ -510,7 +572,7 @@ Loader {
                     verticalAlignment: Text.AlignVCenter
                 }
 
-                SpinBoxThemed {
+                SpinBoxThemedMobile {
                     id: spinbox_bbb
                     anchors.right: parent.right
                     anchors.rightMargin: 12
@@ -523,6 +585,10 @@ Loader {
                     legend: " h."
                 }
             }
+
+            ////////////////
         }
     }
+
+    ////////////////////////////////////////////////////////////////////////////
 }

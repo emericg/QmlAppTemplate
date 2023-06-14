@@ -41,22 +41,15 @@ Loader {
 
         Column {
             id: contentColumn
-            anchors.left: parent.left
-            anchors.leftMargin: screenPaddingLeft + 16
-            anchors.right: parent.right
-            anchors.rightMargin: screenPaddingRight + 16
 
-            topPadding: 0
-            bottomPadding: 8
-            spacing: 8
+            anchors.left: parent.left
+            anchors.right: parent.right
 
             ////////////////
 
             Rectangle { // header area
                 anchors.left: parent.left
-                anchors.leftMargin: -(screenPaddingLeft + 16)
                 anchors.right: parent.right
-                anchors.rightMargin: -(screenPaddingRight + 16)
 
                 height: 96
                 color: Theme.colorForeground
@@ -68,11 +61,11 @@ Loader {
 
                     z: 2
                     height: 96
-                    spacing: 24
+                    spacing: 16
 
                     Image { // logo
-                        width: 92
-                        height: 92
+                        width: 80
+                        height: 80
                         anchors.verticalCenter: parent.verticalCenter
 
                         source: "qrc:/assets/logos/logo.svg"
@@ -152,531 +145,509 @@ Loader {
 
             ////////////////
 
-            Row {
-                id: buttonsRow
-                height: 56
-
+            Column {
                 anchors.left: parent.left
-                anchors.leftMargin: 0
+                anchors.leftMargin: screenPaddingLeft + 16
                 anchors.right: parent.right
-                anchors.rightMargin: 0
+                anchors.rightMargin: screenPaddingRight + 16
 
-                visible: !wideWideMode
+                topPadding: 16
+                bottomPadding: 16
                 spacing: 16
 
-                ButtonWireframeIconCentered {
-                    width: ((parent.width - 16) / 2)
-                    anchors.verticalCenter: parent.verticalCenter
+                Row {
+                    id: buttonsRow
+                    height: Theme.componentHeight
 
-                    sourceSize: 28
-                    fullColor: true
-                    primaryColor: Theme.colorMaterialBlue
-
-                    text: qsTr("WEBSITE")
-                    source: "qrc:/assets/icons_material/baseline-insert_link-24px.svg"
-                    onClicked: Qt.openUrlExternally("https://emeric.io/")
-                }
-                ButtonWireframeIconCentered {
-                    width: ((parent.width - 16) / 2)
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    sourceSize: 22
-                    fullColor: true
-                    primaryColor: Theme.colorMaterialBlue
-
-                    text: qsTr("SUPPORT")
-                    source: "qrc:/assets/icons_material/baseline-support-24px.svg"
-                    onClicked: Qt.openUrlExternally("https://emeric.io/")
-                }
-            }
-
-            ////////////////
-
-            Item { height: 1; width: 1; visible: isDesktop; } // spacer
-
-            Item {
-                id: desc
-                height: Math.max(UtilsNumber.alignTo(description.contentHeight, 8), 48)
-                anchors.left: parent.left
-                anchors.leftMargin: 0
-                anchors.right: parent.right
-                anchors.rightMargin: 0
-
-                IconSvg {
-                    id: descImg
-                    width: 32
-                    height: 32
-                    anchors.top: parent.top
-                    anchors.topMargin: 8
-                    anchors.left: parent.left
-
-                    source: "qrc:/assets/icons_material/outline-info-24px.svg"
-                    color: Theme.colorIcon
-                }
-
-                Text {
-                    id: description
-                    anchors.left: parent.left
-                    anchors.leftMargin: 48
-                    anchors.right: parent.right
-                    anchors.rightMargin: 0
-                    anchors.verticalCenter: desc.verticalCenter
-
-                    text: qsTr("A Qt6 / QML application template, with a full set of visual controls, as well as build and deploy scripts and CI setups.")
-                    textFormat: Text.PlainText
-                    wrapMode: Text.WordWrap
-                    color: Theme.colorText
-                    font.pixelSize: Theme.fontSizeContent
-                }
-            }
-
-            ////////
-
-            Item {
-                id: authors
-                height: 48
-                anchors.left: parent.left
-                anchors.leftMargin: 0
-                anchors.right: parent.right
-                anchors.rightMargin: 0
-
-                IconSvg {
-                    id: authorImg
-                    width: 32
-                    height: 32
                     anchors.left: parent.left
                     anchors.leftMargin: 0
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    source: "qrc:/assets/icons_material/baseline-supervised_user_circle-24px.svg"
-                    color: Theme.colorIcon
-                }
-
-                Text {
-                    id: authorTxt
-                    anchors.left: parent.left
-                    anchors.leftMargin: 48
                     anchors.right: parent.right
                     anchors.rightMargin: 0
-                    anchors.verticalCenter: parent.verticalCenter
 
-                    text: qsTr("Application by <a href=\"https://emeric.io\">Emeric Grange</a>")
-                    textFormat: Text.StyledText
-                    onLinkActivated: (link) => { Qt.openUrlExternally(link) }
-                    font.pixelSize: Theme.fontSizeContent
-                    color: Theme.colorText
-                    linkColor: Theme.colorIcon
+                    visible: !wideWideMode
+                    spacing: 16
+
+                    ButtonWireframeIconCentered {
+                        width: ((parent.width - parent.spacing) / 2)
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        sourceSize: 28
+                        fullColor: true
+                        primaryColor: Theme.colorMaterialBlue
+
+                        text: qsTr("WEBSITE")
+                        source: "qrc:/assets/icons_material/baseline-insert_link-24px.svg"
+                        onClicked: Qt.openUrlExternally("https://emeric.io/")
+                    }
+
+                    ButtonWireframeIconCentered {
+                        width: ((parent.width - parent.spacing) / 2)
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        sourceSize: 22
+                        fullColor: true
+                        primaryColor: Theme.colorMaterialBlue
+
+                        text: qsTr("SUPPORT")
+                        source: "qrc:/assets/icons_material/baseline-support-24px.svg"
+                        onClicked: Qt.openUrlExternally("https://emeric.io/")
+                    }
+                }
+
+                ////////////////
+
+                Item {
+                    id: desc
+                    height: Math.max(UtilsNumber.alignTo(description.contentHeight, 8), Theme.componentHeight)
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+
+                    IconSvg {
+                        id: descImg
+                        width: 32
+                        height: 32
+                        anchors.top: parent.top
+                        anchors.topMargin: (Theme.componentHeight - width) / 2
+                        //anchors.verticalCenter: desc.verticalCenter
+
+                        source: "qrc:/assets/icons_material/outline-info-24px.svg"
+                        color: Theme.colorIcon
+                    }
+
+                    Text {
+                        id: description
+                        anchors.left: parent.left
+                        anchors.leftMargin: 48
+                        anchors.right: parent.right
+                        anchors.verticalCenter: desc.verticalCenter
+
+                        text: qsTr("A Qt6 / QML application template, with a full set of visual controls, as well as build and deploy scripts and CI setups.")
+                        textFormat: Text.PlainText
+                        wrapMode: Text.WordWrap
+                        color: Theme.colorText
+                        font.pixelSize: Theme.fontSizeContent
+                    }
+                }
+
+                ////////
+
+                Item {
+                    id: authors
+                    height: Theme.componentHeight
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+
+                    IconSvg {
+                        id: authorImg
+                        width: 32
+                        height: 32
+                        anchors.left: parent.left
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        source: "qrc:/assets/icons_material/baseline-supervised_user_circle-24px.svg"
+                        color: Theme.colorIcon
+                    }
+
+                    Text {
+                        id: authorTxt
+                        anchors.left: parent.left
+                        anchors.leftMargin: 48
+                        anchors.right: parent.right
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        text: qsTr("Application by <a href=\"https://emeric.io\">Emeric Grange</a>")
+                        textFormat: Text.StyledText
+                        onLinkActivated: (link) => { Qt.openUrlExternally(link) }
+                        font.pixelSize: Theme.fontSizeContent
+                        color: Theme.colorText
+                        linkColor: Theme.colorIcon
+
+                        MouseArea {
+                            anchors.fill: parent
+                            acceptedButtons: Qt.NoButton
+                            cursorShape: authorTxt.hoveredLink ? Qt.PointingHandCursor : Qt.ArrowCursor
+                        }
+                    }
+
+                    IconSvg {
+                        width: 20
+                        height: 20
+                        anchors.right: parent.right
+                        anchors.verticalCenter: parent.verticalCenter
+                        visible: singleColumn
+
+                        source: "qrc:/assets/icons_material/duotone-launch-24px.svg"
+                        color: Theme.colorIcon
+                    }
+                }
+
+                ////////
+
+                Item {
+                    id: rate
+                    height: Theme.componentHeight
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+
+                    visible: (Qt.platform.os === "android" || Qt.platform.os === "ios")
+
+                    IconSvg {
+                        id: rateImg
+                        width: 32
+                        height: 32
+                        anchors.left: parent.left
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        source: "qrc:/assets/icons_material/baseline-stars-24px.svg"
+                        color: Theme.colorIcon
+                    }
+
+                    Text {
+                        id: rateTxt
+                        anchors.left: parent.left
+                        anchors.leftMargin: 48
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        text: qsTr("Rate the application")
+                        textFormat: Text.PlainText
+                        font.pixelSize: Theme.fontSizeContent
+                        color: Theme.colorText
+                    }
+
+                    IconSvg {
+                        width: 20
+                        height: 20
+                        anchors.right: parent.right
+                        anchors.verticalCenter: parent.verticalCenter
+                        visible: singleColumn
+
+                        source: "qrc:/assets/icons_material/duotone-launch-24px.svg"
+                        color: Theme.colorIcon
+                    }
+
+                    MouseArea {
+                        anchors.top: parent.top
+                        anchors.left: parent.left
+                        anchors.right: singleColumn ? parent.right : rateTxt.right
+                        anchors.rightMargin: singleColumn ? 0 : -24
+                        anchors.bottom: parent.bottom
+                        onClicked: Qt.openUrlExternally("https://github.com/emericg/QmlAppTemplate")
+                    }
+                }
+
+                ////////
+
+                Item {
+                    id: tuto
+                    height: Theme.componentHeight
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+
+                    IconSvg {
+                        width: 28
+                        height: 28
+                        anchors.left: parent.left
+                        anchors.leftMargin: 2
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        source: "qrc:/assets/icons_material/baseline-import_contacts-24px.svg"
+                        color: Theme.colorIcon
+                    }
+
+                    Text {
+                        id: tutoTxt
+                        anchors.left: parent.left
+                        anchors.leftMargin: 48
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        text: qsTr("Open the tutorial")
+                        textFormat: Text.PlainText
+                        font.pixelSize: Theme.fontSizeContent
+                        color: Theme.colorText
+                    }
+
+                    IconSvg {
+                        width: 24
+                        height: 24
+                        anchors.right: parent.right
+                        anchors.rightMargin: -2
+                        anchors.verticalCenter: parent.verticalCenter
+                        visible: singleColumn
+
+                        source: "qrc:/assets/icons_material/baseline-chevron_right-24px.svg"
+                        color: Theme.colorIcon
+                    }
+
+                    MouseArea {
+                        anchors.top: parent.top
+                        anchors.left: parent.left
+                        anchors.right: singleColumn ? parent.right : tutoTxt.right
+                        anchors.rightMargin: singleColumn ? 0 : -24
+                        anchors.bottom: parent.bottom
+                    }
+                }
+
+                ////////
+
+                Rectangle { // separator
+                    anchors.left: parent.left
+                    anchors.leftMargin: -(screenPaddingLeft + 16)
+                    anchors.right: parent.right
+                    anchors.rightMargin: -(screenPaddingRight + 16)
+                    height: 1
+                    color: Theme.colorSeparator
+                    visible: (Qt.platform.os === "android")
+                }
+
+                Item {
+                    id: permissions
+                    height: 32
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+
+                    visible: (Qt.platform.os === "android")
+
+                    IconSvg {
+                        id: permissionsImg
+                        width: 24
+                        height: 24
+                        anchors.left: parent.left
+                        anchors.leftMargin: 4
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        source: "qrc:/assets/icons_material/baseline-flaky-24px.svg"
+                        color: Theme.colorIcon
+                    }
+
+                    Text {
+                        id: permissionsTxt
+                        anchors.left: parent.left
+                        anchors.leftMargin: 48
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        text: qsTr("About app permissions")
+                        textFormat: Text.PlainText
+                        font.pixelSize: Theme.fontSizeContent
+                        color: Theme.colorText
+                    }
+
+                    IconSvg {
+                        width: 24
+                        height: 24
+                        anchors.right: parent.right
+                        anchors.rightMargin: -2
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        source: "qrc:/assets/icons_material/baseline-chevron_right-24px.svg"
+                        color: Theme.colorIcon
+                    }
 
                     MouseArea {
                         anchors.fill: parent
-                        acceptedButtons: Qt.NoButton
-                        cursorShape: authorTxt.hoveredLink ? Qt.PointingHandCursor : Qt.ArrowCursor
+                        onClicked: screenAboutPermissions.loadScreen()
                     }
                 }
 
-                IconSvg {
-                    width: 20
-                    height: 20
+                ////////
+
+                Rectangle { // separator
+                    anchors.left: parent.left
+                    anchors.leftMargin: -(screenPaddingLeft + 16)
                     anchors.right: parent.right
-                    anchors.rightMargin: 0
-                    anchors.verticalCenter: parent.verticalCenter
-                    visible: singleColumn
-
-                    source: "qrc:/assets/icons_material/duotone-launch-24px.svg"
-                    color: Theme.colorIcon
+                    anchors.rightMargin: -(screenPaddingRight + 16)
+                    height: 1
+                    color: Theme.colorSeparator
                 }
-            }
 
-            ////////
-
-            Item {
-                id: rate
-                height: 48
-                anchors.left: parent.left
-                anchors.leftMargin: 0
-                anchors.right: parent.right
-                anchors.rightMargin: 0
-
-                visible: (Qt.platform.os === "android" || Qt.platform.os === "ios")
-
-                IconSvg {
-                    id: rateImg
-                    width: 32
-                    height: 32
+                Item {
+                    id: dependencies
+                    height: 24 + dependenciesLabel.height + dependenciesColumn.height
                     anchors.left: parent.left
                     anchors.leftMargin: 0
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    source: "qrc:/assets/icons_material/baseline-stars-24px.svg"
-                    color: Theme.colorIcon
-                }
-
-                Text {
-                    id: rateTxt
-                    anchors.left: parent.left
-                    anchors.leftMargin: 48
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    text: qsTr("Rate the application")
-                    textFormat: Text.PlainText
-                    font.pixelSize: Theme.fontSizeContent
-                    color: Theme.colorText
-                }
-
-                IconSvg {
-                    width: 20
-                    height: 20
                     anchors.right: parent.right
                     anchors.rightMargin: 0
-                    anchors.verticalCenter: parent.verticalCenter
-                    visible: singleColumn
 
-                    source: "qrc:/assets/icons_material/duotone-launch-24px.svg"
-                    color: Theme.colorIcon
+                    IconSvg {
+                        id: dependenciesImg
+                        width: 24
+                        height: 24
+                        anchors.left: parent.left
+                        anchors.leftMargin: 4
+                        anchors.verticalCenter: dependenciesLabel.verticalCenter
+
+                        source: "qrc:/assets/icons_material/baseline-settings-20px.svg"
+                        color: Theme.colorIcon
+                    }
+
+                    Text {
+                        id: dependenciesLabel
+                        anchors.top: parent.top
+                        anchors.topMargin: 8
+                        anchors.left: parent.left
+                        anchors.leftMargin: 48
+                        anchors.right: parent.right
+                        anchors.rightMargin: 0
+
+                        text: qsTr("This application is made possible thanks to a couple of third party open source projects:")
+                        textFormat: Text.PlainText
+                        color: Theme.colorText
+                        font.pixelSize: Theme.fontSizeContent
+                        wrapMode: Text.WordWrap
+                    }
+
+                    Column {
+                        id: dependenciesColumn
+                        anchors.top: dependenciesLabel.bottom
+                        anchors.topMargin: 8
+                        anchors.left: parent.left
+                        anchors.leftMargin: 48
+                        anchors.right: parent.right
+                        anchors.rightMargin: 0
+                        spacing: 4
+
+                        Text {
+                            anchors.left: parent.left
+                            anchors.right: parent.right
+                            anchors.rightMargin: 12
+
+                            text: "- Qt6 (LGPL 3)"
+                            textFormat: Text.PlainText
+                            color: Theme.colorText
+                            font.pixelSize: Theme.fontSizeContent
+                            wrapMode: Text.WordWrap
+                        }
+                        Text {
+                            anchors.left: parent.left
+                            anchors.right: parent.right
+                            anchors.rightMargin: 12
+
+                            text: "- SingleApplication (MIT)"
+                            textFormat: Text.PlainText
+                            color: Theme.colorText
+                            font.pixelSize: Theme.fontSizeContent
+                            wrapMode: Text.WordWrap
+                        }
+                        Text {
+                            anchors.left: parent.left
+                            anchors.right: parent.right
+                            anchors.rightMargin: 12
+
+                            text: "- Google Material Icons (MIT)"
+                            textFormat: Text.PlainText
+                            color: Theme.colorText
+                            font.pixelSize: Theme.fontSizeContent
+                            wrapMode: Text.WordWrap
+                        }
+                        Text {
+                            anchors.left: parent.left
+                            anchors.right: parent.right
+                            anchors.rightMargin: 12
+
+                            text: "- MobileUI & MobileSharing (MIT)"
+                            textFormat: Text.PlainText
+                            color: Theme.colorText
+                            font.pixelSize: Theme.fontSizeContent
+                            wrapMode: Text.WordWrap
+                        }
+                    }
                 }
 
-                MouseArea {
-                    anchors.top: parent.top
-                    anchors.left: parent.left
-                    anchors.right: singleColumn ? parent.right : rateTxt.right
-                    anchors.rightMargin: singleColumn ? 0 : -24
-                    anchors.bottom: parent.bottom
-                    onClicked: Qt.openUrlExternally("https://github.com/emericg/QmlAppTemplate")
-                }
-            }
+                ////////
 
-            ////////
-
-            Item {
-                id: tuto
-                height: 48
-                anchors.left: parent.left
-                anchors.leftMargin: 0
-                anchors.right: parent.right
-                anchors.rightMargin: 0
-
-                IconSvg {
-                    width: 28
-                    height: 28
-                    anchors.left: parent.left
-                    anchors.leftMargin: 2
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    source: "qrc:/assets/icons_material/baseline-import_contacts-24px.svg"
-                    color: Theme.colorIcon
-                }
-
-                Text {
-                    id: tutoTxt
-                    anchors.left: parent.left
-                    anchors.leftMargin: 48
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    text: qsTr("Open the tutorial")
-                    textFormat: Text.PlainText
-                    font.pixelSize: Theme.fontSizeContent
-                    color: Theme.colorText
-                }
-
-                IconSvg {
-                    width: 24
-                    height: 24
-                    anchors.right: parent.right
-                    anchors.rightMargin: -2
-                    anchors.verticalCenter: parent.verticalCenter
-                    visible: singleColumn
-
-                    source: "qrc:/assets/icons_material/baseline-chevron_right-24px.svg"
-                    color: Theme.colorIcon
-                }
-
-                MouseArea {
-                    anchors.top: parent.top
-                    anchors.left: parent.left
-                    anchors.right: singleColumn ? parent.right : tutoTxt.right
-                    anchors.rightMargin: singleColumn ? 0 : -24
-                    anchors.bottom: parent.bottom
-                }
-            }
-
-            ////////
-
-            Item {
-                height: 16
-                anchors.left: parent.left
-                anchors.right: parent.right
-
-                visible: (Qt.platform.os === "android")
-
-                Rectangle {
-                    height: 1
-                    color: Theme.colorSeparator
+                Rectangle { // separator
                     anchors.left: parent.left
                     anchors.leftMargin: -(screenPaddingLeft + 16)
                     anchors.right: parent.right
                     anchors.rightMargin: -(screenPaddingRight + 16)
-                    anchors.verticalCenter: parent.verticalCenter
-                }
-            }
-
-            Item {
-                id: permissions
-                height: 32
-                anchors.left: parent.left
-                anchors.leftMargin: 0
-                anchors.right: parent.right
-                anchors.rightMargin: 0
-
-                visible: (Qt.platform.os === "android")
-
-                IconSvg {
-                    id: permissionsImg
-                    width: 24
-                    height: 24
-                    anchors.left: parent.left
-                    anchors.leftMargin: 4
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    source: "qrc:/assets/icons_material/baseline-flaky-24px.svg"
-                    color: Theme.colorIcon
-                }
-
-                Text {
-                    id: permissionsTxt
-                    anchors.left: parent.left
-                    anchors.leftMargin: 48
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    text: qsTr("About app permissions")
-                    textFormat: Text.PlainText
-                    font.pixelSize: Theme.fontSizeContent
-                    color: Theme.colorText
-                }
-
-                IconSvg {
-                    width: 24
-                    height: 24
-                    anchors.right: parent.right
-                    anchors.rightMargin: -2
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    source: "qrc:/assets/icons_material/baseline-chevron_right-24px.svg"
-                    color: Theme.colorIcon
-                }
-
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: screenPermissions.loadScreen()
-                }
-            }
-
-            ////////
-
-            Item {
-                height: 16
-                anchors.left: parent.left
-                anchors.right: parent.right
-
-                Rectangle {
                     height: 1
                     color: Theme.colorSeparator
-                    anchors.left: parent.left
-                    anchors.leftMargin: -(screenPaddingLeft + 16)
-                    anchors.right: parent.right
-                    anchors.rightMargin: -(screenPaddingRight + 16)
-                    anchors.verticalCenter: parent.verticalCenter
-                }
-            }
-
-            Item {
-                id: dependencies
-                height: 24 + dependenciesLabel.height + dependenciesColumn.height
-                anchors.left: parent.left
-                anchors.leftMargin: 0
-                anchors.right: parent.right
-                anchors.rightMargin: 0
-
-                IconSvg {
-                    id: dependenciesImg
-                    width: 24
-                    height: 24
-                    anchors.left: parent.left
-                    anchors.leftMargin: 4
-                    anchors.verticalCenter: dependenciesLabel.verticalCenter
-
-                    source: "qrc:/assets/icons_material/baseline-settings-20px.svg"
-                    color: Theme.colorIcon
                 }
 
-                Text {
-                    id: dependenciesLabel
-                    anchors.top: parent.top
-                    anchors.topMargin: 8
+                Item {
+                    id: translators
+                    height: 24 + translatorsLabel.height + translatorsColumn.height
                     anchors.left: parent.left
-                    anchors.leftMargin: 48
+                    anchors.leftMargin: 0
                     anchors.right: parent.right
                     anchors.rightMargin: 0
 
-                    text: qsTr("This application is made possible thanks to a couple of third party open source projects:")
-                    textFormat: Text.PlainText
-                    color: Theme.colorText
-                    font.pixelSize: Theme.fontSizeContent
-                    wrapMode: Text.WordWrap
-                }
+                    IconSvg {
+                        id: translatorsImg
+                        width: 24
+                        height: 24
+                        anchors.left: parent.left
+                        anchors.leftMargin: 4
+                        anchors.verticalCenter: translatorsLabel.verticalCenter
 
-                Column {
-                    id: dependenciesColumn
-                    anchors.top: dependenciesLabel.bottom
-                    anchors.topMargin: 8
-                    anchors.left: parent.left
-                    anchors.leftMargin: 48
-                    anchors.right: parent.right
-                    anchors.rightMargin: 0
-                    spacing: 4
+                        source: "qrc:/assets/icons_material/duotone-translate-24px.svg"
+                        color: Theme.colorIcon
+                    }
 
                     Text {
+                        id: translatorsLabel
+                        anchors.top: parent.top
+                        anchors.topMargin: 8
                         anchors.left: parent.left
+                        anchors.leftMargin: 48
                         anchors.right: parent.right
-                        anchors.rightMargin: 12
+                        anchors.rightMargin: 0
 
-                        text: "- Qt6 (LGPL 3)"
+                        text: qsTr("Special thanks to our translators:")
                         textFormat: Text.PlainText
                         color: Theme.colorText
                         font.pixelSize: Theme.fontSizeContent
                         wrapMode: Text.WordWrap
                     }
-                    Text {
-                        anchors.left: parent.left
-                        anchors.right: parent.right
-                        anchors.rightMargin: 12
 
-                        text: "- SingleApplication (MIT)"
-                        textFormat: Text.PlainText
-                        color: Theme.colorText
-                        font.pixelSize: Theme.fontSizeContent
-                        wrapMode: Text.WordWrap
-                    }
-                    Text {
+                    Column {
+                        id: translatorsColumn
+                        anchors.top: translatorsLabel.bottom
+                        anchors.topMargin: 8
                         anchors.left: parent.left
+                        anchors.leftMargin: 48
                         anchors.right: parent.right
-                        anchors.rightMargin: 12
+                        anchors.rightMargin: 0
+                        spacing: 4
 
-                        text: "- Google Material Icons (MIT)"
-                        textFormat: Text.PlainText
-                        color: Theme.colorText
-                        font.pixelSize: Theme.fontSizeContent
-                        wrapMode: Text.WordWrap
-                    }
-                    Text {
-                        anchors.left: parent.left
-                        anchors.right: parent.right
-                        anchors.rightMargin: 12
+                        Text {
+                            anchors.left: parent.left
+                            anchors.right: parent.right
+                            anchors.rightMargin: 12
 
-                        text: "- MobileUI & MobileSharing (MIT)"
-                        textFormat: Text.PlainText
-                        color: Theme.colorText
-                        font.pixelSize: Theme.fontSizeContent
-                        wrapMode: Text.WordWrap
+                            text: "- Translator 1 (Español)"
+                            textFormat: Text.PlainText
+                            color: Theme.colorText
+                            font.pixelSize: Theme.fontSizeContent
+                        }
+                        Text {
+                            anchors.left: parent.left
+                            anchors.right: parent.right
+                            anchors.rightMargin: 12
+
+                            text: "- Translator 2 (French)"
+                            textFormat: Text.PlainText
+                            color: Theme.colorText
+                            font.pixelSize: Theme.fontSizeContent
+                        }
+                        Text {
+                            anchors.left: parent.left
+                            anchors.right: parent.right
+                            anchors.rightMargin: 12
+
+                            text: "- Translator 9 (Klingon)"
+                            textFormat: Text.PlainText
+                            color: Theme.colorText
+                            font.pixelSize: Theme.fontSizeContent
+                        }
                     }
                 }
+
+                ////////
             }
 
-            ////////
-
-            Item {
-                height: 16
-                anchors.left: parent.left
-                anchors.right: parent.right
-
-                Rectangle {
-                    height: 1
-                    color: Theme.colorSeparator
-                    anchors.left: parent.left
-                    anchors.leftMargin: -(screenPaddingLeft + 16)
-                    anchors.right: parent.right
-                    anchors.rightMargin: -(screenPaddingRight + 16)
-                    anchors.verticalCenter: parent.verticalCenter
-                }
-            }
-
-            Item {
-                id: translators
-                height: 24 + translatorsLabel.height + translatorsColumn.height
-                anchors.left: parent.left
-                anchors.leftMargin: 0
-                anchors.right: parent.right
-                anchors.rightMargin: 0
-
-                IconSvg {
-                    id: translatorsImg
-                    width: 24
-                    height: 24
-                    anchors.left: parent.left
-                    anchors.leftMargin: 4
-                    anchors.verticalCenter: translatorsLabel.verticalCenter
-
-                    source: "qrc:/assets/icons_material/duotone-translate-24px.svg"
-                    color: Theme.colorIcon
-                }
-
-                Text {
-                    id: translatorsLabel
-                    anchors.top: parent.top
-                    anchors.topMargin: 8
-                    anchors.left: parent.left
-                    anchors.leftMargin: 48
-                    anchors.right: parent.right
-                    anchors.rightMargin: 0
-
-                    text: qsTr("Special thanks to our translators:")
-                    textFormat: Text.PlainText
-                    color: Theme.colorText
-                    font.pixelSize: Theme.fontSizeContent
-                    wrapMode: Text.WordWrap
-                }
-
-                Column {
-                    id: translatorsColumn
-                    anchors.top: translatorsLabel.bottom
-                    anchors.topMargin: 8
-                    anchors.left: parent.left
-                    anchors.leftMargin: 48
-                    anchors.right: parent.right
-                    anchors.rightMargin: 0
-                    spacing: 4
-
-                    Text {
-                        anchors.left: parent.left
-                        anchors.right: parent.right
-                        anchors.rightMargin: 12
-
-                        text: "- Translator 1 (Español)"
-                        textFormat: Text.PlainText
-                        color: Theme.colorText
-                        font.pixelSize: Theme.fontSizeContent
-                    }
-                    Text {
-                        anchors.left: parent.left
-                        anchors.right: parent.right
-                        anchors.rightMargin: 12
-
-                        text: "- Translator 2 (French)"
-                        textFormat: Text.PlainText
-                        color: Theme.colorText
-                        font.pixelSize: Theme.fontSizeContent
-                    }
-                    Text {
-                        anchors.left: parent.left
-                        anchors.right: parent.right
-                        anchors.rightMargin: 12
-
-                        text: "- Translator 9 (Klingon)"
-                        textFormat: Text.PlainText
-                        color: Theme.colorText
-                        font.pixelSize: Theme.fontSizeContent
-                    }
-                }
-            }
+            ////////////////
         }
     }
+
+    ////////////////////////////////////////////////////////////////////////////
 }

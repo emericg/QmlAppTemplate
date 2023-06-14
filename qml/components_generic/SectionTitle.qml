@@ -5,6 +5,7 @@ import ThemeEngine 1.0
 
 Rectangle {
     id: control
+
     anchors.left: parent.left
     anchors.leftMargin: 0
     anchors.right: parent.right
@@ -12,12 +13,13 @@ Rectangle {
 
     height: (isDesktop && isHdpi) ? 44 : 48
     radius: singleColumn ? 0 : Theme.componentRadius
-    color: control.backgroundColor
+    z: 2
 
+    color: control.backgroundColor
     border.width: singleColumn ? 0 : Theme.componentBorderWidth
     border.color: control.borderColor
 
-    property string text
+    property string text: "title"
     property string source
 
     // font

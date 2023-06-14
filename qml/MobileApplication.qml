@@ -1,6 +1,6 @@
-import QtQuick 2.15
-import QtQuick.Controls 2.15
-import QtQuick.Window 2.15
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Window
 
 import ThemeEngine 1.0
 import MobileUI 1.0
@@ -134,14 +134,11 @@ ApplicationWindow {
 
     MobileHeader {
         id: appHeader
-        width: appWindow.width
         anchors.top: appWindow.top
     }
 
     MobileDrawer {
         id: appDrawer
-        width: (appWindow.screenOrientation === Qt.PortraitOrientation || appWindow.width < 480) ? 0.8 * appWindow.width : 0.5 * appWindow.width
-        height: appWindow.height
         interactive: (appContent.state !== "Tutorial")
     }
 
@@ -158,17 +155,13 @@ ApplicationWindow {
             if (appContent.state === "MainView") {
                 appDrawer.open()
             } else {
-                if (appContent.state === "Permissions")
+                if (appContent.state === "AboutPermissions")
                     screenAbout.loadScreen()
                 else
                     screenMainView.loadScreen()
             }
         }
         function onRightMenuClicked() {
-            //
-        }
-
-        function onDeviceRefreshButtonClicked() {
             //
         }
     }
@@ -212,9 +205,13 @@ ApplicationWindow {
                 Qt.quit()
             else
                 exitTimer.start()
-        } else if (appContent.state === "Permissions") {
+        } else if (appContent.state === "MobileComponents") {
+            screenMobileComponents.backAction()
+        } else if (appContent.state === "Settings") {
+            screenSettings.backAction()
+        } else if (appContent.state === "About" || appContent.state === "AboutPermissions") {
             screenAbout.loadScreen()
-        } else if (appContent.state !== "MainView") {
+        } else {
             screenMainView.loadScreen()
         }
     }
@@ -262,8 +259,16 @@ ApplicationWindow {
             id: screenMainView
             anchors.bottomMargin: mobileMenu.hhv
         }
-        ScreenFonts {
-            id: screenFontList
+        ScreenDesktopComponents {
+            id: screenDesktopComponents
+            anchors.bottomMargin: mobileMenu.hhv
+        }
+        ScreenMobileComponents {
+            id: screenMobileComponents
+            anchors.bottomMargin: mobileMenu.hhv
+        }
+        ScreenFontInfos {
+            id: screenFontInfos
             anchors.bottomMargin: mobileMenu.hhv
         }
         ScreenHostInfos {
@@ -275,12 +280,12 @@ ApplicationWindow {
             id: screenSettings
             anchors.bottomMargin: mobileMenu.hhv
         }
-        MobilePermissions {
-            id: screenPermissions
-            anchors.bottomMargin: mobileMenu.hhv
-        }
         ScreenAbout {
             id: screenAbout
+            anchors.bottomMargin: mobileMenu.hhv
+        }
+        MobilePermissions {
+            id: screenAboutPermissions
             anchors.bottomMargin: mobileMenu.hhv
         }
 
@@ -298,68 +303,104 @@ ApplicationWindow {
         }
 
         // Initial state
-        state: "MainView"
+        state: "MobileComponents"
 
         states: [
             State {
                 name: "MainView"
-                PropertyChanges { target: appHeader; title: "QmlAppTemplate"; }
+                PropertyChanges { target: appHeader; headerTitle: "QmlAppTemplate"; }
                 PropertyChanges { target: screenMainView; visible: true; enabled: true; }
-                PropertyChanges { target: screenFontList; visible: false; enabled: false; }
+                PropertyChanges { target: screenDesktopComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenFontInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenSettings; visible: false; enabled: false; }
-                PropertyChanges { target: screenPermissions; visible: false; enabled: false; }
                 PropertyChanges { target: screenAbout; visible: false; enabled: false; }
+                PropertyChanges { target: screenAboutPermissions; visible: false; enabled: false; }
             },
             State {
-                name: "FontList"
-                PropertyChanges { target: appHeader; title: "Font list"; }
+                name: "DesktopComponents"
+                PropertyChanges { target: appHeader; headerTitle: "QmlAppTemplate"; }
                 PropertyChanges { target: screenMainView; visible: false; enabled: false; }
-                PropertyChanges { target: screenFontList; visible: true; enabled: true; }
+                PropertyChanges { target: screenDesktopComponents; visible: true; enabled: true; }
+                PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenFontInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenSettings; visible: false; enabled: false; }
-                PropertyChanges { target: screenPermissions; visible: false; enabled: false; }
                 PropertyChanges { target: screenAbout; visible: false; enabled: false; }
+                PropertyChanges { target: screenAboutPermissions; visible: false; enabled: false; }
+            },
+            State {
+                name: "MobileComponents"
+                PropertyChanges { target: appHeader; headerTitle: "QmlAppTemplate"; }
+                PropertyChanges { target: screenMainView; visible: false; enabled: false; }
+                PropertyChanges { target: screenDesktopComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenMobileComponents; visible: true; enabled: true; }
+                PropertyChanges { target: screenFontInfos; visible: false; enabled: false; }
+                PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
+                PropertyChanges { target: screenSettings; visible: false; enabled: false; }
+                PropertyChanges { target: screenAbout; visible: false; enabled: false; }
+                PropertyChanges { target: screenAboutPermissions; visible: false; enabled: false; }
+            },
+            State {
+                name: "FontInfos"
+                PropertyChanges { target: appHeader; headerTitle: "Font infos"; }
+                PropertyChanges { target: screenMainView; visible: false; enabled: false; }
+                PropertyChanges { target: screenDesktopComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenFontInfos; visible: true; enabled: true; }
+                PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
+                PropertyChanges { target: screenSettings; visible: false; enabled: false; }
+                PropertyChanges { target: screenAbout; visible: false; enabled: false; }
+                PropertyChanges { target: screenAboutPermissions; visible: false; enabled: false; }
             },
             State {
                 name: "HostInfos"
-                PropertyChanges { target: appHeader; title: "Host infos"; }
+                PropertyChanges { target: appHeader; headerTitle: "Host infos"; }
                 PropertyChanges { target: screenMainView; visible: false; enabled: false; }
-                PropertyChanges { target: screenFontList; visible: false; enabled: false; }
+                PropertyChanges { target: screenDesktopComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenFontInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenHostInfos; visible: true; enabled: true; }
                 PropertyChanges { target: screenSettings; visible: false; enabled: false; }
-                PropertyChanges { target: screenPermissions; visible: false; enabled: false; }
                 PropertyChanges { target: screenAbout; visible: false; enabled: false; }
+                PropertyChanges { target: screenAboutPermissions; visible: false; enabled: false; }
             },
             State {
                 name: "Settings"
-                PropertyChanges { target: appHeader; title: qsTr("Settings"); }
+                PropertyChanges { target: appHeader; headerTitle: qsTr("Settings"); }
                 PropertyChanges { target: screenMainView; visible: false; enabled: false; }
-                PropertyChanges { target: screenFontList; visible: false; enabled: false; }
+                PropertyChanges { target: screenDesktopComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenFontInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenSettings; visible: true; enabled: true; }
-                PropertyChanges { target: screenPermissions; visible: false; enabled: false; }
                 PropertyChanges { target: screenAbout; visible: false; enabled: false; }
-            },
-            State {
-                name: "Permissions"
-                PropertyChanges { target: appHeader; title: qsTr("Permissions"); }
-                PropertyChanges { target: screenMainView; visible: false; enabled: false; }
-                PropertyChanges { target: screenFontList; visible: false; enabled: false; }
-                PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
-                PropertyChanges { target: screenSettings; visible: false; enabled: false; }
-                PropertyChanges { target: screenPermissions; visible: true; enabled: true; }
-                PropertyChanges { target: screenAbout; visible: false; enabled: false; }
+                PropertyChanges { target: screenAboutPermissions; visible: false; enabled: false; }
             },
             State {
                 name: "About"
-                PropertyChanges { target: appHeader; title: qsTr("About"); }
+                PropertyChanges { target: appHeader; headerTitle: qsTr("About"); }
                 PropertyChanges { target: screenMainView; visible: false; enabled: false; }
-                PropertyChanges { target: screenFontList; visible: false; enabled: false; }
+                PropertyChanges { target: screenDesktopComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenFontInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenSettings; visible: false; enabled: false; }
-                PropertyChanges { target: screenPermissions; visible: false; enabled: false; }
                 PropertyChanges { target: screenAbout; visible: true; enabled: true; }
+                PropertyChanges { target: screenAboutPermissions; visible: false; enabled: false; }
+            },
+            State {
+                name: "AboutPermissions"
+                PropertyChanges { target: appHeader; headerTitle: qsTr("Permissions"); }
+                PropertyChanges { target: screenMainView; visible: false; enabled: false; }
+                PropertyChanges { target: screenDesktopComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenFontInfos; visible: false; enabled: false; }
+                PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
+                PropertyChanges { target: screenSettings; visible: false; enabled: false; }
+                PropertyChanges { target: screenAbout; visible: false; enabled: false; }
+                PropertyChanges { target: screenAboutPermissions; visible: true; enabled: true; }
             }
         ]
     }

@@ -6,6 +6,7 @@
     <supports-screens android:anyDensity="true" android:largeScreens="true" android:normalScreens="true" android:smallScreens="true" />
 
     <!-- %%INSERT_PERMISSIONS -->
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <!-- %%INSERT_FEATURES -->
 

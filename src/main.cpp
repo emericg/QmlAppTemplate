@@ -40,10 +40,6 @@
 #include <QQuickStyle>
 #include <QSurfaceFormat>
 
-#if defined(Q_OS_ANDROID) && (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
-#include <QtAndroid>
-#endif
-
 /* ************************************************************************** */
 
 int main(int argc, char *argv[])
@@ -96,6 +92,7 @@ int main(int argc, char *argv[])
     // ThemeEngine
     qmlRegisterSingletonType(QUrl("qrc:/qml/ThemeEngine.qml"), "ThemeEngine", 1, 0, "Theme");
 
+    // Force QtQuick components stype?
     //QQuickStyle::setStyle("Material");
 
     MobileUI::registerQML();
@@ -142,11 +139,7 @@ int main(int argc, char *argv[])
 #endif // desktop section
 
 #if defined(Q_OS_ANDROID)
-#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
-    QtAndroid::hideSplashScreen(333);
-#else
     QNativeInterface::QAndroidApplication::hideSplashScreen(333);
-#endif
 #endif
 
     return app.exec();

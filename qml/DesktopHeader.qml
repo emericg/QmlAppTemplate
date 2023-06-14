@@ -3,29 +3,29 @@ import QtQuick 2.15
 import ThemeEngine 1.0
 
 Rectangle {
-    id: header
+    id: appHeader
     anchors.top: parent.top
     anchors.left: parent.left
     anchors.right: parent.right
 
     z: 10
-    height: 64
+    height: headerHeight
     color: Theme.colorHeader
+
+    property int headerHeight: 64
+
+    property string headerTitle: "QmlAppTemplate"
+
+    property bool componentsEnabled: true
 
     ////////////////////////////////////////////////////////////////////////////
 
     signal backButtonClicked()
-    signal rightMenuClicked() // compatibility
+    signal rightMenuClicked() // mobile header compatibility
 
-    signal refreshButtonClicked()
-
-    signal mainButtonClicked()
-    signal settingsButtonClicked()
-    signal aboutButtonClicked()
-
-    function setActiveMenu() {
-        //
-    }
+    signal menuComponentsClicked()
+    signal menuSettingsClicked()
+    signal menuAboutClicked()
 
     ////////////////////////////////////////////////////////////////////////////
 
@@ -36,53 +36,33 @@ Rectangle {
         target: null
     }
 
-    MouseArea {
-        width: 40
-        height: 40
+    RoundButtonIcon {
+        id: buttonBack
         anchors.left: parent.left
         anchors.leftMargin: 12
         anchors.verticalCenter: parent.verticalCenter
 
-        hoverEnabled: (buttonBack.source !== "qrc:/assets/icons_material/baseline-arrow_back-24px.svg")
-        onEntered: { buttonBackBg.opacity = 0.5; }
-        onExited: { buttonBackBg.opacity = 0; buttonBack.width = 24; }
-
-        onPressed: buttonBack.width = 20
-        onReleased: buttonBack.width = 24
-        onClicked: backButtonClicked()
-
         enabled: (buttonBack.source !== "qrc:/assets/icons_material/baseline-arrow_back-24px.svg" || wideMode)
         visible: enabled
 
-        Rectangle {
-            id: buttonBackBg
-            anchors.fill: parent
-            radius: height
-            z: -1
-            color: Theme.colorHeaderHighlight
-            opacity: 0
-            Behavior on opacity { OpacityAnimator { duration: 333 } }
-        }
+        source: "qrc:/assets/icons_material/baseline-arrow_back-24px.svg"
+        iconColor: Theme.colorHeaderContent
+        backgroundColor: Theme.colorHeaderHighlight
 
-        IconSvg {
-            id: buttonBack
-            width: 24
-            height: width
-            anchors.centerIn: parent
+        //hoverEnabled: (buttonBack.source !== "qrc:/assets/icons_material/baseline-arrow_back-24px.svg")
+        //onPressed: buttonBack.width = 20
+        //onReleased: buttonBack.width = 24
 
-            source: "qrc:/assets/icons_material/baseline-arrow_back-24px.svg"
-            color: Theme.colorHeaderContent
-        }
+        onClicked: backButtonClicked()
     }
 
-    Text {
-        id: title
+    Text { // title
         anchors.left: parent.left
         anchors.leftMargin: 64
         anchors.verticalCenter: parent.verticalCenter
 
         visible: wideMode
-        text: "QmlAppTemplate"
+        text: appHeader.headerTitle
         font.bold: true
         font.pixelSize: Theme.fontSizeHeader
         color: Theme.colorHeaderContent
@@ -93,15 +73,48 @@ Rectangle {
     Row {
         id: menus
         anchors.top: parent.top
-        anchors.topMargin: 0
         anchors.right: parent.right
-        anchors.rightMargin: 0
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 0
 
-        //z: 1
-        visible: true
         spacing: 12
+        visible: true
+
+        ////////////
+
+        ButtonCompactable {
+            id: buttonRefresh
+            anchors.verticalCenter: parent.verticalCenter
+
+            source: "qrc:/assets/icons_material/baseline-autorenew-24px.svg"
+            textColor: Theme.colorHeaderContent
+            iconColor: Theme.colorHeaderContent
+            backgroundColor: Theme.colorHeaderHighlight
+            text: qsTr("Animate this")
+            tooltipText: text
+
+            animation: "rotate"
+            animationRunning: isclicked
+
+            property bool isclicked: false
+            onClicked: isclicked = !isclicked
+        }
+
+        ButtonWireframe {
+            id: buttonEnable
+            anchors.verticalCenter: parent.verticalCenter
+
+            text: componentsEnabled ? qsTr("Enable components") : qsTr("Disable components")
+            onClicked: componentsEnabled = !componentsEnabled
+        }
+
+        ////////////
+
+        Rectangle { // separator
+            anchors.verticalCenter: parent.verticalCenter
+            height: 40
+            width: Theme.componentBorderWidth
+            color: Theme.colorHeaderHighlight
+        }
 
         ////////////
 
@@ -115,7 +128,7 @@ Rectangle {
 
             onClicked: actionMenu.open()
 
-            ActionMenu_bottom {
+            ActionMenu_floating {
                 id: actionMenu
 
                 model: ListModel {
@@ -134,79 +147,6 @@ Rectangle {
 
         ////////////
 
-        ButtonCompactable {
-            id: buttonRefresh
-            anchors.verticalCenter: parent.verticalCenter
-
-            //visible: (deviceManager.bluetooth && menuMain.visible)
-            //enabled: !deviceManager.scanning
-
-            source: "qrc:/assets/icons_material/baseline-autorenew-24px.svg"
-            textColor: Theme.colorHeaderContent
-            iconColor: Theme.colorHeaderContent
-            backgroundColor: Theme.colorHeaderHighlight
-            text: qsTr("Refresh data")
-            tooltipText: text
-
-            property bool isclicked: false
-            onClicked: isclicked = !isclicked
-
-            animation: "rotate"
-            animationRunning: isclicked
-        }
-
-        ////////////
-/*
-        Rectangle { // separator
-            anchors.verticalCenter: parent.verticalCenter
-            height: 40
-            width: Theme.componentBorderWidth
-            color: Theme.colorHeaderHighlight
-            visible: (menuTest.visible)
-        }
-
-        Row {
-            id: menuTest
-
-            DesktopHeaderItem {
-                id: menuMainView1
-                height: header.height
-
-                colorContent: Theme.colorHeaderContent
-                colorHighlight: Theme.colorHeaderHighlight
-
-                selected: (appContent.state === "MainView")
-                source: "qrc:/assets/icons_material/duotone-touch_app-24px.svg"
-                onClicked: mainButtonClicked()
-            }
-            DesktopHeaderItem {
-                id: menuSettings1
-                height: header.height
-
-                colorContent: Theme.colorHeaderContent
-                colorHighlight: Theme.colorHeaderHighlight
-
-                selected: (appContent.state === "Settings")
-                text: qsTr("Settings")
-                //source: "qrc:/assets/icons_material/baseline-settings-20px.svg"
-                onClicked: settingsButtonClicked()
-            }
-            DesktopHeaderItem {
-                id: menuAbout1
-                height: header.height
-
-                colorContent: Theme.colorHeaderContent
-                colorHighlight: Theme.colorHeaderHighlight
-
-                selected: (appContent.state === "About")
-                text: qsTr("Infos")
-                source: "qrc:/assets/icons_material/outline-info-24px.svg"
-                onClicked: aboutButtonClicked()
-            }
-        }
-*/
-        ////////////
-
         Rectangle { // separator
             anchors.verticalCenter: parent.verticalCenter
             height: 40
@@ -215,44 +155,46 @@ Rectangle {
             visible: (menuMain.visible)
         }
 
+        ////////////
+
         Row {
             id: menuMain
 
             DesktopHeaderItem {
-                id: menuMainView
-                height: header.height
+                id: menuComponents
+                height: appHeader.height
 
                 colorContent: Theme.colorHeaderContent
                 colorHighlight: Theme.colorHeaderHighlight
                 highlightMode: "background"
 
-                selected: (appContent.state === "MainView")
+                selected: (appContent.state === "DesktopComponents")
                 source: "qrc:/assets/icons_material/duotone-touch_app-24px.svg"
-                onClicked: mainButtonClicked()
+                onClicked: menuComponentsClicked()
             }
             DesktopHeaderItem {
                 id: menuSettings
-                height: header.height
+                height: appHeader.height
 
                 colorContent: Theme.colorHeaderContent
                 colorHighlight: Theme.colorHeaderHighlight
                 highlightMode: "background"
 
                 selected: (appContent.state === "Settings")
-                source: "qrc:/assets/icons_material/baseline-settings-20px.svg"
-                onClicked: settingsButtonClicked()
+                source: "qrc:/assets/icons_material/duotone-tune-24px.svg"
+                onClicked: menuSettingsClicked()
             }
             DesktopHeaderItem {
                 id: menuAbout
-                height: header.height
+                height: appHeader.height
 
                 colorContent: Theme.colorHeaderContent
                 colorHighlight: Theme.colorHeaderHighlight
                 highlightMode: "background"
 
                 selected: (appContent.state === "About")
-                source: "qrc:/assets/icons_material/outline-info-24px.svg"
-                onClicked: aboutButtonClicked()
+                source: "qrc:/assets/icons_material/duotone-info-24px.svg"
+                onClicked: menuAboutClicked()
             }
         }
     }
@@ -274,7 +216,7 @@ Rectangle {
         height: 2
         opacity: 0.5
         color: Theme.colorHeaderHighlight
-/*
+
         Rectangle { // shadow
             anchors.top: parent.bottom
             anchors.left: parent.left
@@ -282,6 +224,7 @@ Rectangle {
 
             height: 8
             opacity: 0.66
+            visible: false
 
             gradient: Gradient {
                 orientation: Gradient.Vertical
@@ -289,6 +232,5 @@ Rectangle {
                 GradientStop { position: 1.0; color: Theme.colorBackground; }
             }
         }
-*/
     }
 }

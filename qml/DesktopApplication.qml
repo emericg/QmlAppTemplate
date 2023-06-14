@@ -58,27 +58,23 @@ ApplicationWindow {
 
     // Events handling /////////////////////////////////////////////////////////
 
-    //onActiveFocusItemChanged: print("activeFocusItem", activeFocusItem)
-
     Component.onCompleted: {
         //
     }
 
     Connections {
         target: appHeader
-        function onBackButtonClicked() {
-            if (appContent.state !== "MainView") {
-                screenMainView.loadScreen()
-            }
-        }
 
-        function onRefreshButtonClicked() {
+        function onBackButtonClicked() {
+            backAction()
+        }
+        function onRightMenuClicked() {
             //
         }
 
-        function onMainButtonClicked() { screenMainView.loadScreen() }
-        function onSettingsButtonClicked() { screenSettings.loadScreen() }
-        function onAboutButtonClicked() { screenAbout.loadScreen() }
+        function onMenuComponentsClicked() { screenDesktopComponents.loadScreen() }
+        function onMenuSettingsClicked() { screenSettings.loadScreen() }
+        function onMenuAboutClicked() { screenAbout.loadScreen() }
     }
 
     Connections {
@@ -95,6 +91,10 @@ ApplicationWindow {
         }
     }
 
+    onActiveFocusItemChanged: {
+        //print("activeFocusItem", activeFocusItem)
+    }
+
     onClosing: (close) =>  {
         if (Qt.platform.os === "osx") {
             close.accepted = false
@@ -105,7 +105,11 @@ ApplicationWindow {
     // User generated events handling //////////////////////////////////////////
 
     function backAction() {
-        //
+        if (appContent.state === "MobileComponents") {
+            screenMobileComponents.backAction()
+        } else {
+            screenDesktopComponents.loadScreen()
+        }
     }
     function forwardAction() {
         //
@@ -230,8 +234,14 @@ ApplicationWindow {
         ScreenMainView {
             id: screenMainView
         }
-        ScreenFonts {
-            id: screenFontList
+        ScreenDesktopComponents {
+            id: screenDesktopComponents
+        }
+        ScreenMobileComponents {
+            id: screenMobileComponents
+        }
+        ScreenFontInfos {
+            id: screenFontInfos
         }
         ScreenHostInfos {
             id: screenHostInfos
@@ -245,7 +255,7 @@ ApplicationWindow {
         }
 
         Component.onCompleted: {
-            //
+            screenDesktopComponents.loadScreen()
         }
 
         onStateChanged: {
@@ -259,15 +269,39 @@ ApplicationWindow {
             State {
                 name: "MainView"
                 PropertyChanges { target: screenMainView; visible: true; enabled: true; focus: true; }
-                PropertyChanges { target: screenFontList; visible: false; enabled: false; }
+                PropertyChanges { target: screenDesktopComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenFontInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenSettings; visible: false; enabled: false; }
                 PropertyChanges { target: screenAbout; visible: false; enabled: false; }
             },
             State {
-                name: "FontList"
+                name: "DesktopComponents"
                 PropertyChanges { target: screenMainView; visible: false; enabled: false; }
-                PropertyChanges { target: screenFontList; visible: true; enabled: true; focus: true; }
+                PropertyChanges { target: screenDesktopComponents; visible: true; enabled: true; focus: true; }
+                PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenFontInfos; visible: false; enabled: false; }
+                PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
+                PropertyChanges { target: screenSettings; visible: false; enabled: false; }
+                PropertyChanges { target: screenAbout; visible: false; enabled: false; }
+            },
+            State {
+                name: "MobileComponents"
+                PropertyChanges { target: screenMainView; visible: false; enabled: false; }
+                PropertyChanges { target: screenDesktopComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenMobileComponents; visible: true; enabled: true; focus: true; }
+                PropertyChanges { target: screenFontInfos; visible: false; enabled: false; }
+                PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
+                PropertyChanges { target: screenSettings; visible: false; enabled: false; }
+                PropertyChanges { target: screenAbout; visible: false; enabled: false; }
+            },
+            State {
+                name: "FontInfos"
+                PropertyChanges { target: screenMainView; visible: false; enabled: false; }
+                PropertyChanges { target: screenDesktopComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenFontInfos; visible: true; enabled: true; focus: true; }
                 PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenSettings; visible: false; enabled: false; }
                 PropertyChanges { target: screenAbout; visible: false; enabled: false; }
@@ -275,7 +309,9 @@ ApplicationWindow {
             State {
                 name: "HostInfos"
                 PropertyChanges { target: screenMainView; visible: false; enabled: false; }
-                PropertyChanges { target: screenFontList; visible: false; enabled: false; }
+                PropertyChanges { target: screenDesktopComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenFontInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenHostInfos; visible: true; enabled: true; focus: true; }
                 PropertyChanges { target: screenSettings; visible: false; enabled: false; }
                 PropertyChanges { target: screenAbout; visible: false; enabled: false; }
@@ -283,7 +319,9 @@ ApplicationWindow {
             State {
                 name: "Settings"
                 PropertyChanges { target: screenMainView; visible: false; enabled: false; }
-                PropertyChanges { target: screenFontList; visible: false; enabled: false; }
+                PropertyChanges { target: screenDesktopComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenFontInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenSettings; visible: true; enabled: true; focus: true; }
                 PropertyChanges { target: screenAbout; visible: false; enabled: false; }
@@ -291,7 +329,9 @@ ApplicationWindow {
             State {
                 name: "About"
                 PropertyChanges { target: screenMainView; visible: false; enabled: false; }
-                PropertyChanges { target: screenFontList; visible: false; enabled: false; }
+                PropertyChanges { target: screenDesktopComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenFontInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenSettings; visible: false; enabled: false; }
                 PropertyChanges { target: screenAbout; visible: true; enabled: true; focus: true; }

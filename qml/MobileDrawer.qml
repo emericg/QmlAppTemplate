@@ -4,7 +4,9 @@ import QtQuick.Controls 2.15
 import ThemeEngine 1.0
 
 Drawer {
-    width: parent.width*0.8
+    width: (appWindow.screenOrientation === Qt.PortraitOrientation || appWindow.width < 480)
+                ? 0.8 * appWindow.width :
+                  0.5 * appWindow.width
     height: parent.height
 
     ////////////////////////////////////////////////////////////////////////////
@@ -96,6 +98,8 @@ Drawer {
                     font.pixelSize: 22
                 }
             }
+
+            ////////
         }
 
         // prevent clicks below this area
@@ -148,7 +152,7 @@ Drawer {
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
-                            screenMainView.loadScreen()
+                            screenDesktopComponents.loadScreen()
                             appDrawer.close()
                         }
                     }
@@ -169,6 +173,45 @@ Drawer {
                         anchors.verticalCenter: parent.verticalCenter
 
                         text: qsTr("MainView")
+                        font.pixelSize: 13
+                        font.bold: true
+                        color: Theme.colorText
+                    }
+                }
+
+                ////////
+
+                Rectangle {
+                    id: rectangleComponents
+                    height: 48
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    color: (appContent.state === "MobileComponents") ? Theme.colorForeground : "transparent"
+
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            screenMobileComponents.loadScreen()
+                            appDrawer.close()
+                        }
+                    }
+
+                    IconSvg {
+                        width: 24
+                        height: 24
+                        anchors.left: parent.left
+                        anchors.leftMargin: screenPaddingLeft + 16
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        source: "qrc:/assets/icons_material/duotone-touch_app-24px.svg"
+                        color: Theme.colorText
+                    }
+                    Text {
+                        anchors.left: parent.left
+                        anchors.leftMargin: screenPaddingLeft + 56
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        text: qsTr("Components")
                         font.pixelSize: 13
                         font.bold: true
                         color: Theme.colorText
@@ -207,7 +250,7 @@ Drawer {
                         anchors.leftMargin: screenPaddingLeft + 56
                         anchors.verticalCenter: parent.verticalCenter
 
-                        text: qsTr("Host Infos")
+                        text: qsTr("Host infos")
                         font.pixelSize: 13
                         font.bold: true
                         color: Theme.colorText
@@ -221,12 +264,12 @@ Drawer {
                     height: 48
                     anchors.left: parent.left
                     anchors.right: parent.right
-                    color: (appContent.state === "FontList") ? Theme.colorForeground : "transparent"
+                    color: (appContent.state === "FontInfos") ? Theme.colorForeground : "transparent"
 
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
-                            screenFontList.loadScreen()
+                            screenFontInfos.loadScreen()
                             appDrawer.close()
                         }
                     }
@@ -246,7 +289,7 @@ Drawer {
                         anchors.leftMargin: screenPaddingLeft + 56
                         anchors.verticalCenter: parent.verticalCenter
 
-                        text: qsTr("Font List")
+                        text: qsTr("Font infos")
                         font.pixelSize: 13
                         font.bold: true
                         color: Theme.colorText
@@ -316,8 +359,7 @@ Drawer {
                     height: 48
                     anchors.right: parent.right
                     anchors.left: parent.left
-                    color: (appContent.state === "About" ||
-                            appContent.state === "Permissions") ? Theme.colorForeground : "transparent"
+                    color: (appContent.state === "About" || appContent.state === "AboutPermissions") ? Theme.colorForeground : "transparent"
 
                     MouseArea {
                         anchors.fill: parent
