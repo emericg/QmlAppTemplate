@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.19)
+cmake_minimum_required(VERSION 3.20)
 
 project(QmlAppTemplate VERSION 0.5 LANGUAGES CXX)
 
@@ -7,11 +7,22 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
+################################################################################
+
+message(STATUS "[CMAKE] CMAKE_VERSION               = ${CMAKE_VERSION}")
+message(STATUS "[CMAKE] CMAKE_PREFIX_PATH           = ${CMAKE_PREFIX_PATH}")
+message(STATUS "[SYSTEM] (HOST) SYSTEM NAME         = ${CMAKE_HOST_SYSTEM_NAME}")
+message(STATUS "[SYSTEM] (TARGET) SYSTEM NAME       = ${CMAKE_SYSTEM_NAME}")
+message(STATUS "[SYSTEM] (TARGET) SYSTEM VESRION    = ${CMAKE_SYSTEM_VERSION}")
+message(STATUS "[PROJECT] SOURCE_DIR                = ${CMAKE_CURRENT_SOURCE_DIR}")
+message(STATUS "[PROJECT] BUILD_TYPE                = ${CMAKE_BUILD_TYPE}")
+message(STATUS "[PROJECT] TOOLCHAIN_FILE            = ${CMAKE_TOOLCHAIN_FILE}")
+
+################################################################################
+
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml Quick QuickControls2 Svg)
 
 qt_standard_project_setup()
-
-################################################################################
 
 qt_add_executable(QmlAppTemplate
     src/SettingsManager.cpp src/SettingsManager.h
@@ -143,11 +154,3 @@ qt_generate_deploy_qml_app_script(
 install(SCRIPT ${deploy_script})
 
 ################################################################################
-
-message(STATUS "[PROJECT] CMAKE_VERSION                = ${CMAKE_VERSION}")
-message(STATUS "[PROJECT] CMAKE_PREFIX_PATH            = ${CMAKE_PREFIX_PATH}")
-message(STATUS "[PROJECT] CMAKE_TOOLCHAIN_FILE         = ${CMAKE_TOOLCHAIN_FILE}")
-message(STATUS "[DEFINE] SOURCE_DIR                    = ${CMAKE_CURRENT_SOURCE_DIR}")
-message(STATUS "[DEFINE] BUILD_TYPE                    = ${CMAKE_BUILD_TYPE}")
-message(STATUS "[SYSTEM] HOST SYSTEM NAME              = ${CMAKE_HOST_SYSTEM_NAME}")
-message(STATUS "[SYSTEM] (TARGET) SYSTEM NAME          = ${CMAKE_SYSTEM_NAME}")
