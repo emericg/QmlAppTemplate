@@ -29,7 +29,7 @@ Loader {
         anchors.fill: parent
 
         function backAction() {
-            //
+            screenMainView.loadScreen()
         }
 
         // MENUS ///////////////////////////////////////////////////////////////////
@@ -241,19 +241,18 @@ Loader {
 
                 anchors.left: parent.left
                 anchors.right: parent.right
+                anchors.margins: Theme.componentMargin
 
-                topPadding: 24
-                bottomPadding: 24
-                leftPadding: 24
-                rightPadding: 24
-                spacing: 24
+                topPadding: Theme.componentMargin
+                bottomPadding: Theme.componentMargin
+                spacing: Theme.componentMargin
 
                 ////////////////
 
                 Row {
                     anchors.left: parent.left
                     anchors.right: parent.right
-                    spacing: 24
+                    spacing: Theme.componentMargin
 
                     Text {
                         anchors.verticalCenter: parent.verticalCenter
@@ -351,7 +350,7 @@ Loader {
                 Flow {
                     anchors.left: parent.left
                     anchors.right: parent.right
-                    spacing: 24
+                    spacing: Theme.componentMargin
 
                     ButtonWireframe {
                         fullColor: true
@@ -384,7 +383,7 @@ Loader {
                 Row {
                     anchors.left: parent.left
                     anchors.right: parent.right
-                    spacing: 24
+                    spacing: Theme.componentMargin
 
                     Row {
                         height: 48
@@ -512,7 +511,7 @@ Loader {
                 Row {
                     anchors.left: parent.left
                     anchors.right: parent.right
-                    spacing: 24
+                    spacing: Theme.componentMargin
 
                     SelectorMenuThemed {
                         height: 40
@@ -591,7 +590,7 @@ Loader {
                 Row {
                     anchors.left: parent.left
                     anchors.right: parent.right
-                    spacing: 24
+                    spacing: Theme.componentMargin
 
                     ItemBadge {
                         anchors.verticalCenter: parent.verticalCenter
@@ -631,7 +630,7 @@ Loader {
                 Row {
                     anchors.left: parent.left
                     anchors.right: parent.right
-                    spacing: 24
+                    spacing: Theme.componentMargin
 
                     SliderArrow {
                         anchors.verticalCenter: parent.verticalCenter
@@ -656,7 +655,7 @@ Loader {
                 Row {
                     anchors.left: parent.left
                     anchors.right: parent.right
-                    spacing: 24
+                    spacing: Theme.componentMargin
 
                     SliderValueSolid {
                         anchors.verticalCenter: parent.verticalCenter
@@ -686,7 +685,7 @@ Loader {
                 Row {
                     anchors.left: parent.left
                     anchors.right: parent.right
-                    spacing: 24
+                    spacing: Theme.componentMargin
 
                     Dial {
                         anchors.verticalCenter: parent.verticalCenter
@@ -747,7 +746,7 @@ Loader {
                 Row {
                     anchors.left: parent.left
                     anchors.right: parent.right
-                    spacing: 24
+                    spacing: Theme.componentMargin
 
                     AndroidButton {
                         anchors.verticalCenter: parent.verticalCenter
@@ -782,7 +781,7 @@ Loader {
                 Row {
                     anchors.left: parent.left
                     anchors.right: parent.right
-                    spacing: 24
+                    spacing: Theme.componentMargin
 
                     ProgressBarThemed {
                         anchors.verticalCenter: parent.verticalCenter
@@ -831,7 +830,7 @@ Loader {
                 Row {
                     anchors.left: parent.left
                     anchors.right: parent.right
-                    spacing: 24
+                    spacing: Theme.componentMargin
 
                     TextFieldThemed {
                         anchors.verticalCenter: parent.verticalCenter
@@ -895,7 +894,7 @@ Loader {
                 Row {
                     anchors.left: parent.left
                     anchors.right: parent.right
-                    spacing: 24
+                    spacing: Theme.componentMargin
 
                     ProgressBar {
                         anchors.verticalCenter: parent.verticalCenter
@@ -933,7 +932,7 @@ Loader {
                 Row {
                     anchors.left: parent.left
                     anchors.right: parent.right
-                    spacing: 24
+                    spacing: Theme.componentMargin
 
                     TextField {
                         anchors.verticalCenter: parent.verticalCenter

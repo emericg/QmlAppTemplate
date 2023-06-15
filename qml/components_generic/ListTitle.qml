@@ -1,20 +1,22 @@
 import QtQuick
-import QtQuick.Controls
 
 import ThemeEngine 1.0
 
 Rectangle {
     id: control
 
-    implicitWidth: 512
-    implicitHeight: Theme.componentHeightL
+    anchors.left: parent.left
+    anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
+    anchors.right: parent.right
+    anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
+    height: Theme.componentHeightL
     radius: singleColumn ? 0 : Theme.componentRadius
     z: 2
 
-    color: control.backgroundColor
+    color: backgroundColor
     border.width: singleColumn ? 0 : Theme.componentBorderWidth
-    border.color: control.borderColor
+    border.color: borderColor
 
     property string text: "title"
     property string source
@@ -25,9 +27,9 @@ Rectangle {
 
     // colors
     property string backgroundColor: Theme.colorForeground
-    property string borderColor: Qt.darker(control.backgroundColor, 1.03)
+    property string borderColor: Qt.darker(backgroundColor, 1.03)
 
-    ////////////////////////////////////////////////////////////////////////////
+    ////////////////
 
     Row {
         anchors.left: parent.left
@@ -58,5 +60,5 @@ Rectangle {
         }
     }
 
-    ////////////////////////////////////////////////////////////////////////////
+    ////////////////
 }

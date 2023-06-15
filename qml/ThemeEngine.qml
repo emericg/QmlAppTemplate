@@ -87,20 +87,6 @@ Item {
 
     ////////////////
 
-    // Qt Quick Controls & theming
-    property color colorComponent
-    property color colorComponentText
-    property color colorComponentContent
-    property color colorComponentBorder
-    property color colorComponentDown
-    property color colorComponentBackground
-
-    property int componentHeight: 40
-    property int componentRadius: 4
-    property int componentBorderWidth: 1
-
-    ////////////////
-
     // Palette colors
     property color colorLightGreen: "#09debc"
     property color colorGreen
@@ -131,6 +117,29 @@ Item {
 
     ////////////////
 
+    // Qt Quick Controls & theming
+    property color colorComponent
+    property color colorComponentText
+    property color colorComponentContent
+    property color colorComponentBorder
+    property color colorComponentDown
+    property color colorComponentBackground
+
+    property int componentHeight: (isDesktop && isHdpi) ? 36 : 40
+    property int componentHeightL: (isDesktop && isHdpi) ? 44 : 48
+    property int componentHeightXL: (isDesktop && isHdpi) ? 48 : 56
+
+    property int componentRadius: 4
+    property int componentBorderWidth: 2
+
+    property int componentMargin: isHdpi ? 12 : 16
+    property int componentMarginL: isHdpi ? 16 : 20
+    property int componentMarginXL: isHdpi ? 20 : 24
+
+    property int fontSizeComponent: (Qt.platform.os === "ios" || Qt.platform.os === "android") ? 14 : 15
+
+    ////////////////
+
     // Fonts (sizes in pixel)
     readonly property int fontSizeHeader: (Qt.platform.os === "ios" || Qt.platform.os === "android") ? 22 : 26
     readonly property int fontSizeTitle: 24
@@ -141,7 +150,7 @@ Item {
     readonly property int fontSizeContentBig: 18
     readonly property int fontSizeContentVeryBig: 20
     readonly property int fontSizeContentVeryVeryBig: 22
-    readonly property int fontSizeComponent: (Qt.platform.os === "ios" || Qt.platform.os === "android") ? 14 : 15
+
 
     ////////////////////////////////////////////////////////////////////////////
 

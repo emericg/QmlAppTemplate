@@ -32,14 +32,14 @@ T.SpinBox {
 
         Rectangle {
             width: control.height
-            height: (control.height - Theme.componentBorderWidth) / 2
+            height: control.height / 2
             x: control.mirrored ? 0 : control.width - width
             y: 0
             color: control.up.pressed ? Theme.colorComponentDown : Theme.colorComponent
         }
         Rectangle {
             width: control.height
-            height: (control.height - Theme.componentBorderWidth) / 2
+            height: control.height / 2
             x: control.mirrored ? 0 : control.width - width
             y: height
             color: control.down.pressed ? Theme.colorComponentDown : Theme.colorComponent
@@ -141,6 +141,7 @@ T.SpinBox {
         opacity: enabled ? 1 : 0.33
 
         Canvas {
+            id: arrowup
             anchors.centerIn: parent
             anchors.verticalCenterOffset: 2
             width: 12
@@ -149,7 +150,7 @@ T.SpinBox {
 
             Connections {
                 target: ThemeEngine
-                function onCurrentThemeChanged() { requestPaint() }
+                function onCurrentThemeChanged() { arrowup.requestPaint() }
             }
 
             onPaint: {
@@ -179,6 +180,7 @@ T.SpinBox {
         opacity: enabled ? 1 : 0.33
 
         Canvas {
+            id: arrowdown
             anchors.centerIn: parent
             anchors.verticalCenterOffset: -2
             width: 12
@@ -187,7 +189,7 @@ T.SpinBox {
 
             Connections {
                 target: ThemeEngine
-                function onCurrentThemeChanged() { requestPaint() }
+                function onCurrentThemeChanged() { arrowdown.requestPaint() }
             }
 
             onPaint: {

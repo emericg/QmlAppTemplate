@@ -8,8 +8,9 @@ Item {
     anchors.fill: parent
 
     function loadScreen() {
-        // change screen
-        appContent.state = "MainView"
+        if (isDesktop) screenDesktopComponents.loadScreen()
+        else if (isMobile) screenMobileComponents.loadScreen()
+        else appContent.state = "MainView"
     }
 
     function backAction() {

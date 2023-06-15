@@ -49,22 +49,25 @@ Rectangle {
 
         MouseArea {
             id: leftArea
-            width: headerHeight
-            height: headerHeight
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.bottom: parent.bottom
 
+            width: headerHeight
+            height: headerHeight
             visible: true
+
             onClicked: leftMenuClicked()
 
             IconSvg {
                 id: leftMenuImg
-                width: (headerHeight/2)
-                height: (headerHeight/2)
                 anchors.left: parent.left
                 anchors.leftMargin: 16
                 anchors.verticalCenter: parent.verticalCenter
+
+                width: (headerHeight / 2)
+                height: (headerHeight / 2)
+
                 source: "qrc:/assets/icons_material/baseline-menu-24px.svg"
                 color: Theme.colorHeaderContent
             }
@@ -97,15 +100,18 @@ Rectangle {
             visible: true
 
             Item {
+                anchors.verticalCenter: parent.verticalCenter
+
                 width: parent.height
                 height: width
-                anchors.verticalCenter: parent.verticalCenter
                 visible: (appContent.state === "MobileComponents")
 
                 IconSvg {
                     id: workingIndicator
-                    width: 24; height: 24;
                     anchors.centerIn: parent
+
+                    width: 24
+                    height: 24
 
                     source: "qrc:/assets/icons_material/baseline-autorenew-24px.svg"
                     color: Theme.colorHeaderContent
@@ -113,7 +119,6 @@ Rectangle {
                     Behavior on opacity { OpacityAnimator { duration: 333 } }
 
                     NumberAnimation on rotation {
-                        //id: refreshAnimation
                         from: 0
                         to: 360
                         duration: 2000
@@ -125,7 +130,6 @@ Rectangle {
                         onStopped: workingIndicator.opacity = 0
                     }
                     SequentialAnimation on opacity {
-                        //id: rescanAnimation
                         loops: Animation.Infinite
                         running: false
                         onStopped: workingIndicator.opacity = 0
@@ -139,10 +143,11 @@ Rectangle {
 
             MouseArea {
                 id: rightMenu
+
                 width: headerHeight
                 height: headerHeight
+                visible: (appContent.state === "MobileComponents")
 
-                visible: appContent.state === "MobileComponents"
                 onClicked: {
                     rightMenuClicked()
                     actionMenu.open()
@@ -150,10 +155,11 @@ Rectangle {
 
                 IconSvg {
                     id: rightMenuImg
-                    width: (headerHeight/2)
-                    height: (headerHeight/2)
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
+
+                    width: (headerHeight / 2)
+                    height: (headerHeight / 2)
 
                     source: "qrc:/assets/icons_material/baseline-more_vert-24px.svg"
                     color: Theme.colorHeaderContent

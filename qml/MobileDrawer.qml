@@ -14,7 +14,7 @@ Drawer {
     background: Rectangle {
         color: Theme.colorBackground
 
-        Rectangle {
+        Rectangle { // left border
             x: parent.width - 1
             width: 1
             height: parent.height
@@ -31,6 +31,7 @@ Drawer {
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.right: parent.right
+            anchors.rightMargin: 1
             z: 5
 
             Connections {
@@ -102,9 +103,6 @@ Drawer {
             ////////
         }
 
-        // prevent clicks below this area
-        MouseArea { anchors.fill: rectangleHeader; acceptedButtons: Qt.AllButtons; }
-
         ////////////////////////////////////////////////////////////////////////////
 
         Flickable {
@@ -123,22 +121,7 @@ Drawer {
 
                 ////////
 
-                Item { // spacer
-                    height: 8
-                    anchors.right: parent.right
-                    anchors.left: parent.left
-                }
-                Rectangle {
-                    height: 1
-                    anchors.right: parent.right
-                    anchors.left: parent.left
-                    color: Theme.colorSeparator
-                }
-                Item {
-                    height: 8
-                    anchors.right: parent.right
-                    anchors.left: parent.left
-                }
+                ListSeparatorPadded { }
 
                 ////////
 
@@ -298,22 +281,7 @@ Drawer {
 
                 ////////
 
-                Item { // spacer
-                    height: 8
-                    anchors.right: parent.right
-                    anchors.left: parent.left
-                }
-                Rectangle {
-                    height: 1
-                    anchors.right: parent.right
-                    anchors.left: parent.left
-                    color: Theme.colorSeparator
-                }
-                Item {
-                    height: 8
-                    anchors.right: parent.right
-                    anchors.left: parent.left
-                }
+                ListSeparatorPadded { }
 
                 ////////
 
@@ -393,22 +361,7 @@ Drawer {
 
                 ////////
 
-                Item { // spacer
-                    height: 8
-                    anchors.right: parent.right
-                    anchors.left: parent.left
-                }
-                Rectangle {
-                    height: 1
-                    anchors.right: parent.right
-                    anchors.left: parent.left
-                    color: Theme.colorSeparator
-                }
-                Item {
-                    height: 8
-                    anchors.right: parent.right
-                    anchors.left: parent.left
-                }
+                ListSeparatorPadded { }
 
                 ////////
             }

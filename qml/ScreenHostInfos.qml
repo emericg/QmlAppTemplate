@@ -36,7 +36,7 @@ Loader {
         ScrollBar.vertical: ScrollBar { visible: isDesktop; }
 
         function backAction() {
-            //
+            screenMainView.loadScreen()
         }
 
         property int flow_width: (contentFlow.width - contentFlow.spacing)
@@ -53,12 +53,9 @@ Loader {
                                     itemOsInfo.height + itemHwInfo.height + itemScreenInfo.height
 
             height: singleColumn ? maxheight : screenHostInfos.height
-            spacing: 12
+            spacing: Theme.componentMargin
+            padding: Theme.componentMargin
             flow: Flow.TopToBottom
-
-            topPadding: 14
-            padding: 12
-            bottomPadding: 14
 
             ////////////////////////////////
 

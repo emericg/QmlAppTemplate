@@ -28,10 +28,12 @@ Loader {
         function backAction() {
             //console.log("MobileComponents::backAction()")
 
-            if (stackView.depth > 1)
+            if (stackView.depth > 1) {
                 stackView.pop()
-            else
-                appContent.state = "MainView"
+                return
+            }
+
+            screenMainView.loadScreen()
         }
 
         StackView {
@@ -106,38 +108,6 @@ Loader {
                     ItemDelegateThemed {
                         width: screenMobileComponents.width
 
-                        contentItem: Row {
-                            anchors.verticalCenter: parent.verticalCenter
-                            width: screenMobileComponents.width
-                            spacing: 12
-
-                            RoundButtonIcon {
-                                anchors.verticalCenter: parent.verticalCenter
-                                width: 40
-                                height: 40
-
-                                source: model.icon
-                                sourceSize: 32
-                                background: true
-                            }
-
-                            Column {
-                                anchors.verticalCenter: parent.verticalCenter
-                                Text {
-                                    text: model.title
-                                    textFormat: Text.PlainText
-                                    font.pixelSize: Theme.fontSizeComponent
-                                    color: Theme.colorText
-                                }
-                                Text {
-                                    text: model.text
-                                    textFormat: Text.PlainText
-                                    font.pixelSize: Theme.fontSizeComponent
-                                    color: Theme.colorSubText
-                                }
-                            }
-                        }
-
                         onClicked: {
                             ListView.currentIndex = index
                             stackView.push(model.source)
@@ -152,8 +122,8 @@ Loader {
                     currentIndex: -1
                     anchors.fill: parent
 
-                    topMargin: 16
-                    bottomMargin: 16
+                    topMargin: Theme.componentMargin
+                    bottomMargin: Theme.componentMargin
 
                     delegate: listComponent
                     model: pagesModel

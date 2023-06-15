@@ -152,13 +152,10 @@ ApplicationWindow {
     Connections {
         target: appHeader
         function onLeftMenuClicked() {
-            if (appContent.state === "MainView") {
+            if (appContent.state === "MainView" || appContent.state === "MobileComponents") {
                 appDrawer.open()
             } else {
-                if (appContent.state === "AboutPermissions")
-                    screenAbout.loadScreen()
-                else
-                    screenMainView.loadScreen()
+                backAction()
             }
         }
         function onRightMenuClicked() {
@@ -209,7 +206,9 @@ ApplicationWindow {
             screenMobileComponents.backAction()
         } else if (appContent.state === "Settings") {
             screenSettings.backAction()
-        } else if (appContent.state === "About" || appContent.state === "AboutPermissions") {
+        } else if (appContent.state === "About") {
+            screenAbout.backAction()
+        } else if (appContent.state === "AboutPermissions") {
             screenAbout.loadScreen()
         } else {
             screenMainView.loadScreen()

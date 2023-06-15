@@ -35,7 +35,7 @@ Loader {
         ScrollBar.vertical: ScrollBar { visible: isDesktop; }
 
         function backAction() {
-            //
+            screenMainView.loadScreen()
         }
 
         Column {
@@ -44,15 +44,17 @@ Loader {
             anchors.left: parent.left
             anchors.right: parent.right
 
-            topPadding: 12
-            bottomPadding: 12
+            topPadding: Theme.componentMargin
+            bottomPadding: Theme.componentMargin
             spacing: 8
 
             ////////////////
 
             SectionTitle {
-                anchors.leftMargin: singleColumn ? 0 : 12
-                anchors.rightMargin: singleColumn ? 0 : 12
+                anchors.left: parent.left
+                anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
+                anchors.right: parent.right
+                anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
                 text: qsTr("Application")
                 source: "qrc:/assets/icons_material/baseline-settings-20px.svg"
@@ -385,15 +387,6 @@ Loader {
             }
 
             ////////
-/*
-            Rectangle { // separator
-                height: 1
-                anchors.left: parent.left
-                anchors.right: parent.right
-                color: Theme.colorSeparator
-            }
-*/
-            ////////
 
             Item {
                 id: element_language
@@ -482,8 +475,10 @@ Loader {
             ////////////////
 
             SectionTitle {
-                anchors.leftMargin: singleColumn ? 0 : 12
-                anchors.rightMargin: singleColumn ? 0 : 12
+                anchors.left: parent.left
+                anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
+                anchors.right: parent.right
+                anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
                 text: qsTr("Other fake settings")
                 source: "qrc:/assets/icons_material/baseline-settings-20px.svg"
@@ -526,7 +521,7 @@ Loader {
                     verticalAlignment: Text.AlignVCenter
                 }
 
-                SwitchThemedMobile {
+                SwitchThemedDesktop {
                     id: switch_aaa
                     anchors.right: parent.right
                     anchors.rightMargin: 0

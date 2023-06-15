@@ -14,17 +14,18 @@ Flickable {
         id: contentColumn
 
         anchors.left: parent.left
-        anchors.leftMargin: 20
+        anchors.leftMargin: Theme.componentMargin
         anchors.right: parent.right
-        anchors.rightMargin: 20
+        anchors.rightMargin: Theme.componentMargin
 
-        topPadding: 16
-        bottomPadding: 16
-        spacing: 20
+        topPadding: Theme.componentMargin
+        bottomPadding: Theme.componentMargin
+        spacing: Theme.componentMarginXL
 
-        SectionTitle { /////////////////////////////////////////////////////////
-            anchors.leftMargin: singleColumn ? -parent.anchors.leftMargin : 12
-            anchors.rightMargin: singleColumn ? -parent.anchors.leftMargin : 12
+
+        ListTitle { ////////////////////////////////////////////////////////////
+            anchors.leftMargin: singleColumn ? -parent.anchors.leftMargin : 0
+            anchors.rightMargin: singleColumn ? -parent.anchors.leftMargin : 0
 
             text: qsTr("Selectors")
             source: ""

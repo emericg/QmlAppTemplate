@@ -4,6 +4,8 @@ import QtQuick.Controls.impl
 import QtQuick.Controls.Material
 import QtQuick.Controls.Material.impl
 
+import ThemeEngine
+
 T.ItemDelegate {
     id: control
 
@@ -13,28 +15,18 @@ T.ItemDelegate {
                              implicitContentHeight + topPadding + bottomPadding,
                              implicitIndicatorHeight + topPadding + bottomPadding)
 
-    padding: 12
-    verticalPadding: 8
-    spacing: 12
+    padding: Theme.componentMargin
+    spacing: Theme.componentMargin
+    verticalPadding: 0
 
-    icon.width: 24
-    icon.height: 24
+    icon.width: 32
+    icon.height: 32
     icon.color: enabled ? Material.foreground : Material.hintTextColor
 
-    contentItem: IconLabel {
-        spacing: control.spacing
-        mirrored: control.mirrored
-        display: control.display
-        alignment: control.display === IconLabel.IconOnly || control.display === IconLabel.TextUnderIcon ? Qt.AlignCenter : Qt.AlignLeft
-
-        icon: control.icon
-        text: control.text
-        font: control.font
-        color: control.enabled ? control.Material.foreground : control.Material.hintTextColor
-    }
+    ////////////////
 
     background: Rectangle {
-        implicitHeight: control.Material.delegateHeight
+        implicitHeight: Theme.componentHeightXL
 
         color: control.highlighted ? control.Material.listHighlightColor : "transparent"
 
@@ -49,4 +41,41 @@ T.ItemDelegate {
             color: control.Material.rippleColor
         }
     }
+
+    ////////////////
+
+    contentItem: Row {
+        anchors.verticalCenter: parent.verticalCenter
+        width: screenMobileComponents.width
+        spacing: Theme.componentMargin
+
+        RoundButtonIcon {
+            anchors.verticalCenter: parent.verticalCenter
+            width: Theme.componentHeight
+            height: Theme.componentHeight
+
+            source: model.icon
+            sourceSize: icon.width
+            background: true
+        }
+
+        Column {
+            anchors.verticalCenter: parent.verticalCenter
+
+            Text {
+                text: model.title
+                textFormat: Text.PlainText
+                font.pixelSize: Theme.fontSizeComponent
+                color: Theme.colorText
+            }
+            Text {
+                text: model.text
+                textFormat: Text.PlainText
+                font.pixelSize: Theme.fontSizeComponent
+                color: Theme.colorSubText
+            }
+        }
+    }
+
+    ////////////////
 }

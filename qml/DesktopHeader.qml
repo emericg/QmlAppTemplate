@@ -81,78 +81,86 @@ Rectangle {
 
         ////////////
 
-        ButtonCompactable {
-            id: buttonRefresh
+        Row {
+            id: menuDesktopComponents
             anchors.verticalCenter: parent.verticalCenter
 
-            source: "qrc:/assets/icons_material/baseline-autorenew-24px.svg"
-            textColor: Theme.colorHeaderContent
-            iconColor: Theme.colorHeaderContent
-            backgroundColor: Theme.colorHeaderHighlight
-            text: qsTr("Animate this")
-            tooltipText: text
+            spacing: 12
+            visible: (appContent.state === "DesktopComponents")
 
-            animation: "rotate"
-            animationRunning: isclicked
+            ButtonCompactable {
+                id: buttonRefresh
+                anchors.verticalCenter: parent.verticalCenter
 
-            property bool isclicked: false
-            onClicked: isclicked = !isclicked
-        }
+                source: "qrc:/assets/icons_material/baseline-autorenew-24px.svg"
+                textColor: Theme.colorHeaderContent
+                iconColor: Theme.colorHeaderContent
+                backgroundColor: Theme.colorHeaderHighlight
+                text: qsTr("Animate this")
+                tooltipText: text
 
-        ButtonWireframe {
-            id: buttonEnable
-            anchors.verticalCenter: parent.verticalCenter
+                animation: "rotate"
+                animationRunning: isclicked
 
-            text: componentsEnabled ? qsTr("Enable components") : qsTr("Disable components")
-            onClicked: componentsEnabled = !componentsEnabled
-        }
+                property bool isclicked: false
+                onClicked: isclicked = !isclicked
+            }
 
-        ////////////
+            ButtonWireframe {
+                id: buttonEnable
+                anchors.verticalCenter: parent.verticalCenter
 
-        Rectangle { // separator
-            anchors.verticalCenter: parent.verticalCenter
-            height: 40
-            width: Theme.componentBorderWidth
-            color: Theme.colorHeaderHighlight
-        }
+                text: componentsEnabled ? qsTr("Enable components") : qsTr("Disable components")
+                onClicked: componentsEnabled = !componentsEnabled
+            }
 
-        ////////////
+            ////////////
 
-        RoundButtonIcon {
-            id: buttonMenu
-            anchors.verticalCenter: parent.verticalCenter
+            Rectangle { // separator
+                anchors.verticalCenter: parent.verticalCenter
+                height: 40
+                width: Theme.componentBorderWidth
+                color: Theme.colorHeaderHighlight
+            }
 
-            source: "qrc:/assets/icons_material/baseline-more_vert-24px.svg"
-            iconColor: Theme.colorHeaderContent
-            backgroundColor: Theme.colorHeaderHighlight
+            ////////////
 
-            onClicked: actionMenu.open()
+            RoundButtonIcon {
+                id: buttonMenu
+                anchors.verticalCenter: parent.verticalCenter
 
-            ActionMenu_floating {
-                id: actionMenu
+                source: "qrc:/assets/icons_material/baseline-more_vert-24px.svg"
+                iconColor: Theme.colorHeaderContent
+                backgroundColor: Theme.colorHeaderHighlight
 
-                model: ListModel {
-                    id: lmActionMenu
-                    ListElement { t: "itm"; idx: 1; txt: "Action 1"; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; }
-                    ListElement { t: "itm"; idx: 2; txt: "Action 2"; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; }
-                    ListElement { t: "sep"; }
-                    ListElement { t: "itm"; idx: 3; txt: "Action 3"; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; }
-                }
+                onClicked: actionMenu.open()
 
-                onMenuSelected: (index) => {
-                    //console.log("ActionMenu clicked #" + index)
+                ActionMenu_floating {
+                    id: actionMenu
+
+                    model: ListModel {
+                        id: lmActionMenu
+                        ListElement { t: "itm"; idx: 1; txt: "Action 1"; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; }
+                        ListElement { t: "itm"; idx: 2; txt: "Action 2"; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; }
+                        ListElement { t: "sep"; }
+                        ListElement { t: "itm"; idx: 3; txt: "Action 3"; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; }
+                    }
+
+                    onMenuSelected: (index) => {
+                        //console.log("ActionMenu clicked #" + index)
+                    }
                 }
             }
-        }
 
-        ////////////
+            ////////////
 
-        Rectangle { // separator
-            anchors.verticalCenter: parent.verticalCenter
-            height: 40
-            width: Theme.componentBorderWidth
-            color: Theme.colorHeaderHighlight
-            visible: (menuMain.visible)
+            Rectangle { // separator
+                anchors.verticalCenter: parent.verticalCenter
+                height: 40
+                width: Theme.componentBorderWidth
+                color: Theme.colorHeaderHighlight
+                visible: (menuMain.visible)
+            }
         }
 
         ////////////

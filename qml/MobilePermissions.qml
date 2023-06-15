@@ -136,14 +136,7 @@ Item {
 
             ////////
 
-            Rectangle { // separator
-                anchors.left: parent.left
-                anchors.leftMargin: -screenPaddingLeft
-                anchors.right: parent.right
-                anchors.rightMargin: -screenPaddingRight
-                height: 1
-                color: Theme.colorSeparator
-            }
+            ListSeparator { }
 
             ////////
 
@@ -209,14 +202,7 @@ Item {
 
             ////////
 
-            Rectangle { // separator
-                anchors.left: parent.left
-                anchors.leftMargin: -screenPaddingLeft
-                anchors.right: parent.right
-                anchors.rightMargin: -screenPaddingRight
-                height: 1
-                color: Theme.colorSeparator
-            }
+            ListSeparator { }
 
             ////////
 
@@ -274,14 +260,7 @@ Item {
 
             ////////
 
-            Rectangle { // separator
-                anchors.left: parent.left
-                anchors.leftMargin: -screenPaddingLeft
-                anchors.right: parent.right
-                anchors.rightMargin: -screenPaddingRight
-                height: 1
-                color: Theme.colorSeparator
-            }
+            ListSeparator { }
 
             ////////
 
@@ -316,7 +295,7 @@ Item {
                         textFormat: Text.StyledText
                         wrapMode: Text.WordWrap
                         color: Theme.colorText
-                        font.pixelSize: Theme.fontSizeContent
+                        font.pixelSize: Theme.fontSizeContentSmall
                     }
                 }
 
