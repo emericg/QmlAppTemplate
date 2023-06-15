@@ -26,8 +26,8 @@ jobs:
     name: "Android CI build"
     runs-on: ubuntu-20.04
     steps:
-      # Checkout the repository
-      - name: Checkout repository and submodules
+      # Checkout the repository (and submodules)
+      - name: Checkout repository (and submodules)
         uses: actions/checkout@v3
         with:
           submodules: recursive
@@ -70,13 +70,13 @@ jobs:
       - name: Setup env
         run: |
              echo "QT_HOST_PATH=/home/runner/work/${{env.APPLICATION}}/Qt/${{env.QT_VERSION}}/gcc_64" >> $GITHUB_ENV
-             qmake --version
+             cmake --version
 
       # Build application
       - name: Build application
         run: |
              cd build/
-             cmake ..
+             cmake -DCMAKE_SYSTEM_NAME=Android -DCMAKE_TOOLCHAIN_FILE=${{env.ANDROID_NDK_HOME}}/build/cmake/android.toolchain.cmake -DANDROID_PLATFORM=android-23 ..
              make -j$(nproc)
 
   ## iOS build #################################################################
@@ -84,8 +84,8 @@ jobs:
     name: "iOS CI build"
     runs-on: macos-11
     steps:
-      # Checkout the repository
-      - name: Checkout repository and submodules
+      # Checkout the repository (and submodules)
+      - name: Checkout repository (and submodules)
         uses: actions/checkout@v3
         with:
           submodules: recursive
@@ -117,5 +117,5 @@ jobs:
       - name: Build application
         run: |
              cd build/
-             cmake ..
+             cmake -DCMAKE_SYSTEM_NAME=iOS ..
              make -j$(nproc)
