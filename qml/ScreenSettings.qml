@@ -200,15 +200,11 @@ Loader {
 
                 model: ListModel {
                     id: cbAppTheme
-                    ListElement { text: "PLANT"; }
                     ListElement { text: "SNOW"; }
+                    ListElement { text: "PLANT"; }
+                    ListElement { text: "RAIN"; }
                     ListElement { text: "DAY"; }
                     ListElement { text: "NIGHT"; }
-
-                    ListElement { text: "LIGHT (desktop)"; }
-                    ListElement { text: "DARK (desktop)"; }
-                    ListElement { text: "LIGHT (mobile)"; }
-                    ListElement { text: "DARK (mobile)"; }
 
                     ListElement { text: "LIGHT AND WARM"; }
                     ListElement { text: "DARK AND SPOOKY"; }
@@ -219,31 +215,19 @@ Loader {
 
                 Component.onCompleted: {
                     currentIndex = Theme.getThemeIndex(settingsManager.appTheme)
-                    if (currentIndex === -1) { currentIndex = 0 }
                 }
+                onActivated: {
+                    if (currentText === "SNOW") settingsManager.appTheme = "THEME_SNOW"
+                    else if (currentText === "PLANT") settingsManager.appTheme = "THEME_PLANT"
+                    else if (currentText === "RAIN") settingsManager.appTheme = "THEME_RAIN"
+                    else if (currentText === "DAY") settingsManager.appTheme = "THEME_DAY"
+                    else if (currentText === "NIGHT") settingsManager.appTheme = "THEME_NIGHT"
 
-                property bool cbinit: false
-
-                onCurrentTextChanged: {
-                    if (cbinit) {
-                        if (currentText === "PLANT") settingsManager.appTheme = "THEME_PLANT"
-                        else if (currentText === "SNOW") settingsManager.appTheme = "THEME_SNOW"
-                        else if (currentText === "DAY") settingsManager.appTheme = "THEME_DAY"
-                        else if (currentText === "NIGHT") settingsManager.appTheme = "THEME_NIGHT"
-
-                        else if (currentText === "LIGHT AND WARM") settingsManager.appTheme = "THEME_LIGHT_AND_WARM"
-                        else if (currentText === "DARK AND SPOOKY") settingsManager.appTheme = "THEME_DARK_AND_SPOOKY"
-                        else if (currentText === "PLAIN AND BORING") settingsManager.appTheme = "THEME_PLAIN_AND_BORING"
-                        else if (currentText === "BLOOD AND TEARS") settingsManager.appTheme = "THEME_BLOOD_AND_TEARS"
-                        else if (currentText === "MIGHTY KITTENS") settingsManager.appTheme = "THEME_MIGHTY_KITTENS"
-
-                        else if (currentText === "LIGHT (desktop)") settingsManager.appTheme = "THEME_LIGHT_DESKTOP"
-                        else if (currentText === "DARK (desktop)") settingsManager.appTheme = "THEME_DARK_DESKTOP"
-                        else if (currentText === "LIGHT (mobile)") settingsManager.appTheme = "THEME_LIGHT_MOBILE"
-                        else if (currentText === "DARK (mobile)") settingsManager.appTheme = "THEME_DARK_MOBILE"
-                    } else {
-                        cbinit = true
-                    }
+                    else if (currentText === "LIGHT AND WARM") settingsManager.appTheme = "THEME_LIGHT_AND_WARM"
+                    else if (currentText === "DARK AND SPOOKY") settingsManager.appTheme = "THEME_DARK_AND_SPOOKY"
+                    else if (currentText === "PLAIN AND BORING") settingsManager.appTheme = "THEME_PLAIN_AND_BORING"
+                    else if (currentText === "BLOOD AND TEARS") settingsManager.appTheme = "THEME_BLOOD_AND_TEARS"
+                    else if (currentText === "MIGHTY KITTENS") settingsManager.appTheme = "THEME_MIGHTY_KITTENS"
                 }
             }
 
@@ -456,18 +440,14 @@ Loader {
 
                     Component.onCompleted: {
                         for (var i = 0; i < cbAppLanguage.count; i++) {
-                            if (cbAppLanguage.get(i).text === settingsManager.appLanguage)
+                            if (cbAppLanguage.get(i).text === settingsManager.appLanguage) {
                                 currentIndex = i
+                            }
                         }
                     }
-                    property bool cbinit: false
-                    onCurrentIndexChanged: {
-                        if (cbinit) {
-                            utilsLanguage.loadLanguage(cbAppLanguage.get(currentIndex).text)
-                            settingsManager.appLanguage = cbAppLanguage.get(currentIndex).text
-                        } else {
-                            cbinit = true
-                        }
+                    onActivated: {
+                        utilsLanguage.loadLanguage(cbAppLanguage.get(currentIndex).text)
+                        settingsManager.appLanguage = cbAppLanguage.get(currentIndex).text
                     }
                 }
             }

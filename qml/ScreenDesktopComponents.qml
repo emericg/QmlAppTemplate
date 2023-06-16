@@ -56,26 +56,27 @@ Loader {
                 // prevent clicks below this area
                 MouseArea { anchors.fill: parent; acceptedButtons: Qt.AllButtons; }
 
-                // left
-
-                Text {
+                Row { // left
                     anchors.left: parent.left
                     anchors.leftMargin: 24
                     anchors.verticalCenter: parent.verticalCenter
-                    visible: wideWideMode
+                    visible: !singleColumn
+                    spacing: 16
 
-                    text: "Action bar"
-                    font.bold: true
-                    font.pixelSize: Theme.fontSizeContentBig
-                    color: Theme.colorActionbarContent
-                    verticalAlignment: Text.AlignVCenter
+                    Text {
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        text: "Action bar"
+                        font.bold: true
+                        font.pixelSize: Theme.fontSizeContentBig
+                        color: Theme.colorActionbarContent
+                        verticalAlignment: Text.AlignVCenter
+                    }
                 }
 
-                // middle
-
-                Row {
+                Row { // middle
                     anchors.centerIn: parent
-                    visible: wideWideMode
+                    visible: !singleColumn
                     spacing: 16
 
                     ButtonCompactable {
@@ -99,9 +100,7 @@ Loader {
                     }
                 }
 
-                // right
-
-                Row {
+                Row { // right
                     anchors.right: itemImageButtonX.left
                     anchors.rightMargin: 24
                     anchors.verticalCenter: parent.verticalCenter
@@ -161,8 +160,8 @@ Loader {
             anchors.right: parent.right
             anchors.rightMargin: 24
 
-            width: 64 + 4
-            height: 6*64 + 4
+            width: palette.width + 4
+            height: palette.height + 4
 
             z: 5
             color: Theme.colorHighContrast
@@ -170,7 +169,6 @@ Loader {
 
             Column {
                 id: palette
-                width: 64
                 anchors.centerIn: parent
 
                 Rectangle {
@@ -207,16 +205,27 @@ Loader {
                     }
                 }
                 Rectangle {
-                    id: warning
+                    id: success
                     width: 64
                     height: 64
-                    color: Theme.colorWarning
-                }
-                Rectangle {
-                    id: error
-                    width: 64
-                    height: 64
-                    color: Theme.colorError
+                    color: Theme.colorSuccess
+
+                    Rectangle {
+                        id: warning
+                        width: 32
+                        height: 30
+                        anchors.left: parent.left
+                        anchors.bottom: parent.bottom
+                        color: Theme.colorWarning
+                    }
+                    Rectangle {
+                        id: error
+                        width: 32
+                        height: 30
+                        anchors.right: parent.right
+                        anchors.bottom: parent.bottom
+                        color: Theme.colorError
+                    }
                 }
             }
         }
@@ -271,15 +280,11 @@ Loader {
 
                         model: ListModel {
                             id: cbAppTheme
-                            ListElement { text: "PLANT"; }
                             ListElement { text: "SNOW"; }
+                            ListElement { text: "PLANT"; }
+                            ListElement { text: "RAIN"; }
                             ListElement { text: "DAY"; }
                             ListElement { text: "NIGHT"; }
-
-                            ListElement { text: "LIGHT (desktop)"; }
-                            ListElement { text: "DARK (desktop)"; }
-                            ListElement { text: "LIGHT (mobile)"; }
-                            ListElement { text: "DARK (mobile)"; }
 
                             ListElement { text: "LIGHT AND WARM"; }
                             ListElement { text: "DARK AND SPOOKY"; }
@@ -290,31 +295,19 @@ Loader {
 
                         Component.onCompleted: {
                             currentIndex = Theme.getThemeIndex(settingsManager.appTheme)
-                            if (currentIndex === -1) { currentIndex = 0 }
                         }
+                        onActivated: {
+                            if (currentText === "SNOW") settingsManager.appTheme = "THEME_SNOW"
+                            else if (currentText === "PLANT") settingsManager.appTheme = "THEME_PLANT"
+                            else if (currentText === "RAIN") settingsManager.appTheme = "THEME_RAIN"
+                            else if (currentText === "DAY") settingsManager.appTheme = "THEME_DAY"
+                            else if (currentText === "NIGHT") settingsManager.appTheme = "THEME_NIGHT"
 
-                        property bool cbinit: false
-
-                        onCurrentTextChanged: {
-                            if (cbinit) {
-                                if (currentText === "PLANT") settingsManager.appTheme = "THEME_PLANT"
-                                else if (currentText === "SNOW") settingsManager.appTheme = "THEME_SNOW"
-                                else if (currentText === "DAY") settingsManager.appTheme = "THEME_DAY"
-                                else if (currentText === "NIGHT") settingsManager.appTheme = "THEME_NIGHT"
-
-                                else if (currentText === "LIGHT AND WARM") settingsManager.appTheme = "THEME_LIGHT_AND_WARM"
-                                else if (currentText === "DARK AND SPOOKY") settingsManager.appTheme = "THEME_DARK_AND_SPOOKY"
-                                else if (currentText === "PLAIN AND BORING") settingsManager.appTheme = "THEME_PLAIN_AND_BORING"
-                                else if (currentText === "BLOOD AND TEARS") settingsManager.appTheme = "THEME_BLOOD_AND_TEARS"
-                                else if (currentText === "MIGHTY KITTENS") settingsManager.appTheme = "THEME_MIGHTY_KITTENS"
-
-                                else if (currentText === "LIGHT (desktop)") settingsManager.appTheme = "THEME_LIGHT_DESKTOP"
-                                else if (currentText === "DARK (desktop)") settingsManager.appTheme = "THEME_DARK_DESKTOP"
-                                else if (currentText === "LIGHT (mobile)") settingsManager.appTheme = "THEME_LIGHT_MOBILE"
-                                else if (currentText === "DARK (mobile)") settingsManager.appTheme = "THEME_DARK_MOBILE"
-                            } else {
-                                cbinit = true
-                            }
+                            else if (currentText === "LIGHT AND WARM") settingsManager.appTheme = "THEME_LIGHT_AND_WARM"
+                            else if (currentText === "DARK AND SPOOKY") settingsManager.appTheme = "THEME_DARK_AND_SPOOKY"
+                            else if (currentText === "PLAIN AND BORING") settingsManager.appTheme = "THEME_PLAIN_AND_BORING"
+                            else if (currentText === "BLOOD AND TEARS") settingsManager.appTheme = "THEME_BLOOD_AND_TEARS"
+                            else if (currentText === "MIGHTY KITTENS") settingsManager.appTheme = "THEME_MIGHTY_KITTENS"
                         }
                     }
 

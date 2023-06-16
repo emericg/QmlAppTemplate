@@ -17,7 +17,7 @@ T.Button {
     leftPadding: 12
     rightPadding: 12
 
-    font.pixelSize: Theme.fontSizeComponent
+    font.pixelSize: Theme.componentFontSize
 
     focusPolicy: Qt.NoFocus
 

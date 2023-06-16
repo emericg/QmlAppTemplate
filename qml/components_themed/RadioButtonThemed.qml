@@ -14,7 +14,7 @@ T.RadioButton {
 
     padding: 4
     spacing: 8
-    font.pixelSize: Theme.fontSizeComponent
+    font.pixelSize: Theme.componentFontSize
 
     ////////////////
 

@@ -14,7 +14,7 @@ T.CheckBox {
 
     padding: 8
     spacing: 8
-    font.pixelSize: Theme.fontSizeComponent
+    font.pixelSize: Theme.componentFontSize
 
     property int layoutDirection: Qt.LeftToRight
 

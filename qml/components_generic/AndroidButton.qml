@@ -75,7 +75,7 @@ T.Button {
         textFormat: Text.PlainText
 
         font.bold: false
-        font.pixelSize: Theme.fontSizeComponent
+        font.pixelSize: Theme.componentFontSize
         font.capitalization: Font.AllUppercase
 
         elide: Text.ElideMiddle

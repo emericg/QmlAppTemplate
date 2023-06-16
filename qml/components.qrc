@@ -40,6 +40,7 @@
 
         <file alias="ListItem.qml">components_generic/ListItem.qml</file>
         <file alias="ListItemClickable.qml">components_generic/ListItemClickable.qml</file>
+        <file alias="ListItemDrawer.qml">components_generic/ListItemDrawer.qml</file>
         <file alias="ListSeparator.qml">components_generic/ListSeparator.qml</file>
         <file alias="ListSeparatorPadded.qml">components_generic/ListSeparatorPadded.qml</file>
         <file alias="ListTitle.qml">components_generic/ListTitle.qml</file>
@@ -48,9 +49,10 @@
         <file alias="AndroidButtonIcon.qml">components_generic/AndroidButtonIcon.qml</file>
         <file alias="AndroidTextField.qml">components_generic/AndroidTextField.qml</file>
 
-        <file alias="PaneThemed.qml">components_generic/PaneThemed.qml</file>
-        <file alias="FrameThemed.qml">components_generic/FrameThemed.qml</file>
-        <file alias="GroupBoxThemed.qml">components_generic/GroupBoxThemed.qml</file>
+        <file alias="FrameBox.qml">components_generic/FrameBox.qml</file>
+        <file alias="FrameThemed.qml">components_themed/FrameThemed.qml</file>
+        <file alias="GroupBoxThemed.qml">components_themed/GroupBoxThemed.qml</file>
+        <file alias="PaneThemed.qml">components_themed/PaneThemed.qml</file>
 
         <file alias="ButtonIconThemed.qml">components_themed/ButtonIconThemed.qml</file>
         <file alias="ButtonThemed.qml">components_themed/ButtonThemed.qml</file>

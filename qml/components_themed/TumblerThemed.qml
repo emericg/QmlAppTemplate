@@ -53,7 +53,7 @@ T.Tumbler {
 
         color: (control.currentIndex === modelData) ? Theme.colorPrimary : Theme.colorText
         opacity: (control.enabled ? 1.0 : 0.8) - (Math.abs(T.Tumbler.displacement) / (control.visibleItemCount * 0.55))
-        font.pixelSize: (control.currentIndex === modelData) ? Theme.fontSizeComponent+2 : Theme.fontSizeComponent
+        font.pixelSize: (control.currentIndex === modelData) ? Theme.componentFontSize+2 : Theme.componentFontSize
         font.bold: false
 
         required property var modelData

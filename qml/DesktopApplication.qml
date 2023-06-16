@@ -86,6 +86,7 @@ ApplicationWindow {
 
                     // Check if we need an 'automatic' theme change
                     Theme.loadTheme(settingsManager.appTheme)
+
                     break
             }
         }

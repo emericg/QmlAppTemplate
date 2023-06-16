@@ -15,7 +15,7 @@ T.Switch {
     padding: 4
     spacing: 12
 
-    font.pixelSize: Theme.fontSizeComponent
+    font.pixelSize: Theme.componentFontSize
 
     ////////////////
 

@@ -10,11 +10,8 @@ import ThemeEngine
 T.ItemDelegate {
     id: control
 
-    implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
-                            implicitContentWidth + leftPadding + rightPadding)
-    implicitHeight: Math.max(implicitBackgroundHeight /*+ topInset + bottomInset*/,
-                             implicitContentHeight /*+ topPadding + bottomPadding*/,
-                             implicitIndicatorHeight + topPadding + bottomPadding)
+    implicitWidth: parent.width
+    implicitHeight: Theme.componentHeightL
 
     padding: Theme.componentMargin
     spacing: Theme.componentMargin
@@ -22,19 +19,15 @@ T.ItemDelegate {
 
     property string iconSource
     property string iconColor: Theme.colorIcon
-    property int iconSize: 32
+    property int iconSize: 24
 
     property string textColor: Theme.colorText
-    property int textSize: Theme.fontSizeContent
-
-    property string indicatorSource
-    property string indicatorColor: Theme.colorIcon
-    property int indicatorSize: 20
+    property int textSize: 13
 
     ////////////////
 
     background: Rectangle {
-        implicitHeight: Theme.componentHeightXL
+        implicitHeight: Theme.componentHeightL
 
         color: control.highlighted ? Theme.colorForeground : Theme.colorBackground
 
@@ -56,18 +49,18 @@ T.ItemDelegate {
         anchors.left: parent.left
         anchors.leftMargin: screenPaddingLeft + Theme.componentMargin
         anchors.right: parent.right
-        anchors.rightMargin: screenPaddingRight + Theme.componentMargin
+        anchors.rightMargin: screenPaddingRight + Theme.componentMargin / 2
 
         Item {
-            Layout.preferredWidth: Theme.componentHeightXL - screenPaddingLeft - Theme.componentMargin
-            Layout.preferredHeight: Theme.componentHeightXL
+            Layout.preferredWidth: Theme.componentHeightL - screenPaddingLeft - Theme.componentMargin
+            Layout.preferredHeight: Theme.componentHeightL
             Layout.alignment: Qt.AlignTop
 
             IconSvg {
                 anchors.left: parent.left
                 anchors.leftMargin: (32 - control.iconSize) / 2
                 anchors.verticalCenter: parent.verticalCenter
-                anchors.verticalCenterOffset: (control.height !== Theme.componentHeightXL) ? -(Theme.componentMargin / 2) : 0
+                anchors.verticalCenterOffset: (control.height !== Theme.componentHeightL) ? -(Theme.componentMargin / 2) : 0
 
                 width: control.iconSize
                 height: control.iconSize
@@ -82,17 +75,9 @@ T.ItemDelegate {
 
             text: control.text
             color: control.textColor
-            linkColor: control.iconColor
             wrapMode: Text.WordWrap
+            font.bold: true
             font.pixelSize: control.textSize
-        }
-
-        IconSvg {
-            Layout.preferredWidth: control.indicatorSize
-            Layout.preferredHeight: control.indicatorSize
-            Layout.alignment: Qt.AlignVCenter
-            color: control.indicatorColor
-            source: control.indicatorSource
         }
     }
 

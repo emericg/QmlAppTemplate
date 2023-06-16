@@ -35,10 +35,10 @@ T.ItemDelegate {
             height: parent.height
 
             clip: visible
-            pressed: control.pressed
             anchor: control
+            pressed: control.pressed
             active: enabled && (control.down || control.visualFocus || control.hovered)
-            color: control.Material.rippleColor
+            color: Qt.rgba(Theme.colorForeground.r, Theme.colorForeground.g, Theme.colorForeground.b, 0.5)
         }
     }
 
@@ -65,13 +65,13 @@ T.ItemDelegate {
             Text {
                 text: model.title
                 textFormat: Text.PlainText
-                font.pixelSize: Theme.fontSizeComponent
+                font.pixelSize: Theme.componentFontSize
                 color: Theme.colorText
             }
             Text {
                 text: model.text
                 textFormat: Text.PlainText
-                font.pixelSize: Theme.fontSizeComponent
+                font.pixelSize: Theme.componentFontSize
                 color: Theme.colorSubText
             }
         }

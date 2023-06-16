@@ -16,7 +16,7 @@ T.SpinBox {
     value: 50
     editable: true
 
-    font.pixelSize: Theme.fontSizeComponent
+    font.pixelSize: Theme.componentFontSize
     opacity: enabled ? 1 : 0.4
 
     property string legend

@@ -181,6 +181,7 @@ ApplicationWindow {
 
                     // Check if we need an 'automatic' theme change
                     Theme.loadTheme(settingsManager.appTheme)
+
                     break
             }
         }
@@ -258,10 +259,6 @@ ApplicationWindow {
             id: screenMainView
             anchors.bottomMargin: mobileMenu.hhv
         }
-        ScreenDesktopComponents {
-            id: screenDesktopComponents
-            anchors.bottomMargin: mobileMenu.hhv
-        }
         ScreenMobileComponents {
             id: screenMobileComponents
             anchors.bottomMargin: mobileMenu.hhv
@@ -293,7 +290,7 @@ ApplicationWindow {
         }
 
         onStateChanged: {
-            if (state === "MainView")
+            if (state === "MainView" || state === "MobileComponents")
                 appHeader.leftMenuMode = "drawer"
             else if (state === "Tutorial")
                 appHeader.leftMenuMode = "close"
@@ -318,22 +315,9 @@ ApplicationWindow {
                 PropertyChanges { target: screenAboutPermissions; visible: false; enabled: false; }
             },
             State {
-                name: "DesktopComponents"
-                PropertyChanges { target: appHeader; headerTitle: "QmlAppTemplate"; }
-                PropertyChanges { target: screenMainView; visible: false; enabled: false; }
-                PropertyChanges { target: screenDesktopComponents; visible: true; enabled: true; }
-                PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
-                PropertyChanges { target: screenFontInfos; visible: false; enabled: false; }
-                PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
-                PropertyChanges { target: screenSettings; visible: false; enabled: false; }
-                PropertyChanges { target: screenAbout; visible: false; enabled: false; }
-                PropertyChanges { target: screenAboutPermissions; visible: false; enabled: false; }
-            },
-            State {
                 name: "MobileComponents"
                 PropertyChanges { target: appHeader; headerTitle: "QmlAppTemplate"; }
                 PropertyChanges { target: screenMainView; visible: false; enabled: false; }
-                PropertyChanges { target: screenDesktopComponents; visible: false; enabled: false; }
                 PropertyChanges { target: screenMobileComponents; visible: true; enabled: true; }
                 PropertyChanges { target: screenFontInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
@@ -345,7 +329,6 @@ ApplicationWindow {
                 name: "FontInfos"
                 PropertyChanges { target: appHeader; headerTitle: "Font infos"; }
                 PropertyChanges { target: screenMainView; visible: false; enabled: false; }
-                PropertyChanges { target: screenDesktopComponents; visible: false; enabled: false; }
                 PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
                 PropertyChanges { target: screenFontInfos; visible: true; enabled: true; }
                 PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
@@ -357,7 +340,6 @@ ApplicationWindow {
                 name: "HostInfos"
                 PropertyChanges { target: appHeader; headerTitle: "Host infos"; }
                 PropertyChanges { target: screenMainView; visible: false; enabled: false; }
-                PropertyChanges { target: screenDesktopComponents; visible: false; enabled: false; }
                 PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
                 PropertyChanges { target: screenFontInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenHostInfos; visible: true; enabled: true; }
@@ -369,7 +351,6 @@ ApplicationWindow {
                 name: "Settings"
                 PropertyChanges { target: appHeader; headerTitle: qsTr("Settings"); }
                 PropertyChanges { target: screenMainView; visible: false; enabled: false; }
-                PropertyChanges { target: screenDesktopComponents; visible: false; enabled: false; }
                 PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
                 PropertyChanges { target: screenFontInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
@@ -381,7 +362,6 @@ ApplicationWindow {
                 name: "About"
                 PropertyChanges { target: appHeader; headerTitle: qsTr("About"); }
                 PropertyChanges { target: screenMainView; visible: false; enabled: false; }
-                PropertyChanges { target: screenDesktopComponents; visible: false; enabled: false; }
                 PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
                 PropertyChanges { target: screenFontInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
@@ -393,7 +373,6 @@ ApplicationWindow {
                 name: "AboutPermissions"
                 PropertyChanges { target: appHeader; headerTitle: qsTr("Permissions"); }
                 PropertyChanges { target: screenMainView; visible: false; enabled: false; }
-                PropertyChanges { target: screenDesktopComponents; visible: false; enabled: false; }
                 PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
                 PropertyChanges { target: screenFontInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
@@ -422,7 +401,8 @@ ApplicationWindow {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-        anchors.margins: 12
+        anchors.bottomMargin: mobileMenu.height
+        anchors.margins: Theme.componentMargin
 
         radius: 4
         color: Theme.colorSeparator
@@ -438,4 +418,6 @@ ApplicationWindow {
             color: Theme.colorText
         }
     }
+
+    ////////////////
 }

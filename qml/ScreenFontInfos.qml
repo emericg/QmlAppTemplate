@@ -56,7 +56,7 @@ Loader {
             SectionTitle {
                 Layout.preferredWidth: singleColumn ? parent.width : parent.width - Theme.componentMargin*0.5
                 Layout.alignment: Qt.AlignLeft
-                text: "Font sizes:"
+                text: "Font sizes"
             }
 
             ListView {
@@ -78,8 +78,7 @@ Loader {
                         append( {"text": "Small", value: Theme.fontSizeContentSmall} );
                         append( {"text": "VerySmall", value: Theme.fontSizeContentVerySmall} );
                         append( {"text": "VeryVerySmall", value: Theme.fontSizeContentVeryVerySmall} );
-                        append( {"text": "Component", value: Theme.fontSizeComponent} );
-
+                        append( {"text": "Component", value: Theme.componentFontSize} );
                     }
                 }
 
@@ -97,7 +96,7 @@ Loader {
                         textFormat: Text.PlainText
                         horizontalAlignment: Text.AlignRight
                         verticalAlignment: Text.AlignBottom
-                        font.pixelSize: Theme.fontSizeComponent
+                        font.pixelSize: Theme.componentFontSize
                         color: Theme.colorSubText
                     }
                     Text {
@@ -123,7 +122,7 @@ Loader {
             SectionTitle {
                 Layout.preferredWidth: singleColumn ? parent.width : parent.width - Theme.componentMargin*0.5
                 Layout.alignment: Qt.AlignRight
-                text: "Fonts available:"
+                text: "Fonts available"
             }
 
             ListView {
@@ -149,7 +148,7 @@ Loader {
                         anchors.verticalCenter: parent.verticalCenter
 
                         text: modelData
-                        font.pixelSize: Theme.fontSizeComponent
+                        font.pixelSize: Theme.componentFontSize
                         color: Theme.colorText
                     }
                 }

@@ -15,10 +15,10 @@ T.Button {
                              implicitContentHeight + topPadding + bottomPadding)
 
     leftPadding: 12
-    rightPadding: 12+4
+    rightPadding: 12+6
     spacing: 6
 
-    font.pixelSize: Theme.fontSizeComponent
+    font.pixelSize: Theme.componentFontSize
     font.bold: false
 
     focusPolicy: Qt.NoFocus

@@ -27,7 +27,7 @@ Rectangle {
 
     // colors
     property string backgroundColor: Theme.colorForeground
-    property string borderColor: Qt.darker(backgroundColor, 1.03)
+    property string borderColor: Theme.colorSeparator
 
     ////////////////
 

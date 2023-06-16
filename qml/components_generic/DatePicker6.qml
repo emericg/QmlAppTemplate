@@ -162,7 +162,7 @@ Item {
                     anchors.bottom: parent.bottom
                     text: model.shortName.substring(0, 1).toUpperCase()
                     textFormat: Text.PlainText
-                    font.pixelSize: Theme.fontSizeComponent
+                    font.pixelSize: Theme.componentFontSize
                     font.bold: true
                     color: Theme.colorText
                     horizontalAlignment: Text.AlignHCenter
@@ -204,7 +204,7 @@ Item {
                 text: model.day
                 textFormat: Text.PlainText
 
-                font.pixelSize: Theme.fontSizeComponent
+                font.pixelSize: Theme.componentFontSize
                 font.bold: isToday
                 color: isSelected ? "white" : (isWeekend ? Theme.colorSubText : Theme.colorText)
                 opacity: (model.month === grid.month ? 1 : 0.2)

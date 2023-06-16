@@ -33,7 +33,10 @@ Loader {
                 return
             }
 
-            screenMainView.loadScreen()
+            if (exitTimer.running)
+                Qt.quit()
+            else
+                exitTimer.start()
         }
 
         StackView {

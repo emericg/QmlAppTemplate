@@ -16,7 +16,7 @@ T.ComboBox {
     leftPadding: 16
     rightPadding: 16
 
-    font.pixelSize: Theme.fontSizeComponent
+    font.pixelSize: Theme.componentFontSize
     opacity: enabled ? 1.0 : 0.4
 
     ////////////////
@@ -91,7 +91,7 @@ T.ComboBox {
                 ? (Array.isArray(control.model) ? modelData[control.textRole] : model[control.textRole])
                 : modelData
             color: highlighted ? "black" : Theme.colorSubText
-            font.pixelSize: Theme.fontSizeComponent
+            font.pixelSize: Theme.componentFontSize
             elide: Text.ElideRight
             verticalAlignment: Text.AlignVCenter
         }

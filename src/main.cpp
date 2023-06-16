@@ -92,8 +92,9 @@ int main(int argc, char *argv[])
     // ThemeEngine
     qmlRegisterSingletonType(QUrl("qrc:/qml/ThemeEngine.qml"), "ThemeEngine", 1, 0, "Theme");
 
-    // Force QtQuick components stype?
-    //QQuickStyle::setStyle("Material");
+    // Force QtQuick components style? // Some styles are only available on target OS
+    // Basic // Fusion // Imagine // macOS // iOS // Material // Universal // Windows
+    //QQuickStyle::setStyle("Universal");
 
     MobileUI::registerQML();
 

@@ -258,7 +258,7 @@ Loader {
                     anchors.verticalCenter: dependenciesText.verticalCenter
 
                     source: "qrc:/assets/icons_material/baseline-settings-20px.svg"
-                    color: Theme.colorIcon
+                    color: Theme.colorSubText
                 }
 
                 Text {
@@ -273,7 +273,7 @@ Loader {
                     text: qsTr("This application is made possible thanks to a couple of third party open source projects:")
                     textFormat: Text.PlainText
                     font.pixelSize: Theme.fontSizeContent
-                    color: Theme.colorText
+                    color: Theme.colorSubText
                     wrapMode: Text.WordWrap
                     verticalAlignment: Text.AlignVCenter
                 }
@@ -293,7 +293,7 @@ Loader {
 
                         text: "- Qt6 (LGPL 3)"
                         textFormat: Text.PlainText
-                        color: Theme.colorText
+                        color: Theme.colorSubText
                         font.pixelSize: Theme.fontSizeContent
                         wrapMode: Text.WordWrap
                     }
@@ -304,7 +304,7 @@ Loader {
 
                         text: "- SingleApplication (MIT)"
                         textFormat: Text.PlainText
-                        color: Theme.colorText
+                        color: Theme.colorSubText
                         font.pixelSize: Theme.fontSizeContent
                         wrapMode: Text.WordWrap
                     }
@@ -315,7 +315,7 @@ Loader {
 
                         text: "- Google Material Icons (MIT)"
                         textFormat: Text.PlainText
-                        color: Theme.colorText
+                        color: Theme.colorSubText
                         font.pixelSize: Theme.fontSizeContent
                         wrapMode: Text.WordWrap
                     }
@@ -326,7 +326,7 @@ Loader {
 
                         text: "- MobileUI & MobileSharing (MIT)"
                         textFormat: Text.PlainText
-                        color: Theme.colorText
+                        color: Theme.colorSubText
                         font.pixelSize: Theme.fontSizeContent
                         wrapMode: Text.WordWrap
                     }
@@ -355,7 +355,7 @@ Loader {
                     anchors.verticalCenter: translatorsText.verticalCenter
 
                     source: "qrc:/assets/icons_material/duotone-translate-24px.svg"
-                    color: Theme.colorIcon
+                    color: Theme.colorSubText
                 }
 
                 Text {
@@ -370,7 +370,7 @@ Loader {
                     text: qsTr("Special thanks to our translators:")
                     textFormat: Text.PlainText
                     font.pixelSize: Theme.fontSizeContent
-                    color: Theme.colorText
+                    color: Theme.colorSubText
                     wrapMode: Text.WordWrap
                     verticalAlignment: Text.AlignVCenter
                 }
@@ -390,7 +390,7 @@ Loader {
 
                         text: "- Translator 1 (Español)"
                         textFormat: Text.PlainText
-                        color: Theme.colorText
+                        color: Theme.colorSubText
                         font.pixelSize: Theme.fontSizeContent
                     }
                     Text {
@@ -400,7 +400,7 @@ Loader {
 
                         text: "- Translator 2 (French)"
                         textFormat: Text.PlainText
-                        color: Theme.colorText
+                        color: Theme.colorSubText
                         font.pixelSize: Theme.fontSizeContent
                     }
                     Text {
@@ -410,7 +410,7 @@ Loader {
 
                         text: "- Translator 9 (Klingon)"
                         textFormat: Text.PlainText
-                        color: Theme.colorText
+                        color: Theme.colorSubText
                         font.pixelSize: Theme.fontSizeContent
                     }
                 }

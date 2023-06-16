@@ -89,14 +89,13 @@ Drawer {
                 Text {
                     id: textHeader
                     anchors.left: imageHeader.right
-                    anchors.leftMargin: 10
+                    anchors.leftMargin: 12
                     anchors.verticalCenter: parent.verticalCenter
-                    anchors.verticalCenterOffset: 2
 
                     text: "QmlAppTemplate"
                     color: Theme.colorText
                     font.bold: true
-                    font.pixelSize: 22
+                    font.pixelSize: Theme.fontSizeTitle
                 }
             }
 
@@ -125,157 +124,36 @@ Drawer {
 
                 ////////
 
-                Rectangle {
-                    id: rectangleMainView
-                    height: 48
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    color: (appContent.state === "MainView") ? Theme.colorForeground : "transparent"
+                ListItemDrawer {
+                    text: qsTr("Components")
+                    iconSource: "qrc:/assets/icons_material/duotone-touch_app-24px.svg"
+                    highlighted: (appContent.state === "MobileComponents")
 
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: {
-                            screenDesktopComponents.loadScreen()
-                            appDrawer.close()
-                        }
-                    }
-
-                    IconSvg {
-                        width: 24
-                        height: 24
-                        anchors.left: parent.left
-                        anchors.leftMargin: screenPaddingLeft + 16
-                        anchors.verticalCenter: parent.verticalCenter
-
-                        source: "qrc:/assets/icons_material/duotone-touch_app-24px.svg"
-                        color: Theme.colorText
-                    }
-                    Text {
-                        anchors.left: parent.left
-                        anchors.leftMargin: screenPaddingLeft + 56
-                        anchors.verticalCenter: parent.verticalCenter
-
-                        text: qsTr("MainView")
-                        font.pixelSize: 13
-                        font.bold: true
-                        color: Theme.colorText
+                    onClicked: {
+                        screenMobileComponents.loadScreen()
+                        appDrawer.close()
                     }
                 }
 
-                ////////
+                ListItemDrawer {
+                    text: qsTr("Host infos")
+                    iconSource: "qrc:/assets/icons_material/duotone-memory-24px.svg"
+                    highlighted: (appContent.state === "HostInfos")
 
-                Rectangle {
-                    id: rectangleComponents
-                    height: 48
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    color: (appContent.state === "MobileComponents") ? Theme.colorForeground : "transparent"
-
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: {
-                            screenMobileComponents.loadScreen()
-                            appDrawer.close()
-                        }
-                    }
-
-                    IconSvg {
-                        width: 24
-                        height: 24
-                        anchors.left: parent.left
-                        anchors.leftMargin: screenPaddingLeft + 16
-                        anchors.verticalCenter: parent.verticalCenter
-
-                        source: "qrc:/assets/icons_material/duotone-touch_app-24px.svg"
-                        color: Theme.colorText
-                    }
-                    Text {
-                        anchors.left: parent.left
-                        anchors.leftMargin: screenPaddingLeft + 56
-                        anchors.verticalCenter: parent.verticalCenter
-
-                        text: qsTr("Components")
-                        font.pixelSize: 13
-                        font.bold: true
-                        color: Theme.colorText
+                    onClicked: {
+                        screenHostInfos.loadScreen()
+                        appDrawer.close()
                     }
                 }
 
-                ////////
+                ListItemDrawer {
+                    text: qsTr("Font infos")
+                    iconSource: "qrc:/assets/icons_material/duotone-format_size-24px.svg"
+                    highlighted: (appContent.state === "FontInfos")
 
-                Rectangle {
-                    id: rectangleHostInfos
-                    height: 48
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    color: (appContent.state === "HostInfos") ? Theme.colorForeground : "transparent"
-
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: {
-                            screenHostInfos.loadScreen()
-                            appDrawer.close()
-                        }
-                    }
-
-                    IconSvg {
-                        width: 24
-                        height: 24
-                        anchors.left: parent.left
-                        anchors.leftMargin: screenPaddingLeft + 16
-                        anchors.verticalCenter: parent.verticalCenter
-
-                        source: "qrc:/assets/icons_material/duotone-memory-24px.svg"
-                        color: Theme.colorText
-                    }
-                    Text {
-                        anchors.left: parent.left
-                        anchors.leftMargin: screenPaddingLeft + 56
-                        anchors.verticalCenter: parent.verticalCenter
-
-                        text: qsTr("Host infos")
-                        font.pixelSize: 13
-                        font.bold: true
-                        color: Theme.colorText
-                    }
-                }
-
-                ////////
-
-                Rectangle {
-                    id: rectangleFontList
-                    height: 48
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    color: (appContent.state === "FontInfos") ? Theme.colorForeground : "transparent"
-
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: {
-                            screenFontInfos.loadScreen()
-                            appDrawer.close()
-                        }
-                    }
-
-                    IconSvg {
-                        width: 24
-                        height: 24
-                        anchors.left: parent.left
-                        anchors.leftMargin: screenPaddingLeft + 16
-                        anchors.verticalCenter: parent.verticalCenter
-
-                        source: "qrc:/assets/icons_material/duotone-format_size-24px.svg"
-                        color: Theme.colorText
-                    }
-                    Text {
-                        anchors.left: parent.left
-                        anchors.leftMargin: screenPaddingLeft + 56
-                        anchors.verticalCenter: parent.verticalCenter
-
-                        text: qsTr("Font infos")
-                        font.pixelSize: 13
-                        font.bold: true
-                        color: Theme.colorText
+                    onClicked: {
+                        screenFontInfos.loadScreen()
+                        appDrawer.close()
                     }
                 }
 
@@ -285,77 +163,25 @@ Drawer {
 
                 ////////
 
-                Rectangle {
-                    id: rectangleSettings
-                    height: 48
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    color: (appContent.state === "Settings") ? Theme.colorForeground : "transparent"
+                ListItemDrawer {
+                    text: qsTr("Settings")
+                    iconSource: "qrc:/assets/icons_material/outline-settings-24px.svg"
+                    highlighted: (appContent.state === "Settings")
 
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: {
-                            screenSettings.loadScreen()
-                            appDrawer.close()
-                        }
-                    }
-
-                    IconSvg {
-                        width: 24
-                        height: 24
-                        anchors.left: parent.left
-                        anchors.leftMargin: screenPaddingLeft + 16
-                        anchors.verticalCenter: parent.verticalCenter
-
-                        source: "qrc:/assets/icons_material/outline-settings-24px.svg"
-                        color: Theme.colorText
-                    }
-                    Text {
-                        anchors.left: parent.left
-                        anchors.leftMargin: screenPaddingLeft + 56
-                        anchors.verticalCenter: parent.verticalCenter
-
-                        text: qsTr("Settings")
-                        font.pixelSize: 13
-                        font.bold: true
-                        color: Theme.colorText
+                    onClicked: {
+                        screenSettings.loadScreen()
+                        appDrawer.close()
                     }
                 }
 
-                Rectangle {
-                    id: rectangleAbout
-                    height: 48
-                    anchors.right: parent.right
-                    anchors.left: parent.left
-                    color: (appContent.state === "About" || appContent.state === "AboutPermissions") ? Theme.colorForeground : "transparent"
+                ListItemDrawer {
+                    text: qsTr("About")
+                    iconSource: "qrc:/assets/icons_material/outline-info-24px.svg"
+                    highlighted: (appContent.state === "About" || appContent.state === "AboutPermissions")
 
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: {
-                            screenAbout.loadScreen()
-                            appDrawer.close()
-                        }
-                    }
-
-                    IconSvg {
-                        width: 24
-                        height: 24
-                        anchors.left: parent.left
-                        anchors.leftMargin: screenPaddingLeft + 16
-                        anchors.verticalCenter: parent.verticalCenter
-
-                        source: "qrc:/assets/icons_material/outline-info-24px.svg"
-                        color: Theme.colorText
-                    }
-                    Text {
-                        anchors.left: parent.left
-                        anchors.leftMargin: screenPaddingLeft + 56
-                        anchors.verticalCenter: parent.verticalCenter
-
-                        text: qsTr("About")
-                        font.pixelSize: 13
-                        font.bold: true
-                        color: Theme.colorText
+                    onClicked: {
+                        screenAbout.loadScreen()
+                        appDrawer.close()
                     }
                 }
 

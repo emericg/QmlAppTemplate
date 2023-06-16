@@ -20,7 +20,7 @@ T.TextArea {
     opacity: control.enabled ? 1 : 0.66
 
     text: ""
-    font.pixelSize: Theme.fontSizeComponent
+    font.pixelSize: Theme.componentFontSize
     verticalAlignment: Text.AlignTop
 
     placeholderText: ""
