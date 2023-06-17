@@ -133,7 +133,6 @@ Item {
     property int componentBorderWidth: 2
 
     property int componentFontSize: isMobile ? 14 : 15
-    property int componentFontSize: isMobile ? 14 : 15
 
     ////////////////
 

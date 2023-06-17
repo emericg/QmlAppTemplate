@@ -14,18 +14,15 @@ Flickable {
         id: contentColumn
 
         anchors.left: parent.left
-        anchors.leftMargin: Theme.componentMargin
         anchors.right: parent.right
-        anchors.rightMargin: Theme.componentMargin
 
-        topPadding: Theme.componentMargin
-        bottomPadding: Theme.componentMargin
+        topPadding: Theme.componentMarginXL
+        bottomPadding: Theme.componentMarginXL
         spacing: Theme.componentMarginXL
 
-
         ListTitle { ////////////////////////////////////////////////////////////
-            anchors.leftMargin: singleColumn ? -parent.anchors.leftMargin : 0
-            anchors.rightMargin: singleColumn ? -parent.anchors.leftMargin : 0
+            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Buttons")
             source: ""
@@ -33,7 +30,9 @@ Flickable {
 
         Flow {
             anchors.left: parent.left
+            anchors.leftMargin: Theme.componentMarginXL
             anchors.right: parent.right
+            anchors.rightMargin: Theme.componentMarginXL
             spacing: 24
 
             ButtonWireframe {
@@ -64,7 +63,9 @@ Flickable {
 
         Flow {
             anchors.left: parent.left
+            anchors.leftMargin: Theme.componentMarginXL
             anchors.right: parent.right
+            anchors.rightMargin: Theme.componentMarginXL
             spacing: 24
 
             AndroidButton {
@@ -78,14 +79,15 @@ Flickable {
         }
 
         ListTitle { ////////////////////////////////////////////////////////////
-            anchors.leftMargin: singleColumn ? -parent.anchors.leftMargin : 0
-            anchors.rightMargin: singleColumn ? -parent.anchors.leftMargin : 0
+            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Round buttons")
             source: ""
         }
 
         Row {
+            anchors.horizontalCenter: parent.horizontalCenter
             height: 48
             spacing: 16
 
@@ -116,6 +118,7 @@ Flickable {
         }
 
         Row {
+            anchors.horizontalCenter: parent.horizontalCenter
             height: 48
             spacing: 16
 
@@ -138,6 +141,7 @@ Flickable {
         }
 
         Row {
+            anchors.horizontalCenter: parent.horizontalCenter
             height: 48
             spacing: 16
 

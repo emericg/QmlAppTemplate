@@ -14,17 +14,15 @@ Flickable {
         id: contentColumn
 
         anchors.left: parent.left
-        anchors.leftMargin: Theme.componentMargin
         anchors.right: parent.right
-        anchors.rightMargin: Theme.componentMargin
 
-        topPadding: Theme.componentMargin
-        bottomPadding: Theme.componentMargin
+        topPadding: Theme.componentMarginXL
+        bottomPadding: Theme.componentMarginXL
         spacing: Theme.componentMarginXL
 
         ListTitle { ////////////////////////////////////////////////////////////
-            anchors.leftMargin: singleColumn ? -parent.anchors.leftMargin : 0
-            anchors.rightMargin: singleColumn ? -parent.anchors.leftMargin : 0
+            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("TextFields")
             source: ""
@@ -32,14 +30,18 @@ Flickable {
 
         TextFieldThemed {
             anchors.left: parent.left
+            anchors.leftMargin: Theme.componentMarginXL
             anchors.right: parent.right
+            anchors.rightMargin: Theme.componentMarginXL
 
             placeholderText: "placeholder text"
         }
 
         AndroidTextField {
             anchors.left: parent.left
+            anchors.leftMargin: Theme.componentMarginXL
             anchors.right: parent.right
+            anchors.rightMargin: Theme.componentMarginXL
 
             title: "AndroidTextField"
             text: "some text"
@@ -47,8 +49,8 @@ Flickable {
         }
 
         ListTitle { ////////////////////////////////////////////////////////////
-            anchors.leftMargin: singleColumn ? -parent.anchors.leftMargin : 0
-            anchors.rightMargin: singleColumn ? -parent.anchors.leftMargin : 0
+            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("TextAreas")
             source: ""
@@ -56,14 +58,16 @@ Flickable {
 
         TextAreaThemed {
             anchors.left: parent.left
+            anchors.leftMargin: Theme.componentMarginXL
             anchors.right: parent.right
+            anchors.rightMargin: Theme.componentMarginXL
 
             placeholderText: "placeholder text"
         }
 
         ListTitle { ////////////////////////////////////////////////////////////
-            anchors.leftMargin: singleColumn ? -parent.anchors.leftMargin : 0
-            anchors.rightMargin: singleColumn ? -parent.anchors.leftMargin : 0
+            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Qt default")
             source: ""
@@ -71,7 +75,9 @@ Flickable {
 
         TextField {
             anchors.left: parent.left
+            anchors.leftMargin: Theme.componentMarginXL
             anchors.right: parent.right
+            anchors.rightMargin: Theme.componentMarginXL
 
             width: 256
             text: "Text Field"

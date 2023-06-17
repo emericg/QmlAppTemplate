@@ -4,9 +4,9 @@ import QtQuick.Controls
 import ThemeEngine 1.0
 
 Popup {
-    id: popupDeleteData
+    id: popupMessage
     x: (appWindow.width / 2) - (width / 2)
-    y: singleColumn ? (appWindow.height - height) : ((appWindow.height / 2) - (height / 2) /*- (appHeader.height)*/)
+    y: singleColumn ? (appWindow.height - height) : ((appWindow.height / 2) - (height / 2) - (appHeader.height))
 
     width: singleColumn ? parent.width : 640
     height: columnContent.height + padding*2
@@ -46,7 +46,7 @@ Popup {
             Text {
                 width: parent.width
 
-                text: qsTr("Are you sure you want to delete data for this sensor?")
+                text: qsTr("Hello")
                 textFormat: Text.PlainText
                 font.pixelSize: Theme.fontSizeContentVeryBig
                 color: Theme.colorText
@@ -56,7 +56,7 @@ Popup {
             Text {
                 width: parent.width
 
-                text: qsTr("You can either delete data from the application, or from both the sensor and application.")
+                text: qsTr("This is a message, empty of any kind of meaning.")
                 textFormat: Text.PlainText
                 font.pixelSize: Theme.fontSizeContent
                 color: Theme.colorSubText
@@ -66,7 +66,7 @@ Popup {
             Flow {
                 id: flowContent
                 width: parent.width
-                height: singleColumn ? 120+32 : 40
+                height: singleColumn ? 100 : 40
 
                 property var btnSize: singleColumn ? width : ((width-spacing*2) / 3)
                 spacing: 16
@@ -74,41 +74,11 @@ Popup {
                 ButtonWireframe {
                     width: parent.btnSize
 
-                    text: qsTr("Cancel")
+                    text: qsTr("OK")
                     primaryColor: Theme.colorSubText
                     secondaryColor: Theme.colorForeground
 
-                    onClicked: popupDeleteData.close()
-                }
-                ButtonWireframe {
-                    width: parent.btnSize
-
-                    text: qsTr("Delete local data")
-                    primaryColor: Theme.colorOrange
-                    fullColor: true
-
-                    onClicked: {
-                        if (selectedDevice) {
-                            selectedDevice.actionClearData()
-                        }
-                        popupDeleteData.confirmed()
-                        popupDeleteData.close()
-                    }
-                }
-                ButtonWireframe {
-                    width: parent.btnSize
-
-                    text: qsTr("Delete sensor data")
-                    primaryColor: Theme.colorRed
-                    fullColor: true
-
-                    onClicked: {
-                        if (selectedDevice) {
-                             selectedDevice.actionClearDeviceData()
-                        }
-                        popupDeleteData.confirmed()
-                        popupDeleteData.close()
-                    }
+                    onClicked: popupMessage.close()
                 }
             }
         }

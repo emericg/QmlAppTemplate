@@ -14,9 +14,9 @@ Flickable {
         id: contentColumn
 
         anchors.left: parent.left
-        anchors.leftMargin: Theme.componentMargin
+        anchors.leftMargin: Theme.componentMarginXL
         anchors.right: parent.right
-        anchors.rightMargin: Theme.componentMargin
+        anchors.rightMargin: Theme.componentMarginXL
 
         topPadding: Theme.componentMargin
         bottomPadding: Theme.componentMargin

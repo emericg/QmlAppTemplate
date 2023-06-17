@@ -14,62 +14,84 @@ Flickable {
         id: contentColumn
 
         anchors.left: parent.left
-        anchors.leftMargin: Theme.componentMargin
         anchors.right: parent.right
-        anchors.rightMargin: Theme.componentMargin
 
-        topPadding: Theme.componentMargin
-        bottomPadding: Theme.componentMargin
+        topPadding: Theme.componentMarginXL
+        bottomPadding: Theme.componentMarginXL
         spacing: Theme.componentMarginXL
 
         ListTitle { ////////////////////////////////////////////////////////////
-            anchors.leftMargin: singleColumn ? -parent.anchors.leftMargin : 0
-            anchors.rightMargin: singleColumn ? -parent.anchors.leftMargin : 0
+            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Title")
             source: ""
         }
 
         Row {
+            anchors.horizontalCenter: parent.horizontalCenter
+
             CheckBoxThemed {
-                anchors.verticalCenter: parent.verticalCenter
                 text: "CheckBox"
             }
         }
 
         Row {
-            RadioButtonThemed {
-                id: radioButtonLight
-                anchors.verticalCenter: parent.verticalCenter
+            anchors.horizontalCenter: parent.horizontalCenter
 
+            RadioButtonThemed {
                 text: "light"
                 checked: true
             }
             RadioButtonThemed {
-                id: radioButtonDark
-                anchors.verticalCenter: parent.verticalCenter
-
                 text: "dark"
                 checked: false
             }
         }
 
         ListTitle { ////////////////////////////////////////////////////////////
-            anchors.leftMargin: singleColumn ? -parent.anchors.leftMargin : 0
-            anchors.rightMargin: singleColumn ? -parent.anchors.leftMargin : 0
+            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Switches")
             source: ""
         }
 
         SwitchThemedDesktop {
-            text: "Switch"
+            anchors.horizontalCenter: parent.horizontalCenter
+            text: "Switch desktop"
             checked: true
         }
 
         SwitchThemedMobile {
-            text: "Switch"
+            anchors.horizontalCenter: parent.horizontalCenter
+            text: "Switch mobile"
             checked: true
+        }
+
+        ListTitle { ////////////////////////////////////////////////////////////
+            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
+
+            text: qsTr("SpinBoxes")
+            source: ""
+        }
+
+        SpinBoxThemedDesktop {
+            anchors.horizontalCenter: parent.horizontalCenter
+            value: 50
+        }
+
+        SpinBoxThemedDesktop {
+            anchors.horizontalCenter: parent.horizontalCenter
+            value: 4
+            legend: "h"
+        }
+
+        SpinBoxThemedMobile {
+            anchors.horizontalCenter: parent.horizontalCenter
+            value: 128
+            legend: "Kio"
         }
     }
 }

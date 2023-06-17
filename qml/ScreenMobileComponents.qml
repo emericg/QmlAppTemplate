@@ -32,11 +32,6 @@ Loader {
                 stackView.pop()
                 return
             }
-
-            if (exitTimer.running)
-                Qt.quit()
-            else
-                exitTimer.start()
         }
 
         StackView {

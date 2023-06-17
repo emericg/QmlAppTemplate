@@ -9,6 +9,7 @@ T.RangeSlider {
 
     implicitWidth: 200
     implicitHeight: Theme.componentHeight
+
     padding: 8
 
     first.value: 0.25
@@ -58,7 +59,7 @@ T.RangeSlider {
                 anchors.fill: parent
                 radius: width
                 color: Theme.colorPrimary
-                opacity: parent.containsMouse ? 0.2 : 0
+                opacity: (first.pressed || first.containsMouse) ? 0.2 : 0
                 Behavior on opacity { NumberAnimation { duration: 233 } }
             }
         }
@@ -88,7 +89,7 @@ T.RangeSlider {
                 anchors.fill: parent
                 radius: width
                 color: Theme.colorPrimary
-                opacity: parent.containsMouse ? 0.2 : 0
+                opacity: (second.pressed || second.containsMouse) ? 0.2 : 0
                 Behavior on opacity { NumberAnimation { duration: 233 } }
             }
         }

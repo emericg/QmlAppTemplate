@@ -4,9 +4,9 @@ import QtQuick.Controls
 import ThemeEngine 1.0
 
 Popup {
-    id: popupDeleteData
+    id: popupChoice
     x: (appWindow.width / 2) - (width / 2)
-    y: singleColumn ? (appWindow.height - height) : ((appWindow.height / 2) - (height / 2) /*- (appHeader.height)*/)
+    y: singleColumn ? (appWindow.height - height) : ((appWindow.height / 2) - (height / 2) - (appHeader.height))
 
     width: singleColumn ? parent.width : 640
     height: columnContent.height + padding*2
@@ -66,7 +66,7 @@ Popup {
             Flow {
                 id: flowContent
                 width: parent.width
-                height: singleColumn ? 120+32 : 40
+                height: singleColumn ? 200 : 40
 
                 property var btnSize: singleColumn ? width : ((width-spacing*2) / 3)
                 spacing: 16
@@ -78,7 +78,7 @@ Popup {
                     primaryColor: Theme.colorSubText
                     secondaryColor: Theme.colorForeground
 
-                    onClicked: popupDeleteData.close()
+                    onClicked: popupChoice.close()
                 }
                 ButtonWireframe {
                     width: parent.btnSize
@@ -91,8 +91,8 @@ Popup {
                         if (selectedDevice) {
                             selectedDevice.actionClearData()
                         }
-                        popupDeleteData.confirmed()
-                        popupDeleteData.close()
+                        popupChoice.confirmed()
+                        popupChoice.close()
                     }
                 }
                 ButtonWireframe {
@@ -106,8 +106,8 @@ Popup {
                         if (selectedDevice) {
                              selectedDevice.actionClearDeviceData()
                         }
-                        popupDeleteData.confirmed()
-                        popupDeleteData.close()
+                        popupChoice.confirmed()
+                        popupChoice.close()
                     }
                 }
             }

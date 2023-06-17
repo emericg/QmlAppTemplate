@@ -14,18 +14,15 @@ Flickable {
         id: contentColumn
 
         anchors.left: parent.left
-        anchors.leftMargin: Theme.componentMargin
         anchors.right: parent.right
-        anchors.rightMargin: Theme.componentMargin
 
-        topPadding: Theme.componentMargin
-        bottomPadding: Theme.componentMargin
+        topPadding: Theme.componentMarginXL
+        bottomPadding: Theme.componentMarginXL
         spacing: Theme.componentMarginXL
 
-
         ListTitle { ////////////////////////////////////////////////////////////
-            anchors.leftMargin: singleColumn ? -parent.anchors.leftMargin : 0
-            anchors.rightMargin: singleColumn ? -parent.anchors.leftMargin : 0
+            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Dialogs")
             source: ""
@@ -33,11 +30,12 @@ Flickable {
 
         ButtonWireframeIcon {
             anchors.left: parent.left
-            anchors.leftMargin: 20
+            anchors.leftMargin: Theme.componentMarginXL
             anchors.right: parent.right
-            anchors.rightMargin: 20
+            anchors.rightMargin: Theme.componentMarginXL
 
             text: "Message"
+            fullColor: true
             source: "qrc:/assets/icons_material/baseline-delete-24px.svg"
 
             PopupMessage {
@@ -49,11 +47,12 @@ Flickable {
 
         ButtonWireframeIcon {
             anchors.left: parent.left
-            anchors.leftMargin: 20
+            anchors.leftMargin: Theme.componentMarginXL
             anchors.right: parent.right
-            anchors.rightMargin: 20
+            anchors.rightMargin: Theme.componentMarginXL
 
             text: "Choice"
+            fullColor: true
             source: "qrc:/assets/icons_material/baseline-delete-24px.svg"
 
             PopupChoice {
@@ -64,8 +63,8 @@ Flickable {
         }
 
         ListTitle { ////////////////////////////////////////////////////////////
-            anchors.leftMargin: singleColumn ? -parent.anchors.leftMargin : 0
-            anchors.rightMargin: singleColumn ? -parent.anchors.leftMargin : 0
+            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Date & time pickers")
             source: ""
@@ -73,11 +72,12 @@ Flickable {
 
         ButtonWireframeIcon {
             anchors.left: parent.left
-            anchors.leftMargin: 20
+            anchors.leftMargin: Theme.componentMarginXL
             anchors.right: parent.right
-            anchors.rightMargin: 20
+            anchors.rightMargin: Theme.componentMarginXL
 
             text: "Date"
+            fullColor: true
             source: "qrc:/assets/icons_material/duotone-date_range-24px.svg"
 
             PopupDate {
@@ -89,11 +89,12 @@ Flickable {
 
         ButtonWireframeIcon {
             anchors.left: parent.left
-            anchors.leftMargin: 20
+            anchors.leftMargin: Theme.componentMarginXL
             anchors.right: parent.right
-            anchors.rightMargin: 20
+            anchors.rightMargin: Theme.componentMarginXL
 
             text: "Time"
+            fullColor: true
             source: "qrc:/assets/icons_material/duotone-schedule-24px.svg"
 
             PopupTime {

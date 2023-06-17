@@ -14,14 +14,11 @@ Flickable {
         id: contentColumn
 
         anchors.left: parent.left
-        anchors.leftMargin: Theme.componentMargin
         anchors.right: parent.right
-        anchors.rightMargin: Theme.componentMargin
 
-        topPadding: Theme.componentMargin
-        bottomPadding: Theme.componentMargin
+        topPadding: Theme.componentMarginXL
+        bottomPadding: Theme.componentMarginXL
         spacing: Theme.componentMarginXL
-
 
         ListTitle { ////////////////////////////////////////////////////////////
             anchors.leftMargin: singleColumn ? -parent.anchors.leftMargin : 0
@@ -32,6 +29,7 @@ Flickable {
         }
 
         SelectorMenuThemed {
+            anchors.horizontalCenter: parent.horizontalCenter
             height: 40
 
             currentSelection: 1
@@ -49,6 +47,7 @@ Flickable {
         }
 
         SelectorMenuThemed {
+            anchors.horizontalCenter: parent.horizontalCenter
             height: 32
 
             currentSelection: 1
@@ -66,6 +65,7 @@ Flickable {
         }
 
         SelectorMenu {
+            anchors.horizontalCenter: parent.horizontalCenter
             height: 40
 
             currentSelection: 1
@@ -83,6 +83,7 @@ Flickable {
         }
 
         SelectorMenu {
+            anchors.horizontalCenter: parent.horizontalCenter
             height: 32
 
             model: ListModel {
