@@ -25,7 +25,7 @@ Flickable {
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Dialogs")
-            source: ""
+            icon: ""
         }
 
         ButtonWireframeIcon {
@@ -67,7 +67,7 @@ Flickable {
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Date & time pickers")
-            source: ""
+            icon: ""
         }
 
         ButtonWireframeIcon {

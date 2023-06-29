@@ -38,9 +38,10 @@
         <file alias="SliderValueSolid.qml">components_generic/SliderValueSolid.qml</file>
         <file alias="ToolTipFlat.qml">components_generic/ToolTipFlat.qml</file>
 
+        <file alias="DrawerItem.qml">components_generic/DrawerItem.qml</file>
+        <file alias="DrawerButton.qml">components_generic/DrawerButton.qml</file>
         <file alias="ListItem.qml">components_generic/ListItem.qml</file>
         <file alias="ListItemClickable.qml">components_generic/ListItemClickable.qml</file>
-        <file alias="ListItemDrawer.qml">components_generic/ListItemDrawer.qml</file>
         <file alias="ListSeparator.qml">components_generic/ListSeparator.qml</file>
         <file alias="ListSeparatorPadded.qml">components_generic/ListSeparatorPadded.qml</file>
         <file alias="ListTitle.qml">components_generic/ListTitle.qml</file>

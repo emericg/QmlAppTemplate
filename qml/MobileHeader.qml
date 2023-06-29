@@ -1,6 +1,6 @@
-import QtQuick 2.15
+import QtQuick
 
-import ThemeEngine 1.0
+import ThemeEngine
 
 Rectangle {
     id: appHeader
@@ -8,11 +8,14 @@ Rectangle {
     anchors.left: parent.left
     anchors.right: parent.right
 
-    z: 10
     height: screenPaddingStatusbar + screenPaddingNotch + headerHeight
     color: Theme.colorHeader
+    clip: false
+    z: 10
 
     property int headerHeight: 52
+
+    property int headerPosition: 56
 
     property string headerTitle: "QmlAppTemplate"
 
@@ -21,19 +24,10 @@ Rectangle {
     property string leftMenuMode: "drawer" // drawer / back / close
     signal leftMenuClicked()
 
-    onLeftMenuModeChanged: {
-        if (leftMenuMode === "drawer")
-            leftMenuImg.source = "qrc:/assets/icons_material/baseline-menu-24px.svg"
-        else if (leftMenuMode === "close")
-            leftMenuImg.source = "qrc:/assets/icons_material/baseline-close-24px.svg"
-        else // back
-            leftMenuImg.source = "qrc:/assets/icons_material/baseline-arrow_back-24px.svg"
-    }
-
-    ////////////////////////////////////////////////////////////////////////////
-
     property string rightMenuMode: "off" // on / off
     signal rightMenuClicked()
+
+    ////////////////////////////////////////////////////////////////////////////
 
     function rightMenuIsOpen() { return actionMenu.visible; }
     function rightMenuClose() { actionMenu.close(); }
@@ -43,43 +37,70 @@ Rectangle {
     // prevent clicks below this area
     MouseArea { anchors.fill: parent; acceptedButtons: Qt.AllButtons; }
 
+    // menu
+    ActionMenu_bottom {
+        id: actionMenu
+
+        model: ListModel {
+            id: lmActionMenu
+            ListElement { t: "itm"; idx: 1; txt: "Action 1"; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; }
+            ListElement { t: "itm"; idx: 2; txt: "Action 2"; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; }
+            ListElement { t: "sep"; }
+            ListElement { t: "itm"; idx: 3; txt: "Action 3"; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; }
+        }
+
+        onMenuSelected: (index) => {
+            //console.log("ActionMenu clicked #" + index)
+        }
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
+
     Item {
         anchors.fill: parent
         anchors.topMargin: screenPaddingStatusbar + screenPaddingNotch
 
-        MouseArea {
-            id: leftArea
-            anchors.top: parent.top
-            anchors.left: parent.left
-            anchors.bottom: parent.bottom
+        ////////////
 
+        MouseArea { // left button
             width: headerHeight
             height: headerHeight
-            visible: true
 
+            visible: true
             onClicked: leftMenuClicked()
 
-            IconSvg {
-                id: leftMenuImg
-                anchors.left: parent.left
-                anchors.leftMargin: 16
-                anchors.verticalCenter: parent.verticalCenter
+            RippleThemed {
+                anchor: parent
+                width: parent.width
+                height: parent.height
 
+                pressed: parent.pressed
+                //active: enabled && parent.containsPress
+                color: Qt.rgba(Theme.colorForeground.r, Theme.colorForeground.g, Theme.colorForeground.b, 0.33)
+            }
+
+            IconSvg {
+                anchors.centerIn: parent
                 width: (headerHeight / 2)
                 height: (headerHeight / 2)
 
-                source: "qrc:/assets/icons_material/baseline-menu-24px.svg"
+                source: {
+                    if (leftMenuMode === "drawer") return "qrc:/assets/icons_material/baseline-menu-24px.svg"
+                    if (leftMenuMode === "close") return "qrc:/assets/icons_material/baseline-close-24px.svg"
+                    return "qrc:/assets/icons_material/baseline-arrow_back-24px.svg"
+                }
                 color: Theme.colorHeaderContent
             }
         }
 
-        Text { // title
-            height: parent.height
+        Text { // header title
             anchors.left: parent.left
-            anchors.leftMargin: 64
+            anchors.leftMargin: headerPosition
+            anchors.right: rightArea.left
+            anchors.rightMargin: 8
             anchors.verticalCenter: parent.verticalCenter
 
-            text: appHeader.headerTitle
+            text: headerTitle
             color: Theme.colorHeaderContent
             font.bold: true
             font.pixelSize: Theme.fontSizeHeader
@@ -89,17 +110,17 @@ Rectangle {
 
         ////////////
 
-        Row {
-            id: menu
+        Row { // right area
+            id: rightArea
             anchors.top: parent.top
             anchors.right: parent.right
-            anchors.rightMargin: 4
             anchors.bottom: parent.bottom
 
             spacing: 4
-            visible: true
 
-            Item {
+            ////////////
+
+            Item { // right indicator
                 anchors.verticalCenter: parent.verticalCenter
 
                 width: parent.height
@@ -141,11 +162,10 @@ Rectangle {
 
             ////////////
 
-            MouseArea {
-                id: rightMenu
-
+            MouseArea { // right button
                 width: headerHeight
                 height: headerHeight
+
                 visible: (appContent.state === "MobileComponents")
 
                 onClicked: {
@@ -153,36 +173,28 @@ Rectangle {
                     actionMenu.open()
                 }
 
-                IconSvg {
-                    id: rightMenuImg
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.verticalCenter: parent.verticalCenter
+                RippleThemed {
+                    width: parent.width
+                    height: parent.height
 
+                    pressed: parent.pressed
+                    //active: enabled && parent.containsPress
+                    color: Qt.rgba(Theme.colorForeground.r, Theme.colorForeground.g, Theme.colorForeground.b, 0.33)
+                }
+
+                IconSvg {
+                    anchors.centerIn: parent
                     width: (headerHeight / 2)
                     height: (headerHeight / 2)
 
                     source: "qrc:/assets/icons_material/baseline-more_vert-24px.svg"
                     color: Theme.colorHeaderContent
                 }
-
-                ActionMenu_bottom {
-                    id: actionMenu
-
-                    model: ListModel {
-                        id: lmActionMenu
-                        ListElement { t: "itm"; idx: 1; txt: "Action 1"; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; }
-                        ListElement { t: "itm"; idx: 2; txt: "Action 2"; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; }
-                        ListElement { t: "sep"; }
-                        ListElement { t: "itm"; idx: 3; txt: "Action 3"; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; }
-                    }
-
-                    onMenuSelected: (index) => {
-                        //console.log("ActionMenu clicked #" + index)
-                    }
-                }
             }
         }
+
+        ////////////
     }
 
-    ////////////
+    ////////////////////////////////////////////////////////////////////////////
 }

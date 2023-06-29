@@ -25,7 +25,7 @@ Flickable {
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Conventional sliders")
-            source: ""
+            icon: ""
         }
 
         SliderThemed {
@@ -61,7 +61,7 @@ Flickable {
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Arrow sliders")
-            source: ""
+            icon: ""
         }
 
         SliderArrow {
@@ -100,7 +100,7 @@ Flickable {
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Solid sliders")
-            source: ""
+            icon: ""
         }
 
         SliderValueSolid {

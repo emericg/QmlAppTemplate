@@ -5,9 +5,8 @@ import ThemeEngine 1.0
 
 Drawer {
     width: (appWindow.screenOrientation === Qt.PortraitOrientation || appWindow.width < 480)
-                ? 0.8 * appWindow.width :
-                  0.5 * appWindow.width
-    height: parent.height
+            ? 0.8 * appWindow.width : 0.5 * appWindow.width
+    height: appWindow.height
 
     ////////////////////////////////////////////////////////////////////////////
 
@@ -34,55 +33,35 @@ Drawer {
             anchors.rightMargin: 1
             z: 5
 
-            Connections {
-                target: appWindow
-                function onScreenPaddingStatusbarChanged() { rectangleHeader.updateIOSHeader() }
-            }
-            Connections {
-                target: ThemeEngine
-                function onCurrentThemeChanged() { rectangleHeader.updateIOSHeader() }
-            }
+            ////////
 
-            function updateIOSHeader() {
-                if (Qt.platform.os === "ios") {
-                    if (screenPaddingStatusbar !== 0 && Theme.currentTheme === ThemeEngine.THEME_NIGHT)
-                        rectangleStatusbar.height = screenPaddingStatusbar
-                    else
-                        rectangleStatusbar.height = 0
-                }
+            Rectangle {
+                id: rectangleStatusbar
+                anchors.left: parent.left
+                anchors.right: parent.right
+
+                height: Math.max(screenPaddingTop, screenPaddingStatusbar + screenPaddingNotch)
+                color: Theme.colorBackground // "red" // to hide flickable content
             }
 
             ////////
 
             Rectangle {
-                id: rectangleStatusbar
-                height: screenPaddingStatusbar
-                anchors.left: parent.left
-                anchors.right: parent.right
-                color: Theme.colorBackground // "red" // to hide flickable content
-            }
-            Rectangle {
-                id: rectangleNotch
-                height: screenPaddingNotch
-                anchors.left: parent.left
-                anchors.right: parent.right
-                color: Theme.colorBackground // "yellow" // to hide flickable content
-            }
-            Rectangle {
                 id: rectangleLogo
-                height: 80
                 anchors.left: parent.left
                 anchors.right: parent.right
+
+                height: 80
                 color: Theme.colorBackground
 
                 Image {
                     id: imageHeader
-                    width: 40
-                    height: 40
                     anchors.left: parent.left
                     anchors.leftMargin: 12
                     anchors.verticalCenter: parent.verticalCenter
 
+                    width: 40
+                    height: 40
                     source: "qrc:/assets/logos/logo.svg"
                     sourceSize: Qt.size(width, height)
                 }
@@ -91,6 +70,7 @@ Drawer {
                     anchors.left: imageHeader.right
                     anchors.leftMargin: 12
                     anchors.verticalCenter: parent.verticalCenter
+                    anchors.verticalCenterOffset: 0
 
                     text: "QmlAppTemplate"
                     color: Theme.colorText
@@ -117,6 +97,7 @@ Drawer {
                 id: contentColumn
                 anchors.left: parent.left
                 anchors.right: parent.right
+                anchors.rightMargin: 1
 
                 ////////
 
@@ -124,7 +105,7 @@ Drawer {
 
                 ////////
 
-                ListItemDrawer {
+                DrawerItem {
                     text: qsTr("Components")
                     iconSource: "qrc:/assets/icons_material/duotone-touch_app-24px.svg"
                     highlighted: (appContent.state === "MobileComponents")
@@ -135,7 +116,7 @@ Drawer {
                     }
                 }
 
-                ListItemDrawer {
+                DrawerItem {
                     text: qsTr("Host infos")
                     iconSource: "qrc:/assets/icons_material/duotone-memory-24px.svg"
                     highlighted: (appContent.state === "HostInfos")
@@ -146,7 +127,7 @@ Drawer {
                     }
                 }
 
-                ListItemDrawer {
+                DrawerItem {
                     text: qsTr("Font infos")
                     iconSource: "qrc:/assets/icons_material/duotone-format_size-24px.svg"
                     highlighted: (appContent.state === "FontInfos")
@@ -163,7 +144,7 @@ Drawer {
 
                 ////////
 
-                ListItemDrawer {
+                DrawerItem {
                     text: qsTr("Settings")
                     iconSource: "qrc:/assets/icons_material/outline-settings-24px.svg"
                     highlighted: (appContent.state === "Settings")
@@ -174,7 +155,7 @@ Drawer {
                     }
                 }
 
-                ListItemDrawer {
+                DrawerItem {
                     text: qsTr("About")
                     iconSource: "qrc:/assets/icons_material/outline-info-24px.svg"
                     highlighted: (appContent.state === "About" || appContent.state === "AboutPermissions")

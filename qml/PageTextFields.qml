@@ -25,7 +25,7 @@ Flickable {
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("TextFields")
-            source: ""
+            icon: ""
         }
 
         TextFieldThemed {
@@ -53,7 +53,7 @@ Flickable {
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("TextAreas")
-            source: ""
+            icon: ""
         }
 
         TextAreaThemed {
@@ -70,7 +70,7 @@ Flickable {
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Qt default")
-            source: ""
+            icon: ""
         }
 
         TextField {

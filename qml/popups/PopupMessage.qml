@@ -1,21 +1,24 @@
 import QtQuick
-import QtQuick.Controls
+import QtQuick.Controls.impl
+import QtQuick.Templates as T
 
-import ThemeEngine 1.0
+import ThemeEngine
 
-Popup {
+T.Popup {
     id: popupMessage
-    x: (appWindow.width / 2) - (width / 2)
-    y: singleColumn ? (appWindow.height - height) : ((appWindow.height / 2) - (height / 2) - (appHeader.height))
+    x: singleColumn ? 0 : (appWindow.width / 2) - (width / 2)
+    y: singleColumn ? (appWindow.height - height)
+                    : ((appWindow.height / 2) - (height / 2))
 
     width: singleColumn ? parent.width : 640
     height: columnContent.height + padding*2
-    padding: singleColumn ? 20 : 24
+    padding: Theme.componentMarginXL
 
-    parent: appContent
+    parent: appWindow.contentItem
+
     modal: true
     focus: true
-    closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+    closePolicy: T.Popup.CloseOnEscape | T.Popup.CloseOnPressOutside
 
     signal confirmed()
 
@@ -41,12 +44,12 @@ Popup {
         Column {
             id: columnContent
             width: parent.width
-            spacing: 20
+            spacing: Theme.componentMarginXL
 
             Text {
                 width: parent.width
 
-                text: qsTr("Hello")
+                text: qsTr("Message popup title")
                 textFormat: Text.PlainText
                 font.pixelSize: Theme.fontSizeContentVeryBig
                 color: Theme.colorText
@@ -56,30 +59,22 @@ Popup {
             Text {
                 width: parent.width
 
-                text: qsTr("This is a message, empty of any kind of meaning.")
+                text: qsTr("Message popup text. This is a message, empty of any kind of meaning.")
                 textFormat: Text.PlainText
                 font.pixelSize: Theme.fontSizeContent
                 color: Theme.colorSubText
                 wrapMode: Text.WordWrap
             }
 
-            Flow {
-                id: flowContent
-                width: parent.width
-                height: singleColumn ? 100 : 40
+            ButtonWireframe {
+                anchors.right: parent.right
+                width: singleColumn ? parent.width : (parent.width / 2)
 
-                property var btnSize: singleColumn ? width : ((width-spacing*2) / 3)
-                spacing: 16
+                text: qsTr("OK")
+                primaryColor: Theme.colorSubText
+                secondaryColor: Theme.colorForeground
 
-                ButtonWireframe {
-                    width: parent.btnSize
-
-                    text: qsTr("OK")
-                    primaryColor: Theme.colorSubText
-                    secondaryColor: Theme.colorForeground
-
-                    onClicked: popupMessage.close()
-                }
+                onClicked: popupMessage.close()
             }
         }
     }

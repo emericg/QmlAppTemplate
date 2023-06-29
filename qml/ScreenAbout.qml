@@ -75,7 +75,6 @@ Loader {
                     Column {
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.verticalCenterOffset: 2
-                        spacing: 0
 
                         Text {
                             text: "QmlAppTemplate"
@@ -139,14 +138,13 @@ Loader {
                     anchors.bottom: parent.bottom
                     height: 2
                     visible: isDesktop
-                    border.color: Qt.darker(parent.color, 1.03)
+                    border.color: Theme.colorSeparator
                 }
             }
 
             ////////////////
 
-            Row {
-                id: buttonsRow
+            Row { // buttons row
                 height: 64
 
                 anchors.left: parent.left
@@ -184,15 +182,13 @@ Loader {
                 }
             }
 
-            ////////
+            ////////////////
 
             ListItem { // description
                 width: parent.width
                 text: qsTr("A Qt6 / QML application template, with a full set of visual controls, as well as build and deploy scripts and CI setups.")
                 iconSource: "qrc:/assets/icons_material/outline-info-24px.svg"
             }
-
-            ////////
 
             ListItemClickable { // authors
                 width: parent.width
@@ -264,7 +260,7 @@ Loader {
                 Text {
                     id: dependenciesText
                     anchors.top: parent.top
-                    anchors.topMargin: 12
+                    anchors.topMargin: 16
                     anchors.left: parent.left
                     anchors.leftMargin: 48
                     anchors.right: parent.right
@@ -283,52 +279,27 @@ Loader {
                     anchors.top: dependenciesText.bottom
                     anchors.topMargin: 8
                     anchors.left: dependenciesText.left
+                    anchors.leftMargin: 0
                     anchors.right: parent.right
+                    anchors.rightMargin: 8
                     spacing: 4
 
-                    Text {
-                        anchors.left: parent.left
-                        anchors.right: parent.right
-                        anchors.rightMargin: 12
-
-                        text: "- Qt6 (LGPL 3)"
-                        textFormat: Text.PlainText
-                        color: Theme.colorSubText
-                        font.pixelSize: Theme.fontSizeContent
-                        wrapMode: Text.WordWrap
-                    }
-                    Text {
-                        anchors.left: parent.left
-                        anchors.right: parent.right
-                        anchors.rightMargin: 12
-
-                        text: "- SingleApplication (MIT)"
-                        textFormat: Text.PlainText
-                        color: Theme.colorSubText
-                        font.pixelSize: Theme.fontSizeContent
-                        wrapMode: Text.WordWrap
-                    }
-                    Text {
-                        anchors.left: parent.left
-                        anchors.right: parent.right
-                        anchors.rightMargin: 12
-
-                        text: "- Google Material Icons (MIT)"
-                        textFormat: Text.PlainText
-                        color: Theme.colorSubText
-                        font.pixelSize: Theme.fontSizeContent
-                        wrapMode: Text.WordWrap
-                    }
-                    Text {
-                        anchors.left: parent.left
-                        anchors.right: parent.right
-                        anchors.rightMargin: 12
-
-                        text: "- MobileUI & MobileSharing (MIT)"
-                        textFormat: Text.PlainText
-                        color: Theme.colorSubText
-                        font.pixelSize: Theme.fontSizeContent
-                        wrapMode: Text.WordWrap
+                    Repeater {
+                        model: [
+                            "Qt6 (LGPL v3)",
+                            "MobileUI (MIT)",
+                            "MobileSharing (MIT)",
+                            "SingleApplication (MIT)",
+                            "Google Material Icons (MIT)",
+                        ]
+                        delegate: Text {
+                            width: parent.width
+                            text: "- " + modelData
+                            textFormat: Text.PlainText
+                            color: Theme.colorSubText
+                            font.pixelSize: Theme.fontSizeContent
+                            wrapMode: Text.WordWrap
+                        }
                     }
                 }
             }
@@ -344,7 +315,7 @@ Loader {
                 anchors.right: parent.right
                 anchors.rightMargin: screenPaddingRight + Theme.componentMargin
 
-                height: 32 + translatorsText.height + translatorsColumn.height
+                height: 40 + translatorsText.height + translatorsColumn.height
 
                 IconSvg {
                     id: translatorsImg
@@ -361,7 +332,7 @@ Loader {
                 Text {
                     id: translatorsText
                     anchors.top: parent.top
-                    anchors.topMargin: 12
+                    anchors.topMargin: 16
                     anchors.left: parent.left
                     anchors.leftMargin: 48
                     anchors.right: parent.right
@@ -380,45 +351,30 @@ Loader {
                     anchors.top: translatorsText.bottom
                     anchors.topMargin: 8
                     anchors.left: translatorsText.left
+                    anchors.leftMargin: 0
                     anchors.right: parent.right
+                    anchors.rightMargin: 8
                     spacing: 4
 
-                    Text {
-                        anchors.left: parent.left
-                        anchors.right: parent.right
-                        anchors.rightMargin: 12
-
-                        text: "- Translator 1 (Español)"
-                        textFormat: Text.PlainText
-                        color: Theme.colorSubText
-                        font.pixelSize: Theme.fontSizeContent
-                    }
-                    Text {
-                        anchors.left: parent.left
-                        anchors.right: parent.right
-                        anchors.rightMargin: 12
-
-                        text: "- Translator 2 (French)"
-                        textFormat: Text.PlainText
-                        color: Theme.colorSubText
-                        font.pixelSize: Theme.fontSizeContent
-                    }
-                    Text {
-                        anchors.left: parent.left
-                        anchors.right: parent.right
-                        anchors.rightMargin: 12
-
-                        text: "- Translator 9 (Klingon)"
-                        textFormat: Text.PlainText
-                        color: Theme.colorSubText
-                        font.pixelSize: Theme.fontSizeContent
+                    Repeater {
+                        model: [
+                            "Translator 1 (Español)",
+                            "Translator 2 (French)",
+                            "Translator 9 (Klingon)",
+                        ]
+                        delegate: Text {
+                            width: parent.width
+                            text: "- " + modelData
+                            textFormat: Text.PlainText
+                            color: Theme.colorSubText
+                            font.pixelSize: Theme.fontSizeContent
+                            wrapMode: Text.WordWrap
+                        }
                     }
                 }
-
-                ////////
             }
 
-            ////////////////
+            ////////
         }
     }
 

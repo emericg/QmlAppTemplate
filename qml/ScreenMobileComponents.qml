@@ -52,49 +52,49 @@ Loader {
                         title: "Buttons"
                         text: "Buttons and stuff."
                         icon: "qrc:/assets/icons_material/duotone-touch_app-24px.svg"
-                        source: "qrc:/qml/PageButtons.qml"
+                        page: "qrc:/qml/PageButtons.qml"
                     }
 
                     ListElement {
                         title: "Selectors"
                         text: "Single choice selectors."
                         icon: "qrc:/assets/icons_material/baseline-insert_link-24px.svg"
-                        source: "qrc:/qml/PageSelectors.qml"
+                        page: "qrc:/qml/PageSelectors.qml"
                     }
 
                     ListElement {
                         title: "Date & Time"
                         text: "Datetime pickers."
                         icon: "qrc:/assets/icons_material/duotone-date_range-24px.svg"
-                        source: "qrc:/qml/PageDialogs.qml"
+                        page: "qrc:/qml/PageDialogs.qml"
                     }
 
                     ListElement {
                         title: "Dialogs"
                         text: "Various dialog popups."
                         icon: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
-                        source: "qrc:/qml/PageDialogs.qml"
+                        page: "qrc:/qml/PageDialogs.qml"
                     }
 
                     ListElement {
                         title: "Sliders"
                         text: "We like sliders. Sliders are cools."
                         icon: "qrc:/assets/icons_material/baseline-sort-24px.svg"
-                        source: "qrc:/qml/PageSliders.qml"
+                        page: "qrc:/qml/PageSliders.qml"
                     }
 
                     ListElement {
                         title: "TextFields"
                         text: "Various text inputs."
                         icon: "qrc:/assets/icons_material/duotone-edit-24px.svg"
-                        source: "qrc:/qml/PageTextFields.qml"
+                        page: "qrc:/qml/PageTextFields.qml"
                     }
 
                     ListElement {
                         title: "Tickers"
                         text: "Checkboxes and radiobuttons."
                         icon: "qrc:/assets/icons_material/baseline-flaky-24px.svg"
-                        source: "qrc:/qml/PageTickers.qml"
+                        page: "qrc:/qml/PageTickers.qml"
                     }
                 }
 
@@ -108,7 +108,7 @@ Loader {
 
                         onClicked: {
                             ListView.currentIndex = index
-                            stackView.push(model.source)
+                            stackView.push(model.page)
                         }
                     }
                 }
@@ -125,8 +125,6 @@ Loader {
 
                     delegate: listComponent
                     model: pagesModel
-
-                    //ScrollIndicator.vertical: Qaterial.ScrollIndicator {}
                 }
 
                 ////////

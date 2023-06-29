@@ -2,8 +2,8 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Window
 
-import ThemeEngine 1.0
-import MobileUI 1.0
+import ThemeEngine
+import MobileUI
 
 ApplicationWindow {
     id: appWindow
@@ -14,7 +14,7 @@ ApplicationWindow {
     color: Theme.colorBackground
     visible: true
 
-    property bool isHdpi: (utilsScreen.screenDpi > 128)
+    property bool isHdpi: (utilsScreen.screenDpi >= 128 || utilsScreen.screenPar >= 2.0)
     property bool isDesktop: (Qt.platform.os !== "ios" && Qt.platform.os !== "android")
     property bool isMobile: (Qt.platform.os === "ios" || Qt.platform.os === "android")
     property bool isPhone: ((Qt.platform.os === "ios" || Qt.platform.os === "android") && (utilsScreen.screenSize < 7.0))
@@ -26,96 +26,56 @@ ApplicationWindow {
     // 4 = Qt.InvertedPortraitOrientation, 8 = Qt.InvertedLandscapeOrientation
     property int screenOrientation: Screen.primaryOrientation
     property int screenOrientationFull: Screen.orientation
-    onScreenOrientationChanged: handleNotchesTimer.restart()
+    onScreenOrientationChanged: {
+        handleSafeAreas()
+        mobileUI.refreshUI()
+    }
 
     property int screenPaddingStatusbar: 0
     property int screenPaddingNotch: 0
+    property int screenPaddingNavbar: 0
+
+    property int screenPaddingTop: 0
     property int screenPaddingLeft: 0
     property int screenPaddingRight: 0
     property int screenPaddingBottom: 0
 
-    Timer {
-        id: handleNotchesTimer
-        interval: 33
-        repeat: false
-        onTriggered: handleNotches()
-    }
-
-    function handleNotches() {
-/*
-        console.log("handleNotches()")
-        console.log("screen width : " + Screen.width)
-        console.log("screen width avail  : " + Screen.desktopAvailableWidth)
-        console.log("screen height : " + Screen.height)
-        console.log("screen height avail  : " + Screen.desktopAvailableHeight)
-        console.log("screen orientation: " + Screen.orientation)
-        console.log("screen orientation (primary): " + Screen.primaryOrientation)
-*/
-        if (Qt.platform.os !== "ios") return
-        if (typeof quickWindow === "undefined" || !quickWindow) {
-            handleNotchesTimer.restart()
-            return
-        }
-
-        // Margins
-        var safeMargins = utilsScreen.getSafeAreaMargins(quickWindow)
-        if (safeMargins["total"] === safeMargins["top"]) {
-            screenPaddingStatusbar = safeMargins["top"]
+    function handleSafeAreas() {
+        // safe areas are only taken into account if using full screen mode
+        if (flags & Qt.MaximizeUsingFullscreenGeometryHint) {
+            screenPaddingStatusbar = mobileUI.statusbarHeight
             screenPaddingNotch = 0
-            screenPaddingLeft = 0
-            screenPaddingRight = 0
-            screenPaddingBottom = 0
-        } else if (safeMargins["total"] > 0) {
-            if (Screen.orientation === Qt.PortraitOrientation) {
-                screenPaddingStatusbar = 20
-                screenPaddingNotch = 12
-                screenPaddingLeft = 0
-                screenPaddingRight = 0
-                screenPaddingBottom = 6
-            } else if (Screen.orientation === Qt.InvertedPortraitOrientation) {
-                screenPaddingStatusbar = 12
-                screenPaddingNotch = 20
-                screenPaddingLeft = 0
-                screenPaddingRight = 0
-                screenPaddingBottom = 6
-            } else if (Screen.orientation === Qt.LandscapeOrientation) {
-                screenPaddingStatusbar = 0
-                screenPaddingNotch = 0
-                screenPaddingLeft = 32
-                screenPaddingRight = 0
-                screenPaddingBottom = 0
-            } else if (Screen.orientation === Qt.InvertedLandscapeOrientation) {
-                screenPaddingStatusbar = 0
-                screenPaddingNotch = 0
-                screenPaddingLeft = 0
-                screenPaddingRight = 32
-                screenPaddingBottom = 0
-            } else {
-                screenPaddingStatusbar = 0
-                screenPaddingNotch = 0
-                screenPaddingLeft = 0
-                screenPaddingRight = 0
-                screenPaddingBottom = 0
+            screenPaddingNavbar = mobileUI.navbarHeight
+
+            screenPaddingTop = mobileUI.safeAreaTop
+            screenPaddingLeft = mobileUI.safeAreaLeft
+            screenPaddingRight = mobileUI.safeAreaRight
+            screenPaddingBottom = mobileUI.safeAreaBottom
+
+            if (Qt.platform.os === "android") {
+                screenPaddingStatusbar = screenPaddingTop // hack
+                screenPaddingNotch = screenPaddingTop - screenPaddingStatusbar
+                screenPaddingBottom = screenPaddingNavbar
             }
-        } else {
-            screenPaddingStatusbar = 0
-            screenPaddingNotch = 0
-            screenPaddingLeft = 0
-            screenPaddingRight = 0
-            screenPaddingBottom = 0
+            if (Qt.platform.os === "ios") {
+                screenPaddingNotch = screenPaddingTop - screenPaddingStatusbar
+            }
         }
 /*
-        console.log("total:" + safeMargins["total"])
-        console.log("top:" + safeMargins["top"])
-        console.log("left:" + safeMargins["left"])
-        console.log("right:" + safeMargins["right"])
-        console.log("bottom:" + safeMargins["bottom"])
-
-        console.log("RECAP screenPaddingStatusbar:" + screenPaddingStatusbar)
-        console.log("RECAP screenPaddingNotch:" + screenPaddingNotch)
-        console.log("RECAP screenPaddingLeft:" + screenPaddingLeft)
-        console.log("RECAP screenPaddingRight:" + screenPaddingRight)
-        console.log("RECAP screenPaddingBottom:" + screenPaddingBottom)
+        console.log("> handleSafeAreas()")
+        console.log("- screen width:        " + Screen.width)
+        console.log("- screen width avail:  " + Screen.desktopAvailableWidth)
+        console.log("- screen height:       " + Screen.height)
+        console.log("- screen height avail: " + Screen.desktopAvailableHeight)
+        console.log("- screen orientation:  " + Screen.orientation)
+        console.log("- screen orientation (primary): " + Screen.primaryOrientation)
+        console.log("- screenSizeStatusbar: " + screenPaddingStatusbar)
+        console.log("- screenSizeNotch:     " + screenPaddingNotch)
+        console.log("- screenSizeNavbar:    " + screenPaddingNavbar)
+        console.log("- screenPaddingTop:    " + screenPaddingTop)
+        console.log("- screenPaddingLeft:   " + screenPaddingLeft)
+        console.log("- screenPaddingRight:  " + screenPaddingRight)
+        console.log("- screenPaddingBottom: " + screenPaddingBottom)
 */
     }
 
@@ -134,7 +94,6 @@ ApplicationWindow {
 
     MobileHeader {
         id: appHeader
-        anchors.top: appWindow.top
     }
 
     MobileDrawer {
@@ -145,14 +104,14 @@ ApplicationWindow {
     // Events handling /////////////////////////////////////////////////////////
 
     Component.onCompleted: {
-        handleNotchesTimer.restart()
+        handleSafeAreas()
         mobileUI.isLoading = false
     }
 
     Connections {
         target: appHeader
         function onLeftMenuClicked() {
-            if (appContent.state === "MainView" || appContent.state === "MobileComponents") {
+            if (appContent.state === "MainView" /*|| appContent.state === "MobileComponents"*/) {
                 appDrawer.open()
             } else {
                 backAction()
@@ -244,6 +203,10 @@ ApplicationWindow {
 
     // QML /////////////////////////////////////////////////////////////////////
 
+    onActiveFocusItemChanged: {
+        //console.log("activeFocusItem:" + activeFocusItem)
+    }
+
     FocusScope {
         id: appContent
 
@@ -290,7 +253,7 @@ ApplicationWindow {
         }
 
         onStateChanged: {
-            if (state === "MainView" || state === "MobileComponents")
+            if (state === "MainView" /*|| state === "MobileComponents"*/)
                 appHeader.leftMenuMode = "drawer"
             else if (state === "Tutorial")
                 appHeader.leftMenuMode = "close"
@@ -303,21 +266,8 @@ ApplicationWindow {
 
         states: [
             State {
-                name: "MainView"
-                PropertyChanges { target: appHeader; headerTitle: "QmlAppTemplate"; }
-                PropertyChanges { target: screenMainView; visible: true; enabled: true; }
-                PropertyChanges { target: screenDesktopComponents; visible: false; enabled: false; }
-                PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
-                PropertyChanges { target: screenFontInfos; visible: false; enabled: false; }
-                PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
-                PropertyChanges { target: screenSettings; visible: false; enabled: false; }
-                PropertyChanges { target: screenAbout; visible: false; enabled: false; }
-                PropertyChanges { target: screenAboutPermissions; visible: false; enabled: false; }
-            },
-            State {
                 name: "MobileComponents"
                 PropertyChanges { target: appHeader; headerTitle: "QmlAppTemplate"; }
-                PropertyChanges { target: screenMainView; visible: false; enabled: false; }
                 PropertyChanges { target: screenMobileComponents; visible: true; enabled: true; }
                 PropertyChanges { target: screenFontInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
@@ -328,7 +278,6 @@ ApplicationWindow {
             State {
                 name: "FontInfos"
                 PropertyChanges { target: appHeader; headerTitle: "Font infos"; }
-                PropertyChanges { target: screenMainView; visible: false; enabled: false; }
                 PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
                 PropertyChanges { target: screenFontInfos; visible: true; enabled: true; }
                 PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
@@ -339,7 +288,6 @@ ApplicationWindow {
             State {
                 name: "HostInfos"
                 PropertyChanges { target: appHeader; headerTitle: "Host infos"; }
-                PropertyChanges { target: screenMainView; visible: false; enabled: false; }
                 PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
                 PropertyChanges { target: screenFontInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenHostInfos; visible: true; enabled: true; }
@@ -350,7 +298,6 @@ ApplicationWindow {
             State {
                 name: "Settings"
                 PropertyChanges { target: appHeader; headerTitle: qsTr("Settings"); }
-                PropertyChanges { target: screenMainView; visible: false; enabled: false; }
                 PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
                 PropertyChanges { target: screenFontInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
@@ -361,7 +308,6 @@ ApplicationWindow {
             State {
                 name: "About"
                 PropertyChanges { target: appHeader; headerTitle: qsTr("About"); }
-                PropertyChanges { target: screenMainView; visible: false; enabled: false; }
                 PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
                 PropertyChanges { target: screenFontInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
@@ -372,7 +318,6 @@ ApplicationWindow {
             State {
                 name: "AboutPermissions"
                 PropertyChanges { target: appHeader; headerTitle: qsTr("Permissions"); }
-                PropertyChanges { target: screenMainView; visible: false; enabled: false; }
                 PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
                 PropertyChanges { target: screenFontInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
@@ -383,41 +328,54 @@ ApplicationWindow {
         ]
     }
 
+    Rectangle { // navbar area
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        height: screenPaddingBottom
+        visible: (mobileMenu.visible || appContent.state === "Tutorial")
+        color: {
+            if (appContent.state === "Tutorial") return Theme.colorHeader
+            return Theme.colorBackground
+        }
+    }
+
     ////////////////
 
     MobileMenu {
         id: mobileMenu
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
     }
 
     ////////////////
 
     Rectangle {
         id: exitWarning
-        height: 40
 
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: mobileMenu.height
-        anchors.margins: Theme.componentMargin
+        anchors.margins: Theme.componentMargin + screenPaddingBottom
 
-        radius: 4
-        color: Theme.colorSeparator
-        visible: opacity
+        height: Theme.componentHeight
+        radius: Theme.componentRadius
+
+        color: Theme.colorComponentBackground
+        border.color: Theme.colorSeparator
+        border.width: Theme.componentBorderWidth
+
         opacity: 0
         Behavior on opacity { OpacityAnimator { duration: 333 } }
+        visible: opacity
 
         Text {
             anchors.centerIn: parent
-            text: qsTr("Appuyer encore une fois pour quitter...")
+
+            text: qsTr("Press one more time to exit...")
             textFormat: Text.PlainText
             font.pixelSize: Theme.fontSizeContent
             color: Theme.colorText
         }
     }
 
-    ////////////////
+    ////////////////////////////////////////////////////////////////////////////
 }

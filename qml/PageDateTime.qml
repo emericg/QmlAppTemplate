@@ -24,11 +24,11 @@ Flickable {
 
 
         ListTitle { ////////////////////////////////////////////////////////////
-            anchors.leftMargin: singleColumn ? -parent.anchors.leftMargin : 0
-            anchors.rightMargin: singleColumn ? -parent.anchors.leftMargin : 0
+            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Title")
-            source: ""
+            icon: ""
         }
     }
 }

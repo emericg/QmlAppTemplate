@@ -9,11 +9,11 @@ ApplicationWindow {
     flags: settingsManager.appThemeCSD ? Qt.Window | Qt.FramelessWindowHint : Qt.Window
     color: settingsManager.appThemeCSD ? "transparent" : Theme.colorBackground
 
+    property bool isHdpi: (utilsScreen.screenDpi >= 128 || utilsScreen.screenPar >= 2.0)
     property bool isDesktop: true
     property bool isMobile: false
     property bool isPhone: false
     property bool isTablet: false
-    property bool isHdpi: (utilsScreen.screenDpi > 128 || utilsScreen.screenPar > 1.0)
 
     // Desktop stuff ///////////////////////////////////////////////////////////
 
@@ -93,7 +93,7 @@ ApplicationWindow {
     }
 
     onActiveFocusItemChanged: {
-        //print("activeFocusItem", activeFocusItem)
+        //console.log("activeFocusItem:" + activeFocusItem)
     }
 
     onClosing: (close) =>  {

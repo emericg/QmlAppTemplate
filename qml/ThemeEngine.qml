@@ -199,7 +199,7 @@ Item {
     }
 
     function loadTheme(newIndex) {
-        console.log("ThemeEngine.loadTheme(" + newIndex + ")")
+        //console.log("ThemeEngine.loadTheme(" + newIndex + ")")
         var themeIndex = -1
 
         // Get the theme index
