@@ -38,6 +38,8 @@ MobileUI::Theme MobileUIPrivate::statusbarTheme = MobileUI::Light;
 QColor MobileUIPrivate::navbarColor;
 MobileUI::Theme MobileUIPrivate::navbarTheme = MobileUI::Light;
 
+bool MobileUIPrivate::isScreenKeepOn = false;
+
 /* ************************************************************************** */
 
 void MobileUI::registerQML()
@@ -109,9 +111,54 @@ void MobileUI::setNavbarTheme(Theme theme)
 
 /* ************************************************************************** */
 
-void MobileUI::keepScreenOn(bool on)
+int MobileUI::getStatusbarHeight()
 {
-    MobileUIPrivate::keepScreenOn(on);
+    return MobileUIPrivate::getStatusbarHeight();
+}
+
+int MobileUI::getNavbarHeight()
+{
+    return MobileUIPrivate::getNavbarHeight();
+}
+
+int MobileUI::getSafeAreaTop()
+{
+    return MobileUIPrivate::getSafeAreaTop();
+}
+
+int MobileUI::getSafeAreaLeft()
+{
+    return MobileUIPrivate::getSafeAreaLeft();
+}
+
+int MobileUI::getSafeAreaRight()
+{
+    return MobileUIPrivate::getSafeAreaRight();
+}
+
+int MobileUI::getSafeAreaBottom()
+{
+    return MobileUIPrivate::getSafeAreaBottom();
+}
+
+/* ************************************************************************** */
+
+bool MobileUI::getScreenKeepOn()
+{
+    return MobileUIPrivate::isScreenKeepOn;
+}
+
+void MobileUI::setScreenKeepOn(bool on)
+{
+    MobileUIPrivate::isScreenKeepOn = on;
+    MobileUIPrivate::setScreenKeepOn(on);
+}
+
+/* ************************************************************************** */
+
+void MobileUI::refreshUI()
+{
+    MobileUIPrivate::refreshUI();
 }
 
 /* ************************************************************************** */

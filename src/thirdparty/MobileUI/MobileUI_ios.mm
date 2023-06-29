@@ -123,7 +123,64 @@ void MobileUIPrivate::setTheme_navbar(MobileUI::Theme theme)
 
 /* ************************************************************************** */
 
-void MobileUIPrivate::keepScreenOn(bool on)
+int MobileUIPrivate::getStatusbarHeight()
+{
+    CGSize statusBarSize = [[UIApplication sharedApplication] statusBarFrame].size;
+    return MIN(statusBarSize.width, statusBarSize.height);
+}
+
+int MobileUIPrivate::getNavbarHeight()
+{
+    return 0;
+}
+
+int MobileUIPrivate::getSafeAreaTop()
+{
+    if (@available(iOS 11.0, *))
+    {
+        UIWindow *window = UIApplication.sharedApplication.windows.firstObject;
+        return window.safeAreaInsets.top;
+    }
+    
+    return 0;
+}
+
+int MobileUIPrivate::getSafeAreaLeft()
+{
+    if (@available(iOS 11.0, *))
+    {
+        UIWindow *window = UIApplication.sharedApplication.windows.firstObject;
+        return window.safeAreaInsets.left;
+    }
+    
+    return 0;
+}
+
+int MobileUIPrivate::getSafeAreaRight()
+{
+    if (@available(iOS 11.0, *))
+    {
+        UIWindow *window = UIApplication.sharedApplication.windows.firstObject;
+        return window.safeAreaInsets.right;
+    }
+    
+    return 0;
+}
+
+int MobileUIPrivate::getSafeAreaBottom()
+{
+    if (@available(iOS 11.0, *))
+    {
+        UIWindow *window = UIApplication.sharedApplication.windows.firstObject;
+        return window.safeAreaInsets.bottom;
+    }
+    
+    return 0;
+}
+
+/* ************************************************************************** */
+
+void MobileUIPrivate::setScreenKeepOn(bool on)
 {
     if (on)
     {
@@ -133,6 +190,13 @@ void MobileUIPrivate::keepScreenOn(bool on)
     {
         [[UIApplication sharedApplication] setIdleTimerDisabled: NO];
     }
+}
+
+/* ************************************************************************** */
+
+void MobileUIPrivate::refreshUI()
+{
+    return;
 }
 
 /* ************************************************************************** */

@@ -1,11 +1,9 @@
-cmake_minimum_required(VERSION 3.20)
+cmake_minimum_required(VERSION 3.12)
 
 project(MobileUI LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
 
 ################################################################################
 
@@ -30,7 +28,7 @@ if(ANDROID)
         set(PLATFORM_SOURCES MobileUI_android_qt5.cpp)
 
         find_package(Qt${QT_DEFAULT_MAJOR_VERSION} REQUIRED COMPONENTS AndroidExtras)
-        target_link_libraries(MobileUI PRIVATE Qt::AndroidExtras)
+        set(PLATFORM_LIBRARIES Qt::AndroidExtras)
     elseif(QT_DEFAULT_MAJOR_VERSION EQUAL 6)
         set(PLATFORM_SOURCES MobileUI_android_qt6.cpp)
     endif()
