@@ -24,6 +24,7 @@
 #include "MobileUI_private.h"
 
 #include <QGuiApplication>
+#include <QScreen>
 #include <QJniObject>
 
 /* ************************************************************************** */
@@ -54,6 +55,13 @@
 #define APPEARANCE_LIGHT_NAVIGATION_BARS        0x00000010
 #define APPEARANCE_SEMI_TRANSPARENT_STATUS_BARS 0x00000020
 #define APPEARANCE_SEMI_TRANSPARENT_NAVIGATION_BARS 0x0030
+
+// VibrationEffect
+#define DEFAULT_AMPLITUDE                       0xffffffff
+#define EFFECT_CLICK                            0x00000000
+#define EFFECT_DOUBLE_CLICK                     0x00000001
+#define EFFECT_HEAVY_CLICK                      0x00000005
+#define EFFECT_TICK                             0x00000002
 
 /* ************************************************************************** */
 
@@ -90,6 +98,14 @@ static QJniObject getDisplayCutout()
     QJniObject cutout = insets.callObjectMethod("getDisplayCutout", "()Landroid/view/DisplayCutout;");
 
     return cutout;
+}
+
+void updatePreferredStatusBarStyle()
+{
+    if (QNativeInterface::QAndroidApplication::sdkVersion() >= 30)
+    {
+        MobileUI::setStatusbarTheme(MobileUIPrivate::statusbarTheme);
+    }
 }
 
 /* ************************************************************************** */
@@ -160,6 +176,17 @@ void MobileUIPrivate::setTheme_statusbar(MobileUI::Theme theme)
 
             inset.callMethod<void>("setSystemBarsAppearance", "(II)V",
                                    visibility, APPEARANCE_LIGHT_STATUS_BARS);
+
+            if (!MobileUIPrivate::areRefreshSlotsConnected)
+            {
+                QScreen *screen = qApp->primaryScreen();
+                if (screen) {
+                    QObject::connect(screen, &QScreen::orientationChanged,
+                                     qApp, [](Qt::ScreenOrientation) { updatePreferredStatusBarStyle(); });
+                }
+
+                MobileUIPrivate::areRefreshSlotsConnected = true;
+            }
         }
     });
 }
@@ -288,12 +315,47 @@ void MobileUIPrivate::setScreenKeepOn(bool on)
 
 /* ************************************************************************** */
 
-void MobileUIPrivate::refreshUI()
+void MobileUIPrivate::vibrate()
 {
-    if (QNativeInterface::QAndroidApplication::sdkVersion() >= 30)
-    {
-        setTheme_statusbar(MobileUIPrivate::statusbarTheme);
-    }
+    QNativeInterface::QAndroidApplication::runOnAndroidMainThread([=]() {
+        QJniObject activity = QNativeInterface::QAndroidApplication::context();
+        if (activity.isValid())
+        {
+            QJniObject vibratorString = QJniObject::fromString("vibrator");
+            QJniObject vibratorService = activity.callObjectMethod("getSystemService",
+                                                                 "(Ljava/lang/String;)Ljava/lang/Object;",
+                                                                 vibratorString.object<jstring>());
+            if (vibratorService.callMethod<jboolean>("hasVibrator", "()Z"))
+            {
+                if (QNativeInterface::QAndroidApplication::sdkVersion() < 26)
+                {
+                    // vibrate(long milliseconds) // Deprecated in API level 26
+
+                    jlong ms = 25;
+                    vibratorService.callMethod<void>("vibrate", "(J)V", ms);
+                }
+                else
+                {
+                    // vibrate(VibrationEffect vibe) // Added in API level 26
+
+                    jint effect = EFFECT_TICK;
+                    QJniObject vibrationEffect = QJniObject::callStaticObjectMethod("android/os/VibrationEffect",
+                                                                                    "createPredefined",
+                                                                                    "(I)Landroid/os/VibrationEffect;",
+                                                                                    effect);
+
+                    vibratorService.callMethod<void>("vibrate",
+                                                     "(Landroid/os/VibrationEffect;)V",
+                                                     vibrationEffect.object<jobject>());
+                }
+            }
+        }
+        QJniEnvironment env;
+        if (env->ExceptionCheck())
+        {
+            env->ExceptionClear();
+        }
+    });
 }
 
 /* ************************************************************************** */

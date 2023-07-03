@@ -55,6 +55,11 @@ void MobileUIPrivate::setTheme_navbar(MobileUI::Theme theme)
     Q_UNUSED(theme)
 }
 
+void MobileUIPrivate::refreshUI()
+{
+    return;
+}
+
 int MobileUIPrivate::getStatusbarHeight()
 {
     return 0;
@@ -90,7 +95,7 @@ void MobileUIPrivate::setScreenKeepOn(bool on)
     Q_UNUSED(on)
 }
 
-void MobileUIPrivate::refreshUI()
+void MobileUIPrivate::vibrate()
 {
     return;
 }

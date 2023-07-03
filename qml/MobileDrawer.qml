@@ -40,7 +40,7 @@ Drawer {
                 anchors.left: parent.left
                 anchors.right: parent.right
 
-                height: Math.max(screenPaddingTop, screenPaddingStatusbar + screenPaddingNotch)
+                height: Math.max(screenPaddingTop, screenPaddingStatusbar)
                 color: Theme.colorBackground // "red" // to hide flickable content
             }
 

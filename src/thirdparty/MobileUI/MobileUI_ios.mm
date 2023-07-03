@@ -23,11 +23,11 @@
 
 #include "MobileUI_private.h"
 
-#include <UIKit/UIKit.h>
 #include <QGuiApplication>
-
 #include <QScreen>
 #include <QTimer>
+
+#include <UIKit/UIKit.h>
 
 /* ************************************************************************** */
 
@@ -54,6 +54,11 @@ bool MobileUIPrivate::isAvailable_sys()
 
 int MobileUIPrivate::getDeviceTheme_sys()
 {
+    if (@available(iOS 13.0, *))
+    {
+        // TODO
+    }
+
     return 0;
 }
 
@@ -94,7 +99,7 @@ void MobileUIPrivate::setTheme_statusbar(MobileUI::Theme theme)
 {
     updatePreferredStatusBarStyle();
 
-    if (!MobileUIPrivate::areIosSlotsConnected)
+    if (!MobileUIPrivate::areRefreshSlotsConnected)
     {
         QObject::connect(qApp, &QGuiApplication::applicationStateChanged,
                          qApp, [](Qt::ApplicationState state) { if (state == Qt::ApplicationActive) updatePreferredStatusBarStyle(); });
@@ -105,7 +110,7 @@ void MobileUIPrivate::setTheme_statusbar(MobileUI::Theme theme)
                              qApp, [](Qt::ScreenOrientation) { togglePreferredStatusBarStyle(); });
         }
 
-        MobileUIPrivate::areIosSlotsConnected = true;
+        MobileUIPrivate::areRefreshSlotsConnected = true;
     }
 }
 
@@ -194,9 +199,9 @@ void MobileUIPrivate::setScreenKeepOn(bool on)
 
 /* ************************************************************************** */
 
-void MobileUIPrivate::refreshUI()
+void MobileUIPrivate::vibrate()
 {
-    return;
+    // TODO
 }
 
 /* ************************************************************************** */

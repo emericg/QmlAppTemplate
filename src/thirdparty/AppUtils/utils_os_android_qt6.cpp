@@ -573,8 +573,27 @@ void UtilsAndroid::vibrate(int milliseconds)
                                                                  vibratorString.object<jstring>());
             if (vibratorService.callMethod<jboolean>("hasVibrator", "()Z"))
             {
-                jlong ms = milliseconds;
-                vibratorService.callMethod<void>("vibrate", "(J)V", ms);
+                if (QNativeInterface::QAndroidApplication::sdkVersion() < 26)
+                {
+                    // vibrate (long milliseconds) // Deprecated in API level 26
+
+                    jlong ms = milliseconds;
+                    vibratorService.callMethod<void>("vibrate", "(J)V", ms);
+                }
+                else
+                {
+                    // vibrate(VibrationEffect vibe) // Added in API level 26
+
+                    jint effect = 0x00000002;
+                    QJniObject vibrationEffect = QJniObject::callStaticObjectMethod("android/os/VibrationEffect",
+                                                                                    "createPredefined",
+                                                                                    "(I)Landroid/os/VibrationEffect;",
+                                                                                    effect);
+
+                    vibratorService.callMethod<void>("vibrate",
+                                                     "(Landroid/os/VibrationEffect;)V",
+                                                     vibrationEffect.object<jobject>());
+                }
             }
         }
         QJniEnvironment env;

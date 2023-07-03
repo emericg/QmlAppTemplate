@@ -28,7 +28,7 @@
 
 /* ************************************************************************** */
 
-bool MobileUIPrivate::areIosSlotsConnected = false;
+bool MobileUIPrivate::areRefreshSlotsConnected = false;
 
 MobileUI::Theme MobileUIPrivate::deviceTheme = MobileUI::Light;
 
@@ -111,6 +111,16 @@ void MobileUI::setNavbarTheme(Theme theme)
 
 /* ************************************************************************** */
 
+void MobileUI::refreshUI()
+{
+    MobileUIPrivate::setTheme_statusbar(MobileUIPrivate::statusbarTheme);
+    MobileUIPrivate::setColor_statusbar(MobileUIPrivate::statusbarColor);
+    MobileUIPrivate::setTheme_navbar(MobileUIPrivate::navbarTheme);
+    MobileUIPrivate::setColor_navbar(MobileUIPrivate::navbarColor);
+}
+
+/* ************************************************************************** */
+
 int MobileUI::getStatusbarHeight()
 {
     return MobileUIPrivate::getStatusbarHeight();
@@ -156,9 +166,9 @@ void MobileUI::setScreenKeepOn(bool on)
 
 /* ************************************************************************** */
 
-void MobileUI::refreshUI()
+void MobileUI::vibrate()
 {
-    MobileUIPrivate::refreshUI();
+    MobileUIPrivate::vibrate();
 }
 
 /* ************************************************************************** */

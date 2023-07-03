@@ -216,16 +216,17 @@ void MobileUIPrivate::setTheme_navbar(MobileUI::Theme theme)
 
 int MobileUIPrivate::getStatusbarHeight()
 {
-    return 24;
+    return 24; // TODO
 }
 
 int MobileUIPrivate::getNavbarHeight()
 {
-    return 48;
+    return 48; // TODO
 }
 
 int MobileUIPrivate::getSafeAreaTop()
 {
+    // DisplayCutout has been added in API level 28
     if (QtAndroid::androidSdkVersion() >= 28)
     {
         QAndroidJniObject cutout = getDisplayCutout();
@@ -240,6 +241,7 @@ int MobileUIPrivate::getSafeAreaTop()
 
 int MobileUIPrivate::getSafeAreaLeft()
 {
+    // DisplayCutout has been added in API level 28
     if (QtAndroid::androidSdkVersion() >= 28)
     {
         QAndroidJniObject cutout = getDisplayCutout();
@@ -254,6 +256,7 @@ int MobileUIPrivate::getSafeAreaLeft()
 
 int MobileUIPrivate::getSafeAreaRight()
 {
+    // DisplayCutout has been added in API level 28
     if (QtAndroid::androidSdkVersion() >= 28)
     {
         QAndroidJniObject cutout = getDisplayCutout();
@@ -268,6 +271,7 @@ int MobileUIPrivate::getSafeAreaRight()
 
 int MobileUIPrivate::getSafeAreaBottom()
 {
+    // DisplayCutout has been added in API level 28
     if (QtAndroid::androidSdkVersion() >= 28)
     {
         QAndroidJniObject cutout = getDisplayCutout();
@@ -296,12 +300,9 @@ void MobileUIPrivate::setScreenKeepOn(bool on)
 
 /* ************************************************************************** */
 
-void MobileUIPrivate::refreshUI()
+void MobileUIPrivate::vibrate()
 {
-    if (QNativeInterface::QAndroidApplication::sdkVersion() >= 30)
-    {
-        setTheme_statusbar(MobileUIPrivate::statusbarTheme);
-    }
+    // TODO
 }
 
 /* ************************************************************************** */

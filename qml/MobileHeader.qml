@@ -8,7 +8,7 @@ Rectangle {
     anchors.left: parent.left
     anchors.right: parent.right
 
-    height: screenPaddingStatusbar + screenPaddingNotch + headerHeight
+    height: screenPaddingStatusbar + headerHeight
     color: Theme.colorHeader
     clip: false
     z: 10
@@ -58,7 +58,7 @@ Rectangle {
 
     Item {
         anchors.fill: parent
-        anchors.topMargin: screenPaddingStatusbar + screenPaddingNotch
+        anchors.topMargin: screenPaddingStatusbar
 
         ////////////
 

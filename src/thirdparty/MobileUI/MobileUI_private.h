@@ -32,7 +32,7 @@
 class MobileUIPrivate
 {
 public:
-    static bool areIosSlotsConnected;
+    static bool areRefreshSlotsConnected;
 
     static MobileUI::Theme deviceTheme;
 
@@ -64,7 +64,7 @@ public:
 
     static void setScreenKeepOn(bool on);
 
-    static void refreshUI();
+    static void vibrate();
 };
 
 /* ************************************************************************** */

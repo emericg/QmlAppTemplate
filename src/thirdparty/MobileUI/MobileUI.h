@@ -87,6 +87,9 @@ public:
     static Theme getNavbarTheme();
     static void setNavbarTheme(Theme theme);
 
+    // Refresh UI statusbar/navigationbar themes/colors
+    Q_INVOKABLE static void refreshUI();
+
     // Screen safe areas
     static int getStatusbarHeight();
     static int getNavbarHeight();
@@ -100,8 +103,8 @@ public:
     static bool getScreenKeepOn();
     Q_INVOKABLE static void setScreenKeepOn(bool on);
 
-    // Refresh UI themes/colors depending on needs // HACK for Android 11+
-    Q_INVOKABLE static void refreshUI();
+    // Other mobile related stuff
+    Q_INVOKABLE static void vibrate();
 };
 
 /* ************************************************************************** */

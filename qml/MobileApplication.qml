@@ -28,11 +28,9 @@ ApplicationWindow {
     property int screenOrientationFull: Screen.orientation
     onScreenOrientationChanged: {
         handleSafeAreas()
-        mobileUI.refreshUI()
     }
 
     property int screenPaddingStatusbar: 0
-    property int screenPaddingNotch: 0
     property int screenPaddingNavbar: 0
 
     property int screenPaddingTop: 0
@@ -44,7 +42,6 @@ ApplicationWindow {
         // safe areas are only taken into account if using full screen mode
         if (flags & Qt.MaximizeUsingFullscreenGeometryHint) {
             screenPaddingStatusbar = mobileUI.statusbarHeight
-            screenPaddingNotch = 0
             screenPaddingNavbar = mobileUI.navbarHeight
 
             screenPaddingTop = mobileUI.safeAreaTop
@@ -54,11 +51,10 @@ ApplicationWindow {
 
             if (Qt.platform.os === "android") {
                 screenPaddingStatusbar = screenPaddingTop // hack
-                screenPaddingNotch = screenPaddingTop - screenPaddingStatusbar
-                screenPaddingBottom = screenPaddingNavbar
+                screenPaddingBottom = screenPaddingNavbar // hack
             }
             if (Qt.platform.os === "ios") {
-                screenPaddingNotch = screenPaddingTop - screenPaddingStatusbar
+                //
             }
         }
 /*
@@ -70,7 +66,6 @@ ApplicationWindow {
         console.log("- screen orientation:  " + Screen.orientation)
         console.log("- screen orientation (primary): " + Screen.primaryOrientation)
         console.log("- screenSizeStatusbar: " + screenPaddingStatusbar)
-        console.log("- screenSizeNotch:     " + screenPaddingNotch)
         console.log("- screenSizeNavbar:    " + screenPaddingNavbar)
         console.log("- screenPaddingTop:    " + screenPaddingTop)
         console.log("- screenPaddingLeft:   " + screenPaddingLeft)
@@ -144,14 +139,6 @@ ApplicationWindow {
                     break
             }
         }
-    }
-
-    Timer {
-        id: exitTimer
-        interval: 3000
-        running: false
-        repeat: false
-        onRunningChanged: exitWarning.opacity = running
     }
 
     // User generated events handling //////////////////////////////////////////
@@ -328,6 +315,8 @@ ApplicationWindow {
         ]
     }
 
+    ////////////////
+
     Rectangle { // navbar area
         anchors.left: parent.left
         anchors.right: parent.right
@@ -348,6 +337,12 @@ ApplicationWindow {
 
     ////////////////
 
+    Timer {
+        id: exitTimer
+        interval: 3333
+        running: false
+        repeat: false
+    }
     Rectangle {
         id: exitWarning
 
@@ -363,7 +358,7 @@ ApplicationWindow {
         border.color: Theme.colorSeparator
         border.width: Theme.componentBorderWidth
 
-        opacity: 0
+        opacity: exitTimer.running ? 1 : 0
         Behavior on opacity { OpacityAnimator { duration: 333 } }
         visible: opacity
 
