@@ -78,14 +78,14 @@ public:
     static void setStatusbarColor(const QColor &color);
 
     static Theme getStatusbarTheme();
-    static void setStatusbarTheme(Theme theme);
+    static void setStatusbarTheme(const MobileUI::Theme theme);
 
     // Navigation bar
     static QColor getNavbarColor();
     static void setNavbarColor(const QColor &color);
 
     static Theme getNavbarTheme();
-    static void setNavbarTheme(Theme theme);
+    static void setNavbarTheme(const MobileUI::Theme theme);
 
     // Refresh UI statusbar/navigationbar themes/colors
     Q_INVOKABLE static void refreshUI();
@@ -101,9 +101,20 @@ public:
 
     // Screen helpers
     static bool getScreenKeepOn();
-    Q_INVOKABLE static void setScreenKeepOn(bool on);
+    Q_INVOKABLE static void setScreenKeepOn(const bool on);
 
-    // Other mobile related stuff
+    enum ScreenOrientation {
+        Unlocked = 0,
+
+        Portrait              = (1 << 0),
+        Portrait_upsidedown   = (1 << 1),
+        Landscape             = (1 << 2),
+        Landscape_right       = (1 << 3),
+    };
+    Q_ENUM(ScreenOrientation)
+    Q_INVOKABLE static void lockScreenOrientation(const MobileUI::ScreenOrientation orientation, const bool autoRotate);
+
+    // Other mobile related feature
     Q_INVOKABLE static void vibrate();
 };
 

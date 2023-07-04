@@ -197,6 +197,26 @@ void MobileUIPrivate::setScreenKeepOn(bool on)
     }
 }
 
+void MobileUIPrivate::lockScreenOrientation(int orientation, bool autoRotate)
+{
+    // For reference, the enum values from iOS:
+    // UIInterfaceOrientationUnknown = 0,          // The orientation of the device is unknown.
+    // UIInterfaceOrientationPortrait,             // The device is in portrait mode, with the device upright and the Home button on the bottom.
+    // UIInterfaceOrientationPortraitUpsideDown,   // The device is in portrait mode but is upside down, with the device upright and the Home button at the top.
+    // UIInterfaceOrientationLandscapeLeft,        // The device is in landscape mode, with the device upright and the Home button on the left.
+    // UIInterfaceOrientationLandscapeRight,       // The device is in landscape mode, with the device upright and the Home button on the right.
+
+    NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationUnknown];
+
+    if (orientation == MobileUI::Unlocked || autoRotate) value = [NSNumber numberWithInt:UIInterfaceOrientationUnknown];
+    else if (orientation == MobileUI::Portrait) value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
+    else if (orientation == MobileUI::Portrait_upsidedown) value = [NSNumber numberWithInt:UIInterfaceOrientationPortraitUpsideDown];
+    else if (orientation == MobileUI::Landscape) value = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeLeft];
+    else if (orientation == MobileUI::Landscape_right) value = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeRight];
+
+    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
+}
+
 /* ************************************************************************** */
 
 void MobileUIPrivate::vibrate()

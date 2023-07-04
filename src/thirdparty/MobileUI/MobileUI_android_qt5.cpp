@@ -23,6 +23,8 @@
 
 #include "MobileUI_private.h"
 
+#include <QGuiApplication>
+#include <QScreen>
 #include <QtAndroid>
 
 /* ************************************************************************** */
@@ -54,6 +56,13 @@
 #define APPEARANCE_SEMI_TRANSPARENT_STATUS_BARS 0x00000020
 #define APPEARANCE_SEMI_TRANSPARENT_NAVIGATION_BARS 0x0030
 
+// VibrationEffect
+#define DEFAULT_AMPLITUDE                       0xffffffff
+#define EFFECT_CLICK                            0x00000000
+#define EFFECT_DOUBLE_CLICK                     0x00000001
+#define EFFECT_HEAVY_CLICK                      0x00000005
+#define EFFECT_TICK                             0x00000002
+
 /* ************************************************************************** */
 
 bool MobileUIPrivate::isAvailable_sys()
@@ -61,7 +70,7 @@ bool MobileUIPrivate::isAvailable_sys()
     return (QtAndroid::androidSdkVersion() >= 21);
 }
 
-static bool isQColorLight(QColor color)
+[[maybe_unused]] static bool isQColorLight(QColor color)
 {
     double darkness = 1.0 - (0.299 * color.red() + 0.587 * color.green() + 0.114 * color.blue()) / 255.0;
     return (darkness < 0.2);
@@ -87,6 +96,14 @@ static QAndroidJniObject getDisplayCutout()
     QAndroidJniObject cutout = insets.callObjectMethod("getDisplayCutout", "()Landroid/view/DisplayCutout;");
 
     return cutout;
+}
+
+void updatePreferredStatusBarStyle()
+{
+    if (QtAndroid::androidSdkVersion() >= 30)
+    {
+        MobileUI::setStatusbarTheme(MobileUIPrivate::statusbarTheme);
+    }
 }
 
 /* ************************************************************************** */
@@ -165,6 +182,17 @@ void MobileUIPrivate::setTheme_statusbar(MobileUI::Theme theme)
 
             inset.callMethod<void>("setSystemBarsAppearance", "(II)V",
                                    visibility, APPEARANCE_LIGHT_STATUS_BARS);
+
+            if (!MobileUIPrivate::areRefreshSlotsConnected)
+            {
+                QScreen *screen = qApp->primaryScreen();
+                if (screen) {
+                    QObject::connect(screen, &QScreen::orientationChanged,
+                                     qApp, [](Qt::ScreenOrientation) { updatePreferredStatusBarStyle(); });
+                }
+
+                MobileUIPrivate::areRefreshSlotsConnected = true;
+            }
         }
     });
 }
@@ -191,6 +219,7 @@ void MobileUIPrivate::setColor_navbar(const QColor &color)
             visibility |= SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
         else
             visibility &= ~SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
+
         view.callMethod<void>("setSystemUiVisibility", "(I)V", visibility);
     });
 }
@@ -208,6 +237,7 @@ void MobileUIPrivate::setTheme_navbar(MobileUI::Theme theme)
             visibility |= SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
         else
             visibility &= ~SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
+
         view.callMethod<void>("setSystemUiVisibility", "(I)V", visibility);
     });
 }
@@ -298,11 +328,76 @@ void MobileUIPrivate::setScreenKeepOn(bool on)
     });
 }
 
+void MobileUIPrivate::lockScreenOrientation(int orientation, bool autoRotate)
+{
+    int value = -1; // SCREEN_ORIENTATION_UNSPECIFIED
+
+    if (orientation)
+    {
+        if (autoRotate)
+        {
+            if (orientation == MobileUI::Portrait || orientation == MobileUI::Portrait_upsidedown) value = 7; // SCREEN_ORIENTATION_SENSOR_PORTRAIT
+            else if (orientation == MobileUI::Landscape || orientation == MobileUI::Landscape_right) value = 6; // SCREEN_ORIENTATION_SENSOR_LANDSCAPE
+        }
+        else
+        {
+            if (orientation == MobileUI::Portrait) value = 1; // SCREEN_ORIENTATION_PORTRAIT
+            else if (orientation == MobileUI::Portrait_upsidedown) value = 9; // SCREEN_ORIENTATION_REVERSE_PORTRAIT
+            else if (orientation == MobileUI::Landscape) value = 0; // SCREEN_ORIENTATION_LANDSCAPE
+            else if (orientation == MobileUI::Landscape_right) value = 8; // SCREEN_ORIENTATION_REVERSE_LANDSCAPE
+        }
+    }
+
+    QAndroidJniObject activity = QtAndroid::androidActivity();
+    if (activity.isValid())
+    {
+        activity.callMethod<void>("setRequestedOrientation", "(I)V", value);
+    }
+}
+
 /* ************************************************************************** */
 
 void MobileUIPrivate::vibrate()
 {
-    // TODO
+    QtAndroid::runOnAndroidThread([=]() {
+        QAndroidJniObject activity = QtAndroid::androidActivity();
+        if (activity.isValid())
+        {
+            QAndroidJniObject vibratorString = QAndroidJniObject::fromString("vibrator");
+            QAndroidJniObject vibratorService = activity.callObjectMethod("getSystemService",
+                                                                          "(Ljava/lang/String;)Ljava/lang/Object;",
+                                                                          vibratorString.object<jstring>());
+            if (vibratorService.callMethod<jboolean>("hasVibrator", "()Z"))
+            {
+                if (QtAndroid::androidSdkVersion() >= 26)
+                {
+                    // vibrate(VibrationEffect vibe) // Added in API level 26
+
+                    jint effect = EFFECT_TICK;
+                    QAndroidJniObject vibrationEffect = QAndroidJniObject::callStaticObjectMethod("android/os/VibrationEffect",
+                                                                                                  "createPredefined",
+                                                                                                  "(I)Landroid/os/VibrationEffect;",
+                                                                                                  effect);
+
+                    vibratorService.callMethod<void>("vibrate",
+                                                     "(Landroid/os/VibrationEffect;)V",
+                                                     vibrationEffect.object<jobject>());
+                }
+                else
+                {
+                    // vibrate(long milliseconds) // Deprecated in API level 26
+
+                    jlong ms = 25;
+                    vibratorService.callMethod<void>("vibrate", "(J)V", ms);
+                }
+            }
+        }
+        QAndroidJniEnvironment env;
+        if (env->ExceptionCheck())
+        {
+            env->ExceptionClear();
+        }
+    });
 }
 
 /* ************************************************************************** */

@@ -55,11 +55,6 @@ void MobileUIPrivate::setTheme_navbar(MobileUI::Theme theme)
     Q_UNUSED(theme)
 }
 
-void MobileUIPrivate::refreshUI()
-{
-    return;
-}
-
 int MobileUIPrivate::getStatusbarHeight()
 {
     return 0;
@@ -93,6 +88,12 @@ int MobileUIPrivate::getSafeAreaBottom()
 void MobileUIPrivate::setScreenKeepOn(bool on)
 {
     Q_UNUSED(on)
+}
+
+void MobileUIPrivate::lockScreenOrientation(int orientation, bool autoRotate)
+{
+    Q_UNUSED(orientation)
+    Q_UNUSED(autoRotate)
 }
 
 void MobileUIPrivate::vibrate()

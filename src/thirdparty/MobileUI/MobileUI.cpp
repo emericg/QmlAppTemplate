@@ -45,6 +45,7 @@ bool MobileUIPrivate::isScreenKeepOn = false;
 void MobileUI::registerQML()
 {
     qRegisterMetaType<MobileUI::Theme>("MobileUI::Theme");
+    qRegisterMetaType<MobileUI::ScreenOrientation>("MobileUI::ScreenOrientation");
 
     qmlRegisterType<MobileUI>("MobileUI", 1, 0, "MobileUI");
 }
@@ -79,7 +80,7 @@ MobileUI::Theme MobileUI::getStatusbarTheme()
     return MobileUIPrivate::statusbarTheme;
 }
 
-void MobileUI::setStatusbarTheme(Theme theme)
+void MobileUI::setStatusbarTheme(const Theme theme)
 {
     MobileUIPrivate::statusbarTheme = theme;
     MobileUIPrivate::setTheme_statusbar(theme);
@@ -103,7 +104,7 @@ MobileUI::Theme MobileUI::getNavbarTheme()
     return MobileUIPrivate::navbarTheme;
 }
 
-void MobileUI::setNavbarTheme(Theme theme)
+void MobileUI::setNavbarTheme(const Theme theme)
 {
     MobileUIPrivate::navbarTheme = theme;
     MobileUIPrivate::setTheme_navbar(theme);
@@ -158,10 +159,15 @@ bool MobileUI::getScreenKeepOn()
     return MobileUIPrivate::isScreenKeepOn;
 }
 
-void MobileUI::setScreenKeepOn(bool on)
+void MobileUI::setScreenKeepOn(const bool on)
 {
     MobileUIPrivate::isScreenKeepOn = on;
     MobileUIPrivate::setScreenKeepOn(on);
+}
+
+void MobileUI::lockScreenOrientation(const MobileUI::ScreenOrientation orientation, const bool autoRotate)
+{
+    MobileUIPrivate::lockScreenOrientation(orientation, autoRotate);
 }
 
 /* ************************************************************************** */

@@ -313,6 +313,33 @@ void MobileUIPrivate::setScreenKeepOn(bool on)
     });
 }
 
+void MobileUIPrivate::lockScreenOrientation(int orientation, bool autoRotate)
+{
+    int value = -1; // SCREEN_ORIENTATION_UNSPECIFIED
+
+    if (orientation)
+    {
+        if (autoRotate)
+        {
+            if (orientation == MobileUI::Portrait || orientation == MobileUI::Portrait_upsidedown) value = 7; // SCREEN_ORIENTATION_SENSOR_PORTRAIT
+            else if (orientation == MobileUI::Landscape || orientation == MobileUI::Landscape_right) value = 6; // SCREEN_ORIENTATION_SENSOR_LANDSCAPE
+        }
+        else
+        {
+            if (orientation == MobileUI::Portrait) value = 1; // SCREEN_ORIENTATION_PORTRAIT
+            else if (orientation == MobileUI::Portrait_upsidedown) value = 9; // SCREEN_ORIENTATION_REVERSE_PORTRAIT
+            else if (orientation == MobileUI::Landscape) value = 0; // SCREEN_ORIENTATION_LANDSCAPE
+            else if (orientation == MobileUI::Landscape_right) value = 8; // SCREEN_ORIENTATION_REVERSE_LANDSCAPE
+        }
+    }
+
+    QJniObject activity = QNativeInterface::QAndroidApplication::context();
+    if (activity.isValid())
+    {
+        activity.callMethod<void>("setRequestedOrientation", "(I)V", value);
+    }
+}
+
 /* ************************************************************************** */
 
 void MobileUIPrivate::vibrate()
@@ -323,18 +350,11 @@ void MobileUIPrivate::vibrate()
         {
             QJniObject vibratorString = QJniObject::fromString("vibrator");
             QJniObject vibratorService = activity.callObjectMethod("getSystemService",
-                                                                 "(Ljava/lang/String;)Ljava/lang/Object;",
-                                                                 vibratorString.object<jstring>());
+                                                                   "(Ljava/lang/String;)Ljava/lang/Object;",
+                                                                   vibratorString.object<jstring>());
             if (vibratorService.callMethod<jboolean>("hasVibrator", "()Z"))
             {
-                if (QNativeInterface::QAndroidApplication::sdkVersion() < 26)
-                {
-                    // vibrate(long milliseconds) // Deprecated in API level 26
-
-                    jlong ms = 25;
-                    vibratorService.callMethod<void>("vibrate", "(J)V", ms);
-                }
-                else
+                if (QNativeInterface::QAndroidApplication::sdkVersion() >= 26)
                 {
                     // vibrate(VibrationEffect vibe) // Added in API level 26
 
@@ -347,6 +367,13 @@ void MobileUIPrivate::vibrate()
                     vibratorService.callMethod<void>("vibrate",
                                                      "(Landroid/os/VibrationEffect;)V",
                                                      vibrationEffect.object<jobject>());
+                }
+                else
+                {
+                    // vibrate(long milliseconds) // Deprecated in API level 26
+
+                    jlong ms = 25;
+                    vibratorService.callMethod<void>("vibrate", "(J)V", ms);
                 }
             }
         }
