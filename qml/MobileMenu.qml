@@ -13,7 +13,7 @@ Rectangle {
     property int hhv: visible ? hhh : 0
 
     z: 10
-    height: hhh + screenPaddingBottom
+    height: hhh + screenPaddingNavbar + screenPaddingBottom
     color: appWindow.isTablet ? Theme.colorTabletmenu : Theme.colorBackground
 
     ////////////////////////////////////////////////////////////////////////////
@@ -36,7 +36,7 @@ Rectangle {
     Row {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
-        anchors.verticalCenterOffset: -screenPaddingBottom
+        anchors.verticalCenterOffset: (-screenPaddingNavbar -screenPaddingBottom) / 2
         spacing: (!appWindow.wideMode || (appWindow.isPhone && utilsScreen.screenSize < 5.0)) ? -8 : 24
 
         MobileMenuItem_horizontal {

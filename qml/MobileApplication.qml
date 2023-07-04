@@ -26,9 +26,7 @@ ApplicationWindow {
     // 4 = Qt.InvertedPortraitOrientation, 8 = Qt.InvertedLandscapeOrientation
     property int screenOrientation: Screen.primaryOrientation
     property int screenOrientationFull: Screen.orientation
-    onScreenOrientationChanged: {
-        handleSafeAreas()
-    }
+    onScreenOrientationChanged: handleSafeAreas()
 
     property int screenPaddingStatusbar: 0
     property int screenPaddingNavbar: 0
@@ -50,8 +48,12 @@ ApplicationWindow {
             screenPaddingBottom = mobileUI.safeAreaBottom
 
             if (Qt.platform.os === "android") {
-                screenPaddingStatusbar = screenPaddingTop // hack
-                screenPaddingBottom = screenPaddingNavbar // hack
+                if (Screen.primaryOrientation === Qt.PortraitOrientation) {
+                    screenPaddingStatusbar = screenPaddingTop // hack
+                    //screenPaddingBottom = screenPaddingNavbar // hack
+                } else {
+                    screenPaddingNavbar = 0
+                }
             }
             if (Qt.platform.os === "ios") {
                 //
@@ -76,12 +78,10 @@ ApplicationWindow {
 
     MobileUI {
         id: mobileUI
-        property bool isLoading: true
 
         statusbarTheme: Theme.themeStatusbar
-        statusbarColor: isLoading ? "white" : Theme.colorStatusbar
+        statusbarColor: Theme.colorStatusbar
         navbarColor: {
-            if (isLoading) return "white"
             if (appContent.state === "Tutorial") return Theme.colorHeader
             return Theme.colorBackground
         }
@@ -99,8 +99,7 @@ ApplicationWindow {
     // Events handling /////////////////////////////////////////////////////////
 
     Component.onCompleted: {
-        handleSafeAreas()
-        mobileUI.isLoading = false
+        //
     }
 
     Connections {
@@ -321,7 +320,7 @@ ApplicationWindow {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-        height: screenPaddingBottom
+        height: screenPaddingNavbar + screenPaddingBottom
         visible: (mobileMenu.visible || appContent.state === "Tutorial")
         color: {
             if (appContent.state === "Tutorial") return Theme.colorHeader
