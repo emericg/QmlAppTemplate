@@ -90,10 +90,9 @@ void MobileUIPrivate::setScreenKeepOn(bool on)
     Q_UNUSED(on)
 }
 
-void MobileUIPrivate::lockScreenOrientation(int orientation, bool autoRotate)
+void MobileUIPrivate::lockScreenOrientation(int orientation)
 {
     Q_UNUSED(orientation)
-    Q_UNUSED(autoRotate)
 }
 
 void MobileUIPrivate::vibrate()

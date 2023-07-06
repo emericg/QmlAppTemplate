@@ -78,32 +78,41 @@ bool MobileUIPrivate::isAvailable_sys()
 
 static QAndroidJniObject getAndroidWindow()
 {
-    QAndroidJniObject window = QtAndroid::androidActivity().callObjectMethod("getWindow", "()Landroid/view/Window;");
-
-    window.callMethod<void>("addFlags", "(I)V", FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-    window.callMethod<void>("clearFlags", "(I)V", FLAG_TRANSLUCENT_STATUS);
+    QAndroidJniObject activity = QtAndroid::androidActivity();
+    QAndroidJniObject window = activity.callObjectMethod("getWindow", "()Landroid/view/Window;");
 
     return window;
 }
 
+static QAndroidJniObject getAndroidDecorView()
+{
+    QAndroidJniObject activity = QtAndroid::androidActivity();
+    QAndroidJniObject window = activity.callObjectMethod("getWindow", "()Landroid/view/Window;");
+    QAndroidJniObject view = window.callObjectMethod("getDecorView", "()Landroid/view/View;");
+
+    return view;
+}
+
 static QAndroidJniObject getDisplayCutout()
 {
-    // DisplayCutout has been added in API level 28
+    if (QtAndroid::androidSdkVersion() >= 28)
+    {
+        // DisplayCutout has been added in API level 28
+        QAndroidJniObject activity = QtAndroid::androidActivity();
+        QAndroidJniObject window = activity.callObjectMethod("getWindow", "()Landroid/view/Window;");
+        QAndroidJniObject decorview = window.callObjectMethod("getDecorView", "()Landroid/view/View;");
+        QAndroidJniObject insets = decorview.callObjectMethod("getRootWindowInsets", "()Landroid/view/WindowInsets;");
+        QAndroidJniObject cutout = insets.callObjectMethod("getDisplayCutout", "()Landroid/view/DisplayCutout;");
 
-    QAndroidJniObject window = QtAndroid::androidActivity().callObjectMethod("getWindow", "()Landroid/view/Window;");
-    QAndroidJniObject decorview = window.callObjectMethod("getDecorView", "()Landroid/view/View;");
-    QAndroidJniObject insets = decorview.callObjectMethod("getRootWindowInsets", "()Landroid/view/WindowInsets;");
-    QAndroidJniObject cutout = insets.callObjectMethod("getDisplayCutout", "()Landroid/view/DisplayCutout;");
+        return cutout;
+    }
 
-    return cutout;
+    return QJniObject();
 }
 
 void updatePreferredStatusBarStyle()
 {
-    if (QtAndroid::androidSdkVersion() >= 30)
-    {
-        MobileUI::setStatusbarTheme(MobileUIPrivate::statusbarTheme);
-    }
+    MobileUI::setStatusbarTheme(MobileUIPrivate::statusbarTheme);
 }
 
 /* ************************************************************************** */
@@ -126,23 +135,14 @@ void MobileUIPrivate::setColor_statusbar(const QColor &color)
     if (QtAndroid::androidSdkVersion() < 21) return;
 
     QtAndroid::runOnAndroidThread([=]() {
+        // color
         QAndroidJniObject window = getAndroidWindow();
+        window.callMethod<void>("addFlags", "(I)V", FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.callMethod<void>("clearFlags", "(I)V", FLAG_TRANSLUCENT_STATUS);
         window.callMethod<void>("setStatusBarColor", "(I)V", color.rgba());
-    });
 
-    if (QtAndroid::androidSdkVersion() < 23) return;
-
-    QtAndroid::runOnAndroidThread([=]() {
-        QAndroidJniObject window = getAndroidWindow();
-        QAndroidJniObject view = window.callObjectMethod("getDecorView", "()Landroid/view/View;");
-
-        int visibility = view.callMethod<int>("getSystemUiVisibility", "()I");
-        if (isQColorLight(color))
-            visibility |= SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
-        else
-            visibility &= ~SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
-
-        view.callMethod<void>("setSystemUiVisibility", "(I)V", visibility);
+        // auto theme?
+        setTheme_statusbar(static_cast<MobileUI::Theme>(!isQColorLight(color)));
     });
 }
 
@@ -151,13 +151,11 @@ void MobileUIPrivate::setTheme_statusbar(MobileUI::Theme theme)
     if (QtAndroid::androidSdkVersion() < 23) return;
 
     QtAndroid::runOnAndroidThread([=]() {
-        QAndroidJniObject window = getAndroidWindow();
         if (QtAndroid::androidSdkVersion() < 30)
         {
-            // Added in API level 23
-            // Deprecated in API level 30
+            // Added in API level 23 // Deprecated in API level 30
 
-            QAndroidJniObject view = window.callObjectMethod("getDecorView", "()Landroid/view/View;");
+            QAndroidJniObject view = getAndroidDecorView();
 
             int visibility = view.callMethod<int>("getSystemUiVisibility", "()I");
             if (theme == MobileUI::Theme::Light)
@@ -171,6 +169,7 @@ void MobileUIPrivate::setTheme_statusbar(MobileUI::Theme theme)
         {
             // Added in API level 30
 
+            QAndroidJniObject window = getAndroidWindow();
             QAndroidJniObject inset = window.callObjectMethod("getInsetsController",
                                                               "()Landroid/view/WindowInsetsController;");
 
@@ -204,23 +203,14 @@ void MobileUIPrivate::setColor_navbar(const QColor &color)
     if (QtAndroid::androidSdkVersion() < 21) return;
 
     QtAndroid::runOnAndroidThread([=]() {
+        // color
         QAndroidJniObject window = getAndroidWindow();
+        window.callMethod<void>("addFlags", "(I)V", FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.callMethod<void>("clearFlags", "(I)V", FLAG_TRANSLUCENT_NAVIGATION);
         window.callMethod<void>("setNavigationBarColor", "(I)V", color.rgba());
-    });
 
-    if (QtAndroid::androidSdkVersion() < 23) return;
-
-    QtAndroid::runOnAndroidThread([=]() {
-        QAndroidJniObject window = getAndroidWindow();
-        QAndroidJniObject view = window.callObjectMethod("getDecorView", "()Landroid/view/View;");
-
-        int visibility = view.callMethod<int>("getSystemUiVisibility", "()I");
-        if (isQColorLight(color))
-            visibility |= SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
-        else
-            visibility &= ~SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
-
-        view.callMethod<void>("setSystemUiVisibility", "(I)V", visibility);
+        // auto theme?
+        setTheme_navbar(static_cast<MobileUI::Theme>(!isQColorLight(color)));
     });
 }
 
@@ -256,14 +246,10 @@ int MobileUIPrivate::getNavbarHeight()
 
 int MobileUIPrivate::getSafeAreaTop()
 {
-    // DisplayCutout has been added in API level 28
-    if (QtAndroid::androidSdkVersion() >= 28)
+    QAndroidJniObject cutout = getDisplayCutout();
+    if (cutout.isValid())
     {
-        QAndroidJniObject cutout = getDisplayCutout();
-        if (cutout.isValid())
-        {
-            return cutout.callMethod<int>("getSafeInsetTop", "()I") / qApp->devicePixelRatio();
-        }
+        return cutout.callMethod<int>("getSafeInsetTop", "()I") / qApp->devicePixelRatio();
     }
 
     return 0;
@@ -271,14 +257,10 @@ int MobileUIPrivate::getSafeAreaTop()
 
 int MobileUIPrivate::getSafeAreaLeft()
 {
-    // DisplayCutout has been added in API level 28
-    if (QtAndroid::androidSdkVersion() >= 28)
+    QAndroidJniObject cutout = getDisplayCutout();
+    if (cutout.isValid())
     {
-        QAndroidJniObject cutout = getDisplayCutout();
-        if (cutout.isValid())
-        {
-            return cutout.callMethod<int>("getSafeInsetLeft", "()I") / qApp->devicePixelRatio();
-        }
+        return cutout.callMethod<int>("getSafeInsetLeft", "()I") / qApp->devicePixelRatio();
     }
 
     return 0;
@@ -286,14 +268,10 @@ int MobileUIPrivate::getSafeAreaLeft()
 
 int MobileUIPrivate::getSafeAreaRight()
 {
-    // DisplayCutout has been added in API level 28
-    if (QtAndroid::androidSdkVersion() >= 28)
+    QAndroidJniObject cutout = getDisplayCutout();
+    if (cutout.isValid())
     {
-        QAndroidJniObject cutout = getDisplayCutout();
-        if (cutout.isValid())
-        {
-            return cutout.callMethod<int>("getSafeInsetRight", "()I") / qApp->devicePixelRatio();
-        }
+        return cutout.callMethod<int>("getSafeInsetRight", "()I") / qApp->devicePixelRatio();
     }
 
     return 0;
@@ -301,14 +279,10 @@ int MobileUIPrivate::getSafeAreaRight()
 
 int MobileUIPrivate::getSafeAreaBottom()
 {
-    // DisplayCutout has been added in API level 28
-    if (QtAndroid::androidSdkVersion() >= 28)
+    QAndroidJniObject cutout = getDisplayCutout();
+    if (cutout.isValid())
     {
-        QAndroidJniObject cutout = getDisplayCutout();
-        if (cutout.isValid())
-        {
-            return cutout.callMethod<int>("getSafeInsetBottom", "()I") / qApp->devicePixelRatio();
-        }
+        return cutout.callMethod<int>("getSafeInsetBottom", "()I") / qApp->devicePixelRatio();
     }
 
     return 0;
@@ -328,25 +302,16 @@ void MobileUIPrivate::setScreenKeepOn(bool on)
     });
 }
 
-void MobileUIPrivate::lockScreenOrientation(int orientation, bool autoRotate)
+void MobileUIPrivate::lockScreenOrientation(int orientation)
 {
     int value = -1; // SCREEN_ORIENTATION_UNSPECIFIED
 
-    if (orientation)
-    {
-        if (autoRotate)
-        {
-            if (orientation == MobileUI::Portrait || orientation == MobileUI::Portrait_upsidedown) value = 7; // SCREEN_ORIENTATION_SENSOR_PORTRAIT
-            else if (orientation == MobileUI::Landscape || orientation == MobileUI::Landscape_right) value = 6; // SCREEN_ORIENTATION_SENSOR_LANDSCAPE
-        }
-        else
-        {
-            if (orientation == MobileUI::Portrait) value = 1; // SCREEN_ORIENTATION_PORTRAIT
-            else if (orientation == MobileUI::Portrait_upsidedown) value = 9; // SCREEN_ORIENTATION_REVERSE_PORTRAIT
-            else if (orientation == MobileUI::Landscape) value = 0; // SCREEN_ORIENTATION_LANDSCAPE
-            else if (orientation == MobileUI::Landscape_right) value = 8; // SCREEN_ORIENTATION_REVERSE_LANDSCAPE
-        }
-    }
+    if (orientation == MobileUI::Portrait) value = 1; // SCREEN_ORIENTATION_PORTRAIT
+    else if (orientation == MobileUI::Portrait_upsidedown) value = 9; // SCREEN_ORIENTATION_REVERSE_PORTRAIT
+    else if (orientation == MobileUI::Portrait_sensor) value = 7; // SCREEN_ORIENTATION_SENSOR_PORTRAIT
+    else if (orientation == MobileUI::Landscape_left) value = 0; // SCREEN_ORIENTATION_LANDSCAPE
+    else if (orientation == MobileUI::Landscape_right) value = 8; // SCREEN_ORIENTATION_REVERSE_LANDSCAPE
+    else if (orientation == MobileUI::Landscape_sensor) value = 6; // SCREEN_ORIENTATION_SENSOR_LANDSCAPE
 
     QAndroidJniObject activity = QtAndroid::androidActivity();
     if (activity.isValid())

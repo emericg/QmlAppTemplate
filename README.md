@@ -18,7 +18,7 @@ For Android builds, you'll need the appropriates JDK (11) SDK (24+) and NDK (25+
 #### Building QmlAppTemplate
 
 ```bash
-$ git clone https://github.com/emericg/QmlAppTemplate.git
+$ git clone https://github.com/emericg/QmlAppTemplate.git --recursive
 $ cd QmlAppTemplate/build/
 $ qmake .. # configure with QMake
 $ cmake .. # OR configure with CMake
@@ -29,7 +29,7 @@ $ make
 
 > [AppUtils](src/thirdparty/AppUtils/README.md) Various general purpose helpers
 
-> [MobileUI](src/thirdparty/MobileUI/README.md) Interact with Android and iOS UI
+> [MobileUI](https://github.com/emericg/MobileUI) Interact with Android and iOS UI
 
 > [MobileSharing](src/thirdparty/MobileSharing/README.md) Use Android and iOS "sharing" features
 

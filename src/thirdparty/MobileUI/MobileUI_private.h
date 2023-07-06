@@ -64,7 +64,7 @@ public:
 
     static void setScreenKeepOn(bool on);
 
-    static void lockScreenOrientation(int orientation, bool autoRotate);
+    static void lockScreenOrientation(int orientation);
 
     static void vibrate();
 };

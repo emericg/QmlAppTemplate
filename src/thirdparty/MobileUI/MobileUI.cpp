@@ -165,9 +165,9 @@ void MobileUI::setScreenKeepOn(const bool on)
     MobileUIPrivate::setScreenKeepOn(on);
 }
 
-void MobileUI::lockScreenOrientation(const MobileUI::ScreenOrientation orientation, const bool autoRotate)
+void MobileUI::lockScreenOrientation(const MobileUI::ScreenOrientation orientation)
 {
-    MobileUIPrivate::lockScreenOrientation(orientation, autoRotate);
+    MobileUIPrivate::lockScreenOrientation(orientation);
 }
 
 /* ************************************************************************** */
