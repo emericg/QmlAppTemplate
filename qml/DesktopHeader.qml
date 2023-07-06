@@ -1,6 +1,6 @@
-import QtQuick 2.15
+import QtQuick
 
-import ThemeEngine 1.0
+import ThemeEngine
 
 Rectangle {
     id: appHeader

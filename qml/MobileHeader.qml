@@ -27,8 +27,6 @@ Rectangle {
     property string rightMenuMode: "off" // on / off
     signal rightMenuClicked()
 
-    ////////////////////////////////////////////////////////////////////////////
-
     function rightMenuIsOpen() { return actionMenu.visible; }
     function rightMenuClose() { actionMenu.close(); }
 
@@ -55,6 +53,15 @@ Rectangle {
     }
 
     ////////////////////////////////////////////////////////////////////////////
+
+    Rectangle { // OS statusbar area
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.right: parent.right
+
+        height: screenPaddingStatusbar
+        color: Theme.colorStatusbar
+    }
 
     Item {
         anchors.fill: parent

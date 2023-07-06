@@ -1,7 +1,7 @@
-import QtQuick 2.15
-import QtQuick.Controls 2.15
+import QtQuick
+import QtQuick.Controls
 
-import ThemeEngine 1.0
+import ThemeEngine
 
 Drawer {
     width: (appWindow.screenOrientation === Qt.PortraitOrientation || appWindow.width < 480)
@@ -82,7 +82,7 @@ Drawer {
             ////////
         }
 
-        ////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////
 
         Flickable {
             anchors.top: rectangleHeader.bottom
@@ -173,6 +173,8 @@ Drawer {
                 ////////
             }
         }
+
+        ////////////////
     }
 
     ////////////////////////////////////////////////////////////////////////////

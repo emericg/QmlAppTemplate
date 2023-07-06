@@ -22,7 +22,7 @@ Item {
         property int y
         property int width
         property int height
-        property int visibility // https://doc.qt.io/qt-5/qwindow.html#Visibility-enum
+        property int visibility // https://doc.qt.io/qt-6/qwindow.html#Visibility-enum
     }
 
     // Restore settings ////////////////////////////////////////////////////////

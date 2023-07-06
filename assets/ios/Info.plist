@@ -17,7 +17,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>0.5</string>
 	<key>CFBundleSignature</key>
-	<string>${QMAKE_PKGINFO_TYPEINFO}</string>
+	<string>com.emeric.qmlapptemplate</string>
 	<key>CFBundleVersion</key>
 	<string>000501</string>
 	<key>LSRequiresIPhoneOS</key>

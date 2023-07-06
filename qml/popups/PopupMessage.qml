@@ -6,19 +6,19 @@ import ThemeEngine
 
 T.Popup {
     id: popupMessage
+
     x: singleColumn ? 0 : (appWindow.width / 2) - (width / 2)
-    y: singleColumn ? (appWindow.height - height)
+    y: singleColumn ? (appWindow.height - appHeader.height - height)
                     : ((appWindow.height / 2) - (height / 2))
 
-    width: singleColumn ? parent.width : 640
-    height: columnContent.height + padding*2
+    width: singleColumn ? appWindow.width : 640
+    height: columnContent.height + padding*2 + screenPaddingNavbar + screenPaddingBottom
     padding: Theme.componentMarginXL
-
-    parent: appWindow.contentItem
 
     modal: true
     focus: true
     closePolicy: T.Popup.CloseOnEscape | T.Popup.CloseOnPressOutside
+    //parent: appWindow.contentItem
 
     signal confirmed()
 
@@ -46,6 +46,8 @@ T.Popup {
             width: parent.width
             spacing: Theme.componentMarginXL
 
+            ////////
+
             Text {
                 width: parent.width
 
@@ -55,6 +57,8 @@ T.Popup {
                 color: Theme.colorText
                 wrapMode: Text.WordWrap
             }
+
+            ////////
 
             Text {
                 width: parent.width
@@ -66,6 +70,8 @@ T.Popup {
                 wrapMode: Text.WordWrap
             }
 
+            ////////
+
             ButtonWireframe {
                 anchors.right: parent.right
                 width: singleColumn ? parent.width : (parent.width / 2)
@@ -76,6 +82,8 @@ T.Popup {
 
                 onClicked: popupMessage.close()
             }
+
+            ////////
         }
     }
 

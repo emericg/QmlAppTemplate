@@ -37,8 +37,10 @@ ApplicationWindow {
     property int screenPaddingBottom: 0
 
     function handleSafeAreas() {
-        // safe areas are only taken into account if using full screen mode
-        if (flags & Qt.MaximizeUsingFullscreenGeometryHint) {
+        // safe areas are only taken into account when using maximized geometry / full screen mode
+        if (appWindow.visibility === ApplicationWindow.FullScreen ||
+            appWindow.flags & Qt.MaximizeUsingFullscreenGeometryHint) {
+
             screenPaddingStatusbar = mobileUI.statusbarHeight
             screenPaddingNavbar = mobileUI.navbarHeight
 
@@ -47,10 +49,11 @@ ApplicationWindow {
             screenPaddingRight = mobileUI.safeAreaRight
             screenPaddingBottom = mobileUI.safeAreaBottom
 
+            // hacks
             if (Qt.platform.os === "android") {
                 if (Screen.primaryOrientation === Qt.PortraitOrientation) {
-                    screenPaddingStatusbar = screenPaddingTop // hack
-                    //screenPaddingBottom = screenPaddingNavbar // hack
+                    screenPaddingStatusbar = screenPaddingTop
+                    screenPaddingTop = 0
                 } else {
                     screenPaddingNavbar = 0
                 }
@@ -58,6 +61,17 @@ ApplicationWindow {
             if (Qt.platform.os === "ios") {
                 //
             }
+            if (visibility === ApplicationWindow.FullScreen) {
+                screenPaddingStatusbar = 0
+                screenPaddingNavbar = 0
+            }
+        } else {
+            screenPaddingStatusbar = 0
+            screenPaddingNavbar = 0
+            screenPaddingTop = 0
+            screenPaddingLeft = 0
+            screenPaddingRight = 0
+            screenPaddingBottom = 0
         }
 /*
         console.log("> handleSafeAreas()")
@@ -78,7 +92,6 @@ ApplicationWindow {
 
     MobileUI {
         id: mobileUI
-
         statusbarTheme: Theme.themeStatusbar
         statusbarColor: Theme.colorStatusbar
         navbarColor: {

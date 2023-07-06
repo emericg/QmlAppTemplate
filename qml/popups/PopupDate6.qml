@@ -2,14 +2,15 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 
-import ThemeEngine 1.0
+import ThemeEngine
 
 Popup {
     id: popupDate
-    width: appWindow.width * 0.9
-    x: (appWindow.width / 2) - (width / 2)
-    y: (appWindow.height / 2) - (height / 2) // - (appHeader.height / 2)
 
+    x: (appWindow.width / 2) - (width / 2)
+    y: (appWindow.height / 2) - (height / 2)
+
+    width: appWindow.width * 0.9
     padding: 0
     margins: 0
 

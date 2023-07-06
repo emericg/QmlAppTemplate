@@ -6,17 +6,19 @@ import ThemeEngine
 
 T.Popup {
     id: popupChoice
-    x: singleColumn ? 0 : (appWindow.width / 2) - (width / 2)
-    y: singleColumn ? (appWindow.height - height) : ((appWindow.height / 2) - (height / 2))
 
-    width: singleColumn ? parent.width : 640
-    height: columnContent.height + padding*2
+    x: singleColumn ? 0 : (appWindow.width / 2) - (width / 2)
+    y: singleColumn ? (appWindow.height - appHeader.height - height)
+                    : ((appWindow.height / 2) - (height / 2))
+
+    width: singleColumn ? appWindow.width : 640
+    height: columnContent.height + padding*2 + screenPaddingNavbar + screenPaddingBottom
     padding: Theme.componentMarginXL
 
-    parent: appWindow.contentItem
     modal: true
     focus: true
     closePolicy: T.Popup.CloseOnEscape | T.Popup.CloseOnPressOutside
+    //parent: appWindow.contentItem
 
     signal confirmed()
 
@@ -44,6 +46,8 @@ T.Popup {
             width: parent.width
             spacing: Theme.componentMarginXL
 
+            ////////
+
             Text {
                 width: parent.width
 
@@ -53,6 +57,8 @@ T.Popup {
                 color: Theme.colorText
                 wrapMode: Text.WordWrap
             }
+
+            ////////
 
             Text {
                 width: parent.width
@@ -64,13 +70,13 @@ T.Popup {
                 wrapMode: Text.WordWrap
             }
 
+            ////////
+
             Flow {
-                id: flowContent
                 width: parent.width
-                height: singleColumn ? 40*3 + 2*spacing : 40
+                spacing: Theme.componentMargin
 
                 property var btnSize: singleColumn ? width : ((width-spacing*2) / 3)
-                spacing: Theme.componentMargin
 
                 ButtonWireframe {
                     width: parent.btnSize
@@ -81,6 +87,7 @@ T.Popup {
 
                     onClicked: popupChoice.close()
                 }
+
                 ButtonWireframe {
                     width: parent.btnSize
 
@@ -96,6 +103,7 @@ T.Popup {
                         popupChoice.close()
                     }
                 }
+
                 ButtonWireframe {
                     width: parent.btnSize
 
@@ -112,6 +120,8 @@ T.Popup {
                     }
                 }
             }
+
+            ////////
         }
     }
 

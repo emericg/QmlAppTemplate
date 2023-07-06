@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-import ThemeEngine 1.0
+import ThemeEngine
 
 Loader {
     id: screenFontInfos
