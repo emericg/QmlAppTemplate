@@ -127,6 +127,9 @@ int main(int argc, char *argv[])
 
 #if !defined(Q_OS_ANDROID) && !defined(Q_OS_IOS) // desktop section
 
+    // QQuickWindow must be valid at this point
+    QQuickWindow *window = qobject_cast<QQuickWindow *>(engine.rootObjects().value(0));
+
 #if defined(Q_OS_MACOS)
     MacOSDockHandler *dockIconHandler = MacOSDockHandler::getInstance();
     QObject::connect(dockIconHandler, &MacOSDockHandler::dockIconClicked, window, &QQuickWindow::show);

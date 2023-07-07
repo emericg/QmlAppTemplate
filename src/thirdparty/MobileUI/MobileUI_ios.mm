@@ -210,7 +210,7 @@ void MobileUIPrivate::lockScreenOrientation(int orientation)
 
     if (orientation == MobileUI::Portrait) value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
     else if (orientation == MobileUI::Portrait_upsidedown) value = [NSNumber numberWithInt:UIInterfaceOrientationPortraitUpsideDown];
-    else if (orientation == MobileUI::Landscape) value = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeLeft];
+    else if (orientation == MobileUI::Landscape_left) value = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeLeft];
     else if (orientation == MobileUI::Landscape_right) value = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeRight];
     // these aren't supported, so we default to regular mode
     else if (orientation == MobileUI::Portrait_sensor) value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
