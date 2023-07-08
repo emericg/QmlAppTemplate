@@ -97,7 +97,7 @@ jobs:
           version: ${{env.QT_VERSION}}
           host: 'mac'
           target: 'ios'
-          modules: qt5compat
+          modules: qt5compat qtshadertools
           aqtversion: '==3.1.*'
           py7zrversion: '==0.20.*'
           extra: '--autodesktop'
