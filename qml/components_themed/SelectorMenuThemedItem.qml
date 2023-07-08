@@ -1,25 +1,23 @@
 import QtQuick 2.15
+import QtQuick.Controls.impl 2.15
+import QtQuick.Templates 2.15 as T
 
 import ThemeEngine 1.0
 
-Item {
+T.Button {
     id: control
-    implicitWidth: 16 + contentText.width + (source.toString().length ? sourceSize : 0) + 16
-    implicitHeight: 32
 
-    height: parent.height
+    implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
+                            implicitContentWidth + leftPadding + rightPadding)
+    implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
+                             implicitContentHeight + topPadding + bottomPadding)
 
-    // actions
-    signal clicked()
-    signal pressed()
-    signal pressAndHold()
-
-    // states
-    property bool selected: false
+    leftPadding: 32
+    rightPadding: 32
 
     // settings
     property int index
-    property string text
+    //property string text
     property url source
     property int sourceSize: 32
 
@@ -30,31 +28,18 @@ Item {
 
     ////////////////
 
-    MouseArea {
-        id: mouseArea
-        anchors.fill: control
-        hoverEnabled: (isDesktop && control.enabled)
-
-        onClicked: control.clicked()
-        onPressed: control.pressed()
-        onPressAndHold: control.pressAndHold()
-    }
-
-    ////////////////
-
-    Rectangle {
-        id: background
-        anchors.fill: control
-        anchors.margins: 0
+    background: Rectangle {
+        implicitWidth: 64
+        implicitHeight: 32
         radius: Theme.componentRadius
 
         color: control.colorBackgroundHighlight
         opacity: {
-            if (mouseArea.containsMouse && control.selected)
+            if (control.hovered && control.highlighted)
                 return 0.9
-            else if (control.selected)
+            else if (control.highlighted)
                 return 0.7
-            else if (mouseArea.containsMouse)
+            else if (control.hovered)
                 return 0.5
             else
                 return 0
@@ -64,28 +49,29 @@ Item {
 
     ////////////////
 
-    IconSvg {
-        id: contentImage
-        width: control.sourceSize
-        height: control.sourceSize
-        anchors.centerIn: control
+    contentItem: Item {
+        IconSvg { // contentImage
+            anchors.centerIn: parent
 
-        source: control.source
-        color: control.selected ? control.colorContentHighlight : control.colorContent
-        opacity: control.selected ? 1 : 0.5
-    }
+            width: control.sourceSize
+            height: control.sourceSize
 
-    Text {
-        id: contentText
-        anchors.centerIn: control
+            source: control.source
+            color: control.highlighted ? control.colorContentHighlight : control.colorContent
+            opacity: control.highlighted ? 1 : 0.5
+        }
 
-        text: control.text
-        textFormat: Text.PlainText
-        font.pixelSize: Theme.componentFontSize
-        verticalAlignment: Text.AlignVCenter
+        Text { // contentText
+            anchors.centerIn: parent
 
-        color: control.selected ? control.colorContentHighlight : control.colorContent
-        opacity: control.selected ? 1 : 0.6
+            text: control.text
+            textFormat: Text.PlainText
+            font.pixelSize: Theme.componentFontSize
+            verticalAlignment: Text.AlignVCenter
+
+            color: control.highlighted ? control.colorContentHighlight : control.colorContent
+            opacity: control.highlighted ? 1 : 0.6
+        }
     }
 
     ////////////////

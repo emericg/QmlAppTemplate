@@ -34,7 +34,8 @@ Item {
         Repeater {
             model: selectorMenu.model
             delegate: SelectorMenuThemedItem {
-                selected: (selectorMenu.currentSelection === idx)
+                height: parent.height
+                highlighted: (selectorMenu.currentSelection === idx)
                 index: idx ?? 0
                 text: txt ?? ""
                 source: src ?? ""
