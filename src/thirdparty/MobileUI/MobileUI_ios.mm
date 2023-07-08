@@ -1,6 +1,6 @@
 /*!
  * Copyright (c) 2016 J-P Nurmi
- * Copyright (c) 2022 Emeric Grange
+ * Copyright (c) 2023 Emeric Grange
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,6 +25,7 @@
 
 #include <QGuiApplication>
 #include <QScreen>
+#include <QWindow>
 #include <QTimer>
 
 #include <UIKit/UIKit.h>
@@ -37,15 +38,36 @@
 @property (nonatomic, assign) UIStatusBarStyle preferredStatusBarStyle;
 @end
 
+[[maybe_unused]] static bool isQColorLight(QColor color)
+{
+    double darkness = 1.0 - (0.299 * color.red() + 0.587 * color.green() + 0.114 * color.blue()) / 255.0;
+    return (darkness < 0.2);
+}
+
 UIStatusBarStyle statusBarStyle(MobileUI::Theme theme)
 {
-    if (theme == MobileUI::Dark)
-        return UIStatusBarStyleLightContent;
-    else if (@available(iOS 13.0, *))
-        return UIStatusBarStyleDarkContent;
-    else
-        return UIStatusBarStyleDefault;
+    if (theme == MobileUI::Dark) return UIStatusBarStyleLightContent;
+    else if (@available(iOS 13.0, *)) return UIStatusBarStyleDarkContent;
+    else return UIStatusBarStyleDefault;
 }
+
+static void setPreferredStatusBarStyle(UIWindow *window, UIStatusBarStyle style)
+{
+    QIOSViewController *viewController = static_cast<QIOSViewController *>([window rootViewController]);
+    if (!viewController || viewController.preferredStatusBarStyle == style) return;
+
+    viewController.preferredStatusBarStyle = style;
+    [viewController setNeedsStatusBarAppearanceUpdate];
+}
+
+void updatePreferredStatusBarStyle()
+{
+    UIStatusBarStyle style = statusBarStyle(MobileUIPrivate::statusbarTheme);
+    UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
+    if (keyWindow) setPreferredStatusBarStyle(keyWindow, style);
+}
+
+/* ************************************************************************** */
 
 bool MobileUIPrivate::isAvailable_sys()
 {
@@ -62,37 +84,20 @@ int MobileUIPrivate::getDeviceTheme_sys()
     return 0;
 }
 
-/* ************************************************************************** */
-
-static void setPreferredStatusBarStyle(UIWindow *window, UIStatusBarStyle style)
+void MobileUIPrivate::refreshUI_async()
 {
-    QIOSViewController *viewController = static_cast<QIOSViewController *>([window rootViewController]);
-    if (!viewController || viewController.preferredStatusBarStyle == style)
-        return;
-
-    viewController.preferredStatusBarStyle = style;
-    [viewController setNeedsStatusBarAppearanceUpdate];
-}
-
-void updatePreferredStatusBarStyle()
-{
-    UIStatusBarStyle style = statusBarStyle(MobileUIPrivate::statusbarTheme);
-    UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
-    if (keyWindow) setPreferredStatusBarStyle(keyWindow, style);
-}
-
-void togglePreferredStatusBarStyle()
-{
-    updatePreferredStatusBarStyle();
-
-    QTimer::singleShot(200, []() { updatePreferredStatusBarStyle(); });
+    QTimer::singleShot(  0, []() { updatePreferredStatusBarStyle(); }); // now
+    QTimer::singleShot( 20, []() { updatePreferredStatusBarStyle(); }); // after a frame
+    QTimer::singleShot(200, []() { updatePreferredStatusBarStyle(); }); // after rotation animation?
 }
 
 /* ************************************************************************** */
 
 void MobileUIPrivate::setColor_statusbar(const QColor &color)
 {
-    Q_UNUSED(color)
+    // auto theme?
+    MobileUIPrivate::statusbarTheme = static_cast<MobileUI::Theme>(!isQColorLight(color));
+    setTheme_statusbar(MobileUIPrivate::statusbarTheme);
 }
 
 void MobileUIPrivate::setTheme_statusbar(MobileUI::Theme theme)
@@ -105,9 +110,18 @@ void MobileUIPrivate::setTheme_statusbar(MobileUI::Theme theme)
                          qApp, [](Qt::ApplicationState state) { if (state == Qt::ApplicationActive) updatePreferredStatusBarStyle(); });
 
         QScreen *screen = qApp->primaryScreen();
-        if (screen) {
+        if (screen)
+        {
             QObject::connect(screen, &QScreen::orientationChanged,
-                             qApp, [](Qt::ScreenOrientation) { togglePreferredStatusBarStyle(); });
+                             qApp, [](Qt::ScreenOrientation) { refreshUI_async(); });
+        }
+
+        QWindowList windows =  qApp->allWindows();
+        if (windows.size() && windows.at(0))
+        {
+            QWindow *window = windows.at(0);
+            QObject::connect(window, &QWindow::visibilityChanged,
+                             qApp, [](QWindow::Visibility) { refreshUI_async(); });
         }
 
         MobileUIPrivate::areRefreshSlotsConnected = true;
@@ -146,7 +160,7 @@ int MobileUIPrivate::getSafeAreaTop()
         UIWindow *window = UIApplication.sharedApplication.windows.firstObject;
         return window.safeAreaInsets.top;
     }
-    
+
     return 0;
 }
 
@@ -157,7 +171,7 @@ int MobileUIPrivate::getSafeAreaLeft()
         UIWindow *window = UIApplication.sharedApplication.windows.firstObject;
         return window.safeAreaInsets.left;
     }
-    
+
     return 0;
 }
 
@@ -168,7 +182,7 @@ int MobileUIPrivate::getSafeAreaRight()
         UIWindow *window = UIApplication.sharedApplication.windows.firstObject;
         return window.safeAreaInsets.right;
     }
-    
+
     return 0;
 }
 
@@ -179,7 +193,7 @@ int MobileUIPrivate::getSafeAreaBottom()
         UIWindow *window = UIApplication.sharedApplication.windows.firstObject;
         return window.safeAreaInsets.bottom;
     }
-    
+
     return 0;
 }
 

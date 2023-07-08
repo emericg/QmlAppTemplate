@@ -1,6 +1,6 @@
 /*!
  * Copyright (c) 2016 J-P Nurmi
- * Copyright (c) 2022 Emeric Grange
+ * Copyright (c) 2023 Emeric Grange
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,6 +25,9 @@
 
 #include <QGuiApplication>
 #include <QScreen>
+#include <QWindow>
+#include <QTimer>
+
 #include <QJniObject>
 
 /* ************************************************************************** */
@@ -64,11 +67,6 @@
 #define EFFECT_TICK                             0x00000002
 
 /* ************************************************************************** */
-
-bool MobileUIPrivate::isAvailable_sys()
-{
-    return true; // Qt6 must be built with Android SDK 23 anyway, enough for everything MobileUI use
-}
 
 [[maybe_unused]] static bool isQColorLight(QColor color)
 {
@@ -117,6 +115,11 @@ void updatePreferredStatusBarStyle()
 
 /* ************************************************************************** */
 
+bool MobileUIPrivate::isAvailable_sys()
+{
+    return true; // Qt6 must be built with Android SDK 23 anyway, enough for everything MobileUI use
+}
+
 int MobileUIPrivate::getDeviceTheme_sys()
 {
     QJniObject activity = QNativeInterface::QAndroidApplication::context();
@@ -126,6 +129,12 @@ int MobileUIPrivate::getDeviceTheme_sys()
     int uiMode = (conf.getField<int>("uiMode") & UI_MODE_NIGHT_MASK);
 
     return (uiMode == UI_MODE_NIGHT_YES) ? MobileUI::Theme::Dark : MobileUI::Theme::Light;
+}
+
+void MobileUIPrivate::refreshUI_async()
+{
+    MobileUIPrivate::setTheme_statusbar(MobileUIPrivate::statusbarTheme);
+    MobileUIPrivate::setTheme_navbar(MobileUIPrivate::navbarTheme);
 }
 
 /* ************************************************************************** */
@@ -140,7 +149,8 @@ void MobileUIPrivate::setColor_statusbar(const QColor &color)
         window.callMethod<void>("setStatusBarColor", "(I)V", color.rgba());
 
         // auto theme?
-        setTheme_statusbar(static_cast<MobileUI::Theme>(!isQColorLight(color)));
+        MobileUIPrivate::statusbarTheme = static_cast<MobileUI::Theme>(!isQColorLight(color));
+        setTheme_statusbar(MobileUIPrivate::statusbarTheme);
     });
 }
 
@@ -181,9 +191,18 @@ void MobileUIPrivate::setTheme_statusbar(MobileUI::Theme theme)
             if (!MobileUIPrivate::areRefreshSlotsConnected)
             {
                 QScreen *screen = qApp->primaryScreen();
-                if (screen) {
+                if (screen)
+                {
                     QObject::connect(screen, &QScreen::orientationChanged,
                                      qApp, [](Qt::ScreenOrientation) { updatePreferredStatusBarStyle(); });
+                }
+
+                QWindowList windows =  qApp->allWindows();
+                if (windows.size() && windows.at(0))
+                {
+                    QWindow *window = windows.at(0);
+                    QObject::connect(window, &QWindow::visibilityChanged,
+                                     qApp, [](QWindow::Visibility) { refreshUI_async(); });
                 }
 
                 MobileUIPrivate::areRefreshSlotsConnected = true;
@@ -204,7 +223,8 @@ void MobileUIPrivate::setColor_navbar(const QColor &color)
         window.callMethod<void>("setNavigationBarColor", "(I)V", color.rgba());
 
         // auto theme?
-        setTheme_navbar(static_cast<MobileUI::Theme>(!isQColorLight(color)));
+        MobileUIPrivate::navbarTheme = static_cast<MobileUI::Theme>(!isQColorLight(color));
+        setTheme_navbar(MobileUIPrivate::navbarTheme);
     });
 }
 
@@ -247,9 +267,18 @@ void MobileUIPrivate::setTheme_navbar(MobileUI::Theme theme)
             if (!MobileUIPrivate::areRefreshSlotsConnected)
             {
                 QScreen *screen = qApp->primaryScreen();
-                if (screen) {
+                if (screen)
+                {
                     QObject::connect(screen, &QScreen::orientationChanged,
                                      qApp, [](Qt::ScreenOrientation) { updatePreferredStatusBarStyle(); });
+                }
+
+                QWindowList windows =  qApp->allWindows();
+                if (windows.size() && windows.at(0))
+                {
+                    QWindow *window = windows.at(0);
+                    QObject::connect(window, &QWindow::visibilityChanged,
+                                     qApp, [](QWindow::Visibility) { refreshUI_async(); });
                 }
 
                 MobileUIPrivate::areRefreshSlotsConnected = true;

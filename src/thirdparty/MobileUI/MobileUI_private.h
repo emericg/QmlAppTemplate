@@ -1,6 +1,6 @@
 /*!
  * Copyright (c) 2016 J-P Nurmi
- * Copyright (c) 2022 Emeric Grange
+ * Copyright (c) 2023 Emeric Grange
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -47,6 +47,8 @@ public:
     static bool isAvailable_sys();
 
     static int getDeviceTheme_sys();
+
+    static void refreshUI_async();
 
     static void setColor_statusbar(const QColor &color);
     static void setTheme_statusbar(MobileUI::Theme theme);

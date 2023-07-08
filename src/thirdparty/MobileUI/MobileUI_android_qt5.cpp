@@ -1,6 +1,6 @@
 /*!
  * Copyright (c) 2016 J-P Nurmi
- * Copyright (c) 2022 Emeric Grange
+ * Copyright (c) 2023 Emeric Grange
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,7 +25,11 @@
 
 #include <QGuiApplication>
 #include <QScreen>
+#include <QWindow>
+#include <QTimer>
+
 #include <QtAndroid>
+#include <QAndroidJniEnvironment>
 
 /* ************************************************************************** */
 
@@ -65,11 +69,6 @@
 
 /* ************************************************************************** */
 
-bool MobileUIPrivate::isAvailable_sys()
-{
-    return (QtAndroid::androidSdkVersion() >= 21);
-}
-
 [[maybe_unused]] static bool isQColorLight(QColor color)
 {
     double darkness = 1.0 - (0.299 * color.red() + 0.587 * color.green() + 0.114 * color.blue()) / 255.0;
@@ -107,7 +106,7 @@ static QAndroidJniObject getDisplayCutout()
         return cutout;
     }
 
-    return QJniObject();
+    return QAndroidJniObject();
 }
 
 void updatePreferredStatusBarStyle()
@@ -116,6 +115,11 @@ void updatePreferredStatusBarStyle()
 }
 
 /* ************************************************************************** */
+
+bool MobileUIPrivate::isAvailable_sys()
+{
+    return (QtAndroid::androidSdkVersion() >= 21);
+}
 
 int MobileUIPrivate::getDeviceTheme_sys()
 {
@@ -126,6 +130,12 @@ int MobileUIPrivate::getDeviceTheme_sys()
     int uiMode = (conf.getField<int>("uiMode") & UI_MODE_NIGHT_MASK);
 
     return (uiMode == UI_MODE_NIGHT_YES) ? MobileUI::Theme::Dark : MobileUI::Theme::Light;
+}
+
+void MobileUIPrivate::refreshUI_async()
+{
+    MobileUIPrivate::setTheme_statusbar(MobileUIPrivate::statusbarTheme);
+    MobileUIPrivate::setTheme_navbar(MobileUIPrivate::navbarTheme);
 }
 
 /* ************************************************************************** */
@@ -185,9 +195,18 @@ void MobileUIPrivate::setTheme_statusbar(MobileUI::Theme theme)
             if (!MobileUIPrivate::areRefreshSlotsConnected)
             {
                 QScreen *screen = qApp->primaryScreen();
-                if (screen) {
+                if (screen)
+                {
                     QObject::connect(screen, &QScreen::orientationChanged,
                                      qApp, [](Qt::ScreenOrientation) { updatePreferredStatusBarStyle(); });
+                }
+
+                QWindowList windows =  qApp->allWindows();
+                if (windows.size() && windows.at(0))
+                {
+                    QWindow *window = windows.at(0);
+                    QObject::connect(window, &QWindow::visibilityChanged,
+                                     qApp, [](QWindow::Visibility) { refreshUI_async(); });
                 }
 
                 MobileUIPrivate::areRefreshSlotsConnected = true;
@@ -219,16 +238,57 @@ void MobileUIPrivate::setTheme_navbar(MobileUI::Theme theme)
     if (QtAndroid::androidSdkVersion() < 23) return;
 
     QtAndroid::runOnAndroidThread([=]() {
-        QAndroidJniObject window = getAndroidWindow();
-        QAndroidJniObject view = window.callObjectMethod("getDecorView", "()Landroid/view/View;");
+        if (QtAndroid::androidSdkVersion() < 30)
+        {
+            // Added in API level 23 // Deprecated in API level 30
 
-        int visibility = view.callMethod<int>("getSystemUiVisibility", "()I");
-        if (theme == MobileUI::Theme::Light)
-            visibility |= SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
-        else
-            visibility &= ~SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
+            QAndroidJniObject view = getAndroidDecorView();
 
-        view.callMethod<void>("setSystemUiVisibility", "(I)V", visibility);
+            int visibility = view.callMethod<int>("getSystemUiVisibility", "()I");
+            if (theme == MobileUI::Theme::Light)
+                visibility |= SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
+            else
+                visibility &= ~SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
+
+            view.callMethod<void>("setSystemUiVisibility", "(I)V", visibility);
+        }
+        else if (QtAndroid::androidSdkVersion() >= 30)
+        {
+            // Added in API level 30
+
+            QAndroidJniObject window = getAndroidWindow();
+            QAndroidJniObject inset = window.callObjectMethod("getInsetsController",
+                                                              "()Landroid/view/WindowInsetsController;");
+
+            int visibility = inset.callMethod<int>("getSystemBarsAppearance", "()I");
+            if (theme == MobileUI::Theme::Light)
+                visibility |= APPEARANCE_LIGHT_NAVIGATION_BARS;
+            else
+                visibility &= ~APPEARANCE_LIGHT_NAVIGATION_BARS;
+
+            inset.callMethod<void>("setSystemBarsAppearance", "(II)V",
+                                   visibility, APPEARANCE_LIGHT_NAVIGATION_BARS);
+
+            if (!MobileUIPrivate::areRefreshSlotsConnected)
+            {
+                QScreen *screen = qApp->primaryScreen();
+                if (screen)
+                {
+                    QObject::connect(screen, &QScreen::orientationChanged,
+                                     qApp, [](Qt::ScreenOrientation) { updatePreferredStatusBarStyle(); });
+                }
+
+                QWindowList windows =  qApp->allWindows();
+                if (windows.size() && windows.at(0))
+                {
+                    QWindow *window = windows.at(0);
+                    QObject::connect(window, &QWindow::visibilityChanged,
+                                     qApp, [](QWindow::Visibility) { refreshUI_async(); });
+                }
+
+                MobileUIPrivate::areRefreshSlotsConnected = true;
+            }
+        }
     });
 }
 
