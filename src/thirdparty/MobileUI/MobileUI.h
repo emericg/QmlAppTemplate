@@ -34,13 +34,11 @@ class MobileUI : public QObject
 {
     Q_OBJECT
 
-    Q_PROPERTY(bool available READ isAvailable CONSTANT)
-
     Q_PROPERTY(Theme deviceTheme READ getDeviceTheme NOTIFY devicethemeUpdated)
 
     Q_PROPERTY(QColor statusbarColor READ getStatusbarColor WRITE setStatusbarColor NOTIFY statusbarUpdated)
     Q_PROPERTY(Theme statusbarTheme READ getStatusbarTheme WRITE setStatusbarTheme NOTIFY statusbarUpdated)
-    Q_PROPERTY(int statusbarHeight READ getStatusbarHeight NOTIFY safeAreaUpdated)
+    Q_PROPERTY(int statusbarHeight READ getStatusbarHeight NOTIFY statusbarUpdated)
 
     Q_PROPERTY(QColor navbarColor READ getNavbarColor WRITE setNavbarColor NOTIFY navbarUpdated)
     Q_PROPERTY(Theme navbarTheme READ getNavbarTheme WRITE setNavbarTheme NOTIFY navbarUpdated)
@@ -51,20 +49,22 @@ class MobileUI : public QObject
     Q_PROPERTY(int safeAreaRight READ getSafeAreaRight NOTIFY safeAreaUpdated)
     Q_PROPERTY(int safeAreaBottom READ getSafeAreaBottom NOTIFY safeAreaUpdated)
 
-    Q_PROPERTY(bool screenAlwaysOn READ getScreenKeepOn WRITE setScreenKeepOn)
+    Q_PROPERTY(bool screenAlwaysOn READ getScreenAlwaysOn WRITE setScreenAlwaysOn NOTIFY screenUpdated)
+    Q_PROPERTY(ScreenOrientation screenOrientation READ getScreenOrientation WRITE setScreenOrientation NOTIFY screenUpdated)
 
 Q_SIGNALS:
     void devicethemeUpdated();
     void statusbarUpdated();
     void navbarUpdated();
     void safeAreaUpdated();
+    void screenUpdated();
 
 public:
     explicit MobileUI(QObject *parent = nullptr) : QObject(parent) {}
 
     static void registerQML();
 
-    static bool isAvailable();
+    // Device theme ////////////////////////////////////////////////////////////
 
     enum Theme {
         Light,  //!< Light application theme, usually light background and dark texts.
@@ -74,9 +74,10 @@ public:
 
     /*!
      * \brief Get the theme currently in effect on this device.
+     * \note Not available yet on iOS.
      * \return see MobileUI::Theme enum.
      */
-    static Theme getDeviceTheme();
+    static MobileUI::Theme getDeviceTheme();
 
     // System bars /////////////////////////////////////////////////////////////
 
@@ -84,17 +85,17 @@ public:
     static QColor getStatusbarColor();
     static void setStatusbarColor(const QColor &color);
 
-    static Theme getStatusbarTheme();
+    static MobileUI::Theme getStatusbarTheme();
     static void setStatusbarTheme(const MobileUI::Theme theme);
 
     // Navigation bar
     static QColor getNavbarColor();
     static void setNavbarColor(const QColor &color);
 
-    static Theme getNavbarTheme();
+    static MobileUI::Theme getNavbarTheme();
     static void setNavbarTheme(const MobileUI::Theme theme);
 
-    // Refresh UI statusbar/navigationbar themes/colors
+    //! Refresh UI statusbar/navigationbar themes/colors
     Q_INVOKABLE static void refreshUI();
 
     // Screen safe areas ///////////////////////////////////////////////////////
@@ -109,9 +110,6 @@ public:
 
     // Screen helpers //////////////////////////////////////////////////////////
 
-    static bool getScreenKeepOn();
-    Q_INVOKABLE static void setScreenKeepOn(const bool on);
-
     enum ScreenOrientation {
         Unlocked = 0,
 
@@ -125,6 +123,8 @@ public:
     };
     Q_ENUM(ScreenOrientation)
 
+    MobileUI::ScreenOrientation getScreenOrientation();
+
     /*!
      * \brief Orientation locker.
      * \param orientation: see MobileUI::ScreenOrientation enum.
@@ -134,7 +134,15 @@ public:
      * - https://developer.android.com/guide/topics/manifest/activity-element.html#screen
      * - https://developer.apple.com/documentation/bundleresources/information_property_list/uisupportedinterfaceorientations
      */
-    Q_INVOKABLE static void lockScreenOrientation(const MobileUI::ScreenOrientation orientation);
+    Q_INVOKABLE static void setScreenOrientation(const MobileUI::ScreenOrientation orientation);
+
+    static bool getScreenAlwaysOn();
+
+    /*!
+     * \brief Lock screensaver.
+     * \param value: on or off
+     */
+    Q_INVOKABLE static void setScreenAlwaysOn(const bool value);
 
     // Other helpers ///////////////////////////////////////////////////////////
 

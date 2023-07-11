@@ -25,12 +25,7 @@
 
 /* ************************************************************************** */
 
-bool MobileUIPrivate::isAvailable_sys()
-{
-    return false;
-}
-
-int MobileUIPrivate::getDeviceTheme_sys()
+int MobileUIPrivate::getDeviceTheme()
 {
     return MobileUI::Theme::Light;
 }
@@ -40,7 +35,7 @@ void MobileUIPrivate::setColor_statusbar(const QColor &color)
     Q_UNUSED(color)
 }
 
-void MobileUIPrivate::setTheme_statusbar(MobileUI::Theme theme)
+void MobileUIPrivate::setTheme_statusbar(const MobileUI::Theme theme)
 {
     Q_UNUSED(theme)
 }
@@ -50,7 +45,7 @@ void MobileUIPrivate::setColor_navbar(const QColor &color)
     Q_UNUSED(color)
 }
 
-void MobileUIPrivate::setTheme_navbar(MobileUI::Theme theme)
+void MobileUIPrivate::setTheme_navbar(const MobileUI::Theme theme)
 {
     Q_UNUSED(theme)
 }
@@ -85,12 +80,12 @@ int MobileUIPrivate::getSafeAreaBottom()
     return 0;
 }
 
-void MobileUIPrivate::setScreenKeepOn(bool on)
+void MobileUIPrivate::setScreenAlwaysOn(const bool on)
 {
     Q_UNUSED(on)
 }
 
-void MobileUIPrivate::lockScreenOrientation(int orientation)
+void MobileUIPrivate::setScreenOrientation(const MobileUI::ScreenOrientation orientation)
 {
     Q_UNUSED(orientation)
 }

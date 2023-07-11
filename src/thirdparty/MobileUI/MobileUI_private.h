@@ -42,19 +42,19 @@ public:
     static QColor navbarColor;
     static MobileUI::Theme navbarTheme;
 
-    static bool isScreenKeepOn;
+    static bool screenAlwaysOn;
 
-    static bool isAvailable_sys();
+    static MobileUI::ScreenOrientation screenOrientation;
 
-    static int getDeviceTheme_sys();
+    static int getDeviceTheme();
 
     static void refreshUI_async();
 
     static void setColor_statusbar(const QColor &color);
-    static void setTheme_statusbar(MobileUI::Theme theme);
+    static void setTheme_statusbar(const MobileUI::Theme theme);
 
     static void setColor_navbar(const QColor &color);
-    static void setTheme_navbar(MobileUI::Theme theme);
+    static void setTheme_navbar(const MobileUI::Theme theme);
 
     static int getStatusbarHeight();
     static int getNavbarHeight();
@@ -64,9 +64,9 @@ public:
     static int getSafeAreaRight();
     static int getSafeAreaBottom();
 
-    static void setScreenKeepOn(bool on);
+    static void setScreenAlwaysOn(const bool on);
 
-    static void lockScreenOrientation(int orientation);
+    static void setScreenOrientation(const MobileUI::ScreenOrientation orientation);
 
     static void vibrate();
 };

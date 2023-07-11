@@ -38,13 +38,13 @@
 @property (nonatomic, assign) UIStatusBarStyle preferredStatusBarStyle;
 @end
 
-[[maybe_unused]] static bool isQColorLight(QColor color)
+static bool isQColorLight(const QColor color)
 {
     double darkness = 1.0 - (0.299 * color.red() + 0.587 * color.green() + 0.114 * color.blue()) / 255.0;
     return (darkness < 0.2);
 }
 
-UIStatusBarStyle statusBarStyle(MobileUI::Theme theme)
+UIStatusBarStyle statusBarStyle(const MobileUI::Theme theme)
 {
     if (theme == MobileUI::Dark) return UIStatusBarStyleLightContent;
     else if (@available(iOS 13.0, *)) return UIStatusBarStyleDarkContent;
@@ -69,12 +69,7 @@ void updatePreferredStatusBarStyle()
 
 /* ************************************************************************** */
 
-bool MobileUIPrivate::isAvailable_sys()
-{
-    return true;
-}
-
-int MobileUIPrivate::getDeviceTheme_sys()
+int MobileUIPrivate::getDeviceTheme()
 {
     if (@available(iOS 13.0, *))
     {
@@ -95,12 +90,12 @@ void MobileUIPrivate::refreshUI_async()
 
 void MobileUIPrivate::setColor_statusbar(const QColor &color)
 {
-    // auto theme?
+    // derive the theme from the color
     MobileUIPrivate::statusbarTheme = static_cast<MobileUI::Theme>(!isQColorLight(color));
     setTheme_statusbar(MobileUIPrivate::statusbarTheme);
 }
 
-void MobileUIPrivate::setTheme_statusbar(MobileUI::Theme theme)
+void MobileUIPrivate::setTheme_statusbar(const MobileUI::Theme theme)
 {
     updatePreferredStatusBarStyle();
 
@@ -135,7 +130,7 @@ void MobileUIPrivate::setColor_navbar(const QColor &color)
     Q_UNUSED(color)
 }
 
-void MobileUIPrivate::setTheme_navbar(MobileUI::Theme theme)
+void MobileUIPrivate::setTheme_navbar(const MobileUI::Theme theme)
 {
     Q_UNUSED(theme)
 }
@@ -199,7 +194,7 @@ int MobileUIPrivate::getSafeAreaBottom()
 
 /* ************************************************************************** */
 
-void MobileUIPrivate::setScreenKeepOn(bool on)
+void MobileUIPrivate::setScreenAlwaysOn(const bool on)
 {
     if (on)
     {
@@ -211,7 +206,7 @@ void MobileUIPrivate::setScreenKeepOn(bool on)
     }
 }
 
-void MobileUIPrivate::lockScreenOrientation(int orientation)
+void MobileUIPrivate::setScreenOrientation(const MobileUI::ScreenOrientation orientation)
 {
     // For reference, the enum values from iOS:
     // UIInterfaceOrientationUnknown = 0,          // The orientation of the device is unknown.
@@ -237,7 +232,10 @@ void MobileUIPrivate::lockScreenOrientation(int orientation)
 
 void MobileUIPrivate::vibrate()
 {
-    // TODO
+    UISelectionFeedbackGenerator *generator = [[UISelectionFeedbackGenerator alloc] init];
+    [generator prepare];
+    [generator selectionChanged];
+    generator = nil;
 }
 
 /* ************************************************************************** */

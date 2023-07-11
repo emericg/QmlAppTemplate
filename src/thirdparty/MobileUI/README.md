@@ -77,6 +77,112 @@ ApplicationWindow {
 }
 ```
 
+## Quick documentation
+
+### Window modes
+
+Now there are three modes you can use on Android and iOS applications:
+
+#### "Regular"
+
+> ApplicationWindow visibility: Window.AutomaticVisibility
+
+> ApplicationWindow flags: Qt.Window
+
+- Black status bar on iOS (you can't change that).
+- User set colors for both status and navigation bars on Android.
+- Available geometry is fullscreen - system bars height.
+
+That is the default mode on Android, but the infamous "white bar" bug make it pretty much useless.
+
+#### "Regular with transparent bars"
+
+> ApplicationWindow visibility: Window.AutomaticVisibility
+
+> ApplicationWindow flags: Qt.Window | Qt.MaximizeUsingFullscreenGeometryHint
+
+- The status bar is transparent on iOS, and you can choose the theme. Your application can draw a bar "manually" to visualize it.
+- The status bar is transparent on Android, and you can choose the theme. Your application can draw a bar "manually" to visualize it, or force a system bar color (it will be drawn above everyting).
+- The navigation bar is transparent on Android, and you can choose the theme. MobileUI will prevent you from forcing a color, because that would change the windows mode back to "regular", but not really.
+- Available geometry is the full screen; including what's behind system bars.
+
+That is the default mode on iOS.
+
+#### Full screen / immersive modes
+
+> ApplicationWindow visibility: Window.FullScreen
+
+- No system bars drawn at all.
+- Available geometry is the full screen.
+
+### Settings colors and theme
+
+> statusbarColor
+
+Set the status bar color (if available).
+This is a QColor, so you can use an hexadecimal value ("#fff") or even a named color ("red"). And you can use "transparent" too.
+Settings a color will also set a theme, by automatically evaluating if the bar color is more light or dark. You can force a theme if you are not satisfied by the result.
+
+> statusbarTheme
+
+Set the status bar theme explicitly, MobileUI.Light or MobileUI.Dark.
+
+On iOS and Android API 28+, the theme must be set each time the window visibility or orientation changes. This is done automatically.
+
+> navbarColor
+
+Set the navigation bar color (if available).
+This is a QColor, so you can use an hexadecimal value ("#fff") or even a named color ("red"). And you can use "transparent" too.
+Settings a color will also set a theme, by automatically evaluating if the bar color is more light or dark. You can force a theme if you are not satisfied by the result.
+
+> navbarTheme
+
+Set the navigation bar theme explicitly, MobileUI.Light or MobileUI.Dark.
+
+On Android API 28+, the theme must be set each time the window visibility or orientation changes. This is done automatically.
+
+### Device theme
+
+> deviceTheme
+
+You can get the device OS theme by reading the deviceTheme property.
+MobileUI doesn't listen to the change affecting this value and won't signal you 
+when it's changed. You should probably not switch your app theme while it's being 
+used anyway, so it may be wise to only check this value when the application is 
+loading or reloading.
+
+Not supported on iOS yet.
+
+```qml
+Connections {
+    target: Qt.application
+    function onStateChanged() {
+        case Qt.ApplicationActive:
+            console.log("device theme (%1)".arg(mobileUI.deviceTheme ? "dark" : "light"))
+            break
+    }
+}
+```
+
+### Safe areas
+
+> TODO
+
+### Lock screensaver
+
+> TODO
+
+### Lock screen orientation
+
+> TODO
+
+### Haptic feedback
+
+Produce a simple haptic feedback, called "notification feedback" on iOS or a "tick" on Android.
+
+```qml
+mobileUI.vibrate()
+```
 
 ## Licensing
 

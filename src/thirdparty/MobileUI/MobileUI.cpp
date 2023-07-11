@@ -38,7 +38,9 @@ MobileUI::Theme MobileUIPrivate::statusbarTheme = MobileUI::Light;
 QColor MobileUIPrivate::navbarColor;
 MobileUI::Theme MobileUIPrivate::navbarTheme = MobileUI::Light;
 
-bool MobileUIPrivate::isScreenKeepOn = false;
+bool MobileUIPrivate::screenAlwaysOn = false;
+
+MobileUI::ScreenOrientation MobileUIPrivate::screenOrientation = MobileUI::Unlocked;
 
 /* ************************************************************************** */
 
@@ -50,16 +52,11 @@ void MobileUI::registerQML()
     qmlRegisterType<MobileUI>("MobileUI", 1, 0, "MobileUI");
 }
 
-bool MobileUI::isAvailable()
-{
-    return MobileUIPrivate::isAvailable_sys();
-}
-
 /* ************************************************************************** */
 
 MobileUI::Theme MobileUI::getDeviceTheme()
 {
-    return static_cast<MobileUI::Theme>(MobileUIPrivate::getDeviceTheme_sys());
+    return static_cast<MobileUI::Theme>(MobileUIPrivate::getDeviceTheme());
 }
 
 /* ************************************************************************** */
@@ -80,7 +77,7 @@ MobileUI::Theme MobileUI::getStatusbarTheme()
     return MobileUIPrivate::statusbarTheme;
 }
 
-void MobileUI::setStatusbarTheme(const Theme theme)
+void MobileUI::setStatusbarTheme(const MobileUI::Theme theme)
 {
     MobileUIPrivate::statusbarTheme = theme;
     MobileUIPrivate::setTheme_statusbar(theme);
@@ -104,7 +101,7 @@ MobileUI::Theme MobileUI::getNavbarTheme()
     return MobileUIPrivate::navbarTheme;
 }
 
-void MobileUI::setNavbarTheme(const Theme theme)
+void MobileUI::setNavbarTheme(const MobileUI::Theme theme)
 {
     MobileUIPrivate::navbarTheme = theme;
     MobileUIPrivate::setTheme_navbar(theme);
@@ -114,10 +111,10 @@ void MobileUI::setNavbarTheme(const Theme theme)
 
 void MobileUI::refreshUI()
 {
-    MobileUIPrivate::setTheme_statusbar(MobileUIPrivate::statusbarTheme);
     MobileUIPrivate::setColor_statusbar(MobileUIPrivate::statusbarColor);
-    MobileUIPrivate::setTheme_navbar(MobileUIPrivate::navbarTheme);
+    MobileUIPrivate::setTheme_statusbar(MobileUIPrivate::statusbarTheme);
     MobileUIPrivate::setColor_navbar(MobileUIPrivate::navbarColor);
+    MobileUIPrivate::setTheme_navbar(MobileUIPrivate::navbarTheme);
 }
 
 /* ************************************************************************** */
@@ -154,20 +151,26 @@ int MobileUI::getSafeAreaBottom()
 
 /* ************************************************************************** */
 
-bool MobileUI::getScreenKeepOn()
+MobileUI::ScreenOrientation MobileUI::getScreenOrientation()
 {
-    return MobileUIPrivate::isScreenKeepOn;
+    return MobileUIPrivate::screenOrientation;
 }
 
-void MobileUI::setScreenKeepOn(const bool on)
+void MobileUI::setScreenOrientation(const MobileUI::ScreenOrientation orientation)
 {
-    MobileUIPrivate::isScreenKeepOn = on;
-    MobileUIPrivate::setScreenKeepOn(on);
+    MobileUIPrivate::screenOrientation = orientation;
+    MobileUIPrivate::setScreenOrientation(orientation);
 }
 
-void MobileUI::lockScreenOrientation(const MobileUI::ScreenOrientation orientation)
+bool MobileUI::getScreenAlwaysOn()
 {
-    MobileUIPrivate::lockScreenOrientation(orientation);
+    return MobileUIPrivate::screenAlwaysOn;
+}
+
+void MobileUI::setScreenAlwaysOn(const bool value)
+{
+    MobileUIPrivate::screenAlwaysOn = value;
+    MobileUIPrivate::setScreenAlwaysOn(value);
 }
 
 /* ************************************************************************** */
