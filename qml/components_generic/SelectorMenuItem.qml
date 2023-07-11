@@ -12,8 +12,8 @@ T.Button {
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              implicitContentHeight + topPadding + bottomPadding)
 
-    leftPadding: 32
-    rightPadding: 32
+    leftPadding: 16
+    rightPadding: 16
 
     // settings
     property int index
@@ -26,10 +26,10 @@ T.Button {
     property string colorContentHighlight: "white"
     property string colorBackgroundHighlight: Theme.colorPrimary
 
-    ////////////////////////////////////////////////////////////////////////////
+    ////////////////
 
     background: Rectangle {
-        implicitWidth: 64
+        implicitWidth: 32
         implicitHeight: 32
         radius: height
 
@@ -42,11 +42,12 @@ T.Button {
         Behavior on opacity { OpacityAnimator { duration: 133 } }
     }
 
-    ////////////////////////////////////////////////////////////////////////////
+    ////////////////
 
-    contentItem: Item {
+    contentItem: Row {
         IconSvg { // contentImage
-            anchors.centerIn: parent
+            anchors.verticalCenter: parent.verticalCenter
+            visible: control.source.toString().length
 
             width: control.sourceSize
             height: control.sourceSize
@@ -57,7 +58,8 @@ T.Button {
         }
 
         Text { // contentText
-            anchors.centerIn: parent
+            anchors.verticalCenter: parent.verticalCenter
+            visible: control.text
 
             text: control.text
             textFormat: Text.PlainText
@@ -69,5 +71,5 @@ T.Button {
         }
     }
 
-    ////////////////////////////////////////////////////////////////////////////
+    ////////////////
 }

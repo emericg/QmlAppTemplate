@@ -14,6 +14,7 @@ Popup {
     padding: 0
     margins: 0
 
+    dim: true
     modal: true
     focus: true
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside

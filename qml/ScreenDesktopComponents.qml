@@ -386,14 +386,14 @@ Loader {
                             width: 48
                             height: 48
                             source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
-                            background: true
+                            backgroundVisible: true
                             highlightMode: "color"
                         }
                         RoundButtonIcon {
                             width: 48
                             height: 48
                             source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
-                            background: false
+                            backgroundVisible: false
                             highlightMode: "circle"
                         }
                         RoundButtonIcon {
@@ -420,14 +420,14 @@ Loader {
                             width: 48
                             height: 48
                             text: "+"
-                            background: true
+                            backgroundVisible: true
                             highlightMode: "color"
                         }
                         RoundButtonText {
                             width: 48
                             height: 48
                             text: "-"
-                            background: false
+                            backgroundVisible: false
                             highlightMode: "circle"
                         }
                         RoundButtonText {
@@ -436,7 +436,7 @@ Loader {
                             text: "a"
                             highlightMode: "color"
                             highlightColor: Theme.colorError
-                            border: true
+                            borderVisible: true
 
                             tooltipText: "this one has a tooltip!"
                         }
@@ -457,7 +457,7 @@ Loader {
                         }
                         RoundButtonIcon {
                             source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
-                            background: true
+                            backgroundVisible: true
                             highlightMode: "circle"
                         }
                         RoundButtonIcon {
@@ -480,19 +480,19 @@ Loader {
 
                         RoundButtonText {
                             text: "+"
-                            background: true
+                            backgroundVisible: true
                             highlightMode: "color"
                         }
                         RoundButtonText {
                             text: "-"
-                            background: false
+                            backgroundVisible: false
                             highlightMode: "circle"
                         }
                         RoundButtonText {
                             text: "a"
                             highlightMode: "color"
                             highlightColor: Theme.colorError
-                            border: true
+                            borderVisible: true
 
                             tooltipText: "this one has a tooltip!"
                         }

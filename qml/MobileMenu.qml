@@ -49,7 +49,7 @@ Rectangle {
 
             text: qsTr("Components")
             source: "qrc:/assets/icons_material/duotone-touch_app-24px.svg"
-            selected: (appContent.state === "MobileComponents")
+            highlighted: (appContent.state === "MobileComponents")
             onClicked: screenMobileComponents.loadScreen()
         }
         MobileMenuItem_horizontal {
@@ -62,7 +62,7 @@ Rectangle {
 
             text: qsTr("Settings")
             source: "qrc:/assets/icons_material/baseline-settings-20px.svg"
-            selected: (appContent.state === "Settings")
+            highlighted: (appContent.state === "Settings")
             onClicked: screenSettings.loadScreen()
         }
         MobileMenuItem_horizontal {
@@ -75,7 +75,7 @@ Rectangle {
 
             text: qsTr("About")
             source: "qrc:/assets/icons_material/outline-info-24px.svg"
-            selected: (appContent.state === "About" || appContent.state === "AboutPermissions")
+            highlighted: (appContent.state === "About" || appContent.state === "AboutPermissions")
             onClicked: screenAbout.loadScreen()
         }
     }

@@ -95,15 +95,15 @@ Flickable {
                 width: 48
                 height: 48
                 text: "+"
-                background: true
                 highlightMode: "color"
+                backgroundVisible: true
             }
             RoundButtonText {
                 width: 48
                 height: 48
                 text: "-"
-                background: false
                 highlightMode: "circle"
+                backgroundVisible: false
             }
             RoundButtonText {
                 width: 48
@@ -111,7 +111,7 @@ Flickable {
                 text: "a"
                 highlightMode: "color"
                 highlightColor: Theme.colorError
-                border: true
+                borderVisible: true
 
                 tooltipText: "this one has a tooltip!"
             }
@@ -128,8 +128,8 @@ Flickable {
             }
             RoundButtonIcon {
                 source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
-                background: true
                 highlightMode: "circle"
+                backgroundVisible: true
             }
             RoundButtonIcon {
                 source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
@@ -147,19 +147,19 @@ Flickable {
 
             RoundButtonText {
                 text: "+"
-                background: true
+                backgroundVisible: true
                 highlightMode: "color"
             }
             RoundButtonText {
                 text: "-"
-                background: false
+                backgroundVisible: false
                 highlightMode: "circle"
             }
             RoundButtonText {
                 text: "a"
                 highlightMode: "color"
                 highlightColor: Theme.colorError
-                border: true
+                borderVisible: true
 
                 tooltipText: "this one has a tooltip!"
             }

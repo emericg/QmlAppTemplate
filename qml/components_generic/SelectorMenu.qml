@@ -19,10 +19,9 @@ Item {
     property int currentSelection: 1
     signal menuSelected(var index)
 
-    ////////////////////////////////////////////////////////////////////////////
+    ////////////////
 
-    Rectangle {
-        id: background
+    Rectangle { // background
         anchors.fill: parent
 
         radius: height
@@ -32,12 +31,12 @@ Item {
         border.color: Theme.colorComponentDown
     }
 
-    ////////////////////////////////////////////////////////////////////////////
+    ////////////////
 
     Row {
         id: contentRow
         height: parent.height
-        spacing: 0
+        spacing: -4
 
         Repeater {
             model: selectorMenu.model
@@ -53,5 +52,5 @@ Item {
         }
     }
 
-    ////////////////////////////////////////////////////////////////////////////
+    ////////////////
 }

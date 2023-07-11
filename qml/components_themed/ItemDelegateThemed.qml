@@ -55,8 +55,7 @@ T.ItemDelegate {
             height: Theme.componentHeight
 
             source: model.icon
-            sourceSize: icon.width
-            background: true
+            backgroundVisible: true
         }
 
         Column {

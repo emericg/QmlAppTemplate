@@ -11,19 +11,22 @@ Popup {
     padding: 0
     margins: 0
 
-    parent: Overlay.overlay
     modal: true
     dim: false
     focus: isMobile
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
-
-    enter: Transition { NumberAnimation { property: "opacity"; from: 0.0; to: 1.0; duration: 133; } }
-    exit: Transition { NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; duration: 133; } }
+    //parent: Overlay.overlay
 
     property var model: null
+
     property int layoutDirection: Qt.LeftToRight
 
     signal menuSelected(var index)
+
+    ////////////////////////////////////////////////////////////////////////////
+
+    enter: Transition { NumberAnimation { property: "opacity"; from: 0.0; to: 1.0; duration: 133; } }
+    exit: Transition { NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; duration: 133; } }
 
     ////////////////////////////////////////////////////////////////////////////
 
@@ -37,8 +40,6 @@ Popup {
     ////////////////////////////////////////////////////////////////////////////
 
     contentItem: Column {
-        padding: Theme.componentBorderWidth
-
         topPadding: 8
         bottomPadding: 8
         spacing: 4
@@ -57,6 +58,7 @@ Popup {
             DelegateChoice {
                 roleValue: "itm"
                 ActionMenuItem {
+                    width: actionMenu.width
                     index: idx
                     text: txt
                     source: src

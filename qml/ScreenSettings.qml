@@ -75,7 +75,7 @@ Loader {
                     width: 24
                     height: 24
                     anchors.left: parent.left
-                    anchors.leftMargin: 16
+                    anchors.leftMargin: Theme.componentMargin
                     anchors.verticalCenter: parent.verticalCenter
 
                     color: Theme.colorIcon
@@ -88,7 +88,7 @@ Loader {
                     anchors.left: image_appTheme.right
                     anchors.leftMargin: 24
                     anchors.right: appTheme_selector.left
-                    anchors.rightMargin: 16
+                    anchors.rightMargin: Theme.componentMargin
                     anchors.verticalCenter: parent.verticalCenter
 
                     text: qsTr("Theme")
@@ -102,7 +102,7 @@ Loader {
                 Row {
                     id: appTheme_selector
                     anchors.right: parent.right
-                    anchors.rightMargin: 16
+                    anchors.rightMargin: Theme.componentMargin
                     anchors.verticalCenter: parent.verticalCenter
 
                     z: 1
@@ -246,7 +246,7 @@ Loader {
                     width: 24
                     height: 24
                     anchors.left: parent.left
-                    anchors.leftMargin: 16
+                    anchors.leftMargin: Theme.componentMargin
                     anchors.verticalCenter: parent.verticalCenter
 
                     color: Theme.colorIcon
@@ -259,7 +259,7 @@ Loader {
                     anchors.left: image_appThemeAuto.right
                     anchors.leftMargin: 24
                     anchors.right: switch_appThemeAuto.left
-                    anchors.rightMargin: 16
+                    anchors.rightMargin: Theme.componentMargin
                     anchors.verticalCenter: parent.verticalCenter
 
                     text: qsTr("Automatic dark mode")
@@ -289,7 +289,7 @@ Loader {
                 anchors.left: parent.left
                 anchors.leftMargin: screenPaddingLeft + 64
                 anchors.right: parent.right
-                anchors.rightMargin: 16
+                anchors.rightMargin: Theme.componentMargin
 
                 topPadding: -16
                 bottomPadding: isMobile ? 12 : 0
@@ -317,7 +317,7 @@ Loader {
                     width: 24
                     height: 24
                     anchors.left: parent.left
-                    anchors.leftMargin: 16
+                    anchors.leftMargin: Theme.componentMargin
                     anchors.verticalCenter: parent.verticalCenter
 
                     color: Theme.colorIcon
@@ -330,7 +330,7 @@ Loader {
                     anchors.left: image_appThemeCSD.right
                     anchors.leftMargin: 24
                     anchors.right: switch_appThemeCSD.left
-                    anchors.rightMargin: 16
+                    anchors.rightMargin: Theme.componentMargin
                     anchors.verticalCenter: parent.verticalCenter
 
                     text: qsTr("Client Side Decoration")
@@ -357,7 +357,7 @@ Loader {
                 anchors.left: parent.left
                 anchors.leftMargin: screenPaddingLeft + 64
                 anchors.right: parent.right
-                anchors.rightMargin: 16
+                anchors.rightMargin: Theme.componentMargin
 
                 topPadding: -16
                 bottomPadding: isMobile ? 12 : 0
@@ -385,7 +385,7 @@ Loader {
                     width: 24
                     height: 24
                     anchors.left: parent.left
-                    anchors.leftMargin: 16
+                    anchors.leftMargin: Theme.componentMargin
                     anchors.verticalCenter: parent.verticalCenter
 
                     color: Theme.colorIcon
@@ -398,7 +398,7 @@ Loader {
                     anchors.left: image_language.right
                     anchors.leftMargin: 24
                     anchors.right: combobox_language.left
-                    anchors.rightMargin: 16
+                    anchors.rightMargin: Theme.componentMargin
                     anchors.verticalCenter: parent.verticalCenter
 
                     text: qsTr("Language")
@@ -413,7 +413,7 @@ Loader {
                     id: combobox_language
                     width: wideMode ? 256 : 160
                     anchors.right: parent.right
-                    anchors.rightMargin: 12
+                    anchors.rightMargin: Theme.componentMargin
                     anchors.verticalCenter: parent.verticalCenter
 
                     z: 1
@@ -478,7 +478,7 @@ Loader {
                     width: 24
                     height: 24
                     anchors.left: parent.left
-                    anchors.leftMargin: 16
+                    anchors.leftMargin: Theme.componentMargin
                     anchors.verticalCenter: parent.verticalCenter
 
                     color: Theme.colorIcon
@@ -490,7 +490,7 @@ Loader {
                     anchors.left: image_aaa.right
                     anchors.leftMargin: 24
                     anchors.right: switch_aaa.left
-                    anchors.rightMargin: 16
+                    anchors.rightMargin: Theme.componentMargin
                     anchors.verticalCenter: parent.verticalCenter
 
                     text: qsTr("A desktop switch")
@@ -524,7 +524,7 @@ Loader {
                     width: 24
                     height: 24
                     anchors.left: parent.left
-                    anchors.leftMargin: 16
+                    anchors.leftMargin: Theme.componentMargin
                     anchors.verticalCenter: parent.verticalCenter
 
                     color: Theme.colorIcon
@@ -536,7 +536,7 @@ Loader {
                     anchors.left: image_bbb.right
                     anchors.leftMargin: 24
                     anchors.right: spinbox_bbb.left
-                    anchors.rightMargin: 16
+                    anchors.rightMargin: Theme.componentMargin
                     anchors.verticalCenter: parent.verticalCenter
 
                     text: qsTr("A spinbox with a legend!")
@@ -550,7 +550,7 @@ Loader {
                 SpinBoxThemedMobile {
                     id: spinbox_bbb
                     anchors.right: parent.right
-                    anchors.rightMargin: 12
+                    anchors.rightMargin: Theme.componentMargin
                     anchors.verticalCenter: parent.verticalCenter
                     z: 1
 

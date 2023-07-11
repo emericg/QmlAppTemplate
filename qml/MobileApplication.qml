@@ -52,7 +52,7 @@ ApplicationWindow {
             // hacks
             if (Qt.platform.os === "android") {
                 if (Screen.primaryOrientation === Qt.PortraitOrientation) {
-                    screenPaddingStatusbar = screenPaddingTop
+                    screenPaddingStatusbar = mobileUI.safeAreaTop
                     screenPaddingTop = 0
                 } else {
                     screenPaddingNavbar = 0
@@ -92,12 +92,9 @@ ApplicationWindow {
 
     MobileUI {
         id: mobileUI
-        statusbarTheme: Theme.themeStatusbar
+
         statusbarColor: Theme.colorStatusbar
-        navbarColor: {
-            if (appContent.state === "Tutorial") return Theme.colorHeader
-            return Theme.colorBackground
-        }
+        navbarColor: Theme.colorBackground
     }
 
     MobileHeader {

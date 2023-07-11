@@ -6,17 +6,16 @@ import ThemeEngine 1.0
 
 Popup {
     id: actionMenu
-    width: parent.width
-    y: appWindow.height
 
+    width: parent.width
     padding: 0
     margins: 0
 
-    parent: Overlay.overlay
     modal: true
-    dim: false
+    dim: true
     focus: isMobile
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+    parent: Overlay.overlay
 
     property var model: null
     property int layoutDirection: Qt.LeftToRight
@@ -25,8 +24,10 @@ Popup {
 
     ////////////////////////////////////////////////////////////////////////////
 
-    property real realHeight: 0
-    Component.onCompleted: realHeight = height
+    y: appWindow.height
+
+    property int realHeight: 0
+    Component.onCompleted: realHeight = actionMenu.height + screenPaddingNavbar + screenPaddingBottom
 
     enter: Transition {
         NumberAnimation { duration: 233; property: "height"; from: 0; to: realHeight }
@@ -38,17 +39,17 @@ Popup {
     ////////////////////////////////////////////////////////////////////////////
 
     background: Rectangle {
-        color: Theme.colorForeground
-        radius: Theme.componentRadius
-        border.color: Theme.colorSeparator
-        border.width: Theme.componentBorderWidth
+        color: Theme.colorBackground
+        Rectangle {
+            width: parent.width
+            height: Theme.componentBorderWidth
+            color: Theme.colorSeparator
+        }
     }
 
     ////////////////////////////////////////////////////////////////////////////
 
     contentItem: Column {
-        padding: Theme.componentBorderWidth
-
         topPadding: 8
         bottomPadding: 8
         spacing: 4
@@ -58,16 +59,16 @@ Popup {
             role: "t"
             DelegateChoice {
                 roleValue: "sep"
-                Rectangle {
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    height: Theme.componentBorderWidth
-                    color: Theme.colorSeparator
+                ListSeparatorPadded {
+                    anchors.leftMargin: Theme.componentMargin
+                    anchors.rightMargin: Theme.componentMargin
+                    height: 9
                 }
             }
             DelegateChoice {
                 roleValue: "itm"
                 ActionMenuItem {
+                    width: actionMenu.width
                     index: idx
                     text: txt
                     source: src

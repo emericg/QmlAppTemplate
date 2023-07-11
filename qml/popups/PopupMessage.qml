@@ -1,24 +1,25 @@
 import QtQuick
-import QtQuick.Controls.impl
-import QtQuick.Templates as T
+import QtQuick.Controls
 
 import ThemeEngine
 
-T.Popup {
+Popup {
     id: popupMessage
 
     x: singleColumn ? 0 : (appWindow.width / 2) - (width / 2)
-    y: singleColumn ? (appWindow.height - appHeader.height - height)
+    y: singleColumn ? (appWindow.height - height)
                     : ((appWindow.height / 2) - (height / 2))
 
     width: singleColumn ? appWindow.width : 640
     height: columnContent.height + padding*2 + screenPaddingNavbar + screenPaddingBottom
     padding: Theme.componentMarginXL
+    margins: 0
 
+    dim: true
     modal: true
     focus: true
-    closePolicy: T.Popup.CloseOnEscape | T.Popup.CloseOnPressOutside
-    //parent: appWindow.contentItem
+    closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+    parent: Overlay.overlay
 
     signal confirmed()
 

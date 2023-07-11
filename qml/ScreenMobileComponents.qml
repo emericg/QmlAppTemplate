@@ -116,7 +116,6 @@ Loader {
                 ////////
 
                 ListView {
-                    focus: true
                     currentIndex: -1
                     anchors.fill: parent
 

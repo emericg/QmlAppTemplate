@@ -12,8 +12,8 @@ T.Button {
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              implicitContentHeight + topPadding + bottomPadding)
 
-    leftPadding: 32
-    rightPadding: 32
+    leftPadding: 16
+    rightPadding: 16
 
     // settings
     property int index
@@ -29,29 +29,26 @@ T.Button {
     ////////////////
 
     background: Rectangle {
-        implicitWidth: 64
+        implicitWidth: 32
         implicitHeight: 32
         radius: Theme.componentRadius
 
         color: control.colorBackgroundHighlight
         opacity: {
-            if (control.hovered && control.highlighted)
-                return 0.9
-            else if (control.highlighted)
-                return 0.7
-            else if (control.hovered)
-                return 0.5
-            else
-                return 0
+            if (control.hovered && control.highlighted) return 0.9
+            else if (control.highlighted) return 0.7
+            else if (control.hovered) return 0.5
+            return 0
         }
         Behavior on opacity { OpacityAnimator { duration: 133 } }
     }
 
     ////////////////
 
-    contentItem: Item {
+    contentItem: Row {
         IconSvg { // contentImage
-            anchors.centerIn: parent
+            anchors.verticalCenter: parent.verticalCenter
+            visible: control.source.toString().length
 
             width: control.sourceSize
             height: control.sourceSize
@@ -62,7 +59,8 @@ T.Button {
         }
 
         Text { // contentText
-            anchors.centerIn: parent
+            anchors.verticalCenter: parent.verticalCenter
+            visible: control.text
 
             text: control.text
             textFormat: Text.PlainText
@@ -70,7 +68,7 @@ T.Button {
             verticalAlignment: Text.AlignVCenter
 
             color: control.highlighted ? control.colorContentHighlight : control.colorContent
-            opacity: control.highlighted ? 1 : 0.6
+            opacity: control.highlighted ? 1 : 0.66
         }
     }
 

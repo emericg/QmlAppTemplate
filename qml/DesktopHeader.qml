@@ -8,11 +8,14 @@ Rectangle {
     anchors.left: parent.left
     anchors.right: parent.right
 
-    z: 10
     height: headerHeight
     color: Theme.colorHeader
+    clip: false
+    z: 10
 
     property int headerHeight: 64
+
+    property int headerPosition: 64
 
     property string headerTitle: "QmlAppTemplate"
 

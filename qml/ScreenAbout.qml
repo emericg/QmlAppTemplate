@@ -33,7 +33,7 @@ Loader {
         contentHeight: contentColumn.height
 
         boundsBehavior: isDesktop ? Flickable.OvershootBounds : Flickable.DragAndOvershootBounds
-        ScrollBar.vertical: ScrollBar { visible: isDesktop; }
+        ScrollBar.vertical: ScrollBar { visible: false }
 
         function backAction() {
             screenMainView.loadScreen()
@@ -145,7 +145,7 @@ Loader {
             ////////////////
 
             Row { // buttons row
-                height: 64
+                height: 72
 
                 anchors.left: parent.left
                 anchors.leftMargin: screenPaddingLeft + Theme.componentMargin
@@ -156,8 +156,8 @@ Loader {
                 spacing: Theme.componentMargin
 
                 ButtonWireframeIconCentered {
-                    width: ((parent.width - parent.spacing) / 2)
                     anchors.verticalCenter: parent.verticalCenter
+                    width: ((parent.width - parent.spacing) / 2)
 
                     sourceSize: 28
                     fullColor: true
@@ -236,17 +236,15 @@ Loader {
 
             ListSeparator { }
 
-            Item {
-                id: dependencies
+            Item { // list dependencies
                 anchors.left: parent.left
                 anchors.leftMargin: screenPaddingLeft + Theme.componentMargin
                 anchors.right: parent.right
                 anchors.rightMargin: screenPaddingRight + Theme.componentMargin
 
-                height: 32 + dependenciesText.height + dependenciesColumn.height
+                height: 40 + dependenciesText.height + dependenciesColumn.height
 
                 IconSvg {
-                    id: dependenciesImg
                     width: 24
                     height: 24
                     anchors.left: parent.left
@@ -262,24 +260,23 @@ Loader {
                     anchors.top: parent.top
                     anchors.topMargin: 16
                     anchors.left: parent.left
-                    anchors.leftMargin: 48
+                    anchors.leftMargin: appHeader.headerPosition - parent.anchors.leftMargin
                     anchors.right: parent.right
                     anchors.rightMargin: 8
 
                     text: qsTr("This application is made possible thanks to a couple of third party open source projects:")
                     textFormat: Text.PlainText
-                    font.pixelSize: Theme.fontSizeContent
                     color: Theme.colorSubText
+                    font.pixelSize: Theme.fontSizeContent
                     wrapMode: Text.WordWrap
-                    verticalAlignment: Text.AlignVCenter
                 }
 
                 Column {
                     id: dependenciesColumn
                     anchors.top: dependenciesText.bottom
                     anchors.topMargin: 8
-                    anchors.left: dependenciesText.left
-                    anchors.leftMargin: 0
+                    anchors.left: parent.left
+                    anchors.leftMargin: appHeader.headerPosition - parent.anchors.leftMargin
                     anchors.right: parent.right
                     anchors.rightMargin: 8
                     spacing: 4
@@ -308,8 +305,7 @@ Loader {
 
             ListSeparator { }
 
-            Item {
-                id: translators
+            Item { // list translators
                 anchors.left: parent.left
                 anchors.leftMargin: screenPaddingLeft + Theme.componentMargin
                 anchors.right: parent.right
@@ -318,7 +314,6 @@ Loader {
                 height: 40 + translatorsText.height + translatorsColumn.height
 
                 IconSvg {
-                    id: translatorsImg
                     width: 24
                     height: 24
                     anchors.left: parent.left
@@ -334,24 +329,23 @@ Loader {
                     anchors.top: parent.top
                     anchors.topMargin: 16
                     anchors.left: parent.left
-                    anchors.leftMargin: 48
+                    anchors.leftMargin: appHeader.headerPosition - parent.anchors.leftMargin
                     anchors.right: parent.right
                     anchors.rightMargin: 8
 
                     text: qsTr("Special thanks to our translators:")
                     textFormat: Text.PlainText
-                    font.pixelSize: Theme.fontSizeContent
                     color: Theme.colorSubText
+                    font.pixelSize: Theme.fontSizeContent
                     wrapMode: Text.WordWrap
-                    verticalAlignment: Text.AlignVCenter
                 }
 
                 Column {
                     id: translatorsColumn
                     anchors.top: translatorsText.bottom
                     anchors.topMargin: 8
-                    anchors.left: translatorsText.left
-                    anchors.leftMargin: 0
+                    anchors.left: parent.left
+                    anchors.leftMargin: appHeader.headerPosition - parent.anchors.leftMargin
                     anchors.right: parent.right
                     anchors.rightMargin: 8
                     spacing: 4

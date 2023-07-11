@@ -17,8 +17,7 @@ Item {
 
     ////////////////
 
-    Rectangle {
-        id: background
+    Rectangle { // background
         anchors.fill: parent
         radius: Theme.componentRadius
         color: Theme.colorComponentBackground
@@ -45,8 +44,7 @@ Item {
         }
     }
 
-    Rectangle {
-        id: foreground
+    Rectangle { // foreground border
         anchors.fill: parent
         radius: Theme.componentRadius
 
