@@ -14,7 +14,7 @@ Drawer {
         color: Theme.colorBackground
 
         Rectangle { // left border
-            x: parent.width - 1
+            x: parent.width
             width: 1
             height: parent.height
             color: Theme.colorSeparator
@@ -30,7 +30,6 @@ Drawer {
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.right: parent.right
-            anchors.rightMargin: 1
             z: 5
 
             ////////
@@ -41,7 +40,7 @@ Drawer {
                 anchors.right: parent.right
 
                 height: Math.max(screenPaddingTop, screenPaddingStatusbar)
-                color: Theme.colorBackground // "red" // to hide flickable content
+                color: Theme.colorBackground // to hide flickable content
             }
 
             ////////

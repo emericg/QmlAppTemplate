@@ -69,35 +69,49 @@ Rectangle {
 
         ////////////
 
-        MouseArea { // left button
-            width: headerHeight
-            height: headerHeight
+        Row { // left area
+            id: leftArea
+            anchors.top: parent.top
+            anchors.left: parent.left
+            anchors.leftMargin: 4
+            anchors.bottom: parent.bottom
 
-            visible: true
-            onClicked: leftMenuClicked()
+            spacing: 4
 
-            RippleThemed {
-                anchor: parent
-                width: parent.width
-                height: parent.height
+            ////
 
-                pressed: parent.pressed
-                //active: enabled && parent.containsPress
-                color: Qt.rgba(Theme.colorForeground.r, Theme.colorForeground.g, Theme.colorForeground.b, 0.33)
-            }
+            MouseArea { // left button
+                width: headerHeight
+                height: headerHeight
 
-            IconSvg {
-                anchors.centerIn: parent
-                width: (headerHeight / 2)
-                height: (headerHeight / 2)
+                visible: true
+                onClicked: leftMenuClicked()
 
-                source: {
-                    if (leftMenuMode === "drawer") return "qrc:/assets/icons_material/baseline-menu-24px.svg"
-                    if (leftMenuMode === "close") return "qrc:/assets/icons_material/baseline-close-24px.svg"
-                    return "qrc:/assets/icons_material/baseline-arrow_back-24px.svg"
+                RippleThemed {
+                    anchor: parent
+                    width: parent.width
+                    height: parent.height
+
+                    pressed: parent.pressed
+                    //active: enabled && parent.containsPress
+                    color: Qt.rgba(Theme.colorForeground.r, Theme.colorForeground.g, Theme.colorForeground.b, 0.33)
                 }
-                color: Theme.colorHeaderContent
+
+                IconSvg {
+                    anchors.centerIn: parent
+                    width: (headerHeight / 2)
+                    height: (headerHeight / 2)
+
+                    source: {
+                        if (leftMenuMode === "drawer") return "qrc:/assets/icons_material/baseline-menu-24px.svg"
+                        if (leftMenuMode === "close") return "qrc:/assets/icons_material/baseline-close-24px.svg"
+                        return "qrc:/assets/icons_material/baseline-arrow_back-24px.svg"
+                    }
+                    color: Theme.colorHeaderContent
+                }
             }
+
+            ////
         }
 
         Text { // header title
@@ -121,11 +135,12 @@ Rectangle {
             id: rightArea
             anchors.top: parent.top
             anchors.right: parent.right
+            anchors.rightMargin: 4
             anchors.bottom: parent.bottom
 
             spacing: 4
 
-            ////////////
+            ////
 
             Item { // right indicator
                 anchors.verticalCenter: parent.verticalCenter
@@ -167,7 +182,7 @@ Rectangle {
                 }
             }
 
-            ////////////
+            ////
 
             MouseArea { // right button
                 width: headerHeight
@@ -198,6 +213,8 @@ Rectangle {
                     color: Theme.colorHeaderContent
                 }
             }
+
+            ////
         }
 
         ////////////
