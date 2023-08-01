@@ -212,6 +212,7 @@ ApplicationWindow {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
+        anchors.bottomMargin: screenPaddingNavbar + screenPaddingBottom
 
         focus: true
         Keys.onBackPressed: backAction()
@@ -333,7 +334,8 @@ ApplicationWindow {
         anchors.right: parent.right
         anchors.bottom: parent.bottom
         height: screenPaddingNavbar + screenPaddingBottom
-        visible: (mobileMenu.visible || appContent.state === "Tutorial")
+        visible: (!mobileMenu.visible || appContent.state === "Tutorial")
+        opacity: 0.8
         color: {
             if (appContent.state === "Tutorial") return Theme.colorHeader
             return Theme.colorBackground

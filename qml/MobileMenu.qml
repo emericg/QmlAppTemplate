@@ -2,7 +2,7 @@ import QtQuick
 
 import ThemeEngine
 
-Rectangle {
+Item {
     id: mobileMenu
     anchors.left: parent.left
     anchors.right: parent.right
@@ -14,18 +14,23 @@ Rectangle {
 
     z: 10
     height: hhh + screenPaddingNavbar + screenPaddingBottom
-    color: appWindow.isTablet ? Theme.colorTabletmenu : Theme.colorBackground
 
     ////////////////////////////////////////////////////////////////////////////
 
     Rectangle {
-        anchors.top: parent.top
-        anchors.left: parent.left
-        anchors.right: parent.right
-        height: 1
-        opacity: 0.5
-        visible: !appWindow.isPhone
-        color: Theme.colorTabletmenuContent
+        anchors.fill: parent
+        opacity: appWindow.isTablet ? 0.5 : 0.8
+        color: appWindow.isTablet ? Theme.colorTabletmenu : Theme.colorBackground
+
+        Rectangle {
+            anchors.top: parent.top
+            anchors.left: parent.left
+            anchors.right: parent.right
+            height: 1
+            opacity: 0.8
+            visible: !appWindow.isPhone
+            color: Theme.colorTabletmenuContent
+        }
     }
 
     // prevent clicks below this area

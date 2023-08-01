@@ -102,7 +102,7 @@ Loader {
                 Row {
                     id: appTheme_selector
                     anchors.right: parent.right
-                    anchors.rightMargin: Theme.componentMargin
+                    anchors.rightMargin: 16
                     anchors.verticalCenter: parent.verticalCenter
 
                     z: 1
