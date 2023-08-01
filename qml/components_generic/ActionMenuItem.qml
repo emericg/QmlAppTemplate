@@ -23,6 +23,8 @@ T.Button {
 
     height: 36
 
+    focusPolicy: Qt.NoFocus
+
     // settings
     property int index
     //property string text
