@@ -188,7 +188,8 @@ android {
     QMAKE_TARGET_BUNDLE_PREFIX = com.emeric
     QMAKE_BUNDLE = qmlapptemplate
 
-    OTHER_FILES += assets/android/src/com/emeric/utils/QShareUtils.java \
+    OTHER_FILES += assets/android/src/com/emeric/utils/QGpsUtils.java \
+                   assets/android/src/com/emeric/utils/QShareUtils.java \
                    assets/android/src/com/emeric/utils/QSharePathResolver.java
 
     DISTFILES += $${PWD}/assets/android/AndroidManifest.xml \
