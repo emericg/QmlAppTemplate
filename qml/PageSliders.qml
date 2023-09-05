@@ -24,36 +24,85 @@ Flickable {
             anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
+            text: qsTr("Progress bars")
+            icon: ""
+        }
+
+        Column {
+            anchors.left: parent.left
+            anchors.leftMargin: Theme.componentMarginXL
+            anchors.right: parent.right
+            anchors.rightMargin: Theme.componentMarginXL
+            spacing: Theme.componentMarginXL
+
+            ProgressBarThemed {
+                anchors.left: parent.left
+                anchors.right: parent.right
+
+                value: 0.5
+            }
+        }
+
+        ListTitle { ////////////////////////////////////////////////////////////
+            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
+
             text: qsTr("Conventional sliders")
             icon: ""
         }
 
-        SliderThemed {
+        Column {
             anchors.left: parent.left
             anchors.leftMargin: Theme.componentMarginXL
             anchors.right: parent.right
             anchors.rightMargin: Theme.componentMarginXL
+            spacing: Theme.componentMarginXL
 
-            value: 0.5
+            SliderThemed {
+                anchors.left: parent.left
+                anchors.right: parent.right
+
+                value: 0.5
+            }
+
+            MiddleSliderThemed {
+                anchors.left: parent.left
+                anchors.right: parent.right
+
+                value: 0.5
+            }
+
+            RangeSliderThemed {
+                anchors.left: parent.left
+                anchors.right: parent.right
+
+                second.value: 0.75
+                first.value: 0.25
+            }
         }
 
-        MiddleSliderThemed {
+        Row {
             anchors.left: parent.left
             anchors.leftMargin: Theme.componentMarginXL
             anchors.right: parent.right
             anchors.rightMargin: Theme.componentMarginXL
+            spacing: Theme.componentMarginXL
 
-            value: 0.5
-        }
+            SliderThemed {
+                orientation: Qt.Vertical
+                value: 0.5
+            }
 
-        RangeSliderThemed {
-            anchors.left: parent.left
-            anchors.leftMargin: Theme.componentMarginXL
-            anchors.right: parent.right
-            anchors.rightMargin: Theme.componentMarginXL
+            MiddleSliderThemed {
+                orientation: Qt.Vertical
+                value: 0.5
+            }
 
-            second.value: 0.75
-            first.value: 0.25
+            RangeSliderThemed {
+                orientation: Qt.Vertical
+                second.value: 0.75
+                first.value: 0.25
+            }
         }
 
         ListTitle { ////////////////////////////////////////////////////////////
@@ -64,35 +113,67 @@ Flickable {
             icon: ""
         }
 
-        SliderArrow {
+        Column {
             anchors.left: parent.left
             anchors.leftMargin: Theme.componentMarginXL
             anchors.right: parent.right
             anchors.rightMargin: Theme.componentMarginXL
+            spacing: Theme.componentMarginXL
 
-            value: 0.7
-            stepSize: 0.1
+            SliderArrow {
+                anchors.left: parent.left
+                anchors.right: parent.right
+
+                value: 0.7
+                stepSize: 0.1
+            }
+
+            MiddleSliderArrow {
+                anchors.left: parent.left
+                anchors.right: parent.right
+
+                value: 0.5
+                stepSize: 0.1
+            }
+
+            RangeSliderArrow {
+                anchors.left: parent.left
+                anchors.right: parent.right
+
+                first.value: 0.3
+                second.value: 0.7
+                stepSize: 0.1
+            }
         }
 
-        MiddleSliderArrow {
+        Row {
             anchors.left: parent.left
             anchors.leftMargin: Theme.componentMarginXL
             anchors.right: parent.right
             anchors.rightMargin: Theme.componentMarginXL
+            spacing: Theme.componentMarginXL
 
-            value: 0.5
-            stepSize: 0.1
-        }
+            SliderArrow {
+                orientation: Qt.Vertical
 
-        RangeSliderArrow {
-            anchors.left: parent.left
-            anchors.leftMargin: Theme.componentMarginXL
-            anchors.right: parent.right
-            anchors.rightMargin: Theme.componentMarginXL
+                value: 0.7
+                stepSize: 0.1
+            }
 
-            first.value: 0.3
-            second.value: 0.7
-            stepSize: 0.1
+            MiddleSliderArrow {
+                orientation: Qt.Vertical
+
+                value: 0.5
+                stepSize: 0.1
+            }
+
+            RangeSliderArrow {
+                orientation: Qt.Vertical
+
+                first.value: 0.3
+                second.value: 0.7
+                stepSize: 0.1
+            }
         }
 
         ListTitle { ////////////////////////////////////////////////////////////
@@ -103,25 +184,52 @@ Flickable {
             icon: ""
         }
 
-        SliderValueSolid {
+        Column {
             anchors.left: parent.left
             anchors.leftMargin: Theme.componentMarginXL
             anchors.right: parent.right
             anchors.rightMargin: Theme.componentMarginXL
+            spacing: Theme.componentMarginXL
 
-            value: 0.6
-            stepSize: 0.1
+            SliderValueSolid {
+                anchors.left: parent.left
+                anchors.right: parent.right
+
+                value: 0.6
+                stepSize: 0.1
+            }
+
+            RangeSliderValueSolid {
+                anchors.left: parent.left
+                anchors.right: parent.right
+
+                second.value: 0.8
+                first.value: 0.2
+                stepSize: 0.1
+            }
         }
 
-        RangeSliderValueSolid {
+        Row {
             anchors.left: parent.left
             anchors.leftMargin: Theme.componentMarginXL
             anchors.right: parent.right
             anchors.rightMargin: Theme.componentMarginXL
+            spacing: Theme.componentMarginXL
 
-            second.value: 0.8
-            first.value: 0.2
-            stepSize: 0.1
+            SliderValueSolid {
+                orientation: Qt.Vertical
+
+                value: 0.6
+                stepSize: 0.1
+            }
+
+            RangeSliderValueSolid {
+                orientation: Qt.Vertical
+
+                second.value: 0.8
+                first.value: 0.2
+                stepSize: 0.1
+            }
         }
     }
 }

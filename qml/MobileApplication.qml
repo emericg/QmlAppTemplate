@@ -10,7 +10,7 @@ ApplicationWindow {
     minimumWidth: 480
     minimumHeight: 960
 
-    flags: (Qt.platform.os === "ios") ? Qt.Window | Qt.MaximizeUsingFullscreenGeometryHint : Qt.Window
+    flags: Qt.Window | Qt.MaximizeUsingFullscreenGeometryHint
     color: Theme.colorBackground
     visible: true
 
@@ -60,9 +60,11 @@ ApplicationWindow {
                     screenPaddingNavbar = 0
                 }
             }
+            // hacks
             if (Qt.platform.os === "ios") {
                 //
             }
+            // hacks
             if (visibility === ApplicationWindow.FullScreen) {
                 screenPaddingStatusbar = 0
                 screenPaddingNavbar = 0

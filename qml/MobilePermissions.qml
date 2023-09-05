@@ -198,6 +198,21 @@ Item {
                     color: Theme.colorSubText
                     font.pixelSize: Theme.fontSizeContentSmall
                 }
+
+                ButtonWireframeIcon {
+                    anchors.left: parent.left
+                    anchors.leftMargin: 48
+                    height: 36
+
+                    primaryColor: Theme.colorPrimary
+                    secondaryColor: Theme.colorBackground
+
+                    text: qsTr("Location info")
+                    source: "qrc:/assets/icons_material/duotone-tune-24px.svg"
+                    sourceSize: 20
+
+                    onClicked: utilsApp.openAndroidLocationSettings()
+                }
             }
 
             ////////

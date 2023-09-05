@@ -7,13 +7,17 @@ import "qrc:/js/UtilsNumber.js" as UtilsNumber
 
 T.Slider {
     id: control
-    implicitWidth: 200
-    implicitHeight: 20
+
+    implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
+                            implicitHandleWidth + leftPadding + rightPadding)
+    implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
+                             implicitHandleHeight + topPadding + bottomPadding)
 
     padding: 4
 
-    value: 0.5
     snapMode: T.RangeSlider.SnapAlways
+
+    ////////////////
 
     // settings
     property int hhh: 18
@@ -25,14 +29,16 @@ T.Slider {
     property string colorFg: Theme.colorPrimary
     property string colorTxt: "white"
 
-    ////////////////////////////////////////////////////////////////////////////
+    ////////////////
 
     background: Rectangle {
-        x: control.leftPadding
-        y: control.topPadding + (control.availableHeight / 2) - (height / 2)
-        width: control.availableWidth
+        x: control.leftPadding + (control.horizontal ? 0 : (control.availableWidth - width) / 2)
+        y: control.topPadding + (control.horizontal ? (control.availableHeight - height) / 2 : 0)
+        implicitWidth: control.horizontal ? 200 : hhh
+        implicitHeight: control.horizontal ? hhh : 200
+        width: control.horizontal ? control.availableWidth : implicitWidth
+        height: control.horizontal ? implicitHeight : control.availableHeight
 
-        height: hhh
         radius: hhh
         opacity: 1
         color: control.colorBg
@@ -41,20 +47,22 @@ T.Slider {
             visible: (handle.x > 4)
             width: (handle.x + (handle.width / 2))
             height: parent.height
-            color: control.colorFg
+
             radius: hhh
+            color: control.colorFg
         }
     }
 
-    ////////////////////////////////////////////////////////////////////////////
+    ////////////////
 
     handle: Rectangle {
-        x: control.leftPadding + control.visualPosition * (control.availableWidth - width)
-        y: control.topPadding + (control.availableHeight / 2) - (height / 2)
+        x: control.leftPadding + (control.horizontal ? control.visualPosition * (control.availableWidth - width) : (control.availableWidth - width) / 2)
+        y: control.topPadding + (control.horizontal ? (control.availableHeight - height) / 2 : control.visualPosition * (control.availableHeight - height))
         implicitWidth: hhh
         implicitHeight: hhh
-        width: t1.width + 16
 
+        width: control.horizontal ? t1.contentWidth + 16 : hhh
+        height: hhh
         radius: hhh
         color: control.colorFg
         border.color: control.colorFg
@@ -62,6 +70,7 @@ T.Slider {
 
         Text {
             id: t1
+            width: hhh
             height: hhh
             anchors.centerIn: parent
 
@@ -73,13 +82,14 @@ T.Slider {
             }
             textFormat: Text.PlainText
             font.bold: true
-            fontSizeMode: Text.VerticalFit
+            fontSizeMode: Text.Fit
             font.pixelSize: isDesktop ? 12 : 13
+            minimumPixelSize: 10
             color: control.colorTxt
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
         }
     }
 
-    ////////////////////////////////////////////////////////////////////////////
+    ////////////////
 }
