@@ -25,6 +25,7 @@
         <file alias="ItemTag.qml">components_generic/ItemTag.qml</file>
         <file alias="ItemTagButton.qml">components_generic/ItemTagButton.qml</file>
         <file alias="MiddleSliderArrow.qml">components_generic/MiddleSliderArrow.qml</file>
+        <file alias="MiddleSliderValueSolid.qml">components_generic/MiddleSliderValueSolid.qml</file>
         <file alias="ProgressArc.qml">components_generic/ProgressArc.qml</file>
         <file alias="ProgressCircle.qml">components_generic/ProgressCircle.qml</file>
         <file alias="RoundButtonIcon.qml">components_generic/RoundButtonIcon.qml</file>

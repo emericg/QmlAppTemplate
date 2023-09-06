@@ -24,29 +24,6 @@ Flickable {
             anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
-            text: qsTr("Progress bars")
-            icon: ""
-        }
-
-        Column {
-            anchors.left: parent.left
-            anchors.leftMargin: Theme.componentMarginXL
-            anchors.right: parent.right
-            anchors.rightMargin: Theme.componentMarginXL
-            spacing: Theme.componentMarginXL
-
-            ProgressBarThemed {
-                anchors.left: parent.left
-                anchors.right: parent.right
-
-                value: 0.5
-            }
-        }
-
-        ListTitle { ////////////////////////////////////////////////////////////
-            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
-            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
-
             text: qsTr("Conventional sliders")
             icon: ""
         }
@@ -199,6 +176,14 @@ Flickable {
                 stepSize: 0.1
             }
 
+            MiddleSliderValueSolid {
+                anchors.left: parent.left
+                anchors.right: parent.right
+
+                value: 0.6
+                stepSize: 0.1
+            }
+
             RangeSliderValueSolid {
                 anchors.left: parent.left
                 anchors.right: parent.right
@@ -217,6 +202,13 @@ Flickable {
             spacing: Theme.componentMarginXL
 
             SliderValueSolid {
+                orientation: Qt.Vertical
+
+                value: 0.6
+                stepSize: 0.1
+            }
+
+            MiddleSliderValueSolid {
                 orientation: Qt.Vertical
 
                 value: 0.6

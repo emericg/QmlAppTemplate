@@ -77,6 +77,13 @@ Loader {
                     }
 
                     ListElement {
+                        title: "Indicators"
+                        text: "Thise are useful."
+                        icon: "qrc:/assets/icons_material/baseline-sort-24px.svg"
+                        page: "qrc:/qml/PageIndicators.qml"
+                    }
+
+                    ListElement {
                         title: "Sliders"
                         text: "We like sliders. Sliders are cools."
                         icon: "qrc:/assets/icons_material/baseline-sort-24px.svg"

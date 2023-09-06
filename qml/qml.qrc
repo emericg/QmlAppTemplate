@@ -21,6 +21,7 @@
         <file>PageButtons.qml</file>
         <file>PageDateTime.qml</file>
         <file>PageDialogs.qml</file>
+        <file>PageIndicators.qml</file>
         <file>PageSelectors.qml</file>
         <file>PageSliders.qml</file>
         <file>PageTextFields.qml</file>
