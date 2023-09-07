@@ -331,21 +331,6 @@ ApplicationWindow {
 
     ////////////////
 
-    Rectangle { // navbar area
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-        height: screenPaddingNavbar + screenPaddingBottom
-        visible: (!mobileMenu.visible || appContent.state === "Tutorial")
-        opacity: 0.8
-        color: {
-            if (appContent.state === "Tutorial") return Theme.colorHeader
-            return Theme.colorBackground
-        }
-    }
-
-    ////////////////
-
     MobileMenu {
         id: mobileMenu
     }

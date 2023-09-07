@@ -19,6 +19,7 @@
         <file>ScreenAbout.qml</file>
 
         <file>PageButtons.qml</file>
+        <file>PageColors.qml</file>
         <file>PageDateTime.qml</file>
         <file>PageDialogs.qml</file>
         <file>PageIndicators.qml</file>

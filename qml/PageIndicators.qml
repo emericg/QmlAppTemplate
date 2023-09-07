@@ -58,14 +58,33 @@ Flickable {
             anchors.rightMargin: Theme.componentMarginXL
             spacing: Theme.componentMarginXL
 
-            ProgressArc {
-                width: 112
-                value: 0.33
+            Row {
+                spacing: Theme.componentMarginXL
+
+                ProgressArc {
+                    width: 128
+                    value: 0.33
+                }
+                ProgressArc {
+                    width: 128
+                    value: 0.66
+                    arcCap: "round"
+                    arcColor: Theme.colorGreen
+                }
             }
 
-            ProgressCircle {
-                width: 112
-                value: 0.33
+            Row {
+                spacing: Theme.componentMarginXL
+
+                ProgressCircle {
+                    width: 128
+                    value: 0.33
+                }
+                ProgressCircle {
+                    width: 128
+                    value: 0.66
+                    isPie: true
+                }
             }
         }
     }

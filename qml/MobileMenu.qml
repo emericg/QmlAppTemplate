@@ -17,9 +17,9 @@ Item {
 
     ////////////////////////////////////////////////////////////////////////////
 
-    Rectangle {
+    Rectangle { // background
         anchors.fill: parent
-        opacity: appWindow.isTablet ? 0.5 : 0.8
+        opacity: 0.9
         color: appWindow.isTablet ? Theme.colorTabletmenu : Theme.colorBackground
 
         Rectangle {
@@ -32,7 +32,21 @@ Item {
             color: Theme.colorTabletmenuContent
         }
     }
+/*
+    Rectangle { // navbar area
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        height: screenPaddingNavbar + screenPaddingBottom
 
+        visible: (!mobileMenu.visible || appContent.state === "Tutorial")
+        opacity: 0.9
+        color: {
+            if (appContent.state === "Tutorial") return Theme.colorHeader
+            return Theme.colorBackground
+        }
+    }
+*/
     // prevent clicks below this area
     MouseArea { anchors.fill: parent; acceptedButtons: Qt.AllButtons; }
 

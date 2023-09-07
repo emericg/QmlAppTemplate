@@ -49,6 +49,13 @@ Loader {
                     id: pagesModel
 
                     ListElement {
+                        title: "Colors"
+                        text: "Predefined colors."
+                        icon: "qrc:/assets/icons_material/duotone-style-24px.svg"
+                        page: "qrc:/qml/PageColors.qml"
+                    }
+
+                    ListElement {
                         title: "Buttons"
                         text: "Buttons and stuff."
                         icon: "qrc:/assets/icons_material/duotone-touch_app-24px.svg"
@@ -78,8 +85,8 @@ Loader {
 
                     ListElement {
                         title: "Indicators"
-                        text: "Thise are useful."
-                        icon: "qrc:/assets/icons_material/baseline-sort-24px.svg"
+                        text: "These are useful."
+                        icon: "qrc:/assets/icons_material/duotone-speed-24px.svg"
                         page: "qrc:/qml/PageIndicators.qml"
                     }
 
@@ -99,7 +106,7 @@ Loader {
 
                     ListElement {
                         title: "Tickers"
-                        text: "Checkboxes and radiobuttons."
+                        text: "Checkboxes, radiobuttons and others."
                         icon: "qrc:/assets/icons_material/baseline-flaky-24px.svg"
                         page: "qrc:/qml/PageTickers.qml"
                     }

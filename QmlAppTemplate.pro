@@ -29,9 +29,6 @@ include(src/thirdparty/MobileSharing/MobileSharing.pri)
 DEFINES += QAPPLICATION_CLASS=QGuiApplication
 include(src/thirdparty/SingleApplication/SingleApplication.pri)
 
-# QmlRadialBar
-include(src/thirdparty/QmlRadialBar/QmlRadialBar.pri)
-
 # Project files ################################################################
 
 SOURCES  += src/main.cpp \
