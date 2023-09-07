@@ -15,13 +15,10 @@ T.Slider {
 
     padding: 4
 
-    snapMode: T.RangeSlider.SnapAlways
-
-    ////////////////
-
     // settings
     property int hhh: 18
     property string unit
+    property int tofixed: 0
     property bool kshort: false
 
     // colors
@@ -40,13 +37,13 @@ T.Slider {
         height: control.horizontal ? implicitHeight : control.availableHeight
 
         radius: hhh
-        opacity: 1
         color: control.colorBg
+        scale: control.horizontal && control.mirrored ? -1 : 1
 
         Rectangle {
-            visible: (handle.x > 4)
-            width: (handle.x + (handle.width / 2))
-            height: parent.height
+            y: control.horizontal ? 0 : handle.y
+            width: control.horizontal ? Math.max(control.position * parent.width, handle.x + handle.width/2) : hhh
+            height: control.horizontal ? hhh : parent.height - handle.y
 
             radius: hhh
             color: control.colorFg
@@ -66,7 +63,6 @@ T.Slider {
         radius: hhh
         color: control.colorFg
         border.color: control.colorFg
-        opacity: control.pressed ? 1 : 1
 
         Text {
             id: t1
@@ -82,8 +78,8 @@ T.Slider {
             }
             textFormat: Text.PlainText
             font.bold: true
-            fontSizeMode: Text.Fit
             font.pixelSize: isDesktop ? 12 : 13
+            fontSizeMode: Text.Fit
             minimumPixelSize: 10
             color: control.colorTxt
             horizontalAlignment: Text.AlignHCenter

@@ -41,13 +41,10 @@ T.Slider {
         scale: control.horizontal && control.mirrored ? -1 : 1
 
         Rectangle {
-            //visible: control.horizontal ? (handle.x > 4) : (handle.y > 4)
-            //y: control.horizontal ? 0 : control.visualPosition * parent.height
-            //width: control.horizontal ? control.position * parent.width : hhh
-            //height: control.horizontal ? hhh : control.position * parent.height
-            visible: (handle.x > 4)
-            width: (handle.x + (handle.width / 2))
-            height: parent.height
+            x: control.horizontal ? ((control.visualPosition <= 0.5) ? handle.x : control.availableWidth / 2) : 0
+            y: !control.horizontal ? ((control.visualPosition <= 0.5) ? handle.y : control.availableHeight / 2) : 0
+            width: control.horizontal ? Math.abs((control.width / 2) - handle.x - ((control.visualPosition > 0.5) ? handle.width : 0)) : hhh
+            height: !control.horizontal ? Math.abs((control.height / 2) - handle.y - ((control.visualPosition > 0.5) ? handle.height : 0)) : hhh
 
             radius: hhh
             color: control.colorFg

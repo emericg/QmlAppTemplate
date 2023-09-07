@@ -101,7 +101,7 @@ Flickable {
                 anchors.left: parent.left
                 anchors.right: parent.right
 
-                value: 0.7
+                value: 0.66
                 stepSize: 0.1
             }
 
@@ -109,7 +109,9 @@ Flickable {
                 anchors.left: parent.left
                 anchors.right: parent.right
 
-                value: 0.5
+                from: -1
+                to: 1
+                value: 0
                 stepSize: 0.1
             }
 
@@ -133,14 +135,16 @@ Flickable {
             SliderArrow {
                 orientation: Qt.Vertical
 
-                value: 0.7
+                value: 0.66
                 stepSize: 0.1
             }
 
             MiddleSliderArrow {
                 orientation: Qt.Vertical
 
-                value: 0.5
+                from: -1
+                to: 1
+                value: 0
                 stepSize: 0.1
             }
 
@@ -180,7 +184,9 @@ Flickable {
                 anchors.left: parent.left
                 anchors.right: parent.right
 
-                value: 0.6
+                from: -1
+                to: 1
+                value: 0
                 stepSize: 0.1
             }
 
@@ -204,14 +210,16 @@ Flickable {
             SliderValueSolid {
                 orientation: Qt.Vertical
 
-                value: 0.6
+                value: 0.66
                 stepSize: 0.1
             }
 
             MiddleSliderValueSolid {
                 orientation: Qt.Vertical
 
-                value: 0.6
+                from: -1
+                to: 1
+                value: 0
                 stepSize: 0.1
             }
 

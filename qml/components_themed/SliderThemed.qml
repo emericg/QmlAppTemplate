@@ -29,7 +29,8 @@ T.Slider {
         scale: control.horizontal && control.mirrored ? -1 : 1
 
         Rectangle {
-            y: control.horizontal ? 0 : control.visualPosition * parent.height
+            x: control.horizontal ? 0 : -1
+            y: control.horizontal ? -1 : control.visualPosition * parent.height
             width: control.horizontal ? control.position * parent.width : 6
             height: control.horizontal ? 6 : control.position * parent.height
 
@@ -43,10 +44,11 @@ T.Slider {
     handle: Rectangle {
         x: control.leftPadding + (control.horizontal ? control.visualPosition * (control.availableWidth - width) : (control.availableWidth - width) / 2)
         y: control.topPadding + (control.horizontal ? (control.availableHeight - height) / 2 : control.visualPosition * (control.availableHeight - height))
+
         implicitWidth: 18
         implicitHeight: 18
+        radius: 9
 
-        radius: (width / 2)
         color: control.pressed ? Theme.colorSecondary : Theme.colorPrimary
         border.width: 1
         border.color: Theme.colorPrimary
