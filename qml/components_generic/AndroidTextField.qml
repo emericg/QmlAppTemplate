@@ -40,8 +40,8 @@ T.TextField {
     property string colorPlaceholderText: Theme.colorSubText
     property string colorBorder: Theme.colorSubText
     property string colorBackground: Theme.colorBackground
-    property string colorSelectedText: Theme.colorHighContrast
     property string colorSelection: Theme.colorPrimary
+    property string colorSelectedText: "white"
 
     ////////////////
 
