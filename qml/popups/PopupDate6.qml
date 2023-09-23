@@ -10,7 +10,7 @@ Popup {
     x: (appWindow.width / 2) - (width / 2)
     y: (appWindow.height / 2) - (height / 2)
 
-    width: appWindow.width * 0.9
+    width: appWindow.width * (singleColumn ? 0.9 : 0.4)
     padding: 0
     margins: 0
 
@@ -41,19 +41,19 @@ Popup {
         //console.log("openDate(" + date + ")")
 
         today = new Date()
+        minDate = null
+        maxDate = null
+
         initialDate = date
         selectedDate = date
         grid.year = date.getFullYear()
         grid.month = date.getMonth()
 
-        minDate = null
-        maxDate = null
-
-        printDate()
-
         // visual hacks
         //dow.width = dow.width - 8
         grid.width = dow.width - 8
+
+        printDate()
 
         popupDate.open()
     }
@@ -76,6 +76,12 @@ Popup {
             bigMonth.text += " " + thismonth.toLocaleString(locale, "yyyy")
 
         isSelectedDateToday = (today.toLocaleString(locale, "dd MMMM yyyy") === selectedDate.toLocaleString(locale, "dd MMMM yyyy"))
+    }
+
+    function resetDate() {
+        grid.month = today.getMonth()
+        grid.year = today.getFullYear()
+        printDate()
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -134,7 +140,7 @@ Popup {
                 }
             }
 
-            RoundButtonIcon {
+            RoundButtonIcon { // reset
                 anchors.right: parent.right
                 anchors.rightMargin: 24
                 anchors.verticalCenter: parent.verticalCenter
@@ -144,11 +150,7 @@ Popup {
 
                 visible: !(grid.year === today.getFullYear() && grid.month === today.getMonth())
 
-                onClicked: {
-                    grid.month = today.getMonth()
-                    grid.year = today.getFullYear()
-                    printDate()
-                }
+                onClicked: resetDate()
             }
         }
 

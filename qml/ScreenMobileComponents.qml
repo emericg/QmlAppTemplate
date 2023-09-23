@@ -98,7 +98,7 @@ Loader {
                     }
 
                     ListElement {
-                        title: "TextFields"
+                        title: "Text fields"
                         text: "Various text inputs."
                         icon: "qrc:/assets/icons_material/duotone-edit-24px.svg"
                         page: "qrc:/qml/PageTextFields.qml"

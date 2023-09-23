@@ -22,7 +22,6 @@ Flickable {
         bottomPadding: Theme.componentMargin
         spacing: Theme.componentMarginXL
 
-
         ListTitle { ////////////////////////////////////////////////////////////
             anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin

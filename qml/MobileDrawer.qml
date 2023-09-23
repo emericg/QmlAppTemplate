@@ -3,28 +3,7 @@ import QtQuick.Controls
 
 import ThemeEngine
 
-Drawer {
-    width: (appWindow.screenOrientation === Qt.PortraitOrientation || appWindow.width < 480)
-            ? 0.8 * appWindow.width : 0.5 * appWindow.width
-    height: appWindow.height
-
-    topPadding: 0
-    bottomPadding: 0
-
-    ////////////////////////////////////////////////////////////////////////////
-
-    background: Rectangle {
-        color: Theme.colorBackground
-
-        Rectangle { // left border
-            x: parent.width
-            width: 1
-            height: parent.height
-            color: Theme.colorSeparator
-        }
-    }
-
-    ////////////////////////////////////////////////////////////////////////////
+DrawerThemed {
 
     contentItem: Item {
 
@@ -83,7 +62,7 @@ Drawer {
             ////////
         }
 
-        ////////////////////////////////////////////////////////////////////////
+        ////////////////
 
         Flickable {
             anchors.top: headerColumn.bottom
@@ -176,6 +155,4 @@ Drawer {
 
         ////////////////
     }
-
-    ////////////////////////////////////////////////////////////////////////////
 }

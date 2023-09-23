@@ -110,13 +110,6 @@ Loader {
                         fullColor: true
                         primaryColor: Theme.colorActionbarHighlight
                         source: "qrc:/assets/icons_material/baseline-warning-24px.svg"
-
-                        onClicked: {
-                            //
-                        }
-                        onPressAndHold: {
-                            //
-                        }
                     }
                     ButtonWireframeIcon {
                         fullColor: true
@@ -127,7 +120,7 @@ Loader {
                     ButtonWireframeIcon {
                         fullColor: true
                         primaryColor: Theme.colorActionbarHighlight
-                        text: "Enable components"
+                        text: "Action 2"
                     }
                 }
 
@@ -239,6 +232,10 @@ Loader {
             anchors.bottom: parent.bottom
 
             enabled: appHeader.componentsEnabled
+
+            LayoutMirroring.enabled: appHeader.componentsMirrored
+            //layoutDirection: Qt.RightToLeft
+
             contentWidth: parent.width
             contentHeight: contentColumn.height
 
@@ -618,7 +615,16 @@ Loader {
                     }
                 }
 
-                ////
+                ////////////////////////
+
+                Rectangle { // separator
+                    height: 2
+                    color: Theme.colorSeparator
+                    anchors.left: parent.left
+                    anchors.leftMargin: -24
+                    anchors.right: parent.right
+                    anchors.rightMargin: -24
+                }
 
                 Row {
                     anchors.left: parent.left
@@ -828,7 +834,7 @@ Loader {
                     TextFieldThemed {
                         anchors.verticalCenter: parent.verticalCenter
                         width: 256
-                        placeholderText: "placeholder text"
+                        placeholderText: "TextFieldThemed"
                     }
 
                     ComboBoxThemed {
@@ -836,6 +842,7 @@ Loader {
                         width: 256
 
                         model: ListModel {
+                            ListElement { text: "ComboBoxThemed"; }
                             ListElement { text: "combobox item1"; }
                             ListElement { text: "combobox item2"; }
                         }
@@ -864,12 +871,14 @@ Loader {
 
                     SpinBoxThemedMobile {
                         anchors.verticalCenter: parent.verticalCenter
+                        editable: true
                         //legend: "°"
                     }
 
                     SpinBoxThemedDesktop {
                         anchors.verticalCenter: parent.verticalCenter
-                        //legend: "°"
+                        editable: true
+                        legend: "°"
                     }
                 }
 
@@ -938,6 +947,7 @@ Loader {
                         width: 256
 
                         model: ListModel {
+                            ListElement { text: "ComboBox"; }
                             ListElement { text: "combobox item1"; }
                             ListElement { text: "combobox item2"; }
                         }
@@ -955,6 +965,7 @@ Loader {
 
                     SpinBox {
                         anchors.verticalCenter: parent.verticalCenter
+                        editable: true
                     }
                 }
 

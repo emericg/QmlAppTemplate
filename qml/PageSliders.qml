@@ -231,5 +231,31 @@ Flickable {
                 stepSize: 0.1
             }
         }
+
+        ListTitle { ////////////////////////////////////////////////////////////
+            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
+
+            text: qsTr("Qt Quick Controls")
+            icon: ""
+        }
+
+        Column {
+            anchors.left: parent.left
+            anchors.leftMargin: Theme.componentMarginXL
+            anchors.right: parent.right
+            anchors.rightMargin: Theme.componentMarginXL
+            spacing: Theme.componentMarginXL
+
+            Slider {
+                anchors.left: parent.left
+                anchors.right: parent.right
+            }
+
+            RangeSlider {
+                anchors.left: parent.left
+                anchors.right: parent.right
+            }
+        }
     }
 }

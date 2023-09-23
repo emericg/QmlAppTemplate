@@ -35,8 +35,6 @@ $ make
 
 > [SingleApplication](src/thirdparty/SingleApplication/README.md) Keep only one instance of your application active at a time
 
-> [QmlRadialBar](src/thirdparty/QmlRadialBar/README.md) A radial bar reusable component for QML
-
 ### QML components
 
 > TODO

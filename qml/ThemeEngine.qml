@@ -80,6 +80,8 @@ Item {
     property color colorBoxBorder: "#f4f4f4"
     property color colorDeviceWidget
     property string sidebarSelector // 'arrow' or 'bar'
+    readonly property color colorMaterialLightGrey: "#f8f8f8"
+    readonly property color colorMaterialDarkGrey: "#ececec"
 
     ////////////////
 
@@ -312,7 +314,7 @@ Item {
             colorForeground = (Qt.platform.os === "android" || Qt.platform.os === "ios") ? colorMaterialLightGrey : colorMaterialGrey
 
             colorPrimary = colorGreen
-            colorSecondary = colorLightGreen
+            colorSecondary = "#09debc"
             colorSuccess = colorGreen
             colorWarning = colorOrange
             colorError = colorRed
@@ -352,7 +354,7 @@ Item {
 
             colorSidebar = "#ffcf00"
             colorSidebarContent = "white"
-            colorSidebarHighlight = colorNeutralNight
+            colorSidebarHighlight = "#ffb300"
 
             colorActionbar = colorBlue
             colorActionbarContent = "white"
@@ -398,15 +400,15 @@ Item {
             colorRed = "#ff7657"
 
             themeStatusbar = Material.Dark
-            colorStatusbar = colorNeutralNight
+            colorStatusbar = "#ffb300"
 
             colorHeader = "#ffcf00"
             colorHeaderContent = "white"
-            colorHeaderHighlight = colorNeutralNight
+            colorHeaderHighlight = "#ffb300"
 
             colorSidebar = "#ffcf00"
             colorSidebarContent = "white"
-            colorSidebarHighlight = colorNeutralNight
+            colorSidebarHighlight = "#ffb300"
 
             colorActionbar = colorGreen
             colorActionbarContent = "white"

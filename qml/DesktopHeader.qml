@@ -21,6 +21,8 @@ Rectangle {
 
     property bool componentsEnabled: true
 
+    property bool componentsMirrored: false
+
     ////////////////////////////////////////////////////////////////////////////
 
     signal backButtonClicked()

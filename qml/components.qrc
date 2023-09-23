@@ -11,6 +11,7 @@
         <file alias="ActionMenu_bottom.qml">components_generic/ActionMenu_bottom.qml</file>
         <file alias="ActionMenu_floating.qml">components_generic/ActionMenu_floating.qml</file>
         <file alias="ActionMenuItem.qml">components_generic/ActionMenuItem.qml</file>
+        <file alias="ActionMenuSeparator.qml">components_generic/ActionMenuSeparator.qml</file>
         <file alias="ButtonCompactable.qml">components_generic/ButtonCompactable.qml</file>
         <file alias="ButtonImage.qml">components_generic/ButtonImage.qml</file>
         <file alias="ButtonText.qml">components_generic/ButtonText.qml</file>
@@ -61,6 +62,7 @@
         <file alias="CheckBoxThemed.qml">components_themed/CheckBoxThemed.qml</file>
         <file alias="ComboBoxThemed.qml">components_themed/ComboBoxThemed.qml</file>
         <file alias="DialThemed.qml">components_themed/DialThemed.qml</file>
+        <file alias="DrawerThemed.qml">components_themed/DrawerThemed.qml</file>
         <file alias="ItemDelegateThemed.qml">components_themed/ItemDelegateThemed.qml</file>
         <file alias="MiddleSliderThemed.qml">components_themed/MiddleSliderThemed.qml</file>
         <file alias="PageIndicatorThemed.qml">components_themed/PageIndicatorThemed.qml</file>
@@ -79,6 +81,7 @@
         <file alias="SwitchThemedDesktop.qml">components_themed/SwitchThemed_desktop.qml</file>
         <file alias="SwitchThemedMobile.qml">components_themed/SwitchThemed_mobile.qml</file>
         <file alias="TextAreaThemed.qml">components_themed/TextAreaThemed.qml</file>
+        <file alias="TextEditThemed.qml">components_themed/TextEditThemed.qml</file>
         <file alias="TextFieldThemed.qml">components_themed/TextFieldThemed.qml</file>
         <file alias="TumblerThemed.qml">components_themed/TumblerThemed.qml</file>
     </qresource>

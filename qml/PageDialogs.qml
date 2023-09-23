@@ -10,6 +10,8 @@ Flickable {
     boundsBehavior: isDesktop ? Flickable.OvershootBounds : Flickable.DragAndOvershootBounds
     ScrollBar.vertical: ScrollBar { visible: isDesktop; }
 
+    property var savethedate: new Date()
+
     Column {
         id: contentColumn
 
@@ -82,9 +84,10 @@ Flickable {
 
             PopupDate {
                 id: popupDate
+                onUpdateDate: (newdate) => { savethedate = newdate }
             }
 
-            onClicked: popupDate.openDate(new Date())
+            onClicked: popupDate.openDate(savethedate)
         }
 
         ButtonWireframeIcon {
@@ -99,9 +102,10 @@ Flickable {
 
             PopupTime {
                 id: popupTime
+                onUpdateTime: (newtime) => { savethedate = newtime }
             }
 
-            onClicked: popupTime.open()
+            onClicked: popupTime.openTime(savethedate)
         }
     }
 }

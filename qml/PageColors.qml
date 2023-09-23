@@ -27,27 +27,26 @@ Flickable {
             anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
-            text: qsTr("Palette colors")
+            text: qsTr("App palette colors")
             icon: ""
         }
 
-        Column {
+        Grid {
             anchors.left: parent.left
             anchors.leftMargin: Theme.componentMarginXL
             anchors.right: parent.right
             anchors.rightMargin: Theme.componentMarginXL
-            spacing: 0
 
-            Row {
-                ColoredSquare { color: Theme.colorRed }
-                ColoredSquare { color: Theme.colorGreen }
-                ColoredSquare { color: Theme.colorBlue }
-            }
-            Row {
-                ColoredSquare { color: Theme.colorYellow }
-                ColoredSquare { color: Theme.colorOrange }
-                ColoredSquare { color: Theme.colorGrey }
-            }
+            columns: 6
+            spacing: -2
+
+            ColoredSquare { color: Theme.colorRed }
+            ColoredSquare { color: Theme.colorGreen }
+            ColoredSquare { color: Theme.colorBlue }
+
+            ColoredSquare { color: Theme.colorYellow }
+            ColoredSquare { color: Theme.colorOrange }
+            ColoredSquare { color: Theme.colorGrey }
         }
 
         //
@@ -60,41 +59,37 @@ Flickable {
             icon: ""
         }
 
-        Column {
+        Grid {
             anchors.left: parent.left
             anchors.leftMargin: Theme.componentMarginXL
             anchors.right: parent.right
             anchors.rightMargin: Theme.componentMarginXL
-            spacing: 0
 
-            Row {
-                ColoredSquare { color: Theme.colorMaterialRed }
-                ColoredSquare { color: Theme.colorMaterialPink }
-                ColoredSquare { color: Theme.colorMaterialPurple }
-                ColoredSquare { color: Theme.colorMaterialDeepPurple }
-            }
-            Row {
-                ColoredSquare { color: Theme.colorMaterialIndigo }
-                ColoredSquare { color: Theme.colorMaterialBlue }
-                ColoredSquare { color: Theme.colorMaterialLightBlue }
-                ColoredSquare { color: Theme.colorMaterialCyan }
-            }
-            Row {
-                ColoredSquare { color: Theme.colorMaterialTeal }
-                ColoredSquare { color: Theme.colorMaterialGreen }
-                ColoredSquare { color: Theme.colorMaterialLightGreen }
-                ColoredSquare { color: Theme.colorMaterialLime }
-            }
-            Row {
-                ColoredSquare { color: Theme.colorMaterialYellow }
-                ColoredSquare { color: Theme.colorMaterialAmber }
-                ColoredSquare { color: Theme.colorMaterialOrange }
-                ColoredSquare { color: Theme.colorMaterialDeepOrange }
-            }
-            Row {
-                ColoredSquare { color: Theme.colorMaterialBrown }
-                ColoredSquare { color: Theme.colorMaterialGrey }
-            }
+            columns: 6
+            spacing: -2
+
+            ColoredSquare { color: Theme.colorMaterialRed }
+            ColoredSquare { color: Theme.colorMaterialPink }
+            ColoredSquare { color: Theme.colorMaterialPurple }
+            ColoredSquare { color: Theme.colorMaterialDeepPurple }
+
+            ColoredSquare { color: Theme.colorMaterialIndigo }
+            ColoredSquare { color: Theme.colorMaterialBlue }
+            ColoredSquare { color: Theme.colorMaterialLightBlue }
+            ColoredSquare { color: Theme.colorMaterialCyan }
+
+            ColoredSquare { color: Theme.colorMaterialTeal }
+            ColoredSquare { color: Theme.colorMaterialGreen }
+            ColoredSquare { color: Theme.colorMaterialLightGreen }
+            ColoredSquare { color: Theme.colorMaterialLime }
+
+            ColoredSquare { color: Theme.colorMaterialYellow }
+            ColoredSquare { color: Theme.colorMaterialAmber }
+            ColoredSquare { color: Theme.colorMaterialOrange }
+            ColoredSquare { color: Theme.colorMaterialDeepOrange }
+
+            ColoredSquare { color: Theme.colorMaterialBrown }
+            ColoredSquare { color: Theme.colorMaterialGrey }
         }
 
         ListTitle { ////////////////////////////////////////////////////////////
@@ -110,7 +105,9 @@ Flickable {
             anchors.leftMargin: Theme.componentMarginXL
             anchors.right: parent.right
             anchors.rightMargin: Theme.componentMarginXL
-            spacing: 0
+
+            columns: 6
+            spacing: -2
 
             Repeater {
                 model: [
@@ -152,7 +149,7 @@ Flickable {
     component ColoredSquare: Rectangle {
         width: contentColumn.www
         height: contentColumn.hhh
-        border.width: 2
+        border.width: 4
         border.color: "white"
     }
 }

@@ -28,13 +28,31 @@ Flickable {
             icon: ""
         }
 
+        TextEditThemed {
+            anchors.left: parent.left
+            anchors.leftMargin: Theme.componentMarginXL
+            anchors.right: parent.right
+            anchors.rightMargin: Theme.componentMarginXL
+
+            text: "TextFieldThemed"
+        }
+
         TextFieldThemed {
             anchors.left: parent.left
             anchors.leftMargin: Theme.componentMarginXL
             anchors.right: parent.right
             anchors.rightMargin: Theme.componentMarginXL
 
-            placeholderText: "placeholder text"
+            placeholderText: "TextFieldThemed"
+        }
+
+        TextAreaThemed {
+            anchors.left: parent.left
+            anchors.leftMargin: Theme.componentMarginXL
+            anchors.right: parent.right
+            anchors.rightMargin: Theme.componentMarginXL
+
+            placeholderText: "TextAreaThemed"
         }
 
         AndroidTextField {
@@ -44,7 +62,6 @@ Flickable {
             anchors.rightMargin: Theme.componentMarginXL
 
             title: "AndroidTextField"
-            text: "some text"
             placeholderText: "placeholder text"
         }
 
@@ -52,27 +69,19 @@ Flickable {
             anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
-            text: qsTr("TextAreas")
+            text: qsTr("Qt Quick Controls")
             icon: ""
         }
 
-        TextAreaThemed {
+        TextEdit {
             anchors.left: parent.left
             anchors.leftMargin: Theme.componentMarginXL
             anchors.right: parent.right
             anchors.rightMargin: Theme.componentMarginXL
 
-            placeholderText: "placeholder text"
+            width: 256
+            text: "Text Edit"
         }
-
-        ListTitle { ////////////////////////////////////////////////////////////
-            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
-            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
-
-            text: qsTr("Qt default")
-            icon: ""
-        }
-
         TextField {
             anchors.left: parent.left
             anchors.leftMargin: Theme.componentMarginXL
@@ -81,6 +90,15 @@ Flickable {
 
             width: 256
             text: "Text Field"
+        }
+        TextArea {
+            anchors.left: parent.left
+            anchors.leftMargin: Theme.componentMarginXL
+            anchors.right: parent.right
+            anchors.rightMargin: Theme.componentMarginXL
+
+            width: 256
+            text: "Text Area"
         }
     }
 }

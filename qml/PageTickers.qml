@@ -93,5 +93,45 @@ Flickable {
             value: 128
             legend: "Kio"
         }
+
+        ListTitle { ////////////////////////////////////////////////////////////
+            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
+
+            text: qsTr("Qt Quick Controls")
+            icon: ""
+        }
+
+        Row {
+            anchors.horizontalCenter: parent.horizontalCenter
+
+            CheckBox {
+                text: "CheckBox"
+            }
+        }
+
+        Row {
+            anchors.horizontalCenter: parent.horizontalCenter
+
+            RadioButton {
+                text: "light"
+                checked: true
+            }
+            RadioButton {
+                text: "dark"
+                checked: false
+            }
+        }
+
+        Switch {
+            anchors.horizontalCenter: parent.horizontalCenter
+            text: "Switch"
+            checked: true
+        }
+
+        SpinBox {
+            anchors.horizontalCenter: parent.horizontalCenter
+            value: 50
+        }
     }
 }
