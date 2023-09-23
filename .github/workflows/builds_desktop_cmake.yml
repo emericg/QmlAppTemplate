@@ -12,8 +12,8 @@ on:
 #-------------------------------------------------------------------------------
 
 env:
-  APPLICATION: "QmlAppTemplate"
-  APPLICATION_VERSION: "0.6"
+  APP_NAME: "QmlAppTemplate"
+  APP_VERSION: "0.6"
   QT_VERSION: "6.5.2"
 
 #-------------------------------------------------------------------------------
@@ -55,7 +55,7 @@ jobs:
         run: |
              cd build/
              cmake ..
-             make -j$(nproc)
+             cmake --build .
 
       # Deploy application
       - name: Deploy application
@@ -66,8 +66,8 @@ jobs:
       - name: Upload AppImage
         uses: actions/upload-artifact@v3
         with:
-          name: ${{env.APPLICATION}}-${{env.APPLICATION_VERSION}}-linux64.AppImage
-          path: ${{env.APPLICATION}}*.AppImage
+          name: ${{env.APP_NAME}}-${{env.APP_VERSION}}-linux64.AppImage
+          path: ${{env.APP_NAME}}*.AppImage
 
   ## macOS build ###############################################################
   build-mac:
@@ -104,7 +104,7 @@ jobs:
         run: |
              cd build/
              cmake ..
-             make -j$(nproc)
+             cmake --build .
 
       # Deploy application
       - name: Deploy application
@@ -115,8 +115,8 @@ jobs:
       - name: Upload app zip
         uses: actions/upload-artifact@v3
         with:
-          name: ${{env.APPLICATION}}-${{env.APPLICATION_VERSION}}-macOS.zip
-          path: bin/${{env.APPLICATION}}-${{env.APPLICATION_VERSION}}-macOS.zip
+          name: ${{env.APP_NAME}}-${{env.APP_VERSION}}-macOS.zip
+          path: bin/${{env.APP_NAME}}-${{env.APP_VERSION}}-macOS.zip
 
   ## Windows build #############################################################
   build-windows:
@@ -171,12 +171,12 @@ jobs:
       - name: Upload ZIP
         uses: actions/upload-artifact@v3
         with:
-          name: ${{env.APPLICATION}}-${{env.APPLICATION_VERSION}}-win64.zip
-          path: ${{env.APPLICATION}}-${{env.APPLICATION_VERSION}}-win64.zip
+          name: ${{env.APP_NAME}}-${{env.APP_VERSION}}-win64.zip
+          path: ${{env.APP_NAME}}-${{env.APP_VERSION}}-win64.zip
 
       # Upload NSIS installer
       - name: Upload NSIS installer
         uses: actions/upload-artifact@v3
         with:
-          name: ${{env.APPLICATION}}-${{env.APPLICATION_VERSION}}-win64.exe
-          path: ${{env.APPLICATION}}-${{env.APPLICATION_VERSION}}-win64.exe
+          name: ${{env.APP_NAME}}-${{env.APP_VERSION}}-win64.exe
+          path: ${{env.APP_NAME}}-${{env.APP_VERSION}}-win64.exe

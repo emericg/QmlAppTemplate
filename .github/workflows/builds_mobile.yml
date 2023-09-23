@@ -12,8 +12,8 @@ on:
 #-------------------------------------------------------------------------------
 
 env:
-  APPLICATION: "QmlAppTemplate"
-  APPLICATION_VERSION: "0.6"
+  APP_NAME: "QmlAppTemplate"
+  APP_VERSION: "0.6"
   QT_VERSION: "6.5.2"
 
 #-------------------------------------------------------------------------------
@@ -45,8 +45,8 @@ jobs:
       #- name: Install Android SDK / NDK / tools
       #  run: |
       #       sdkmanager "platforms;android-33"
-      #       sdkmanager "ndk;25.1.8937393"
-      #       sdkmanager "build-tools;31.0.1"
+      #       sdkmanager "ndk;25.2.9519653"
+      #       sdkmanager "build-tools;33.0.2"
 
       # Install Qt (Android & desktop)
       - name: Install Qt (Android & desktop)
@@ -69,7 +69,7 @@ jobs:
       # Build application
       - name: Build application
         run: |
-             qmake ${{env.APPLICATION}}.pro CONFIG+=release
+             qmake ${{env.APP_NAME}}.pro CONFIG+=release
              make -j$(nproc)
 
   ## iOS build #################################################################
@@ -98,11 +98,12 @@ jobs:
       # Setup env
       - name: Setup env
         run: |
-             ln -s /Users/runner/work/${{env.APPLICATION}}/Qt/${{env.QT_VERSION}}/macos /Users/runner/work/${{env.APPLICATION}}/Qt/${{env.QT_VERSION}}/clang_64
+             ln -s /Users/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/macos /Users/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/clang_64
              qmake --version
+             alias nproc="sysctl -n hw.logicalcpu"
 
       # Build application
       - name: Build application
         run: |
-             qmake ${{env.APPLICATION}}.pro CONFIG+=release
+             qmake ${{env.APP_NAME}}.pro CONFIG+=release
              make -j$(nproc)

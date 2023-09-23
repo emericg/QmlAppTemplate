@@ -12,8 +12,8 @@ on:
 #-------------------------------------------------------------------------------
 
 env:
-  APPLICATION: "QmlAppTemplate"
-  APPLICATION_VERSION: "0.6"
+  APP_NAME: "QmlAppTemplate"
+  APP_VERSION: "0.6"
   QT_VERSION: "6.5.2"
 
 #-------------------------------------------------------------------------------
@@ -53,7 +53,7 @@ jobs:
       # Build application
       - name: Build application
         run: |
-             qmake ${{env.APPLICATION}}.pro CONFIG+=release PREFIX=/usr
+             qmake ${{env.APP_NAME}}.pro CONFIG+=release PREFIX=/usr
              make -j$(nproc)
 
       # Deploy application
@@ -65,8 +65,8 @@ jobs:
       - name: Upload AppImage
         uses: actions/upload-artifact@v3
         with:
-          name: ${{env.APPLICATION}}-${{env.APPLICATION_VERSION}}-linux64.AppImage
-          path: ${{env.APPLICATION}}*.AppImage
+          name: ${{env.APP_NAME}}-${{env.APP_VERSION}}-linux64.AppImage
+          path: ${{env.APP_NAME}}*.AppImage
 
   ## macOS build ###############################################################
   build-mac:
@@ -95,11 +95,12 @@ jobs:
       - name: Setup env
         run: |
              qmake --version
+             alias nproc="sysctl -n hw.logicalcpu"
 
       # Build application
       - name: Build application
         run: |
-             qmake ${{env.APPLICATION}}.pro CONFIG+=release
+             qmake ${{env.APP_NAME}}.pro CONFIG+=release
              make -j$(nproc)
 
       # Deploy application
@@ -111,8 +112,8 @@ jobs:
       - name: Upload app zip
         uses: actions/upload-artifact@v3
         with:
-          name: ${{env.APPLICATION}}-${{env.APPLICATION_VERSION}}-macOS.zip
-          path: bin/${{env.APPLICATION}}-${{env.APPLICATION_VERSION}}-macOS.zip
+          name: ${{env.APP_NAME}}-${{env.APP_VERSION}}-macOS.zip
+          path: bin/${{env.APP_NAME}}-${{env.APP_VERSION}}-macOS.zip
 
   ## Windows build #############################################################
   build-windows:
@@ -154,7 +155,7 @@ jobs:
       # Build application
       - name: Build application
         run: |
-             qmake ${{env.APPLICATION}}.pro CONFIG+=release
+             qmake ${{env.APP_NAME}}.pro CONFIG+=release
              nmake
 
       # Deploy application
@@ -166,12 +167,12 @@ jobs:
       - name: Upload ZIP
         uses: actions/upload-artifact@v3
         with:
-          name: ${{env.APPLICATION}}-${{env.APPLICATION_VERSION}}-win64.zip
-          path: ${{env.APPLICATION}}-${{env.APPLICATION_VERSION}}-win64.zip
+          name: ${{env.APP_NAME}}-${{env.APP_VERSION}}-win64.zip
+          path: ${{env.APP_NAME}}-${{env.APP_VERSION}}-win64.zip
 
       # Upload NSIS installer
       - name: Upload NSIS installer
         uses: actions/upload-artifact@v3
         with:
-          name: ${{env.APPLICATION}}-${{env.APPLICATION_VERSION}}-win64.exe
-          path: ${{env.APPLICATION}}-${{env.APPLICATION_VERSION}}-win64.exe
+          name: ${{env.APP_NAME}}-${{env.APP_VERSION}}-win64.exe
+          path: ${{env.APP_NAME}}-${{env.APP_VERSION}}-win64.exe
