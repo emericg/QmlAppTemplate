@@ -14,7 +14,7 @@ on:
 env:
   APP_NAME: "QmlAppTemplate"
   APP_VERSION: "0.6"
-  QT_VERSION: "6.5.2"
+  QT_VERSION: "6.5.3"
 
 #-------------------------------------------------------------------------------
 # Workflow jobs
@@ -80,7 +80,7 @@ jobs:
                 -DANDROID_SDK_ROOT=${{env.ANDROID_SDK_ROOT}} \
                 -DANDROID_NDK_ROOT=${{env.ANDROID_NDK_ROOT}} \
                 -DANDROID_PLATFORM=android-23 \
-                -DQT_ANDROID_BUILD_ALL_ABIS
+                -DQT_ANDROID_BUILD_ALL_ABIS=TRUE
              cmake --build build/ --config Release
 
   ## iOS build #################################################################
@@ -90,7 +90,7 @@ jobs:
     steps:
       # Checkout the repository (and submodules)
       - name: Checkout repository (and submodules)
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: recursive
 
