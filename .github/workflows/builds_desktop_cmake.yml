@@ -6,6 +6,7 @@ name: "Desktop CI builds (cmake)"
 on:
   push:
   pull_request:
+  workflow_dispatch:
 
 #-------------------------------------------------------------------------------
 # Define application name & version
@@ -42,8 +43,9 @@ jobs:
       # Install dependencies (from package manager)
       - name: Install dependencies (from package manager)
         run: |
-             sudo apt-get install libgl1-mesa-dev libxkbcommon-x11-dev libx11-xcb-dev libzstd-dev -y;
-             sudo apt-get install cmake ninja-build pkgconf libtool appstream -y;
+             sudo apt-get install libgl1-mesa-dev libxcb1-dev libxkbcommon-x11-dev libx11-xcb-dev libxcb-cursor0 libzstd-dev -y;
+             sudo apt-get install cmake ninja-build pkgconf libtool -y;
+             sudo apt-get install appstream -y;
 
       # Setup env
       - name: Setup env
@@ -59,15 +61,21 @@ jobs:
 
       # Deploy application
       - name: Deploy application
-        run: |
-             ./deploy_linux.sh -c -i -p
+        run: ./deploy_linux.sh -c -i -p
+
+      # Upload archive
+      - name: Upload archive
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{env.APP_NAME}}-${{env.APP_VERSION}}-linux64.tar.gz
+          path: ${{env.APP_NAME}}-${{env.APP_VERSION}}-linux64.tar.gz
 
       # Upload AppImage
       - name: Upload AppImage
         uses: actions/upload-artifact@v3
         with:
           name: ${{env.APP_NAME}}-${{env.APP_VERSION}}-linux64.AppImage
-          path: ${{env.APP_NAME}}*.AppImage
+          path: ${{env.APP_NAME}}-${{env.APP_VERSION}}-linux64.AppImage
 
   ## macOS build ###############################################################
   build-mac:
@@ -80,17 +88,17 @@ jobs:
         with:
           submodules: recursive
 
+      # Install dependencies (from package manager)
+      #- name: Install dependencies (from package manager)
+      #  run: |
+      #       brew install qt6 cmake
+
       # Install Qt
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:
           version: ${{env.QT_VERSION}}
           modules: qt5compat
-
-      # Install dependencies (from package manager)
-      - name: Install dependencies (from package manager)
-        run: |
-             brew install cmake
 
       # Setup env
       - name: Setup env
@@ -108,15 +116,14 @@ jobs:
 
       # Deploy application
       - name: Deploy application
-        run: |
-             ./deploy_macos.sh -c -p
+        run: ./deploy_macos.sh -c -p
 
-      # Upload app zip
-      - name: Upload app zip
+      # Upload app ZIP
+      - name: Upload app ZIP
         uses: actions/upload-artifact@v3
         with:
           name: ${{env.APP_NAME}}-${{env.APP_VERSION}}-macOS.zip
-          path: bin/${{env.APP_NAME}}-${{env.APP_VERSION}}-macOS.zip
+          path: ${{env.APP_NAME}}-${{env.APP_VERSION}}-macOS.zip
 
   ## Windows build #############################################################
   build-windows:
@@ -164,11 +171,10 @@ jobs:
 
       # Deploy application
       - name: Deploy application
-        run: |
-             sh deploy_windows.sh -c -p
+        run: sh deploy_windows.sh -c -p
 
-      # Upload ZIP
-      - name: Upload ZIP
+      # Upload app ZIP
+      - name: Upload app ZIP
         uses: actions/upload-artifact@v3
         with:
           name: ${{env.APP_NAME}}-${{env.APP_VERSION}}-win64.zip

@@ -6,6 +6,7 @@ name: "Mobile CI builds (qmake)"
 on:
   push:
   pull_request:
+  workflow_dispatch:
 
 #-------------------------------------------------------------------------------
 # Define application name & version

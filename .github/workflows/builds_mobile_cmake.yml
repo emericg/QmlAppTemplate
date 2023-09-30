@@ -6,6 +6,7 @@ name: "Mobile CI builds (cmake)"
 on:
   push:
   pull_request:
+  workflow_dispatch:
 
 #-------------------------------------------------------------------------------
 # Define application name & version
@@ -107,9 +108,9 @@ jobs:
           extra: '--autodesktop'
 
       # Install dependencies (from package manager)
-      - name: Install dependencies (from package manager)
-        run: |
-             brew install cmake
+      #- name: Install dependencies (from package manager)
+      #  run: |
+      #       brew install cmake
 
       # Setup env
       - name: Setup env
