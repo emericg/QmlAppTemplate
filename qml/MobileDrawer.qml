@@ -4,8 +4,9 @@ import QtQuick.Controls
 import ThemeEngine
 
 DrawerThemed {
-
     contentItem: Item {
+
+        ////////////////
 
         Column {
             id: headerColumn

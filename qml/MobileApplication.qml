@@ -53,12 +53,7 @@ ApplicationWindow {
 
             // hacks
             if (Qt.platform.os === "android") {
-                if (Screen.primaryOrientation === Qt.PortraitOrientation) {
-                    screenPaddingStatusbar = mobileUI.safeAreaTop
-                    screenPaddingTop = 0
-                } else {
-                    screenPaddingNavbar = 0
-                }
+                //
             }
             // hacks
             if (Qt.platform.os === "ios") {
