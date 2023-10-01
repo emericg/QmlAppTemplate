@@ -71,6 +71,7 @@ jobs:
       - name: Setup env
         run: |
              export PATH=$Qt6_DIR/bin:$PATH
+             export QT_HOST_PATH=/home/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/gcc_64
              cmake --version
 
       # Build application
@@ -116,6 +117,7 @@ jobs:
       - name: Setup env
         run: |
              export PATH=$Qt6_DIR/bin:$PATH
+             export QT_HOST_PATH=/Users/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/macos
              cmake --version
              alias nproc="sysctl -n hw.logicalcpu"
 

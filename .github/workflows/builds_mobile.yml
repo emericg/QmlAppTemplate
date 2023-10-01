@@ -99,7 +99,6 @@ jobs:
       # Setup env
       - name: Setup env
         run: |
-             ln -s /Users/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/macos /Users/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/clang_64
              qmake --version
              alias nproc="sysctl -n hw.logicalcpu"
 
