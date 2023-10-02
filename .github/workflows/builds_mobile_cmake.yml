@@ -73,10 +73,18 @@ jobs:
              export PATH=$Qt6_DIR/bin:$PATH
              export QT_HOST_PATH=/home/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/gcc_64
              cmake --version
+             echo $ANDROID_SDK_ROOT
+             echo $ANDROID_NDK_ROOT
+             export ANDROID_SDK_ROOT=/usr/local/lib/android/sdk
+             export ANDROID_NDK_ROOT=/usr/local/lib/android/sdk/ndk/25.2.9519653
 
       # Build application
       - name: Build application
         run: |
+             echo ${{ANDROID_SDK_ROOT}}
+             echo ${{env.ANDROID_SDK_ROOT}}
+             echo ${{QT_HOST_PATH}}
+             echo ${{env.QT_HOST_PATH}}
              qt-cmake -B build/ -DCMAKE_SYSTEM_NAME=Android \
                 -DCMAKE_TOOLCHAIN_FILE=${{env.ANDROID_SDK_ROOT}}/build/cmake/android.toolchain.cmake \
                 -DANDROID_SDK_ROOT=${{env.ANDROID_SDK_ROOT}} \
