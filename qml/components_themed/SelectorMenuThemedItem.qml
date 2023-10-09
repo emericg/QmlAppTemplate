@@ -19,7 +19,6 @@ T.Button {
 
     // settings
     property int index
-    //property string text
     property url source
     property int sourceSize: 32
 
@@ -68,7 +67,7 @@ T.Button {
 
             text: control.text
             textFormat: Text.PlainText
-            font.pixelSize: Theme.componentFontSize
+            font: control.font
             verticalAlignment: Text.AlignVCenter
 
             color: control.highlighted ? control.colorContentHighlight : control.colorContent

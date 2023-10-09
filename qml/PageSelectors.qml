@@ -20,13 +20,7 @@ Flickable {
         bottomPadding: Theme.componentMarginXL
         spacing: Theme.componentMarginXL
 
-        ListTitle { ////////////////////////////////////////////////////////////
-            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
-            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
-
-            text: qsTr("Selectors")
-            icon: ""
-        }
+        ////
 
         ListModel {
             id: lmSelectorMenuTxt
@@ -45,6 +39,16 @@ Flickable {
             ListElement { idx: 1; txt: "4/3"; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; sz: 20; }
             ListElement { idx: 2; txt: "16/9"; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; sz: 26; }
             ListElement { idx: 3; txt: "21/9"; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; sz: 32; }
+        }
+
+        ////
+
+        ListTitle { ////////////////////////////////////////////////////////////
+            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
+
+            text: qsTr("Selectors")
+            icon: ""
         }
 
         ////
@@ -89,6 +93,16 @@ Flickable {
                 //console.log("SelectorMenu clicked #" + index)
                 currentSelection = index
             }
+        }
+
+        ////
+
+        ListTitle { ////////////////////////////////////////////////////////////
+            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
+
+            text: qsTr("Selectors")
+            icon: ""
         }
 
         ////

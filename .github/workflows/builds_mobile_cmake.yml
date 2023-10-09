@@ -70,8 +70,8 @@ jobs:
       # Setup env
       - name: Setup env
         run: |
-             echo "QT_HOST_PATH=/home/runner/work/${{env.REPO_NAME}}/Qt/${{env.QT_VERSION}}/gcc_64" >> $GITHUB_ENV
-             echo "QT_TARGET_PATH=/home/runner/work/${{env.REPO_NAME}}/Qt/${{env.QT_VERSION}}/android_arm64_v8a" >> $GITHUB_ENV
+             echo "QT_HOST_PATH=/home/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/gcc_64" >> $GITHUB_ENV
+             echo "QT_TARGET_PATH=/home/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/android_arm64_v8a" >> $GITHUB_ENV
              cmake --version
 
       # Build application
@@ -121,8 +121,8 @@ jobs:
       # Setup env
       - name: Setup env
         run: |
-             echo "QT_HOST_PATH=/home/runner/work/${{env.REPO_NAME}}/Qt/${{env.QT_VERSION}}/macos" >> $GITHUB_ENV
-             echo "QT_TARGET_PATH=/home/runner/work/${{env.REPO_NAME}}/Qt/${{env.QT_VERSION}}/ios" >> $GITHUB_ENV
+             echo "QT_HOST_PATH=/home/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/macos" >> $GITHUB_ENV
+             echo "QT_TARGET_PATH=/home/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/ios" >> $GITHUB_ENV
              cmake --version
 
       # Build application
