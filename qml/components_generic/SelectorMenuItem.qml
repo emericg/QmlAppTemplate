@@ -47,6 +47,8 @@ T.Button {
     ////////////////
 
     contentItem: Row {
+        spacing: 4
+
         IconSvg { // contentImage
             anchors.verticalCenter: parent.verticalCenter
             visible: control.source.toString().length
@@ -65,7 +67,7 @@ T.Button {
 
             text: control.text
             textFormat: Text.PlainText
-            font.pixelSize: Theme.componentFontSize
+            font: control.font
             verticalAlignment: Text.AlignVCenter
 
             color: control.highlighted ? control.colorContentHighlight : control.colorContent

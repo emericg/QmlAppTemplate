@@ -102,7 +102,7 @@ Flickable {
 
             PopupTime {
                 id: popupTime
-                onUpdateTime: (newtime) => { savethedate = newtime }
+                //onUpdateTime: (newtime) => { savethedate = newtime }
             }
 
             onClicked: popupTime.openTime(savethedate)

@@ -48,6 +48,8 @@ T.Button {
     ////////////////
 
     contentItem: Row {
+        spacing: 4
+
         IconSvg { // contentImage
             anchors.verticalCenter: parent.verticalCenter
             visible: control.source.toString().length
