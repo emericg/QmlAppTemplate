@@ -70,26 +70,23 @@ jobs:
       # Setup env
       - name: Setup env
         run: |
-             export PATH=$Qt6_DIR/bin:$PATH
-             export QT_HOST_PATH=/home/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/gcc_64
+             echo "QT_HOST_PATH=/home/runner/work/${{env.REPO_NAME}}/Qt/${{env.QT_VERSION}}/gcc_64" >> $GITHUB_ENV
+             echo "QT_TARGET_PATH=/home/runner/work/${{env.REPO_NAME}}/Qt/${{env.QT_VERSION}}/android_arm64_v8a" >> $GITHUB_ENV
              cmake --version
-             echo $ANDROID_SDK_ROOT
-             echo $ANDROID_NDK_ROOT
-             export ANDROID_SDK_ROOT=/usr/local/lib/android/sdk
-             export ANDROID_NDK_ROOT=/usr/local/lib/android/sdk/ndk/25.2.9519653
 
       # Build application
       - name: Build application
         run: |
-             echo ${{ANDROID_SDK_ROOT}}
-             echo ${{env.ANDROID_SDK_ROOT}}
-             echo ${{QT_HOST_PATH}}
-             echo ${{env.QT_HOST_PATH}}
-             qt-cmake -B build/ -DCMAKE_SYSTEM_NAME=Android \
-                -DCMAKE_TOOLCHAIN_FILE=${{env.ANDROID_SDK_ROOT}}/build/cmake/android.toolchain.cmake \
-                -DANDROID_SDK_ROOT=${{env.ANDROID_SDK_ROOT}} \
-                -DANDROID_NDK_ROOT=${{env.ANDROID_NDK_ROOT}} \
+             export JAVA_HOME=$JAVA_HOME_11_X64
+             qt-cmake -B build/ \
+                -DCMAKE_SYSTEM_NAME=Android \
+                -DCMAKE_FIND_ROOT_PATH:PATH=${{env.QT_TARGET_PATH}} \
+                -DCMAKE_PREFIX_PATH=${{env.QT_TARGET_PATH}} \
+                -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK_ROOT/build/cmake/android.toolchain.cmake \
+                -DANDROID_SDK_ROOT=$ANDROID_SDK_ROOT \
+                -DANDROID_NDK_ROOT=$ANDROID_NDK_ROOT \
                 -DANDROID_PLATFORM=android-23 \
+                -DANDROID_ABI="arm64-v8a" \
                 -DQT_ANDROID_BUILD_ALL_ABIS=TRUE
              cmake --build build/ --config Release
 
@@ -124,13 +121,17 @@ jobs:
       # Setup env
       - name: Setup env
         run: |
-             export PATH=$Qt6_DIR/bin:$PATH
-             export QT_HOST_PATH=/Users/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/macos
+             echo "QT_HOST_PATH=/home/runner/work/${{env.REPO_NAME}}/Qt/${{env.QT_VERSION}}/macos" >> $GITHUB_ENV
+             echo "QT_TARGET_PATH=/home/runner/work/${{env.REPO_NAME}}/Qt/${{env.QT_VERSION}}/ios" >> $GITHUB_ENV
              cmake --version
-             alias nproc="sysctl -n hw.logicalcpu"
 
       # Build application
       - name: Build application
         run: |
-             qt-cmake -B build/ -G Xcode -DCMAKE_TOOLCHAIN_FILE=assets/ios/ios.toolchain.cmake -DPLATFORM=OS64
+             qt-cmake -B build/ -G Xcode \
+               -DCMAKE_SYSTEM_NAME=iOS \
+               -DCMAKE_FIND_ROOT_PATH:PATH=${{env.QT_TARGET_PATH}} \
+               -DCMAKE_PREFIX_PATH=${{env.QT_TARGET_PATH}} \
+               -DCMAKE_TOOLCHAIN_FILE=assets/ios/ios.toolchain.cmake \
+               -DPLATFORM=OS64
              cmake --build build/ --config Release
