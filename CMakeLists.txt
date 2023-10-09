@@ -51,12 +51,12 @@ if(ANDROID)
 
     #-DQT_ANDROID_ABIS="armeabi-v7a;arm64-v8a;x86;x86_64"
     #-DQT_ANDROID_BUILD_ALL_ABIS=ON
-    #QT_ANDROID_MIN_SDK_VERSION
-    #    add_qt_android_apk(my_app_apk my_app
-    #        PACKAGE_NAME "org.mycompany.myapp"
-    #    )
-    #qt_android_generate_deployment_settings(myapp)
-    #qt_android_add_apk_target(myapp)
+    #-DQT_ANDROID_MIN_SDK_VERSION=23
+    #add_qt_android_apk(my_app_apk my_app
+    #    PACKAGE_NAME "io.emeric.qmlapptemplate"
+    #)
+    #qt_android_generate_deployment_settings(qmlapptemplate)
+    #qt_android_add_apk_target(qmlapptemplate)
 endif()
 
 ## macOS

@@ -21,7 +21,7 @@
  * SOFTWARE.
  */
 
-package com.emeric.utils;
+package io.emeric.utils;
 
 import org.qtproject.qt.android.QtNative;
 
@@ -53,7 +53,7 @@ import androidx.core.app.ShareCompat;
 public class QShareUtils
 {
     // reference Authority as defined in AndroidManifest.xml
-    private static String AUTHORITY="com.emeric.watchflower.fileprovider";
+    private static String AUTHORITY="io.emeric.qmlapptemplate.fileprovider";
 
     protected QShareUtils() {
        //Log.d("QShareUtils", "QShareUtils()");

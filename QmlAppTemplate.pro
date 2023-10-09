@@ -122,7 +122,7 @@ linux:!android {
 
 macx {
     # Bundle name
-    QMAKE_TARGET_BUNDLE_PREFIX = com.emeric
+    QMAKE_TARGET_BUNDLE_PREFIX = io.emeric
     QMAKE_BUNDLE = qmlapptemplate
 
     # OS icons
@@ -182,12 +182,12 @@ android {
     #message("ANDROID_TARGET_ARCH: $$ANDROID_TARGET_ARCH")
 
     # Bundle name
-    QMAKE_TARGET_BUNDLE_PREFIX = com.emeric
+    QMAKE_TARGET_BUNDLE_PREFIX = io.emeric
     QMAKE_BUNDLE = qmlapptemplate
 
-    OTHER_FILES += assets/android/src/com/emeric/utils/QGpsUtils.java \
-                   assets/android/src/com/emeric/utils/QShareUtils.java \
-                   assets/android/src/com/emeric/utils/QSharePathResolver.java
+    OTHER_FILES += assets/android/src/io/emeric/utils/QGpsUtils.java \
+                   assets/android/src/io/emeric/utils/QShareUtils.java \
+                   assets/android/src/io/emeric/utils/QSharePathResolver.java
 
     DISTFILES += $${PWD}/assets/android/AndroidManifest.xml \
                  $${PWD}/assets/android/gradle.properties \
@@ -201,7 +201,7 @@ ios {
     #message("QMAKE_IOS_DEPLOYMENT_TARGET: $$QMAKE_IOS_DEPLOYMENT_TARGET")
 
     # Bundle name
-    QMAKE_TARGET_BUNDLE_PREFIX = com.emeric
+    QMAKE_TARGET_BUNDLE_PREFIX = io.emeric
     QMAKE_BUNDLE = qmlapptemplate
 
     # OS infos

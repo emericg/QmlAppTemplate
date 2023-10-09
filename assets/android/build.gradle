@@ -38,7 +38,7 @@ android {
      * Changing them manually might break the compilation!
      *******************************************************/
 
-    namespace 'com.emeric.qmlapptemplate'
+    namespace 'io.emeric.qmlapptemplate'
 
     compileSdkVersion androidCompileSdkVersion.toInteger()
     buildToolsVersion androidBuildToolsVersion
