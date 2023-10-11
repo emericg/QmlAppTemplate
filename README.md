@@ -13,7 +13,7 @@ A Qt6 / QML application template, with a full set of visual controls, helper mod
 
 You will need a C++17 compiler and Qt 6.5+. Qt 5 Compatibility Module is required.  
 For macOS and iOS builds, you'll need Xcode (13+) installed.  
-For Android builds, you'll need the appropriates JDK (11) SDK (24+) and NDK (25+). You can customize Android build environment using the `assets/android/gradle.properties` file.  
+For Android builds, you'll need the appropriates JDK (17) SDK (24+) and NDK (25+). You can customize Android build environment using the `assets/android/gradle.properties` file.  
 
 #### Building QmlAppTemplate
 

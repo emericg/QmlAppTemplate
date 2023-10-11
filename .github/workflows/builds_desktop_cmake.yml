@@ -15,7 +15,7 @@ on:
 env:
   APP_NAME: "QmlAppTemplate"
   APP_VERSION: "0.6"
-  QT_VERSION: "6.5.3"
+  QT_VERSION: "6.6.0"
 
 #-------------------------------------------------------------------------------
 # Workflow jobs
@@ -104,12 +104,11 @@ jobs:
       - name: Setup env
         run: |
              cmake --version
-             alias nproc="sysctl -n hw.logicalcpu"
-             export CMAKE_BUILD_PARALLEL_LEVEL=$(nproc)
 
       # Build application
       - name: Build application
         run: |
+             export CMAKE_BUILD_PARALLEL_LEVEL=`sysctl -n hw.logicalcpu`
              cd build/
              cmake ..
              cmake --build .

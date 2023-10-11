@@ -15,7 +15,7 @@ on:
 env:
   APP_NAME: "QmlAppTemplate"
   APP_VERSION: "0.6"
-  QT_VERSION: "6.5.3"
+  QT_VERSION: "6.6.0"
 
 #-------------------------------------------------------------------------------
 # Workflow jobs

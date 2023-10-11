@@ -40,8 +40,8 @@ target_include_directories(QmlAppTemplate PUBLIC src/thirdparty)
 
 ## Android
 if(ANDROID)
-    #set(QT_ANDROID_ABIS "armeabi-v7a;arm64-v8a;x86;x86_64")
-    #set(QT_ANDROID_BUILD_ALL_ABIS "ON")
+    set(QT_ANDROID_ABIS "armeabi-v7a;arm64-v8a;x86;x86_64")
+    set(QT_ANDROID_BUILD_ALL_ABIS "ON")
 
     set_target_properties(QmlAppTemplate PROPERTIES
         QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/assets/android"
@@ -49,8 +49,6 @@ if(ANDROID)
 
     target_link_libraries(QmlAppTemplate PRIVATE Qt::CorePrivate)
 
-    #-DQT_ANDROID_ABIS="armeabi-v7a;arm64-v8a;x86;x86_64"
-    #-DQT_ANDROID_BUILD_ALL_ABIS=ON
     #-DQT_ANDROID_MIN_SDK_VERSION=23
     #add_qt_android_apk(my_app_apk my_app
     #    PACKAGE_NAME "io.emeric.qmlapptemplate"
