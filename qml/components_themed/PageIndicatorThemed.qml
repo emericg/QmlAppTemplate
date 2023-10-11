@@ -18,7 +18,7 @@ T.PageIndicator {
     count: 1
     currentIndex: 1
 
-    property color color: "white"
+    property color color: Theme.colorHeaderContent
 
     ////////////////
 

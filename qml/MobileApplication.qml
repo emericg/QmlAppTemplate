@@ -59,11 +59,6 @@ ApplicationWindow {
             if (Qt.platform.os === "ios") {
                 //
             }
-            // hacks
-            if (visibility === ApplicationWindow.FullScreen) {
-                screenPaddingStatusbar = 0
-                screenPaddingNavbar = 0
-            }
         } else {
             screenPaddingStatusbar = 0
             screenPaddingNavbar = 0

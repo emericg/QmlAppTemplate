@@ -43,6 +43,15 @@
     </screenshot>
   </screenshots>
 
+  <requires>
+    <display_length>360</display_length>
+  </requires>
+  <supports>
+    <control>keyboard</control>
+    <control>pointing</control>
+    <control>touch</control>
+  </supports>
+
   <categories>
     <category>Utility</category>
   </categories>
