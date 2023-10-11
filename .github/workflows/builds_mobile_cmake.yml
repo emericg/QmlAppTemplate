@@ -128,7 +128,7 @@ jobs:
       # Build application
       - name: Build application
         run: |
-             echo "QT_HOST_PATH=${{env.QT_HOST_PATH}}"
+             export QT_HOST_PATH=${{env.QT_HOST_PATH}}
              qt-cmake -B build/ -G Xcode \
                -DQT_HOST_PATH=${{env.QT_HOST_PATH}} \
                -DCMAKE_SYSTEM_NAME=iOS \

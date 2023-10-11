@@ -65,6 +65,8 @@ endif()
 
 ## iOS
 if(IOS)
+    set(IPHONEOS_DEPLOYMENT_TARGET "12.0")
+
     target_link_libraries(QmlAppTemplate PRIVATE
         Qt::GuiPrivate
         "-framework UIKit"
