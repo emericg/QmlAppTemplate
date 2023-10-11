@@ -129,6 +129,7 @@ jobs:
       - name: Build application
         run: |
              qt-cmake -B build/ -G Xcode \
+               -DQT_HOST_PATH=${{env.QT_HOST_PATH}} \
                -DCMAKE_SYSTEM_NAME=iOS \
                -DCMAKE_FIND_ROOT_PATH:PATH=${{env.QT_TARGET_PATH}} \
                -DCMAKE_PREFIX_PATH=${{env.QT_TARGET_PATH}} \
