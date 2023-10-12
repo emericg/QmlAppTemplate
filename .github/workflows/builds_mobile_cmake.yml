@@ -130,14 +130,7 @@ jobs:
       - name: Build application
         run: |
              export QT_HOST_PATH=${{env.QT_HOST_PATH}}
-             echo "--------------"
-             echo $QT_HOST_PATH
-             echo ${{env.QT_TARGET_PATH}}
-             ls -l  /home/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/
-             ls -l $QT_HOST_PATH
-             ls -l $QT_TARGET_PATH
-             echo "--------------"
-             qt-cmake -B build/ -G Xcode \
+             cmake -B build/ -G Xcode \
                -DCMAKE_BUILD_TYPE=Release \
                -DCMAKE_SYSTEM_NAME=iOS \
                -DCMAKE_FIND_ROOT_PATH:PATH=${{env.QT_TARGET_PATH}} \
