@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto"
-          package="io.emeric.qmlapptemplate" android:versionName="0.6" android:versionCode="000601">
+          package="io.emeric.qmlapptemplate" android:versionName="${versionName}" android:versionCode="${versionCode}">
 
     <supports-screens android:anyDensity="true" android:largeScreens="true" android:normalScreens="true" android:smallScreens="true" />
 

@@ -78,7 +78,7 @@ jobs:
       - name: Build application
         run: |
              export JAVA_HOME=$JAVA_HOME_17_X64
-             qt-cmake -B build/ \
+             qt-cmake -B build/ -G Ninja \
                 -DCMAKE_SYSTEM_NAME=Android \
                 -DCMAKE_SYSTEM_VERSION=23 \
                 -DCMAKE_FIND_ROOT_PATH:PATH=${{env.QT_TARGET_PATH}} \
@@ -87,8 +87,7 @@ jobs:
                 -DANDROID_SDK_ROOT=$ANDROID_SDK_ROOT \
                 -DANDROID_NDK_ROOT=$ANDROID_NDK_ROOT \
                 -DANDROID_PLATFORM=android-23 \
-                -DANDROID_ABI="arm64-v8a" \
-                -DQT_ANDROID_BUILD_ALL_ABIS=TRUE
+                -DANDROID_ABI="arm64-v8a"
              cmake --build build/ --config Release
 
   ## iOS build #################################################################
