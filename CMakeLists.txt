@@ -1,6 +1,9 @@
-cmake_minimum_required(VERSION 3.20)
+cmake_minimum_required(VERSION 3.21)
 
 project(QmlAppTemplate VERSION 0.6 LANGUAGES CXX)
+
+set(APP_NAME ${CMAKE_PROJECT_NAME})
+set(APP_VERSION ${CMAKE_PROJECT_VERSION})
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -33,28 +36,20 @@ qt_add_executable(QmlAppTemplate
     assets/assets.qrc
 )
 
-target_include_directories(QmlAppTemplate PRIVATE src)
-target_include_directories(QmlAppTemplate PUBLIC src/thirdparty)
+target_include_directories(QmlAppTemplate PRIVATE src/)
+target_include_directories(QmlAppTemplate PUBLIC src/thirdparty/)
 
 ################################################################################
 
 ## Android
 if(ANDROID)
     set(QT_ANDROID_ABIS "armeabi-v7a;arm64-v8a;x86;x86_64")
-    set(QT_ANDROID_BUILD_ALL_ABIS "ON")
+    set(QT_ANDROID_BUILD_ALL_ABIS ON)
+    set(QT_ANDROID_MIN_SDK_VERSION 23)
+    set(QT_ANDROID_TARGET_SDK_VERSION 34)
 
-    set_target_properties(QmlAppTemplate PROPERTIES
-        QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/assets/android"
-    )
-
+    set_target_properties(QmlAppTemplate PROPERTIES QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/assets/android/")
     target_link_libraries(QmlAppTemplate PRIVATE Qt::CorePrivate)
-
-    #-DQT_ANDROID_MIN_SDK_VERSION=23
-    #add_qt_android_apk(my_app_apk my_app
-    #    PACKAGE_NAME "io.emeric.qmlapptemplate"
-    #)
-    #qt_android_generate_deployment_settings(qmlapptemplate)
-    #qt_android_add_apk_target(qmlapptemplate)
 endif()
 
 ## macOS
@@ -66,11 +61,9 @@ endif()
 ## iOS
 if(IOS)
     set(IPHONEOS_DEPLOYMENT_TARGET "12.0")
+    set(CMAKE_XCODE_ATTRIBUTE_IPHONEOS_DEPLOYMENT_TARGET 12.0)
 
-    target_link_libraries(QmlAppTemplate PRIVATE
-        Qt::GuiPrivate
-        "-framework UIKit"
-    )
+    target_link_libraries(QmlAppTemplate PRIVATE Qt::GuiPrivate "-framework UIKit")
 endif()
 
 ## Windows
@@ -81,8 +74,6 @@ endif()
 ################################################################################
 
 # AppUtils
-set(APP_NAME ${CMAKE_PROJECT_NAME})
-set(APP_VERSION ${CMAKE_PROJECT_VERSION})
 add_subdirectory(src/thirdparty/AppUtils)
 target_link_libraries(QmlAppTemplate PRIVATE AppUtils)
 

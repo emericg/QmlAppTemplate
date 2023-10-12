@@ -80,6 +80,7 @@ jobs:
              export JAVA_HOME=$JAVA_HOME_17_X64
              qt-cmake -B build/ \
                 -DCMAKE_SYSTEM_NAME=Android \
+                -DCMAKE_SYSTEM_VERSION=23 \
                 -DCMAKE_FIND_ROOT_PATH:PATH=${{env.QT_TARGET_PATH}} \
                 -DCMAKE_PREFIX_PATH=${{env.QT_TARGET_PATH}} \
                 -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK_ROOT/build/cmake/android.toolchain.cmake \
@@ -129,6 +130,7 @@ jobs:
       - name: Build application
         run: |
              export QT_HOST_PATH=${{env.QT_HOST_PATH}}
+             export IPHONEOS_DEPLOYMENT_TARGET=12.0
              qt-cmake -B build/ -G Xcode \
                -DQT_HOST_PATH=${{env.QT_HOST_PATH}} \
                -DCMAKE_SYSTEM_NAME=iOS \
