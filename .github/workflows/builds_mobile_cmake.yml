@@ -79,6 +79,7 @@ jobs:
         run: |
              export JAVA_HOME=$JAVA_HOME_17_X64
              qt-cmake -B build/ -G Ninja \
+                -DCMAKE_BUILD_TYPE=Release \
                 -DCMAKE_SYSTEM_NAME=Android \
                 -DCMAKE_SYSTEM_VERSION=23 \
                 -DCMAKE_FIND_ROOT_PATH:PATH=${{env.QT_TARGET_PATH}} \
@@ -129,9 +130,15 @@ jobs:
       - name: Build application
         run: |
              export QT_HOST_PATH=${{env.QT_HOST_PATH}}
-             export IPHONEOS_DEPLOYMENT_TARGET=12.0
+             echo "--------------"
+             echo $QT_HOST_PATH
+             echo ${{env.QT_TARGET_PATH}}
+             ls -l  /home/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/
+             ls -l $QT_HOST_PATH
+             ls -l $QT_TARGET_PATH
+             echo "--------------"
              qt-cmake -B build/ -G Xcode \
-               -DQT_HOST_PATH=${{env.QT_HOST_PATH}} \
+               -DCMAKE_BUILD_TYPE=Release \
                -DCMAKE_SYSTEM_NAME=iOS \
                -DCMAKE_FIND_ROOT_PATH:PATH=${{env.QT_TARGET_PATH}} \
                -DCMAKE_PREFIX_PATH=${{env.QT_TARGET_PATH}} \
