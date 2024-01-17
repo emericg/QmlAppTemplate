@@ -24,7 +24,7 @@
 #include <utils_screen.h>
 #include <utils_sysinfo.h>
 #include <utils_language.h>
-#include <utils_os_macosdock.h>
+#include <utils_os_macos_dock.h>
 
 #include <MobileUI/MobileUI.h>
 #include <MobileSharing/MobileSharing.h>

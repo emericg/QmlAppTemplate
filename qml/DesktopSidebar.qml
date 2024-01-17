@@ -41,7 +41,7 @@ Rectangle {
             sourceSize: 40
             highlightMode: "indicator"
 
-            selected: (appContent.state === "DesktopComponents")
+            highlighted: (appContent.state === "DesktopComponents")
             onClicked: screenDesktopComponents.loadScreen()
         }
         DesktopSidebarItem {
@@ -49,7 +49,7 @@ Rectangle {
             sourceSize: 40
             highlightMode: "indicator"
 
-            selected: (appContent.state === "MobileComponents")
+            highlighted: (appContent.state === "MobileComponents")
             onClicked: screenMobileComponents.loadScreen()
         }
         DesktopSidebarItem {
@@ -57,7 +57,7 @@ Rectangle {
             sourceSize: 40
             highlightMode: "indicator"
 
-            selected: (appContent.state === "HostInfos")
+            highlighted: (appContent.state === "HostInfos")
             onClicked: screenHostInfos.loadScreen()
         }
         DesktopSidebarItem {
@@ -65,7 +65,7 @@ Rectangle {
             sourceSize: 40
             highlightMode: "indicator"
 
-            selected: (appContent.state === "FontInfos")
+            highlighted: (appContent.state === "FontInfos")
             onClicked: screenFontInfos.loadScreen()
         }
     }
@@ -83,7 +83,7 @@ Rectangle {
             sourceSize: 40
             highlightMode: "indicator"
 
-            selected: (appContent.state === "Settings")
+            highlighted: (appContent.state === "Settings")
             onClicked: screenSettings.loadScreen()
         }
 
@@ -92,7 +92,7 @@ Rectangle {
             sourceSize: 40
             highlightMode: "indicator"
 
-            selected: (appContent.state === "About")
+            highlighted: (appContent.state === "About")
             onClicked: screenAbout.loadScreen()
         }
 
