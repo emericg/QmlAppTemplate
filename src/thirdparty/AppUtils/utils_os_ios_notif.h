@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2020 Emeric Grange
+ * Copyright (c) 2023 Emeric Grange
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,8 +20,8 @@
  * SOFTWARE.
  */
 
-#ifndef UTILS_OS_IOS_H
-#define UTILS_OS_IOS_H
+#ifndef UTILS_OS_IOS_NOTIF_H
+#define UTILS_OS_IOS_NOTIF_H
 
 #include <QtGlobal>
 
@@ -29,34 +29,21 @@
 /* ************************************************************************** */
 
 /*!
- * \brief iOS utils
+ * \brief iOS notifications
  */
-class UtilsIOS
+class UtilsIOSNotifications
 {
+    void *m_notifdelegate = nullptr;
+
 public:
-    /*!
-     * \return True if notification permission has been previously obtained.
-     */
-    static bool checkPermission_notification();
+    UtilsIOSNotifications();
 
-    /*!
-     * \return True if notification permission has been explicitly obtained.
-     */
-    static bool getPermission_notification();
+    bool checkPermission_notification();
+    bool getPermission_notification();
 
-    /* ********************************************************************** */
-
-    static void screenKeepOn(bool on);
-
-    static void screenLockOrientation(int orientation);
-
-    static void screenLockOrientation(int orientation, bool autoRotate);
-
-    /* ********************************************************************** */
-
-    static void vibrate(int milliseconds);
+    bool notify(const QString &title, const QString &message, const int channel);
 };
 
 /* ************************************************************************** */
 #endif // Q_OS_IOS
-#endif // UTILS_OS_IOS_H
+#endif // UTILS_OS_IOS_NOTIF_H
