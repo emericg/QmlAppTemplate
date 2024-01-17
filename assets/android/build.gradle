@@ -5,6 +5,7 @@ buildscript {
     }
 
     dependencies {
+        //classpath 'com.android.tools.build:gradle:8.2.1' // works with Qt 6.7+ // Java 17
         classpath 'com.android.tools.build:gradle:8.1.2' // works with Qt 6.5+ // Java 17
         //classpath 'com.android.tools.build:gradle:7.4.2' // works with Qt 6.5 // Java 11
         //classpath 'com.android.tools.build:gradle:7.2.1' // works with Qt 6.4 // Java 11
@@ -18,14 +19,14 @@ repositories {
 
 apply plugin: 'com.android.application'
 
-def getTimestampStr() { return new Date().format('yyyyMMddHHmmss') }
-def timestampInt = (int)(new Date().getTime() / 1000 / 1)
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.core:core:1.6.1'
 }
+
+def getTimestampStr() { return new Date().format('yyyyMMddHHmmss') }
+def timestampInt = (int)(new Date().getTime() / 1000 / 1)
 
 android {
     /*******************************************************
@@ -109,5 +110,8 @@ android {
         exclude 'lib/*/*_imageformats_qtiff_*'
         exclude 'lib/*/*_imageformats_qwbmp_*'
         exclude 'lib/*/*_imageformats_qwebp_*'
+        // multimedia backend
+        exclude 'lib/*/*_multimedia_androidmediaplugin_*'
+        exclude 'lib/*/*_multimedia_ffmpegmediaplugin_*'
     }
 }
