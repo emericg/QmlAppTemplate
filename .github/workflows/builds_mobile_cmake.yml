@@ -93,7 +93,7 @@ jobs:
       # Package application
       - name: Package application
         run: |
-             $QT_HOST_PATH/bin/androiddeployqt --aab --output build/aab/ --android-platform android-34 --gradle --release
+             $QT_HOST_PATH/bin/androiddeployqt --input build/android-QmlAppTemplate-deployment-settings.json --output build/aab/ --aab --android-platform android-34 --gradle --release
              ls build/aab/
 
   ## iOS build #################################################################
@@ -132,8 +132,6 @@ jobs:
 
       # Build application
       - name: Build application
-        env:
-          CMAKE_PREFIX_PATH: ${{env.Qt6_DIR}}/lib/cmake
         run: |
              cmake -B build/ -G Xcode \
                -DCMAKE_BUILD_TYPE=Release \
@@ -141,6 +139,7 @@ jobs:
                -DCMAKE_FIND_ROOT_PATH:PATH=${{env.QT_TARGET_PATH}} \
                -DCMAKE_PREFIX_PATH=${{env.QT_TARGET_PATH}} \
                -DCMAKE_TOOLCHAIN_FILE=assets/ios/ios.toolchain.cmake \
+               -DQT_HOST_PATH=${{env.QT_HOST_PATH}} \
                -DQT_HOST_PATH:PATH=${{env.QT_HOST_PATH}} \
                -DPLATFORM=OS64
              cmake --build build/ --config Release
