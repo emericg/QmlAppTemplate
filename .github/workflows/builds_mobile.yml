@@ -53,13 +53,12 @@ jobs:
       - name: Install Qt (Android & desktop)
         uses: jurplel/install-qt-action@v3
         with:
+          aqtversion: '==3.1.*'
           version: ${{env.QT_VERSION}}
           host: 'linux'
           target: 'android'
           arch: 'android_arm64_v8a'
           modules: qt5compat
-          aqtversion: '==3.1.*'
-          py7zrversion: '==0.20.*'
           extra: '--autodesktop'
 
       # Setup env
@@ -88,12 +87,11 @@ jobs:
       - name: Install Qt (iOS & desktop)
         uses: jurplel/install-qt-action@v3
         with:
+          aqtversion: '==3.1.*'
           version: ${{env.QT_VERSION}}
           host: 'mac'
           target: 'ios'
           modules: qt5compat qtshadertools
-          aqtversion: '==3.1.*'
-          py7zrversion: '==0.20.*'
           extra: '--autodesktop'
 
       # Setup env
