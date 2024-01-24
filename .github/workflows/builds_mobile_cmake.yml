@@ -56,7 +56,7 @@ jobs:
           version: ${{env.QT_VERSION}}
           host: 'linux'
           target: 'android'
-          arch: 'android_arm64_v8a'
+          arch: 'android_arm64_v8a,android_armv7'
           modules: qt5compat
           aqtversion: '==3.1.*'
           extra: '--autodesktop'
@@ -133,6 +133,7 @@ jobs:
       # Build application
       - name: Build application
         run: |
+             ls /home/runner/work/${{env.APP_NAME}}/Qt/
              echo ${{env.QT_HOST_PATH}}
              echo ${{env.QT_TARGET_PATH}}
              ls ${{env.QT_HOST_PATH}}
