@@ -49,17 +49,33 @@ jobs:
       #       sdkmanager "ndk;25.2.9519653"
       #       sdkmanager "build-tools;33.0.2"
 
-      # Install Qt (Android & desktop)
+      # Install Qt (desktop)
       - name: Install Qt (Android & desktop)
         uses: jurplel/install-qt-action@v3
         with:
+          aqtversion: '==3.1.*'
+          version: ${{env.QT_VERSION}}
+          modules: qt5compat
+
+      - name: Install Qt (Android armv8)
+        uses: jurplel/install-qt-action@v3
+        with:
+          aqtversion: '==3.1.*'
           version: ${{env.QT_VERSION}}
           host: 'linux'
           target: 'android'
-          arch: 'android_arm64_v8a,android_armv7'
+          arch: 'android_armv7'
           modules: qt5compat
+
+      - name: Install Qt (Android armv7)
+        uses: jurplel/install-qt-action@v3
+        with:
           aqtversion: '==3.1.*'
-          extra: '--autodesktop'
+          version: ${{env.QT_VERSION}}
+          host: 'linux'
+          target: 'android'
+          arch: 'android_arm64_v8a'
+          modules: qt5compat
 
       # Install dependencies (from package manager)
       - name: Install dependencies (from package manager)
@@ -126,20 +142,20 @@ jobs:
       # Setup env
       - name: Setup env
         run: |
-             echo "QT_HOST_PATH=/home/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/macos" >> $GITHUB_ENV
-             echo "QT_TARGET_PATH=/home/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/ios" >> $GITHUB_ENV
+             echo "QT_HOST_PATH=/Users/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/macos" >> $GITHUB_ENV
+             echo "QT_TARGET_PATH=/Users/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/ios" >> $GITHUB_ENV
              cmake --version
 
       # Build application
       - name: Build application
         run: |
-             ls /home/runner/work/${{env.APP_NAME}}/Qt/
+             ls /Users/runner/work/${{env.APP_NAME}}/Qt/
              echo ${{env.QT_HOST_PATH}}
              echo ${{env.QT_TARGET_PATH}}
              ls ${{env.QT_HOST_PATH}}
              ls ${{env.QT_TARGET_PATH}}
-             export QT_HOST_PATH="/home/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/macos"
-             export QT_TARGET_PATH="/home/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/ios"
+             export QT_HOST_PATH="/Users/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/macos"
+             export QT_TARGET_PATH="/Users/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/ios"
              ls $QT_HOST_PATH
              ls $QT_TARGET_PATH
              ${Qt6_DIR}/bin/qt-cmake -B build/ -G Xcode \
