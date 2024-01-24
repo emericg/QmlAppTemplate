@@ -31,7 +31,7 @@ $ make
 
 > [MobileUI](https://github.com/emericg/MobileUI) Interact with Android and iOS UI
 
-> [MobileSharing](src/thirdparty/MobileSharing/README.md) Use Android and iOS "sharing" features
+> [MobileSharing](src/thirdparty/MobileSharing/README.md) Use Android and iOS cross application sharing features
 
 > [SingleApplication](src/thirdparty/SingleApplication/README.md) Keep only one instance of your application active at a time
 
@@ -41,11 +41,11 @@ $ make
 
 ### Deploy scripts
 
-> [Linux](deploy_linux.sh) AppImage
+> [Linux](deploy_linux.sh) application ZIP and AppImage
 
-> [macOS](deploy_macos.sh) application zip (unsigned)
+> [macOS](deploy_macos.sh) application ZIP (unsigned)
 
-> [Windows](deploy_windows.sh) application zip and NSIS installer
+> [Windows](deploy_windows.sh) application ZIP and NSIS installer
 
 ### GitHub CI workflows
 

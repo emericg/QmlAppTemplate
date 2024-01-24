@@ -59,7 +59,6 @@ jobs:
           arch: 'android_arm64_v8a'
           modules: qt5compat
           aqtversion: '==3.1.*'
-          py7zrversion: '==0.20.*'
           extra: '--autodesktop'
 
       # Install dependencies (from package manager)
@@ -111,7 +110,6 @@ jobs:
           target: 'ios'
           modules: qt5compat qtshadertools
           aqtversion: '==3.1.*'
-          py7zrversion: '==0.20.*'
           extra: '--autodesktop'
 
       # Install dependencies (from package manager)
@@ -128,6 +126,8 @@ jobs:
 
       # Build application
       - name: Build application
+        env:
+          CMAKE_PREFIX_PATH: ${{env.Qt6_DIR}}/lib/cmake
         run: |
              cmake -B build/ -G Xcode \
                -DCMAKE_BUILD_TYPE=Release \
