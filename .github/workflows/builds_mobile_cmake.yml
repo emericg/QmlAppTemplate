@@ -49,15 +49,14 @@ jobs:
       #       sdkmanager "ndk;25.2.9519653"
       #       sdkmanager "build-tools;33.0.2"
 
-      # Install Qt (desktop)
-      - name: Install Qt (Android & desktop)
+      # Install Qt (desktop & zndroid)
+      - name: Install Qt (desktop)
         uses: jurplel/install-qt-action@v3
         with:
           aqtversion: '==3.1.*'
           version: ${{env.QT_VERSION}}
           modules: qt5compat
-
-      - name: Install Qt (Android armv8)
+      - name: Install Qt (Android armv7)
         uses: jurplel/install-qt-action@v3
         with:
           aqtversion: '==3.1.*'
@@ -66,8 +65,7 @@ jobs:
           target: 'android'
           arch: 'android_armv7'
           modules: qt5compat
-
-      - name: Install Qt (Android armv7)
+      - name: Install Qt (Android armv8)
         uses: jurplel/install-qt-action@v3
         with:
           aqtversion: '==3.1.*'
@@ -75,6 +73,24 @@ jobs:
           host: 'linux'
           target: 'android'
           arch: 'android_arm64_v8a'
+          modules: qt5compat
+      - name: Install Qt (Android x86)
+        uses: jurplel/install-qt-action@v3
+        with:
+          aqtversion: '==3.1.*'
+          version: ${{env.QT_VERSION}}
+          host: 'linux'
+          target: 'android'
+          arch: 'android_x86'
+          modules: qt5compat
+      - name: Install Qt (Android x86_64)
+        uses: jurplel/install-qt-action@v3
+        with:
+          aqtversion: '==3.1.*'
+          version: ${{env.QT_VERSION}}
+          host: 'linux'
+          target: 'android'
+          arch: 'android_x86_64'
           modules: qt5compat
 
       # Install dependencies (from package manager)
@@ -98,11 +114,12 @@ jobs:
                -DCMAKE_SYSTEM_NAME=Android \
                -DCMAKE_SYSTEM_VERSION=23 \
                -DCMAKE_FIND_ROOT_PATH:PATH=${{env.QT_TARGET_PATH}} \
-               -DCMAKE_PREFIX_PATH=${{env.QT_TARGET_PATH}} \
+               -DCMAKE_PREFIX_PATH:PATH=${{env.QT_TARGET_PATH}} \
                -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK_ROOT/build/cmake/android.toolchain.cmake \
                -DANDROID_SDK_ROOT=$ANDROID_SDK_ROOT \
                -DANDROID_NDK_ROOT=$ANDROID_NDK_ROOT \
-               -DANDROID_PLATFORM=android-23
+               -DANDROID_PLATFORM=android-23 \
+               -DANDROID_ABI="armeabi-v7a;arm64-v8a;x86;x86_64"
              cmake --build build/ --config Release
 
       # Package application
@@ -149,21 +166,12 @@ jobs:
       # Build application
       - name: Build application
         run: |
-             ls /Users/runner/work/${{env.APP_NAME}}/Qt/
-             echo ${{env.QT_HOST_PATH}}
-             echo ${{env.QT_TARGET_PATH}}
-             ls ${{env.QT_HOST_PATH}}
-             ls ${{env.QT_TARGET_PATH}}
-             export QT_HOST_PATH="/Users/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/macos"
-             export QT_TARGET_PATH="/Users/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/ios"
-             ls $QT_HOST_PATH
-             ls $QT_TARGET_PATH
              ${Qt6_DIR}/bin/qt-cmake -B build/ -G Xcode \
                -DCMAKE_BUILD_TYPE=Release \
                -DCMAKE_SYSTEM_NAME=iOS \
-               -DCMAKE_FIND_ROOT_PATH=$QT_TARGET_PATH \
-               -DCMAKE_PREFIX_PATH=$QT_TARGET_PATH \
+               -DCMAKE_FIND_ROOT_PATH:PATH=${{env.QT_TARGET_PATH}} \
+               -DCMAKE_PREFIX_PATH:PATH=${{env.QT_TARGET_PATH}} \
                -DCMAKE_TOOLCHAIN_FILE=assets/ios/ios.toolchain.cmake \
-               -DQT_HOST_PATH=$QT_HOST_PATH \
+               -DQT_HOST_PATH:PATH=${{env.QT_HOST_PATH}} \
                -DPLATFORM=OS64
              cmake --build build/ --config Release
