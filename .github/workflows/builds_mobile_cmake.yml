@@ -93,7 +93,8 @@ jobs:
       # Package application
       - name: Package application
         run: |
-             $QT_HOST_PATH/bin/androiddeployqt --input build/android-QmlAppTemplate-deployment-settings.json --output build/aab/ --aab --android-platform android-34 --gradle --release
+             ls build/
+             $QT_HOST_PATH/bin/androiddeployqt --input build/android-QmlAppTemplate-deployment-settings.json --output $ANDROID_BUILD_DIR --aab --android-platform android-34 --gradle --release
              ls build/aab/
 
   ## iOS build #################################################################
