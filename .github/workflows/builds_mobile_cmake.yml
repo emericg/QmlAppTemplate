@@ -87,7 +87,7 @@ jobs:
                -DANDROID_SDK_ROOT=$ANDROID_SDK_ROOT \
                -DANDROID_NDK_ROOT=$ANDROID_NDK_ROOT \
                -DANDROID_PLATFORM=android-23 \
-               -DANDROID_ABI="arm64-v8a"
+               -DANDROID_ABI="armeabi-v7a;arm64-v8a;"
              cmake --build build/ --config Release
 
       # Package application
@@ -134,6 +134,10 @@ jobs:
       # Build application
       - name: Build application
         run: |
+             echo ${{env.QT_HOST_PATH}}
+             echo ${{env.QT_TARGET_PATH}}
+             export QT_HOST_PATH="/home/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/macos"
+             export QT_TARGET_PATH="/home/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/ios"
              cmake -B build/ -G Xcode \
                -DCMAKE_BUILD_TYPE=Release \
                -DCMAKE_SYSTEM_NAME=iOS \
