@@ -48,7 +48,7 @@ Flickable {
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Selectors")
-            icon: ""
+            source: ""
         }
 
         ////
@@ -102,7 +102,7 @@ Flickable {
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Selectors")
-            icon: ""
+            source: ""
         }
 
         ////

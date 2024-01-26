@@ -28,7 +28,7 @@ Flickable {
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("App palette colors")
-            icon: ""
+            source: ""
         }
 
         Grid {
@@ -56,7 +56,7 @@ Flickable {
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Fixed colors (material)")
-            icon: ""
+            source: ""
         }
 
         Grid {
@@ -97,7 +97,7 @@ Flickable {
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Fixed colors (css / svg)")
-            icon: ""
+            source: ""
         }
 
         Grid {

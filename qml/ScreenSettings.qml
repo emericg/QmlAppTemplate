@@ -40,53 +40,46 @@ Loader {
 
         Column {
             id: contentColumn
-
             anchors.left: parent.left
             anchors.right: parent.right
 
-            topPadding: Theme.componentMargin
-            bottomPadding: Theme.componentMargin
+            topPadding: 16
+            bottomPadding: 16
             spacing: 8
+
+            property int padIcon: singleColumn ? Theme.componentMarginL : Theme.componentMarginL
+            property int padText: appHeader.headerPosition
 
             ////////////////
 
-            SectionTitle {
-                anchors.left: parent.left
-                anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
-                anchors.right: parent.right
-                anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
-
+            ListTitle {
                 text: qsTr("Application")
                 source: "qrc:/assets/icons_material/baseline-settings-20px.svg"
             }
 
             ////////////////
 
-            Item {
-                id: element_appTheme
-                height: 48
+            Item { // element_appTheme
                 anchors.left: parent.left
                 anchors.leftMargin: screenPaddingLeft
                 anchors.right: parent.right
                 anchors.rightMargin: screenPaddingRight
+                height: Theme.componentHeightXL
 
                 IconSvg {
-                    id: image_appTheme
-                    width: 24
-                    height: 24
                     anchors.left: parent.left
-                    anchors.leftMargin: Theme.componentMargin
+                    anchors.leftMargin: contentColumn.padIcon
                     anchors.verticalCenter: parent.verticalCenter
 
+                    width: 24
+                    height: 24
                     color: Theme.colorIcon
                     source: "qrc:/assets/icons_material/duotone-style-24px.svg"
                 }
 
                 Text {
-                    id: text_appTheme
-                    height: 40
-                    anchors.left: image_appTheme.right
-                    anchors.leftMargin: 24
+                    anchors.left: parent.left
+                    anchors.leftMargin: contentColumn.padText
                     anchors.right: appTheme_selector.left
                     anchors.rightMargin: Theme.componentMargin
                     anchors.verticalCenter: parent.verticalCenter
@@ -102,14 +95,13 @@ Loader {
                 Row {
                     id: appTheme_selector
                     anchors.right: parent.right
-                    anchors.rightMargin: 16
+                    anchors.rightMargin: Theme.componentMargin
                     anchors.verticalCenter: parent.verticalCenter
 
                     z: 1
-                    spacing: 10
+                    spacing: Theme.componentMargin
 
-                    Rectangle {
-                        id: rectangleSnow
+                    Rectangle { // theme "Snow"
                         width: wideWideMode ? 80 : 32
                         height: 32
                         anchors.verticalCenter: parent.verticalCenter
@@ -133,8 +125,7 @@ Loader {
                             onClicked: settingsManager.appTheme = "THEME_SNOW"
                         }
                     }
-                    Rectangle {
-                        id: rectangleDay
+                    Rectangle { // theme "Day"
                         width: wideWideMode ? 80 : 32
                         height: 32
                         anchors.verticalCenter: parent.verticalCenter
@@ -158,8 +149,7 @@ Loader {
                             onClicked: settingsManager.appTheme = "THEME_DAY"
                         }
                     }
-                    Rectangle {
-                        id: rectangleNight
+                    Rectangle { // theme "Night"
                         width: wideWideMode ? 80 : 32
                         height: 32
                         anchors.verticalCenter: parent.verticalCenter
@@ -189,13 +179,11 @@ Loader {
             ////////
 
             ComboBoxThemed {
-                id: comboBoxAppTheme
                 anchors.left: parent.left
-                anchors.leftMargin: screenPaddingLeft + 64
+                anchors.leftMargin: screenPaddingLeft + contentColumn.padText
                 anchors.right: parent.right
-                anchors.rightMargin: screenPaddingRight + 16
+                anchors.rightMargin: screenPaddingRight + Theme.componentMargin
 
-                //height: 48
                 visible: isMobile
 
                 model: ListModel {
@@ -233,31 +221,27 @@ Loader {
 
             ////////
 
-            Item {
-                id: element_appThemeAuto
-                height: 48
+            Item { // element_appThemeAuto
                 anchors.left: parent.left
                 anchors.leftMargin: screenPaddingLeft
                 anchors.right: parent.right
                 anchors.rightMargin: screenPaddingRight
+                height: Theme.componentHeightXL
 
                 IconSvg {
-                    id: image_appThemeAuto
-                    width: 24
-                    height: 24
                     anchors.left: parent.left
-                    anchors.leftMargin: Theme.componentMargin
+                    anchors.leftMargin: contentColumn.padIcon
                     anchors.verticalCenter: parent.verticalCenter
 
+                    width: 24
+                    height: 24
                     color: Theme.colorIcon
                     source: "qrc:/assets/icons_material/duotone-brightness_4-24px.svg"
                 }
 
                 Text {
-                    id: text_appThemeAuto
-                    height: 40
-                    anchors.left: image_appThemeAuto.right
-                    anchors.leftMargin: 24
+                    anchors.left: parent.left
+                    anchors.leftMargin: contentColumn.padText
                     anchors.right: switch_appThemeAuto.left
                     anchors.rightMargin: Theme.componentMargin
                     anchors.verticalCenter: parent.verticalCenter
@@ -284,16 +268,14 @@ Loader {
                     }
                 }
             }
-            Text {
-                id: legend_appThemeAuto
+            Text { // legend_appThemeAuto
                 anchors.left: parent.left
-                anchors.leftMargin: screenPaddingLeft + 64
+                anchors.leftMargin: screenPaddingLeft + contentColumn.padText
                 anchors.right: parent.right
                 anchors.rightMargin: Theme.componentMargin
 
-                topPadding: -16
-                bottomPadding: isMobile ? 12 : 0
-                visible: element_appThemeAuto.visible
+                topPadding: -12
+                bottomPadding: 0
 
                 text: qsTr("Dark mode will switch on automatically between 9 PM and 9 AM.")
                 textFormat: Text.PlainText
@@ -304,31 +286,29 @@ Loader {
 
             ////////
 
-            Item {
-                id: element_appThemeCSD
-                height: 48
+            Item { // element_appThemeCSD
                 anchors.left: parent.left
                 anchors.leftMargin: screenPaddingLeft
                 anchors.right: parent.right
                 anchors.rightMargin: screenPaddingRight
+                height: Theme.componentHeightXL
+
+                visible: isDesktop
 
                 IconSvg {
-                    id: image_appThemeCSD
-                    width: 24
-                    height: 24
                     anchors.left: parent.left
-                    anchors.leftMargin: Theme.componentMargin
+                    anchors.leftMargin: contentColumn.padIcon
                     anchors.verticalCenter: parent.verticalCenter
 
+                    width: 24
+                    height: 24
                     color: Theme.colorIcon
                     source: "qrc:/assets/icons_material/baseline-close-24px.svg"
                 }
 
                 Text {
-                    id: text_appThemeCSD
-                    height: 40
-                    anchors.left: image_appThemeCSD.right
-                    anchors.leftMargin: 24
+                    anchors.left: parent.left
+                    anchors.leftMargin: contentColumn.padText
                     anchors.right: switch_appThemeCSD.left
                     anchors.rightMargin: Theme.componentMargin
                     anchors.verticalCenter: parent.verticalCenter
@@ -352,16 +332,15 @@ Loader {
                     onClicked: settingsManager.appThemeCSD = checked
                 }
             }
-            Text {
-                id: legend_appThemeCSD
+            Text { // legend_appThemeCSD
                 anchors.left: parent.left
-                anchors.leftMargin: screenPaddingLeft + 64
+                anchors.leftMargin: screenPaddingLeft + contentColumn.padText
                 anchors.right: parent.right
                 anchors.rightMargin: Theme.componentMargin
 
-                topPadding: -16
-                bottomPadding: isMobile ? 12 : 0
-                visible: element_appThemeCSD.visible
+                topPadding: -12
+                bottomPadding: 0
+                visible: isDesktop
 
                 text: qsTr("qetxyjcgkcul.")
                 textFormat: Text.PlainText
@@ -372,31 +351,27 @@ Loader {
 
             ////////
 
-            Item {
-                id: element_language
-                height: 48
+            Item { // element_language
                 anchors.left: parent.left
                 anchors.leftMargin: screenPaddingLeft
                 anchors.right: parent.right
                 anchors.rightMargin: screenPaddingRight
+                height: Theme.componentHeightXL
 
                 IconSvg {
-                    id: image_language
-                    width: 24
-                    height: 24
                     anchors.left: parent.left
-                    anchors.leftMargin: Theme.componentMargin
+                    anchors.leftMargin: contentColumn.padIcon
                     anchors.verticalCenter: parent.verticalCenter
 
+                    width: 24
+                    height: 24
                     color: Theme.colorIcon
                     source: "qrc:/assets/icons_material/duotone-translate-24px.svg"
                 }
 
                 Text {
-                    id: text_language
-                    height: 40
-                    anchors.left: image_language.right
-                    anchors.leftMargin: 24
+                    anchors.left: parent.left
+                    anchors.leftMargin: contentColumn.padText
                     anchors.right: combobox_language.left
                     anchors.rightMargin: Theme.componentMargin
                     anchors.verticalCenter: parent.verticalCenter
@@ -454,12 +429,7 @@ Loader {
 
             ////////////////
 
-            SectionTitle {
-                anchors.left: parent.left
-                anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
-                anchors.right: parent.right
-                anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
-
+            ListTitle {
                 text: qsTr("Other fake settings")
                 source: "qrc:/assets/icons_material/baseline-settings-20px.svg"
             }
@@ -467,28 +437,26 @@ Loader {
             ////////////////
 
             Item {
-                height: 48
                 anchors.left: parent.left
                 anchors.leftMargin: screenPaddingLeft
                 anchors.right: parent.right
                 anchors.rightMargin: screenPaddingRight
+                height: Theme.componentHeightXL
 
                 IconSvg {
-                    id: image_aaa
-                    width: 24
-                    height: 24
                     anchors.left: parent.left
-                    anchors.leftMargin: Theme.componentMargin
+                    anchors.leftMargin: contentColumn.padIcon
                     anchors.verticalCenter: parent.verticalCenter
 
+                    width: 24
+                    height: 24
                     color: Theme.colorIcon
                     source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
                 }
 
                 Text {
-                    height: 40
-                    anchors.left: image_aaa.right
-                    anchors.leftMargin: 24
+                    anchors.left: parent.left
+                    anchors.leftMargin: contentColumn.padText
                     anchors.right: switch_aaa.left
                     anchors.rightMargin: Theme.componentMargin
                     anchors.verticalCenter: parent.verticalCenter
@@ -513,28 +481,26 @@ Loader {
             ////////////////
 
             Item {
-                height: 48
                 anchors.left: parent.left
                 anchors.leftMargin: screenPaddingLeft
                 anchors.right: parent.right
                 anchors.rightMargin: screenPaddingRight
+                height: Theme.componentHeightXL
 
                 IconSvg {
-                    id: image_bbb
-                    width: 24
-                    height: 24
                     anchors.left: parent.left
-                    anchors.leftMargin: Theme.componentMargin
+                    anchors.leftMargin: contentColumn.padIcon
                     anchors.verticalCenter: parent.verticalCenter
 
+                    width: 24
+                    height: 24
                     color: Theme.colorIcon
                     source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
                 }
 
                 Text {
-                    height: 40
-                    anchors.left: image_bbb.right
-                    anchors.leftMargin: 24
+                    anchors.left: parent.left
+                    anchors.leftMargin: contentColumn.padText
                     anchors.right: spinbox_bbb.left
                     anchors.rightMargin: Theme.componentMargin
                     anchors.verticalCenter: parent.verticalCenter
@@ -557,7 +523,7 @@ Loader {
                     from: 1
                     to: 10
                     value: 5
-                    legend: " h."
+                    legend: "h."
                 }
             }
 

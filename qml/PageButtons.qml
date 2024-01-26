@@ -25,7 +25,7 @@ Flickable {
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Buttons")
-            icon: ""
+            source: ""
         }
 
         Flow {
@@ -83,7 +83,7 @@ Flickable {
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Round buttons")
-            icon: ""
+            source: ""
         }
 
         Row {

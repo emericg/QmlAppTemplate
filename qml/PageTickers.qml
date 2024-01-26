@@ -25,7 +25,7 @@ Flickable {
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Buttons")
-            icon: ""
+            source: ""
         }
 
         Row {
@@ -54,7 +54,7 @@ Flickable {
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Switches")
-            icon: ""
+            source: ""
         }
 
         SwitchThemedDesktop {
@@ -74,7 +74,7 @@ Flickable {
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("SpinBoxes")
-            icon: ""
+            source: ""
         }
 
         SpinBoxThemedDesktop {
@@ -99,7 +99,7 @@ Flickable {
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Qt Quick Controls")
-            icon: ""
+            source: ""
         }
 
         Row {

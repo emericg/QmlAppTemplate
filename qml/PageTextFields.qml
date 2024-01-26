@@ -25,7 +25,7 @@ Flickable {
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("TextFields")
-            icon: ""
+            source: ""
         }
 
         TextEditThemed {
@@ -70,7 +70,7 @@ Flickable {
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Qt Quick Controls")
-            icon: ""
+            source: ""
         }
 
         TextEdit {

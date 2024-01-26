@@ -25,7 +25,7 @@ Flickable {
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Progress bars")
-            icon: ""
+            source: ""
         }
 
         Column {
@@ -48,7 +48,7 @@ Flickable {
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Other indicators")
-            icon: ""
+            source: ""
         }
 
         Column {

@@ -13,14 +13,11 @@ Rectangle {
     clip: false
     z: 10
 
+    property string headerTitle: "QmlAppTemplate"
     property int headerHeight: 64
-
     property int headerPosition: 64
 
-    property string headerTitle: "QmlAppTemplate"
-
     property bool componentsEnabled: true
-
     property bool componentsMirrored: false
 
     ////////////////////////////////////////////////////////////////////////////
@@ -181,7 +178,7 @@ Rectangle {
                 colorHighlight: Theme.colorHeaderHighlight
                 highlightMode: "background"
 
-                selected: (appContent.state === "DesktopComponents")
+                highlighted: (appContent.state === "DesktopComponents")
                 source: "qrc:/assets/icons_material/duotone-touch_app-24px.svg"
                 onClicked: menuComponentsClicked()
             }
@@ -193,7 +190,7 @@ Rectangle {
                 colorHighlight: Theme.colorHeaderHighlight
                 highlightMode: "background"
 
-                selected: (appContent.state === "Settings")
+                highlighted: (appContent.state === "Settings")
                 source: "qrc:/assets/icons_material/duotone-tune-24px.svg"
                 onClicked: menuSettingsClicked()
             }
@@ -205,7 +202,7 @@ Rectangle {
                 colorHighlight: Theme.colorHeaderHighlight
                 highlightMode: "background"
 
-                selected: (appContent.state === "About")
+                highlighted: (appContent.state === "About")
                 source: "qrc:/assets/icons_material/duotone-info-24px.svg"
                 onClicked: menuAboutClicked()
             }

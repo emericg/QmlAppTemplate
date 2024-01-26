@@ -28,7 +28,7 @@ Flickable {
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Title")
-            icon: ""
+            source: ""
         }
     }
 }

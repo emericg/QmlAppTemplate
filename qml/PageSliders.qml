@@ -25,7 +25,7 @@ Flickable {
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Conventional sliders")
-            icon: ""
+            source: ""
         }
 
         Column {
@@ -87,7 +87,7 @@ Flickable {
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Arrow sliders")
-            icon: ""
+            source: ""
         }
 
         Column {
@@ -162,7 +162,7 @@ Flickable {
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Solid sliders")
-            icon: ""
+            source: ""
         }
 
         Column {
@@ -237,7 +237,7 @@ Flickable {
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Qt Quick Controls")
-            icon: ""
+            source: ""
         }
 
         Column {

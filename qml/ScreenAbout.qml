@@ -187,13 +187,13 @@ Loader {
             ListItem { // description
                 width: parent.width
                 text: qsTr("A Qt6 / QML application template, with a full set of visual controls, as well as build and deploy scripts and CI setups.")
-                iconSource: "qrc:/assets/icons_material/outline-info-24px.svg"
+                source: "qrc:/assets/icons_material/outline-info-24px.svg"
             }
 
             ListItemClickable { // authors
                 width: parent.width
                 text: qsTr("Application by <a href=\"https://emeric.io\">Emeric Grange</a>")
-                iconSource: "qrc:/assets/icons_material/baseline-supervised_user_circle-24px.svg"
+                source: "qrc:/assets/icons_material/baseline-supervised_user_circle-24px.svg"
                 indicatorSource: "qrc:/assets/icons_material/duotone-launch-24px.svg"
                 onClicked: Qt.openUrlExternally("https://emeric.io")
             }
@@ -203,7 +203,7 @@ Loader {
                 visible: (Qt.platform.os === "android" || Qt.platform.os === "ios")
 
                 text: qsTr("Rate the application")
-                iconSource: "qrc:/assets/icons_material/baseline-stars-24px.svg"
+                source: "qrc:/assets/icons_material/baseline-stars-24px.svg"
                 indicatorSource: "qrc:/assets/icons_material/duotone-launch-24px.svg"
                 onClicked: Qt.openUrlExternally("https://github.com/emericg/QmlAppTemplate")
             }
@@ -212,8 +212,8 @@ Loader {
                 width: parent.width
 
                 text: qsTr("Open the tutorial")
-                iconSource: "qrc:/assets/icons_material/baseline-import_contacts-24px.svg"
-                iconSize: 28
+                source: "qrc:/assets/icons_material/baseline-import_contacts-24px.svg"
+                sourceSize: 28
                 indicatorSource: "qrc:/assets/icons_material/baseline-chevron_right-24px.svg"
                 //onClicked: screenTutorial.openFrom("ScreenAbout")
             }
@@ -227,7 +227,7 @@ Loader {
                 visible: (Qt.platform.os === "android")
 
                 text: qsTr("About app permissions")
-                iconSource: "qrc:/assets/icons_material/baseline-flaky-24px.svg"
+                source: "qrc:/assets/icons_material/baseline-flaky-24px.svg"
                 indicatorSource: "qrc:/assets/icons_material/baseline-chevron_right-24px.svg"
                 onClicked: screenAboutPermissions.loadScreen()
             }
