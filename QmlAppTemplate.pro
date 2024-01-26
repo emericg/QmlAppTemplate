@@ -21,8 +21,10 @@ win32 { DEFINES += _USE_MATH_DEFINES }
 # AppUtils
 include(src/thirdparty/AppUtils/AppUtils.pri)
 
-# MobileUI and MobileSharing for mobile OS
+# MobileUI
 include(src/thirdparty/MobileUI/MobileUI.pri)
+
+# MobileSharing
 include(src/thirdparty/MobileSharing/MobileSharing.pri)
 
 # SingleApplication for desktop OS

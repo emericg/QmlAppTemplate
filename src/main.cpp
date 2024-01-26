@@ -26,9 +26,9 @@
 #include <utils_language.h>
 #include <utils_os_macos_dock.h>
 
-#include <MobileUI/MobileUI.h>
-#include <MobileSharing/MobileSharing.h>
-#include <SingleApplication/SingleApplication.h>
+#include <MobileUI>
+#include <MobileSharing>
+#include <SingleApplication>
 
 #include <QtGlobal>
 #include <QLibraryInfo>

@@ -86,8 +86,8 @@ android {
     defaultConfig {
         resConfig "en"
         ndk.abiFilters = qtTargetAbiList.split(",")
-        minSdkVersion 23 // qtMinSdkVersion
-        targetSdkVersion 34 // qtTargetSdkVersion
+        minSdkVersion qtMinSdkVersion
+        targetSdkVersion qtTargetSdkVersion
 
         namespace "io.emeric.qmlapptemplate"
         versionName "0.6"

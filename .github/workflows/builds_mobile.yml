@@ -45,9 +45,9 @@ jobs:
       #  uses: android-actions/setup-android@v2
       #- name: Install Android SDK / NDK / tools
       #  run: |
-      #       sdkmanager "platforms;android-33"
+      #       sdkmanager "platforms;android-34"
       #       sdkmanager "ndk;25.2.9519653"
-      #       sdkmanager "build-tools;33.0.2"
+      #       sdkmanager "build-tools;34.0.0"
 
       # Install Qt (Android & desktop)
       - name: Install Qt (Android & desktop)
