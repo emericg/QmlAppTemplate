@@ -49,8 +49,9 @@ if(ANDROID)
     set(QT_ANDROID_MIN_SDK_VERSION 23)
     set(QT_ANDROID_TARGET_SDK_VERSION 34)
 
-    set_target_properties(QmlAppTemplate PROPERTIES QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/assets/android/")
-    target_link_libraries(QmlAppTemplate PRIVATE Qt::CorePrivate)
+    set_target_properties(QmlAppTemplate PROPERTIES
+        QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/assets/android/"
+    )
 endif()
 
 ## macOS
@@ -63,8 +64,7 @@ endif()
 if(IOS)
     set(IPHONEOS_DEPLOYMENT_TARGET "14.0")
     set(CMAKE_XCODE_ATTRIBUTE_IPHONEOS_DEPLOYMENT_TARGET 14.0)
-
-    target_link_libraries(QmlAppTemplate PRIVATE Qt::GuiPrivate "-framework UIKit")
+    set(CMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "")
 endif()
 
 ## Windows

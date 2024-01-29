@@ -133,7 +133,9 @@ jobs:
       - name: Package application
         run: |
              ls build/
-             $QT_HOST_PATH/bin/androiddeployqt --input build/android-QmlAppTemplate-deployment-settings.json --output build/ --aab --android-platform android-34 --gradle --release
+             ls build/android-build
+             ls build/android_abi_builds
+             $QT_HOST_PATH/bin/androiddeployqt --input build/android-QmlAppTemplate-deployment-settings.json --output android-build/ --aab --android-platform android-34 --gradle --release
 
 
   ## iOS build #################################################################
@@ -179,12 +181,12 @@ jobs:
       - name: Build application
         run: |
              cmake -B build/ -G Xcode \
-               -DCMAKE_BUILD_TYPE=Release \
-               -DCMAKE_SYSTEM_NAME=iOS \
+               -DQT_HOST_PATH:PATH=${{env.QT_HOST_PATH}} \
                -DCMAKE_FIND_ROOT_PATH:PATH=${{env.QT_TARGET_PATH}} \
                -DCMAKE_PREFIX_PATH:PATH=${{env.QT_TARGET_PATH}} \
                -DCMAKE_TOOLCHAIN_FILE=assets/ios/ios.toolchain.cmake \
+               -DCMAKE_SYSTEM_NAME=iOS \
+               -DCMAKE_BUILD_TYPE=Release \
                -DENABLE_ARC=FALSE \
-               -DQT_HOST_PATH:PATH=${{env.QT_HOST_PATH}} \
                -DPLATFORM=OS64
              cmake --build build/ --config Release
