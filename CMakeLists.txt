@@ -134,13 +134,13 @@ install(TARGETS QmlAppTemplate
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
-qt_generate_deploy_qml_app_script(
-    TARGET QmlAppTemplate
-    FILENAME_VARIABLE deploy_script
-    NO_UNSUPPORTED_PLATFORM_ERROR
-    DEPLOY_USER_QML_MODULES_ON_UNSUPPORTED_PLATFORM
-    MACOS_BUNDLE_POST_BUILD
-)
-install(SCRIPT ${deploy_script})
+#qt_generate_deploy_qml_app_script(
+#    TARGET QmlAppTemplate
+#    OUTPUT_SCRIPT deploy_script
+#    NO_UNSUPPORTED_PLATFORM_ERROR
+#    DEPLOY_USER_QML_MODULES_ON_UNSUPPORTED_PLATFORM
+#    MACOS_BUNDLE_POST_BUILD
+#)
+#install(SCRIPT ${deploy_script})
 
 ################################################################################
