@@ -132,9 +132,20 @@ jobs:
       # Package application
       - name: Package application
         run: |
+             echo '---- ls build/'
              ls build/
-             ls build/android-build
+             echo '---- ls build/android_abi_builds/'
              ls build/android_abi_builds
+             echo '---- ls build/android-build/'
+             ls build/android-build
+             echo '---- ls build/android-build/ + ARCHS'
+             ls build/android-build/libs/arm64-v8a
+             ls build/android-build/libs/armeabi-v7a
+             ls build/android-build/libs/x86
+             ls build/android-build/libs/x86_64
+             echo '---- cat deployment-settings.json'
+             cat build/android-QmlAppTemplate-deployment-settings.json
+             echo '---- androiddeployqt'
              $QT_HOST_PATH/bin/androiddeployqt --input build/android-QmlAppTemplate-deployment-settings.json --output android-build/ --aab --android-platform android-34 --gradle --release
 
 
