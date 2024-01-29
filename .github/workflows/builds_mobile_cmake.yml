@@ -127,25 +127,11 @@ jobs:
                -DQT_HOST_PATH:PATH=${{env.QT_HOST_PATH}} \
                -DQT_ANDROID_BUILD_ALL_ABIS=ON \
                -DQT_ANDROID_ABIS="armeabi-v7a;arm64-v8a;x86;x86_64"
-             cmake --build build/ --config Release
+             cmake --build build/
 
       # Package application
       - name: Package application
         run: |
-             echo '---- ls build/'
-             ls build/
-             echo '---- ls build/android_abi_builds/'
-             ls build/android_abi_builds
-             echo '---- ls build/android-build/'
-             ls build/android-build
-             echo '---- ls build/android-build/ + ARCHS'
-             ls build/android-build/libs/arm64-v8a
-             ls build/android-build/libs/armeabi-v7a
-             ls build/android-build/libs/x86
-             ls build/android-build/libs/x86_64
-             echo '---- cat deployment-settings.json'
-             cat build/android-QmlAppTemplate-deployment-settings.json
-             echo '---- androiddeployqt'
              $QT_HOST_PATH/bin/androiddeployqt --input build/android-QmlAppTemplate-deployment-settings.json --output android-build/ --aab --android-platform android-34 --gradle --release
 
 
@@ -200,4 +186,4 @@ jobs:
                -DCMAKE_BUILD_TYPE=Release \
                -DENABLE_ARC=FALSE \
                -DPLATFORM=OS64
-             cmake --build build/ --config Release
+             cmake --build build/

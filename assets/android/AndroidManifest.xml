@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application android:name="org.qtproject.qt.android.bindings.QtApplication"
-                 android:extractNativeLibs="true" android:hardwareAccelerated="true" android:allowNativeHeapPointerTagging="false"
+                 android:hardwareAccelerated="true" android:allowNativeHeapPointerTagging="false"
                  android:theme="@style/AppTheme" android:icon="@mipmap/ic_launcher"
                  android:label="QmlAppTemplate">
 
