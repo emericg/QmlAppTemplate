@@ -78,7 +78,7 @@ int main(int argc, char *argv[])
     // Init generic utils
     UtilsApp *utilsApp = UtilsApp::getInstance();
     UtilsScreen *utilsScreen = UtilsScreen::getInstance();
-    UtilsSysinfo *utilsSysinfo = UtilsSysinfo::getInstance();
+    UtilsSysInfo *utilsSysinfo = UtilsSysInfo::getInstance();
     UtilsLanguage *utilsLanguage = UtilsLanguage::getInstance();
     if (!utilsScreen || !utilsApp || !utilsLanguage)
     {
@@ -125,10 +125,16 @@ int main(int argc, char *argv[])
     // For i18n retranslate
     utilsLanguage->setQmlEngine(&engine);
 
+    // app info
+    utilsApp->setQuickWindow(qobject_cast<QQuickWindow *>(engine.rootObjects().value(0)));
+
 #if !defined(Q_OS_ANDROID) && !defined(Q_OS_IOS) // desktop section
 
-    // React to secondary instances // QQuickWindow must be valid at this point
+    // QQuickWindow must be valid at this point
     QQuickWindow *window = qobject_cast<QQuickWindow *>(engine.rootObjects().value(0));
+    if (!window) return EXIT_FAILURE;
+
+    // React to secondary instances
     QObject::connect(&app, &SingleApplication::instanceStarted, window, &QQuickWindow::show);
     QObject::connect(&app, &SingleApplication::instanceStarted, window, &QQuickWindow::raise);
 

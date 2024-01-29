@@ -109,7 +109,7 @@ Item {
                     anchors.right: parent.right
 
                     textFormat: Text.StyledText
-                    text: qsTr("The Android operating system requires applications to ask for device location permission in order to scan for nearby Bluetooth Low Energy sensors.") + "<br>" +
+                    text: qsTr("The operating system requires applications to ask for device location permission in order to scan for nearby Bluetooth Low Energy sensors.") + "<br>" +
                           qsTr("This permission is only needed while scanning for new sensors.") + "<br>" +
                           qsTr("This application doesn't use, store nor communicate your location to anyone or anything.")
 

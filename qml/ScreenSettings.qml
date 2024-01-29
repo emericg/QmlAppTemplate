@@ -257,7 +257,7 @@ Loader {
                 SwitchThemedDesktop {
                     id: switch_appThemeAuto
                     anchors.right: parent.right
-                    anchors.rightMargin: 0
+                    anchors.rightMargin: 4
                     anchors.verticalCenter: parent.verticalCenter
                     z: 1
 
@@ -324,7 +324,7 @@ Loader {
                 SwitchThemedDesktop {
                     id: switch_appThemeCSD
                     anchors.right: parent.right
-                    anchors.rightMargin: 0
+                    anchors.rightMargin: 4
                     anchors.verticalCenter: parent.verticalCenter
                     z: 1
 
@@ -472,7 +472,7 @@ Loader {
                 SwitchThemedDesktop {
                     id: switch_aaa
                     anchors.right: parent.right
-                    anchors.rightMargin: 0
+                    anchors.rightMargin: 4
                     anchors.verticalCenter: parent.verticalCenter
                     z: 1
                 }

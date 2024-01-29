@@ -163,6 +163,61 @@ Loader {
                             color: Theme.colorHighContrast
                         }
                     }
+
+                    Column {
+                        visible: false
+
+                        Text {
+                            text: qsTr("Qt build mode")
+                            textFormat: Text.PlainText
+                            color: Theme.colorSubText
+                            font.bold: true
+                            font.pixelSize: Theme.fontSizeContentVerySmall
+                            font.capitalization: Font.AllUppercase
+                        }
+                        Text {
+                            text: utilsApp.qtBuildMode()
+                            textFormat: Text.PlainText
+                            font.pixelSize: Theme.fontSizeContentBig
+                            color: Theme.colorHighContrast
+                        }
+                    }
+
+                    Column {
+                        Text {
+                            text: qsTr("Qt build architecture")
+                            textFormat: Text.PlainText
+                            color: Theme.colorSubText
+                            font.bold: true
+                            font.pixelSize: Theme.fontSizeContentVerySmall
+                            font.capitalization: Font.AllUppercase
+                        }
+                        Text {
+                            text: utilsApp.qtArchitecture()
+                            textFormat: Text.PlainText
+                            font.pixelSize: Theme.fontSizeContentBig
+                            color: Theme.colorHighContrast
+                        }
+                    }
+
+                    Column {
+                        visible: utilsApp.qtRhiBackend()
+
+                        Text {
+                            text: qsTr("Qt RHI backend")
+                            textFormat: Text.PlainText
+                            color: Theme.colorSubText
+                            font.bold: true
+                            font.pixelSize: Theme.fontSizeContentVerySmall
+                            font.capitalization: Font.AllUppercase
+                        }
+                        Text {
+                            text: utilsApp.qtRhiBackend()
+                            textFormat: Text.PlainText
+                            font.pixelSize: Theme.fontSizeContentBig
+                            color: Theme.colorHighContrast
+                        }
+                    }
                 }
             }
 
@@ -194,7 +249,7 @@ Loader {
                     }
 
                     Column {
-                        visible: utilsSysinfo.os_version !== "unknown"
+                        visible: (utilsSysinfo.os_version !== "unknown")
 
                         Text {
                             text: qsTr("Operating System VERSION")
@@ -206,6 +261,25 @@ Loader {
                         }
                         Text {
                             text: utilsSysinfo.os_version
+                            textFormat: Text.PlainText
+                            color: Theme.colorHighContrast
+                            font.pixelSize: Theme.fontSizeContentBig
+                        }
+                    }
+
+                    Column {
+                        visible: utilsSysinfo.os_display_server
+
+                        Text {
+                            text: qsTr("Display Server")
+                            textFormat: Text.PlainText
+                            color: Theme.colorSubText
+                            font.bold: true
+                            font.pixelSize: Theme.fontSizeContentVerySmall
+                            font.capitalization: Font.AllUppercase
+                        }
+                        Text {
+                            text: utilsSysinfo.os_display_server
                             textFormat: Text.PlainText
                             color: Theme.colorHighContrast
                             font.pixelSize: Theme.fontSizeContentBig
@@ -262,7 +336,7 @@ Loader {
 
                     Column {
                         Text {
-                            text: qsTr("Physical core count")
+                            text: qsTr("Physical / Logical core count")
                             textFormat: Text.PlainText
                             color: Theme.colorSubText
                             font.bold: true
@@ -270,24 +344,7 @@ Loader {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: utilsSysinfo.cpu_coreCount_physical
-                            textFormat: Text.PlainText
-                            font.pixelSize: Theme.fontSizeContentBig
-                            color: Theme.colorHighContrast
-                        }
-                    }
-
-                    Column {
-                        Text {
-                            text: qsTr("Logical core count")
-                            textFormat: Text.PlainText
-                            color: Theme.colorSubText
-                            font.bold: true
-                            font.pixelSize: Theme.fontSizeContentVerySmall
-                            font.capitalization: Font.AllUppercase
-                        }
-                        Text {
-                            text: utilsSysinfo.cpu_coreCount_logical
+                            text: utilsSysinfo.cpu_coreCount_physical + " / " + utilsSysinfo.cpu_coreCount_logical
                             textFormat: Text.PlainText
                             font.pixelSize: Theme.fontSizeContentBig
                             color: Theme.colorHighContrast
@@ -324,8 +381,10 @@ Loader {
                     spacing: 12
 
                     Column {
+                        visible: (utilsScreen.screenPar != 1)
+
                         Text {
-                            text: qsTr("Screen size")
+                            text: qsTr("Screen geometry (physical)")
                             textFormat: Text.PlainText
                             color: Theme.colorSubText
                             font.bold: true
@@ -333,7 +392,27 @@ Loader {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: utilsScreen.screenSize.toFixed(1) + " " + qsTr("inches")
+                            text: (utilsScreen.screenWidth*utilsScreen.screenPar).toFixed(1) + " x "
+                                  + (utilsScreen.screenHeight*utilsScreen.screenPar).toFixed(1)
+                            textFormat: Text.PlainText
+                            font.pixelSize: Theme.fontSizeContentBig
+                            color: Theme.colorHighContrast
+                        }
+                    }
+
+                    Column {
+                        visible: (utilsScreen.screenPar != 1)
+
+                        Text {
+                            text: qsTr("Screen DPI (physical)")
+                            textFormat: Text.PlainText
+                            color: Theme.colorSubText
+                            font.bold: true
+                            font.pixelSize: Theme.fontSizeContentVerySmall
+                            font.capitalization: Font.AllUppercase
+                        }
+                        Text {
+                            text: (utilsScreen.screenDpi*utilsScreen.screenPar).toFixed(1)
                             textFormat: Text.PlainText
                             font.pixelSize: Theme.fontSizeContentBig
                             color: Theme.colorHighContrast
@@ -351,6 +430,74 @@ Loader {
                         }
                         Text {
                             text: utilsScreen.screenWidth + " x " + utilsScreen.screenHeight
+                            textFormat: Text.PlainText
+                            font.pixelSize: Theme.fontSizeContentBig
+                            color: Theme.colorHighContrast
+                        }
+                    }
+
+                    Column {
+                        Text {
+                            text: qsTr("Screen DPI")
+                            textFormat: Text.PlainText
+                            color: Theme.colorSubText
+                            font.bold: true
+                            font.pixelSize: Theme.fontSizeContentVerySmall
+                            font.capitalization: Font.AllUppercase
+                        }
+                        Text {
+                            text: utilsScreen.screenDpi
+                            textFormat: Text.PlainText
+                            font.pixelSize: Theme.fontSizeContentBig
+                            color: Theme.colorHighContrast
+                        }
+                    }
+
+                    Column {
+                        Text {
+                            text: qsTr("Screen Pixel Aspect Ratio")
+                            textFormat: Text.PlainText
+                            color: Theme.colorSubText
+                            font.bold: true
+                            font.pixelSize: Theme.fontSizeContentVerySmall
+                            font.capitalization: Font.AllUppercase
+                        }
+                        Text {
+                            text: utilsScreen.screenPar.toFixed(1)
+                            textFormat: Text.PlainText
+                            font.pixelSize: Theme.fontSizeContentBig
+                            color: Theme.colorHighContrast
+                        }
+                    }
+
+                    Column {
+                        Text {
+                            text: qsTr("Screen Aspect Ratio")
+                            textFormat: Text.PlainText
+                            color: Theme.colorSubText
+                            font.bold: true
+                            font.pixelSize: Theme.fontSizeContentVerySmall
+                            font.capitalization: Font.AllUppercase
+                        }
+                        Text {
+                            text: utilsScreen.screenDar.toFixed(2) + " (" + utilsScreen.screenDarStr + ")"
+                            textFormat: Text.PlainText
+                            font.pixelSize: Theme.fontSizeContentBig
+                            color: Theme.colorHighContrast
+                        }
+                    }
+
+                    Column {
+                        Text {
+                            text: qsTr("Screen size")
+                            textFormat: Text.PlainText
+                            color: Theme.colorSubText
+                            font.bold: true
+                            font.pixelSize: Theme.fontSizeContentVerySmall
+                            font.capitalization: Font.AllUppercase
+                        }
+                        Text {
+                            text: utilsScreen.screenSize.toFixed(1) + " " + qsTr("inches")
                             textFormat: Text.PlainText
                             font.pixelSize: Theme.fontSizeContentBig
                             color: Theme.colorHighContrast
@@ -385,79 +532,6 @@ Loader {
                         }
                         Text {
                             text: utilsScreen.screenDepth + " bpp"
-                            textFormat: Text.PlainText
-                            font.pixelSize: Theme.fontSizeContentBig
-                            color: Theme.colorHighContrast
-                        }
-                    }
-
-                    Column {
-                        visible: (utilsScreen.screenPar != 1)
-
-                        Text {
-                            text: qsTr("Screen geometry (physical)")
-                            textFormat: Text.PlainText
-                            color: Theme.colorSubText
-                            font.bold: true
-                            font.pixelSize: Theme.fontSizeContentVerySmall
-                            font.capitalization: Font.AllUppercase
-                        }
-                        Text {
-                            text: (utilsScreen.screenWidth*utilsScreen.screenPar).toFixed(1) + " x "
-                                  + (utilsScreen.screenHeight*utilsScreen.screenPar).toFixed(1)
-                            textFormat: Text.PlainText
-                            font.pixelSize: Theme.fontSizeContentBig
-                            color: Theme.colorHighContrast
-                        }
-                    }
-
-                    Column {
-                        Text {
-                            text: qsTr("Screen DPI")
-                            textFormat: Text.PlainText
-                            color: Theme.colorSubText
-                            font.bold: true
-                            font.pixelSize: Theme.fontSizeContentVerySmall
-                            font.capitalization: Font.AllUppercase
-                        }
-                        Text {
-                            text: utilsScreen.screenDpi
-                            textFormat: Text.PlainText
-                            font.pixelSize: Theme.fontSizeContentBig
-                            color: Theme.colorHighContrast
-                        }
-                    }
-
-                    Column {
-                        visible: (utilsScreen.screenPar != 1)
-
-                        Text {
-                            text: qsTr("Screen DPI (physical)")
-                            textFormat: Text.PlainText
-                            color: Theme.colorSubText
-                            font.bold: true
-                            font.pixelSize: Theme.fontSizeContentVerySmall
-                            font.capitalization: Font.AllUppercase
-                        }
-                        Text {
-                            text: (utilsScreen.screenDpi*utilsScreen.screenPar).toFixed(0)
-                            textFormat: Text.PlainText
-                            font.pixelSize: Theme.fontSizeContentBig
-                            color: Theme.colorHighContrast
-                        }
-                    }
-
-                    Column {
-                        Text {
-                            text: qsTr("Screen Pixel Aspect Ratio")
-                            textFormat: Text.PlainText
-                            color: Theme.colorSubText
-                            font.bold: true
-                            font.pixelSize: Theme.fontSizeContentVerySmall
-                            font.capitalization: Font.AllUppercase
-                        }
-                        Text {
-                            text: utilsScreen.screenPar.toFixed(1)
                             textFormat: Text.PlainText
                             font.pixelSize: Theme.fontSizeContentBig
                             color: Theme.colorHighContrast
