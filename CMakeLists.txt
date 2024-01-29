@@ -24,7 +24,7 @@ message(STATUS "[PROJECT] QT_HOST_PATH              = ${QT_HOST_PATH}")
 
 ################################################################################
 
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml Quick QuickControls2 Svg)
+find_package(Qt6 6.4 REQUIRED COMPONENTS Core Gui Qml Quick QuickControls2 Svg)
 
 qt_standard_project_setup()
 
@@ -56,13 +56,13 @@ endif()
 ## macOS
 if(APPLE AND NOT IOS)
     set(CMAKE_OSX_ARCHITECTURES "x86_64;arm64")
-    set(CMAKE_OSX_DEPLOYMENT_TARGET "10.15")
+    set(CMAKE_OSX_DEPLOYMENT_TARGET "11.0")
 endif()
 
 ## iOS
 if(IOS)
-    set(IPHONEOS_DEPLOYMENT_TARGET "12.0")
-    set(CMAKE_XCODE_ATTRIBUTE_IPHONEOS_DEPLOYMENT_TARGET 12.0)
+    set(IPHONEOS_DEPLOYMENT_TARGET "14.0")
+    set(CMAKE_XCODE_ATTRIBUTE_IPHONEOS_DEPLOYMENT_TARGET 14.0)
 
     target_link_libraries(QmlAppTemplate PRIVATE Qt::GuiPrivate "-framework UIKit")
 endif()
@@ -93,12 +93,12 @@ target_link_libraries(QmlAppTemplate PRIVATE SingleApplication)
 
 # Qt
 target_link_libraries(QmlAppTemplate PRIVATE
-    Qt::Core
-    Qt::Gui
-    Qt::Qml
-    Qt::Quick
-    Qt::QuickControls2
-    Qt::Svg
+    Qt6::Core
+    Qt6::Gui
+    Qt6::Qml
+    Qt6::Quick
+    Qt6::QuickControls2
+    Qt6::Svg
 )
 
 ################################################################################

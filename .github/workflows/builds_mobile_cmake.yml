@@ -125,8 +125,8 @@ jobs:
                -DANDROID_PLATFORM=android-23 \
                -DANDROID_ABI="arm64-v8a" \
                -DQT_HOST_PATH:PATH=${{env.QT_HOST_PATH}} \
-               -DQT_ANDROID_BUILD_ALL_ABIS=OFF \
-               -DQT_ANDROID_ABIS="armeabi-v7a;arm64-v8a"
+               -DQT_ANDROID_BUILD_ALL_ABIS=ON \
+               -DQT_ANDROID_ABIS="armeabi-v7a;arm64-v8a;x86;x86_64"
              cmake --build build/ --config Release
 
       # Package application
@@ -184,6 +184,7 @@ jobs:
                -DCMAKE_FIND_ROOT_PATH:PATH=${{env.QT_TARGET_PATH}} \
                -DCMAKE_PREFIX_PATH:PATH=${{env.QT_TARGET_PATH}} \
                -DCMAKE_TOOLCHAIN_FILE=assets/ios/ios.toolchain.cmake \
+               -DENABLE_ARC=FALSE \
                -DQT_HOST_PATH:PATH=${{env.QT_HOST_PATH}} \
                -DPLATFORM=OS64
              cmake --build build/ --config Release
