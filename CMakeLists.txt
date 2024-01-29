@@ -121,8 +121,10 @@ if(CMAKE_BUILD_TYPE STREQUAL Release)
 endif()
 
 set_target_properties(QmlAppTemplate PROPERTIES
-    WIN32_EXECUTABLE ON
+    MACOSX_BUNDLE_GUI_IDENTIFIER "io.emeric.qmlapptemplate"
+    MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/assets/ios/Info.plist
     MACOSX_BUNDLE ON
+    WIN32_EXECUTABLE ON
 )
 
 install(TARGETS QmlAppTemplate
