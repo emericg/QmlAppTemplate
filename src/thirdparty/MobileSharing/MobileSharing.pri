@@ -28,14 +28,14 @@ android {
 
     # These files are from the parent project:
     #ANDROID_PACKAGE_SOURCE_DIR = $${PWD}/android
-    #OTHER_FILES += $${PWD}/src/com/emeric/qmlapptemplate/QShareActivity.java \
-    #               $${PWD}/src/com/emeric/utils/QShareUtils.java \
-    #               $${PWD}/src/com/emeric/utils/QSharePathResolver.java
+    #OTHER_FILES += $${PWD}/src/io/emeric/qmlapptemplate/QShareActivity.java \
+    #               $${PWD}/src/io/emeric/utils/QShareUtils.java \
+    #               $${PWD}/src/io/emeric/utils/QSharePathResolver.java
 
     # Rename these to match your project:
-    #com/emeric/utils
-    #com.emeric.qmlapptemplate
-    #com_emeric_qmlapptemplate
+    #io/emeric/utils
+    #io.emeric.qmlapptemplate
+    #io_emeric_qmlapptemplate
 }
 
 ios {
