@@ -112,7 +112,6 @@ jobs:
       # Build application
       - name: Build application
         run: |
-             export JAVA_HOME=$JAVA_HOME_17_X64
              cmake -B build/ -G Ninja \
                -DCMAKE_BUILD_TYPE=Release \
                -DCMAKE_SYSTEM_NAME=Android \
@@ -132,6 +131,7 @@ jobs:
       # Package application
       - name: Package application
         run: |
+             export JAVA_HOME=$JAVA_HOME_17_X64
              ${{env.QT_HOST_PATH}}/bin/androiddeployqt --input build/android-${{env.APP_NAME}}-deployment-settings.json --output build/android-build/ --android-platform android-34 --aab --release
 
 
