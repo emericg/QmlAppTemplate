@@ -8,6 +8,7 @@ platform :android do
   lane :deploy do
     upload_to_play_store(
       track: 'internal',
+      release_status: 'draft',
       aab: 'build/android-build/build/outputs/bundle/release/android-build-release.aab'
     )
   end
