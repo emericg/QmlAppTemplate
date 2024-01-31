@@ -18,6 +18,22 @@ env:
   QT_VERSION: "6.6.1"
 
 #-------------------------------------------------------------------------------
+# SECRETS
+#-------------------------------------------------------------------------------
+
+## Android secrets:
+# create a keystore file, convert it to base64
+# save the base64 under the name ANDROID_SIGNINGKEY_BASE64
+# save the keystore alias under the name ANDROID_SIGNINGKEY_ALIAS
+# save the keystore password under the name ANDROID_SIGNINGKEY_PASSWORD
+
+## Android upload:
+# - https://developers.google.com/android-publisher/getting_started
+# - https://github.com/fastlane/fastlane/blob/master/fastlane/lib/fastlane/actions/docs/upload_to_play_store.md
+# create the gplay service account, download the json key, convert it to base64
+# save the base64 under the name GPLAY_SERVICEACCOUNTKEY_BASE64
+
+#-------------------------------------------------------------------------------
 # Workflow jobs
 #-------------------------------------------------------------------------------
 
@@ -138,8 +154,16 @@ jobs:
              base64 -d release.keystore.base64 > release.keystore
              ${{env.QT_HOST_PATH}}/bin/androiddeployqt --input build/android-${{env.APP_NAME}}-deployment-settings.json --output build/android-build/ --android-platform android-34 --aab --release --sign release.keystore ${{ secrets.ANDROID_SIGNINGKEY_ALIAS }} --storepass ${{ secrets.ANDROID_SIGNINGKEY_PASSWORD }}
 
-      # Upload Android app bundle
-      - name: Upload Android app bundle
+      # Upload Android app bundle (Play Store)
+      - name: Upload Android app bundle (Play Store)
+        run: |
+             echo ${{ secrets.GPLAY_SERVICEACCOUNTKEY_BASE64 }} > assets/android/fastlane/gplay_serviceaccountkey.base64
+             base64 -d assets/android/fastlane/gplay_serviceaccountkey.base64 > assets/android/fastlane/gplay_serviceaccountkey.json
+             mv assets/android/fastlane/ fastlane/
+             bundle exec fastlane android deploy
+
+      # Upload Android app bundle (GitHub CI)
+      - name: Upload Android app bundle (GitHub CI)
         uses: actions/upload-artifact@v4
         with:
           name: ${{env.APP_NAME}}-${{env.APP_VERSION}}-Android.aab
