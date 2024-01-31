@@ -160,7 +160,7 @@ jobs:
              echo ${{ secrets.GPLAY_SERVICEACCOUNTKEY_BASE64 }} > assets/android/fastlane/gplay_serviceaccountkey.base64
              base64 -d assets/android/fastlane/gplay_serviceaccountkey.base64 > assets/android/fastlane/gplay_serviceaccountkey.json
              mv assets/android/fastlane/ fastlane/
-             bundle exec fastlane android deploy
+             fastlane android deploy
 
       # Upload Android app bundle (GitHub CI)
       - name: Upload Android app bundle (GitHub CI)
