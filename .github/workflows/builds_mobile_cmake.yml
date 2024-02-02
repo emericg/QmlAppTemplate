@@ -156,6 +156,13 @@ jobs:
              base64 -d release.keystore.base64 > release.keystore
              ${{env.QT_HOST_PATH}}/bin/androiddeployqt --input build/android-${{env.APP_NAME}}-deployment-settings.json --output build/android-build/ --android-platform android-34 --aab --release --sign release.keystore ${{ secrets.ANDROID_SIGNINGKEY_ALIAS }} --storepass ${{ secrets.ANDROID_SIGNINGKEY_PASSWORD }}
 
+      # Upload Android app bundle (GitHub CI)
+      - name: Upload Android app bundle (GitHub CI)
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{env.APP_NAME}}-${{env.APP_VERSION}}-Android.aab
+          path: build/android-build/build/outputs/bundle/release/android-build-release.aab
+
       # Upload Android app bundle (Play Store)
       - name: Upload Android app bundle (Play Store)
         run: |
@@ -163,13 +170,6 @@ jobs:
              base64 -d assets/android/fastlane/gplay_serviceaccountkey.base64 > assets/android/fastlane/gplay_serviceaccountkey.json
              mv assets/android/fastlane/ fastlane/
              fastlane android deploy
-
-      # Upload Android app bundle (GitHub CI)
-      - name: Upload Android app bundle (GitHub CI)
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{env.APP_NAME}}-${{env.APP_VERSION}}-Android.aab
-          path: build/android-build/build/outputs/bundle/release/android-build-release.aab
 
   ## iOS build #################################################################
   build-ios:
