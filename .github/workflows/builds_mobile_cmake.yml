@@ -126,15 +126,14 @@ jobs:
         run: |
              echo "QT_HOST_PATH=/home/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/gcc_64" >> $GITHUB_ENV
              echo "QT_TARGET_PATH=/home/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/android_arm64_v8a" >> $GITHUB_ENV
-             cmake --version
 
       # Build application
       - name: Build application
         run: |
+             cmake --version
              cmake -B build/ -G Ninja \
-               -DCMAKE_BUILD_TYPE=Release \
                -DCMAKE_SYSTEM_NAME=Android \
-               -DCMAKE_SYSTEM_VERSION=23 \
+               -DCMAKE_BUILD_TYPE=Release \
                -DCMAKE_FIND_ROOT_PATH:PATH=${{env.QT_TARGET_PATH}} \
                -DCMAKE_PREFIX_PATH:PATH=${{env.QT_TARGET_PATH}} \
                -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK_ROOT/build/cmake/android.toolchain.cmake \
@@ -209,18 +208,18 @@ jobs:
         run: |
              echo "QT_HOST_PATH=/Users/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/macos" >> $GITHUB_ENV
              echo "QT_TARGET_PATH=/Users/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/ios" >> $GITHUB_ENV
-             cmake --version
 
       # Build application
       - name: Build application
         run: |
+             cmake --version
              cmake -B build/ -G Xcode \
-               -DQT_HOST_PATH:PATH=${{env.QT_HOST_PATH}} \
+               -DCMAKE_SYSTEM_NAME=iOS \
+               -DCMAKE_BUILD_TYPE=Release \
                -DCMAKE_FIND_ROOT_PATH:PATH=${{env.QT_TARGET_PATH}} \
                -DCMAKE_PREFIX_PATH:PATH=${{env.QT_TARGET_PATH}} \
                -DCMAKE_TOOLCHAIN_FILE=assets/ios/ios.toolchain.cmake \
-               -DCMAKE_SYSTEM_NAME=iOS \
-               -DCMAKE_BUILD_TYPE=Release \
+               -DQT_HOST_PATH:PATH=${{env.QT_HOST_PATH}} \
                -DENABLE_ARC=FALSE \
                -DPLATFORM=OS64
              cmake --build build/

@@ -1,6 +1,9 @@
 TARGET  = QmlAppTemplate
 VERSION = 0.6
 
+QMAKE_TARGET_BUNDLE_PREFIX = io.emeric
+QMAKE_BUNDLE = qmlapptemplate
+
 DEFINES+= APP_NAME=\\\"$$TARGET\\\"
 DEFINES+= APP_VERSION=\\\"$$VERSION\\\"
 
@@ -11,12 +14,7 @@ QT     += core qml quick quickcontrols2 svg
 !versionAtLeast(QT_VERSION, 6.2) : error("You need at least Qt version 6.2 for $${TARGET}")
 !versionAtLeast(QT_VERSION, 6.4) : warning("Many $${TARGET} features will require at least Qt version 6.4")
 
-# Project features #############################################################
-
-# Use Qt Quick compiler
-ios | android { CONFIG += qtquickcompiler }
-
-win32 { DEFINES += _USE_MATH_DEFINES }
+# Project dependencies #########################################################
 
 # AppUtils
 include(src/thirdparty/AppUtils/AppUtils.pri)
@@ -63,6 +61,22 @@ lupdate_only {
 
 # Build settings ###############################################################
 
+CONFIG(release, debug|release) : BUILD_MODE = "RELEASE"
+CONFIG(debug, debug|release) : BUILD_MODE = "DEBUG"
+
+# Debug indication macros
+CONFIG(release, debug|release) : DEFINES += NDEBUG QT_NO_DEBUG QT_NO_DEBUG_OUTPUT
+
+# Use Qt Quick compiler
+ios | android { CONFIG += qtquickcompiler }
+
+# Math
+win32 { DEFINES += _USE_MATH_DEFINES }
+
+# Deprecated Warnings
+DEFINES += QT_DEPRECATED_WARNINGS
+DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
+
 # Enables AddressSanitizer
 unix {
     #QMAKE_CXXFLAGS += -fsanitize=address,undefined
@@ -70,17 +84,7 @@ unix {
     #QMAKE_LFLAGS += -fsanitize=address,undefined
 }
 
-# Deprecated Warnings
-DEFINES += QT_DEPRECATED_WARNINGS
-DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
-
-# Debug indication macros
-CONFIG(release, debug|release) : DEFINES += NDEBUG QT_NO_DEBUG QT_NO_DEBUG_OUTPUT
-
 # Build artifacts ##############################################################
-
-CONFIG(release, debug|release) : BUILD_MODE = "RELEASE"
-CONFIG(debug, debug|release) : BUILD_MODE = "DEBUG"
 
 OBJECTS_DIR = build/$${BUILD_MODE}_$${QT_ARCH}/obj/
 MOC_DIR     = build/$${BUILD_MODE}_$${QT_ARCH}/moc/
@@ -123,10 +127,6 @@ linux:!android {
 }
 
 macx {
-    # Bundle name
-    QMAKE_TARGET_BUNDLE_PREFIX = io.emeric
-    QMAKE_BUNDLE = qmlapptemplate
-
     # OS icons
     ICON = $${PWD}/assets/macos/$${TARGET}.icns
     #QMAKE_ASSET_CATALOGS_APP_ICON = "AppIcon"
@@ -183,10 +183,6 @@ android {
     # ANDROID_TARGET_ARCH: [x86_64, armeabi-v7a, arm64-v8a]
     #message("ANDROID_TARGET_ARCH: $$ANDROID_TARGET_ARCH")
 
-    # Bundle name
-    QMAKE_TARGET_BUNDLE_PREFIX = io.emeric
-    QMAKE_BUNDLE = qmlapptemplate
-
     OTHER_FILES += assets/android/src/io/emeric/utils/QGpsUtils.java \
                    assets/android/src/io/emeric/utils/QShareUtils.java \
                    assets/android/src/io/emeric/utils/QSharePathResolver.java
@@ -201,10 +197,6 @@ android {
 ios {
     #QMAKE_IOS_DEPLOYMENT_TARGET = 11.0
     #message("QMAKE_IOS_DEPLOYMENT_TARGET: $$QMAKE_IOS_DEPLOYMENT_TARGET")
-
-    # Bundle name
-    QMAKE_TARGET_BUNDLE_PREFIX = io.emeric
-    QMAKE_BUNDLE = qmlapptemplate
 
     # OS infos
     QMAKE_INFO_PLIST = $${PWD}/assets/ios/Info.plist

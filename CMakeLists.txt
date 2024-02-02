@@ -28,7 +28,7 @@ find_package(Qt6 6.4 REQUIRED COMPONENTS Core Gui Qml Quick QuickControls2 Svg)
 
 qt_standard_project_setup()
 
-qt_add_executable(QmlAppTemplate
+qt_add_executable(${CMAKE_PROJECT_NAME}
     src/SettingsManager.cpp src/SettingsManager.h
     src/main.cpp
     qml/qml.qrc
@@ -37,8 +37,8 @@ qt_add_executable(QmlAppTemplate
     assets/assets.qrc
 )
 
-target_include_directories(QmlAppTemplate PRIVATE src/)
-target_include_directories(QmlAppTemplate PUBLIC src/thirdparty/)
+target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE src/)
+target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC src/thirdparty/)
 
 ################################################################################
 
@@ -48,51 +48,55 @@ if(ANDROID)
     set(QT_ANDROID_BUILD_ALL_ABIS ON)
     set(QT_ANDROID_MIN_SDK_VERSION 23)
     set(QT_ANDROID_TARGET_SDK_VERSION 34)
-
-    set_target_properties(QmlAppTemplate PROPERTIES
-        QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/assets/android/"
-    )
+    set(QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/assets/android/")
 endif()
 
 ## macOS
 if(APPLE AND NOT IOS)
     set(CMAKE_OSX_ARCHITECTURES "x86_64;arm64")
-    set(CMAKE_OSX_DEPLOYMENT_TARGET "11.0")
+    set(CMAKE_OSX_DEPLOYMENT_TARGET 11.0)
+    set(CMAKE_XCODE_ATTRIBUTE_INFOPLIST_FILE "${CMAKE_CURRENT_SOURCE_DIR}/assets/ios/Info.plist")
+
+    set(CMAKE_XCODE_ATTRIBUTE_DEVELOPMENT_TEAM "")
+    set(CMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "Apple Development")
+    set(CMAKE_XCODE_ATTRIBUTE_CODE_SIGN_ENTITLEMENTS "${CMAKE_CURRENT_SOURCE_DIR}/assets/macos/${CMAKE_PROJECT_NAME}.entitlements")
 endif()
 
 ## iOS
 if(IOS)
-    set(IPHONEOS_DEPLOYMENT_TARGET "14.0")
     set(CMAKE_XCODE_ATTRIBUTE_IPHONEOS_DEPLOYMENT_TARGET 14.0)
-    set(CMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "")
+    set(CMAKE_XCODE_ATTRIBUTE_INFOPLIST_FILE "${CMAKE_CURRENT_SOURCE_DIR}/assets/ios/Info.plist")
+
+    set(CMAKE_XCODE_ATTRIBUTE_DEVELOPMENT_TEAM "")
+    set(CMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "Apple Development")
 endif()
 
 ## Windows
 if(WIN32)
-    target_compile_definitions(QmlAppTemplate PRIVATE _USE_MATH_DEFINES)
+    target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE _USE_MATH_DEFINES)
 endif()
 
 ################################################################################
 
 # AppUtils
 add_subdirectory(src/thirdparty/AppUtils)
-target_link_libraries(QmlAppTemplate PRIVATE AppUtils)
+target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE AppUtils)
 
 # MobileUI
 add_subdirectory(src/thirdparty/MobileUI)
-target_link_libraries(QmlAppTemplate PRIVATE MobileUI)
+target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE MobileUI)
 
 # MobileSharing
 add_subdirectory(src/thirdparty/MobileSharing)
-target_link_libraries(QmlAppTemplate PRIVATE MobileSharing)
+target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE MobileSharing)
 
 # SingleApplication
 set(QAPPLICATION_CLASS QGuiApplication)
 add_subdirectory(src/thirdparty/SingleApplication)
-target_link_libraries(QmlAppTemplate PRIVATE SingleApplication)
+target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE SingleApplication)
 
 # Qt
-target_link_libraries(QmlAppTemplate PRIVATE
+target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE
     Qt6::Core
     Qt6::Gui
     Qt6::Qml
@@ -104,7 +108,7 @@ target_link_libraries(QmlAppTemplate PRIVATE
 ################################################################################
 
 if(lupdate_only)
-    target_sources(QmlAppTemplate PUBLIC
+    target_sources(${CMAKE_PROJECT_NAME} PUBLIC
         qml/*.js qml/*.qml
         qml/components/*.qml
         qml/components_generic/*.qml
@@ -113,29 +117,32 @@ if(lupdate_only)
 endif()
 
 if(CMAKE_BUILD_TYPE STREQUAL Release)
-    target_compile_definitions(QmlAppTemplate PRIVATE
+    target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
         NDEBUG
         QT_NO_DEBUG
         QT_NO_DEBUG_OUTPUT
     )
 endif()
 
-set_target_properties(QmlAppTemplate PROPERTIES
+string(TIMESTAMP CURRENT_TIMESTAMP "%s" UTC)
+set(APP_VERSION_CODE ${TIMESTAMP})
+
+set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER "io.emeric.qmlapptemplate"
     MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/assets/ios/Info.plist
     MACOSX_BUNDLE ON
     WIN32_EXECUTABLE ON
 )
 
-install(TARGETS QmlAppTemplate
-    BUNDLE DESTINATION .    # used by macOS
+install(TARGETS ${CMAKE_PROJECT_NAME}
+    BUNDLE DESTINATION .
     ARCHIVE DESTINATION .
-    LIBRARY DESTINATION .   # used by Android
+    LIBRARY DESTINATION .
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
 #qt_generate_deploy_qml_app_script(
-#    TARGET QmlAppTemplate
+#    TARGET ${CMAKE_PROJECT_NAME}
 #    OUTPUT_SCRIPT deploy_script
 #    NO_UNSUPPORTED_PLATFORM_ERROR
 #    DEPLOY_USER_QML_MODULES_ON_UNSUPPORTED_PLATFORM
