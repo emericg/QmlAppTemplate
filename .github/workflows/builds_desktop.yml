@@ -4,7 +4,6 @@
 
 name: "Desktop CI builds (qmake)"
 on:
-  push:
   pull_request:
   workflow_dispatch:
 

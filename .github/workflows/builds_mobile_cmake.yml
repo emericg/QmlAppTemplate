@@ -33,6 +33,9 @@ env:
 # create the gplay service account, download the json key, convert it to base64
 # save the base64 under the name GPLAY_SERVICEACCOUNTKEY_BASE64
 
+## Apple secrets:
+# - https://docs.github.com/en/actions/deployment/deploying-xcode-applications/installing-an-apple-certificate-on-macos-runners-for-xcode-development
+
 #-------------------------------------------------------------------------------
 # Workflow jobs
 #-------------------------------------------------------------------------------
