@@ -23,7 +23,7 @@ env:
 
 ## Android secrets:
 # create a keystore file, convert it to base64
-# save the base64 under the name ANDROID_SIGNINGKEY_BASE64
+# save the keystore base64 file under the name ANDROID_SIGNINGKEY_BASE64
 # save the keystore alias under the name ANDROID_SIGNINGKEY_ALIAS
 # save the keystore password under the name ANDROID_SIGNINGKEY_PASSWORD
 
@@ -34,7 +34,18 @@ env:
 # save the base64 under the name GPLAY_SERVICEACCOUNTKEY_BASE64
 
 ## Apple secrets:
+# - https://developer.apple.com/help/account/reference/certificate-types
 # - https://docs.github.com/en/actions/deployment/deploying-xcode-applications/installing-an-apple-certificate-on-macos-runners-for-xcode-development
+# a valid apple developer account is required
+# create a build certificate with xcode, download it, convert it to base64
+# save the build certificate base64 file under the name APPLE_BUILD_CERTIFICATE_BASE64
+# save the build certificate password under the name APPLE_BUILD_CERTIFICATE_PASSWORD
+# create a provisioning profile for your app bundle id, download it, convert it to base64
+# save the provisioning profile under the name APPLE_PROVISIONING_PROFILE_BASE64
+# a new keychain will be created on the runner to store these certificates, choose a new password under the name APPLE_KEYCHAIN_PASSWORD
+
+## iOS upload:
+# TODO
 
 #-------------------------------------------------------------------------------
 # Workflow jobs
@@ -209,6 +220,32 @@ jobs:
              echo "QT_HOST_PATH=/Users/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/macos" >> $GITHUB_ENV
              echo "QT_TARGET_PATH=/Users/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/ios" >> $GITHUB_ENV
 
+      # Setup developer certificate and provisioning profile
+      - name: Setup developer certificate and provisioning profile
+        env:
+          APPLE_BUILD_CERTIFICATE_BASE64: ${{ secrets.APPLE_BUILD_CERTIFICATE_BASE64 }}
+          APPLE_BUILD_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_BUILD_CERTIFICATE_PASSWORD }}
+          APPLE_PROVISIONING_PROFILE_BASE64: ${{ secrets.APPLE_PROVISIONING_PROFILE_BASE64 }}
+          APPLE_KEYCHAIN_PASSWORD: ${{ secrets.APPLE_KEYCHAIN_PASSWORD }}
+        run: |
+          # create variables
+          CERT_PATH=$RUNNER_TEMP/build_certificate.p12
+          PP_PATH=$RUNNER_TEMP/build_pp.mobileprovision # .mobileprovision for iOS # .provisionprofile for macOS
+          KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
+          # import certificate and provisioning profile from secrets
+          echo -n "$APPLE_BUILD_CERTIFICATE_BASE64" | base64 --decode -o $CERT_PATH
+          echo -n "$APPLE_PROVISIONING_PROFILE_BASE64" | base64 --decode -o $PP_PATH
+          # create temporary keychain
+          security create-keychain -p "$APPLE_KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+          security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
+          security unlock-keychain -p "$APPLE_KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+          # import certificate to keychain
+          security import $CERT_PATH -P "$APPLE_BUILD_CERTIFICATE_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+          security list-keychain -d user -s $KEYCHAIN_PATH
+          # apply provisioning profile
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
+
       # Build application
       - name: Build application
         run: |
@@ -221,5 +258,8 @@ jobs:
                -DCMAKE_TOOLCHAIN_FILE=assets/ios/ios.toolchain.cmake \
                -DQT_HOST_PATH:PATH=${{env.QT_HOST_PATH}} \
                -DENABLE_ARC=FALSE \
-               -DPLATFORM=OS64
+               -DPLATFORM=OS64 \
+               -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_REQUIRED="YES" \
+               -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY="iPhone Developer" \
+               -DCMAKE_XCODE_ATTRIBUTE_DEVELOPMENT_TEAM="24Q8SM98H5"
              cmake --build build/

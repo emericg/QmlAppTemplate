@@ -57,7 +57,7 @@ These files are also useful to get an idea about the whole build and deploy proc
 
 > [Mobile (qmake)](.github/workflows/builds_mobile.yml) Android and iOS workflow
 
-> [Mobile (cmake)](.github/workflows/builds_mobile_cmake.yml) Linux, macOS and Windows workflow
+> [Mobile (cmake)](.github/workflows/builds_mobile_cmake.yml) Android and iOS workflow (with store deployment)
 
 > [Linux flatpak](.github/workflows/flatpak.yml) "on demand" workflow
 
