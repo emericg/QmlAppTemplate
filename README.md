@@ -9,7 +9,7 @@ A Qt6 / QML application template, with a full set of visual controls, helper mod
 
 ## About
 
-### Dependencies
+#### Dependencies
 
 You will need a C++17 compiler and Qt 6.5+. Qt 5 Compatibility Module is required.  
 For macOS and iOS builds, you'll need Xcode (13+) installed.  
@@ -25,7 +25,7 @@ $ cmake .. # OR configure with CMake
 $ make
 ```
 
-### C++ modules
+#### C++ modules
 
 > [AppUtils](src/thirdparty/AppUtils/README.md) Various general purpose helpers
 
@@ -35,11 +35,11 @@ $ make
 
 > [SingleApplication](src/thirdparty/SingleApplication/README.md) Keep only one instance of your application active at a time
 
-### QML components
+#### QML components
 
 > TODO
 
-### Deploy scripts
+#### Deploy scripts
 
 > [Linux](deploy_linux.sh) application ZIP and AppImage
 
@@ -47,7 +47,7 @@ $ make
 
 > [Windows](deploy_windows.sh) application ZIP and NSIS installer
 
-### GitHub CI workflows
+#### GitHub CI workflows
 
 These files are also useful to get an idea about the whole build and deploy process.
 
@@ -60,6 +60,13 @@ These files are also useful to get an idea about the whole build and deploy proc
 > [Mobile (cmake)](.github/workflows/builds_mobile_cmake.yml) Android and iOS workflow (with store deployment)
 
 > [Linux flatpak](.github/workflows/flatpak.yml) "on demand" workflow
+
+## Screenshots
+
+![GUI_MOBILE](https://i.imgur.com/gbwRel0.png)
+
+![GUI_DESKTOP1](https://i.imgur.com/4QGJn5G.png)
+![GUI_DESKTOP2](https://i.imgur.com/e0VWdYz.png)
 
 ## License
 
