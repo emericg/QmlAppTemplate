@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.21)
+cmake_minimum_required(VERSION 3.20)
 
 project(QmlAppTemplate VERSION 0.6 LANGUAGES CXX)
 
@@ -73,7 +73,7 @@ target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE
 
 ## Android
 if(ANDROID)
-    set_target_properties(QmlAppTemplate PROPERTIES
+    set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
         QT_ANDROID_ABIS "armeabi-v7a;arm64-v8a;x86;x86_64"
         QT_ANDROID_BUILD_ALL_ABIS ON
         QT_ANDROID_MIN_SDK_VERSION 23
@@ -146,13 +146,13 @@ install(TARGETS ${CMAKE_PROJECT_NAME}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
-#qt_generate_deploy_qml_app_script(
-#    TARGET ${CMAKE_PROJECT_NAME}
-#    OUTPUT_SCRIPT deploy_script
-#    NO_UNSUPPORTED_PLATFORM_ERROR
-#    DEPLOY_USER_QML_MODULES_ON_UNSUPPORTED_PLATFORM
-#    MACOS_BUNDLE_POST_BUILD
-#)
-#install(SCRIPT ${deploy_script})
+qt_generate_deploy_qml_app_script(
+    TARGET ${CMAKE_PROJECT_NAME}
+    OUTPUT_SCRIPT deploy_script
+    NO_UNSUPPORTED_PLATFORM_ERROR
+    DEPLOY_USER_QML_MODULES_ON_UNSUPPORTED_PLATFORM
+    MACOS_BUNDLE_POST_BUILD
+)
+install(SCRIPT ${deploy_script})
 
 ################################################################################

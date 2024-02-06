@@ -44,7 +44,10 @@
 
 int main(int argc, char *argv[])
 {
-    // GUI application /////////////////////////////////////////////////////////
+    // Couple of debug stuff you can enable
+    //qputenv("QSG_INFO", "1");               // print Qt Scene Graph info
+    //qputenv("QT_QPA_EGLFS_DEBUG", "1");     // print Qt Platform Abstraction EGL debug info
+    //qputenv("QT_DEBUG_PLUGINS", "1");       // print Qt plugins info
 
 #if defined(Q_OS_LINUX) && !defined(Q_OS_ANDROID)
     // NVIDIA driver suspend&resume hack
@@ -53,7 +56,9 @@ int main(int argc, char *argv[])
     QSurfaceFormat::setDefaultFormat(format);
 #endif
 
-    SingleApplication app(argc, argv);
+    // GUI application /////////////////////////////////////////////////////////
+
+    SingleApplication app(argc, argv, false);
 
     // Application name
     app.setApplicationName("QmlAppTemplate");

@@ -90,8 +90,8 @@ android {
         targetSdkVersion qtTargetSdkVersion
 
         namespace "io.emeric.qmlapptemplate"
-        //versionName "0.6" // handled by cmake
-        //versionCode timestampInt // handled by cmake
+        versionName "0.6"
+        versionCode timestampInt
     }
 
     packagingOptions {
