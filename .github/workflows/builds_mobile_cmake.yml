@@ -57,7 +57,7 @@ jobs:
     name: "Android CI build"
     runs-on: ubuntu-20.04
     steps:
-      # Checkout the repository (and submodules)
+      # Checkout repository (and submodules)
       - name: Checkout repository (and submodules)
         uses: actions/checkout@v4
         with:
@@ -157,8 +157,8 @@ jobs:
                -DQT_ANDROID_ABIS="armeabi-v7a;arm64-v8a;x86;x86_64"
              cmake --build build/
 
-      # Package & sign Android application
-      - name: Package & sign Android application
+      # Package & sign application
+      - name: Package & sign application
         env:
           secret_test: ${{ secrets.ANDROID_SIGNINGKEY_ALIAS }}
         if: env.secret_test != ''
@@ -187,21 +187,21 @@ jobs:
     name: "iOS CI build"
     runs-on: macos-12
     steps:
-      # Checkout the repository (and submodules)
+      # Checkout repository (and submodules)
       - name: Checkout repository (and submodules)
         uses: actions/checkout@v4
         with:
           submodules: recursive
 
       # Install Qt (desktop)
-      - name: Install Qt (iOS & desktop)
+      - name: Install Qt (desktop)
         uses: jurplel/install-qt-action@v3
         with:
           version: ${{env.QT_VERSION}}
           modules: qt5compat qtshadertools
 
       # Install Qt (iOS)
-      - name: Install Qt (iOS & desktop)
+      - name: Install Qt (iOS)
         uses: jurplel/install-qt-action@v3
         with:
           host: 'mac'
@@ -261,5 +261,6 @@ jobs:
                -DPLATFORM=OS64 \
                -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_REQUIRED="YES" \
                -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY="iPhone Developer" \
-               -DCMAKE_XCODE_ATTRIBUTE_DEVELOPMENT_TEAM="24Q8SM98H5"
+               -DCMAKE_XCODE_ATTRIBUTE_DEVELOPMENT_TEAM="24Q8SM98H5" \
+               -DCMAKE_XCODE_ATTRIBUTE_PROVISIONING_PROFILE="a8ac7ee1-5f4e-4e9c-a0f2-be05df16c179"
              cmake --build build/
