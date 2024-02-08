@@ -51,7 +51,7 @@ $ make
 
 These files are also useful to get an idea about the whole build and deploy process.
 
-> [Desktop (qmake)](.github/workflows/builds_desktop.yml) Linux, macOS and Windows workflow
+> [Desktop (qmake)](.github/workflows/builds_desktop.yml) Linux, macOS and Windows workflow (with GitHub deployment)
 
 > [Desktop (cmake)](.github/workflows/builds_desktop_cmake.yml) Linux, macOS and Windows workflow
 

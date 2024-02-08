@@ -27,9 +27,9 @@ message(STATUS "[PROJECT] QT_HOST_PATH              = ${QT_HOST_PATH}")
 
 ################################################################################
 
-find_package(Qt6 6.4 REQUIRED COMPONENTS Core Gui Qml Quick QuickControls2 Svg)
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml Quick QuickControls2 Svg)
 
-qt_standard_project_setup()
+qt_standard_project_setup(REQUIRES 6.4)
 
 qt_add_executable(${CMAKE_PROJECT_NAME}
     src/SettingsManager.cpp src/SettingsManager.h
@@ -83,9 +83,6 @@ if(ANDROID)
 endif()
 
 if(APPLE)
-    set(CMAKE_XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER "io.emeric.qmlapptemplate")
-    set(CMAKE_XCODE_ATTRIBUTE_MARKETING_VERSION "${PROJECT_VERSION}")
-
     set(CMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_REQUIRED "NO")
     set(CMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "")
     set(CMAKE_XCODE_ATTRIBUTE_DEVELOPMENT_TEAM "")
@@ -94,6 +91,9 @@ endif()
 
 ## macOS
 if(APPLE AND NOT IOS)
+    set(CMAKE_XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER "io.emeric.qmlapptemplate")
+    set(CMAKE_XCODE_ATTRIBUTE_MARKETING_VERSION "${PROJECT_VERSION}")
+
     set(CMAKE_OSX_ARCHITECTURES "x86_64;arm64")
     set(CMAKE_OSX_DEPLOYMENT_TARGET "11.0")
     set(CMAKE_XCODE_ATTRIBUTE_INFOPLIST_FILE "${CMAKE_CURRENT_SOURCE_DIR}/assets/macos/Info.plist")
@@ -106,13 +106,53 @@ if(IOS)
     set(CMAKE_OSX_SYSROOT "iphoneos")
     set(CMAKE_OSX_DEPLOYMENT_TARGET "14.0")
     set(CMAKE_XCODE_ATTRIBUTE_IPHONEOS_DEPLOYMENT_TARGET "14.0")
-    set(CMAKE_XCODE_ATTRIBUTE_INFOPLIST_FILE "${CMAKE_CURRENT_SOURCE_DIR}/assets/ios/Info.plist")
     set(CMAKE_XCODE_ATTRIBUTE_TARGETED_DEVICE_FAMILY "1,2") # iPhone,iPad
+    set(CMAKE_XCODE_ATTRIBUTE_INFOPLIST_FILE "${CMAKE_CURRENT_SOURCE_DIR}/assets/ios/Info.plist")
+
+    set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
+        MACOSX_BUNDLE ON
+        # Old way
+        MACOSX_BUNDLE_GUI_IDENTIFIER            "io.emeric.qmlapptemplate"
+        MACOSX_BUNDLE_BUNDLE_NAME               ${CMAKE_PROJECT_NAME}
+        MACOSX_BUNDLE_BUNDLE_VERSION            ${PROJECT_VERSION}
+        MACOSX_BUNDLE_SHORT_VERSION_STRING      ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
+        MACOSX_BUNDLE_COPYRIGHT                 "Copyright © 2024 Emeric Grange"
+        MACOSX_BUNDLE_INFO_PLIST                "${CMAKE_CURRENT_SOURCE_DIR}/assets/ios/Info.plist.in"
+        QT_IOS_LAUNCH_SCREEN                    "${CMAKE_CURRENT_SOURCE_DIR}/assets/ios/LaunchScreen.storyboard"
+        # New Xcode attributes for General tab
+        XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER           "io.emeric.qmlapptemplate"
+        XCODE_ATTRIBUTE_PRODUCT_NAME                        ${CMAKE_PROJECT_NAME}
+        XCODE_ATTRIBUTE_CURRENT_PROJECT_VERSION             ${PROJECT_VERSION}
+        XCODE_ATTRIBUTE_MARKETING_VERSION                   ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
+        XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME  "AppIcon"
+        XCODE_ATTRIBUTE_IPHONEOS_DEPLOYMENT_TARGET          "14.0"
+        XCODE_ATTRIBUTE_TARGETED_DEVICE_FAMILY              "1,2"   # iPhone,iPad
+
+        XCODE_ATTRIBUTE_INFOPLIST_KEY_CFBundleDisplayName       ${CMAKE_PROJECT_NAME}
+        XCODE_ATTRIBUTE_INFOPLIST_KEY_LSApplicationCategoryType "public.app-category.mycategory" # Choose your own category
+
+        XCODE_ATTRIBUTE_GCC_GENERATE_DEBUGGING_SYMBOLS "YES"
+    )
 endif()
 
 ## Windows
 if(WIN32)
-    target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE _USE_MATH_DEFINES)
+    set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
+        WIN32_EXECUTABLE ON
+    )
+
+    target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
+        _USE_MATH_DEFINES
+    )
+endif()
+
+## Debug or release
+if(CMAKE_BUILD_TYPE STREQUAL Release)
+    target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
+        NDEBUG
+        QT_NO_DEBUG
+        QT_NO_DEBUG_OUTPUT
+    )
 endif()
 
 ################################################################################
@@ -126,18 +166,7 @@ if(lupdate_only)
     )
 endif()
 
-if(CMAKE_BUILD_TYPE STREQUAL Release)
-    target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
-        NDEBUG
-        QT_NO_DEBUG
-        QT_NO_DEBUG_OUTPUT
-    )
-endif()
-
-set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
-    MACOSX_BUNDLE ON
-    WIN32_EXECUTABLE ON
-)
+################################################################################
 
 install(TARGETS ${CMAKE_PROJECT_NAME}
     BUNDLE DESTINATION .
