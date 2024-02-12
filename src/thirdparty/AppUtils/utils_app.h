@@ -88,6 +88,8 @@ public:
     static Q_INVOKABLE bool isColorLight(const int color);
     static Q_INVOKABLE bool isQColorLight(const QColor &color);
 
+    static Q_INVOKABLE bool isOsThemeDark();
+
     // mobile related
 
     static Q_INVOKABLE int getAndroidSdkVersion();

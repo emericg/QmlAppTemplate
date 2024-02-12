@@ -311,19 +311,31 @@ Loader {
                         }
                     }
 
+                    Text {
+                        anchors.verticalCenter: parent.verticalCenter
+                        visible: isDesktop
+
+                        text: "OS theme"
+                        font.pixelSize: Theme.fontSizeContent
+                        font.bold: true
+                        color: Theme.colorText
+                    }
+
                     RadioButtonThemed {
                         id: radioButtonLight
                         anchors.verticalCenter: parent.verticalCenter
 
                         text: "light"
-                        checked: true
+                        checkable: false
+                        checked: !utilsApp.isOsThemeDark()
                     }
                     RadioButtonThemed {
                         id: radioButtonDark
                         anchors.verticalCenter: parent.verticalCenter
 
                         text: "dark"
-                        checked: false
+                        checkable: false
+                        checked: utilsApp.isOsThemeDark()
                     }
                 }
 
