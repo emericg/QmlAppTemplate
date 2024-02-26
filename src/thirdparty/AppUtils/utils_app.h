@@ -100,6 +100,8 @@ public:
 
     static Q_INVOKABLE void vibrate(int ms);
 
+    static Q_INVOKABLE QString getMobileWifiSSID();
+
     static Q_INVOKABLE bool checkMobileStoragePermissions();
     static Q_INVOKABLE bool getMobileStoragePermissions();
     static Q_INVOKABLE bool checkMobileStorageReadPermission();

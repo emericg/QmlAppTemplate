@@ -313,14 +313,12 @@ Loader {
 
                     Text {
                         anchors.verticalCenter: parent.verticalCenter
-                        visible: isDesktop
 
                         text: "OS theme"
                         font.pixelSize: Theme.fontSizeContent
                         font.bold: true
                         color: Theme.colorText
                     }
-
                     RadioButtonThemed {
                         id: radioButtonLight
                         anchors.verticalCenter: parent.verticalCenter

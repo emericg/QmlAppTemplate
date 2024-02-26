@@ -288,7 +288,8 @@ bool UtilsApp::isOsThemeDark()
     isDark = (defaultPalette.color(QPalette::WindowText).lightness() >
               defaultPalette.color(QPalette::Window).lightness());
 
-#endif // Qt 6.5
+#endif
+
     return isDark;
 }
 
@@ -337,6 +338,24 @@ void UtilsApp::vibrate(int ms)
 #else
     Q_UNUSED(ms)
 #endif
+}
+
+/* ************************************************************************** */
+
+QString UtilsApp::getMobileWifiSSID()
+{
+    getMobileLocationPermission();
+
+    if (checkMobileLocationPermission())
+    {
+#if defined(Q_OS_ANDROID)
+        return UtilsAndroid::getWifiSSID();
+#elif defined(Q_OS_IOS)
+        return UtilsIOS::getWifiSSID();
+#endif
+    }
+
+    return QString();
 }
 
 /* ************************************************************************** */
