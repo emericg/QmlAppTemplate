@@ -15,11 +15,14 @@ on:
 env:
   APP_NAME: "QmlAppTemplate"
   APP_VERSION: "0.6"
-  QT_VERSION: "6.6.1"
+  QT_VERSION: "6.6.2"
 
 #-------------------------------------------------------------------------------
 # SECRETS
 #-------------------------------------------------------------------------------
+
+# convert to base64 (linux) : cat file.keystore | base64 | tr -d '\n' > file.base64
+# convert to base64 (apple) : cat file.keystore | base64 | tr -d '\n' > file.base64
 
 ## Android secrets:
 # create a keystore file, convert it to base64
@@ -90,41 +93,41 @@ jobs:
       - name: Install Qt (Android armv7)
         uses: jurplel/install-qt-action@v3
         with:
+          aqtversion: '==3.1.*'
+          version: ${{env.QT_VERSION}}
           host: 'linux'
           target: 'android'
           arch: 'android_armv7'
-          aqtversion: '==3.1.*'
-          version: ${{env.QT_VERSION}}
           modules: qt5compat
 
       - name: Install Qt (Android armv8)
         uses: jurplel/install-qt-action@v3
         with:
+          aqtversion: '==3.1.*'
+          version: ${{env.QT_VERSION}}
           host: 'linux'
           target: 'android'
           arch: 'android_arm64_v8a'
-          aqtversion: '==3.1.*'
-          version: ${{env.QT_VERSION}}
           modules: qt5compat
 
       - name: Install Qt (Android x86)
         uses: jurplel/install-qt-action@v3
         with:
+          aqtversion: '==3.1.*'
+          version: ${{env.QT_VERSION}}
           host: 'linux'
           target: 'android'
           arch: 'android_x86'
-          aqtversion: '==3.1.*'
-          version: ${{env.QT_VERSION}}
           modules: qt5compat
 
       - name: Install Qt (Android x86_64)
         uses: jurplel/install-qt-action@v3
         with:
+          aqtversion: '==3.1.*'
+          version: ${{env.QT_VERSION}}
           host: 'linux'
           target: 'android'
           arch: 'android_x86_64'
-          aqtversion: '==3.1.*'
-          version: ${{env.QT_VERSION}}
           modules: qt5compat
 
       # Install dependencies (from package manager)
@@ -204,10 +207,10 @@ jobs:
       - name: Install Qt (iOS)
         uses: jurplel/install-qt-action@v3
         with:
-          host: 'mac'
-          target: 'ios'
           version: ${{env.QT_VERSION}}
           modules: qt5compat qtshadertools
+          host: 'mac'
+          target: 'ios'
 
       # Install dependencies (from package manager)
       #- name: Install dependencies (from package manager)
@@ -264,3 +267,11 @@ jobs:
                -DCMAKE_XCODE_ATTRIBUTE_DEVELOPMENT_TEAM="24Q8SM98H5" \
                -DCMAKE_XCODE_ATTRIBUTE_PROVISIONING_PROFILE="a8ac7ee1-5f4e-4e9c-a0f2-be05df16c179"
              cmake --build build/
+
+      # Recap stuff
+      - name: Recap stuff
+        continue-on-error: true
+        run: |
+             ls build/
+             ls build/Debug-iphoneos
+             ls build/Release-iphoneos

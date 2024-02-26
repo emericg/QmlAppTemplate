@@ -14,7 +14,7 @@ on:
 env:
   APP_NAME: "QmlAppTemplate"
   APP_VERSION: "0.6"
-  QT_VERSION: "6.6.1"
+  QT_VERSION: "6.6.2"
 
 #-------------------------------------------------------------------------------
 # Workflow jobs
@@ -26,7 +26,7 @@ jobs:
     name: "Linux CI build"
     runs-on: ubuntu-20.04
     steps:
-      # Checkout the repository (and submodules)
+      # Checkout repository (and submodules)
       - name: Checkout repository (and submodules)
         uses: actions/checkout@v4
         with:
@@ -79,7 +79,7 @@ jobs:
     name: "macOS CI build"
     runs-on: macos-12
     steps:
-      # Checkout the repository (and submodules)
+      # Checkout repository (and submodules)
       - name: Checkout repository (and submodules)
         uses: actions/checkout@v4
         with:
@@ -124,7 +124,7 @@ jobs:
     name: "Windows CI build"
     runs-on: windows-2022
     steps:
-      # Checkout the repository (and submodules)
+      # Checkout repository (and submodules)
       - name: Checkout repository (and submodules)
         uses: actions/checkout@v4
         with:

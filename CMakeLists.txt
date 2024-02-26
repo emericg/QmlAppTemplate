@@ -111,15 +111,16 @@ if(IOS)
 
     set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
         MACOSX_BUNDLE ON
-        # Old way
+        # Old way ???
         MACOSX_BUNDLE_GUI_IDENTIFIER            "io.emeric.qmlapptemplate"
         MACOSX_BUNDLE_BUNDLE_NAME               ${CMAKE_PROJECT_NAME}
         MACOSX_BUNDLE_BUNDLE_VERSION            ${PROJECT_VERSION}
         MACOSX_BUNDLE_SHORT_VERSION_STRING      ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
         MACOSX_BUNDLE_COPYRIGHT                 "Copyright © 2024 Emeric Grange"
-        MACOSX_BUNDLE_INFO_PLIST                "${CMAKE_CURRENT_SOURCE_DIR}/assets/ios/Info.plist.in"
-        QT_IOS_LAUNCH_SCREEN                    "${CMAKE_CURRENT_SOURCE_DIR}/assets/ios/LaunchScreen.storyboard"
-        # New Xcode attributes for General tab
+        MACOSX_BUNDLE_INFO_PLIST                "${CMAKE_CURRENT_SOURCE_DIR}/assets/ios/Info.plist"
+        #MACOSX_BUNDLE_INFO_PLIST                "${CMAKE_CURRENT_SOURCE_DIR}/assets/ios/Info.plist.in"
+        #QT_IOS_LAUNCH_SCREEN                    "${CMAKE_CURRENT_SOURCE_DIR}/assets/ios/LaunchScreen.storyboard"
+        # New Xcode attributes ???
         XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER           "io.emeric.qmlapptemplate"
         XCODE_ATTRIBUTE_PRODUCT_NAME                        ${CMAKE_PROJECT_NAME}
         XCODE_ATTRIBUTE_CURRENT_PROJECT_VERSION             ${PROJECT_VERSION}
@@ -127,11 +128,9 @@ if(IOS)
         XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME  "AppIcon"
         XCODE_ATTRIBUTE_IPHONEOS_DEPLOYMENT_TARGET          "14.0"
         XCODE_ATTRIBUTE_TARGETED_DEVICE_FAMILY              "1,2"   # iPhone,iPad
-
         XCODE_ATTRIBUTE_INFOPLIST_KEY_CFBundleDisplayName       ${CMAKE_PROJECT_NAME}
-        XCODE_ATTRIBUTE_INFOPLIST_KEY_LSApplicationCategoryType "public.app-category.mycategory" # Choose your own category
-
-        XCODE_ATTRIBUTE_GCC_GENERATE_DEBUGGING_SYMBOLS "YES"
+        XCODE_ATTRIBUTE_INFOPLIST_KEY_LSApplicationCategoryType "public.app-category.mycategory"
+        XCODE_ATTRIBUTE_GCC_GENERATE_DEBUGGING_SYMBOLS      "YES"
     )
 endif()
 
