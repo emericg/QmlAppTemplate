@@ -158,7 +158,7 @@ jobs:
                -DQT_HOST_PATH:PATH=${{env.QT_HOST_PATH}} \
                -DQT_ANDROID_BUILD_ALL_ABIS=ON \
                -DQT_ANDROID_ABIS="armeabi-v7a;arm64-v8a;x86;x86_64"
-             cmake --build build/
+             cmake --build build/ --config Release
 
       # Package & sign application
       - name: Package & sign application
@@ -266,12 +266,11 @@ jobs:
                -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY="iPhone Developer" \
                -DCMAKE_XCODE_ATTRIBUTE_DEVELOPMENT_TEAM="24Q8SM98H5" \
                -DCMAKE_XCODE_ATTRIBUTE_PROVISIONING_PROFILE="a8ac7ee1-5f4e-4e9c-a0f2-be05df16c179"
-             cmake --build build/
+             cmake --build build/ --config Release
 
       # Recap stuff
       - name: Recap stuff
         continue-on-error: true
         run: |
              ls build/
-             ls build/Debug-iphoneos
              ls build/Release-iphoneos
