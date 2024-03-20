@@ -22,8 +22,7 @@ HEADERS += $${PWD}/utils_app.h \
 INCLUDEPATH += $${PWD}
 
 versionAtLeast(QT_VERSION, 6.6) {
-    # RHI info
-    QT += gui-private
+    QT += gui-private # to get RHI info
 }
 
 # Linux OS utils
@@ -40,7 +39,7 @@ macx {
     SOURCES += $${PWD}/utils_os_macos.mm
     HEADERS += $${PWD}/utils_os_macos.h
 
-    # macOS dock click handler
+    # macOS dock click handler (optional)
     LIBS    += -framework AppKit
     SOURCES += $${PWD}/utils_os_macos_dock.mm
     HEADERS += $${PWD}/utils_os_macos_dock.h
@@ -75,11 +74,11 @@ ios {
     SOURCES += $${PWD}/utils_os_ios.mm
     HEADERS += $${PWD}/utils_os_ios.h
 
-    # iOS notifications
-    LIBS    += -framework UserNotifications
-    SOURCES += $${PWD}/utils_os_ios_notif.mm
-    HEADERS += $${PWD}/utils_os_ios_notif.h
+    # iOS notifications (optional)
+    #LIBS    += -framework UserNotifications
+    #SOURCES += $${PWD}/utils_os_ios_notif.mm
+    #HEADERS += $${PWD}/utils_os_ios_notif.h
 
-    # iOS WiFi SSID
+    # iOS WiFi SSID (optional)
     #LIBS    += -framework SystemConfiguration
 }

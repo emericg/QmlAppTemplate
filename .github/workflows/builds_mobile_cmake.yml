@@ -237,7 +237,7 @@ jobs:
                -DQT_HOST_PATH:PATH=${{env.QT_HOST_PATH}} \
                -DENABLE_ARC=FALSE \
                -DPLATFORM=OS64 \
-             cmake --build build/ --config Release
+             cmake --build build/
 
       # Setup developer certificate and provisioning profile
       - name: Setup developer certificate and provisioning profile
@@ -285,7 +285,7 @@ jobs:
                -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY="iPhone Developer" \
                -DCMAKE_XCODE_ATTRIBUTE_DEVELOPMENT_TEAM="24Q8SM98H5" \
                -DCMAKE_XCODE_ATTRIBUTE_PROVISIONING_PROFILE="a8ac7ee1-5f4e-4e9c-a0f2-be05df16c179"
-             cmake --build build/ --config Release
+             cmake --build build/
 
       # Recap stuff
       - name: Recap stuff

@@ -70,16 +70,9 @@ Loader {
                     }
 
                     ListElement {
-                        title: "Date & Time"
-                        text: "Datetime pickers."
+                        title: "Dialogs & pickers"
+                        text: "Various dialog popups and datetime pickers."
                         icon: "qrc:/assets/icons_material/duotone-date_range-24px.svg"
-                        page: "qrc:/qml/PageDialogs.qml"
-                    }
-
-                    ListElement {
-                        title: "Dialogs"
-                        text: "Various dialog popups."
-                        icon: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
                         page: "qrc:/qml/PageDialogs.qml"
                     }
 
