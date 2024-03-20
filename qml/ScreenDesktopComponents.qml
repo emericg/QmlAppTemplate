@@ -368,7 +368,7 @@ Loader {
                     }
 
                     ButtonWireframeIcon {
-                        width: 128
+                        width: 256
                         text: "ButtonWireframeIcon"
                         source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
                     }

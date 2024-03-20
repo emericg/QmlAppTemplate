@@ -81,4 +81,6 @@ ios {
 
     # iOS WiFi SSID (optional)
     #LIBS    += -framework SystemConfiguration
+    #SOURCES += $${PWD}/utils_os_ios_wifi.mm
+    #HEADERS += $${PWD}/utils_os_ios_wifi.h
 }
