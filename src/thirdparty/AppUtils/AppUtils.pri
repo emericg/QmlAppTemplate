@@ -75,9 +75,9 @@ ios {
     HEADERS += $${PWD}/utils_os_ios.h
 
     # iOS notifications (optional)
-    #LIBS    += -framework UserNotifications
-    #SOURCES += $${PWD}/utils_os_ios_notif.mm
-    #HEADERS += $${PWD}/utils_os_ios_notif.h
+    LIBS    += -framework UserNotifications
+    SOURCES += $${PWD}/utils_os_ios_notif.mm
+    HEADERS += $${PWD}/utils_os_ios_notif.h
 
     # iOS WiFi SSID (optional)
     #LIBS    += -framework SystemConfiguration
