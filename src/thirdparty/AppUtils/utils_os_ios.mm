@@ -163,7 +163,7 @@ QString UtilsIOS::getWifiSSID()
     for (NSString *interfaceName in interfaces) {
         NSDictionary *networkInfo = (__bridge_transfer id)CNCopyCurrentNetworkInfo((__bridge CFStringRef)interfaceName);
         if (networkInfo[@"SSID"]) {
-            return ssid = networkInfo[@"SSID"];
+            ssid = networkInfo[@"SSID"];
             break;
         }
     }

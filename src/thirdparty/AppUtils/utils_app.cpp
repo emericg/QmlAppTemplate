@@ -342,24 +342,6 @@ void UtilsApp::vibrate(int ms)
 
 /* ************************************************************************** */
 
-QString UtilsApp::getMobileWifiSSID()
-{
-    getMobileLocationPermission();
-
-    if (checkMobileLocationPermission())
-    {
-#if defined(Q_OS_ANDROID)
-        return UtilsAndroid::getWifiSSID();
-#elif defined(Q_OS_IOS)
-        return UtilsIOS::getWifiSSID();
-#endif
-    }
-
-    return QString();
-}
-
-/* ************************************************************************** */
-
 int UtilsApp::getAndroidSdkVersion()
 {
 #if defined(Q_OS_ANDROID)

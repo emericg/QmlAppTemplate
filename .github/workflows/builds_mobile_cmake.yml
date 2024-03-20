@@ -162,9 +162,7 @@ jobs:
 
       # Package & sign application
       - name: Package & sign application
-        env:
-          secret_test: ${{ secrets.ANDROID_SIGNINGKEY_ALIAS }}
-        if: env.secret_test != ''
+        if: ${{ github.event_name == 'workflow_dispatch' }}
         run: |
              echo ${{ secrets.ANDROID_SIGNINGKEY_BASE64 }} > release.keystore.base64
              base64 -d release.keystore.base64 > release.keystore
@@ -172,6 +170,7 @@ jobs:
 
       # Upload Android app bundle (GitHub CI)
       - name: Upload Android app bundle (GitHub CI)
+        if: ${{ github.event_name == 'workflow_dispatch' }}
         uses: actions/upload-artifact@v4
         with:
           name: ${{env.APP_NAME}}-${{env.APP_VERSION}}-Android.aab
@@ -179,6 +178,7 @@ jobs:
 
       # Upload Android app bundle (Play Store)
       - name: Upload Android app bundle (Play Store)
+        if: ${{ github.event_name == 'workflow_dispatch' }}
         run: |
              echo ${{ secrets.GPLAY_SERVICEACCOUNTKEY_BASE64 }} > assets/android/fastlane/gplay_serviceaccountkey.base64
              base64 -d assets/android/fastlane/gplay_serviceaccountkey.base64 > assets/android/fastlane/gplay_serviceaccountkey.json
@@ -223,8 +223,25 @@ jobs:
              echo "QT_HOST_PATH=/Users/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/macos" >> $GITHUB_ENV
              echo "QT_TARGET_PATH=/Users/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/ios" >> $GITHUB_ENV
 
+      # Build application
+      - name: Build application
+        if: ${{ github.event_name != 'workflow_dispatch' }}
+        run: |
+             cmake --version
+             cmake -B build/ -G Xcode \
+               -DCMAKE_SYSTEM_NAME=iOS \
+               -DCMAKE_BUILD_TYPE=Release \
+               -DCMAKE_FIND_ROOT_PATH:PATH=${{env.QT_TARGET_PATH}} \
+               -DCMAKE_PREFIX_PATH:PATH=${{env.QT_TARGET_PATH}} \
+               -DCMAKE_TOOLCHAIN_FILE=assets/ios/ios.toolchain.cmake \
+               -DQT_HOST_PATH:PATH=${{env.QT_HOST_PATH}} \
+               -DENABLE_ARC=FALSE \
+               -DPLATFORM=OS64 \
+             cmake --build build/ --config Release
+
       # Setup developer certificate and provisioning profile
       - name: Setup developer certificate and provisioning profile
+        if: ${{ github.event_name == 'workflow_dispatch' }}
         env:
           APPLE_BUILD_CERTIFICATE_BASE64: ${{ secrets.APPLE_BUILD_CERTIFICATE_BASE64 }}
           APPLE_BUILD_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_BUILD_CERTIFICATE_PASSWORD }}
@@ -249,8 +266,9 @@ jobs:
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
 
-      # Build application
-      - name: Build application
+      # Build application (signed)
+      - name: Build application (signed)
+        if: ${{ github.event_name == 'workflow_dispatch' }}
         run: |
              cmake --version
              cmake -B build/ -G Xcode \

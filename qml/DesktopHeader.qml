@@ -112,7 +112,7 @@ Rectangle {
                 id: buttonEnable
                 anchors.verticalCenter: parent.verticalCenter
 
-                text: componentsEnabled ? qsTr("Enable components") : qsTr("Disable components")
+                text: componentsEnabled ? qsTr("Disable components") : qsTr("Enable components")
                 onClicked: componentsEnabled = !componentsEnabled
             }
 

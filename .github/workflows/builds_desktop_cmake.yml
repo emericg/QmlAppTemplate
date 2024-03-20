@@ -4,6 +4,7 @@
 
 name: "Desktop CI builds (cmake)"
 on:
+  push:
   pull_request:
   workflow_dispatch:
 
