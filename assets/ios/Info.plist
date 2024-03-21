@@ -18,10 +18,10 @@
 	<string>io.emeric.qmlapptemplate</string>
 
 	<key>CFBundleVersion</key>
-	<string>000601</string>
+	<string>000701</string>
 
 	<key>CFBundleShortVersionString</key>
-	<string>0.6</string>
+	<string>0.7</string>
 
 	<key>CFBundleIconFile</key>
 	<string>${ASSETCATALOG_COMPILER_APPICON_NAME}</string>

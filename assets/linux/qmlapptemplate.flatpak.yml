@@ -191,5 +191,5 @@ modules:
     buildsystem: qmake
     sources:
       - type: archive
-        url: https://github.com/emericg/qmlapptemplate/archive/refs/tags/v0.6.tar.gz
+        url: https://github.com/emericg/qmlapptemplate/archive/refs/tags/v0.7.tar.gz
         sha256:
