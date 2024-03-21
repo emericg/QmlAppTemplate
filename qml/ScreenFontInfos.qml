@@ -133,7 +133,7 @@ Loader {
                 clip: false
                 interactive: true
 
-                ScrollBar.vertical: ScrollBar { }
+                ScrollBar.vertical: ScrollBar { visible: true }
 
                 model: Qt.fontFamilies()
                 delegate: Rectangle {

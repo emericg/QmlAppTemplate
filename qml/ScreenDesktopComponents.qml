@@ -240,7 +240,7 @@ Loader {
             contentHeight: contentColumn.height
 
             boundsBehavior: isDesktop ? Flickable.OvershootBounds : Flickable.DragAndOvershootBounds
-            ScrollBar.vertical: ScrollBar { visible: isDesktop; }
+            ScrollBar.vertical: ScrollBarThemed { visible: isDesktop }
 
             Column {
                 id: contentColumn

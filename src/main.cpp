@@ -83,9 +83,9 @@ int main(int argc, char *argv[])
     // Init generic utils
     UtilsApp *utilsApp = UtilsApp::getInstance();
     UtilsScreen *utilsScreen = UtilsScreen::getInstance();
-    UtilsSysInfo *utilsSysinfo = UtilsSysInfo::getInstance();
+    UtilsSysInfo *utilsSysInfo = UtilsSysInfo::getInstance();
     UtilsLanguage *utilsLanguage = UtilsLanguage::getInstance();
-    if (!utilsScreen || !utilsApp || !utilsLanguage)
+    if (!utilsApp || !utilsScreen || !utilsSysInfo || !utilsLanguage)
     {
         qWarning() << "Cannot init generic utils!";
         return EXIT_FAILURE;
@@ -111,7 +111,7 @@ int main(int argc, char *argv[])
     engine_context->setContextProperty("utilsApp", utilsApp);
     engine_context->setContextProperty("utilsLanguage", utilsLanguage);
     engine_context->setContextProperty("utilsScreen", utilsScreen);
-    engine_context->setContextProperty("utilsSysinfo", utilsSysinfo);
+    engine_context->setContextProperty("utilsSysInfo", utilsSysInfo);
 
     // Load the main view
 #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(FORCE_MOBILE_UI)
