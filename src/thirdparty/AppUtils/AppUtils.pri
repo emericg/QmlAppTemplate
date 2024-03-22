@@ -7,7 +7,8 @@ SOURCES += $${PWD}/utils_app.cpp \
            $${PWD}/utils_log.cpp \
            $${PWD}/utils_maths.cpp \
            $${PWD}/utils_screen.cpp \
-           $${PWD}/utils_sysinfo.cpp
+           $${PWD}/utils_sysinfo.cpp \
+           $${PWD}/utils_wifi.cpp
 
 HEADERS += $${PWD}/utils_app.h \
            $${PWD}/utils_bits.h \
@@ -17,7 +18,8 @@ HEADERS += $${PWD}/utils_app.h \
            $${PWD}/utils_maths.h \
            $${PWD}/utils_screen.h \
            $${PWD}/utils_sysinfo.h \
-           $${PWD}/utils_versionchecker.h
+           $${PWD}/utils_versionchecker.h \
+           $${PWD}/utils_wifi.h
 
 INCLUDEPATH += $${PWD}
 
@@ -75,9 +77,9 @@ ios {
     HEADERS += $${PWD}/utils_os_ios.h
 
     # iOS notifications (optional)
-    LIBS    += -framework UserNotifications
-    SOURCES += $${PWD}/utils_os_ios_notif.mm
-    HEADERS += $${PWD}/utils_os_ios_notif.h
+    #LIBS    += -framework UserNotifications
+    #SOURCES += $${PWD}/utils_os_ios_notif.mm
+    #HEADERS += $${PWD}/utils_os_ios_notif.h
 
     # iOS WiFi SSID (optional)
     #LIBS    += -framework SystemConfiguration

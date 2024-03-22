@@ -42,6 +42,8 @@ set(CORE_SOURCES
     utils_screen.h
     utils_sysinfo.cpp
     utils_sysinfo.h
+    utils_wifi.cpp
+    utils_wifi.h
     utils_versionchecker.h)
 
 # OS specific sources & dependencies
@@ -90,18 +92,24 @@ if(APPLE AND NOT IOS)
 endif()
 
 if(IOS)
-    set(PLATFORM_SOURCES
-        utils_os_ios.mm
-        utils_os_ios.h
-        utils_os_ios_notif.mm
-        utils_os_ios_notif.h)
-
     find_package(Qt${QT_DEFAULT_MAJOR_VERSION} REQUIRED COMPONENTS Quick)
     set(PLATFORM_LIBRARIES Qt::Quick)
     set(PLATFORM_LIBRARIES Qt::GuiPrivate)
     set(PLATFORM_LIBRARIES "-framework UIKit" m)
+
+    set(PLATFORM_SOURCES
+        utils_os_ios.mm
+        utils_os_ios.h)
+
+    set(PLATFORM_SOURCES
+        utils_os_ios_notif.mm
+        utils_os_ios_notif.h)
     set(PLATFORM_LIBRARIES "-framework UserNotifications" m)                    # show notifications
-    #set(PLATFORM_LIBRARIES "-framework SystemConfiguration" m)                 # get WiFi SSID
+
+    set(PLATFORM_SOURCES
+        utils_os_ios_wifi.mm
+        utils_os_ios_wifi.h)
+    set(PLATFORM_LIBRARIES "-framework SystemConfiguration" m)                  # get WiFi SSID
 endif()
 
 ################################################################################

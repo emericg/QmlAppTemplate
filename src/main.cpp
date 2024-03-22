@@ -24,6 +24,7 @@
 #include <utils_screen.h>
 #include <utils_sysinfo.h>
 #include <utils_language.h>
+#include <utils_wifi.h>
 #include <utils_os_macos_dock.h>
 
 #include <MobileUI>
@@ -84,6 +85,7 @@ int main(int argc, char *argv[])
     UtilsApp *utilsApp = UtilsApp::getInstance();
     UtilsScreen *utilsScreen = UtilsScreen::getInstance();
     UtilsSysInfo *utilsSysInfo = UtilsSysInfo::getInstance();
+    UtilsWiFi *utilsWiFi = UtilsWiFi::getInstance();
     UtilsLanguage *utilsLanguage = UtilsLanguage::getInstance();
     if (!utilsApp || !utilsScreen || !utilsSysInfo || !utilsLanguage)
     {
@@ -112,15 +114,15 @@ int main(int argc, char *argv[])
     engine_context->setContextProperty("utilsLanguage", utilsLanguage);
     engine_context->setContextProperty("utilsScreen", utilsScreen);
     engine_context->setContextProperty("utilsSysInfo", utilsSysInfo);
+    engine_context->setContextProperty("utilsWiFi", utilsWiFi);
 
     // Load the main view
 #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(FORCE_MOBILE_UI)
-    //ShareUtils *mShareUtils = new ShareUtils();
-    //engine_context->setContextProperty("utilsShare", mShareUtils);
     engine.load(QUrl(QStringLiteral("qrc:/qml/MobileApplication.qml")));
 #else
     engine.load(QUrl(QStringLiteral("qrc:/qml/DesktopApplication.qml")));
 #endif
+
     if (engine.rootObjects().isEmpty())
     {
         qWarning() << "Cannot init QmlApplicationEngine!";

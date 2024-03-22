@@ -14,6 +14,9 @@ Loader {
 
         // change screen
         appContent.state = "HostInfos"
+
+        // get current wifi info (on mobile)
+        utilsWiFi.refreshWiFi()
     }
 
     function backAction() {
@@ -48,9 +51,10 @@ Loader {
             anchors.left: parent.left
             anchors.right: parent.right
 
-            property int maxheight: topPadding + bottomPadding + 4*spacing +
+            property int maxheight: topPadding + bottomPadding + 5*spacing +
                                     itemAppInfo.height + itemQtInfo.height +
-                                    itemOsInfo.height + itemHwInfo.height + itemScreenInfo.height
+                                    itemOsInfo.height + itemHwInfo.height +
+                                    itemScreenInfo.height + itemNwInfo.height
 
             height: singleColumn ? maxheight : screenHostInfos.height
             spacing: Theme.componentMargin
@@ -532,6 +536,37 @@ Loader {
                         }
                         Text {
                             text: utilsScreen.screenDepth + " bpp"
+                            textFormat: Text.PlainText
+                            font.pixelSize: Theme.fontSizeContentBig
+                            color: Theme.colorHighContrast
+                        }
+                    }
+                }
+            }
+
+            ////////////////////////////////
+
+            FrameThemed {
+                id: itemNwInfo
+                width: www
+
+                visible: utilsWiFi.currentSSID
+
+                ColumnLayout {
+                    anchors.fill: parent
+                    spacing: 12
+
+                    Column {
+                        Text {
+                            text: qsTr("Network:")
+                            textFormat: Text.PlainText
+                            color: Theme.colorSubText
+                            font.bold: true
+                            font.pixelSize: Theme.fontSizeContentVerySmall
+                            font.capitalization: Font.AllUppercase
+                        }
+                        Text {
+                            text: utilsWiFi.currentSSID
                             textFormat: Text.PlainText
                             font.pixelSize: Theme.fontSizeContentBig
                             color: Theme.colorHighContrast
