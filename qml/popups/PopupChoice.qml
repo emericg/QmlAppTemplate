@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Effects
 import QtQuick.Controls
 
 import ThemeEngine
@@ -10,9 +11,10 @@ Popup {
     y: singleColumn ? (appWindow.height - height)
                     : ((appWindow.height / 2) - (height / 2))
 
-    width: singleColumn ? appWindow.width : 640
+    width: singleColumn ? appWindow.width : 720
     height: columnContent.height + padding*2 + screenPaddingNavbar + screenPaddingBottom
     padding: Theme.componentMarginXL
+    margins: 0
 
     dim: true
     modal: true
@@ -23,6 +25,8 @@ Popup {
     signal confirmed()
 
     ////////////////////////////////////////////////////////////////////////////
+
+    //enter: Transition { NumberAnimation { property: "opacity"; from: 0.333; to: 1.0; duration: 233; } }
 
     background: Rectangle {
         color: Theme.colorBackground
@@ -35,6 +39,13 @@ Popup {
             height: Theme.componentBorderWidth
             visible: singleColumn
             color: Theme.colorSeparator
+        }
+
+        layer.enabled: !singleColumn
+        layer.effect: MultiEffect {
+            autoPaddingEnabled: true
+            shadowEnabled: true
+            shadowColor: ThemeEngine.isLight ? "#aa000000" : "#aaffffff"
         }
     }
 
@@ -76,7 +87,7 @@ Popup {
                 width: parent.width
                 spacing: Theme.componentMargin
 
-                property var btnSize: singleColumn ? width : ((width-spacing*2) / 3)
+                property int btnSize: singleColumn ? width : ((width-spacing*2) / 3)
 
                 ButtonWireframe {
                     width: parent.btnSize

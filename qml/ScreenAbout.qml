@@ -74,12 +74,12 @@ Loader {
 
                     Column {
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.verticalCenterOffset: 2
+                        anchors.verticalCenterOffset: -2
 
                         Text {
                             text: "QmlAppTemplate"
                             color: Theme.colorText
-                            font.pixelSize: 28
+                            font.pixelSize: Theme.fontSizeTitle
                         }
                         Text {
                             color: Theme.colorSubText

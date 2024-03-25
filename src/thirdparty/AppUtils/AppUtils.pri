@@ -1,4 +1,8 @@
 
+# Optional stuff (for iOS)
+#CONFIG += UTILS_NOTIFICATIONS_ENABLED
+#CONFIG += UTILS_WIFI_ENABLED
+
 # Generic utils
 SOURCES += $${PWD}/utils_app.cpp \
            $${PWD}/utils_bits.cpp \
@@ -55,6 +59,8 @@ win32 {
 
 # Android OS utils
 android {
+    DEFINES += UTILS_NOTIFICATIONS_ENABLED UTILS_WIFI_ENABLED
+
     versionAtLeast(QT_VERSION, 6.0) {
         QT += core-private
 
@@ -70,19 +76,23 @@ android {
 
 # iOS utils
 ios {
-    QT      += quick
-
     LIBS    += -framework UIKit
     SOURCES += $${PWD}/utils_os_ios.mm
     HEADERS += $${PWD}/utils_os_ios.h
 
     # iOS notifications (optional)
-    #LIBS    += -framework UserNotifications
-    #SOURCES += $${PWD}/utils_os_ios_notif.mm
-    #HEADERS += $${PWD}/utils_os_ios_notif.h
+    UTILS_NOTIFICATIONS_ENABLED {
+        DEFINES += UTILS_NOTIFICATIONS_ENABLED
+        LIBS    += -framework UserNotifications
+        SOURCES += $${PWD}/utils_os_ios_notif.mm
+        HEADERS += $${PWD}/utils_os_ios_notif.h
+    }
 
     # iOS WiFi SSID (optional)
-    #LIBS    += -framework SystemConfiguration
-    #SOURCES += $${PWD}/utils_os_ios_wifi.mm
-    #HEADERS += $${PWD}/utils_os_ios_wifi.h
+    UTILS_WIFI_ENABLED {
+        DEFINES += UTILS_WIFI_ENABLED
+        LIBS    += -framework SystemConfiguration
+        SOURCES += $${PWD}/utils_os_ios_wifi.mm
+        HEADERS += $${PWD}/utils_os_ios_wifi.h
+    }
 }

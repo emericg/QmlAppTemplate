@@ -311,7 +311,7 @@ Loader {
                     Text {
                         anchors.verticalCenter: parent.verticalCenter
 
-                        text: "OS theme"
+                        text: "OS theme is"
                         font.pixelSize: Theme.fontSizeContent
                         font.bold: true
                         color: Theme.colorText
@@ -336,12 +336,9 @@ Loader {
 
                 ////
 
-                Rectangle { // separator
-                    height: 2
-                    color: Theme.colorSeparator
-                    anchors.left: parent.left
+                ListSeparator {
+                    height: Theme.componentBorderWidth
                     anchors.leftMargin: -24
-                    anchors.right: parent.right
                     anchors.rightMargin: -24
                 }
 
@@ -586,6 +583,60 @@ Loader {
                 }
 
                 ////
+/*
+                Row {
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    spacing: Theme.componentMargin
+
+                    Rectangle { // new effect
+                        id: rectangle1
+
+                        width: 64
+                        height: 64
+                        color: "red"
+
+                        layer.enabled: true
+                        layer.effect: MultiEffect {
+                            autoPaddingEnabled: false
+
+                            maskEnabled: true
+                            maskInverted: false
+                            maskThresholdMin: 0.5
+                            maskSpreadAtMin: 1.0
+                            maskSpreadAtMax: 0.0
+                            maskSource: ShaderEffectSource {
+                                sourceItem: Rectangle {
+                                    height: rectangle1.height
+                                    width: rectangle1.width
+                                    radius: 64
+                                }
+                            }
+
+                            blurEnabled: false
+                            blur: 0.5
+                        }
+                    }
+
+                    Rectangle { // old effect
+                        id: rectangle2
+
+                        width: 64
+                        height: 64
+                        color: "red"
+
+                        layer.enabled: true
+                        layer.effect: OpacityMask {
+                            maskSource: Rectangle {
+                                height: rectangle2.height
+                                width: rectangle2.width
+                                radius: 64
+                            }
+                        }
+                    }
+                }
+*/
+                ////
 
                 Row {
                     anchors.left: parent.left
@@ -627,12 +678,9 @@ Loader {
 
                 ////////////////////////
 
-                Rectangle { // separator
-                    height: 2
-                    color: Theme.colorSeparator
-                    anchors.left: parent.left
+                ListSeparator {
+                    height: Theme.componentBorderWidth
                     anchors.leftMargin: -24
-                    anchors.right: parent.right
                     anchors.rightMargin: -24
                 }
 
@@ -682,12 +730,9 @@ Loader {
 
                 ////////////////////////
 
-                Rectangle { // separator
-                    height: 2
-                    color: Theme.colorSeparator
-                    anchors.left: parent.left
+                ListSeparator {
+                    height: Theme.componentBorderWidth
                     anchors.leftMargin: -24
-                    anchors.right: parent.right
                     anchors.rightMargin: -24
                 }
 
@@ -743,12 +788,9 @@ Loader {
 
                 ////////////////////////
 
-                Rectangle { // separator
-                    height: 2
-                    color: Theme.colorSeparator
-                    anchors.left: parent.left
+                ListSeparator {
+                    height: Theme.componentBorderWidth
                     anchors.leftMargin: -24
-                    anchors.right: parent.right
                     anchors.rightMargin: -24
                 }
 
@@ -778,12 +820,9 @@ Loader {
 
                 ////////////////////////
 
-                Rectangle { // separator
-                    height: 2
-                    color: Theme.colorSeparator
-                    anchors.left: parent.left
+                ListSeparator {
+                    height: Theme.componentBorderWidth
                     anchors.leftMargin: -24
-                    anchors.right: parent.right
                     anchors.rightMargin: -24
                 }
 
@@ -894,12 +933,9 @@ Loader {
 
                 ////////////////////////
 
-                Rectangle { // separator
-                    height: 2
-                    color: Theme.colorSeparator
-                    anchors.left: parent.left
+                ListSeparator {
+                    height: Theme.componentBorderWidth
                     anchors.leftMargin: -24
-                    anchors.right: parent.right
                     anchors.rightMargin: -24
                 }
 

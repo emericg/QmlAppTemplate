@@ -24,7 +24,7 @@
 
 #if defined(Q_OS_ANDROID)
 #include "utils_os_android.h"
-#elif defined(Q_OS_IOS)
+#elif defined(Q_OS_IOS) && defined(UTILS_WIFI_ENABLED)
 #include "utils_os_ios_wifi.h"
 #endif
 
@@ -114,7 +114,7 @@ void UtilsWiFi::refreshWiFi_internal()
 #if defined(Q_OS_ANDROID)
         m_currentSSID = UtilsAndroid::getWifiSSID();
     Q_EMIT wifiChanged();
-#elif defined(Q_OS_IOS)
+#elif defined(Q_OS_IOS) && defined(UTILS_WIFI_ENABLED)
         m_currentSSID = UtilsIOS::getWifiSSID();
     Q_EMIT wifiChanged();
 #else

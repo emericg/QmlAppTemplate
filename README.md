@@ -35,7 +35,7 @@ $ make
 
 > [SingleApplication](src/thirdparty/SingleApplication/README.md) Keep only one instance of your application active at a time
 
-#### QML components
+#### QML component library
 
 > TODO
 
