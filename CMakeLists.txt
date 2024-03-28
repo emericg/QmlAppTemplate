@@ -34,10 +34,10 @@ qt_standard_project_setup(REQUIRES 6.5)
 qt_add_executable(${CMAKE_PROJECT_NAME}
     src/SettingsManager.cpp src/SettingsManager.h
     src/main.cpp
-    qml/qml.qrc
-    qml/components.qrc
     i18n/i18n.qrc
     assets/assets.qrc
+    qml/qml.qrc
+    qml/ComponentLibrary/ComponentLibrary.qrc
 )
 
 target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC src/thirdparty/)
@@ -164,8 +164,6 @@ if(lupdate_only)
     target_sources(${CMAKE_PROJECT_NAME} PUBLIC
         qml/*.js qml/*.qml
         qml/components/*.qml
-        qml/components_generic/*.qml
-        qml/components_js/*.js
     )
 endif()
 

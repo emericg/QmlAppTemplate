@@ -88,7 +88,6 @@ jobs:
         with:
           aqtversion: '==3.1.*'
           version: ${{env.QT_VERSION}}
-          modules: qt5compat
 
       - name: Install Qt (Android armv7)
         uses: jurplel/install-qt-action@v3
@@ -98,7 +97,6 @@ jobs:
           host: 'linux'
           target: 'android'
           arch: 'android_armv7'
-          modules: qt5compat
 
       - name: Install Qt (Android armv8)
         uses: jurplel/install-qt-action@v3
@@ -108,7 +106,6 @@ jobs:
           host: 'linux'
           target: 'android'
           arch: 'android_arm64_v8a'
-          modules: qt5compat
 
       - name: Install Qt (Android x86)
         uses: jurplel/install-qt-action@v3
@@ -118,7 +115,6 @@ jobs:
           host: 'linux'
           target: 'android'
           arch: 'android_x86'
-          modules: qt5compat
 
       - name: Install Qt (Android x86_64)
         uses: jurplel/install-qt-action@v3
@@ -128,7 +124,6 @@ jobs:
           host: 'linux'
           target: 'android'
           arch: 'android_x86_64'
-          modules: qt5compat
 
       # Install dependencies (from package manager)
       - name: Install dependencies (from package manager)
@@ -201,14 +196,12 @@ jobs:
         uses: jurplel/install-qt-action@v3
         with:
           version: ${{env.QT_VERSION}}
-          modules: qt5compat qtshadertools
 
       # Install Qt (iOS)
       - name: Install Qt (iOS)
         uses: jurplel/install-qt-action@v3
         with:
           version: ${{env.QT_VERSION}}
-          modules: qt5compat qtshadertools
           host: 'mac'
           target: 'ios'
 

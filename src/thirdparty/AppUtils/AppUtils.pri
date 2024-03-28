@@ -1,4 +1,7 @@
 
+# Optional stuff (for macOS)
+#CONFIG += UTILS_DOCK_ENABLED
+
 # Optional stuff (for iOS)
 #CONFIG += UTILS_NOTIFICATIONS_ENABLED
 #CONFIG += UTILS_WIFI_ENABLED
@@ -46,13 +49,17 @@ macx {
     HEADERS += $${PWD}/utils_os_macos.h
 
     # macOS dock click handler (optional)
-    LIBS    += -framework AppKit
-    SOURCES += $${PWD}/utils_os_macos_dock.mm
-    HEADERS += $${PWD}/utils_os_macos_dock.h
+    UTILS_DOCK_ENABLED {
+        DEFINES += UTILS_DOCK_ENABLED
+        LIBS    += -framework AppKit
+        SOURCES += $${PWD}/utils_os_macos_dock.mm
+        HEADERS += $${PWD}/utils_os_macos_dock.h
+    }
 }
 
 # Windows OS utils
 win32 {
+    DEFINES += _USE_MATH_DEFINES
     SOURCES += $${PWD}/utils_os_windows.cpp
     HEADERS += $${PWD}/utils_os_windows.h
 }

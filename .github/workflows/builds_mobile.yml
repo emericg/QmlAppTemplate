@@ -57,7 +57,6 @@ jobs:
           host: 'linux'
           target: 'android'
           arch: 'android_arm64_v8a'
-          modules: qt5compat
           extra: '--autodesktop'
 
       # Setup env
@@ -89,7 +88,6 @@ jobs:
           version: ${{env.QT_VERSION}}
           host: 'mac'
           target: 'ios'
-          modules: qt5compat qtshadertools
           extra: '--autodesktop'
 
       # Setup env

@@ -37,10 +37,10 @@ HEADERS  += src/SettingsManager.h
 
 INCLUDEPATH += src/ src/thirdparty/
 
-RESOURCES   += qml/qml.qrc \
-               qml/components.qrc \
-               i18n/i18n.qrc \
-               assets/assets.qrc
+RESOURCES   += qml/ComponentLibrary/ComponentLibrary.qrc \
+               qml/qml.qrc \
+               assets/assets.qrc \
+               i18n/i18n.qrc
 
 OTHER_FILES += README.md \
                deploy_linux.sh \
@@ -69,12 +69,8 @@ CONFIG(release, debug|release) : DEFINES += NDEBUG QT_NO_DEBUG QT_NO_DEBUG_OUTPU
 # Use Qt Quick compiler
 ios | android { CONFIG += qtquickcompiler }
 
-# Math
-win32 { DEFINES += _USE_MATH_DEFINES }
-
 # Deprecated Warnings
 DEFINES += QT_DEPRECATED_WARNINGS
-DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 # Enables AddressSanitizer
 unix {
@@ -85,10 +81,10 @@ unix {
 
 # Build artifacts ##############################################################
 
-OBJECTS_DIR = build/$${BUILD_MODE}_$${QT_ARCH}/obj/
-MOC_DIR     = build/$${BUILD_MODE}_$${QT_ARCH}/moc/
-RCC_DIR     = build/$${BUILD_MODE}_$${QT_ARCH}/rcc/
-UI_DIR      = build/$${BUILD_MODE}_$${QT_ARCH}/ui/
+OBJECTS_DIR = build/$${QT_ARCH}/$${BUILD_MODE}/obj/
+MOC_DIR     = build/$${QT_ARCH}/$${BUILD_MODE}/moc/
+RCC_DIR     = build/$${QT_ARCH}/$${BUILD_MODE}/rcc/
+UI_DIR      = build/$${QT_ARCH}/$${BUILD_MODE}/ui/
 
 DESTDIR     = bin/
 
