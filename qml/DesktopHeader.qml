@@ -90,16 +90,16 @@ Rectangle {
             spacing: 12
             visible: (appContent.state === "DesktopComponents")
 
-            ButtonCompactable {
+            ButtonSolid {
                 id: buttonRefresh
                 anchors.verticalCenter: parent.verticalCenter
 
                 source: "qrc:/assets/icons_material/baseline-autorenew-24px.svg"
-                textColor: Theme.colorHeaderContent
-                iconColor: Theme.colorHeaderContent
-                backgroundColor: Theme.colorHeaderHighlight
                 text: qsTr("Animate this")
-                tooltipText: text
+
+                //colorText: Theme.colorHeaderContent
+                //colorIcon: Theme.colorHeaderContent
+                colorBackground: Theme.colorHeaderHighlight
 
                 animation: "rotate"
                 animationRunning: isclicked
@@ -108,9 +108,11 @@ Rectangle {
                 onClicked: isclicked = !isclicked
             }
 
-            ButtonWireframe {
+            ButtonSolid {
                 id: buttonEnable
                 anchors.verticalCenter: parent.verticalCenter
+
+                colorBackground: Theme.colorHeaderHighlight
 
                 text: componentsEnabled ? qsTr("Disable components") : qsTr("Enable components")
                 onClicked: componentsEnabled = !componentsEnabled
@@ -139,6 +141,10 @@ Rectangle {
 
                 ActionMenu_floating {
                     id: actionMenu
+                    width: 240
+
+                    titleTxt: "back"
+                    titleSrc: "qrc:/assets/icons_material/baseline-chevron_left-24px.svg"
 
                     model: ListModel {
                         id: lmActionMenu

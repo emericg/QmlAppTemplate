@@ -39,6 +39,9 @@ Rectangle {
     ActionMenu_bottom {
         id: actionMenu
 
+        titleTxt: "ActionMenu"
+        //titleSrc: "qrc:/assets/icons_material/baseline-chevron_left-24px.svg"
+
         model: ListModel {
             id: lmActionMenu
             ListElement { t: "itm"; idx: 1; txt: "Action 1"; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; }

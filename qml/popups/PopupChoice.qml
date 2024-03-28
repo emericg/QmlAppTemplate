@@ -26,7 +26,8 @@ Popup {
 
     ////////////////////////////////////////////////////////////////////////////
 
-    //enter: Transition { NumberAnimation { property: "opacity"; from: 0.333; to: 1.0; duration: 233; } }
+    enter: Transition { NumberAnimation { property: "opacity"; from: 0.5; to: 1.0; duration: 133; } }
+    //exit: Transition { NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; duration: 200; } }
 
     background: Rectangle {
         color: Theme.colorBackground
@@ -89,22 +90,20 @@ Popup {
 
                 property int btnSize: singleColumn ? width : ((width-spacing*2) / 3)
 
-                ButtonWireframe {
+                ButtonSolid {
                     width: parent.btnSize
 
                     text: qsTr("Cancel")
-                    primaryColor: Theme.colorSubText
-                    secondaryColor: Theme.colorForeground
+                    colorBackground: Theme.colorSubText
 
                     onClicked: popupChoice.close()
                 }
 
-                ButtonWireframe {
+                ButtonSolid {
                     width: parent.btnSize
 
                     text: qsTr("Delete local data")
-                    primaryColor: Theme.colorWarning
-                    fullColor: true
+                    colorBackground: Theme.colorWarning
 
                     onClicked: {
                         if (selectedDevice) {
@@ -115,12 +114,11 @@ Popup {
                     }
                 }
 
-                ButtonWireframe {
+                ButtonSolid {
                     width: parent.btnSize
 
                     text: qsTr("Delete sensor data")
-                    primaryColor: Theme.colorError
-                    fullColor: true
+                    colorBackground: Theme.colorError
 
                     onClicked: {
                         if (selectedDevice) {

@@ -1,0 +1,3 @@
+ButtonSolid {
+    flat: true
+}

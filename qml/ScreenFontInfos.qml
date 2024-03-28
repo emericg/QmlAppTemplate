@@ -74,11 +74,11 @@ Loader {
                         append( {"text": "VeryVeryBig", value: Theme.fontSizeContentVeryVeryBig} );
                         append( {"text": "VeryBig", value: Theme.fontSizeContentVeryBig} );
                         append( {"text": "Big", value: Theme.fontSizeContentBig} );
-                        append( {"text": "", value: Theme.fontSizeContent} );
+                        append( {"text": "(default)", value: Theme.fontSizeContent} );
+                        append( {"text": "(components)", value: Theme.componentFontSize} );
                         append( {"text": "Small", value: Theme.fontSizeContentSmall} );
                         append( {"text": "VerySmall", value: Theme.fontSizeContentVerySmall} );
                         append( {"text": "VeryVerySmall", value: Theme.fontSizeContentVeryVerySmall} );
-                        append( {"text": "Component", value: Theme.componentFontSize} );
                     }
                 }
 

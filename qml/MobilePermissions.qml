@@ -118,13 +118,9 @@ Item {
                     font.pixelSize: Theme.fontSizeContentSmall
                 }
 
-                ButtonWireframeIcon {
+                ButtonWireframe {
                     anchors.left: parent.left
                     anchors.leftMargin: 48
-                    height: 36
-
-                    primaryColor: Theme.colorPrimary
-                    secondaryColor: Theme.colorBackground
 
                     text: qsTr("Official information")
                     source: "qrc:/assets/icons_material/duotone-launch-24px.svg"
@@ -199,13 +195,9 @@ Item {
                     font.pixelSize: Theme.fontSizeContentSmall
                 }
 
-                ButtonWireframeIcon {
+                ButtonWireframe {
                     anchors.left: parent.left
                     anchors.leftMargin: 48
-                    height: 36
-
-                    primaryColor: Theme.colorPrimary
-                    secondaryColor: Theme.colorBackground
 
                     text: qsTr("Location info")
                     source: "qrc:/assets/icons_material/duotone-tune-24px.svg"
@@ -282,7 +274,7 @@ Item {
             Column {
                 id: element_infos
                 anchors.left: parent.left
-                anchors.leftMargin: 16
+                anchors.leftMargin: 12
                 anchors.right: parent.right
                 anchors.rightMargin: 12
                 spacing: 8
@@ -327,13 +319,9 @@ Item {
                     font.pixelSize: Theme.fontSizeContentSmall
                 }
 
-                ButtonWireframeIcon {
+                ButtonWireframe {
                     anchors.left: parent.left
                     anchors.leftMargin: 48
-                    height: 36
-
-                    primaryColor: Theme.colorPrimary
-                    secondaryColor: Theme.colorBackground
 
                     text: qsTr("Application info")
                     source: "qrc:/assets/icons_material/duotone-tune-24px.svg"

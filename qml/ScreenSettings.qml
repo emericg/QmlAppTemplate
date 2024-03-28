@@ -101,76 +101,50 @@ Loader {
                     z: 1
                     spacing: Theme.componentMargin
 
-                    Rectangle { // theme "Snow"
+                    Rectangle { // theme mobile light
                         width: wideWideMode ? 80 : 32
                         height: 32
                         anchors.verticalCenter: parent.verticalCenter
 
                         radius: 2
-                        color: "white"
-                        border.color: (settingsManager.appTheme === "THEME_SNOW") ? Theme.colorSubText : "#ccc"
-                        border.width: 2
+                        color: (Theme.currentTheme === ThemeEngine.THEME_MOBILE_LIGHT) ? Theme.colorForeground : "#dddddd"
+                        border.color: Theme.colorSecondary
+                        border.width: (Theme.currentTheme === ThemeEngine.THEME_MOBILE_LIGHT) ? 2 : 0
 
                         Text {
                             anchors.centerIn: parent
                             visible: wideWideMode
-                            text: qsTr("snow")
-                            textFormat: Text.PlainText
-                            color: (settingsManager.appTheme === "THEME_SNOW") ? Theme.colorSubText : "#ccc"
+                            text: qsTr("light")
+                            color: "#313236"
                             font.bold: true
                             font.pixelSize: Theme.fontSizeContentSmall
                         }
                         MouseArea {
                             anchors.fill: parent
-                            onClicked: settingsManager.appTheme = "THEME_SNOW"
+                            onClicked: settingsManager.appTheme = "THEME_MOBILE_LIGHT"
                         }
                     }
-                    Rectangle { // theme "Day"
+                    Rectangle { // theme mobile dark
                         width: wideWideMode ? 80 : 32
                         height: 32
                         anchors.verticalCenter: parent.verticalCenter
 
                         radius: 2
-                        color: "#FFE400" // day theme colorSecondary
-                        border.color: Theme.colorPrimary
-                        border.width: (settingsManager.appTheme === "THEME_DAY") ? 2 : 0
+                        color: (Theme.currentTheme === ThemeEngine.THEME_MOBILE_DARK) ? Theme.colorForeground : "#313236"
+                        border.color: Theme.colorSecondary
+                        border.width: (Theme.currentTheme === ThemeEngine.THEME_MOBILE_DARK) ? 2 : 0
 
                         Text {
                             anchors.centerIn: parent
                             visible: wideWideMode
-                            text: qsTr("day")
-                            textFormat: Text.PlainText
-                            color: "white"
+                            text: qsTr("dark")
+                            color: "#dddddd"
                             font.bold: true
                             font.pixelSize: Theme.fontSizeContentSmall
                         }
                         MouseArea {
                             anchors.fill: parent
-                            onClicked: settingsManager.appTheme = "THEME_DAY"
-                        }
-                    }
-                    Rectangle { // theme "Night"
-                        width: wideWideMode ? 80 : 32
-                        height: 32
-                        anchors.verticalCenter: parent.verticalCenter
-
-                        radius: 2
-                        color: "#555151"
-                        border.color: Theme.colorPrimary
-                        border.width: (settingsManager.appTheme === "THEME_NIGHT") ? 2 : 0
-
-                        Text {
-                            anchors.centerIn: parent
-                            visible: wideWideMode
-                            text: qsTr("night")
-                            textFormat: Text.PlainText
-                            color: (settingsManager.appTheme === "THEME_NIGHT") ? Theme.colorPrimary : "#ececec"
-                            font.bold: true
-                            font.pixelSize: Theme.fontSizeContentSmall
-                        }
-                        MouseArea {
-                            anchors.fill: parent
-                            onClicked: settingsManager.appTheme = "THEME_NIGHT"
+                            onClicked: settingsManager.appTheme = "THEME_MOBILE_DARK"
                         }
                     }
                 }
@@ -179,8 +153,8 @@ Loader {
             ////////
 
             ComboBoxThemed {
-                anchors.left: parent.left
-                anchors.leftMargin: screenPaddingLeft + contentColumn.padText
+                //anchors.left: parent.left
+                //anchors.leftMargin: screenPaddingLeft + contentColumn.padText
                 anchors.right: parent.right
                 anchors.rightMargin: screenPaddingRight + Theme.componentMargin
 
@@ -188,6 +162,15 @@ Loader {
 
                 model: ListModel {
                     id: cbAppTheme
+                    ListElement { text: "MOBILE LIGHT"; }
+                    ListElement { text: "MOBILE DARK"; }
+
+                    ListElement { text: "MATERIAL LIGHT"; }
+                    ListElement { text: "MATERIAL DARK"; }
+
+                    ListElement { text: "DESKTOP LIGHT"; }
+                    ListElement { text: "DESKTOP DARK"; }
+
                     ListElement { text: "SNOW"; }
                     ListElement { text: "PLANT"; }
                     ListElement { text: "RAIN"; }
@@ -205,7 +188,16 @@ Loader {
                     currentIndex = Theme.getThemeIndex(settingsManager.appTheme)
                 }
                 onActivated: {
-                    if (currentText === "SNOW") settingsManager.appTheme = "THEME_SNOW"
+                    if (currentText === "MOBILE LIGHT") settingsManager.appTheme = "THEME_MOBILE_LIGHT"
+                    else if (currentText === "MOBILE DARK") settingsManager.appTheme = "THEME_MOBILE_DARK"
+
+                    else if (currentText === "MATERIAL LIGHT") settingsManager.appTheme = "THEME_MATERIAL_LIGHT"
+                    else if (currentText === "MATERIAL DARK") settingsManager.appTheme = "THEME_MATERIAL_DARK"
+
+                    else if (currentText === "DESKTOP LIGHT") settingsManager.appTheme = "THEME_DESKTOP_LIGHT"
+                    else if (currentText === "DESKTOP DARK") settingsManager.appTheme = "THEME_DESKTOP_DARK"
+
+                    else if (currentText === "SNOW") settingsManager.appTheme = "THEME_SNOW"
                     else if (currentText === "PLANT") settingsManager.appTheme = "THEME_PLANT"
                     else if (currentText === "RAIN") settingsManager.appTheme = "THEME_RAIN"
                     else if (currentText === "DAY") settingsManager.appTheme = "THEME_DAY"

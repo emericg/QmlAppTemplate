@@ -30,14 +30,13 @@ Flickable {
             source: ""
         }
 
-        ButtonWireframeIcon {
+        ButtonSolid {
             anchors.left: parent.left
             anchors.leftMargin: Theme.componentMarginXL
             anchors.right: parent.right
             anchors.rightMargin: Theme.componentMarginXL
 
             text: "Message"
-            fullColor: true
             source: "qrc:/assets/icons_material/baseline-delete-24px.svg"
 
             PopupMessage {
@@ -47,14 +46,13 @@ Flickable {
             onClicked: popupMessage.open()
         }
 
-        ButtonWireframeIcon {
+        ButtonSolid {
             anchors.left: parent.left
             anchors.leftMargin: Theme.componentMarginXL
             anchors.right: parent.right
             anchors.rightMargin: Theme.componentMarginXL
 
             text: "Choice"
-            fullColor: true
             source: "qrc:/assets/icons_material/baseline-delete-24px.svg"
 
             PopupChoice {
@@ -72,14 +70,13 @@ Flickable {
             source: ""
         }
 
-        ButtonWireframeIcon {
+        ButtonSolid {
             anchors.left: parent.left
             anchors.leftMargin: Theme.componentMarginXL
             anchors.right: parent.right
             anchors.rightMargin: Theme.componentMarginXL
 
             text: "Date"
-            fullColor: true
             source: "qrc:/assets/icons_material/duotone-date_range-24px.svg"
 
             PopupDate {
@@ -90,14 +87,13 @@ Flickable {
             onClicked: popupDate.openDate(savethedate)
         }
 
-        ButtonWireframeIcon {
+        ButtonSolid {
             anchors.left: parent.left
             anchors.leftMargin: Theme.componentMarginXL
             anchors.right: parent.right
             anchors.rightMargin: Theme.componentMarginXL
 
             text: "Time"
-            fullColor: true
             source: "qrc:/assets/icons_material/duotone-schedule-24px.svg"
 
             PopupTime {

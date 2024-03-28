@@ -26,7 +26,8 @@ Popup {
 
     ////////////////////////////////////////////////////////////////////////////
 
-    //enter: Transition { NumberAnimation { property: "opacity"; from: 0.333; to: 1.0; duration: 233; } }
+    enter: Transition { NumberAnimation { property: "opacity"; from: 0.5; to: 1.0; duration: 133; } }
+    //exit: Transition { NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; duration: 200; } }
 
     background: Rectangle {
         color: Theme.colorBackground
@@ -83,13 +84,11 @@ Popup {
 
             ////////
 
-            ButtonWireframe {
+            ButtonSolid {
                 anchors.right: parent.right
                 width: singleColumn ? parent.width : (parent.width / 2)
 
                 text: qsTr("OK")
-                primaryColor: Theme.colorSubText
-                secondaryColor: Theme.colorForeground
 
                 onClicked: popupMessage.close()
             }

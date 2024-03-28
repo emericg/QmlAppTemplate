@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/qml">
+        <file>ThemeEngine.qml</file>
+
         <file>MobileApplication.qml</file>
         <file>MobileHeader.qml</file>
         <file>MobileDrawer.qml</file>
@@ -30,10 +32,7 @@
 
         <file alias="PopupMessage.qml">popups/PopupMessage.qml</file>
         <file alias="PopupChoice.qml">popups/PopupChoice.qml</file>
-        <file alias="PopupDate.qml">popups/PopupDate6.qml</file>
+        <file alias="PopupDate.qml">popups/PopupDate.qml</file>
         <file alias="PopupTime.qml">popups/PopupTime.qml</file>
-
-        <file>ThemeEngine.qml</file>
-        <file>WindowGeometrySaver.qml</file>
     </qresource>
 </RCC>

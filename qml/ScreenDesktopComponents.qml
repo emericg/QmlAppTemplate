@@ -106,20 +106,17 @@ Loader {
                     anchors.verticalCenter: parent.verticalCenter
                     spacing: 16
 
-                    ButtonWireframeIcon {
-                        fullColor: true
-                        primaryColor: Theme.colorActionbarHighlight
+                    ButtonSolid {
+                        colorHighlight: Theme.colorActionbarHighlight
                         source: "qrc:/assets/icons_material/baseline-warning-24px.svg"
                     }
-                    ButtonWireframeIcon {
-                        fullColor: true
-                        primaryColor: Theme.colorActionbarHighlight
+                    ButtonSolid {
+                        colorHighlight: Theme.colorActionbarHighlight
                         text: "Action 1"
                         source: "qrc:/assets/icons_material/baseline-warning-24px.svg"
                     }
-                    ButtonWireframeIcon {
-                        fullColor: true
-                        primaryColor: Theme.colorActionbarHighlight
+                    ButtonSolid {
+                        colorHighlight: Theme.colorActionbarHighlight
                         text: "Action 2"
                     }
                 }
@@ -225,6 +222,10 @@ Loader {
 
         // CONTENT /////////////////////////////////////////////////////////////////
 
+        ButtonFab {
+            source: "qrc:/assets/icons_material/baseline-add-24px.svg"
+        }
+
         Flickable {
             anchors.top: menusArea.bottom
             anchors.left: parent.left
@@ -277,6 +278,15 @@ Loader {
 
                         model: ListModel {
                             id: cbAppTheme
+                            ListElement { text: "MOBILE LIGHT"; }
+                            ListElement { text: "MOBILE DARK"; }
+
+                            ListElement { text: "MATERIAL LIGHT"; }
+                            ListElement { text: "MATERIAL DARK"; }
+
+                            ListElement { text: "DESKTOP LIGHT"; }
+                            ListElement { text: "DESKTOP DARK"; }
+
                             ListElement { text: "SNOW"; }
                             ListElement { text: "PLANT"; }
                             ListElement { text: "RAIN"; }
@@ -294,7 +304,16 @@ Loader {
                             currentIndex = Theme.getThemeIndex(settingsManager.appTheme)
                         }
                         onActivated: {
-                            if (currentText === "SNOW") settingsManager.appTheme = "THEME_SNOW"
+                            if (currentText === "MOBILE LIGHT") settingsManager.appTheme = "THEME_MOBILE_LIGHT"
+                            else if (currentText === "MOBILE DARK") settingsManager.appTheme = "THEME_MOBILE_DARK"
+
+                            else if (currentText === "MATERIAL LIGHT") settingsManager.appTheme = "THEME_MATERIAL_LIGHT"
+                            else if (currentText === "MATERIAL DARK") settingsManager.appTheme = "THEME_MATERIAL_DARK"
+
+                            else if (currentText === "DESKTOP LIGHT") settingsManager.appTheme = "THEME_DESKTOP_LIGHT"
+                            else if (currentText === "DESKTOP DARK") settingsManager.appTheme = "THEME_DESKTOP_DARK"
+
+                            else if (currentText === "SNOW") settingsManager.appTheme = "THEME_SNOW"
                             else if (currentText === "PLANT") settingsManager.appTheme = "THEME_PLANT"
                             else if (currentText === "RAIN") settingsManager.appTheme = "THEME_RAIN"
                             else if (currentText === "DAY") settingsManager.appTheme = "THEME_DAY"
@@ -349,30 +368,198 @@ Loader {
                     anchors.right: parent.right
                     spacing: Theme.componentMargin
 
-                    ButtonWireframe {
-                        fullColor: true
-                        text: "ButtonWireframe"
+                    ButtonFlat {
+                        source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                        colorBackground: Theme.colorMaterialGreen
                     }
 
-                    ButtonWireframeIcon {
-                        fullColor: true
-                        text: "ButtonWireframeIcon"
+                    ButtonFlat {
+                        text: "ButtonFlat"
+                        colorBackground: Theme.colorMaterialBlue
+                    }
+
+                    ButtonFlat {
+                        text: "ButtonFlat"
+                        source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                        colorBackground: Theme.colorMaterialRed
+                    }
+
+                    ButtonFlat {
+                        text: "ButtonFlat"
+                        source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                        colorBackground: Theme.colorMaterialDeepOrange
+                        layoutDirection: Qt.RightToLeft
+                    }
+
+                    ButtonFlat {
+                        width: 200
+                        text: "ButtonFlat"
+                        source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                        colorBackground: Theme.colorMaterialOrange
+                        alignment: Qt.AlignLeft
+                        layoutDirection: Qt.LeftToRight
+                    }
+                    ButtonFlat {
+                        width: 200
+                        text: "ButtonFlat"
+                        source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                        colorBackground: Theme.colorMaterialDeepPurple
+                        alignment: Qt.AlignCenter
+                        layoutDirection: Qt.RightToLeft
+                    }
+                    ButtonFlat {
+                        width: 200
+                        text: "ButtonFlat"
+                        source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                        colorBackground: Theme.colorMaterialGrey
+                        alignment: Qt.AlignRight
+                        layoutDirection: Qt.RightToLeft
+                    }
+                }
+
+                Flow {
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    spacing: Theme.componentMargin
+
+                    ButtonSolid {
+                        source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                    }
+
+                    ButtonSolid {
+                        text: "ButtonSolid"
+                    }
+                    ButtonSolid {
+                        text: "ButtonSolid"
+                        source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                    }
+                    ButtonSolid {
+                        text: "ButtonSolid"
+                        source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                        layoutDirection: Qt.RightToLeft
+                    }
+
+                    ButtonSolid {
+                        width: 200
+                        text: "ButtonSolid"
+                        source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                        alignment: Qt.AlignLeft
+                    }
+                    ButtonSolid {
+                        width: 200
+                        text: "ButtonSolid"
+                        source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                        alignment: Qt.AlignCenter
+                        layoutDirection: Qt.RightToLeft
+                    }
+                    ButtonSolid {
+                        width: 200
+                        text: "ButtonSolid"
+                        source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                        alignment: Qt.AlignRight
+                        layoutDirection: Qt.RightToLeft
+                    }
+                }
+
+                Flow {
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    spacing: Theme.componentMargin
+
+                    ButtonWireframe {
                         source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
                     }
 
                     ButtonWireframe {
                         text: "ButtonWireframe"
                     }
+                    ButtonWireframe {
+                        text: "ButtonWireframe"
+                        source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                    }
+                    ButtonWireframe {
+                        text: "ButtonWireframe"
+                        source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                        layoutDirection: Qt.RightToLeft
+                    }
 
-                    ButtonWireframeIcon {
-                        width: 256
-                        text: "ButtonWireframeIcon"
+                    ButtonWireframe {
+                        width: 200
+                        text: "ButtonWireframe"
+                        source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                        alignment: Qt.AlignLeft
+                        layoutDirection: Qt.LeftToRight
+                    }
+                    ButtonWireframe {
+                        width: 200
+                        text: "ButtonWireframe"
+                        source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                        alignment: Qt.AlignCenter
+                        layoutDirection: Qt.RightToLeft
+                    }
+                    ButtonWireframe {
+                        width: 200
+                        text: "ButtonWireframe"
+                        source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                        alignment: Qt.AlignRight
+                        layoutDirection: Qt.RightToLeft
+                    }
+                }
+
+                Flow {
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    spacing: Theme.componentMargin
+
+                    ButtonSunken {
                         source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
                     }
 
-                    ButtonText {
-                        text: "ButtonText"
+                    ButtonSunken {
+                        text: "ButtonSunken"
                     }
+                    ButtonSunken {
+                        text: "ButtonSunken"
+                        source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                    }
+                    ButtonSunken {
+                        text: "ButtonSunken"
+                        source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                        layoutDirection: Qt.RightToLeft
+                    }
+
+                    ButtonSunken {
+                        width: 200
+                        text: "ButtonSunken"
+                        source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                        colorHighlight: "white"
+                        alignment: Qt.AlignLeft
+                        layoutDirection: Qt.LeftToRight
+                    }
+                    ButtonSunken {
+                        width: 200
+                        text: "ButtonSunken"
+                        source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                        colorHighlight: "white"
+                        alignment: Qt.AlignCenter
+                        layoutDirection: Qt.RightToLeft
+                    }
+                    ButtonSunken {
+                        width: 200
+                        text: "ButtonSunken"
+                        source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                        colorHighlight: "white"
+                        alignment: Qt.AlignRight
+                        layoutDirection: Qt.RightToLeft
+                    }
+                }
+
+                ////
+
+                ListSeparator {
+                    height: Theme.componentBorderWidth
+                    anchors.leftMargin: -24
+                    anchors.rightMargin: -24
                 }
 
                 ////
@@ -546,6 +733,24 @@ Loader {
                         }
                     }
 
+                    SelectorMenu2 {
+                        height: 32
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        currentSelection: 1
+                        model: ListModel {
+                            id: lmSelectorMenu2Txt1
+                            ListElement { idx: 1; txt: "4/3"; src: ""; sz: 0; }
+                            ListElement { idx: 2; txt: "16/9"; src: ""; sz: 0; }
+                            ListElement { idx: 3; txt: "21/9"; src: ""; sz: 0; }
+                        }
+
+                        onMenuSelected: (index) => {
+                            //console.log("SelectorMenu clicked #" + index)
+                            currentSelection = index
+                        }
+                    }
+
                     SelectorMenu {
                         height: 40
                         anchors.verticalCenter: parent.verticalCenter
@@ -598,8 +803,6 @@ Loader {
 
                         layer.enabled: true
                         layer.effect: MultiEffect {
-                            autoPaddingEnabled: false
-
                             maskEnabled: true
                             maskInverted: false
                             maskThresholdMin: 0.5

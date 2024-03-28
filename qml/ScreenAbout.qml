@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Controls
 
 import ThemeEngine
-import "qrc:/js/UtilsNumber.js" as UtilsNumber
+import "qrc:/utils/UtilsNumber.js" as UtilsNumber
 
 Loader {
     id: screenAbout
@@ -97,33 +97,27 @@ Loader {
                     visible: wideWideMode
                     spacing: Theme.componentMargin
 
-                    ButtonWireframeIconCentered {
+                    ButtonSolid {
                         width: 160
                         sourceSize: 28
-                        fullColor: true
-                        primaryColor: Theme.colorMaterialBlue
 
                         text: qsTr("WEBSITE")
                         source: "qrc:/assets/icons_material/baseline-insert_link-24px.svg"
                         onClicked: Qt.openUrlExternally("https://emeric.io/")
                     }
 
-                    ButtonWireframeIconCentered {
+                    ButtonSolid {
                         width: 160
                         sourceSize: 22
-                        fullColor: true
-                        primaryColor: Theme.colorMaterialBlue
 
                         text: qsTr("SUPPORT")
                         source: "qrc:/assets/icons_material/baseline-support-24px.svg"
                         onClicked: Qt.openUrlExternally("https://emeric.io/")
                     }
 
-                    ButtonWireframeIconCentered {
+                    ButtonSolid {
                         width: 160
                         sourceSize: 22
-                        fullColor: true
-                        primaryColor: Theme.colorMaterialBlue
                         visible: (appWindow.width > 800)
 
                         text: qsTr("GitHub")
@@ -155,29 +149,23 @@ Loader {
                 visible: !wideWideMode
                 spacing: Theme.componentMargin
 
-                ButtonWireframeIconCentered {
+                ButtonSolid {
                     anchors.verticalCenter: parent.verticalCenter
                     width: ((parent.width - parent.spacing) / 2)
-
-                    sourceSize: 28
-                    fullColor: true
-                    primaryColor: Theme.colorMaterialBlue
 
                     text: qsTr("WEBSITE")
                     source: "qrc:/assets/icons_material/baseline-insert_link-24px.svg"
+                    sourceSize: 28
                     onClicked: Qt.openUrlExternally("https://emeric.io/")
                 }
 
-                ButtonWireframeIconCentered {
+                ButtonSolid {
                     width: ((parent.width - parent.spacing) / 2)
                     anchors.verticalCenter: parent.verticalCenter
 
-                    sourceSize: 22
-                    fullColor: true
-                    primaryColor: Theme.colorMaterialBlue
-
                     text: qsTr("SUPPORT")
                     source: "qrc:/assets/icons_material/baseline-support-24px.svg"
+                    sourceSize: 22
                     onClicked: Qt.openUrlExternally("https://emeric.io/")
                 }
             }
@@ -200,13 +188,17 @@ Loader {
 
             ListItemClickable { // rate
                 width: parent.width
-                visible: (Qt.platform.os === "android" || Qt.platform.os === "ios")
+                //visible: (Qt.platform.os === "android" || Qt.platform.os === "ios")
 
                 text: qsTr("Rate the application")
                 source: "qrc:/assets/icons_material/baseline-stars-24px.svg"
                 indicatorSource: "qrc:/assets/icons_material/duotone-launch-24px.svg"
                 onClicked: Qt.openUrlExternally("https://github.com/emericg/QmlAppTemplate")
             }
+
+            ////////
+
+            ListSeparator { }
 
             ListItemClickable { // tutorial
                 width: parent.width
@@ -252,7 +244,7 @@ Loader {
                     anchors.verticalCenter: dependenciesText.verticalCenter
 
                     source: "qrc:/assets/icons_material/baseline-settings-20px.svg"
-                    color: Theme.colorSubText
+                    color: Theme.colorIcon
                 }
 
                 Text {
@@ -321,7 +313,7 @@ Loader {
                     anchors.verticalCenter: translatorsText.verticalCenter
 
                     source: "qrc:/assets/icons_material/duotone-translate-24px.svg"
-                    color: Theme.colorSubText
+                    color: Theme.colorIcon
                 }
 
                 Text {
@@ -369,6 +361,8 @@ Loader {
             }
 
             ////////
+
+            ListSeparator { }
         }
     }
 

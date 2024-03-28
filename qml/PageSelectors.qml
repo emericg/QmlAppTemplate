@@ -107,6 +107,58 @@ Flickable {
 
         ////
 
+        SelectorMenu2 {
+            anchors.horizontalCenter: parent.horizontalCenter
+            height: 32
+
+            currentSelection: 1
+            model: lmSelectorMenuTxt
+
+            onMenuSelected: (index) => {
+                //console.log("SelectorMenu clicked #" + index)
+                currentSelection = index
+            }
+        }
+
+        ////
+
+        SelectorMenu2 {
+            anchors.horizontalCenter: parent.horizontalCenter
+            height: 40
+
+            currentSelection: 1
+            model: lmSelectorMenuImg
+
+            onMenuSelected: (index) => {
+                //console.log("SelectorMenu clicked #" + index)
+                currentSelection = index
+            }
+        }
+
+        ////
+
+        SelectorMenu2 {
+            anchors.horizontalCenter: parent.horizontalCenter
+            height: 36
+
+            model: lmSelectorMenuImgTxt
+
+            onMenuSelected: (index) => {
+                //console.log("SelectorMenu clicked #" + index)
+                currentSelection = index
+            }
+        }
+
+        ListTitle { ////////////////////////////////////////////////////////////
+            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
+
+            text: qsTr("Selectors")
+            source: ""
+        }
+
+        ////
+
         SelectorMenu {
             anchors.horizontalCenter: parent.horizontalCenter
             height: 32
