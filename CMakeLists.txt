@@ -43,6 +43,7 @@ qt_add_executable(${CMAKE_PROJECT_NAME}
 target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC src/thirdparty/)
 
 # AppUtils
+set(UTILS_DOCK_ENABLED true)
 add_subdirectory(src/thirdparty/AppUtils)
 target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE AppUtils)
 

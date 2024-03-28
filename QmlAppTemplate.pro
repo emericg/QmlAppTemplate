@@ -16,6 +16,7 @@ QT     += core qml quick quickcontrols2 svg
 # Project dependencies #########################################################
 
 # AppUtils
+CONFIG += UTILS_DOCK_ENABLED
 include(src/thirdparty/AppUtils/AppUtils.pri)
 
 # MobileUI
