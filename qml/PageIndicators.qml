@@ -128,5 +128,60 @@ Flickable {
                 }
             }
         }
+
+        ListTitle { ////////////////////////////////////////////////////////////
+            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
+
+            text: qsTr("Other stuff")
+            source: ""
+        }
+
+        Flow {
+            anchors.left: parent.left
+            anchors.leftMargin: Theme.componentMarginXL
+            anchors.right: parent.right
+            anchors.rightMargin: Theme.componentMarginXL
+            spacing: 24
+
+            ItemLicenseBadge {
+                width: 128
+                legend: "license"
+                text: "LGPL 3"
+                onClicked: Qt.openUrlExternally("https://www.gnu.org/licenses/lgpl-3.0.html")
+            }
+
+            ItemTag {
+                text: "TAG1"
+                //color: Theme.colorForeground
+            }
+
+            ItemTag {
+                text: "TAG2"
+                //color: Theme.colorForeground
+            }
+
+            ItemTagButton {
+                text: "TAG3"
+                //color: Theme.colorForeground
+            }
+
+            ItemTagButton {
+                text: "TAG4"
+                //color: Theme.colorForeground
+            }
+
+            Row {
+                spacing: 8
+
+                ItemBadge {
+                    text: "4"
+                    color: Theme.colorMaterialDeepOrange
+                }
+                Text {
+                    text: "Notifications"
+                }
+            }
+        }
     }
 }

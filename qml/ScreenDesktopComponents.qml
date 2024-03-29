@@ -554,6 +554,31 @@ Loader {
                     }
                 }
 
+                Flow {
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    spacing: Theme.componentMargin
+
+                    ButtonChip {
+                        text: "ButtonChip"
+                        highlighted: true
+                    }
+
+                    ButtonChip {
+                        text: "ButtonChip"
+                    }
+
+                    ButtonChip {
+                        text: "ButtonChip"
+                        leftIcon: "qrc:/assets/icons_material/baseline-supervised_user_circle-24px.svg"
+                    }
+                    ButtonChip {
+                        text: "ButtonChip"
+                        leftIcon: "qrc:/assets/icons_material/baseline-supervised_user_circle-24px.svg"
+                        rightIcon: "qrc:/assets/icons_material/baseline-close-24px.svg"
+                    }
+                }
+
                 ////
 
                 ListSeparator {
@@ -846,7 +871,7 @@ Loader {
                     anchors.right: parent.right
                     spacing: Theme.componentMargin
 
-                    ItemBadge {
+                    ItemLicenseBadge {
                         anchors.verticalCenter: parent.verticalCenter
                         width: 128
                         legend: "license"
@@ -876,6 +901,19 @@ Loader {
                         anchors.verticalCenter: parent.verticalCenter
                         text: "TAG4"
                         //color: Theme.colorForeground
+                    }
+
+                    Row {
+                        anchors.verticalCenter: parent.verticalCenter
+                        spacing: 8
+
+                        ItemBadge {
+                            text: "4"
+                            color: Theme.colorMaterialDeepOrange
+                        }
+                        Text {
+                            text: "Notifications"
+                        }
                     }
                 }
 

@@ -43,6 +43,25 @@ Item {
                 anchors.rightMargin: Theme.componentMarginXL
                 spacing: 24
 
+                ButtonFlat {
+                    text: "ButtonFlat"
+                    colorBackground: Theme.colorMaterialPurple
+                }
+
+                ButtonFlat {
+                    text: "ButtonFlat"
+                    source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                    colorBackground: Theme.colorMaterialBlue
+                }
+            }
+
+            Flow {
+                anchors.left: parent.left
+                anchors.leftMargin: Theme.componentMarginXL
+                anchors.right: parent.right
+                anchors.rightMargin: Theme.componentMarginXL
+                spacing: 24
+
                 ButtonSolid {
                     text: "ButtonSolid"
                 }
@@ -51,6 +70,14 @@ Item {
                     text: "ButtonSolid"
                     source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
                 }
+            }
+
+            Flow {
+                anchors.left: parent.left
+                anchors.leftMargin: Theme.componentMarginXL
+                anchors.right: parent.right
+                anchors.rightMargin: Theme.componentMarginXL
+                spacing: 24
 
                 ButtonWireframe {
                     text: "ButtonWireframe"
@@ -61,9 +88,23 @@ Item {
                     text: "ButtonWireframe"
                     source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
                 }
+            }
 
-                ButtonText {
-                    text: "ButtonText"
+            Flow {
+                anchors.left: parent.left
+                anchors.leftMargin: Theme.componentMarginXL
+                anchors.right: parent.right
+                anchors.rightMargin: Theme.componentMarginXL
+                spacing: 24
+
+                ButtonChip {
+                    text: "ButtonChip"
+                }
+
+                ButtonChip {
+                    text: "ButtonChip"
+                    leftIcon: "qrc:/assets/icons_material/baseline-supervised_user_circle-24px.svg"
+                    rightIcon: "qrc:/assets/icons_material/baseline-close-24px.svg"
                 }
             }
 
@@ -81,6 +122,18 @@ Item {
                 AndroidButtonIcon {
                     text: "AndroidButtonIcon"
                     source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                }
+            }
+
+            Flow {
+                anchors.left: parent.left
+                anchors.leftMargin: Theme.componentMarginXL
+                anchors.right: parent.right
+                anchors.rightMargin: Theme.componentMarginXL
+                spacing: 24
+
+                ButtonText {
+                    text: "ButtonText"
                 }
             }
 

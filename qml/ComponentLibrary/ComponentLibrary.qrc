@@ -17,6 +17,7 @@
         <file alias="ListTitle.qml">menus/ListTitle.qml</file>
         <file alias="SectionTitle.qml">menus/SectionTitle.qml</file>
 
+        <file alias="ButtonChip.qml">wip/ButtonChip.qml</file>
         <file alias="ButtonFlat.qml">wip/ButtonFlat.qml</file>
         <file alias="ButtonSolid.qml">wip/ButtonSolid.qml</file>
         <file alias="ButtonSunken.qml">wip/ButtonSunken.qml</file>
@@ -34,6 +35,7 @@
         <file alias="DataBarCompact.qml">generic/DataBarCompact.qml</file>
         <file alias="DataBarSolid.qml">generic/DataBarSolid.qml</file>
         <file alias="IconSvg.qml">generic/IconSvg.qml</file>
+        <file alias="ItemLicenseBadge.qml">generic/ItemLicenseBadge.qml</file>
         <file alias="ItemBadge.qml">generic/ItemBadge.qml</file>
         <file alias="ItemTag.qml">generic/ItemTag.qml</file>
         <file alias="ItemTagButton.qml">generic/ItemTagButton.qml</file>

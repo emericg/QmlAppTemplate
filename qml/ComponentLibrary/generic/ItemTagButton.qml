@@ -1,13 +1,15 @@
 import QtQuick
+import QtQuick.Effects
 
 import ThemeEngine
 
 Rectangle {
     id: control
+
     implicitWidth: 80
     implicitHeight: 28
-    width: contentRow.width + 20
 
+    width: contentRow.width
     radius: Theme.componentRadius
     color: backgroundColor
 
@@ -23,10 +25,18 @@ Rectangle {
 
     signal clicked()
 
+    ////////////////
+
     Row {
         id: contentRow
         anchors.centerIn: parent
         height: control.height
+
+        Item {
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            width: 10
+        }
 
         Text {
             anchors.top: parent.top
@@ -46,29 +56,65 @@ Rectangle {
         Item {
             anchors.top: parent.top
             anchors.bottom: parent.bottom
-            width: 20
+            width: 12
 
             Rectangle {
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom
                 anchors.right: parent.right
-                anchors.rightMargin: 6
+                anchors.rightMargin: 0
                 width: 2
                 color: control.textColor
                 opacity: 0.5
             }
         }
 
-        IconSvg {
-            anchors.verticalCenter: parent.verticalCenter
-            source: control.source
-            width: control.sourceSize
-            color: control.sourceColor
+        Rectangle {
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            width: 40
+
+            color: {
+                if (mousearea.containsPress) return Qt.darker(control.color, 1.06)
+                if (mousearea.containsMouse) return Qt.darker(control.color, 1.03)
+                return control.color
+            }
+
+            IconSvg {
+                anchors.centerIn: parent
+                source: control.source
+                width: control.sourceSize
+                color: control.sourceColor
+            }
+
+            MouseArea {
+                id: mousearea
+                anchors.fill: parent
+                hoverEnabled: true
+                onClicked: control.clicked()
+            }
         }
     }
 
-    MouseArea {
-        anchors.fill: parent
-        onClicked: control.clicked()
+    ////////////////
+
+    layer.enabled: true
+    layer.effect: MultiEffect {
+        maskEnabled: true
+        maskInverted: false
+        maskThresholdMin: 0.5
+        maskSpreadAtMin: 1.0
+        maskSpreadAtMax: 0.0
+        maskSource: ShaderEffectSource {
+            sourceItem: Rectangle {
+                x: control.x
+                y: control.y
+                width: control.width
+                height: control.height
+                radius: control.radius
+            }
+        }
     }
+
+    ////////////////
 }
