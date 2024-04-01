@@ -15,19 +15,20 @@ T.Button {
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              implicitContentHeight + topPadding + bottomPadding)
 
-    leftPadding: leftIcon.length ? 2 : 6
-    rightPadding: rightIcon.length ? 2 : 6
+    leftPadding: leftIcon.length ? 2 : 12
+    rightPadding: rightIcon.length ? 2 : 12
     spacing: 6
 
+    // settings
+    focusPolicy: Qt.NoFocus
     font.pixelSize: Theme.componentFontSize
     font.bold: false
 
-    focusPolicy: Qt.NoFocus
-
-    // settings
-    property color color: Theme.colorPrimary
-
+    // layout
     property int alignment: Qt.AlignCenter // Qt.AlignLeft // Qt.AlignRight
+
+    // colors
+    property color color: Theme.colorPrimary
 
     // icon
     property string leftIcon

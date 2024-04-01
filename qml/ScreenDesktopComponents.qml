@@ -368,26 +368,80 @@ Loader {
                     anchors.right: parent.right
                     spacing: Theme.componentMargin
 
+                    ButtonClear {
+                        source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                        color: Theme.colorMaterialGreen
+                    }
+
+                    ButtonClear {
+                        text: "ButtonClear"
+                        color: Theme.colorMaterialBlue
+                    }
+
+                    ButtonClear {
+                        text: "ButtonClear"
+                        source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                        color: Theme.colorMaterialRed
+                    }
+
+                    ButtonClear {
+                        text: "ButtonClear"
+                        source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                        color: Theme.colorMaterialDeepOrange
+                        layoutDirection: Qt.RightToLeft
+                    }
+
+                    ButtonClear {
+                        width: 200
+                        text: "ButtonClear"
+                        source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                        color: Theme.colorMaterialOrange
+                        alignment: Qt.AlignLeft
+                        layoutDirection: Qt.LeftToRight
+                    }
+                    ButtonClear {
+                        width: 200
+                        text: "ButtonClear"
+                        source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                        color: Theme.colorMaterialDeepPurple
+                        alignment: Qt.AlignCenter
+                        layoutDirection: Qt.RightToLeft
+                    }
+                    ButtonClear {
+                        width: 200
+                        text: "ButtonClear"
+                        source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                        color: Theme.colorMaterialGrey
+                        alignment: Qt.AlignRight
+                        layoutDirection: Qt.RightToLeft
+                    }
+                }
+
+                Flow {
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    spacing: Theme.componentMargin
+
                     ButtonFlat {
                         source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
-                        colorBackground: Theme.colorMaterialGreen
+                        color: Theme.colorMaterialGreen
                     }
 
                     ButtonFlat {
                         text: "ButtonFlat"
-                        colorBackground: Theme.colorMaterialBlue
+                        color: Theme.colorMaterialBlue
                     }
 
                     ButtonFlat {
                         text: "ButtonFlat"
                         source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
-                        colorBackground: Theme.colorMaterialRed
+                        color: Theme.colorMaterialRed
                     }
 
                     ButtonFlat {
                         text: "ButtonFlat"
                         source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
-                        colorBackground: Theme.colorMaterialDeepOrange
+                        color: Theme.colorMaterialDeepOrange
                         layoutDirection: Qt.RightToLeft
                     }
 
@@ -395,7 +449,7 @@ Loader {
                         width: 200
                         text: "ButtonFlat"
                         source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
-                        colorBackground: Theme.colorMaterialOrange
+                        color: Theme.colorMaterialOrange
                         alignment: Qt.AlignLeft
                         layoutDirection: Qt.LeftToRight
                     }
@@ -403,7 +457,7 @@ Loader {
                         width: 200
                         text: "ButtonFlat"
                         source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
-                        colorBackground: Theme.colorMaterialDeepPurple
+                        color: Theme.colorMaterialDeepPurple
                         alignment: Qt.AlignCenter
                         layoutDirection: Qt.RightToLeft
                     }
@@ -411,7 +465,7 @@ Loader {
                         width: 200
                         text: "ButtonFlat"
                         source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
-                        colorBackground: Theme.colorMaterialGrey
+                        color: Theme.colorMaterialGrey
                         alignment: Qt.AlignRight
                         layoutDirection: Qt.RightToLeft
                     }
@@ -722,7 +776,7 @@ Loader {
                     anchors.right: parent.right
                     spacing: Theme.componentMargin
 
-                    SelectorMenuThemed {
+                    SelectorMenu {
                         height: 40
                         anchors.verticalCenter: parent.verticalCenter
 
@@ -740,49 +794,46 @@ Loader {
                         }
                     }
 
-                    SelectorMenuThemed {
-                        height: 32
-                        anchors.verticalCenter: parent.verticalCenter
-
-                        currentSelection: 1
-                        model: ListModel {
-                            id: lmSelectorMenuTxt1
-                            ListElement { idx: 1; txt: "4/3"; src: ""; sz: 0; }
-                            ListElement { idx: 2; txt: "16/9"; src: ""; sz: 0; }
-                            ListElement { idx: 3; txt: "21/9"; src: ""; sz: 0; }
-                        }
-
-                        onMenuSelected: (index) => {
-                            //console.log("SelectorMenu clicked #" + index)
-                            currentSelection = index
-                        }
-                    }
-
-                    SelectorMenu2 {
-                        height: 32
-                        anchors.verticalCenter: parent.verticalCenter
-
-                        currentSelection: 1
-                        model: ListModel {
-                            id: lmSelectorMenu2Txt1
-                            ListElement { idx: 1; txt: "4/3"; src: ""; sz: 0; }
-                            ListElement { idx: 2; txt: "16/9"; src: ""; sz: 0; }
-                            ListElement { idx: 3; txt: "21/9"; src: ""; sz: 0; }
-                        }
-
-                        onMenuSelected: (index) => {
-                            //console.log("SelectorMenu clicked #" + index)
-                            currentSelection = index
-                        }
-                    }
-
                     SelectorMenu {
+                        height: 32
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        currentSelection: 1
+                        model: ListModel {
+                            ListElement { idx: 1; txt: "4/3"; src: ""; sz: 0; }
+                            ListElement { idx: 2; txt: "16/9"; src: ""; sz: 0; }
+                            ListElement { idx: 3; txt: "21/9"; src: ""; sz: 0; }
+                        }
+
+                        onMenuSelected: (index) => {
+                            //console.log("SelectorMenu clicked #" + index)
+                            currentSelection = index
+                        }
+                    }
+
+                    SelectorMenuSunken {
+                        height: 32
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        currentSelection: 1
+                        model: ListModel {
+                            ListElement { idx: 1; txt: "4/3"; src: ""; sz: 0; }
+                            ListElement { idx: 2; txt: "16/9"; src: ""; sz: 0; }
+                            ListElement { idx: 3; txt: "21/9"; src: ""; sz: 0; }
+                        }
+
+                        onMenuSelected: (index) => {
+                            //console.log("SelectorMenu clicked #" + index)
+                            currentSelection = index
+                        }
+                    }
+
+                    SelectorMenuColorful {
                         height: 40
                         anchors.verticalCenter: parent.verticalCenter
 
                         currentSelection: 1
                         model: ListModel {
-                            id: lmSelectorMenuImg2
                             ListElement { idx: 1; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; sz: 20; }
                             ListElement { idx: 2; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; sz: 26; }
                             ListElement { idx: 3; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; sz: 32; }
@@ -794,12 +845,11 @@ Loader {
                         }
                     }
 
-                    SelectorMenu {
+                    SelectorMenuColorful {
                         height: 32
                         anchors.verticalCenter: parent.verticalCenter
 
                         model: ListModel {
-                            id: lmSelectorMenuTxt2
                             ListElement { idx: 1; txt: "4/3"; src: ""; sz: 0; }
                             ListElement { idx: 2; txt: "16/9"; src: ""; sz: 0; }
                             ListElement { idx: 3; txt: "21/9"; src: ""; sz: 0; }
@@ -913,6 +963,7 @@ Loader {
                         }
                         Text {
                             text: "Notifications"
+                            color: Theme.colorText
                         }
                     }
                 }

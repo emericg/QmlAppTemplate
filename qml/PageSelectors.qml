@@ -53,7 +53,7 @@ Flickable {
 
         ////
 
-        SelectorMenuThemed {
+        SelectorMenu {
             anchors.horizontalCenter: parent.horizontalCenter
             height: 32
 
@@ -68,7 +68,7 @@ Flickable {
 
         ////
 
-        SelectorMenuThemed {
+        SelectorMenu {
             anchors.horizontalCenter: parent.horizontalCenter
             height: 40
 
@@ -83,7 +83,7 @@ Flickable {
 
         ////
 
-        SelectorMenuThemed {
+        SelectorMenu {
             anchors.horizontalCenter: parent.horizontalCenter
             height: 36
 
@@ -107,7 +107,7 @@ Flickable {
 
         ////
 
-        SelectorMenu2 {
+        SelectorMenuSunken {
             anchors.horizontalCenter: parent.horizontalCenter
             height: 32
 
@@ -122,7 +122,7 @@ Flickable {
 
         ////
 
-        SelectorMenu2 {
+        SelectorMenuSunken {
             anchors.horizontalCenter: parent.horizontalCenter
             height: 40
 
@@ -137,7 +137,7 @@ Flickable {
 
         ////
 
-        SelectorMenu2 {
+        SelectorMenuSunken {
             anchors.horizontalCenter: parent.horizontalCenter
             height: 36
 
@@ -159,7 +159,7 @@ Flickable {
 
         ////
 
-        SelectorMenu {
+        SelectorMenuColorful {
             anchors.horizontalCenter: parent.horizontalCenter
             height: 32
 
@@ -174,7 +174,7 @@ Flickable {
 
         ////
 
-        SelectorMenu {
+        SelectorMenuColorful {
             anchors.horizontalCenter: parent.horizontalCenter
             height: 40
 
@@ -188,7 +188,7 @@ Flickable {
 
         ////
 
-        SelectorMenu {
+        SelectorMenuColorful {
             anchors.horizontalCenter: parent.horizontalCenter
             height: 36
 

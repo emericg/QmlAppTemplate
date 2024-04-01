@@ -18,12 +18,13 @@
         <file alias="SectionTitle.qml">menus/SectionTitle.qml</file>
 
         <file alias="ButtonChip.qml">wip/ButtonChip.qml</file>
+        <file alias="ButtonClear.qml">wip/ButtonClear.qml</file>
         <file alias="ButtonFlat.qml">wip/ButtonFlat.qml</file>
         <file alias="ButtonSolid.qml">wip/ButtonSolid.qml</file>
         <file alias="ButtonSunken.qml">wip/ButtonSunken.qml</file>
         <file alias="ButtonWireframe.qml">wip/ButtonWireframe.qml</file>
+        <file alias="ButtonImpl.qml">wip/ButtonImpl.qml</file>
         <file alias="ButtonFab.qml">wip/ButtonFab.qml</file>
-        <file alias="SelectorMenu2.qml">wip/SelectorMenu2.qml</file>
 
         <file alias="ButtonCompactable.qml">deprecated/ButtonCompactable.qml</file>
         <file alias="ButtonText.qml">deprecated/ButtonText.qml</file>
@@ -48,7 +49,10 @@
         <file alias="RangeSliderArrow.qml">generic/RangeSliderArrow.qml</file>
         <file alias="RangeSliderValueSolid.qml">generic/RangeSliderValueSolid.qml</file>
         <file alias="SelectorMenu.qml">generic/SelectorMenu.qml</file>
+        <file alias="SelectorMenuSunken.qml">generic/SelectorMenuSunken.qml</file>
         <file alias="SelectorMenuItem.qml">generic/SelectorMenuItem.qml</file>
+        <file alias="SelectorMenuColorful.qml">generic/SelectorMenuColorful.qml</file>
+        <file alias="SelectorMenuColorfulItem.qml">generic/SelectorMenuColorfulItem.qml</file>
         <file alias="SliderArrow.qml">generic/SliderArrow.qml</file>
         <file alias="SliderValueSolid.qml">generic/SliderValueSolid.qml</file>
         <file alias="ToolTipFlat.qml">generic/ToolTipFlat.qml</file>
@@ -74,8 +78,6 @@
         <file alias="RoundButtonThemed.qml">controls/RoundButtonThemed.qml</file>
         <file alias="RoundButtonIconThemed.qml">controls/RoundButtonIconThemed.qml</file>
         <file alias="ScrollBarThemed.qml">controls/ScrollBarThemed.qml</file>
-        <file alias="SelectorMenuThemed.qml">controls/SelectorMenuThemed.qml</file>
-        <file alias="SelectorMenuThemedItem.qml">controls/SelectorMenuThemedItem.qml</file>
         <file alias="SliderThemed.qml">controls/SliderThemed.qml</file>
         <file alias="SpinBoxThemedDesktop.qml">controls/SpinBoxThemed_desktop.qml</file>
         <file alias="SpinBoxThemedMobile.qml">controls/SpinBoxThemed_mobile.qml</file>

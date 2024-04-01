@@ -34,7 +34,7 @@ Item {
 
         Repeater {
             model: control.model
-            delegate: SelectorMenuThemedItem {
+            delegate: SelectorMenuItem {
                 colorContent: Theme.colorComponentText
                 colorContentHighlight: Theme.colorComponentText
                 colorBackgroundHighlight: Theme.colorComponentBackground

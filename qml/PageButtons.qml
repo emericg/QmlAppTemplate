@@ -43,15 +43,34 @@ Item {
                 anchors.rightMargin: Theme.componentMarginXL
                 spacing: 24
 
+                ButtonClear {
+                    text: "ButtonClear"
+                    color: Theme.colorMaterialPurple
+                }
+
+                ButtonClear {
+                    text: "ButtonClear"
+                    source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                    color: Theme.colorMaterialBlue
+                }
+            }
+
+            Flow {
+                anchors.left: parent.left
+                anchors.leftMargin: Theme.componentMarginXL
+                anchors.right: parent.right
+                anchors.rightMargin: Theme.componentMarginXL
+                spacing: 24
+
                 ButtonFlat {
                     text: "ButtonFlat"
-                    colorBackground: Theme.colorMaterialPurple
+                    color: Theme.colorMaterialPurple
                 }
 
                 ButtonFlat {
                     text: "ButtonFlat"
                     source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
-                    colorBackground: Theme.colorMaterialBlue
+                    color: Theme.colorMaterialBlue
                 }
             }
 
@@ -88,6 +107,14 @@ Item {
                     text: "ButtonWireframe"
                     source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
                 }
+            }
+
+            ListTitle { ////////////////////////////////////////////////////////////
+                anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
+                anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
+
+                text: qsTr("Buttons")
+                source: ""
             }
 
             Flow {

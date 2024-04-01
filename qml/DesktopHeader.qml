@@ -90,16 +90,15 @@ Rectangle {
             spacing: 12
             visible: (appContent.state === "DesktopComponents")
 
-            ButtonSolid {
+            ButtonFlat {
                 id: buttonRefresh
                 anchors.verticalCenter: parent.verticalCenter
+                width: 180
 
                 source: "qrc:/assets/icons_material/baseline-autorenew-24px.svg"
                 text: qsTr("Animate this")
 
-                //colorText: Theme.colorHeaderContent
-                //colorIcon: Theme.colorHeaderContent
-                colorBackground: Theme.colorHeaderHighlight
+                color: Theme.colorHeaderHighlight
 
                 animation: "rotate"
                 animationRunning: isclicked
@@ -108,11 +107,12 @@ Rectangle {
                 onClicked: isclicked = !isclicked
             }
 
-            ButtonSolid {
+            ButtonFlat {
                 id: buttonEnable
                 anchors.verticalCenter: parent.verticalCenter
+                width: 180
 
-                colorBackground: Theme.colorHeaderHighlight
+                color: Theme.colorHeaderHighlight
 
                 text: componentsEnabled ? qsTr("Disable components") : qsTr("Enable components")
                 onClicked: componentsEnabled = !componentsEnabled

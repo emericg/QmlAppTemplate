@@ -9,27 +9,19 @@ Item {
 
     width: contentRow.width
 
-    opacity: enabled ? 1 : 0.66
+    opacity: selectorMenu.enabled ? 1 : 0.66
+
+    signal menuSelected(var index)
+    property int currentSelection: 1
 
     property var model: null
-
-    // colors
-    property color colorBackground: Theme.colorComponentBackground
-
-    // states
-    property int currentSelection: 1
-    signal menuSelected(var index)
 
     ////////////////
 
     Rectangle { // background
         anchors.fill: parent
-
-        radius: height
-        color: selectorMenu.colorBackground
-
-        border.width: 2
-        border.color: Theme.colorComponentDown
+        radius: Theme.componentRadius
+        color: Theme.colorComponentBackground
     }
 
     ////////////////
@@ -37,7 +29,7 @@ Item {
     Row {
         id: contentRow
         height: parent.height
-        spacing: -4
+        spacing: Theme.componentBorderWidth
 
         Repeater {
             model: selectorMenu.model
@@ -51,6 +43,15 @@ Item {
                 onClicked: selectorMenu.menuSelected(idx)
             }
         }
+    }
+
+    Rectangle { // foreground border
+        anchors.fill: parent
+        radius: Theme.componentRadius
+
+        color: "transparent"
+        border.width: Theme.componentBorderWidth
+        border.color: Theme.colorComponentBorder
     }
 
     ////////////////

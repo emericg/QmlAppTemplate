@@ -52,10 +52,10 @@ Loader {
 
             ////////////////
 
-            ListTitle {
-                text: qsTr("Application")
-                source: "qrc:/assets/icons_material/baseline-settings-20px.svg"
-            }
+            //ListTitle {
+            //    text: qsTr("Application")
+            //    source: "qrc:/assets/icons_material/baseline-settings-20px.svg"
+            //}
 
             ////////////////
 
@@ -152,62 +152,97 @@ Loader {
 
             ////////
 
-            ComboBoxThemed {
-                //anchors.left: parent.left
-                //anchors.leftMargin: screenPaddingLeft + contentColumn.padText
+            Item { // element_appTheme
+                anchors.left: parent.left
+                anchors.leftMargin: screenPaddingLeft
                 anchors.right: parent.right
-                anchors.rightMargin: screenPaddingRight + Theme.componentMargin
+                anchors.rightMargin: screenPaddingRight
+                height: Theme.componentHeightXL
 
-                visible: isMobile
+                IconSvg {
+                    anchors.left: parent.left
+                    anchors.leftMargin: contentColumn.padIcon
+                    anchors.verticalCenter: parent.verticalCenter
 
-                model: ListModel {
-                    id: cbAppTheme
-                    ListElement { text: "MOBILE LIGHT"; }
-                    ListElement { text: "MOBILE DARK"; }
-
-                    ListElement { text: "MATERIAL LIGHT"; }
-                    ListElement { text: "MATERIAL DARK"; }
-
-                    ListElement { text: "DESKTOP LIGHT"; }
-                    ListElement { text: "DESKTOP DARK"; }
-
-                    ListElement { text: "SNOW"; }
-                    ListElement { text: "PLANT"; }
-                    ListElement { text: "RAIN"; }
-                    ListElement { text: "DAY"; }
-                    ListElement { text: "NIGHT"; }
-
-                    ListElement { text: "LIGHT AND WARM"; }
-                    ListElement { text: "DARK AND SPOOKY"; }
-                    ListElement { text: "PLAIN AND BORING"; }
-                    ListElement { text: "BLOOD AND TEARS"; }
-                    ListElement { text: "MIGHTY KITTENS"; }
+                    width: 24
+                    height: 24
+                    color: Theme.colorIcon
+                    source: "qrc:/assets/icons_material/duotone-style-24px.svg"
                 }
 
-                Component.onCompleted: {
-                    currentIndex = Theme.getThemeIndex(settingsManager.appTheme)
+                Text {
+                    anchors.left: parent.left
+                    anchors.leftMargin: contentColumn.padText
+                    anchors.right: appTheme_selector.left
+                    anchors.rightMargin: Theme.componentMargin
+                    anchors.verticalCenter: parent.verticalCenter
+
+                    text: qsTr("Theme")
+                    textFormat: Text.PlainText
+                    font.pixelSize: Theme.fontSizeContent
+                    color: Theme.colorText
+                    wrapMode: Text.WordWrap
+                    verticalAlignment: Text.AlignVCenter
                 }
-                onActivated: {
-                    if (currentText === "MOBILE LIGHT") settingsManager.appTheme = "THEME_MOBILE_LIGHT"
-                    else if (currentText === "MOBILE DARK") settingsManager.appTheme = "THEME_MOBILE_DARK"
 
-                    else if (currentText === "MATERIAL LIGHT") settingsManager.appTheme = "THEME_MATERIAL_LIGHT"
-                    else if (currentText === "MATERIAL DARK") settingsManager.appTheme = "THEME_MATERIAL_DARK"
+                ComboBoxThemed {
+                    //anchors.left: parent.left
+                    //anchors.leftMargin: screenPaddingLeft + contentColumn.padText
+                    anchors.right: parent.right
+                    anchors.rightMargin: screenPaddingRight + Theme.componentMargin
+                    anchors.verticalCenter: parent.verticalCenter
 
-                    else if (currentText === "DESKTOP LIGHT") settingsManager.appTheme = "THEME_DESKTOP_LIGHT"
-                    else if (currentText === "DESKTOP DARK") settingsManager.appTheme = "THEME_DESKTOP_DARK"
+                    visible: isMobile
 
-                    else if (currentText === "SNOW") settingsManager.appTheme = "THEME_SNOW"
-                    else if (currentText === "PLANT") settingsManager.appTheme = "THEME_PLANT"
-                    else if (currentText === "RAIN") settingsManager.appTheme = "THEME_RAIN"
-                    else if (currentText === "DAY") settingsManager.appTheme = "THEME_DAY"
-                    else if (currentText === "NIGHT") settingsManager.appTheme = "THEME_NIGHT"
+                    model: ListModel {
+                        id: cbAppTheme
+                        ListElement { text: "MOBILE LIGHT"; }
+                        ListElement { text: "MOBILE DARK"; }
 
-                    else if (currentText === "LIGHT AND WARM") settingsManager.appTheme = "THEME_LIGHT_AND_WARM"
-                    else if (currentText === "DARK AND SPOOKY") settingsManager.appTheme = "THEME_DARK_AND_SPOOKY"
-                    else if (currentText === "PLAIN AND BORING") settingsManager.appTheme = "THEME_PLAIN_AND_BORING"
-                    else if (currentText === "BLOOD AND TEARS") settingsManager.appTheme = "THEME_BLOOD_AND_TEARS"
-                    else if (currentText === "MIGHTY KITTENS") settingsManager.appTheme = "THEME_MIGHTY_KITTENS"
+                        ListElement { text: "MATERIAL LIGHT"; }
+                        ListElement { text: "MATERIAL DARK"; }
+
+                        ListElement { text: "DESKTOP LIGHT"; }
+                        ListElement { text: "DESKTOP DARK"; }
+
+                        ListElement { text: "SNOW"; }
+                        ListElement { text: "PLANT"; }
+                        ListElement { text: "RAIN"; }
+                        ListElement { text: "DAY"; }
+                        ListElement { text: "NIGHT"; }
+
+                        ListElement { text: "LIGHT AND WARM"; }
+                        ListElement { text: "DARK AND SPOOKY"; }
+                        ListElement { text: "PLAIN AND BORING"; }
+                        ListElement { text: "BLOOD AND TEARS"; }
+                        ListElement { text: "MIGHTY KITTENS"; }
+                    }
+
+                    Component.onCompleted: {
+                        currentIndex = Theme.getThemeIndex(settingsManager.appTheme)
+                    }
+                    onActivated: {
+                        if (currentText === "MOBILE LIGHT") settingsManager.appTheme = "THEME_MOBILE_LIGHT"
+                        else if (currentText === "MOBILE DARK") settingsManager.appTheme = "THEME_MOBILE_DARK"
+
+                        else if (currentText === "MATERIAL LIGHT") settingsManager.appTheme = "THEME_MATERIAL_LIGHT"
+                        else if (currentText === "MATERIAL DARK") settingsManager.appTheme = "THEME_MATERIAL_DARK"
+
+                        else if (currentText === "DESKTOP LIGHT") settingsManager.appTheme = "THEME_DESKTOP_LIGHT"
+                        else if (currentText === "DESKTOP DARK") settingsManager.appTheme = "THEME_DESKTOP_DARK"
+
+                        else if (currentText === "SNOW") settingsManager.appTheme = "THEME_SNOW"
+                        else if (currentText === "PLANT") settingsManager.appTheme = "THEME_PLANT"
+                        else if (currentText === "RAIN") settingsManager.appTheme = "THEME_RAIN"
+                        else if (currentText === "DAY") settingsManager.appTheme = "THEME_DAY"
+                        else if (currentText === "NIGHT") settingsManager.appTheme = "THEME_NIGHT"
+
+                        else if (currentText === "LIGHT AND WARM") settingsManager.appTheme = "THEME_LIGHT_AND_WARM"
+                        else if (currentText === "DARK AND SPOOKY") settingsManager.appTheme = "THEME_DARK_AND_SPOOKY"
+                        else if (currentText === "PLAIN AND BORING") settingsManager.appTheme = "THEME_PLAIN_AND_BORING"
+                        else if (currentText === "BLOOD AND TEARS") settingsManager.appTheme = "THEME_BLOOD_AND_TEARS"
+                        else if (currentText === "MIGHTY KITTENS") settingsManager.appTheme = "THEME_MIGHTY_KITTENS"
+                    }
                 }
             }
 
@@ -343,6 +378,8 @@ Loader {
 
             ////////
 
+            ListSeparator { }
+
             Item { // element_language
                 anchors.left: parent.left
                 anchors.leftMargin: screenPaddingLeft
@@ -419,14 +456,9 @@ Loader {
                 }
             }
 
-            ////////////////
+            ListSeparator { }
 
-            ListTitle {
-                text: qsTr("Other fake settings")
-                source: "qrc:/assets/icons_material/baseline-settings-20px.svg"
-            }
-
-            ////////////////
+            ////////
 
             Item {
                 anchors.left: parent.left
@@ -517,6 +549,12 @@ Loader {
                     value: 5
                     legend: "h."
                 }
+            }
+
+            ////////////////
+
+            ListSeparator {
+                //
             }
 
             ////////////////

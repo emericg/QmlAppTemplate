@@ -20,8 +20,7 @@ T.Button {
     spacing: 6
 
     // settings
-    flat: true
-    checkable: true
+    flat: false
     focusPolicy: Qt.NoFocus
     font.pixelSize: Theme.componentFontSize
     font.bold: false
@@ -36,10 +35,14 @@ T.Button {
     property int sourceRotation: 0
 
     // colors
-    property color colorBackground: Theme.colorBackground
-    property color colorHighlight: Theme.colorForeground
-    property color colorRipple: Qt.darker(Theme.colorForeground, 1.1)
-    property color colorText: Theme.colorText
+    property color colorBackground: Theme.colorPrimary
+    property color colorHighlight: Theme.colorComponentBorder
+    property color colorBorder: Theme.colorComponentBorder
+    property color colorText: "white"
+
+    // animation
+    property string animation // available: rotate, fade, both
+    property bool animationRunning: false
 
     ////////////////
 
@@ -50,14 +53,16 @@ T.Button {
         Rectangle {
             anchors.fill: parent
             radius: Theme.componentRadius
-            color: control.checked ? control.colorHighlight : control.colorBackground
-        }
-        Rectangle {
-            anchors.fill: parent
-            radius: Theme.componentRadius
-            color: control.colorHighlight
-            opacity: control.hovered ? 0.66 : 0
-            Behavior on opacity { NumberAnimation { duration: 133 } }
+            color: control.colorBackground
+            border.width: Theme.componentBorderWidth
+            border.color: control.colorBorder
+
+            layer.enabled: !control.flat
+            layer.effect: MultiEffect {
+                autoPaddingEnabled: true
+                shadowEnabled: true
+                shadowColor: "#22000000"
+            }
         }
 
         RippleThemed {
@@ -67,7 +72,7 @@ T.Button {
             anchor: control
             pressed: control.pressed
             active: control.enabled && (control.down || control.visualFocus)
-            color: Qt.rgba(control.colorRipple.r, control.colorRipple.g, control.colorRipple.b, 0.1)
+            color: Qt.rgba(control.colorHighlight.r, control.colorHighlight.g, control.colorHighlight.b, 0.1)
 
             layer.enabled: true
             layer.effect: MultiEffect {
@@ -115,6 +120,27 @@ T.Button {
                 rotation: control.sourceRotation
 
                 source: control.source
+
+                SequentialAnimation on opacity {
+                    running: (control.animationRunning &&
+                              (control.animation === "fade" || control.animation === "both"))
+                    alwaysRunToEnd: true
+                    loops: Animation.Infinite
+
+                    PropertyAnimation { to: 0.5; duration: 666; }
+                    PropertyAnimation { to: 1; duration: 666; }
+                }
+                NumberAnimation on rotation {
+                    running: (control.animationRunning &&
+                              (control.animation === "rotate" || control.animation === "both"))
+                    alwaysRunToEnd: true
+                    loops: Animation.Infinite
+
+                    duration: 1500
+                    from: 0
+                    to: 360
+                    easing.type: Easing.Linear
+                }
             }
 
             Text {

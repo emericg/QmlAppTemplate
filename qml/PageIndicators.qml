@@ -180,6 +180,7 @@ Flickable {
                 }
                 Text {
                     text: "Notifications"
+                    color: Theme.colorText
                 }
             }
         }

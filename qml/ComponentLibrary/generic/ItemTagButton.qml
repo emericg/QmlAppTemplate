@@ -90,7 +90,7 @@ Rectangle {
             MouseArea {
                 id: mousearea
                 anchors.fill: parent
-                hoverEnabled: true
+                hoverEnabled: control.enabled
                 onClicked: control.clicked()
             }
         }

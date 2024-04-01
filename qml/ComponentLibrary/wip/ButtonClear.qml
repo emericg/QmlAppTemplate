@@ -4,9 +4,9 @@ import ThemeEngine
 ButtonImpl {
     property color color: Theme.colorPrimary
 
-    colorBackground: color
-    colorHighlight: "white"
+    colorBackground: "transparent"
+    colorHighlight: color
     colorBorder: color
-    colorText: "white"
+    colorText: color
     flat: true
 }
