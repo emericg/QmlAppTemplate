@@ -565,6 +565,51 @@ Loader {
                     anchors.right: parent.right
                     spacing: Theme.componentMargin
 
+                    ButtonDesktop {
+                        source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                    }
+
+                    ButtonDesktop {
+                        text: "ButtonDesktop"
+                    }
+                    ButtonDesktop {
+                        text: "ButtonDesktop"
+                        source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                    }
+                    ButtonDesktop {
+                        text: "ButtonDesktop"
+                        source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                        layoutDirection: Qt.RightToLeft
+                    }
+
+                    ButtonDesktop {
+                        width: 200
+                        text: "ButtonDesktop"
+                        source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                        alignment: Qt.AlignLeft
+                        layoutDirection: Qt.LeftToRight
+                    }
+                    ButtonDesktop {
+                        width: 200
+                        text: "ButtonDesktop"
+                        source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                        alignment: Qt.AlignCenter
+                        layoutDirection: Qt.RightToLeft
+                    }
+                    ButtonDesktop {
+                        width: 200
+                        text: "ButtonDesktop"
+                        source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                        alignment: Qt.AlignRight
+                        layoutDirection: Qt.RightToLeft
+                    }
+                }
+
+                Flow {
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    spacing: Theme.componentMargin
+
                     ButtonSunken {
                         source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
                     }

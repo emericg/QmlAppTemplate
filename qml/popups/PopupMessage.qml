@@ -29,6 +29,11 @@ Popup {
     enter: Transition { NumberAnimation { property: "opacity"; from: 0.5; to: 1.0; duration: 133; } }
     //exit: Transition { NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; duration: 200; } }
 
+    Overlay.modal: Rectangle {
+        color: "#000"
+        opacity: ThemeEngine.isLight ? 0.24 : 0.666
+    }
+
     background: Rectangle {
         color: Theme.colorBackground
         border.color: Theme.colorSeparator
@@ -89,7 +94,6 @@ Popup {
                 width: singleColumn ? parent.width : (parent.width / 2)
 
                 text: qsTr("OK")
-
                 onClicked: popupMessage.close()
             }
 

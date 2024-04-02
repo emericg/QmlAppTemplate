@@ -89,6 +89,8 @@
         <file alias="TumblerThemed.qml">controls/TumblerThemed.qml</file>
 
         <file alias="DatePicker.qml">complex/DatePicker.qml</file>
+        <file alias="TextField_FileDialog.qml">complex/TextField_FileDialog.qml</file>
+        <file alias="TextField_FolderDialog.qml">complex/TextField_FolderDialog.qml</file>
 
         <file alias="CsdMac.qml">utils/CsdMac.qml</file>
         <file alias="CsdWindows.qml">utils/CsdWindows.qml</file>

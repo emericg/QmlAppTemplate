@@ -27,6 +27,8 @@ T.Button {
         radius: Theme.componentHeight
         opacity: control.enabled ? 1 : 0.66
         color: control.down ? Theme.colorComponentDown : Theme.colorComponent
+        border.width: 2
+        border.color: Theme.colorComponentBorder
     }
 
     ////////////////

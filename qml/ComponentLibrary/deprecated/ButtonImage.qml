@@ -13,16 +13,18 @@ T.Button {
 
     focusPolicy: Qt.NoFocus
 
+    // settings
+    property string hoverMode: "off" // available: off, push, pull, glow
+    property string clickMode: "off" // available: off, push, pull
+
     // image
     property url source
     property int sourceSize: 32
 
-    // settings
-    property string hoverMode: "off" // available: off, circle, glow
-    property string highlightMode: "off" // available: off
-
     // colors
-    property color highlightColor: Theme.colorPrimary
+    property color colorHighlight: Theme.colorPrimary
+
+    hoverEnabled: (enabled && hoverMode !== "off")
 
     ////////////////
 
@@ -32,25 +34,24 @@ T.Button {
 
         opacity: control.enabled ? 1 : 0.66
 
-        layer.enabled: true
-        layer.effect: MultiEffect {
-            autoPaddingEnabled: true
-            blurEnabled: true
-            blur: 1.0
-        }
-
         Rectangle {
             anchors.centerIn: parent
             width: Math.round(control.sourceSize * (control.pressed ? 0.9 : 1))
             height: Math.round(control.sourceSize * (control.pressed ? 0.9 : 1))
 
-            //visible: (control.hoverMode === "circle")
-
+            color: control.colorHighlight
             radius: control.width
-            color: control.highlightColor
 
+            visible: (control.hoverMode === "glow")
             opacity: control.hovered ? 0.33 : 0
             Behavior on opacity { OpacityAnimator { duration: 333 } }
+        }
+
+        layer.enabled: (control.hoverMode === "glow")
+        layer.effect: MultiEffect {
+            autoPaddingEnabled: true
+            blurEnabled: true
+            blur: 1.0
         }
     }
 
@@ -61,8 +62,25 @@ T.Button {
             id: contentImage
             anchors.centerIn: parent
 
-            width: Math.round(control.sourceSize * (control.pressed ? 0.9 : 1))
-            height: Math.round(control.sourceSize * (control.pressed ? 0.9 : 1))
+            width: {
+                var multiplier = 1.0
+                if (control.pressed) {
+                    if (clickMode === "pull") multiplier = 1.1
+                    else if (clickMode === "push") multiplier = 0.9
+                }
+                return Math.round(control.sourceSize * multiplier)
+            }
+            height: {
+                var multiplier = 1.0
+                if (control.pressed) {
+                    if (clickMode === "pull") multiplier = 1.1
+                    else if (clickMode === "push") multiplier = 0.9
+                } else if (control.hovered) {
+                    if (hoverMode === "pull") multiplier = 1.1
+                    else if (hoverMode === "push") multiplier = 0.9
+                }
+                return Math.round(control.sourceSize * multiplier)
+            }
 
             source: control.source
             sourceSize: Qt.size(control.sourceSize, control.sourceSize)

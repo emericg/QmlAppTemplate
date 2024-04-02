@@ -29,6 +29,11 @@ Popup {
     enter: Transition { NumberAnimation { property: "opacity"; from: 0.5; to: 1.0; duration: 133; } }
     //exit: Transition { NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; duration: 200; } }
 
+    Overlay.modal: Rectangle {
+        color: "#000"
+        opacity: ThemeEngine.isLight ? 0.24 : 0.666
+    }
+
     background: Rectangle {
         color: Theme.colorBackground
         border.color: Theme.colorSeparator
@@ -92,19 +97,17 @@ Popup {
 
                 ButtonSolid {
                     width: parent.btnSize
+                    color: Theme.colorSubText
 
                     text: qsTr("Cancel")
-                    colorBackground: Theme.colorSubText
-
                     onClicked: popupChoice.close()
                 }
 
                 ButtonSolid {
                     width: parent.btnSize
+                    color: Theme.colorWarning
 
                     text: qsTr("Delete local data")
-                    colorBackground: Theme.colorWarning
-
                     onClicked: {
                         if (selectedDevice) {
                             selectedDevice.actionClearData()
@@ -116,10 +119,9 @@ Popup {
 
                 ButtonSolid {
                     width: parent.btnSize
+                    color: Theme.colorError
 
                     text: qsTr("Delete sensor data")
-                    colorBackground: Theme.colorError
-
                     onClicked: {
                         if (selectedDevice) {
                              selectedDevice.actionClearDeviceData()

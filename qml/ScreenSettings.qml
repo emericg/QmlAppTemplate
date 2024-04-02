@@ -80,8 +80,6 @@ Loader {
                 Text {
                     anchors.left: parent.left
                     anchors.leftMargin: contentColumn.padText
-                    anchors.right: appTheme_selector.left
-                    anchors.rightMargin: Theme.componentMargin
                     anchors.verticalCenter: parent.verticalCenter
 
                     text: qsTr("Theme")
@@ -159,6 +157,8 @@ Loader {
                 anchors.rightMargin: screenPaddingRight
                 height: Theme.componentHeightXL
 
+                visible: isMobile
+
                 IconSvg {
                     anchors.left: parent.left
                     anchors.leftMargin: contentColumn.padIcon
@@ -173,8 +173,6 @@ Loader {
                 Text {
                     anchors.left: parent.left
                     anchors.leftMargin: contentColumn.padText
-                    anchors.right: appTheme_selector.left
-                    anchors.rightMargin: Theme.componentMargin
                     anchors.verticalCenter: parent.verticalCenter
 
                     text: qsTr("Theme")
@@ -187,12 +185,10 @@ Loader {
 
                 ComboBoxThemed {
                     //anchors.left: parent.left
-                    //anchors.leftMargin: screenPaddingLeft + contentColumn.padText
+                    //anchors.leftMargin: contentColumn.padText
                     anchors.right: parent.right
-                    anchors.rightMargin: screenPaddingRight + Theme.componentMargin
+                    anchors.rightMargin: Theme.componentMargin
                     anchors.verticalCenter: parent.verticalCenter
-
-                    visible: isMobile
 
                     model: ListModel {
                         id: cbAppTheme
