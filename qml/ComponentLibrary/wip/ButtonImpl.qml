@@ -21,13 +21,16 @@ T.Button {
 
     // settings
     flat: false
+    checkable: false
+    hoverEnabled: isDesktop
     focusPolicy: Qt.NoFocus
     font.pixelSize: Theme.componentFontSize
     font.bold: false
 
     // layout
-    property int alignment: Qt.AlignCenter // Qt.AlignLeft // Qt.AlignRight
+    property int layoutAlignment: Qt.AlignCenter // Qt.AlignLeft // Qt.AlignRight
     property int layoutDirection: Qt.LeftToRight // Qt.RightToLeft
+    property bool layoutFillWidth: false
 
     // icon
     property url source
@@ -37,6 +40,7 @@ T.Button {
     // colors
     property color colorBackground: Theme.colorPrimary
     property color colorHighlight: Theme.colorComponentBorder
+    property color colorRipple: Qt.rgba(colorHighlight.r, colorHighlight.g, colorHighlight.b, 0.16)
     property color colorBorder: Theme.colorComponentBorder
     property color colorText: "white"
 
@@ -47,7 +51,7 @@ T.Button {
     ////////////////
 
     background: Item {
-        implicitWidth: 80
+        implicitWidth: text ? 80 : Theme.componentHeight
         implicitHeight: Theme.componentHeight
 
         Rectangle {
@@ -61,7 +65,7 @@ T.Button {
             layer.effect: MultiEffect {
                 autoPaddingEnabled: true
                 shadowEnabled: true
-                shadowColor: "#22000000"
+                shadowColor: Theme.colorComponentShadow
             }
         }
 
@@ -71,8 +75,8 @@ T.Button {
 
             anchor: control
             pressed: control.pressed
-            active: control.enabled && (control.down || control.visualFocus)
-            color: Qt.rgba(control.colorHighlight.r, control.colorHighlight.g, control.colorHighlight.b, 0.1)
+            active: control.enabled && (control.down || control.hovered || control.visualFocus)
+            color: control.colorRipple
 
             layer.enabled: true
             layer.effect: MultiEffect {
@@ -99,52 +103,62 @@ T.Button {
     contentItem: Item {
         RowLayout {
             id: rowrowrow
-            anchors.right: (control.alignment === Qt.AlignRight) ? parent.right : undefined
-            anchors.horizontalCenter: (control.alignment === Qt.AlignCenter) ? parent.horizontalCenter : undefined
+            anchors.left: (control.layoutFillWidth && control.layoutAlignment !== Qt.AlignCenter) ? parent.left : undefined
+            anchors.right: (control.layoutFillWidth || control.layoutAlignment === Qt.AlignRight) ? parent.right : undefined
+            anchors.horizontalCenter: (control.layoutAlignment === Qt.AlignCenter) ? parent.horizontalCenter : undefined
             anchors.verticalCenter: parent.verticalCenter
 
             spacing: control.spacing
             layoutDirection: {
-                if (control.alignment === Qt.AlignRight) return Qt.RightToLeft
-                return Qt.LeftToRight
+                if (control.layoutAlignment === Qt.AlignRight) return Qt.RightToLeft
+                return control.layoutDirection
             }
 
-            IconSvg {
-                Layout.maximumWidth: control.sourceSize
-                Layout.maximumHeight: control.sourceSize
+            Item {
+                Layout.preferredWidth: control.sourceSize
+                Layout.preferredHeight: control.sourceSize
                 Layout.alignment: Qt.AlignVCenter
+                Layout.fillWidth: (control.layoutFillWidth &&
+                                   control.layoutDirection === Qt.LeftToRight)
 
                 visible: control.source.toString().length
-                color: control.colorText
-                opacity: control.enabled ? 1 : 0.66
-                rotation: control.sourceRotation
 
-                source: control.source
+                IconSvg {
+                    width: control.sourceSize
+                    height: control.sourceSize
 
-                SequentialAnimation on opacity {
-                    running: (control.animationRunning &&
-                              (control.animation === "fade" || control.animation === "both"))
-                    alwaysRunToEnd: true
-                    loops: Animation.Infinite
+                    source: control.source
+                    color: control.colorText
+                    opacity: control.enabled ? 1 : 0.66
+                    rotation: control.sourceRotation
 
-                    PropertyAnimation { to: 0.5; duration: 666; }
-                    PropertyAnimation { to: 1; duration: 666; }
-                }
-                NumberAnimation on rotation {
-                    running: (control.animationRunning &&
-                              (control.animation === "rotate" || control.animation === "both"))
-                    alwaysRunToEnd: true
-                    loops: Animation.Infinite
+                    SequentialAnimation on opacity {
+                        running: (control.animationRunning &&
+                                  (control.animation === "fade" || control.animation === "both"))
+                        alwaysRunToEnd: true
+                        loops: Animation.Infinite
 
-                    duration: 1500
-                    from: 0
-                    to: 360
-                    easing.type: Easing.Linear
+                        PropertyAnimation { to: 0.5; duration: 666; }
+                        PropertyAnimation { to: 1; duration: 666; }
+                    }
+                    NumberAnimation on rotation {
+                        running: (control.animationRunning &&
+                                  (control.animation === "rotate" || control.animation === "both"))
+                        alwaysRunToEnd: true
+                        loops: Animation.Infinite
+
+                        duration: 1500
+                        from: 0
+                        to: 360
+                        easing.type: Easing.Linear
+                    }
                 }
             }
 
             Text {
                 Layout.alignment: Qt.AlignVCenter
+                Layout.fillWidth: (control.layoutFillWidth &&
+                                   control.layoutDirection === Qt.RightToLeft)
 
                 color: control.colorText
                 opacity: control.enabled ? 1 : 0.66

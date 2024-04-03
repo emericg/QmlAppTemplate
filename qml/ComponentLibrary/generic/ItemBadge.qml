@@ -16,7 +16,7 @@ Rectangle {
     // settings
     property string text: "0"
     property color textColor: "white"
-    property int textSize: Theme.fontSizeContentVerySmall
+    property int textSize: Theme.fontSizeContentSmall
     property int textCapitalization: Font.Normal
     property bool textBold: true
 

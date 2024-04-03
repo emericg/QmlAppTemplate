@@ -13,7 +13,9 @@ T.Frame {
                              contentHeight + topPadding + bottomPadding)
 
     padding: 12
-    leftPadding: padding + 8
+    leftPadding: highlighted ? (padding + 8) : 12
+
+    property bool highlighted: false
 
     background: Rectangle {
         implicitWidth: 512
@@ -31,6 +33,7 @@ T.Frame {
             width: 8
             radius: 2
             color: Theme.colorPrimary
+            visible: control.highlighted
         }
     }
 }

@@ -5,8 +5,23 @@ import ThemeEngine
 
 Item {
 
-    ButtonFab {
-        source: "qrc:/assets/icons_material/baseline-add-24px.svg"
+    Column {
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        anchors.margins: Theme.componentMarginXL
+        spacing: Theme.componentMarginXL
+        z: 10
+
+        ButtonFab {
+            anchors.right: parent.right
+            source: "qrc:/assets/icons_material/baseline-add-24px.svg"
+        }
+
+        ButtonFabExtended {
+            anchors.right: parent.right
+            text: "Extended FAB"
+            source: "qrc:/assets/icons_material/baseline-add-24px.svg"
+        }
     }
 
     Flickable {
@@ -52,6 +67,25 @@ Item {
                     text: "ButtonClear"
                     source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
                     color: Theme.colorMaterialBlue
+                }
+            }
+
+            Flow {
+                anchors.left: parent.left
+                anchors.leftMargin: Theme.componentMarginXL
+                anchors.right: parent.right
+                anchors.rightMargin: Theme.componentMarginXL
+                spacing: 24
+
+                ButtonOutline {
+                    text: "ButtonOutline"
+                    color: Theme.colorMaterialIndigo
+                }
+
+                ButtonOutline {
+                    text: "ButtonOutline"
+                    source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                    color: Theme.colorMaterialLightBlue
                 }
             }
 

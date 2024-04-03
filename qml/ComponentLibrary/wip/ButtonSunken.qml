@@ -22,12 +22,12 @@ T.Button {
     // settings
     flat: true
     checkable: true
+    hoverEnabled: isDesktop
     focusPolicy: Qt.NoFocus
     font.pixelSize: Theme.componentFontSize
     font.bold: false
 
     // layout
-    property int alignment: Qt.AlignCenter // Qt.AlignLeft // Qt.AlignRight
     property int layoutDirection: Qt.LeftToRight // Qt.RightToLeft
 
     // icon
@@ -38,25 +38,24 @@ T.Button {
     // colors
     property color colorBackground: Theme.colorBackground
     property color colorHighlight: Theme.colorForeground
-    property color colorRipple: Qt.darker(Theme.colorForeground, 1.1)
+    property color colorRipple: Qt.rgba(colorHighlight.r, colorHighlight.g, colorHighlight.b, 0.5)
     property color colorText: Theme.colorText
 
     ////////////////
 
     background: Item {
-        implicitWidth: 80
+        implicitWidth: text ? 80 : Theme.componentHeight
         implicitHeight: Theme.componentHeight
 
         Rectangle {
             anchors.fill: parent
             radius: Theme.componentRadius
-            color: control.checked ? control.colorHighlight : control.colorBackground
-        }
-        Rectangle {
-            anchors.fill: parent
-            radius: Theme.componentRadius
             color: control.colorHighlight
-            opacity: control.hovered ? 0.66 : 0
+            opacity: {
+                if (control.checked && !control.down) return 1.0
+                if (control.hovered && !control.down) return 0.66
+                return 0
+            }
             Behavior on opacity { NumberAnimation { duration: 133 } }
         }
 
@@ -67,7 +66,7 @@ T.Button {
             anchor: control
             pressed: control.pressed
             active: control.enabled && (control.down || control.visualFocus)
-            color: Qt.rgba(control.colorRipple.r, control.colorRipple.g, control.colorRipple.b, 0.1)
+            color: control.colorRipple
 
             layer.enabled: true
             layer.effect: MultiEffect {
@@ -94,15 +93,10 @@ T.Button {
     contentItem: Item {
         RowLayout {
             id: rowrowrow
-            anchors.right: (control.alignment === Qt.AlignRight) ? parent.right : undefined
-            anchors.horizontalCenter: (control.alignment === Qt.AlignCenter) ? parent.horizontalCenter : undefined
-            anchors.verticalCenter: parent.verticalCenter
+            anchors.centerIn: parent
 
             spacing: control.spacing
-            layoutDirection: {
-                if (control.alignment === Qt.AlignRight) return Qt.RightToLeft
-                return Qt.LeftToRight
-            }
+            layoutDirection: control.layoutDirection
 
             IconSvg {
                 Layout.maximumWidth: control.sourceSize

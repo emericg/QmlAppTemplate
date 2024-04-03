@@ -49,7 +49,7 @@ T.Button {
             layer.effect: MultiEffect {
                 autoPaddingEnabled: true
                 shadowEnabled: true
-                shadowColor: "#20000000"
+                shadowColor: Theme.colorComponentShadow
             }
         }
 

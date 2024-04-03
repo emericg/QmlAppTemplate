@@ -8,6 +8,7 @@
         <file alias="ActionMenu_floating.qml">menus/ActionMenu_floating.qml</file>
         <file alias="ActionMenuItem.qml">menus/ActionMenuItem.qml</file>
         <file alias="ActionMenuSeparator.qml">menus/ActionMenuSeparator.qml</file>
+        <file alias="DrawerThemed.qml">controls/DrawerThemed.qml</file>
         <file alias="DrawerItem.qml">menus/DrawerItem.qml</file>
         <file alias="DrawerButton.qml">menus/DrawerButton.qml</file>
         <file alias="ListItem.qml">menus/ListItem.qml</file>
@@ -17,18 +18,32 @@
         <file alias="ListTitle.qml">menus/ListTitle.qml</file>
         <file alias="SectionTitle.qml">menus/SectionTitle.qml</file>
 
-        <file alias="ButtonChip.qml">wip/ButtonChip.qml</file>
+        <file alias="ButtonChip.qml">wip/Chip.qml</file>
+        <file alias="ButtonFab.qml">wip/FAB.qml</file>
+        <file alias="ButtonFabExtended.qml">wip/ExtendedFAB.qml</file>
+        <file alias="ButtonSunken.qml">wip/ButtonSunken.qml</file>
+
+        <file alias="ButtonDesktop.qml">wip/ButtonDesktop.qml</file>
+        <file alias="ButtonOutline.qml">wip/ButtonOutline.qml</file>
         <file alias="ButtonClear.qml">wip/ButtonClear.qml</file>
         <file alias="ButtonFlat.qml">wip/ButtonFlat.qml</file>
         <file alias="ButtonSolid.qml">wip/ButtonSolid.qml</file>
-        <file alias="ButtonSunken.qml">wip/ButtonSunken.qml</file>
         <file alias="ButtonWireframe.qml">wip/ButtonWireframe.qml</file>
         <file alias="ButtonImpl.qml">wip/ButtonImpl.qml</file>
-        <file alias="ButtonFab.qml">wip/ButtonFab.qml</file>
+
+        <file alias="RoundButtonDesktop.qml">wip/RoundButtonDesktop.qml</file>
+        <file alias="RoundButtonOutline.qml">wip/RoundButtonOutline.qml</file>
+        <file alias="RoundButtonClear.qml">wip/RoundButtonClear.qml</file>
+        <file alias="RoundButtonFlat.qml">wip/RoundButtonFlat.qml</file>
+        <file alias="RoundButtonSolid.qml">wip/RoundButtonSolid.qml</file>
+        <file alias="RoundButtonWireframe.qml">wip/RoundButtonWireframe.qml</file>
+        <file alias="RoundButtonImpl.qml">wip/RoundButtonImpl.qml</file>
 
         <file alias="ButtonCompactable.qml">deprecated/ButtonCompactable.qml</file>
         <file alias="ButtonText.qml">deprecated/ButtonText.qml</file>
         <file alias="ButtonImage.qml">deprecated/ButtonImage.qml</file>
+        <file alias="RoundButtonIcon.qml">deprecated/RoundButtonIcon.qml</file>
+        <file alias="RoundButtonText.qml">deprecated/RoundButtonText.qml</file>
 
         <file alias="AndroidButton.qml">generic/AndroidButton.qml</file>
         <file alias="AndroidButtonIcon.qml">generic/AndroidButtonIcon.qml</file>
@@ -44,8 +59,6 @@
         <file alias="MiddleSliderValueSolid.qml">generic/MiddleSliderValueSolid.qml</file>
         <file alias="ProgressArc.qml">generic/ProgressArc.qml</file>
         <file alias="ProgressCircle.qml">generic/ProgressCircle.qml</file>
-        <file alias="RoundButtonIcon.qml">generic/RoundButtonIcon.qml</file>
-        <file alias="RoundButtonText.qml">generic/RoundButtonText.qml</file>
         <file alias="RangeSliderArrow.qml">generic/RangeSliderArrow.qml</file>
         <file alias="RangeSliderValueSolid.qml">generic/RangeSliderValueSolid.qml</file>
         <file alias="SelectorMenu.qml">generic/SelectorMenu.qml</file>
@@ -58,10 +71,9 @@
         <file alias="ToolTipFlat.qml">generic/ToolTipFlat.qml</file>
 
         <file alias="FrameBox.qml">layouts/FrameBox.qml</file>
-        <file alias="FrameThemed.qml">controls/FrameThemed.qml</file>
-        <file alias="GroupBoxThemed.qml">controls/GroupBoxThemed.qml</file>
-        <file alias="PaneThemed.qml">controls/PaneThemed.qml</file>
-        <file alias="DrawerThemed.qml">controls/DrawerThemed.qml</file>
+        <file alias="FrameThemed.qml">layouts/FrameThemed.qml</file>
+        <file alias="GroupBoxThemed.qml">layouts/GroupBoxThemed.qml</file>
+        <file alias="PaneThemed.qml">layouts/PaneThemed.qml</file>
 
         <file alias="ButtonIconThemed.qml">controls/ButtonIconThemed.qml</file>
         <file alias="ButtonThemed.qml">controls/ButtonThemed.qml</file>

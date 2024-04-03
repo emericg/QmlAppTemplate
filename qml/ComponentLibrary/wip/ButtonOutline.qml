@@ -4,9 +4,9 @@ import ThemeEngine
 ButtonImpl {
     property color color: Theme.colorPrimary
 
-    colorBackground: Qt.rgba(color.r, color.g, color.b, 0.2)
+    colorBackground: "transparent"
     colorHighlight: color
-    colorBorder: colorBackground
+    colorBorder: Qt.rgba(color.r, color.g, color.b, 0.5)
     colorText: color
     flat: true
 }

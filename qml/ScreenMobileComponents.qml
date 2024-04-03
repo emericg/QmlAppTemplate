@@ -57,7 +57,7 @@ Loader {
 
                     ListElement {
                         title: "Buttons"
-                        text: "Buttons and stuff."
+                        text: "So many buttons..."
                         icon: "qrc:/assets/icons_material/duotone-touch_app-24px.svg"
                         page: "qrc:/qml/PageButtons.qml"
                     }
@@ -78,7 +78,7 @@ Loader {
 
                     ListElement {
                         title: "Indicators"
-                        text: "These are useful."
+                        text: "Usually used to indicate."
                         icon: "qrc:/assets/icons_material/duotone-speed-24px.svg"
                         page: "qrc:/qml/PageIndicators.qml"
                     }

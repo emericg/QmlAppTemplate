@@ -95,14 +95,20 @@ Item {
     // App specific (toolBLEx)
     property color colorBox: "white"
     property color colorBoxBorder: "#f4f4f4"
+    property color colorGrid: "#ebebeb"
+    property color colorLVheader: "#fafafa"
+    property color colorLVpair: "white"
+    property color colorLVimpair: "#f5f5f5"
+    property color colorLVselected: "#0080e0"
+    property color colorLVseparator: "#e2e2e2"
 
     // App specific (OffloadBuddy)
     property string sidebarSelector // 'arrow' or 'bar'
 
     // App specific (WatchFlower)
     property color colorDeviceWidget
-    property color colorLightGrey: "#a9bcb8"
-    property color colorLightGreen: "#09debc"
+    readonly property color colorLightGrey: "#a9bcb8"
+    readonly property color colorLightGreen: "#09debc"
     readonly property color colorNeutralNight: "#ffb300"
     readonly property color colorMaterialLightGrey: "#f8f8f8"
     readonly property color colorMaterialDarkGrey: "#ececec"
@@ -146,6 +152,12 @@ Item {
     property color colorComponentBorder
     property color colorComponentDown
     property color colorComponentBackground
+    property color colorComponentShadow: isLight ? "#33000000" : "#aaffffff"
+
+    property int componentRadius: 4
+    property int componentBorderWidth: 2
+
+    property int componentFontSize: isHdpi ? 14 : 15
 
     property int componentMargin: isHdpi ? 12 : 16
     property int componentMarginL: isHdpi ? 16 : 20
@@ -154,11 +166,6 @@ Item {
     property int componentHeight: (isDesktop && isHdpi) ? 36 : 40
     property int componentHeightL: (isDesktop && isHdpi) ? 44 : 48
     property int componentHeightXL: (isDesktop && isHdpi) ? 48 : 56
-
-    property int componentRadius: 4
-    property int componentBorderWidth: 2
-
-    property int componentFontSize: isMobile ? 14 : 15
 
     ////////////////
 
@@ -399,11 +406,11 @@ Item {
             colorActionbarHighlight = "#00a27d"
 
             colorTabletmenu = "#f3f3f3"
-            colorTabletmenuContent = "#9d9d9d"
-            colorTabletmenuHighlight = "#ff7b36"
+            colorTabletmenuContent = "#888"
+            colorTabletmenuHighlight = colorMaterialDeepOrange
 
             colorBackground = "white"
-            colorForeground = "#f0f0f0"
+            colorForeground = "#f9f9f9"
 
             colorPrimary = "#1a73e8"
             colorSecondary = "#ff7b36"
@@ -412,17 +419,17 @@ Item {
             colorError = colorRed
 
             colorText = "#303030"
-            colorSubText = "#666666"
+            colorSubText = "#666"
             colorIcon = "#303030"
             colorSeparator = "#ececec"
             colorLowContrast = "white"
             colorHighContrast = "black"
 
-            colorComponent = "#f0f0f0"
+            colorComponent = "#f6f6f6"
             colorComponentText = "black"
             colorComponentContent = "black"
-            colorComponentBorder = "#d0d0d0"
-            colorComponentDown = "#e0e0e0"
+            colorComponentBorder = "#f2f2f2"
+            colorComponentDown = "#eee"
             colorComponentBackground = "white"
 
             componentRadius = 8
@@ -539,12 +546,12 @@ Item {
             // (app)
             colorBox                    = "white"
             colorBoxBorder              = "#f4f4f4"
-            //colorGrid                   = "#ebebeb"
-            //colorLVheader               = "#fafafa"
-            //colorLVpair                 = "white"
-            //colorLVimpair               = "#f5f5f5"
-            //colorLVselected             = "#0080e0"
-            //colorLVseparator            = "#e2e2e2"
+            colorGrid                   = "#ebebeb"
+            colorLVheader               = "#fafafa"
+            colorLVpair                 = "white"
+            colorLVimpair               = "#f5f5f5"
+            colorLVselected             = "#0080e0"
+            colorLVseparator            = "#e2e2e2"
 
         } else if (themeIndex === ThemeEngine.THEME_DESKTOP_DARK) {
 
@@ -605,12 +612,12 @@ Item {
             // (app)
             colorBox                    = "#252024"
             colorBoxBorder              = "#333"
-            //colorGrid                   = "#333"
-            //colorLVheader               = "#252024"
-            //colorLVpair                 = "#302b2e"
-            //colorLVimpair               = "#252024"
-            //colorLVseparator            = "#333"
-            //colorLVselected             = "#e90c76"
+            colorGrid                   = "#333"
+            colorLVheader               = "#252024"
+            colorLVpair                 = "#302b2e"
+            colorLVimpair               = "#252024"
+            colorLVseparator            = "#333"
+            colorLVselected             = "#e90c76"
 
         } else if (themeIndex === ThemeEngine.THEME_SNOW) { ////////////////////
 

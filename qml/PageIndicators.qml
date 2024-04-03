@@ -151,24 +151,32 @@ Flickable {
                 onClicked: Qt.openUrlExternally("https://www.gnu.org/licenses/lgpl-3.0.html")
             }
 
-            ItemTag {
-                text: "TAG1"
-                //color: Theme.colorForeground
+            Row {
+                spacing: 8
+
+                ItemTag {
+                    text: "TAG1"
+                    //color: Theme.colorForeground
+                }
+
+                ItemTag {
+                    text: "TAG2"
+                    //color: Theme.colorForeground
+                }
             }
 
-            ItemTag {
-                text: "TAG2"
-                //color: Theme.colorForeground
-            }
+            Row {
+                spacing: 8
 
-            ItemTagButton {
-                text: "TAG3"
-                //color: Theme.colorForeground
-            }
+                ItemTagButton {
+                    text: "TAG3"
+                    //color: Theme.colorForeground
+                }
 
-            ItemTagButton {
-                text: "TAG4"
-                //color: Theme.colorForeground
+                ItemTagButton {
+                    text: "TAG4"
+                    //color: Theme.colorForeground
+                }
             }
 
             Row {
@@ -179,8 +187,9 @@ Flickable {
                     color: Theme.colorMaterialDeepOrange
                 }
                 Text {
-                    text: "Notifications"
+                    text: "Notifications badge"
                     color: Theme.colorText
+                    font.pixelSize: Theme.componentFontSize
                 }
             }
         }

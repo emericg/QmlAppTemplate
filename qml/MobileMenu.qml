@@ -12,6 +12,7 @@ Item {
     property int hhh: 60
     property int hhi: (hhh * 0.4)
     property int hhv: visible ? hhh : 0
+    property int www: 80
 
     z: 10
     height: hhh + screenPaddingNavbar + screenPaddingBottom
@@ -60,13 +61,13 @@ Item {
         height: hhh
 
         Row {
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.verticalCenter: parent.verticalCenter
+            anchors.centerIn: parent
 
             spacing: Theme.componentMargin
 
             MobileMenuItem_vertical {
                 id: menuComponents
+                width: mobileMenu.www
                 height: mobileMenu.hhh
                 sourceSize: mobileMenu.hhi
 
@@ -80,6 +81,7 @@ Item {
             }
             MobileMenuItem_vertical {
                 id: menuSettings
+                width: mobileMenu.www
                 height: mobileMenu.hhh
                 sourceSize: mobileMenu.hhi
 
@@ -93,6 +95,7 @@ Item {
             }
             MobileMenuItem_vertical {
                 id: menuAbout
+                width: mobileMenu.www
                 height: mobileMenu.hhh
                 sourceSize: mobileMenu.hhi
 

@@ -13,9 +13,7 @@ T.Button {
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              implicitContentHeight + topPadding + bottomPadding)
 
-    leftPadding: 12
-    rightPadding: 12
-
+    padding: 0
     focusPolicy: Qt.NoFocus
 
     // icon
@@ -29,7 +27,7 @@ T.Button {
     ////////////////
 
     background: Item {
-        implicitWidth: Theme.componentHeight
+        implicitWidth: 72
         implicitHeight: Theme.componentHeight
     }
 
@@ -39,7 +37,7 @@ T.Button {
         spacing: -6
 
         Item {
-            Layout.preferredWidth: 60
+            Layout.preferredWidth: 32
             Layout.preferredHeight: 32
             Layout.alignment: Qt.AlignHCenter
 
@@ -59,7 +57,6 @@ T.Button {
                     anchors.centerIn: parent
                     z: -1
 
-                    //width: 60
                     height: 32
                     radius: height
                     color: control.colorHighlight
@@ -71,16 +68,9 @@ T.Button {
                     Behavior on opacity { OpacityAnimator { duration: 133 } }
                 }
             }
-            /*
-            Rectangle {
-                anchors.fill: parent
-                color: "green"
-                z: -2
-            }*/
         }
 
         Text { // contentText
-            //width: control.width
             Layout.preferredWidth: control.width
             Layout.alignment: Qt.AlignHCenter
 

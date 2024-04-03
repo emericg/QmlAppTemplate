@@ -9,13 +9,13 @@ import "qrc:/utils/UtilsNumber.js" as UtilsNumber
 T.Button {
     id: control
 
-    anchors.right: parent.right
-    anchors.bottom: parent.bottom
-    anchors.margins: 24
+    //anchors.right: parent.right
+    //anchors.bottom: parent.bottom
+    //anchors.margins: Theme.componentMarginXL
+    //z: 10
 
-    implicitWidth: 56
-    implicitHeight: 56
-    z: 10
+    implicitWidth: Theme.componentHeightL
+    implicitHeight: Theme.componentHeightL
 
     focusPolicy: Qt.NoFocus
 
@@ -26,6 +26,7 @@ T.Button {
     // icon
     property url source
     property int sourceSize: 32
+    property int sourceRotation: 0
 
     // colors
     property color colorBackground: Theme.colorPrimary
@@ -39,8 +40,8 @@ T.Button {
     ////////////////////////////////////////////////////////////////////////////
 
     background: Item {
-        implicitWidth: 56
-        implicitHeight: 56
+        implicitWidth: Theme.componentHeightL
+        implicitHeight: Theme.componentHeightL
 
         Rectangle {
             anchors.fill: parent
@@ -51,8 +52,9 @@ T.Button {
             layer.effect: MultiEffect {
                 autoPaddingEnabled: true
                 shadowEnabled: true
+                shadowColor: Theme.colorComponentShadow
                 shadowVerticalOffset: 4
-                shadowColor: "#66000000"
+                shadowScale: 1.04
             }
         }
 
@@ -89,9 +91,10 @@ T.Button {
     contentItem: Item {
         IconSvg {
             anchors.centerIn: parent
+
             width: control.sourceSize
             height: control.sourceSize
-
+            rotation: control.sourceRotation
             color: control.colorIcon
             opacity: control.enabled ? 1 : 0.66
 
