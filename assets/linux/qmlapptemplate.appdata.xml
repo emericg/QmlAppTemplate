@@ -15,8 +15,11 @@
   <metadata_license>CC0-1.0</metadata_license>
   <content_rating type="oars-1.1" />
 
-  <developer_name>Emeric Grange</developer_name>
-  <url type="homepage">https://emeric.io/</url>
+  <developer id="io.emeric">
+    <name>Emeric Grange</name>
+  </developer>
+
+  <url type="homepage">https://emeric.io/QmlAppTemplate</url>
   <url type="bugtracker">https://github.com/emericg/QmlAppTemplate/issues</url>
   <url type="translate">https://github.com/emericg/QmlAppTemplate/blob/master/i18n/README.md</url>
   <url type="donation">https://paypal.me/EmericGrange</url>
