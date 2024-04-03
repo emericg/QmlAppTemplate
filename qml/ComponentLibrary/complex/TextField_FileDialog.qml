@@ -6,7 +6,7 @@ import QtQuick.Dialogs
 import QtCore
 
 import ThemeEngine
-import "qrc:/js/UtilsPath.js" as UtilsPath
+import "qrc:/utils/UtilsPath.js" as UtilsPath
 
 T.TextField {
     id: control

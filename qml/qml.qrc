@@ -1,7 +1,5 @@
 <RCC>
     <qresource prefix="/qml">
-        <file>ThemeEngine.qml</file>
-
         <file>MobileApplication.qml</file>
         <file>MobileHeader.qml</file>
         <file>MobileDrawer.qml</file>

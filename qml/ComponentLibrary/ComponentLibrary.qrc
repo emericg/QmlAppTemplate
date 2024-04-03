@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="qml">
+        <file>ThemeEngine.qml</file>
+
         <file alias="DesktopHeaderItem.qml">menus/DesktopHeaderItem.qml</file>
         <file alias="DesktopSidebarItem.qml">menus/DesktopSidebarItem.qml</file>
         <file alias="MobileMenuItem_horizontal.qml">menus/MobileMenuItem_horizontal.qml</file>

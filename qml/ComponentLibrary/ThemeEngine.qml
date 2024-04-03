@@ -163,9 +163,21 @@ Item {
     property int componentMarginL: isHdpi ? 16 : 20
     property int componentMarginXL: isHdpi ? 20 : 24
 
-    property int componentHeight: (isDesktop && isHdpi) ? 36 : 40
-    property int componentHeightL: (isDesktop && isHdpi) ? 44 : 48
-    property int componentHeightXL: (isDesktop && isHdpi) ? 48 : 56
+    property int componentHeight: {
+        if (isDesktop && isHdpi) return 34
+        if (isDesktop) return 38
+        return 40
+    }
+    property int componentHeightL: {
+        if (isDesktop && isHdpi) return 42
+        if (isDesktop) return 46
+        return 48
+    }
+    property int componentHeightXL: {
+        if (isDesktop && isHdpi) return 50
+        if (isDesktop) return 54
+        return 56
+    }
 
     ////////////////
 
@@ -540,7 +552,7 @@ Item {
             colorComponentDown          = "#dadada"
             colorComponentBackground    = "#fcfcfc"
 
-            componentRadius = 4
+            componentRadius = 6
             componentBorderWidth = 2
 
             // (app)
@@ -606,7 +618,7 @@ Item {
             colorComponentDown          = "#595959"
             colorComponentBackground    = "#393939"
 
-            componentRadius = 4
+            componentRadius = 6
             componentBorderWidth = 2
 
             // (app)
