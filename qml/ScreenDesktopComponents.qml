@@ -1181,18 +1181,6 @@ Loader {
                     anchors.right: parent.right
                     spacing: Theme.componentMargin
 
-                    ItemTag {
-                        anchors.verticalCenter: parent.verticalCenter
-                        text: "TAG1"
-                        //color: Theme.colorForeground
-                    }
-
-                    ItemTag {
-                        anchors.verticalCenter: parent.verticalCenter
-                        text: "TAG2"
-                        //color: Theme.colorForeground
-                    }
-
                     ItemTagButton {
                         anchors.verticalCenter: parent.verticalCenter
                         text: "TAG3"
@@ -1203,14 +1191,6 @@ Loader {
                         anchors.verticalCenter: parent.verticalCenter
                         text: "TAG4"
                         //color: Theme.colorForeground
-                    }
-
-                    ItemLicenseBadge {
-                        anchors.verticalCenter: parent.verticalCenter
-                        width: 128
-                        legend: "license"
-                        text: "LGPL 3"
-                        onClicked: Qt.openUrlExternally("https://www.gnu.org/licenses/lgpl-3.0.html")
                     }
 
                     Row {
@@ -1227,6 +1207,98 @@ Loader {
                             font.pixelSize: Theme.componentFontSize
                         }
                     }
+                }
+
+                Row {
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    spacing: Theme.componentMargin
+
+                    ItemTagClear {
+                        text: "tag"
+                        color: Theme.colorMaterialGreen
+                    }
+
+                    ItemTagClear {
+                        text: "tag"
+                        color: Theme.colorMaterialBlue
+                    }
+
+                    ItemTagClear {
+                        text: "tag"
+                        color: Theme.colorMaterialRed
+                    }
+
+                    ItemTagClear {
+                        text: "tag"
+                        color: Theme.colorMaterialDeepPurple
+                    }
+
+                    ItemTagClear {
+                        text: "tag"
+                        color: Theme.colorMaterialGrey
+                    }
+                }
+
+                Row {
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    spacing: Theme.componentMargin
+
+                    ItemTagFlat {
+                        text: "tag"
+                        color: Theme.colorMaterialGreen
+                    }
+
+                    ItemTagFlat {
+                        text: "tag"
+                        color: Theme.colorMaterialBlue
+                    }
+
+                    ItemTagFlat {
+                        text: "tag"
+                        color: Theme.colorMaterialRed
+                    }
+
+                    ItemTagFlat {
+                        text: "tag"
+                        color: Theme.colorMaterialDeepPurple
+                    }
+
+                    ItemTagFlat {
+                        text: "tag"
+                        color: Theme.colorMaterialGrey
+                    }
+                }
+
+                Row {
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    spacing: Theme.componentMargin
+
+                    ItemTagDesktop {
+                        text: "tag"
+                    }
+
+                    ItemTagDesktop {
+                        text: "TAG"
+                    }
+
+                    ItemTagDesktop {
+                        text: "rgehetqthshrts"
+                    }
+
+                    ItemTagDesktop {
+                        width: 64
+                        text: "rgehetqthshrts"
+                    }
+                }
+
+                ItemLicenseBadge {
+                    width: 128
+                    legend: "license"
+                    text: "LGPL 3"
+                    onClicked: Qt.openUrlExternally("https://www.gnu.org/licenses/lgpl-3.0.html")
                 }
 
                 ////////////////////////

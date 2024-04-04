@@ -161,6 +161,47 @@ Flickable {
             anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
+            text: qsTr("Value sliders")
+            source: ""
+        }
+
+        Column {
+            anchors.left: parent.left
+            anchors.leftMargin: Theme.componentMarginXL
+            anchors.right: parent.right
+            anchors.rightMargin: Theme.componentMarginXL
+            spacing: Theme.componentMarginXL
+
+            RangeSliderValue {
+                anchors.left: parent.left
+                anchors.right: parent.right
+
+                second.value: 0.8
+                first.value: 0.2
+                stepSize: 0.1
+            }
+        }
+
+        Row {
+            anchors.left: parent.left
+            anchors.leftMargin: Theme.componentMarginXL
+            anchors.right: parent.right
+            anchors.rightMargin: Theme.componentMarginXL
+            spacing: Theme.componentMarginXL
+
+            RangeSliderValue {
+                orientation: Qt.Vertical
+
+                second.value: 0.8
+                first.value: 0.2
+                stepSize: 0.1
+            }
+        }
+
+        ListTitle { ////////////////////////////////////////////////////////////
+            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
+
             text: qsTr("Solid sliders")
             source: ""
         }

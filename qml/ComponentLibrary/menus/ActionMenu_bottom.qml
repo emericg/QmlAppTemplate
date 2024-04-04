@@ -37,14 +37,13 @@ T.Popup {
     property int realHeight: 0
     Component.onCompleted: realHeight = actionMenu.height + screenPaddingNavbar + screenPaddingBottom
 
-    enter: Transition {
-        NumberAnimation { duration: 233; property: "height"; from: 0; to: realHeight }
-    }
-    exit: Transition {
-        NumberAnimation { duration: 233; property: "height"; from: realHeight; to: 0 }
-    }
+    enter: Transition { NumberAnimation { duration: 233; property: "height"; from: 0; to: realHeight; } }
+    exit: Transition { NumberAnimation { duration: 233; property: "height"; from: realHeight; to: 0; } }
 
-    ////////////////
+    Overlay.modal: Rectangle {
+        color: "#000"
+        opacity: ThemeEngine.isLight ? 0.24 : 0.666
+    }
 
     background: Rectangle {
         color: Theme.colorComponentBackground

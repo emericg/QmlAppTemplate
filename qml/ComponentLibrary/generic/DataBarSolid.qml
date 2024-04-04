@@ -5,7 +5,8 @@ import ThemeEngine
 import "qrc:/utils/UtilsNumber.js" as UtilsNumber
 
 Item {
-    id: dataBarSolid
+    id: control
+
     implicitWidth: 128
     implicitHeight: 16
 
@@ -31,22 +32,20 @@ Item {
     property color colorForeground: Theme.colorPrimary
     property color colorBackground: Theme.colorForeground
 
-    ////////////////////////////////////////////////////////////////////////////
+    ////////////////
 
     Row {
         anchors.fill: parent
         spacing: 12
 
-        ////////////////
-
         Text {
             id: item_legend
-            width: legendWidth
+            width: control.legendWidth
             anchors.verticalCenter: parent.verticalCenter
 
-            visible: (legend.length)
+            visible: (control.legend.length)
 
-            text: legend
+            text: control.legend
             textFormat: Text.PlainText
             font.pixelSize: Theme.fontSizeContentVerySmall
             font.bold: true
@@ -55,12 +54,10 @@ Item {
             horizontalAlignment: Text.AlignRight
         }
 
-        ////////////////
-
         Item {
             id: item_bg
-            width: dataBarSolid.width - (item_legend.visible ? (item_legend.width + parent.spacing) : 0)
-            height: hhh
+            width: control.width - (item_legend.visible ? (item_legend.width + parent.spacing) : 0)
+            height: control.hhh
             anchors.verticalCenter: parent.verticalCenter
 
             clip: true
@@ -69,8 +66,8 @@ Item {
                 id: rect_bg
                 anchors.fill: parent
 
-                radius: hhh
-                color: dataBarSolid.colorBackground
+                radius: control.hhh
+                color: control.colorBackground
 
                 layer.enabled: !isDesktop
                 layer.effect: MultiEffect {
@@ -93,7 +90,7 @@ Item {
                 Rectangle {
                     id: item_data
                     width: {
-                        var res = UtilsNumber.normalize(value, valueMin, valueMax) * item_bg.width
+                        var res = UtilsNumber.normalize(control.value, control.valueMin, control.valueMax) * item_bg.width
                         if (res > item_bg.width) res = item_bg.width
                         return res
                     }
@@ -101,10 +98,10 @@ Item {
                     anchors.bottom: parent.bottom
                     anchors.left: parent.left
 
-                    radius: hhh
-                    color: dataBarSolid.colorForeground
+                    radius: control.hhh
+                    color: control.colorForeground
 
-                    Behavior on width { NumberAnimation { duration: animated ? 333 : 0 } }
+                    Behavior on width { NumberAnimation { duration: control.animated ? 333 : 0 } }
                 }
             }
 
@@ -116,16 +113,16 @@ Item {
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom
 
-                visible: (limitMin > 0 && limitMin > valueMin && limitMin < valueMax) &&
+                visible: (control.limitMin > 0 && control.limitMin > control.valueMin && control.limitMin < control.valueMax) &&
                          (x < indicator.x || x > indicator.x+indicator.width) &&
                          (x+width < indicator.x || x+width > indicator.x+indicator.width)
-                x: UtilsNumber.normalize(limitMin, valueMin, valueMax) * item_bg.width
-                color: (limitMin <= value) ? Theme.colorLowContrast : Theme.colorHighContrast
-                opacity: (limitMin <= value) ? 0.75 : 0.25
+                x: UtilsNumber.normalize(control.limitMin, control.valueMin, control.valueMax) * item_bg.width
+                color: (control.limitMin <= control.value) ? Theme.colorLowContrast : Theme.colorHighContrast
+                opacity: (control.limitMin <= control.value) ? 0.75 : 0.25
 
-                Behavior on x { NumberAnimation { duration: animated ? 333 : 0 } }
-                Behavior on color { ColorAnimation { duration: animated ? 333 : 0 } }
-                Behavior on opacity { OpacityAnimator { duration: animated ? 333 : 0 } }
+                Behavior on x { NumberAnimation { duration: control.animated ? 333 : 0 } }
+                Behavior on color { ColorAnimation { duration: control.animated ? 333 : 0 } }
+                Behavior on opacity { OpacityAnimator { duration: control.animated ? 333 : 0 } }
             }
             Text {
                 anchors.right: item_limit_low.left
@@ -133,7 +130,7 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.verticalCenterOffset: 0
 
-                visible: (limitMin > 0 && limitMin > valueMin && limitMin < valueMax) &&
+                visible: (control.limitMin > 0 && control.limitMin > control.valueMin && control.limitMin < control.valueMax) &&
                          (width < item_limit_low.x) &&
                          (x < indicator.x || x > indicator.x+indicator.width) &&
                          (x+width < indicator.x || x+width > indicator.x+indicator.width)
@@ -143,10 +140,10 @@ Item {
                 textFormat: Text.PlainText
 
                 font.pixelSize: Theme.fontSizeContentVerySmall
-                color: (limitMin <= value) ? Theme.colorLowContrast : Theme.colorHighContrast
-                opacity: (limitMin <= value) ? 0.75 : 0.25
-                Behavior on color { ColorAnimation { duration: animated ? 333 : 0 } }
-                Behavior on opacity { OpacityAnimator { duration: animated ? 333 : 0 } }
+                color: (control.limitMin <= control.value) ? Theme.colorLowContrast : Theme.colorHighContrast
+                opacity: (control.limitMin <= control.value) ? 0.75 : 0.25
+                Behavior on color { ColorAnimation { duration: control.animated ? 333 : 0 } }
+                Behavior on opacity { OpacityAnimator { duration: control.animated ? 333 : 0 } }
             }
             Rectangle {
                 anchors.horizontalCenter: item_limit_low.horizontalCenter
@@ -155,14 +152,14 @@ Item {
                 width: 6; height: 3; // little bar
                 z: 2
 
-                visible: (limitMin > 0 && limitMin > valueMin && limitMin < valueMax) &&
+                visible: (control.limitMin > 0 && control.limitMin > control.valueMin && control.limitMin < control.valueMax) &&
                          (!(x-2 < indicator.x || x+2 > indicator.x+indicator.width) ||
                           !(x+width-2 < indicator.x || x+width+2 > indicator.x+indicator.width))
 
-                color: (limitMin < value) ? Theme.colorLowContrast : Theme.colorHighContrast
-                opacity: (limitMin < value) ? 0.75 : 0.25
-                Behavior on color { ColorAnimation { duration: animated ? 333 : 0 } }
-                Behavior on opacity { OpacityAnimator { duration: animated ? 333 : 0 } }
+                color: (control.limitMin < control.value) ? Theme.colorLowContrast : Theme.colorHighContrast
+                opacity: (control.limitMin < control.value) ? 0.75 : 0.25
+                Behavior on color { ColorAnimation { duration: control.animated ? 333 : 0 } }
+                Behavior on opacity { OpacityAnimator { duration: control.animated ? 333 : 0 } }
             }
 
             ////////
@@ -173,17 +170,17 @@ Item {
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom
 
-                visible: (limitMax > 0 && limitMax > valueMin && limitMax < valueMax) &&
+                visible: (control.limitMax > 0 && control.limitMax > control.valueMin && control.limitMax < control.valueMax) &&
                          (x < indicator.x || x > indicator.x+indicator.width) &&
                          (x+width < indicator.x || x+width > indicator.x+indicator.width)
 
-                x: UtilsNumber.normalize(limitMax, valueMin, valueMax) * item_bg.width
-                color: (limitMax < value) ? Theme.colorLowContrast : Theme.colorHighContrast
-                opacity: (limitMax < value) ? 0.75 : 0.25
+                x: UtilsNumber.normalize(control.limitMax, control.valueMin, control.valueMax) * item_bg.width
+                color: (control.limitMax < control.value) ? Theme.colorLowContrast : Theme.colorHighContrast
+                opacity: (control.limitMax < control.value) ? 0.75 : 0.25
 
-                Behavior on x { NumberAnimation { duration: animated ? 333 : 0 } }
-                Behavior on color { ColorAnimation { duration: animated ? 333 : 0 } }
-                Behavior on opacity { OpacityAnimator { duration: animated ? 333 : 0 } }
+                Behavior on x { NumberAnimation { duration: control.animated ? 333 : 0 } }
+                Behavior on color { ColorAnimation { duration: control.animated ? 333 : 0 } }
+                Behavior on opacity { OpacityAnimator { duration: control.animated ? 333 : 0 } }
             }
             Text {
                 anchors.left: item_limit_high.right
@@ -191,7 +188,7 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.verticalCenterOffset: 0
 
-                visible: (limitMax > 0 && limitMax > valueMin && limitMax < valueMax) &&
+                visible: (control.limitMax > 0 && control.limitMax > control.valueMin && control.limitMax < control.valueMax) &&
                          (x < indicator.x || x > indicator.x+indicator.width) &&
                          (x+width < indicator.x || x+width > indicator.x+indicator.width)
 
@@ -200,10 +197,10 @@ Item {
                 textFormat: Text.PlainText
 
                 font.pixelSize: Theme.fontSizeContentVerySmall
-                color: (limitMax < value) ? Theme.colorLowContrast : Theme.colorHighContrast
-                opacity: (limitMax < value) ? 0.75 : 0.25
-                Behavior on color { ColorAnimation { duration: animated ? 333 : 0 } }
-                Behavior on opacity { OpacityAnimator { duration: animated ? 333 : 0 } }
+                color: (control.limitMax < control.value) ? Theme.colorLowContrast : Theme.colorHighContrast
+                opacity: (control.limitMax < control.value) ? 0.75 : 0.25
+                Behavior on color { ColorAnimation { duration: control.animated ? 333 : 0 } }
+                Behavior on opacity { OpacityAnimator { duration: control.animated ? 333 : 0 } }
             }
             Rectangle {
                 anchors.horizontalCenter: item_limit_high.horizontalCenter
@@ -212,14 +209,14 @@ Item {
                 width: 6; height: 3; // little bar
                 z: 2
 
-                visible: (limitMax > 0 && limitMax > valueMin && limitMax < valueMax) &&
+                visible: (control.limitMax > 0 && control.limitMax > control.valueMin && control.limitMax < control.valueMax) &&
                          (!(x-2 < indicator.x || x+2 > indicator.x+indicator.width) ||
                           !(x+width-2 < indicator.x || x+width+2 > indicator.x+indicator.width))
 
-                color: (limitMax < value) ? Theme.colorLowContrast : Theme.colorHighContrast
-                opacity: (limitMax < value) ? 0.75 : 0.25
-                Behavior on color { ColorAnimation { duration: animated ? 333 : 0 } }
-                Behavior on opacity { OpacityAnimator { duration: animated ? 333 : 0 } }
+                color: (control.limitMax < control.value) ? Theme.colorLowContrast : Theme.colorHighContrast
+                opacity: (control.limitMax < control.value) ? 0.75 : 0.25
+                Behavior on color { ColorAnimation { duration: control.animated ? 333 : 0 } }
+                Behavior on opacity { OpacityAnimator { duration: control.animated ? 333 : 0 } }
             }
 
             ////////
@@ -229,15 +226,15 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
 
                 width: textIndicator.width + 12
-                height: hhh
-                radius: (value <= 0 || item_data.width > indicator.width) ? hhh : 0
+                height: control.hhh
+                radius: (control.value <= 0 || item_data.width > indicator.width) ? control.hhh : 0
                 color: {
-                    if (value <= 0)
+                    if (control.value <= 0)
                         return "transparent"
                      else if (item_data.width > indicator.width)
-                        return dataBarSolid.colorForeground
+                        return control.colorForeground
                     else
-                        return dataBarSolid.colorBackground
+                        return control.colorBackground
                 }
 
                 x: {
@@ -249,19 +246,19 @@ Item {
 
                 Text {
                     id: textIndicator
-                    height: hhh
+                    height: control.hhh
                     anchors.centerIn: parent
 
                     color: (item_data.width > indicator.width) ? "white" : Theme.colorSubText
 
                     text: {
-                        if (value < -20)
+                        if (control.value < -20)
                             return " ? ";
                         else {
-                            if (value % 1 === 0)
-                                return prefix + value + suffix
+                            if (control.value % 1 === 0)
+                                return control.prefix + control.value + control.suffix
                             else
-                                return prefix + value.toFixed(floatprecision) + suffix
+                                return control.prefix + control.value.toFixed(control.floatprecision) + control.suffix
                         }
                     }
                     textFormat: Text.PlainText
@@ -273,10 +270,9 @@ Item {
                     verticalAlignment: Text.AlignVCenter
                 }
 
-                IconSvg {
-                    id: warningIndicator
-                    width: hhh - 2
-                    height: hhh - 2
+                IconSvg { // warningIndicator
+                    width: control.hhh - 2
+                    height: control.hhh - 2
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.leftMargin: 4
                     anchors.left: {
@@ -287,17 +283,17 @@ Item {
                     }
 
                     color: Theme.colorRed
-                    opacity: (warning && value > -20 && value < limitMin) ? 1 : 0
-                    Behavior on opacity { OpacityAnimator { duration: animated ? 333 : 0 } }
+                    opacity: (control.warning && control.value > -20 && control.value < control.limitMin) ? 1 : 0
+                    Behavior on opacity { OpacityAnimator { duration: control.animated ? 333 : 0 } }
                     source: "qrc:/assets/icons_material/baseline-warning-24px.svg"
 
                     Rectangle {
-                        width: hhh
-                        height: hhh
+                        width: control.hhh
+                        height: control.hhh
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.horizontalCenter: parent.horizontalCenter
                         z: -1
-                        color: dataBarSolid.colorBackground
+                        color: control.colorBackground
                         visible: (parent.opacity === 1)
                     }
                 }
@@ -305,9 +301,7 @@ Item {
 
             ////////
         }
-
-        ////////////////
     }
 
-    ////////////////////////////////////////////////////////////////////////////
+    ////////////////
 }

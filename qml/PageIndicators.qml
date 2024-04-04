@@ -105,6 +105,7 @@ Flickable {
                     width: 128
                     value: 0.33
                 }
+
                 ProgressArc {
                     width: 128
                     value: 0.66
@@ -121,6 +122,7 @@ Flickable {
                     value: 0.33
                     arcColor: Theme.colorMaterialDeepOrange
                 }
+
                 ProgressCircle {
                     width: 128
                     value: 0.66
@@ -137,32 +139,18 @@ Flickable {
             source: ""
         }
 
-        Flow {
+        Column {
             anchors.left: parent.left
             anchors.leftMargin: Theme.componentMarginXL
             anchors.right: parent.right
             anchors.rightMargin: Theme.componentMarginXL
-            spacing: 24
+            spacing: Theme.componentMarginXL
 
             ItemLicenseBadge {
                 width: 128
                 legend: "license"
                 text: "LGPL 3"
                 onClicked: Qt.openUrlExternally("https://www.gnu.org/licenses/lgpl-3.0.html")
-            }
-
-            Row {
-                spacing: 8
-
-                ItemTag {
-                    text: "TAG1"
-                    //color: Theme.colorForeground
-                }
-
-                ItemTag {
-                    text: "TAG2"
-                    //color: Theme.colorForeground
-                }
             }
 
             Row {
@@ -190,6 +178,91 @@ Flickable {
                     text: "Notifications badge"
                     color: Theme.colorText
                     font.pixelSize: Theme.componentFontSize
+                }
+            }
+
+            Flow {
+                anchors.left: parent.left
+                anchors.right: parent.right
+                spacing: Theme.componentMargin
+
+                ItemTagClear {
+                    text: "tag"
+                    color: Theme.colorMaterialGreen
+                }
+
+                ItemTagClear {
+                    text: "tag"
+                    color: Theme.colorMaterialBlue
+                }
+
+                ItemTagClear {
+                    text: "tag"
+                    color: Theme.colorMaterialRed
+                }
+
+                ItemTagClear {
+                    text: "tag"
+                    color: Theme.colorMaterialDeepPurple
+                }
+
+                ItemTagClear {
+                    text: "tag"
+                    color: Theme.colorMaterialGrey
+                }
+            }
+
+            Flow {
+                anchors.left: parent.left
+                anchors.right: parent.right
+                spacing: Theme.componentMargin
+
+                ItemTagFlat {
+                    text: "tag"
+                    color: Theme.colorMaterialGreen
+                }
+
+                ItemTagFlat {
+                    text: "tag"
+                    color: Theme.colorMaterialBlue
+                }
+
+                ItemTagFlat {
+                    text: "tag"
+                    color: Theme.colorMaterialRed
+                }
+
+                ItemTagFlat {
+                    text: "tag"
+                    color: Theme.colorMaterialDeepPurple
+                }
+
+                ItemTagFlat {
+                    text: "tag"
+                    color: Theme.colorMaterialGrey
+                }
+            }
+
+            Flow {
+                anchors.left: parent.left
+                anchors.right: parent.right
+                spacing: Theme.componentMargin
+
+                ItemTagDesktop {
+                    text: "tag"
+                }
+
+                ItemTagDesktop {
+                    text: "TAG"
+                }
+
+                ItemTagDesktop {
+                    text: "rgehetqthshrts"
+                }
+
+                ItemTagDesktop {
+                    width: 64
+                    text: "rgehetqthshrts"
                 }
             }
         }

@@ -95,15 +95,15 @@ Popup {
 
                 property int btnSize: singleColumn ? width : ((width-spacing*2) / 3)
 
-                ButtonSolid {
+                ButtonClear {
                     width: parent.btnSize
-                    color: Theme.colorSubText
+                    color: Theme.colorGrey
 
                     text: qsTr("Cancel")
                     onClicked: popupChoice.close()
                 }
 
-                ButtonSolid {
+                ButtonFlat {
                     width: parent.btnSize
                     color: Theme.colorWarning
 
@@ -117,7 +117,7 @@ Popup {
                     }
                 }
 
-                ButtonSolid {
+                ButtonFlat {
                     width: parent.btnSize
                     color: Theme.colorError
 

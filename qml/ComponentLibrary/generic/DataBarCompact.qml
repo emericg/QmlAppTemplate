@@ -5,7 +5,8 @@ import ThemeEngine
 import "qrc:/utils/UtilsNumber.js" as UtilsNumber
 
 Item {
-    id: dataBarCompact
+    id: control
+
     implicitWidth: 128
     implicitHeight: 32
 
@@ -32,22 +33,20 @@ Item {
     property color colorForeground: Theme.colorPrimary
     property color colorBackground: Theme.colorForeground
 
-    ////////////////////////////////////////////////////////////////////////////
+    ////////////////
 
     Row {
         anchors.fill: parent
         spacing: 12
 
-        ////////////////
-
         Text {
             id: item_legend
-            width: legendWidth
+            width: control.legendWidth
             anchors.verticalCenter: item_bg.verticalCenter
 
-            visible: (legend.length)
+            visible: (control.legend.length)
 
-            text: legend
+            text: control.legend
             textFormat: Text.PlainText
             font.bold: true
             font.pixelSize: Theme.fontSizeContentVerySmall
@@ -56,12 +55,10 @@ Item {
             horizontalAlignment: Text.AlignRight
         }
 
-        ////////////////
-
         Item {
             id: item_bg
-            width: dataBarCompact.width - (item_legend.visible ? (item_legend.width + parent.spacing) : 0)
-            height: hhh
+            width: control.width - (item_legend.visible ? (item_legend.width + parent.spacing) : 0)
+            height: control.hhh
             anchors.bottom: parent.bottom
 
             ////////
@@ -72,7 +69,7 @@ Item {
 
                 radius: 4
                 clip: isDesktop
-                color: dataBarCompact.colorBackground
+                color: control.colorBackground
 
                 layer.enabled: !isDesktop
                 layer.effect: MultiEffect {
@@ -95,9 +92,9 @@ Item {
                 Rectangle {
                     id: rect_data
                     width: {
-                        var res = UtilsNumber.normalize(value, valueMin, valueMax) * rect_bg.width
+                        var res = UtilsNumber.normalize( control.value, control.valueMin, control.valueMax) * rect_bg.width
 
-                        if (value <= valueMin || value >= valueMax)
+                        if ( control.value <= control.valueMin ||control.value >= control.valueMax)
                             res += 0
                         else
                             res += 1.5*radius // +radius, so the indicator arrow point to the real value, not the rounded end of the data bar
@@ -112,9 +109,9 @@ Item {
                     anchors.bottom: parent.bottom
 
                     radius: 3
-                    color: dataBarCompact.colorForeground
+                    color: control.colorForeground
 
-                    Behavior on width { NumberAnimation { duration: animated ? 333 : 0 } }
+                    Behavior on width { NumberAnimation { duration: control.animated ? 333 : 0 } }
                 }
 
                 Rectangle {
@@ -123,14 +120,14 @@ Item {
                     anchors.top: parent.top
                     anchors.bottom: parent.bottom
 
-                    visible: (limitMin > 0 && limitMin > valueMin && limitMin < valueMax)
-                    x: UtilsNumber.normalize(limitMin, valueMin, valueMax) * rect_bg.width
-                    color: (limitMin < value) ? Theme.colorLowContrast : Theme.colorHighContrast
-                    opacity: (limitMin < value) ? 0.66 : 0.33
+                    visible: (control.limitMin > 0 && control.limitMin > control.valueMin && control.limitMin < control.valueMax)
+                    x: UtilsNumber.normalize(control.limitMin, control.valueMin, control.valueMax) * rect_bg.width
+                    color: (control.limitMin < control.value) ? Theme.colorLowContrast : Theme.colorHighContrast
+                    opacity: (control.limitMin < control.value) ? 0.66 : 0.33
 
-                    Behavior on x { NumberAnimation { duration: animated ? 333 : 0 } }
-                    Behavior on color { ColorAnimation { duration: animated ? 333 : 0 } }
-                    Behavior on opacity { OpacityAnimator { duration: animated ? 333 : 0 } }
+                    Behavior on x { NumberAnimation { duration: control.animated ? 333 : 0 } }
+                    Behavior on color { ColorAnimation { duration: control.animated ? 333 : 0 } }
+                    Behavior on opacity { OpacityAnimator { duration: control.animated ? 333 : 0 } }
                 }
                 Rectangle {
                     id: item_limit_high
@@ -138,14 +135,14 @@ Item {
                     anchors.top: parent.top
                     anchors.bottom: parent.bottom
 
-                    visible: (limitMax > 0 && limitMax > valueMin && limitMax < valueMax)
-                    x: UtilsNumber.normalize(limitMax, valueMin, valueMax) * rect_bg.width
-                    color: (limitMax < value) ? Theme.colorLowContrast : Theme.colorHighContrast
-                    opacity: (limitMax < value) ? 0.66 : 0.33
+                    visible: (control.limitMax > 0 && control.limitMax > control.valueMin && control.limitMax < control.valueMax)
+                    x: UtilsNumber.normalize(control.limitMax, control.valueMin, control.valueMax) * rect_bg.width
+                    color: (control.limitMax <control.value) ? Theme.colorLowContrast : Theme.colorHighContrast
+                    opacity: (control.limitMax < control.value) ? 0.66 : 0.33
 
-                    Behavior on x { NumberAnimation { duration: animated ? 333 : 0 } }
-                    Behavior on color { ColorAnimation { duration: animated ? 333 : 0 } }
-                    Behavior on opacity { OpacityAnimator { duration: animated ? 333 : 0 } }
+                    Behavior on x { NumberAnimation { duration: control.animated ? 333 : 0 } }
+                    Behavior on color { ColorAnimation { duration: control.animated ? 333 : 0 } }
+                    Behavior on opacity { OpacityAnimator { duration: control.animated ? 333 : 0 } }
                 }
             }
 
@@ -165,13 +162,13 @@ Item {
                 }
 
                 text: {
-                    if (value < -20)
+                    if ( control.value < -20)
                         return " ? ";
                     else {
-                        if (value % 1 === 0)
-                            return prefix + value + suffix
+                        if ( control.value % 1 === 0)
+                            return control.prefix + control.value + control.suffix
                         else
-                            return prefix + value.toFixed(floatprecision) + suffix
+                            return control.prefix + control.value.toFixed(control.floatprecision) + control.suffix
                     }
                 }
                 textFormat: Text.PlainText
@@ -190,7 +187,7 @@ Item {
 
                     z: -1
                     radius: 1
-                    color: dataBarCompact.colorForeground
+                    color: control.colorForeground
 
                     Rectangle {
                         id: item_indicator_triangle
@@ -214,7 +211,7 @@ Item {
 
                         radius: 1
                         rotation: 45
-                        color: dataBarCompact.colorForeground
+                        color: control.colorForeground
                     }
                 }
             }
@@ -230,16 +227,14 @@ Item {
                 anchors.left: textIndicator.right
 
                 color: Theme.colorRed
-                opacity: (warning && value > -20 && value < limitMin) ? 1 : 0
-                Behavior on opacity { OpacityAnimator { duration: animated ? 333 : 0 } }
+                opacity: (control.warning && control.value > -20 && control.value < control.limitMin) ? 1 : 0
+                Behavior on opacity { OpacityAnimator { duration: control.animated ? 333 : 0 } }
                 source: "qrc:/assets/icons_material/baseline-warning-24px.svg"
             }
 
             ////////
         }
-
-        ////////////////
     }
 
-    ////////////////////////////////////////////////////////////////////////////
+    ////////////////
 }

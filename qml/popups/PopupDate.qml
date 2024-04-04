@@ -127,6 +127,7 @@ Popup {
             anchors.left: parent.left
             anchors.right: parent.right
 
+            clip: true
             height: 80
             radius: singleColumn ? 0 : Theme.componentRadius
             color: Theme.colorPrimary
@@ -182,6 +183,8 @@ Popup {
 
             spacing: Theme.componentMarginXL
             bottomPadding: Theme.componentMarginXL
+
+            ////////
 
             Rectangle {
                 height: 48
@@ -336,17 +339,17 @@ Popup {
                 anchors.rightMargin: Theme.componentMarginXL
                 spacing: Theme.componentMargin
 
-                ButtonSolid {
-                    color: Theme.colorSecondary
+                ButtonClear {
+                    color: Theme.colorGrey
 
                     text: qsTr("Cancel")
                     onClicked: popupDate.close()
                 }
 
-                ButtonSolid {
+                ButtonFlat {
                     color: Theme.colorPrimary
 
-                    text: qsTr("Validate")
+                    text: qsTr("Select")
                     onClicked: {
                         updateDate(selectedDate)
                         popupDate.close()

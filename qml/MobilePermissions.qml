@@ -52,9 +52,9 @@ Item {
             anchors.left: parent.left
             anchors.right: parent.right
 
-            topPadding: 20
-            bottomPadding: 20
-            spacing: 20
+            topPadding: Theme.componentMarginXL
+            bottomPadding: Theme.componentMarginXL
+            spacing: Theme.componentMarginXL
 
             ////////
 
@@ -63,7 +63,7 @@ Item {
                 anchors.left: parent.left
                 anchors.leftMargin: 16
                 anchors.right: parent.right
-                anchors.rightMargin: 12
+                anchors.rightMargin: Theme.componentMargin
                 spacing: 8
 
                 Row {
@@ -141,7 +141,7 @@ Item {
                 anchors.left: parent.left
                 anchors.leftMargin: 16
                 anchors.right: parent.right
-                anchors.rightMargin: 12
+                anchors.rightMargin: Theme.componentMargin
                 spacing: 8
 
                 Row {
@@ -218,7 +218,7 @@ Item {
                 anchors.left: parent.left
                 anchors.leftMargin: 16
                 anchors.right: parent.right
-                anchors.rightMargin: 12
+                anchors.rightMargin: Theme.componentMargin
                 spacing: 8
 
                 Row {
@@ -274,16 +274,16 @@ Item {
             Column {
                 id: element_infos
                 anchors.left: parent.left
-                anchors.leftMargin: 12
+                anchors.leftMargin: Theme.componentMargin
                 anchors.right: parent.right
-                anchors.rightMargin: 12
+                anchors.rightMargin: Theme.componentMargin
                 spacing: 8
 
                 RowLayout {
                     anchors.left: parent.left
                     anchors.right: parent.right
                     height: 36
-                    spacing: 12
+                    spacing: Theme.componentMargin
 
                     IconSvg {
                         Layout.preferredWidth: 36

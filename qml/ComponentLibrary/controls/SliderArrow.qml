@@ -23,8 +23,9 @@ T.Slider {
     property int ticksCount: ((to - from) / stepSize)
 
     // colors
-    property color colorBackground: Theme.colorForeground
+    property color colorBackground: Theme.colorComponentBackground
     property color colorForeground: Theme.colorPrimary
+    property color colorTicks: Theme.colorComponentDown
 
     ////////////////
 
@@ -42,7 +43,7 @@ T.Slider {
         scale: control.horizontal && control.mirrored ? -1 : 1
 
         clip: true
-        Repeater {
+        Repeater { // ticks
             width: control.availableWidth
             model: (control.ticksCount - 1)
             Rectangle {
@@ -50,7 +51,7 @@ T.Slider {
                 y: control.horizontal ? 0 : ((control.availableHeight / control.ticksCount) * (index+1))
                 width: control.horizontal ? 2 : parent.height
                 height: control.horizontal ? parent.height : 2
-                color: Theme.colorComponentBorder
+                color: control.colorTicks
             }
         }
 
@@ -74,7 +75,7 @@ T.Slider {
         height: 12
         rotation: control.horizontal ? 0 : -90
         opacity: control.enabled ? 1 : 0.8
-        color: control.pressed ? Theme.colorSecondary : Theme.colorPrimary
+        color: control.pressed ? Theme.colorSecondary : control.colorForeground
 
         Rectangle {
             width: 10

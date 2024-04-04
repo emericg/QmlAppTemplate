@@ -58,7 +58,7 @@ Item {
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.right: parent.right
-        height: hhh
+        height: mobileMenu.hhh
 
         Row {
             anchors.centerIn: parent

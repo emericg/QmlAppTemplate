@@ -89,7 +89,7 @@ Popup {
 
             ////////
 
-            ButtonSolid {
+            ButtonFlat {
                 anchors.right: parent.right
                 width: singleColumn ? parent.width : (parent.width / 2)
 

@@ -27,20 +27,33 @@ Popup {
     //property var locale: Qt.locale()
 
     property date today: new Date()
-    property date initialDate
-    property date selectedDate
-
-    property bool isSelectedDateToday: false
-
-    property var minDate: null
-    property var maxDate: null
+    property date initialTime
+    property date selectedTime
 
     ////////////////////////////////////////////////////////////////////////////
 
     signal updateTime(var newtime)
 
     function openTime(time) {
-        //console.log("openTime(" + time + ")")
+        console.log("openTime(" + time + ")")
+
+        today = new Date()
+
+        initialTime = time
+        selectedTime = time
+
+        printTime()
+
+        popupTime.open()
+    }
+
+    function printTime() {
+        bigTime.text = selectedTime.toLocaleString(locale, "hh:mm:ss")
+        bigDate.text = selectedTime.toLocaleString(locale, "dd MMMM yyyy")
+    }
+
+    function resetTime() {
+        printTime()
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -78,6 +91,133 @@ Popup {
 
     contentItem: Column {
         bottomPadding: screenPaddingNavbar + screenPaddingBottom
+
+        Rectangle {
+            id: titleArea
+            anchors.left: parent.left
+            anchors.right: parent.right
+
+            clip: true
+            height: 80
+            radius: singleColumn ? 0 : Theme.componentRadius
+            color: Theme.colorPrimary
+
+            Rectangle {
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.bottom: parent.bottom
+                height: parent.radius
+                color: parent.color
+            }
+
+            Column {
+                anchors.left: parent.left
+                anchors.leftMargin: 24
+                anchors.verticalCenter: parent.verticalCenter
+                spacing: 4
+
+                Text {
+                    id: bigTime
+                    text: selectedTime.toLocaleString(locale, "hh:mm:ss")
+                    font.pixelSize: 24
+                    font.capitalization: Font.Capitalize
+                    color: "white"
+                }
+                Text {
+                    id: bigDate
+                    text: selectedTime.toLocaleString(locale, "dd MMMM yyyy") // "15 octobre 2020"
+                    font.pixelSize: 20
+                    color: "white"
+                }
+            }
+
+            RoundButtonIcon { // reset
+                anchors.right: parent.right
+                anchors.rightMargin: 24
+                anchors.verticalCenter: parent.verticalCenter
+                source: "qrc:/assets/icons_material/duotone-restart_alt-24px.svg"
+                iconColor: "white"
+                backgroundColor: Qt.lighter(Theme.colorPrimary, 0.9)
+
+                visible: true
+
+                onClicked: resetTime()
+            }
+        }
+
+        ////////////////
+
+        Column {
+            anchors.left: parent.left
+            anchors.right: parent.right
+
+            topPadding: Theme.componentMarginXL
+            bottomPadding: Theme.componentMarginXL
+            spacing: Theme.componentMarginXL
+
+            ////////
+
+            Row {
+                anchors.horizontalCenter: parent.horizontalCenter
+
+                TumblerThemed {
+                    anchors.verticalCenter: parent.verticalCenter
+                    width: 48
+                    height: 128
+
+                    font.pixelSize: Theme.fontSizeContentVeryBig
+
+                    model: 24
+                }
+
+                Text {
+                    anchors.verticalCenter: parent.verticalCenter
+
+                    text: " : "
+                    textFormat: Text.PlainText
+                    font.pixelSize: Theme.fontSizeContentVeryBig
+                }
+
+                TumblerThemed {
+                    anchors.verticalCenter: parent.verticalCenter
+                    width: 48
+                    height: 128
+
+                    font.pixelSize: Theme.fontSizeContentVeryBig
+
+                    model: 60
+                }
+            }
+
+            ////////
+
+            Row {
+                anchors.right: parent.right
+                anchors.rightMargin: Theme.componentMarginXL
+                spacing: Theme.componentMargin
+
+                ButtonClear {
+                    color: Theme.colorGrey
+
+                    text: qsTr("Cancel")
+                    onClicked: popupTime.close()
+                }
+
+                ButtonFlat {
+                    color: Theme.colorPrimary
+
+                    text: qsTr("Select")
+                    onClicked: {
+                        updateTime(selectedTime)
+                        popupTime.close()
+                    }
+                }
+            }
+
+            ////////
+        }
+
+        ////////////////
     }
 
     ////////////////////////////////////////////////////////////////////////////

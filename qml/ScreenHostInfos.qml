@@ -69,7 +69,7 @@ Loader {
 
                 ColumnLayout {
                     anchors.fill: parent
-                    spacing: 12
+                    spacing: Theme.componentMarginS
 
                     Column {
                         Text {
@@ -149,7 +149,7 @@ Loader {
 
                 ColumnLayout {
                     anchors.fill: parent
-                    spacing: 12
+                    spacing: Theme.componentMarginS
 
                     Column {
                         Text {
@@ -233,7 +233,7 @@ Loader {
 
                 ColumnLayout {
                     anchors.fill: parent
-                    spacing: 12
+                    spacing: Theme.componentMarginS
 
                     Column {
                         Text {
@@ -319,7 +319,7 @@ Loader {
 
                 ColumnLayout {
                     anchors.fill: parent
-                    spacing: 12
+                    spacing: Theme.componentMarginS
 
                     Column {
                         Text {
@@ -382,7 +382,7 @@ Loader {
 
                 ColumnLayout {
                     anchors.fill: parent
-                    spacing: 12
+                    spacing: Theme.componentMarginS
 
                     Column {
                         visible: (utilsScreen.screenPar != 1)
@@ -554,7 +554,7 @@ Loader {
 
                 ColumnLayout {
                     anchors.fill: parent
-                    spacing: 12
+                    spacing: Theme.componentMarginS
 
                     Column {
                         Text {

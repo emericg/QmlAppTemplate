@@ -159,6 +159,8 @@ Item {
 
     property int componentFontSize: isHdpi ? 14 : 15
 
+    property int componentMarginXS: isHdpi ? 4 : 8
+    property int componentMarginS: isHdpi ? 8 : 12
     property int componentMargin: isHdpi ? 12 : 16
     property int componentMarginL: isHdpi ? 16 : 20
     property int componentMarginXL: isHdpi ? 20 : 24
