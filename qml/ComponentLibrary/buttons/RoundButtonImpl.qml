@@ -23,7 +23,7 @@ T.Button {
 
     // icon
     property url source
-    property int sourceSize: UtilsNumber.alignTo(height * 0.6, 2)
+    property int sourceSize: UtilsNumber.alignTo(height * 0.66, 2)
     property int sourceRotation: 0
 
     // colors

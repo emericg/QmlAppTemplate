@@ -23,12 +23,14 @@
         <file alias="ButtonChip.qml">buttons/ButtonChip.qml</file>
         <file alias="ButtonFab.qml">buttons/ButtonFab.qml</file>
         <file alias="ButtonFabExtended.qml">buttons/ButtonFabExtended.qml</file>
-        <file alias="ButtonSunken.qml">buttons/ButtonSunken.qml</file>
+        <file alias="ButtonToggle.qml">buttons/ButtonToggle.qml</file>
+
         <file alias="ButtonDesktop.qml">buttons/ButtonDesktop.qml</file>
         <file alias="ButtonOutline.qml">buttons/ButtonOutline.qml</file>
         <file alias="ButtonClear.qml">buttons/ButtonClear.qml</file>
         <file alias="ButtonFlat.qml">buttons/ButtonFlat.qml</file>
         <file alias="ButtonSolid.qml">buttons/ButtonSolid.qml</file>
+        <file alias="ButtonSunken.qml">buttons/ButtonSunken.qml</file>
         <file alias="ButtonWireframe.qml">buttons/ButtonWireframe.qml</file>
         <file alias="ButtonImpl.qml">buttons/ButtonImpl.qml</file>
         <file alias="RoundButtonDesktop.qml">buttons/RoundButtonDesktop.qml</file>
@@ -37,12 +39,12 @@
         <file alias="RoundButtonFlat.qml">buttons/RoundButtonFlat.qml</file>
         <file alias="RoundButtonSolid.qml">buttons/RoundButtonSolid.qml</file>
         <file alias="RoundButtonWireframe.qml">buttons/RoundButtonWireframe.qml</file>
+        <file alias="RoundButtonSunken.qml">buttons/RoundButtonSunken.qml</file>
         <file alias="RoundButtonImpl.qml">buttons/RoundButtonImpl.qml</file>
 
         <file alias="ButtonCompactable.qml">deprecated/ButtonCompactable.qml</file>
         <file alias="ButtonText.qml">deprecated/ButtonText.qml</file>
         <file alias="ButtonImage.qml">deprecated/ButtonImage.qml</file>
-        <file alias="ItemTagButton.qml">deprecated/ItemTagButton.qml</file>
         <file alias="RoundButtonIcon.qml">deprecated/RoundButtonIcon.qml</file>
         <file alias="RoundButtonText.qml">deprecated/RoundButtonText.qml</file>
 
@@ -61,6 +63,8 @@
         <file alias="SelectorMenuItem.qml">generic/SelectorMenuItem.qml</file>
         <file alias="SelectorMenuColorful.qml">generic/SelectorMenuColorful.qml</file>
         <file alias="SelectorMenuColorfulItem.qml">generic/SelectorMenuColorfulItem.qml</file>
+        <file alias="SelectorGrid.qml">generic/SelectorGrid.qml</file>
+        <file alias="SelectorGridItem.qml">generic/SelectorGridItem.qml</file>
 
         <file alias="FrameBox.qml">layouts/FrameBox.qml</file>
         <file alias="FrameThemed.qml">layouts/FrameThemed.qml</file>
@@ -105,10 +109,14 @@
         <file alias="TextField_FileDialog.qml">complex/TextField_FileDialog.qml</file>
         <file alias="TextField_FolderDialog.qml">complex/TextField_FolderDialog.qml</file>
 
-        <file alias="ItemTagClear.qml">wip/ItemTagClear.qml</file>
-        <file alias="ItemTagDesktop.qml">wip/ItemTagDesktop.qml</file>
-        <file alias="ItemTagFlat.qml">wip/ItemTagFlat.qml</file>
-        <file alias="ItemTagImpl.qml">wip/ItemTagImpl.qml</file>
+        <file alias="TagClear.qml">wip/TagClear.qml</file>
+        <file alias="TagDesktop.qml">wip/TagDesktop.qml</file>
+        <file alias="TagFlat.qml">wip/TagFlat.qml</file>
+        <file alias="TagImpl.qml">wip/TagImpl.qml</file>
+        <file alias="TagButtonClear.qml">wip/TagButtonClear.qml</file>
+        <file alias="TagButtonDesktop.qml">wip/TagButtonDesktop.qml</file>
+        <file alias="TagButtonFlat.qml">wip/TagButtonFlat.qml</file>
+        <file alias="TagButtonImpl.qml">wip/TagButtonImpl.qml</file>
 
         <file alias="CsdMac.qml">utils/CsdMac.qml</file>
         <file alias="CsdWindows.qml">utils/CsdWindows.qml</file>

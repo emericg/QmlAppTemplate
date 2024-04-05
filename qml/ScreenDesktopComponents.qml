@@ -1181,15 +1181,27 @@ Loader {
                     anchors.right: parent.right
                     spacing: Theme.componentMargin
 
-                    ItemTagButton {
+                    TagButtonFlat {
                         anchors.verticalCenter: parent.verticalCenter
-                        text: "TAG3"
+                        text: "TAG"
                         //color: Theme.colorForeground
                     }
 
-                    ItemTagButton {
+                    TagButtonFlat {
                         anchors.verticalCenter: parent.verticalCenter
-                        text: "TAG4"
+                        text: "TAG"
+                        //color: Theme.colorForeground
+                    }
+
+                    TagButtonClear {
+                        anchors.verticalCenter: parent.verticalCenter
+                        text: "TAG"
+                        //color: Theme.colorForeground
+                    }
+
+                    TagButtonClear {
+                        anchors.verticalCenter: parent.verticalCenter
+                        text: "TAG"
                         //color: Theme.colorForeground
                     }
 
@@ -1214,27 +1226,27 @@ Loader {
                     anchors.right: parent.right
                     spacing: Theme.componentMargin
 
-                    ItemTagClear {
+                    TagClear {
                         text: "tag"
                         color: Theme.colorMaterialGreen
                     }
 
-                    ItemTagClear {
+                    TagClear {
                         text: "tag"
                         color: Theme.colorMaterialBlue
                     }
 
-                    ItemTagClear {
+                    TagClear {
                         text: "tag"
                         color: Theme.colorMaterialRed
                     }
 
-                    ItemTagClear {
+                    TagClear {
                         text: "tag"
                         color: Theme.colorMaterialDeepPurple
                     }
 
-                    ItemTagClear {
+                    TagClear {
                         text: "tag"
                         color: Theme.colorMaterialGrey
                     }
@@ -1245,27 +1257,27 @@ Loader {
                     anchors.right: parent.right
                     spacing: Theme.componentMargin
 
-                    ItemTagFlat {
+                    TagFlat {
                         text: "tag"
                         color: Theme.colorMaterialGreen
                     }
 
-                    ItemTagFlat {
+                    TagFlat {
                         text: "tag"
                         color: Theme.colorMaterialBlue
                     }
 
-                    ItemTagFlat {
+                    TagFlat {
                         text: "tag"
                         color: Theme.colorMaterialRed
                     }
 
-                    ItemTagFlat {
+                    TagFlat {
                         text: "tag"
                         color: Theme.colorMaterialDeepPurple
                     }
 
-                    ItemTagFlat {
+                    TagFlat {
                         text: "tag"
                         color: Theme.colorMaterialGrey
                     }
@@ -1276,19 +1288,19 @@ Loader {
                     anchors.right: parent.right
                     spacing: Theme.componentMargin
 
-                    ItemTagDesktop {
+                    TagDesktop {
                         text: "tag"
                     }
 
-                    ItemTagDesktop {
+                    TagDesktop {
                         text: "TAG"
                     }
 
-                    ItemTagDesktop {
+                    TagDesktop {
                         text: "rgehetqthshrts"
                     }
 
-                    ItemTagDesktop {
+                    TagDesktop {
                         width: 64
                         text: "rgehetqthshrts"
                     }

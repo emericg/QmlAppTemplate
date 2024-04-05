@@ -49,13 +49,13 @@ T.ItemDelegate {
         width: control.width
         spacing: Theme.componentMargin
 
-        RoundButtonIcon {
+        RoundButtonSunken {
             anchors.verticalCenter: parent.verticalCenter
             width: Theme.componentHeight
             height: Theme.componentHeight
 
             source: model.icon
-            backgroundVisible: true
+            colorBackground: Theme.colorForeground
         }
 
         Column {

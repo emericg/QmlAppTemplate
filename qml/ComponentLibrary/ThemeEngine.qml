@@ -52,25 +52,25 @@ Item {
     property int themeStatusbar
     property color colorStatusbar
 
-    // Tablet bar (mobile)
-    property color colorTabletmenu
-    property color colorTabletmenuContent
-    property color colorTabletmenuHighlight
+    // Header
+    property color colorHeader
+    property color colorHeaderContent
+    property color colorHeaderHighlight
+
+    // Action bar (mobile)
+    property color colorActionbar
+    property color colorActionbarContent
+    property color colorActionbarHighlight
 
     // Side bar (desktop)
     property color colorSidebar
     property color colorSidebarContent
     property color colorSidebarHighlight
 
-    // Header
-    property color colorHeader
-    property color colorHeaderContent
-    property color colorHeaderHighlight
-
-    // Action bar
-    property color colorActionbar
-    property color colorActionbarContent
-    property color colorActionbarHighlight
+    // Tablet bar (mobile)
+    property color colorTabletmenu
+    property color colorTabletmenuContent
+    property color colorTabletmenuHighlight
 
     // Content
     property color colorBackground
@@ -315,6 +315,10 @@ Item {
             colorActionbarContent = "white"
             colorActionbarHighlight = "#00a27d"
 
+            colorSidebar                = "#eee"
+            colorSidebarContent         = "#777"
+            colorSidebarHighlight       = "#ddd"
+
             colorTabletmenu = "#f3f3f3"
             colorTabletmenuContent = "#9d9d9d"
             colorTabletmenuHighlight = colorMaterialDeepOrange // "#ff7b36"
@@ -338,11 +342,11 @@ Item {
             colorComponent = "#f0f0f0"
             colorComponentText = "black"
             colorComponentContent = "black"
-            colorComponentBorder = "#d0d0d0"
-            colorComponentDown = "#e0e0e0"
+            colorComponentBorder = "#e0e0e0"
+            colorComponentDown = "#e9e9e9"
             colorComponentBackground = "white"
 
-            componentRadius = 4
+            componentRadius = 6
             componentBorderWidth = 2
 
         } else if (themeIndex === ThemeEngine.THEME_MOBILE_DARK) {
@@ -366,6 +370,10 @@ Item {
             colorActionbar = colorGreen
             colorActionbarContent = "white"
             colorActionbarHighlight = "#00a27d"
+
+            colorSidebar                = "#333"
+            colorSidebarContent         = "#ccc"
+            colorSidebarHighlight       = "#555"
 
             colorTabletmenu = "#292929"
             colorTabletmenuContent = "#808080"
@@ -394,7 +402,7 @@ Item {
             colorComponentDown = "#444"
             colorComponentBackground = "#505050"
 
-            componentRadius = 4
+            componentRadius = 6
             componentBorderWidth = 2
 
         } else if (themeIndex === ThemeEngine.THEME_MATERIAL_LIGHT) { /////////
@@ -418,6 +426,10 @@ Item {
             colorActionbar = colorGreen
             colorActionbarContent = "white"
             colorActionbarHighlight = "#00a27d"
+
+            colorSidebar                = "#eee"
+            colorSidebarContent         = "#777"
+            colorSidebarHighlight       = "#ddd"
 
             colorTabletmenu = "#f3f3f3"
             colorTabletmenuContent = "#888"
@@ -446,7 +458,7 @@ Item {
             colorComponentDown = "#eee"
             colorComponentBackground = "white"
 
-            componentRadius = 8
+            componentRadius = 6
             componentBorderWidth = 2
 
         } else if (themeIndex === ThemeEngine.THEME_MATERIAL_DARK) {
@@ -470,6 +482,10 @@ Item {
             colorActionbar = colorGreen
             colorActionbarContent = "white"
             colorActionbarHighlight = "#00a27d"
+
+            colorSidebar                = "#333"
+            colorSidebarContent         = "#ccc"
+            colorSidebarHighlight       = "#555"
 
             colorTabletmenu = "#292929"
             colorTabletmenuContent = "#808080"
@@ -512,8 +528,8 @@ Item {
             isLight = true
             isDark = false
 
-            themeStatusbar = Material.Light
-            colorStatusbar = "#f1f0ef"
+            themeStatusbar              = Material.Light
+            colorStatusbar              = "#f1f0ef"
 
             colorHeader                 = "#f1f0ef"
             colorHeaderContent          = "#444"
@@ -578,8 +594,8 @@ Item {
             isLight = false
             isDark = true
 
-            themeStatusbar = Material.Dark
-            colorStatusbar = "#b16bee"
+            themeStatusbar              = Material.Dark
+            colorStatusbar              = "#b16bee"
 
             colorHeader                 = "#b16bee"
             colorHeaderContent          = "white"
@@ -935,6 +951,7 @@ Item {
 
             themeStatusbar = Material.Dark
             colorStatusbar = "#BBB"
+
             colorHeader =               "#DADADA"
             colorHeaderContent =        "#353637"
             colorHeaderHighlight =      Qt.darker(colorHeader, 1.1)
@@ -1045,9 +1062,9 @@ Item {
             colorHeaderContent =        "#353637"
             colorHeaderHighlight =      Qt.darker(colorHeader, 1.1)
 
-            colorSidebar =              "#2e2e2e"
-            colorSidebarContent =       "white"
-            colorSidebarHighlight =     Qt.darker(colorSidebar, 1.5)
+            colorSidebar                = "#eee"
+            colorSidebarContent         = "#777"
+            colorSidebarHighlight       = "#ddd"
 
             colorActionbar =            "#dadada"
             colorActionbarContent =     "#444"
@@ -1057,8 +1074,8 @@ Item {
             colorTabletmenuContent =    "#9d9d9d"
             colorTabletmenuHighlight =  "#0079fe"
 
-            colorBackground =           "#EEEEEE"
-            colorForeground =           "#E0E0E0"
+            colorBackground =           "#fefefe"
+            colorForeground =           "#e9e9e9"
 
             colorPrimary =              "#ffca28"
             colorSecondary =            "#ffdb28"
@@ -1073,11 +1090,11 @@ Item {
             colorLowContrast =          "white"
             colorHighContrast =         "black"
 
-            colorComponent =            "#DBDBDB"
+            colorComponent =            "#EAEAEA"
             colorComponentText =        "black"
             colorComponentContent =     "black"
-            colorComponentBorder =      "#c1c1c1"
-            colorComponentDown =        "#E4E4E4"
+            colorComponentBorder =      "#DDD"
+            colorComponentDown =        "#E6E6E6"
             colorComponentBackground =  "#FAFAFA"
 
             componentRadius = 4

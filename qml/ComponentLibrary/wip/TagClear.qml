@@ -1,7 +1,7 @@
 import QtQuick
 import ThemeEngine
 
-ItemTagImpl {
+TagImpl {
     property color color: Theme.colorPrimary
 
     colorBackground: Qt.rgba(color.r, color.g, color.b, 0.2)

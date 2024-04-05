@@ -211,6 +211,39 @@ Item {
                 height: 48
                 spacing: 16
 
+                RoundButtonClear {
+                    width: 48
+                    height: 48
+
+                    source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                }
+                RoundButtonFlat {
+                    width: 48
+                    height: 48
+
+                    source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                }
+                RoundButtonDesktop {
+                    width: 48
+                    height: 48
+
+                    source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                }
+            }
+
+            ListTitle { ////////////////////////////////////////////////////////////
+                anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
+                anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
+
+                text: qsTr("Round buttons (legacy)")
+                source: ""
+            }
+
+            Row {
+                anchors.horizontalCenter: parent.horizontalCenter
+                height: 48
+                spacing: 16
+
                 RoundButtonText {
                     width: 48
                     height: 48

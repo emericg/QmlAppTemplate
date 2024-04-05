@@ -11,6 +11,7 @@ Flickable {
     ScrollBar.vertical: ScrollBar { visible: false }
 
     property var savethedate: new Date()
+    property var savethetime: new Date()
 
     Column {
         id: contentColumn
@@ -98,10 +99,10 @@ Flickable {
 
             PopupTime {
                 id: popupTime
-                //onUpdateTime: (newtime) => { savethedate = newtime }
+                onUpdateTime: (newtime) => { savethetime = newtime }
             }
 
-            onClicked: popupTime.openTime(savethedate)
+            onClicked: popupTime.openTime(savethetime)
         }
     }
 }

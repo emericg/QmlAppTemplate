@@ -12,7 +12,7 @@ Popup {
     y: singleColumn ? (appWindow.height - height)
                     : ((appWindow.height / 2) - (height / 2))
 
-    width: singleColumn ? appWindow.width : 720
+    width: singleColumn ? appWindow.width : 560
     padding: 0
     margins: 0
 
@@ -26,7 +26,6 @@ Popup {
 
     //property var locale: Qt.locale()
 
-    property date today: new Date()
     property date initialTime
     property date selectedTime
 
@@ -37,10 +36,10 @@ Popup {
     function openTime(time) {
         console.log("openTime(" + time + ")")
 
-        today = new Date()
-
         initialTime = time
         selectedTime = time
+        tumblerHours.positionViewAtIndex(time.getHours(), Tumbler.Center)
+        tumblerMinutes.positionViewAtIndex(time.getMinutes(), Tumbler.Center)
 
         printTime()
 
@@ -52,7 +51,14 @@ Popup {
         bigDate.text = selectedTime.toLocaleString(locale, "dd MMMM yyyy")
     }
 
+    function resetView() {
+        // TODO
+    }
     function resetTime() {
+        selectedTime = initialTime
+        tumblerHours.positionViewAtIndex(initialTime.getHours(), Tumbler.Center)
+        tumblerMinutes.positionViewAtIndex(initialTime.getMinutes(), Tumbler.Center)
+
         printTime()
     }
 
@@ -92,8 +98,7 @@ Popup {
     contentItem: Column {
         bottomPadding: screenPaddingNavbar + screenPaddingBottom
 
-        Rectangle {
-            id: titleArea
+        Rectangle { // titleArea
             anchors.left: parent.left
             anchors.right: parent.right
 
@@ -131,15 +136,21 @@ Popup {
                 }
             }
 
-            RoundButtonIcon { // reset
+            RoundButtonSunken { // reset time
+                anchors.top: parent.top
+                anchors.topMargin: 12
                 anchors.right: parent.right
-                anchors.rightMargin: 24
-                anchors.verticalCenter: parent.verticalCenter
-                source: "qrc:/assets/icons_material/duotone-restart_alt-24px.svg"
-                iconColor: "white"
-                backgroundColor: Qt.lighter(Theme.colorPrimary, 0.9)
+                anchors.rightMargin: 12
+                anchors.bottom: parent.bottom
+                anchors.bottomMargin: 12
+                width: height
 
                 visible: true
+                source: "qrc:/assets/icons_material/duotone-restart_alt-24px.svg"
+
+                colorBackground: Theme.colorPrimary
+                colorHighlight: Qt.lighter(Theme.colorPrimary, 0.95)
+                colorIcon: "white"
 
                 onClicked: resetTime()
             }
@@ -161,9 +172,10 @@ Popup {
                 anchors.horizontalCenter: parent.horizontalCenter
 
                 TumblerThemed {
+                    id: tumblerHours
                     anchors.verticalCenter: parent.verticalCenter
                     width: 48
-                    height: 128
+                    height: 160
 
                     font.pixelSize: Theme.fontSizeContentVeryBig
 
@@ -179,13 +191,21 @@ Popup {
                 }
 
                 TumblerThemed {
+                    id: tumblerMinutes
                     anchors.verticalCenter: parent.verticalCenter
                     width: 48
-                    height: 128
+                    height: 160
 
                     font.pixelSize: Theme.fontSizeContentVeryBig
 
                     model: 60
+                }
+
+                TumblerThemed {
+                    id: tumblerAmPm
+                    anchors.verticalCenter: parent.verticalCenter
+
+                    model: ["AM", "PM"]
                 }
             }
 
@@ -208,6 +228,9 @@ Popup {
 
                     text: qsTr("Select")
                     onClicked: {
+                        selectedTime.setHours(tumblerHours.currentIndex)
+                        selectedTime.setMinutes(tumblerMinutes.currentIndex)
+
                         updateTime(selectedTime)
                         popupTime.close()
                     }

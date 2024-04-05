@@ -12,7 +12,7 @@ Popup {
     y: singleColumn ? (appWindow.height - height)
                     : ((appWindow.height / 2) - (height / 2))
 
-    width: singleColumn ? appWindow.width : 720
+    width: singleColumn ? appWindow.width : 640
     padding: 0
     margins: 0
 
@@ -80,10 +80,13 @@ Popup {
         isSelectedDateToday = (today.toLocaleString(locale, "dd MMMM yyyy") === selectedDate.toLocaleString(locale, "dd MMMM yyyy"))
     }
 
-    function resetDate() {
+    function resetView() {
         grid.month = today.getMonth()
         grid.year = today.getFullYear()
         printDate()
+    }
+    function resetDate() {
+        selectedDate = initialDate
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -122,8 +125,7 @@ Popup {
     contentItem: Column {
         bottomPadding: screenPaddingNavbar + screenPaddingBottom
 
-        Rectangle {
-            id: titleArea
+        Rectangle { // titleArea
             anchors.left: parent.left
             anchors.right: parent.right
 
@@ -161,17 +163,23 @@ Popup {
                 }
             }
 
-            RoundButtonIcon { // reset
+            RoundButtonSunken { // reset view
+                anchors.top: parent.top
+                anchors.topMargin: 12
                 anchors.right: parent.right
-                anchors.rightMargin: 24
-                anchors.verticalCenter: parent.verticalCenter
-                source: "qrc:/assets/icons_material/duotone-restart_alt-24px.svg"
-                iconColor: "white"
-                backgroundColor: Qt.lighter(Theme.colorPrimary, 0.9)
+                anchors.rightMargin: 12
+                anchors.bottom: parent.bottom
+                anchors.bottomMargin: 12
+                width: height
 
                 visible: !(grid.year === today.getFullYear() && grid.month === today.getMonth())
+                source: "qrc:/assets/icons_material/duotone-restart_alt-24px.svg"
 
-                onClicked: resetDate()
+                colorBackground: Theme.colorPrimary
+                colorHighlight: Qt.lighter(Theme.colorPrimary, 0.95)
+                colorIcon: "white"
+
+                onClicked: resetView()
             }
         }
 
@@ -186,17 +194,21 @@ Popup {
 
             ////////
 
-            Rectangle {
+            Rectangle { // month selector
                 height: 48
                 anchors.left: parent.left
                 anchors.right: parent.right
-                color: "#66dddddd"
+                anchors.margins: singleColumn ? 0 : Theme.componentBorderWidth
 
-                RoundButtonIcon {
-                    width: 48; height: 48;
+                color: "#eee"
+
+                RoundButtonSunken { // previous month
                     anchors.left: parent.left
                     anchors.verticalCenter: parent.verticalCenter
+                    width: 48; height: 48;
+
                     source: "qrc:/assets/icons_material/baseline-chevron_left-24px.svg"
+                    colorBackground: parent.color
 
                     onClicked: {
                         if (grid.month > 0) {
@@ -208,6 +220,7 @@ Popup {
                         printDate()
                     }
                 }
+
                 Text {
                     id: bigMonth
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -217,11 +230,14 @@ Popup {
                     font.pixelSize: Theme.fontSizeContentBig
                     color: Theme.colorText
                 }
-                RoundButtonIcon {
+
+                RoundButtonSunken { // next month
                     anchors.right: parent.right
-                    width: 48; height: 48;
                     anchors.verticalCenter: parent.verticalCenter
+                    width: 48; height: 48;
+
                     source: "qrc:/assets/icons_material/baseline-chevron_right-24px.svg"
+                    colorBackground: parent.color
 
                     onClicked: {
                         if (grid.month < 11) {

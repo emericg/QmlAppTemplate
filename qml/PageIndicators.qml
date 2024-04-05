@@ -156,13 +156,13 @@ Flickable {
             Row {
                 spacing: 8
 
-                ItemTagButton {
-                    text: "TAG3"
+                TagButtonClear {
+                    text: "TAG"
                     //color: Theme.colorForeground
                 }
 
-                ItemTagButton {
-                    text: "TAG4"
+                TagButtonFlat {
+                    text: "TAG"
                     //color: Theme.colorForeground
                 }
             }

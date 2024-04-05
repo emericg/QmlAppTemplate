@@ -244,7 +244,7 @@ Loader {
                     anchors.verticalCenter: dependenciesText.verticalCenter
 
                     source: "qrc:/assets/icons_material/baseline-settings-20px.svg"
-                    color: Theme.colorIcon
+                    color: Theme.colorSubText
                 }
 
                 Text {
@@ -313,7 +313,7 @@ Loader {
                     anchors.verticalCenter: translatorsText.verticalCenter
 
                     source: "qrc:/assets/icons_material/duotone-translate-24px.svg"
-                    color: Theme.colorIcon
+                    color: Theme.colorSubText
                 }
 
                 Text {

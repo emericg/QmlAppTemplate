@@ -1,7 +1,7 @@
 import QtQuick
 import ThemeEngine
 
-ItemTagImpl {
+TagButtonImpl {
     property color color: Theme.colorPrimary
 
     colorBackground: color

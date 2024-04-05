@@ -38,29 +38,29 @@ Rectangle {
         target: null
     }
 
-    RoundButtonIcon {
-        id: buttonBack
+    RoundButtonSunken { // buttonBack
+        anchors.top: parent.top
+        anchors.topMargin: 8
         anchors.left: parent.left
         anchors.leftMargin: 12
-        anchors.verticalCenter: parent.verticalCenter
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 8
+        width: height
 
-        enabled: (buttonBack.source !== "qrc:/assets/icons_material/baseline-arrow_back-24px.svg" || wideMode)
+        enabled: (source !== "qrc:/assets/icons_material/baseline-arrow_back-24px.svg" || wideMode)
         visible: enabled
 
+        colorBackground: Theme.colorHeader
+        colorHighlight: Theme.colorHeaderHighlight
+        colorIcon: Theme.colorHeaderContent
+
         source: "qrc:/assets/icons_material/baseline-arrow_back-24px.svg"
-        iconColor: Theme.colorHeaderContent
-        backgroundColor: Theme.colorHeaderHighlight
-
-        //hoverEnabled: (buttonBack.source !== "qrc:/assets/icons_material/baseline-arrow_back-24px.svg")
-        //onPressed: buttonBack.width = 20
-        //onReleased: buttonBack.width = 24
-
         onClicked: backButtonClicked()
     }
 
     Text { // title
         anchors.left: parent.left
-        anchors.leftMargin: 64
+        anchors.leftMargin: 72
         anchors.verticalCenter: parent.verticalCenter
 
         visible: wideMode
@@ -72,8 +72,7 @@ Rectangle {
 
     ////////////////////////////////////////////////////////////////////////////
 
-    Row {
-        id: menus
+    Row { // menus
         anchors.top: parent.top
         anchors.right: parent.right
         anchors.bottom: parent.bottom
@@ -129,14 +128,16 @@ Rectangle {
 
             ////////////
 
-            RoundButtonIcon {
-                id: buttonMenu
-                anchors.verticalCenter: parent.verticalCenter
+            RoundButtonSunken { //  buttonMenu
+                anchors.top: parent.top
+                anchors.bottom: parent.bottom
+                width: height
+
+                colorBackground: Theme.colorHeader
+                colorHighlight: Theme.colorHeaderHighlight
+                colorIcon: Theme.colorHeaderContent
 
                 source: "qrc:/assets/icons_material/baseline-more_vert-24px.svg"
-                iconColor: Theme.colorHeaderContent
-                backgroundColor: Theme.colorHeaderHighlight
-
                 onClicked: actionMenu.open()
 
                 ActionMenu_floating {

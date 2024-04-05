@@ -70,7 +70,7 @@ Item {
                     height: 24
                     spacing: 16
 
-                    RoundButtonIcon {
+                    RoundButtonFlat {
                         id: button_location_test
                         width: 32
                         height: 32
@@ -79,9 +79,8 @@ Item {
                         property bool validperm: false
 
                         source: (validperm) ? "qrc:/assets/icons_material/baseline-check-24px.svg" : "qrc:/assets/icons_material/baseline-close-24px.svg"
-                        iconColor: (validperm) ? "white" : "white"
-                        backgroundColor: (validperm) ? Theme.colorPrimary : Theme.colorSubText
-                        backgroundVisible: true
+                        color: (validperm) ? Theme.colorPrimary : Theme.colorSubText
+                        colorIcon: (validperm) ? "white" : "white"
 
                         onClicked: {
                             utilsApp.vibrate(25)
@@ -148,7 +147,7 @@ Item {
                     height: 24
                     spacing: 16
 
-                    RoundButtonIcon {
+                    RoundButtonFlat {
                         id: button_gps_test
                         width: 32
                         height: 32
@@ -157,9 +156,8 @@ Item {
                         property bool validperm: false
 
                         source: (validperm) ? "qrc:/assets/icons_material/baseline-check-24px.svg" : "qrc:/assets/icons_material/baseline-close-24px.svg"
-                        iconColor: (validperm) ? "white" : "white"
-                        backgroundColor: (validperm) ? Theme.colorPrimary : Theme.colorSubText
-                        backgroundVisible: true
+                        color: (validperm) ? Theme.colorPrimary : Theme.colorSubText
+                        colorIcon: (validperm) ? "white" : "white"
 
                         onClicked: {
                             utilsApp.vibrate(25)
@@ -225,7 +223,7 @@ Item {
                     height: 24
                     spacing: 16
 
-                    RoundButtonIcon {
+                    RoundButtonFlat {
                         id: button_bluetooth_test
                         width: 32
                         height: 32
@@ -234,9 +232,8 @@ Item {
                         property bool validperm: true
 
                         source: (validperm) ? "qrc:/assets/icons_material/baseline-check-24px.svg" : "qrc:/assets/icons_material/baseline-close-24px.svg"
-                        iconColor: (validperm) ? "white" : "white"
-                        backgroundColor: (validperm) ? Theme.colorPrimary : Theme.colorSubText
-                        backgroundVisible: true
+                        color: (validperm) ? Theme.colorPrimary : Theme.colorSubText
+                        colorIcon: (validperm) ? "white" : "white"
                     }
 
                     Text {

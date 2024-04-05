@@ -14,7 +14,6 @@ T.Control {
 
     leftPadding: 8
     rightPadding: 8
-    spacing: 6
 
     // settings
     font.pixelSize: Theme.componentFontSize
@@ -32,7 +31,7 @@ T.Control {
 
     background: Rectangle {
         implicitWidth: 48
-        implicitHeight: 24
+        implicitHeight: 26
 
         radius: Theme.componentRadius
         color: control.colorBackground

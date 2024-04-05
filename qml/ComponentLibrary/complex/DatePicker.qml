@@ -6,6 +6,7 @@ import ThemeEngine
 
 Item {
     id: datePicker
+
     implicitWidth: 320
     implicitHeight: 480
 
@@ -30,13 +31,13 @@ Item {
         //console.log("openDate(" + date + ")")
 
         today = new Date()
+        minDate = null
+        maxDate = null
+
         initialDate = date
         selectedDate = date
         grid.year = date.getFullYear()
         grid.month = date.getMonth()
-
-        minDate = null
-        maxDate = null
 
         printDate()
     }
@@ -90,11 +91,13 @@ Item {
                 color: parent.color
             }
 
-            RoundButtonIcon {
-                width: 48; height: 48;
+            RoundButtonSunken { // previous month
                 anchors.left: parent.left
                 anchors.verticalCenter: parent.verticalCenter
+                width: 48; height: 48;
+
                 source: "qrc:/assets/icons_material/baseline-chevron_left-24px.svg"
+                colorBackground: parent.color
 
                 onClicked: {
                     if (grid.month > 0) {
@@ -106,6 +109,7 @@ Item {
                     printDate()
                 }
             }
+
             Text {
                 id: bigMonth
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -116,11 +120,14 @@ Item {
                 font.pixelSize: Theme.fontSizeContentBig
                 color: Theme.colorText
             }
-            RoundButtonIcon {
+
+            RoundButtonSunken { // next month
                 anchors.right: parent.right
-                width: 48; height: 48;
                 anchors.verticalCenter: parent.verticalCenter
+                width: 48; height: 48;
+
                 source: "qrc:/assets/icons_material/baseline-chevron_right-24px.svg"
+                colorBackground: parent.color
 
                 onClicked: {
                     if (grid.month < 11) {
