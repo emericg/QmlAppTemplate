@@ -4,6 +4,7 @@ import ThemeEngine
 
 Rectangle {
     id: appHeader
+
     anchors.top: parent.top
     anchors.left: parent.left
     anchors.right: parent.right
@@ -40,14 +41,14 @@ Rectangle {
         id: actionMenu
 
         titleTxt: "ActionMenu"
-        //titleSrc: "qrc:/assets/icons_material/baseline-chevron_left-24px.svg"
+        //titleSrc: "qrc:/assets/icons/material-symbols/chevron_left.svg"
 
         model: ListModel {
             id: lmActionMenu
-            ListElement { t: "itm"; idx: 1; txt: "Action 1"; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; }
-            ListElement { t: "itm"; idx: 2; txt: "Action 2"; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; }
+            ListElement { t: "itm"; idx: 1; txt: "Action 1"; src: "qrc:/assets/icons/material-symbols/accessibility.svg"; }
+            ListElement { t: "itm"; idx: 2; txt: "Action 2"; src: "qrc:/assets/icons/material-symbols/accessibility.svg"; }
             ListElement { t: "sep"; }
-            ListElement { t: "itm"; idx: 3; txt: "Action 3"; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; }
+            ListElement { t: "itm"; idx: 3; txt: "Action 3"; src: "qrc:/assets/icons/material-symbols/accessibility.svg"; }
         }
 
         onMenuSelected: (index) => {
@@ -97,7 +98,7 @@ Rectangle {
 
                     pressed: parent.pressed
                     //active: enabled && parent.containsPress
-                    color: Qt.rgba(Theme.colorForeground.r, Theme.colorForeground.g, Theme.colorForeground.b, 0.33)
+                    color: Qt.rgba(Theme.colorHeaderHighlight.r, Theme.colorHeaderHighlight.g, Theme.colorHeaderHighlight.b, 0.33)
                 }
 
                 IconSvg {
@@ -106,9 +107,9 @@ Rectangle {
                     height: (headerHeight / 2)
 
                     source: {
-                        if (leftMenuMode === "drawer") return "qrc:/assets/icons_material/baseline-menu-24px.svg"
-                        if (leftMenuMode === "close") return "qrc:/assets/icons_material/baseline-close-24px.svg"
-                        return "qrc:/assets/icons_material/baseline-arrow_back-24px.svg"
+                        if (leftMenuMode === "drawer") return "qrc:/assets/icons/material-symbols/menu.svg"
+                        if (leftMenuMode === "close") return "qrc:/assets/icons/material-symbols/close.svg"
+                        return "qrc:/assets/icons/material-symbols/arrow_back.svg"
                     }
                     color: Theme.colorHeaderContent
                 }
@@ -159,7 +160,7 @@ Rectangle {
                     width: 24
                     height: 24
 
-                    source: "qrc:/assets/icons_material/baseline-autorenew-24px.svg"
+                    source: "qrc:/assets/icons/material-symbols/autorenew.svg"
                     color: Theme.colorHeaderContent
                     opacity: 0
                     Behavior on opacity { OpacityAnimator { duration: 333 } }
@@ -204,7 +205,7 @@ Rectangle {
 
                     pressed: parent.pressed
                     //active: enabled && parent.containsPress
-                    color: Qt.rgba(Theme.colorForeground.r, Theme.colorForeground.g, Theme.colorForeground.b, 0.33)
+                    color: Qt.rgba(Theme.colorHeaderHighlight.r, Theme.colorHeaderHighlight.g, Theme.colorHeaderHighlight.b, 0.33)
                 }
 
                 IconSvg {
@@ -212,7 +213,7 @@ Rectangle {
                     width: (headerHeight / 2)
                     height: (headerHeight / 2)
 
-                    source: "qrc:/assets/icons_material/baseline-more_vert-24px.svg"
+                    source: "qrc:/assets/icons/material-symbols/more_vert.svg"
                     color: Theme.colorHeaderContent
                 }
             }

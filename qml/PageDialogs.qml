@@ -38,7 +38,7 @@ Flickable {
             anchors.rightMargin: Theme.componentMarginXL
 
             text: "Message"
-            source: "qrc:/assets/icons_material/baseline-delete-24px.svg"
+            source: "qrc:/assets/icons/material-symbols/delete.svg"
 
             PopupMessage {
                 id: popupMessage
@@ -54,7 +54,7 @@ Flickable {
             anchors.rightMargin: Theme.componentMarginXL
 
             text: "Choice"
-            source: "qrc:/assets/icons_material/baseline-delete-24px.svg"
+            source: "qrc:/assets/icons/material-symbols/delete.svg"
 
             PopupChoice {
                 id: popupChoice
@@ -78,7 +78,7 @@ Flickable {
             anchors.rightMargin: Theme.componentMarginXL
 
             text: "Date"
-            source: "qrc:/assets/icons_material/duotone-date_range-24px.svg"
+            source: "qrc:/assets/icons/material-icons/duotone/date_range.svg"
 
             PopupDate {
                 id: popupDate
@@ -95,7 +95,7 @@ Flickable {
             anchors.rightMargin: Theme.componentMarginXL
 
             text: "Time"
-            source: "qrc:/assets/icons_material/duotone-schedule-24px.svg"
+            source: "qrc:/assets/icons/material-icons/duotone/schedule.svg"
 
             PopupTime {
                 id: popupTime

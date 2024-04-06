@@ -75,7 +75,7 @@ Item {
                 colorHighlight: Theme.colorTabletmenuHighlight
 
                 text: qsTr("Components")
-                source: "qrc:/assets/icons_material/duotone-touch_app-24px.svg"
+                source: "qrc:/assets/icons/material-icons/duotone/touch_app.svg"
                 highlighted: (appContent.state === "MobileComponents")
                 onClicked: screenMobileComponents.loadScreen()
             }
@@ -89,7 +89,7 @@ Item {
                 colorHighlight: Theme.colorTabletmenuHighlight
 
                 text: qsTr("Settings")
-                source: "qrc:/assets/icons_material/baseline-settings-20px.svg"
+                source: "qrc:/assets/icons/material-symbols/settings-fill.svg"
                 highlighted: (appContent.state === "Settings")
                 onClicked: screenSettings.loadScreen()
             }
@@ -103,7 +103,7 @@ Item {
                 colorHighlight: Theme.colorTabletmenuHighlight
 
                 text: qsTr("About")
-                source: "qrc:/assets/icons_material/outline-info-24px.svg"
+                source: "qrc:/assets/icons/material-symbols/info-fill.svg"
                 highlighted: (appContent.state === "About" || appContent.state === "AboutPermissions")
                 onClicked: screenAbout.loadScreen()
             }

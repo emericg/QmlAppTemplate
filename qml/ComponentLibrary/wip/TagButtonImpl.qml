@@ -21,7 +21,7 @@ T.Button {
     font.pixelSize: Theme.componentFontSize
 
     // icon
-    property url source: "qrc:/assets/icons_material/baseline-add-24px.svg"
+    property url source: "qrc:/assets/icons/material-symbols/add.svg"
     property int sourceSize: 16
 
     // colors

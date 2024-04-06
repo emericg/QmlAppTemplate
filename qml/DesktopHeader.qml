@@ -47,14 +47,14 @@ Rectangle {
         anchors.bottomMargin: 8
         width: height
 
-        enabled: (source !== "qrc:/assets/icons_material/baseline-arrow_back-24px.svg" || wideMode)
+        enabled: (source !== "qrc:/assets/icons/material-symbols/arrow_back.svg" || wideMode)
         visible: enabled
 
         colorBackground: Theme.colorHeader
         colorHighlight: Theme.colorHeaderHighlight
         colorIcon: Theme.colorHeaderContent
 
-        source: "qrc:/assets/icons_material/baseline-arrow_back-24px.svg"
+        source: "qrc:/assets/icons/material-symbols/arrow_back.svg"
         onClicked: backButtonClicked()
     }
 
@@ -94,7 +94,7 @@ Rectangle {
                 anchors.verticalCenter: parent.verticalCenter
                 width: 180
 
-                source: "qrc:/assets/icons_material/baseline-autorenew-24px.svg"
+                source: "qrc:/assets/icons/material-symbols/autorenew.svg"
                 text: qsTr("Animate this")
 
                 color: Theme.colorHeaderHighlight
@@ -137,7 +137,7 @@ Rectangle {
                 colorHighlight: Theme.colorHeaderHighlight
                 colorIcon: Theme.colorHeaderContent
 
-                source: "qrc:/assets/icons_material/baseline-more_vert-24px.svg"
+                source: "qrc:/assets/icons/material-symbols/more_vert.svg"
                 onClicked: actionMenu.open()
 
                 ActionMenu_floating {
@@ -145,14 +145,14 @@ Rectangle {
                     width: 240
 
                     titleTxt: "back"
-                    titleSrc: "qrc:/assets/icons_material/baseline-chevron_left-24px.svg"
+                    titleSrc: "qrc:/assets/icons/material-symbols/chevron_left.svg"
 
                     model: ListModel {
                         id: lmActionMenu
-                        ListElement { t: "itm"; idx: 1; txt: "Action 1"; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; }
-                        ListElement { t: "itm"; idx: 2; txt: "Action 2"; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; }
+                        ListElement { t: "itm"; idx: 1; txt: "Action 1"; src: "qrc:/assets/icons/material-symbols/accessibility.svg"; }
+                        ListElement { t: "itm"; idx: 2; txt: "Action 2"; src: "qrc:/assets/icons/material-symbols/accessibility.svg"; }
                         ListElement { t: "sep"; }
-                        ListElement { t: "itm"; idx: 3; txt: "Action 3"; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; }
+                        ListElement { t: "itm"; idx: 3; txt: "Action 3"; src: "qrc:/assets/icons/material-symbols/accessibility.svg"; }
                     }
 
                     onMenuSelected: (index) => {
@@ -186,7 +186,7 @@ Rectangle {
                 highlightMode: "background"
 
                 highlighted: (appContent.state === "DesktopComponents")
-                source: "qrc:/assets/icons_material/duotone-touch_app-24px.svg"
+                source: "qrc:/assets/icons/material-icons/duotone/touch_app.svg"
                 onClicked: menuComponentsClicked()
             }
             DesktopHeaderItem {
@@ -198,7 +198,7 @@ Rectangle {
                 highlightMode: "background"
 
                 highlighted: (appContent.state === "Settings")
-                source: "qrc:/assets/icons_material/duotone-tune-24px.svg"
+                source: "qrc:/assets/icons/material-icons/duotone/tune.svg"
                 onClicked: menuSettingsClicked()
             }
             DesktopHeaderItem {
@@ -210,7 +210,7 @@ Rectangle {
                 highlightMode: "background"
 
                 highlighted: (appContent.state === "About")
-                source: "qrc:/assets/icons_material/duotone-info-24px.svg"
+                source: "qrc:/assets/icons/material-icons/duotone/info.svg"
                 onClicked: menuAboutClicked()
             }
         }

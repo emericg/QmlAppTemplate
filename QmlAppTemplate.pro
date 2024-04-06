@@ -41,6 +41,7 @@ INCLUDEPATH += src/ src/thirdparty/
 RESOURCES   += qml/ComponentLibrary/ComponentLibrary.qrc \
                qml/qml.qrc \
                assets/assets.qrc \
+               assets/icons.qrc \
                i18n/i18n.qrc
 
 OTHER_FILES += README.md \

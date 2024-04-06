@@ -229,7 +229,7 @@ Item {
                 color: Theme.colorRed
                 opacity: (control.warning && control.value > -20 && control.value < control.limitMin) ? 1 : 0
                 Behavior on opacity { OpacityAnimator { duration: control.animated ? 333 : 0 } }
-                source: "qrc:/assets/icons_material/baseline-warning-24px.svg"
+                source: "qrc:/assets/icons/material-symbols/warning-fill.svg"
             }
 
             ////////

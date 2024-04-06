@@ -14,13 +14,13 @@ Item {
 
         ButtonFab {
             anchors.right: parent.right
-            source: "qrc:/assets/icons_material/baseline-add-24px.svg"
+            source: "qrc:/assets/icons/material-symbols/add.svg"
         }
 
         ButtonFabExtended {
             anchors.right: parent.right
             text: "Extended FAB"
-            source: "qrc:/assets/icons_material/baseline-add-24px.svg"
+            source: "qrc:/assets/icons/material-symbols/add.svg"
         }
     }
 
@@ -65,7 +65,7 @@ Item {
 
                 ButtonClear {
                     text: "ButtonClear"
-                    source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                    source: "qrc:/assets/icons/material-symbols/accessibility.svg"
                     color: Theme.colorMaterialBlue
                 }
             }
@@ -84,7 +84,7 @@ Item {
 
                 ButtonOutline {
                     text: "ButtonOutline"
-                    source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                    source: "qrc:/assets/icons/material-symbols/accessibility.svg"
                     color: Theme.colorMaterialLightBlue
                 }
             }
@@ -103,7 +103,7 @@ Item {
 
                 ButtonFlat {
                     text: "ButtonFlat"
-                    source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                    source: "qrc:/assets/icons/material-symbols/accessibility.svg"
                     color: Theme.colorMaterialBlue
                 }
             }
@@ -121,7 +121,7 @@ Item {
 
                 ButtonSolid {
                     text: "ButtonSolid"
-                    source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                    source: "qrc:/assets/icons/material-symbols/accessibility.svg"
                 }
             }
 
@@ -139,7 +139,7 @@ Item {
                 ButtonWireframe {
                     //width: 128
                     text: "ButtonWireframe"
-                    source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                    source: "qrc:/assets/icons/material-symbols/accessibility.svg"
                 }
             }
 
@@ -164,8 +164,8 @@ Item {
 
                 ButtonChip {
                     text: "ButtonChip"
-                    leftIcon: "qrc:/assets/icons_material/baseline-supervised_user_circle-24px.svg"
-                    rightIcon: "qrc:/assets/icons_material/baseline-close-24px.svg"
+                    leftIcon: "qrc:/assets/icons/material-symbols/supervised_user_circle.svg"
+                    rightIcon: "qrc:/assets/icons/material-symbols/close.svg"
                 }
             }
 
@@ -182,7 +182,7 @@ Item {
 
                 AndroidButtonIcon {
                     text: "AndroidButtonIcon"
-                    source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                    source: "qrc:/assets/icons/material-symbols/accessibility.svg"
                 }
             }
 
@@ -215,19 +215,19 @@ Item {
                     width: 48
                     height: 48
 
-                    source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                    source: "qrc:/assets/icons/material-symbols/accessibility.svg"
                 }
                 RoundButtonFlat {
                     width: 48
                     height: 48
 
-                    source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                    source: "qrc:/assets/icons/material-symbols/accessibility.svg"
                 }
                 RoundButtonDesktop {
                     width: 48
                     height: 48
 
-                    source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                    source: "qrc:/assets/icons/material-symbols/accessibility.svg"
                 }
             }
 
@@ -276,16 +276,16 @@ Item {
                 spacing: 16
 
                 RoundButtonIcon {
-                    source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                    source: "qrc:/assets/icons/material-symbols/accessibility.svg"
                     highlightMode: "color"
                 }
                 RoundButtonIcon {
-                    source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                    source: "qrc:/assets/icons/material-symbols/accessibility.svg"
                     highlightMode: "circle"
                     backgroundVisible: true
                 }
                 RoundButtonIcon {
-                    source: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"
+                    source: "qrc:/assets/icons/material-symbols/accessibility.svg"
                     highlightMode: "color"
                     highlightColor: Theme.colorError
 

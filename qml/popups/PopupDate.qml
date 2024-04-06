@@ -173,7 +173,7 @@ Popup {
                 width: height
 
                 visible: !(grid.year === today.getFullYear() && grid.month === today.getMonth())
-                source: "qrc:/assets/icons_material/duotone-restart_alt-24px.svg"
+                source: "qrc:/assets/icons/material-icons/duotone/restart_alt.svg"
 
                 colorBackground: Theme.colorPrimary
                 colorHighlight: Qt.lighter(Theme.colorPrimary, 0.95)
@@ -207,7 +207,7 @@ Popup {
                     anchors.verticalCenter: parent.verticalCenter
                     width: 48; height: 48;
 
-                    source: "qrc:/assets/icons_material/baseline-chevron_left-24px.svg"
+                    source: "qrc:/assets/icons/material-symbols/chevron_left.svg"
                     colorBackground: parent.color
 
                     onClicked: {
@@ -236,7 +236,7 @@ Popup {
                     anchors.verticalCenter: parent.verticalCenter
                     width: 48; height: 48;
 
-                    source: "qrc:/assets/icons_material/baseline-chevron_right-24px.svg"
+                    source: "qrc:/assets/icons/material-symbols/chevron_right.svg"
                     colorBackground: parent.color
 
                     onClicked: {

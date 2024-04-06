@@ -30,15 +30,15 @@ Flickable {
         }
         ListModel {
             id: lmSelectorMenuImg
-            ListElement { idx: 1; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; sz: 20; }
-            ListElement { idx: 2; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; sz: 26; }
-            ListElement { idx: 3; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; sz: 32; }
+            ListElement { idx: 1; src: "qrc:/assets/icons/material-symbols/accessibility.svg"; sz: 20; }
+            ListElement { idx: 2; src: "qrc:/assets/icons/material-symbols/accessibility.svg"; sz: 26; }
+            ListElement { idx: 3; src: "qrc:/assets/icons/material-symbols/accessibility.svg"; sz: 32; }
         }
         ListModel {
             id: lmSelectorMenuImgTxt
-            ListElement { idx: 1; txt: "4/3"; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; sz: 20; }
-            ListElement { idx: 2; txt: "16/9"; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; sz: 26; }
-            ListElement { idx: 3; txt: "21/9"; src: "qrc:/assets/icons_material/baseline-accessibility-24px.svg"; sz: 32; }
+            ListElement { idx: 1; txt: "4/3"; src: "qrc:/assets/icons/material-symbols/accessibility.svg"; sz: 20; }
+            ListElement { idx: 2; txt: "16/9"; src: "qrc:/assets/icons/material-symbols/accessibility.svg"; sz: 26; }
+            ListElement { idx: 3; txt: "21/9"; src: "qrc:/assets/icons/material-symbols/accessibility.svg"; sz: 32; }
         }
 
         ////

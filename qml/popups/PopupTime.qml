@@ -146,7 +146,7 @@ Popup {
                 width: height
 
                 visible: true
-                source: "qrc:/assets/icons_material/duotone-restart_alt-24px.svg"
+                source: "qrc:/assets/icons/material-icons/duotone/restart_alt.svg"
 
                 colorBackground: Theme.colorPrimary
                 colorHighlight: Qt.lighter(Theme.colorPrimary, 0.95)

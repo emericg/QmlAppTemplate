@@ -37,7 +37,7 @@ Rectangle {
         anchors.right: parent.right
 
         DesktopSidebarItem {
-            source: "qrc:/assets/icons_material/duotone-touch_app-24px.svg"
+            source: "qrc:/assets/icons/material-icons/duotone/touch_app.svg"
             sourceSize: 40
             highlightMode: "indicator"
 
@@ -45,7 +45,7 @@ Rectangle {
             onClicked: screenDesktopComponents.loadScreen()
         }
         DesktopSidebarItem {
-            source: "qrc:/assets/icons_material/duotone-touch_app-24px.svg"
+            source: "qrc:/assets/icons/material-icons/duotone/touch_app.svg"
             sourceSize: 40
             highlightMode: "indicator"
 
@@ -53,7 +53,7 @@ Rectangle {
             onClicked: screenMobileComponents.loadScreen()
         }
         DesktopSidebarItem {
-            source: "qrc:/assets/icons_material/duotone-memory-24px.svg"
+            source: "qrc:/assets/icons/material-icons/duotone/memory.svg"
             sourceSize: 40
             highlightMode: "indicator"
 
@@ -61,7 +61,7 @@ Rectangle {
             onClicked: screenHostInfos.loadScreen()
         }
         DesktopSidebarItem {
-            source: "qrc:/assets/icons_material/duotone-format_size-24px.svg"
+            source: "qrc:/assets/icons/material-icons/duotone/format_size.svg"
             sourceSize: 40
             highlightMode: "indicator"
 
@@ -79,7 +79,7 @@ Rectangle {
         anchors.bottomMargin: 12
 
         DesktopSidebarItem {
-            source: "qrc:/assets/icons_material/duotone-tune-24px.svg"
+            source: "qrc:/assets/icons/material-icons/duotone/tune.svg"
             sourceSize: 40
             highlightMode: "indicator"
 
@@ -88,7 +88,7 @@ Rectangle {
         }
 
         DesktopSidebarItem {
-            source: "qrc:/assets/icons_material/duotone-info-24px.svg"
+            source: "qrc:/assets/icons/material-icons/duotone/info.svg"
             sourceSize: 40
             highlightMode: "indicator"
 
@@ -97,7 +97,7 @@ Rectangle {
         }
 
         DesktopSidebarItem {
-            source: "qrc:/assets/icons_material/duotone-exit_to_app-24px.svg"
+            source: "qrc:/assets/icons/material-icons/duotone/exit_to_app.svg"
             sourceSize: 40
             highlightMode: "circle"
 

@@ -305,7 +305,7 @@ Item {
             isDark = false
 
             themeStatusbar = Material.Light
-            colorStatusbar = colorMaterialDarkGrey
+            colorStatusbar = "#eeeeee"
 
             colorHeader = "#eeeeee"
             colorHeaderContent = "#ff7b36"
