@@ -558,7 +558,7 @@ Loader {
 
                     Column {
                         Text {
-                            text: qsTr("Network:")
+                            text: qsTr("WiFi SSID:")
                             textFormat: Text.PlainText
                             color: Theme.colorSubText
                             font.bold: true

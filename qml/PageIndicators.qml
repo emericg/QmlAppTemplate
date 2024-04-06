@@ -186,27 +186,27 @@ Flickable {
                 anchors.right: parent.right
                 spacing: Theme.componentMargin
 
-                ItemTagClear {
+                TagClear {
                     text: "tag"
                     color: Theme.colorMaterialGreen
                 }
 
-                ItemTagClear {
+                TagClear {
                     text: "tag"
                     color: Theme.colorMaterialBlue
                 }
 
-                ItemTagClear {
+                TagClear {
                     text: "tag"
                     color: Theme.colorMaterialRed
                 }
 
-                ItemTagClear {
+                TagClear {
                     text: "tag"
                     color: Theme.colorMaterialDeepPurple
                 }
 
-                ItemTagClear {
+                TagClear {
                     text: "tag"
                     color: Theme.colorMaterialGrey
                 }
@@ -217,27 +217,27 @@ Flickable {
                 anchors.right: parent.right
                 spacing: Theme.componentMargin
 
-                ItemTagFlat {
+                TagFlat {
                     text: "tag"
                     color: Theme.colorMaterialGreen
                 }
 
-                ItemTagFlat {
+                TagFlat {
                     text: "tag"
                     color: Theme.colorMaterialBlue
                 }
 
-                ItemTagFlat {
+                TagFlat {
                     text: "tag"
                     color: Theme.colorMaterialRed
                 }
 
-                ItemTagFlat {
+                TagFlat {
                     text: "tag"
                     color: Theme.colorMaterialDeepPurple
                 }
 
-                ItemTagFlat {
+                TagFlat {
                     text: "tag"
                     color: Theme.colorMaterialGrey
                 }
@@ -248,19 +248,19 @@ Flickable {
                 anchors.right: parent.right
                 spacing: Theme.componentMargin
 
-                ItemTagDesktop {
+                TagDesktop {
                     text: "tag"
                 }
 
-                ItemTagDesktop {
+                TagDesktop {
                     text: "TAG"
                 }
 
-                ItemTagDesktop {
+                TagDesktop {
                     text: "rgehetqthshrts"
                 }
 
-                ItemTagDesktop {
+                TagDesktop {
                     width: 64
                     text: "rgehetqthshrts"
                 }
