@@ -55,7 +55,7 @@ T.Switch {
                 radius: (width / 2)
                 color: parent.color
                 opacity: enabled && (control.pressed || control.hovered) ? 0.2 : 0
-                Behavior on opacity { NumberAnimation { duration: 233 } }
+                Behavior on opacity { NumberAnimation { duration: 133 } }
             }
         }
     }

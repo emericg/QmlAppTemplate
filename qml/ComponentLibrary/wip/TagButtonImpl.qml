@@ -58,7 +58,7 @@ T.Button {
                     return control.colorBackground
                 }
                 opacity: (mousearea.containsMouse) ? 1 : 0
-                Behavior on opacity { NumberAnimation { duration: 233 } }
+                Behavior on opacity { NumberAnimation { duration: 133 } }
             }
 
             Rectangle { // vertical separator

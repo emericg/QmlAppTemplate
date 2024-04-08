@@ -52,7 +52,7 @@ T.Switch {
                 radius: (width / 2)
                 color: parent.color
                 opacity: (control.pressed) ? 0.2 : 0
-                Behavior on opacity { NumberAnimation { duration: 233 } }
+                Behavior on opacity { NumberAnimation { duration: 133 } }
             }
         }
     }

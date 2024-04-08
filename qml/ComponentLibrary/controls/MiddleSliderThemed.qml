@@ -69,7 +69,7 @@ T.Slider {
                 radius: width
                 color: Theme.colorPrimary
                 opacity: (control.pressed || parent.containsMouse) ? 0.2 : 0
-                Behavior on opacity { NumberAnimation { duration: 233 } }
+                Behavior on opacity { NumberAnimation { duration: 133 } }
             }
         }
     }

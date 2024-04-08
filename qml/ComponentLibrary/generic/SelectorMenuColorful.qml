@@ -11,7 +11,8 @@ Item {
 
     opacity: enabled ? 1 : 0.66
 
-    property var model: null
+    // settings
+    property bool readOnly: false
 
     // colors
     property color colorBackground: Theme.colorComponentBackground
@@ -19,6 +20,9 @@ Item {
     // states
     property int currentSelection: 1
     signal menuSelected(var index)
+
+    // model
+    property var model: null
 
     ////////////////
 
@@ -36,13 +40,13 @@ Item {
 
     Row {
         id: contentRow
-        height: parent.height
         spacing: -4
 
         Repeater {
             model: selectorMenu.model
             delegate: SelectorMenuColorfulItem {
-                height: parent.height
+                height: selectorMenu.height
+                readOnly: selectorMenu.readOnly
                 highlighted: (selectorMenu.currentSelection === idx)
                 index: idx ?? 0
                 text: txt ?? ""

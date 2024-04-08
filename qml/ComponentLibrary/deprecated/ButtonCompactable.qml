@@ -92,7 +92,7 @@ T.Button {
         color: control.backgroundColor
 
         //opacity: ( mouseArea.containsMouse) ? 1 : 0
-        Behavior on opacity { NumberAnimation { duration: 333 } }
+        Behavior on opacity { NumberAnimation { duration: 233 } }
 
         Rectangle {
             id: mouseBackground

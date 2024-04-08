@@ -121,7 +121,7 @@ Item {
     property color colorBlue: "#4cafe9"
     property color colorYellow: "#ffcf00"
     property color colorOrange: "#ffa635"
-    property color colorGrey: "#555151"
+    property color colorGrey: "#666"
 
     // Material colors
     readonly property color colorMaterialRed: "#F44336"
@@ -519,11 +519,12 @@ Item {
 
         } else if (themeIndex === ThemeEngine.THEME_DESKTOP_LIGHT) { ///////////
 
-            colorYellow = "#facb00"
-            colorOrange = "#ffa635"
             colorRed    = "#ff7657"
-            colorBlue   = "#4cafe9"
             colorGreen  = "#85c700"
+            colorBlue   = "#4cafe9"
+            colorYellow = "#ffcf00"
+            colorOrange = "#ffa635"
+            colorGrey   = "#9E9E9E"
 
             isLight = true
             isDark = false
@@ -539,9 +540,9 @@ Item {
             colorSidebarContent         = "#444"
             colorSidebarHighlight       = "#888"
 
-            colorActionbar              = "#eaeae8"
+            colorActionbar              = "#eaeaea"
             colorActionbarContent       = "#444"
-            colorActionbarHighlight     = "#bab5b6"
+            colorActionbarHighlight     = "#dadada"
 
             colorTabletmenu             = "#ffffff"
             colorTabletmenuContent      = "#9d9d9d"
@@ -585,11 +586,12 @@ Item {
 
         } else if (themeIndex === ThemeEngine.THEME_DESKTOP_DARK) {
 
-            colorYellow = "#fcc632"
-            colorOrange = "#ff8f35"
             colorRed    = "#e8635a"
-            colorBlue   = "#4dceeb"
             colorGreen  = "#58cf77"
+            colorBlue   = "#4dceeb"
+            colorYellow = "#ffcf00"
+            colorOrange = "#ff8f35"
+            colorGrey   = "#5e5e5e"
 
             isLight = false
             isDark = true

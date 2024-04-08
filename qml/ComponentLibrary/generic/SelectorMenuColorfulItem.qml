@@ -15,11 +15,14 @@ T.Button {
     leftPadding: 16
     rightPadding: 16
 
-    hoverEnabled: enabled
     focusPolicy: Qt.NoFocus
+    hoverEnabled: enabled && !readOnly
 
     // settings
     property int index
+    property bool readOnly: false
+
+    // icon
     property url source
     property int sourceSize: 32
 

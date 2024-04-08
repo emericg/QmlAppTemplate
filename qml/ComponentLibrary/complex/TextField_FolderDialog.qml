@@ -21,7 +21,7 @@ T.TextField {
     leftPadding: 12
     rightPadding: 12
 
-    clip: false
+    clip: true
     color: colorText
     opacity: control.enabled ? 1 : 0.66
 

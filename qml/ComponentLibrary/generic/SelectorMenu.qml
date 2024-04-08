@@ -9,11 +9,16 @@ Item {
 
     width: contentRow.width
 
-    opacity: selectorMenu.enabled ? 1 : 0.66
+    opacity: enabled ? 1 : 0.66
 
+    // settings
+    property bool readOnly: false
+
+    // states
     signal menuSelected(var index)
     property int currentSelection: 1
 
+    // model
     property var model: null
 
     ////////////////
@@ -28,13 +33,13 @@ Item {
 
     Row {
         id: contentRow
-        height: parent.height
         spacing: Theme.componentBorderWidth
 
         Repeater {
             model: selectorMenu.model
             delegate: SelectorMenuItem {
-                height: parent.height
+                height: selectorMenu.height
+                readOnly: selectorMenu.readOnly
                 highlighted: (selectorMenu.currentSelection === idx)
                 index: idx ?? 0
                 text: txt ?? ""
