@@ -350,21 +350,16 @@ Loader {
                         font.bold: true
                         color: Theme.colorText
                     }
-                    RadioButtonThemed {
-                        id: radioButtonLight
-                        anchors.verticalCenter: parent.verticalCenter
 
-                        text: "light"
-                        checkable: false
-                        checked: !utilsApp.isOsThemeDark()
-                    }
-                    RadioButtonThemed {
-                        id: radioButtonDark
+                    SelectorMenu {
                         anchors.verticalCenter: parent.verticalCenter
+                        readOnly: true
 
-                        text: "dark"
-                        checkable: false
-                        checked: utilsApp.isOsThemeDark()
+                        currentSelection: utilsApp.isOsThemeDark()
+                        model: ListModel {
+                            ListElement { idx: 0; txt: "light"; sz: 0; }
+                            ListElement { idx: 1; txt: "dark"; sz: 0; }
+                        }
                     }
                 }
 
