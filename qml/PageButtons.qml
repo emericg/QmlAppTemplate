@@ -202,6 +202,39 @@ Item {
                 anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
                 anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
+                text: qsTr("Square buttons")
+                source: ""
+            }
+
+            Row {
+                anchors.horizontalCenter: parent.horizontalCenter
+                height: 48
+                spacing: 16
+
+                SquareButtonClear {
+                    width: 48
+                    height: 48
+
+                    source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                }
+                SquareButtonFlat {
+                    width: 48
+                    height: 48
+
+                    source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                }
+                SquareButtonDesktop {
+                    width: 48
+                    height: 48
+
+                    source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                }
+            }
+
+            ListTitle { ////////////////////////////////////////////////////////////
+                anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
+                anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
+
                 text: qsTr("Round buttons")
                 source: ""
             }

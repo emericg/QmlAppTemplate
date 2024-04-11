@@ -95,6 +95,7 @@ Item {
     // App specific (toolBLEx)
     property color colorBox: "white"
     property color colorBoxBorder: "#f4f4f4"
+    property color colorBoxShadow: "#20000000"
     property color colorGrid: "#ebebeb"
     property color colorLVheader: "#fafafa"
     property color colorLVpair: "white"
@@ -577,6 +578,7 @@ Item {
             // (app)
             colorBox                    = "white"
             colorBoxBorder              = "#f4f4f4"
+            colorBoxShadow              = "#20000000"
             colorGrid                   = "#ebebeb"
             colorLVheader               = "#fafafa"
             colorLVpair                 = "white"
@@ -644,6 +646,7 @@ Item {
             // (app)
             colorBox                    = "#252024"
             colorBoxBorder              = "#333"
+            colorBoxShadow              = "#aa000000"
             colorGrid                   = "#333"
             colorLVheader               = "#252024"
             colorLVpair                 = "#302b2e"

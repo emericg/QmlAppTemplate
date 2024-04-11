@@ -18,7 +18,7 @@ Rectangle {
 
     property int headerPosition: 56
 
-    property string headerTitle: "QmlAppTemplate"
+    property string headerTitle: utilsApp.appName()
 
     ////////////////////////////////////////////////////////////////////////////
 
@@ -74,7 +74,6 @@ Rectangle {
         ////////////
 
         Row { // left area
-            id: leftArea
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.leftMargin: 4

@@ -33,6 +33,7 @@ Item {
 
     Row {
         id: contentRow
+        anchors.horizontalCenter: parent.horizontalCenter
         spacing: Theme.componentBorderWidth
 
         Repeater {

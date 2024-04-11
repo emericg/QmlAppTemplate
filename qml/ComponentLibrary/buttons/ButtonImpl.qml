@@ -19,13 +19,14 @@ T.Button {
     rightPadding: 12
     spacing: 6
 
+    font.pixelSize: Theme.componentFontSize
+    font.bold: false
+
     // settings
-    flat: false
+    flat: true
     checkable: false
     hoverEnabled: isDesktop
     focusPolicy: Qt.NoFocus
-    font.pixelSize: Theme.componentFontSize
-    font.bold: false
 
     // layout
     property int layoutAlignment: Qt.AlignCenter // Qt.AlignLeft // Qt.AlignRight

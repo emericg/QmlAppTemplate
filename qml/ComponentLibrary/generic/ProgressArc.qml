@@ -9,16 +9,17 @@ Item {
     width: 256
     height: width
 
-    property real from: 0
-    property real to: 1
     property real value: 0.5
+    property real valueMin: 0
+    property real valueMax: 4
 
     property real arcOffset: 0              // rotation (0 means starts at bottom center)
     property real arcSpan: 270              // arc span (in degree)
     property real arcWidth: 16              // width of the arc (in pixel)
-    property real arcOpacity: 1
+
     property color arcColor: Theme.colorPrimary
-    property string arcCap: "butt"          // butt, round or square
+    property real arcOpacity: 1
+    property string arcCap: "butt"          // butt, round or square // Qt.RoundCap // //
 
     property bool background: true          // draw a background arc (full arc span)
     property real backgroundOpacity: 1
@@ -30,7 +31,7 @@ Item {
     // private
     property real arcBegin: ((360 - arcSpan) / 2)
     property real arcEnd: (360 - arcBegin)
-    property real arcValue: mapNumber(value, from, to, arcBegin, arcEnd)
+    property real arcValue: mapNumber(value, valueMin, valueMax, arcBegin, arcEnd)
 
     function mapNumber(n, srcMin, srcMax, dstMin, dstMax) {
         if (n < srcMin) n = srcMin
@@ -40,8 +41,8 @@ Item {
 
     ////////////////////////////////////////////////////////////////////////////
 
-    //onFromChanged: canvas.requestPaint()
-    //onToChanged: canvas.requestPaint()
+    //onValueMinChanged: canvas.requestPaint()
+    //onValueMaxChanged: canvas.requestPaint()
     //onValueChanged: canvas.requestPaint()
     onArcValueChanged: canvas.requestPaint()
 

@@ -40,6 +40,7 @@ Item {
 
     Row {
         id: contentRow
+        anchors.horizontalCenter: parent.horizontalCenter
         spacing: -4
 
         Repeater {

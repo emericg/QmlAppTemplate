@@ -15,13 +15,15 @@ T.RangeSlider {
                              first.implicitHandleHeight + topPadding + bottomPadding,
                              second.implicitHandleHeight + topPadding + bottomPadding)
 
-    padding: 4
+    padding: 0
+
+    property int hhh: 18
 
     // settings
-    property int hhh: 18
     property string unit
     property int floatprecision: 0
     property bool kshort: false
+    property bool showvalue: true
 
     // colors
     property color colorBackground: Theme.colorForeground
@@ -46,7 +48,8 @@ T.RangeSlider {
             x: control.horizontal ? control.first.handle.x : 0
             y: control.horizontal ? 0 : control.second.handle.y
             width: control.horizontal ? control.second.handle.x - control.first.handle.x + control.second.handle.width*0.66 : control.hhh
-            height: control.horizontal ? control.hhh : control.first.handle.y - control.second.handle.y + control.second.handle.height*0.66
+            height: control.horizontal ? control.hhh : control.first.handle.y - control.second.handle.y + control.second.handle.height*0.80
+            visible: (control.horizontal && width >= control.hhh) || (control.vertical && height >= control.hhh)
 
             radius: control.hhh
             color: control.colorForeground
@@ -61,7 +64,7 @@ T.RangeSlider {
         implicitWidth: control.hhh
         implicitHeight: control.hhh
 
-        width: control.horizontal ? t1.contentWidth + 16 : control.hhh
+        width: (control.horizontal && control.showvalue) ? t1.contentWidth + 16 : control.hhh
         height: control.hhh
         radius: control.hhh
         color: control.colorForeground
@@ -71,6 +74,7 @@ T.RangeSlider {
             id: t1
             height: control.hhh
             anchors.centerIn: parent
+            visible: control.showvalue
 
             text: {
                 var vvalue = first.value
@@ -97,7 +101,7 @@ T.RangeSlider {
         implicitWidth: control.hhh
         implicitHeight: control.hhh
 
-        width: control.horizontal ? t2.contentWidth + 16 : control.hhh
+        width: (control.horizontal && control.showvalue) ? t2.contentWidth + 16 : control.hhh
         height: control.hhh
         radius: control.hhh
         color: control.colorForeground
@@ -107,6 +111,7 @@ T.RangeSlider {
             id: t2
             height: control.hhh
             anchors.centerIn: parent
+            visible: control.showvalue
 
             text: {
                 var vvalue = second.value

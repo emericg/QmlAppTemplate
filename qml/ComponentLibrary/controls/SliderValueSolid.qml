@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Effects
 import QtQuick.Controls.impl
 import QtQuick.Templates as T
 
@@ -13,13 +14,15 @@ T.Slider {
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              implicitHandleHeight + topPadding + bottomPadding)
 
-    padding: 4
+    padding: 0
+
+    property int hhh: 18
 
     // settings
-    property int hhh: 18
     property string unit
     property int floatprecision: 0
     property bool kshort: false
+    property bool showvalue: true
 
     // colors
     property color colorBackground: Theme.colorForeground
@@ -42,11 +45,29 @@ T.Slider {
 
         Rectangle {
             y: control.horizontal ? 0 : handle.y
-            width: control.horizontal ? Math.max(control.position * parent.width, handle.x + handle.width/2) : control.hhh
+            width: control.horizontal ? Math.max(control.position * parent.width, handle.x + handle.width*0.66) : control.hhh
             height: control.horizontal ? control.hhh : parent.height - handle.y
 
             radius: control.hhh
             color: control.colorForeground
+        }
+
+        layer.enabled: control.horizontal
+        layer.effect: MultiEffect {
+            maskEnabled: true
+            maskInverted: false
+            maskThresholdMin: 0.5
+            maskSpreadAtMin: 1.0
+            maskSpreadAtMax: 0.0
+            maskSource: ShaderEffectSource {
+                sourceItem: Rectangle {
+                    x: background.x
+                    y: background.y
+                    width: background.width
+                    height: background.height
+                    radius: background.radius
+                }
+            }
         }
     }
 
@@ -58,7 +79,7 @@ T.Slider {
         implicitWidth: control.hhh
         implicitHeight: control.hhh
 
-        width: control.horizontal ? t1.contentWidth + 16 : control.hhh
+        width: (control.horizontal && control.showvalue) ? t1.contentWidth + 16 : control.hhh
         height: control.hhh
         radius: control.hhh
         color: control.colorForeground
@@ -69,6 +90,7 @@ T.Slider {
             width: control.hhh
             height: control.hhh
             anchors.centerIn: parent
+            visible: control.showvalue
 
             text: {
                 var vvalue = control.value

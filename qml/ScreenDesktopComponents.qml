@@ -792,6 +792,14 @@ Loader {
                             source: "qrc:/assets/icons/material-symbols/accessibility.svg"
                             width: 48; height: 48;
                         }
+
+                        RoundButtonSunken {
+                            source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                            width: 48; height: 48;
+
+                            tooltipText: "invisiblllllle!"
+                            tooltipPosition: "bottom"
+                        }
                     }
 
                     Row {
@@ -811,6 +819,59 @@ Loader {
                         }
 
                         RoundButtonDesktop {
+                            source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                            width: 48; height: 48;
+
+                            tooltipText: "another tooltip!"
+                            tooltipPosition: "right"
+                        }
+                    }
+
+                    Row {
+                        spacing: Theme.componentMargin
+
+                        SquareButtonClear {
+                            source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                            tooltipText: "this one has a tooltip!"
+                            width: 48; height: 48;
+                        }
+
+                        SquareButtonOutline {
+                            source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                            width: 48; height: 48;
+                        }
+
+                        SquareButtonFlat {
+                            source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                            width: 48; height: 48;
+                        }
+
+                        SquareButtonSunken {
+                            source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                            width: 48; height: 48;
+
+                            tooltipText: "invisiblllllle!"
+                            tooltipPosition: "bottom"
+                        }
+                    }
+
+                    Row {
+                        spacing: Theme.componentMargin
+
+                        SquareButtonSolid {
+                            source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                            width: 48; height: 48;
+                        }
+
+                        SquareButtonWireframe {
+                            source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                            width: 48; height: 48;
+
+                            tooltipText: "this one has a tooltip!"
+                            tooltipPosition: "bottom"
+                        }
+
+                        SquareButtonDesktop {
                             source: "qrc:/assets/icons/material-symbols/accessibility.svg"
                             width: 48; height: 48;
 

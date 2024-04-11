@@ -9,16 +9,17 @@ Item {
     width: 256
     height: width
 
-    property real from: 0
-    property real to: 1
     property real value: 0.5
+    property real valueMin: 0
+    property real valueMax: 4
 
     property bool isPie: false              // paint a pie instead of an arc
 
     property real arcOffset: 0              // rotation (0 means starts at top center)
     property real arcWidth: 16              // width of the arc
-    property real arcOpacity: 1
+
     property color arcColor: Theme.colorPrimary
+    property real arcOpacity: 1
 
     property bool background: true          // a full circle as a background of the arc
     property real backgroundOpacity: 1
@@ -32,7 +33,7 @@ Item {
     // private
     property real arcBegin: 0
     property real arcEnd: 360
-    property real arcValue: mapNumber(value, from, to, arcBegin, arcEnd)
+    property real arcValue: mapNumber(value, valueMin, valueMax, arcBegin, arcEnd)
 
     function mapNumber(n, srcMin, srcMax, dstMin, dstMax) {
         if (n < srcMin) n = srcMin
@@ -42,15 +43,15 @@ Item {
 
     ////////////////////////////////////////////////////////////////////////////
 
-    //onFromChanged: canvas.requestPaint()
-    //onToChanged: canvas.requestPaint()
+    //onValueMinChanged: canvas.requestPaint()
+    //onValueMaxChanged: canvas.requestPaint()
     //onValueChanged: canvas.requestPaint()
+    onArcValueChanged: canvas.requestPaint()
 
     onIsPieChanged: canvas.requestPaint()
 
     onArcBeginChanged: canvas.requestPaint()
     onArcEndChanged: canvas.requestPaint()
-    onArcValueChanged: canvas.requestPaint()
     onArcWidthChanged: canvas.requestPaint()
     onArcColorChanged: canvas.requestPaint()
     onArcOpacityChanged: canvas.requestPaint()

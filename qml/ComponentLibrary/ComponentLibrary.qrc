@@ -20,11 +20,6 @@
         <file alias="ListTitle.qml">menus/ListTitle.qml</file>
         <file alias="SectionTitle.qml">menus/SectionTitle.qml</file>
 
-        <file alias="ButtonChip.qml">buttons/ButtonChip.qml</file>
-        <file alias="ButtonFab.qml">buttons/ButtonFab.qml</file>
-        <file alias="ButtonFabExtended.qml">buttons/ButtonFabExtended.qml</file>
-        <file alias="ButtonToggle.qml">buttons/ButtonToggle.qml</file>
-
         <file alias="ButtonDesktop.qml">buttons/ButtonDesktop.qml</file>
         <file alias="ButtonOutline.qml">buttons/ButtonOutline.qml</file>
         <file alias="ButtonClear.qml">buttons/ButtonClear.qml</file>
@@ -41,6 +36,14 @@
         <file alias="RoundButtonWireframe.qml">buttons/RoundButtonWireframe.qml</file>
         <file alias="RoundButtonSunken.qml">buttons/RoundButtonSunken.qml</file>
         <file alias="RoundButtonImpl.qml">buttons/RoundButtonImpl.qml</file>
+        <file alias="SquareButtonDesktop.qml">buttons/SquareButtonDesktop.qml</file>
+        <file alias="SquareButtonOutline.qml">buttons/SquareButtonOutline.qml</file>
+        <file alias="SquareButtonClear.qml">buttons/SquareButtonClear.qml</file>
+        <file alias="SquareButtonFlat.qml">buttons/SquareButtonFlat.qml</file>
+        <file alias="SquareButtonSolid.qml">buttons/SquareButtonSolid.qml</file>
+        <file alias="SquareButtonWireframe.qml">buttons/SquareButtonWireframe.qml</file>
+        <file alias="SquareButtonSunken.qml">buttons/SquareButtonSunken.qml</file>
+        <file alias="SquareButtonImpl.qml">buttons/SquareButtonImpl.qml</file>
 
         <file alias="ButtonCompactable.qml">deprecated/ButtonCompactable.qml</file>
         <file alias="ButtonText.qml">deprecated/ButtonText.qml</file>
@@ -48,6 +51,10 @@
         <file alias="RoundButtonIcon.qml">deprecated/RoundButtonIcon.qml</file>
         <file alias="RoundButtonText.qml">deprecated/RoundButtonText.qml</file>
 
+        <file alias="ButtonChip.qml">generic/ButtonChip.qml</file>
+        <file alias="ButtonFab.qml">generic/ButtonFab.qml</file>
+        <file alias="ButtonFabExtended.qml">generic/ButtonFabExtended.qml</file>
+        <file alias="ButtonToggle.qml">generic/ButtonToggle.qml</file>
         <file alias="AndroidButton.qml">generic/AndroidButton.qml</file>
         <file alias="AndroidButtonIcon.qml">generic/AndroidButtonIcon.qml</file>
         <file alias="AndroidTextField.qml">generic/AndroidTextField.qml</file>
@@ -70,6 +77,7 @@
         <file alias="FrameThemed.qml">layouts/FrameThemed.qml</file>
         <file alias="GroupBoxThemed.qml">layouts/GroupBoxThemed.qml</file>
         <file alias="PaneThemed.qml">layouts/PaneThemed.qml</file>
+        <file alias="CardBox.qml">layouts/CardBox.qml</file>
 
         <file alias="ButtonIconThemed.qml">controls/ButtonIconThemed.qml</file>
         <file alias="ButtonThemed.qml">controls/ButtonThemed.qml</file>

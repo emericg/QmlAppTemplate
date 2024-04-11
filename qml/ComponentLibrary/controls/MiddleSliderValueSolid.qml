@@ -13,13 +13,15 @@ T.Slider {
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              implicitHandleHeight + topPadding + bottomPadding)
 
-    padding: 4
+    padding: 0
+
+    property int hhh: 18
 
     // settings
-    property int hhh: 18
     property string unit
     property int floatprecision: 0
     property bool kshort: false
+    property bool showvalue: true
 
     // colors
     property color colorBackground: Theme.colorForeground
@@ -45,6 +47,7 @@ T.Slider {
             y: !control.horizontal ? ((control.visualPosition <= 0.5) ? handle.y : control.availableHeight / 2) : 0
             width: control.horizontal ? Math.abs((control.width / 2) - handle.x - ((control.visualPosition > 0.5) ? handle.width : 0)) : control.hhh
             height: !control.horizontal ? Math.abs((control.height / 2) - handle.y - ((control.visualPosition > 0.5) ? handle.height : 0)) : control.hhh
+            visible: (control.horizontal && width >= control.hhh) || (control.vertical && height >= control.hhh)
 
             radius: control.hhh
             color: control.colorForeground
@@ -59,7 +62,7 @@ T.Slider {
         implicitWidth: control.hhh
         implicitHeight: control.hhh
 
-        width: control.horizontal ? t1.contentWidth + 16 : control.hhh
+        width: (control.horizontal && control.showvalue) ? t1.contentWidth + 16 : control.hhh
         height: control.hhh
         radius: control.hhh
         color: control.colorForeground
@@ -70,6 +73,7 @@ T.Slider {
             width: control.hhh
             height: control.hhh
             anchors.centerIn: parent
+            visible: control.showvalue
 
             text: {
                 var vvalue = control.value

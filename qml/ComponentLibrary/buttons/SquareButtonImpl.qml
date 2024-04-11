@@ -17,6 +17,9 @@ T.Button {
     hoverEnabled: isDesktop
     focusPolicy: Qt.NoFocus
 
+    // settings
+    property int radius: (width / 4)
+
     // icon
     property url source
     property int sourceSize: UtilsNumber.alignTo(height * 0.66, 2)
@@ -45,7 +48,7 @@ T.Button {
 
         Rectangle {
             anchors.fill: parent
-            radius: width
+            radius: control.radius
             color: control.colorBackground
             border.width: Theme.componentBorderWidth
             border.color: control.colorBorder
@@ -82,7 +85,7 @@ T.Button {
                         y: background.y
                         width: background.width
                         height: background.height
-                        radius: background.width
+                        radius: control.radius
                     }
                 }
             }
