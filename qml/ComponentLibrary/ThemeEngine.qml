@@ -957,13 +957,13 @@ Item {
             themeStatusbar = Material.Dark
             colorStatusbar = "#BBB"
 
-            colorHeader =               "#DADADA"
+            colorHeader =               "#e4e5e6"
             colorHeaderContent =        "#353637"
-            colorHeaderHighlight =      Qt.darker(colorHeader, 1.1)
+            colorHeaderHighlight =      Qt.darker(colorHeader, 1.08)
 
-            colorSidebar =              "#3A3A3A"
+            colorSidebar =              "#555"
             colorSidebarContent =       "white"
-            colorSidebarHighlight =     Qt.lighter(colorSidebar, 1.5)
+            colorSidebarHighlight =     Qt.lighter(colorSidebar, 1.33)
 
             colorActionbar =            "#e9e9e9"
             colorActionbarContent =     "#333"
@@ -1063,24 +1063,24 @@ Item {
             themeStatusbar = Material.Dark
             colorStatusbar = "#BBB"
 
-            colorHeader =               "#CBCBCB"
-            colorHeaderContent =        "#353637"
-            colorHeaderHighlight =      Qt.darker(colorHeader, 1.1)
+            colorHeader =               "#eee"
+            colorHeaderContent =        "#444"
+            colorHeaderHighlight =      Qt.darker(colorHeader, 1.08)
 
-            colorSidebar                = "#eee"
-            colorSidebarContent         = "#777"
-            colorSidebarHighlight       = "#ddd"
+            colorSidebar =              "#e0e0e0"
+            colorSidebarContent =       "#444"
+            colorSidebarHighlight =     Qt.darker(colorSidebar, 1.08)
 
             colorActionbar =            "#dadada"
             colorActionbarContent =     "#444"
-            colorActionbarHighlight =   Qt.darker(colorActionbar, 1.1)
+            colorActionbarHighlight =   Qt.darker(colorActionbar, 1.08)
 
             colorTabletmenu =           "#f3f3f3"
             colorTabletmenuContent =    "#9d9d9d"
             colorTabletmenuHighlight =  "#0079fe"
 
             colorBackground =           "#fefefe"
-            colorForeground =           "#e9e9e9"
+            colorForeground =           "#efefef"
 
             colorPrimary =              "#ffca28"
             colorSecondary =            "#ffdb28"
@@ -1170,11 +1170,11 @@ Item {
             colorStatusbar = "#944197"
 
             colorHeader =               "#FFB4DC"
-            colorHeaderContent =        "#944197"
+            colorHeaderContent =        "#aa39ae"
             colorHeaderHighlight =      Qt.darker(colorHeader, 1.1)
 
             colorSidebar =              "#E31D8D"
-            colorSidebarContent =       "#FFAED6"
+            colorSidebarContent =       "#ffc8e4"
             colorSidebarHighlight =     Qt.darker(colorSidebar, 1.15)
 
             colorActionbar =            "#FFE400"
@@ -1186,7 +1186,7 @@ Item {
             colorTabletmenuHighlight =  "#944197"
 
             colorBackground =           "white"
-            colorForeground =           "#FFDDEE"
+            colorForeground =           "#ffe0ef"
 
             colorPrimary =              "#FFE400"
             colorSecondary =            "#FFF600"
@@ -1196,7 +1196,7 @@ Item {
 
             colorText =                 "#932A97"
             colorSubText =              "#B746BB"
-            colorIcon =                 "#FFDD48"
+            colorIcon =                 "#ffd947"
             colorSeparator =            "#FFDCED"
             colorLowContrast =          "white"
             colorHighContrast =         "#944197"

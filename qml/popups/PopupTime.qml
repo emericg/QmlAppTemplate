@@ -29,9 +29,9 @@ Popup {
     property date initialTime
     property date selectedTime
 
-    ////////////////////////////////////////////////////////////////////////////
-
     signal updateTime(var newtime)
+
+    ////////
 
     function openTime(time) {
         console.log("openTime(" + time + ")")
@@ -64,7 +64,7 @@ Popup {
 
     ////////////////////////////////////////////////////////////////////////////
 
-    enter: Transition { NumberAnimation { property: "opacity"; from: 0.5; to: 1.0; duration: 133; } }
+    enter: Transition { NumberAnimation { property: "opacity"; from: 0.333; to: 1.0; duration: 133; } }
     //exit: Transition { NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; duration: 200; } }
 
     Overlay.modal: Rectangle {
@@ -73,20 +73,49 @@ Popup {
     }
 
     background: Rectangle {
-        color: Theme.colorBackground
-        border.color: Theme.colorSeparator
-        border.width: singleColumn ? 0 : Theme.componentBorderWidth
         radius: singleColumn ? 0 : Theme.componentRadius
+        color: Theme.colorBackground
 
-        Rectangle {
-            width: parent.width
-            height: Theme.componentBorderWidth
-            visible: singleColumn
-            color: Theme.colorSeparator
+        Item {
+            anchors.fill: parent
+
+            Rectangle { // title area
+                anchors.left: parent.left
+                anchors.right: parent.right
+                height: 80
+                color: Theme.colorPrimary
+            }
+
+            Rectangle { // border
+                anchors.fill: parent
+                radius: Theme.componentRadius
+                color: "transparent"
+                border.color: Theme.colorSeparator
+                border.width: singleColumn ? 0 : Theme.componentBorderWidth
+                opacity: 0.4
+            }
+
+            layer.enabled: !singleColumn
+            layer.effect: MultiEffect { // clip
+                maskEnabled: true
+                maskInverted: false
+                maskThresholdMin: 0.5
+                maskSpreadAtMin: 1.0
+                maskSpreadAtMax: 0.0
+                maskSource: ShaderEffectSource {
+                    sourceItem: Rectangle {
+                        x: background.x
+                        y: background.y
+                        width: background.width
+                        height: background.height
+                        radius: background.radius
+                    }
+                }
+            }
         }
 
         layer.enabled: !singleColumn
-        layer.effect: MultiEffect {
+        layer.effect: MultiEffect { // shadow
             autoPaddingEnabled: true
             shadowEnabled: true
             shadowColor: ThemeEngine.isLight ? "#aa000000" : "#aaffffff"
@@ -98,22 +127,12 @@ Popup {
     contentItem: Column {
         bottomPadding: screenPaddingNavbar + screenPaddingBottom
 
-        Rectangle { // titleArea
+        Item { // titleArea
             anchors.left: parent.left
             anchors.right: parent.right
 
             clip: true
             height: 80
-            radius: singleColumn ? 0 : Theme.componentRadius
-            color: Theme.colorPrimary
-
-            Rectangle {
-                anchors.left: parent.left
-                anchors.right: parent.right
-                anchors.bottom: parent.bottom
-                height: parent.radius
-                color: parent.color
-            }
 
             Column {
                 anchors.left: parent.left
@@ -224,8 +243,6 @@ Popup {
                 }
 
                 ButtonFlat {
-                    color: Theme.colorPrimary
-
                     text: qsTr("Select")
                     onClicked: {
                         selectedTime.setHours(tumblerHours.currentIndex)

@@ -134,6 +134,7 @@
     </qresource>
 
     <qresource prefix="utils">
+        <file alias="UtilsMedia.js">utils/UtilsMedia.js</file>
         <file alias="UtilsNumber.js">utils/UtilsNumber.js</file>
         <file alias="UtilsPath.js">utils/UtilsPath.js</file>
         <file alias="UtilsString.js">utils/UtilsString.js</file>
