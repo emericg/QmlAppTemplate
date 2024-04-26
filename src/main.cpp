@@ -63,14 +63,12 @@ int main(int argc, char *argv[])
 
     // Application name
     app.setApplicationName("QmlAppTemplate");
-    app.setApplicationDisplayName("QmlAppTemplate");
     app.setOrganizationName("emeric");
     app.setOrganizationDomain("emeric");
 
 #if !defined(Q_OS_ANDROID) && !defined(Q_OS_IOS)
-    // Application icon
-    QIcon appIcon(":/assets/gfx/logos/logo.svg");
-    app.setWindowIcon(appIcon);
+    app.setWindowIcon(QIcon(":/assets/gfx/logos/logo.svg"));
+    app.setApplicationDisplayName("QmlAppTemplate");
 #endif
 
     // Init app components
