@@ -331,6 +331,8 @@
         <file>icons/material-symbols/media/photo_library-fill.svg</file>
         <file>icons/material-symbols/media/play_arrow-fill.svg</file>
         <file>icons/material-symbols/media/play_pause.svg</file>
+        <file>icons/material-symbols/media/play_circle.svg</file>
+        <file>icons/material-symbols/media/play_circle-fill.svg</file>
         <file>icons/material-symbols/media/resume.svg</file>
         <file>icons/material-symbols/media/resume-fill.svg</file>
         <file>icons/material-symbols/media/sd.svg</file>
@@ -350,6 +352,8 @@
         <file>icons/material-symbols/media/speaker-fill.svg</file>
         <file>icons/material-symbols/media/speaker_group.svg</file>
         <file>icons/material-symbols/media/speaker_group-fill.svg</file>
+        <file>icons/material-symbols/media/stop_circle.svg</file>
+        <file>icons/material-symbols/media/stop_circle-fill.svg</file>
         <file>icons/material-symbols/media/surround_sound.svg</file>
         <file>icons/material-symbols/media/surround_sound-fill.svg</file>
         <file>icons/material-symbols/media/switch_camera.svg</file>
@@ -359,8 +363,6 @@
         <file>icons/material-symbols/media/video_stable.svg</file>
         <file>icons/material-symbols/media/video_stable-fill.svg</file>
         <file>icons/material-symbols/media/volume_down.svg</file>
-        <file>icons/material-symbols/media/volume_down_alt.svg</file>
-        <file>icons/material-symbols/media/volume_down_alt-fill.svg</file>
         <file>icons/material-symbols/media/volume_down-fill.svg</file>
         <file>icons/material-symbols/media/volume_mute.svg</file>
         <file>icons/material-symbols/media/volume_mute-fill.svg</file>
