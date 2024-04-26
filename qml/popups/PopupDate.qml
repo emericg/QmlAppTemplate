@@ -363,8 +363,6 @@ Popup {
                 }
 
                 ButtonFlat {
-                    color: Theme.colorPrimary
-
                     text: qsTr("Select")
                     onClicked: {
                         updateDate(selectedDate)

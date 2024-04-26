@@ -211,6 +211,12 @@ Item {
                 height: 48
                 spacing: 16
 
+                SquareButtonSunken {
+                    width: 48
+                    height: 48
+
+                    source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                }
                 SquareButtonClear {
                     width: 48
                     height: 48
@@ -227,6 +233,7 @@ Item {
                     width: 48
                     height: 48
 
+                    colorIconHighlight: "red"
                     source: "qrc:/assets/icons/material-symbols/accessibility.svg"
                 }
             }
@@ -244,6 +251,12 @@ Item {
                 height: 48
                 spacing: 16
 
+                RoundButtonSunken {
+                    width: 48
+                    height: 48
+
+                    source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                }
                 RoundButtonClear {
                     width: 48
                     height: 48
@@ -254,6 +267,7 @@ Item {
                     width: 48
                     height: 48
 
+                    colorIconHighlight: "red"
                     source: "qrc:/assets/icons/material-symbols/accessibility.svg"
                 }
                 RoundButtonDesktop {

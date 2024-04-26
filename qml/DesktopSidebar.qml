@@ -101,7 +101,7 @@ Rectangle {
             sourceSize: 40
             highlightMode: "circle"
 
-            onClicked: appWindow.close()
+            onClicked: Qt.quit()
         }
     }
 

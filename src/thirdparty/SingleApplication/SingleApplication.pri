@@ -1,6 +1,15 @@
 QT += core network
 CONFIG += c++11
 
+eval(QAPPLICATION_CLASS = QApplication) {
+    QT += widgets # QApplication needs QtWidgets
+}
+
+android:ios {
+    DEFINES -= QAPPLICATION_CLASS
+    DEFINES += QAPPLICATION_CLASS=QGuiApplication
+}
+
 SOURCES += $${PWD}/SingleApplication.cpp \
            $${PWD}/SingleApplication_private.cpp
 
