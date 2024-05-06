@@ -36,6 +36,7 @@ qt_add_executable(${CMAKE_PROJECT_NAME}
     src/main.cpp
     i18n/i18n.qrc
     assets/assets.qrc
+    assets/icons.qrc
     qml/qml.qrc
     qml/ComponentLibrary/ComponentLibrary.qrc
 )
