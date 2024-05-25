@@ -46,12 +46,12 @@ jobs:
       #- name: Install Android SDK / NDK / tools
       #  run: |
       #       sdkmanager "platforms;android-34"
-      #       sdkmanager "ndk;25.2.9519653"
+      #       sdkmanager "ndk;26.1.10909125"
       #       sdkmanager "build-tools;34.0.0"
 
       # Install Qt (desktop & Android)
       - name: Install Qt (desktop)
-        uses: jurplel/install-qt-action@v3
+        uses: jurplel/install-qt-action@v4
         with:
           version: ${{env.QT_VERSION}}
           host: 'linux'
@@ -83,7 +83,7 @@ jobs:
 
       # Install Qt (iOS & desktop)
       - name: Install Qt (iOS & desktop)
-        uses: jurplel/install-qt-action@v3
+        uses: jurplel/install-qt-action@v4
         with:
           version: ${{env.QT_VERSION}}
           host: 'mac'
