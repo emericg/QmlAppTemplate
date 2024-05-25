@@ -1067,7 +1067,7 @@ Item {
             colorHeaderContent =        "#444"
             colorHeaderHighlight =      Qt.darker(colorHeader, 1.08)
 
-            colorSidebar =              "#e0e0e0"
+            colorSidebar =              "#eee"
             colorSidebarContent =       "#444"
             colorSidebarHighlight =     Qt.darker(colorSidebar, 1.08)
 
@@ -1080,7 +1080,7 @@ Item {
             colorTabletmenuHighlight =  "#0079fe"
 
             colorBackground =           "#fefefe"
-            colorForeground =           "#efefef"
+            colorForeground =           "#f6f6f6"
 
             colorPrimary =              "#ffca28"
             colorSecondary =            "#ffdb28"

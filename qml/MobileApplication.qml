@@ -329,7 +329,7 @@ ApplicationWindow {
 
     Timer {
         id: exitTimer
-        interval: 3333
+        interval: 3000
         running: false
         repeat: false
     }
@@ -341,18 +341,19 @@ ApplicationWindow {
         anchors.right: parent.right
         anchors.rightMargin: Theme.componentMargin
         anchors.bottom: parent.bottom
-        anchors.margins: Theme.componentMargin + screenPaddingNavbar + screenPaddingBottom
+        anchors.bottomMargin: Theme.componentMargin + mobileMenu.height
 
-        height: Theme.componentHeight
+        height: Theme.componentHeightL
         radius: Theme.componentRadius
 
         color: Theme.colorComponentBackground
         border.color: Theme.colorSeparator
         border.width: Theme.componentBorderWidth
 
-        opacity: exitTimer.running ? 1 : 0
-        Behavior on opacity { OpacityAnimator { duration: 333 } }
         visible: opacity
+
+        opacity: exitTimer.running ? 1 : 0
+        Behavior on opacity { OpacityAnimator { duration: 233 } }
 
         Text {
             anchors.centerIn: parent
