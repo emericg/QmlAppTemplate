@@ -1,9 +1,9 @@
+import QtCore
+
 import QtQuick
+import QtQuick.Dialogs
 import QtQuick.Controls.impl
 import QtQuick.Templates as T
-
-import QtQuick.Dialogs
-import QtCore
 
 import ThemeEngine
 import "qrc:/utils/UtilsPath.js" as UtilsPath

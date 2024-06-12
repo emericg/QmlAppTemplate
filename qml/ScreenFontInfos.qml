@@ -53,9 +53,13 @@ Loader {
             width: grid.wwww
             height: grid.hhhh
 
-            SectionTitle {
+            ListTitle {
                 Layout.preferredWidth: singleColumn ? parent.width : parent.width - Theme.componentMargin*0.5
                 Layout.alignment: Qt.AlignLeft
+
+                anchors.left: undefined
+                anchors.right: undefined
+
                 text: "Font sizes"
             }
 
@@ -119,9 +123,13 @@ Loader {
             width: grid.wwww
             height: grid.hhhh
 
-            SectionTitle {
+            ListTitle {
                 Layout.preferredWidth: singleColumn ? parent.width : parent.width - Theme.componentMargin*0.5
                 Layout.alignment: Qt.AlignRight
+
+                anchors.left: undefined
+                anchors.right: undefined
+
                 text: "Fonts available"
             }
 

@@ -552,8 +552,8 @@ Item {
             colorBackground             = "#f9f8f7"
             colorForeground             = "#f3f2f1"
 
-            colorPrimary                = colorYellow
-            colorSecondary              = "#ffe800"
+            colorPrimary                = "#ffc900"
+            colorSecondary              = "#ffeb00"
             colorSuccess                = colorGreen
             colorWarning                = colorOrange
             colorError                  = colorRed
@@ -1036,7 +1036,7 @@ Item {
             colorError =                "#D33E39"
 
             colorText =                 "white"
-            colorSubText =              "#AAA"
+            colorSubText =              "#999"
             colorIcon =                 "white"
             colorSeparator =            "#666" // darker: "#333" // lighter: "#666"
             colorLowContrast =          "black"
@@ -1091,16 +1091,16 @@ Item {
             colorText =                 "#222222"
             colorSubText =              "#555555"
             colorIcon =                 "#333333"
-            colorSeparator =            "#E4E4E4"
+            colorSeparator =            "#e4e4e4"
             colorLowContrast =          "white"
             colorHighContrast =         "black"
 
-            colorComponent =            "#EAEAEA"
+            colorComponent =            "#f5f5f5"
             colorComponentText =        "black"
             colorComponentContent =     "black"
-            colorComponentBorder =      "#DDD"
-            colorComponentDown =        "#E6E6E6"
-            colorComponentBackground =  "#FAFAFA"
+            colorComponentBorder =      "#ddd"
+            colorComponentDown =        "#eee"
+            colorComponentBackground =  "#f8f8f8"
 
             componentRadius = 4
             componentBorderWidth = 2
@@ -1141,18 +1141,18 @@ Item {
             colorWarning =              "#FFDB63"
             colorError =                "#FA6871"
 
-            colorText =                 "#D2D2D2"
-            colorSubText =              "#A3A3A3"
+            colorText =                 "#D4D4D4"
+            colorSubText =              "#888"
             colorIcon =                 "#A0A0A0"
             colorSeparator =            "#666"
             colorLowContrast =          "black"
             colorHighContrast =         "white"
 
-            colorComponent =            "white"
+            colorComponent =            "#fcfcfc"
             colorComponentText =        "black"
             colorComponentContent =     "black"
-            colorComponentBorder =      "#E4E4E4"
-            colorComponentDown =        "#DDD"
+            colorComponentBorder =      "#e4e4e4"
+            colorComponentDown =        "#ddd"
             colorComponentBackground =  "white"
 
             componentRadius = 2
