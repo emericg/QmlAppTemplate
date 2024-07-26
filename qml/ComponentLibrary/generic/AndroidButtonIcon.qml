@@ -24,6 +24,7 @@ T.Button {
     // settings
     property url source
     property int sourceSize: 26
+    property int sourceRotation: 0
     property int layoutDirection: Qt.LeftToRight
 
     // colors
@@ -93,6 +94,7 @@ T.Button {
 
             width: control.sourceSize
             height: control.sourceSize
+            rotation: control.sourceRotation
 
             source: control.source
             color: control.colorPrimary
