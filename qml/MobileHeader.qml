@@ -91,9 +91,8 @@ Rectangle {
                 onClicked: leftMenuClicked()
 
                 RippleThemed {
+                    anchors.fill: parent
                     anchor: parent
-                    width: parent.width
-                    height: parent.height
 
                     pressed: parent.pressed
                     //active: enabled && parent.containsPress
@@ -200,8 +199,8 @@ Rectangle {
                 }
 
                 RippleThemed {
-                    width: parent.width
-                    height: parent.height
+                    anchors.fill: parent
+                    anchor: control
 
                     pressed: parent.pressed
                     //active: enabled && parent.containsPress

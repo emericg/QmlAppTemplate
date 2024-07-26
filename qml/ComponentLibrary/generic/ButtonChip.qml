@@ -55,10 +55,9 @@ T.Button {
         }
 
         RippleThemed {
-            width: parent.width
-            height: parent.height
-
+            anchors.fill: parent
             anchor: control
+
             pressed: control.pressed
             active: control.enabled && (control.down || control.visualFocus)
             color: Qt.rgba(control.color.r, control.color.g, control.color.b, 0.16)

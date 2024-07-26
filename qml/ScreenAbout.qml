@@ -173,13 +173,17 @@ Loader {
             ////////////////
 
             ListItem { // description
-                width: parent.width
+                anchors.left: parent.left
+                anchors.right: parent.right
+
                 text: qsTr("A Qt6 / QML application template, with a full set of visual controls, as well as build and deploy scripts and CI setups.")
                 source: "qrc:/assets/icons/material-symbols/info.svg"
             }
 
             ListItemClickable { // authors
-                width: parent.width
+                anchors.left: parent.left
+                anchors.right: parent.right
+
                 text: qsTr("Application by <a href=\"https://emeric.io\">Emeric Grange</a>")
                 source: "qrc:/assets/icons/material-symbols/supervised_user_circle.svg"
                 indicatorSource: "qrc:/assets/icons/material-icons/duotone/launch.svg"
@@ -187,7 +191,9 @@ Loader {
             }
 
             ListItemClickable { // rate
-                width: parent.width
+                anchors.left: parent.left
+                anchors.right: parent.right
+
                 //visible: (Qt.platform.os === "android" || Qt.platform.os === "ios")
 
                 text: qsTr("Rate the application")
@@ -201,7 +207,8 @@ Loader {
             ListSeparator { }
 
             ListItemClickable { // tutorial
-                width: parent.width
+                anchors.left: parent.left
+                anchors.right: parent.right
 
                 text: qsTr("Open the tutorial")
                 source: "qrc:/assets/icons/material-symbols/menu_book-fill.svg"
@@ -215,7 +222,9 @@ Loader {
             ListSeparator { visible: (Qt.platform.os === "android") }
 
             ListItemClickable { // permissions
-                width: parent.width
+                anchors.left: parent.left
+                anchors.right: parent.right
+
                 visible: (Qt.platform.os === "android")
 
                 text: qsTr("About app permissions")
@@ -282,7 +291,9 @@ Loader {
                             "Google Material Icons (MIT)",
                         ]
                         delegate: Text {
-                            width: parent.width
+                            anchors.left: parent.left
+                            anchors.right: parent.right
+
                             text: "- " + modelData
                             textFormat: Text.PlainText
                             color: Theme.colorSubText
@@ -349,7 +360,9 @@ Loader {
                             "Translator 9 (Klingon)",
                         ]
                         delegate: Text {
-                            width: parent.width
+                            anchors.left: parent.left
+                            anchors.right: parent.right
+
                             text: "- " + modelData
                             textFormat: Text.PlainText
                             color: Theme.colorSubText
