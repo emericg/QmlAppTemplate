@@ -49,7 +49,6 @@ env:
 
 ## iOS upload:
 # TODO
-https://github.com/fastlane/fastlane/blob/master/fastlane/lib/fastlane/actions/docs/upload_to_testflight.md
 
 #-------------------------------------------------------------------------------
 # Workflow jobs
@@ -150,11 +149,6 @@ jobs:
                -DQT_ANDROID_BUILD_ALL_ABIS=ON \
                -DQT_ANDROID_ABIS="armeabi-v7a;arm64-v8a;x86;x86_64"
              cmake --build build/ --config Release
-
-      # Package application
-      #- name: Package application
-      #  run: |
-      #       ${{env.QT_HOST_PATH}}/bin/androiddeployqt --input build/android-${{env.APP_NAME}}-deployment-settings.json --output build/android-build/ --android-platform android-34 --aab --release
 
       # Package & sign application
       - name: Package & sign application
@@ -282,84 +276,3 @@ jobs:
         run: |
              ls build/
              ls build/Release-iphoneos
-
-      # Sign application
-      - name: Sign application
-        if: ${{ github.event_name == 'workflow_dispatch' }}
-        run: |
-             echo ${{ secrets.ANDROID_SIGNINGKEY_BASE64 }} > release.keystore.base64
-             base64 -d release.keystore.base64 > release.keystore
-             ${{env.QT_HOST_PATH}}/bin/androiddeployqt --input build/android-${{env.APP_NAME}}-deployment-settings.json --output build/android-build/ --android-platform android-34 --aab --release --sign release.keystore ${{ secrets.ANDROID_SIGNINGKEY_ALIAS }} --storepass ${{ secrets.ANDROID_SIGNINGKEY_PASSWORD }}
-
-      # Upload iOS app bundle (GitHub CI)
-      - name: Upload iOS app bundle (GitHub CI)
-        if: ${{ github.event_name == 'workflow_dispatch' }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{env.APP_NAME}}-${{env.APP_VERSION}}-iOS.ipa
-          path: build/build/Release-iphoneos/${{env.APP_NAME}}.ipa
-
-## WIP STUFF #############################################################
-## WIP STUFF #############################################################
-## WIP STUFF #############################################################
-
-echo $ANDROID_SDK_ROOT
-echo $ANDROID_NDK_ROOT
-echo $ANDROID_NDK
-export ANDROID_SDK_ROOT=/usr/local/lib/android/sdk
-export ANDROID_NDK_ROOT=/usr/local/lib/android/sdk/ndk/25.2.9519653
-echo $JAVA_HOME
-echo $JAVA_HOME_8_X64
-echo $JAVA_HOME_11_X64
-
-<qt_for_android_install_path>/bin/qt-cmake \
-    -DQT_ANDROID_BUILD_ALL_ABIS=TRUE
-    QT_ANDROID_DEPLOY_RELEASE
-    QT_ANDROID_TARGET_SDK_VERSION=33
-    -DANDROID_SDK_ROOT=<android_sdk_path> \
-    -DANDROID_NDK_ROOT=<android_ndk_path> \
-    -S <source_directory> -B <build_directory>
-    -DQT_ANDROID_SIGN_AAB
-
-# Signe Android package
-- name: Signing Android package
-  continue-on-error: true
-  run: |
-    #keytool -genkey -v -keystore alp.keystore -alias alpinemaps -keyalg RSA -sigalg SHA1withRSA -keysize 2048 -validity 10000 -keypass asdfasdf -storepass asdfasdf -dname "CN=Franz, OU=IT, O=Furz, L=Rattenberg, ST=Tirol, C=AT"
-
-    ANDROID_DEPLOY="${{env.QT_HOST_PATH}}/bin/androiddeployqt --input"
-    DEPLOY_PARAMS="--android-platform android-33 --gradle --release --sign alp.keystore alpinemaps --storepass asdfasdf"
-
-    $ANDROID_DEPLOY $BUILD_DIR/app/android-alpineapp-deployment-settings.json --output $BUILD_DIR/app/android-build/ $DEPLOY_PARAMS
-
-- name: Signing Android package with common key
-  env:
-    secret_test: ${{ secrets.KEYSTOREPASSWORD }}
-  if: matrix.qttarget == 'android' && env.secret_test != ''
-  run: |
-    echo ${{ secrets.GPLAY_SERVICE_ACCOUNT_KEY_BASE64 }} > release.keystore.base64
-    base64 -d release.keystore.base64 > release.keystore
-    $QT_HOST_PATH/bin/androiddeployqt --input $DEPLOYMENT_SETTINGS --output $ANDROID_BUILD_DIR --android-platform android-33 --gradle --release --sign release.keystore alpinemaps --storepass ${{ secrets.KEYSTOREPASSWORD }}
-
-# Recap stuff
-- name: Recap stuff
-  run: |
-       echo ${{env.QT_HOST_PATH}}
-       echo ${{env.QT_TARGET_PATH}}
-
-# Recap (android) build directories
-- name: Recap build directories
-  run: |
-       #echo '---- ls build/'
-       #ls build/
-       #echo '---- ls build/android_abi_builds/'
-       #ls build/android_abi_builds
-       #echo '---- ls build/android-build/'
-       #ls build/android-build
-       #echo '---- ls build/android-build/ + ARCHS'
-       #ls build/android-build/libs/arm64-v8a
-       #ls build/android-build/libs/armeabi-v7a
-       #ls build/android-build/libs/x86
-       #ls build/android-build/libs/x86_64
-       #echo '---- cat deployment-settings.json'
-       #cat build/android-QmlAppTemplate-deployment-settings.json
