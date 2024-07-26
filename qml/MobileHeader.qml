@@ -200,7 +200,7 @@ Rectangle {
 
                 RippleThemed {
                     anchors.fill: parent
-                    anchor: control
+                    anchor: parent
 
                     pressed: parent.pressed
                     //active: enabled && parent.containsPress

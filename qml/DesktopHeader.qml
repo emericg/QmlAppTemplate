@@ -40,11 +40,11 @@ Rectangle {
 
     RoundButtonSunken { // buttonBack
         anchors.top: parent.top
-        anchors.topMargin: 8
+        anchors.topMargin: 6
         anchors.left: parent.left
-        anchors.leftMargin: 12
+        anchors.leftMargin: 8
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 8
+        anchors.bottomMargin: 6
         width: height
 
         enabled: (source !== "qrc:/assets/icons/material-symbols/arrow_back.svg" || wideMode)

@@ -20,6 +20,18 @@ Flickable {
         bottomPadding: Theme.componentMarginXL
         spacing: Theme.componentMarginXL
 
+        SliderThemed {
+            id: mainValue
+            anchors.left: parent.left
+            anchors.leftMargin: Theme.componentMarginXL
+            anchors.right: parent.right
+            anchors.rightMargin: Theme.componentMarginXL
+
+            from: 0
+            to: 1
+            value: 0.5
+        }
+
         ListTitle { ////////////////////////////////////////////////////////////
             anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
@@ -39,7 +51,7 @@ Flickable {
                 anchors.left: parent.left
                 anchors.right: parent.right
 
-                value: 0.5
+                value: mainValue.value
             }
         }
 
@@ -62,7 +74,7 @@ Flickable {
                 anchors.left: parent.left
                 anchors.right: parent.right
 
-                value: 33
+                value: mainValue.value*100
 
                 legend: ""
                 prefix: ""
@@ -74,7 +86,7 @@ Flickable {
                 anchors.left: parent.left
                 anchors.right: parent.right
 
-                value: 66
+                value: mainValue.value*100
 
                 legend: ""
                 prefix: ""
@@ -103,13 +115,13 @@ Flickable {
 
                 ProgressArc {
                     width: 128
-                    value: 0.33
+                    value: mainValue.value
                 }
 
                 ProgressArc {
                     width: 128
-                    value: 0.66
-                    arcCap: "round"
+                    value: mainValue.value
+                    arcCap: Qt.RoundCap
                     arcColor: Theme.colorMaterialLime
                 }
             }
@@ -119,13 +131,13 @@ Flickable {
 
                 ProgressCircle {
                     width: 128
-                    value: 0.33
+                    value: mainValue.value
                     arcColor: Theme.colorMaterialDeepOrange
                 }
 
                 ProgressCircle {
                     width: 128
-                    value: 0.66
+                    value: mainValue.value
                     isPie: true
                 }
             }
