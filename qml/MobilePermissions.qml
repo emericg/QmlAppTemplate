@@ -120,6 +120,9 @@ Item {
                 ButtonWireframe {
                     anchors.left: parent.left
                     anchors.leftMargin: 48
+                    height: 38
+
+                    colorBackground: Theme.colorForeground
 
                     text: qsTr("Official information")
                     source: "qrc:/assets/icons/material-icons/duotone/launch.svg"
@@ -196,6 +199,9 @@ Item {
                 ButtonWireframe {
                     anchors.left: parent.left
                     anchors.leftMargin: 48
+                    height: 38
+
+                    colorBackground: Theme.colorForeground
 
                     text: qsTr("Location info")
                     source: "qrc:/assets/icons/material-icons/duotone/tune.svg"
@@ -319,6 +325,9 @@ Item {
                 ButtonWireframe {
                     anchors.left: parent.left
                     anchors.leftMargin: 48
+                    height: 38
+
+                    colorBackground: Theme.colorForeground
 
                     text: qsTr("Application info")
                     source: "qrc:/assets/icons/material-icons/duotone/tune.svg"

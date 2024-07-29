@@ -114,9 +114,6 @@ Popup {
 
                     text: qsTr("Delete local data")
                     onClicked: {
-                        if (selectedDevice) {
-                            selectedDevice.actionClearData()
-                        }
                         popupChoice.confirmed()
                         popupChoice.close()
                     }
@@ -128,9 +125,6 @@ Popup {
 
                     text: qsTr("Delete sensor data")
                     onClicked: {
-                        if (selectedDevice) {
-                             selectedDevice.actionClearDeviceData()
-                        }
                         popupChoice.confirmed()
                         popupChoice.close()
                     }
