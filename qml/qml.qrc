@@ -13,6 +13,7 @@
         <file>ScreenMainView.qml</file>
         <file>ScreenMobileComponents.qml</file>
         <file>ScreenDesktopComponents.qml</file>
+        <file>ScreenPlayground.qml</file>
         <file>ScreenFontInfos.qml</file>
         <file>ScreenHostInfos.qml</file>
         <file>ScreenSettings.qml</file>

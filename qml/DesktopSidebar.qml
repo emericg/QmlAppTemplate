@@ -37,15 +37,15 @@ Rectangle {
         anchors.right: parent.right
 
         DesktopSidebarItem {
-            source: "qrc:/assets/icons/material-icons/duotone/touch_app.svg"
+            source: "qrc:/assets/icons/material-symbols/hardware/computer.svg"
             sourceSize: 40
-            highlightMode: "indicator"
 
+            highlightMode: "indicator"
             highlighted: (appContent.state === "DesktopComponents")
             onClicked: screenDesktopComponents.loadScreen()
         }
         DesktopSidebarItem {
-            source: "qrc:/assets/icons/material-icons/duotone/touch_app.svg"
+            source: "qrc:/assets/icons/material-symbols/hardware/smartphone-fill.svg"
             sourceSize: 40
             highlightMode: "indicator"
 
@@ -53,19 +53,30 @@ Rectangle {
             onClicked: screenMobileComponents.loadScreen()
         }
         DesktopSidebarItem {
+            source: "qrc:/assets/icons/material-icons/duotone/touch_app.svg"
+            sourceSize: 40
+
+            highlightMode: "indicator"
+            highlighted: (appContent.state === "Playground")
+
+            onClicked: screenPlayground.loadScreen()
+        }
+        DesktopSidebarItem {
             source: "qrc:/assets/icons/material-icons/duotone/memory.svg"
             sourceSize: 40
-            highlightMode: "indicator"
 
+            highlightMode: "indicator"
             highlighted: (appContent.state === "HostInfos")
+
             onClicked: screenHostInfos.loadScreen()
         }
         DesktopSidebarItem {
             source: "qrc:/assets/icons/material-icons/duotone/format_size.svg"
             sourceSize: 40
-            highlightMode: "indicator"
 
+            highlightMode: "indicator"
             highlighted: (appContent.state === "FontInfos")
+
             onClicked: screenFontInfos.loadScreen()
         }
     }
@@ -81,18 +92,20 @@ Rectangle {
         DesktopSidebarItem {
             source: "qrc:/assets/icons/material-icons/duotone/tune.svg"
             sourceSize: 40
-            highlightMode: "indicator"
 
+            highlightMode: "indicator"
             highlighted: (appContent.state === "Settings")
+
             onClicked: screenSettings.loadScreen()
         }
 
         DesktopSidebarItem {
             source: "qrc:/assets/icons/material-icons/duotone/info.svg"
             sourceSize: 40
-            highlightMode: "indicator"
 
+            highlightMode: "indicator"
             highlighted: (appContent.state === "About")
+
             onClicked: screenAbout.loadScreen()
         }
 
@@ -100,7 +113,6 @@ Rectangle {
             source: "qrc:/assets/icons/material-icons/duotone/exit_to_app.svg"
             sourceSize: 40
             highlightMode: "circle"
-
             onClicked: Qt.quit()
         }
     }

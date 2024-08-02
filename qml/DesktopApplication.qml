@@ -241,6 +241,9 @@ ApplicationWindow {
         ScreenMobileComponents {
             id: screenMobileComponents
         }
+        ScreenPlayground {
+            id: screenPlayground
+        }
         ScreenFontInfos {
             id: screenFontInfos
         }
@@ -272,6 +275,7 @@ ApplicationWindow {
                 PropertyChanges { target: screenMainView; visible: true; enabled: true; focus: true; }
                 PropertyChanges { target: screenDesktopComponents; visible: false; enabled: false; }
                 PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenPlayground; visible: false; enabled: false; }
                 PropertyChanges { target: screenFontInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenSettings; visible: false; enabled: false; }
@@ -282,6 +286,7 @@ ApplicationWindow {
                 PropertyChanges { target: screenMainView; visible: false; enabled: false; }
                 PropertyChanges { target: screenDesktopComponents; visible: true; enabled: true; focus: true; }
                 PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenPlayground; visible: false; enabled: false; }
                 PropertyChanges { target: screenFontInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenSettings; visible: false; enabled: false; }
@@ -292,6 +297,18 @@ ApplicationWindow {
                 PropertyChanges { target: screenMainView; visible: false; enabled: false; }
                 PropertyChanges { target: screenDesktopComponents; visible: false; enabled: false; }
                 PropertyChanges { target: screenMobileComponents; visible: true; enabled: true; focus: true; }
+                PropertyChanges { target: screenPlayground; visible: false; enabled: false; }
+                PropertyChanges { target: screenFontInfos; visible: false; enabled: false; }
+                PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
+                PropertyChanges { target: screenSettings; visible: false; enabled: false; }
+                PropertyChanges { target: screenAbout; visible: false; enabled: false; }
+            },
+            State {
+                name: "Playground"
+                PropertyChanges { target: screenMainView; visible: false; enabled: false; }
+                PropertyChanges { target: screenDesktopComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenPlayground; visible: true; enabled: true; focus: true; }
                 PropertyChanges { target: screenFontInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenSettings; visible: false; enabled: false; }
@@ -302,6 +319,7 @@ ApplicationWindow {
                 PropertyChanges { target: screenMainView; visible: false; enabled: false; }
                 PropertyChanges { target: screenDesktopComponents; visible: false; enabled: false; }
                 PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenPlayground; visible: false; enabled: false; }
                 PropertyChanges { target: screenFontInfos; visible: true; enabled: true; focus: true; }
                 PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenSettings; visible: false; enabled: false; }
@@ -312,6 +330,7 @@ ApplicationWindow {
                 PropertyChanges { target: screenMainView; visible: false; enabled: false; }
                 PropertyChanges { target: screenDesktopComponents; visible: false; enabled: false; }
                 PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenPlayground; visible: false; enabled: false; }
                 PropertyChanges { target: screenFontInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenHostInfos; visible: true; enabled: true; focus: true; }
                 PropertyChanges { target: screenSettings; visible: false; enabled: false; }
@@ -322,6 +341,7 @@ ApplicationWindow {
                 PropertyChanges { target: screenMainView; visible: false; enabled: false; }
                 PropertyChanges { target: screenDesktopComponents; visible: false; enabled: false; }
                 PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenPlayground; visible: false; enabled: false; }
                 PropertyChanges { target: screenFontInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenSettings; visible: true; enabled: true; focus: true; }
@@ -332,6 +352,7 @@ ApplicationWindow {
                 PropertyChanges { target: screenMainView; visible: false; enabled: false; }
                 PropertyChanges { target: screenDesktopComponents; visible: false; enabled: false; }
                 PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenPlayground; visible: false; enabled: false; }
                 PropertyChanges { target: screenFontInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenSettings; visible: false; enabled: false; }
