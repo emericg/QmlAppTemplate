@@ -681,9 +681,9 @@ extern "C" {
 #endif
 
 JNIEXPORT void JNICALL
-  Java_com_qmlapptemplate_QShareActivity_setFileUrlReceived(JNIEnv *env,
-                                                            jobject obj,
-                                                            jstring url)
+  Java_io_emeric_qmlapptemplate_QShareActivity_setFileUrlReceived(JNIEnv *env,
+                                                                  jobject obj,
+                                                                  jstring url)
 {
     const char *urlStr = env->GetStringUTFChars(url, NULL);
     Q_UNUSED(obj)
@@ -693,9 +693,9 @@ JNIEXPORT void JNICALL
 }
 
 JNIEXPORT void JNICALL
-  Java_com_qmlapptemplate_QShareActivity_setFileReceivedAndSaved(JNIEnv *env,
-                                                                 jobject obj,
-                                                                 jstring url)
+  Java_io_emeric_qmlapptemplate_QShareActivity_setFileReceivedAndSaved(JNIEnv *env,
+                                                                       jobject obj,
+                                                                       jstring url)
 {
     const char *urlStr = env->GetStringUTFChars(url, NULL);
     Q_UNUSED(obj)
@@ -705,9 +705,9 @@ JNIEXPORT void JNICALL
 }
 
 JNIEXPORT bool JNICALL
-  Java_com_qmlapptemplate_QShareActivity_checkFileExits(JNIEnv *env,
-                                                        jobject obj,
-                                                        jstring url)
+  Java_io_emeric_qmlapptemplate_QShareActivity_checkFileExits(JNIEnv *env,
+                                                              jobject obj,
+                                                              jstring url)
 {
     const char *urlStr = env->GetStringUTFChars(url, NULL);
     Q_UNUSED(obj)
@@ -717,10 +717,10 @@ JNIEXPORT bool JNICALL
 }
 
 JNIEXPORT void JNICALL
-  Java_com_qmlapptemplate_QShareActivity_fireActivityResult(JNIEnv *env,
-                                                            jobject obj,
-                                                            jint requestCode,
-                                                            jint resultCode)
+  Java_io_emeric_qmlapptemplate_QShareActivity_fireActivityResult(JNIEnv *env,
+                                                                  jobject obj,
+                                                                  jint requestCode,
+                                                                  jint resultCode)
 {
     Q_UNUSED(obj)
     Q_UNUSED(env)
