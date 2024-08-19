@@ -17,7 +17,15 @@ Loader {
 
     function backAction() {
         if (screenMobileComponents.status === Loader.Ready)
-            screenMobileComponents.item.backAction()
+            return screenMobileComponents.item.backAction()
+
+        return false
+    }
+
+    property int stackViewDepth: {
+        if (screenMobileComponents.status === Loader.Ready)
+            return screenMobileComponents.item.stackViewDepth
+        return 0
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -30,9 +38,13 @@ Loader {
 
             if (stackView.depth > 1) {
                 stackView.pop()
-                return
+                return false
             }
+
+            return true
         }
+
+        property alias stackViewDepth: stackView.depth
 
         StackView {
             id: stackView

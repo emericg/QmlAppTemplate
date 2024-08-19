@@ -118,10 +118,20 @@ ApplicationWindow {
 
     MobileHeader {
         id: appHeader
+
+        leftMenuMode: {
+            if (appContent.state === "MobileComponents" && screenMobileComponents.stackViewDepth <= 1)
+                return "drawer"
+            else if (appContent.state === "Tutorial")
+                return "close"
+
+            return"back"
+        }
     }
 
     MobileDrawer {
         id: appDrawer
+
         interactive: (appContent.state !== "Tutorial")
     }
 
@@ -134,7 +144,7 @@ ApplicationWindow {
     Connections {
         target: appHeader
         function onLeftMenuClicked() {
-            if (appContent.state === "MainView" /*|| appContent.state === "MobileComponents"*/) {
+            if (appContent.state === "MobileComponents" && screenMobileComponents.stackViewDepth <= 1) {
                 appDrawer.open()
             } else {
                 backAction()
@@ -177,21 +187,23 @@ ApplicationWindow {
     // User generated events handling //////////////////////////////////////////
 
     function backAction() {
-        if (appContent.state === "MainView") {
-            if (exitTimer.running)
-                Qt.quit()
-            else
-                exitTimer.start()
-        } else if (appContent.state === "MobileComponents") {
-            screenMobileComponents.backAction()
+        if (appContent.state === "MobileComponents") {
+            if (screenMobileComponents.backAction()) {
+                if (mobileExit.enabled) {
+                    if (mobileExit.timerRunning)
+                        Qt.quit()
+                    else
+                        mobileExit.timerStart()
+                } else {
+                    mobileUI.backToHomeScreen()
+                }
+            }
         } else if (appContent.state === "Settings") {
             screenSettings.backAction()
         } else if (appContent.state === "About") {
             screenAbout.backAction()
         } else if (appContent.state === "AboutPermissions") {
             screenAbout.loadScreen()
-        } else {
-            screenMainView.loadScreen()
         }
     }
     function forwardAction() {
@@ -240,9 +252,6 @@ ApplicationWindow {
         focus: true
         Keys.onBackPressed: backAction()
 
-        ScreenMainView {
-            id: screenMainView
-        }
         ScreenMobileComponents {
             id: screenMobileComponents
         }
@@ -267,12 +276,7 @@ ApplicationWindow {
         state: "MobileComponents"
 
         onStateChanged: {
-            if (state === "MainView" /*|| state === "MobileComponents"*/)
-                appHeader.leftMenuMode = "drawer"
-            else if (state === "Tutorial")
-                appHeader.leftMenuMode = "close"
-            else
-                appHeader.leftMenuMode = "back"
+            //
         }
 
         states: [
@@ -341,48 +345,15 @@ ApplicationWindow {
 
     ////////////////
 
-    MobileMenu {
-        id: mobileMenu
+    MobileExit {
+        id: mobileExit
+        enabled: true
     }
 
     ////////////////
 
-    Timer {
-        id: exitTimer
-        interval: 3000
-        running: false
-        repeat: false
-    }
-    Rectangle {
-        id: exitWarning
-
-        anchors.left: parent.left
-        anchors.leftMargin: Theme.componentMargin
-        anchors.right: parent.right
-        anchors.rightMargin: Theme.componentMargin
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: Theme.componentMargin + mobileMenu.height
-
-        height: Theme.componentHeightL
-        radius: Theme.componentRadius
-
-        color: Theme.colorComponentBackground
-        border.color: Theme.colorSeparator
-        border.width: Theme.componentBorderWidth
-
-        visible: opacity
-
-        opacity: exitTimer.running ? 1 : 0
-        Behavior on opacity { OpacityAnimator { duration: 233 } }
-
-        Text {
-            anchors.centerIn: parent
-
-            text: qsTr("Press one more time to exit...")
-            textFormat: Text.PlainText
-            font.pixelSize: Theme.fontSizeContent
-            color: Theme.colorText
-        }
+    MobileMenu {
+        id: mobileMenu
     }
 
     ////////////////////////////////////////////////////////////////////////////

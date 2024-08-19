@@ -5,6 +5,7 @@
         <file>MobileDrawer.qml</file>
         <file>MobilePermissions.qml</file>
         <file>MobileMenu.qml</file>
+        <file>MobileExit.qml</file>
 
         <file>DesktopApplication.qml</file>
         <file>DesktopHeader.qml</file>
