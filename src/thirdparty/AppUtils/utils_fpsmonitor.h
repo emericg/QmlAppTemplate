@@ -41,7 +41,7 @@ class QQuickWindow;
  * This class use the QQuickWindow::frameSwapped method from Luca Carlon.
  * - https://github.com/carlonluca/lqtutils/blob/master/lqtutils_freq.h
  *
- * The FrameMonitor widget uses a simplier and pure QML method from qnanopainter.
+ * The FrameMonitor widget uses a simpler and pure QML method from qnanopainter.
  * - https://github.com/QUItCoding/qnanopainter/blob/master/examples/qnanopainter_vs_qpainter_demo/qml/FpsItem.qml
  */
 class FrameRateMonitor : public QObject
