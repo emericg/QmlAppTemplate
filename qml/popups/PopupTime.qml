@@ -225,6 +225,7 @@ Popup {
                     anchors.verticalCenter: parent.verticalCenter
 
                     model: ["AM", "PM"]
+                    wrap: false
                 }
             }
 
