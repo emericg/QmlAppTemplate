@@ -79,7 +79,7 @@ jobs:
       #- name: Install Android SDK / NDK / tools
       #  run: |
       #       sdkmanager "platforms;android-34"
-      #       sdkmanager "ndk;26.1.10909125"
+      #       sdkmanager "ndk;26.3.11579264"
       #       sdkmanager "build-tools;34.0.0"
 
       # Install Qt (desktop & Android)
@@ -128,13 +128,13 @@ jobs:
       # Setup env
       - name: Setup env
         run: |
+             cmake --version
              echo "QT_HOST_PATH=/home/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/gcc_64" >> $GITHUB_ENV
              echo "QT_TARGET_PATH=/home/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/android_arm64_v8a" >> $GITHUB_ENV
 
       # Build application
       - name: Build application
         run: |
-             cmake --version
              cmake -B build/ -G Ninja \
                -DCMAKE_SYSTEM_NAME=Android \
                -DCMAKE_BUILD_TYPE=Release \
@@ -186,8 +186,8 @@ jobs:
         with:
           submodules: recursive
 
-      # Install Qt (iOS & desktop)
-      - name: Install Qt (iOS & desktop)
+      # Install Qt (desktop & iOS)
+      - name: Install Qt (desktop & iOS)
         uses: jurplel/install-qt-action@v4
         with:
           version: ${{env.QT_VERSION}}
@@ -203,6 +203,7 @@ jobs:
       # Setup env
       - name: Setup env
         run: |
+             cmake --version
              echo "QT_HOST_PATH=/Users/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/macos" >> $GITHUB_ENV
              echo "QT_TARGET_PATH=/Users/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/ios" >> $GITHUB_ENV
 
@@ -210,7 +211,6 @@ jobs:
       - name: Build application
         if: ${{ github.event_name != 'workflow_dispatch' }}
         run: |
-             cmake --version
              cmake -B build/ -G Xcode \
                -DCMAKE_SYSTEM_NAME=iOS \
                -DCMAKE_BUILD_TYPE=Release \
