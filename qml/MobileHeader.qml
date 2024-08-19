@@ -70,6 +70,8 @@ Rectangle {
     Item {
         anchors.fill: parent
         anchors.topMargin: Math.max(screenPaddingTop, screenPaddingStatusbar)
+        anchors.leftMargin: screenPaddingLeft
+        anchors.rightMargin: screenPaddingRight
 
         ////////////
 

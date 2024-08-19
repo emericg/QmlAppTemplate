@@ -35,60 +35,85 @@ ApplicationWindow {
     property int screenPaddingRight: 0
     property int screenPaddingBottom: 0
 
-    onScreenOrientationChanged: handleSafeAreas()
-    onVisibilityChanged: handleSafeAreas()
-
-    function handleSafeAreas() {
-        // safe areas are only taken into account when using maximized geometry / full screen mode
-        if (appWindow.visibility === ApplicationWindow.FullScreen ||
-            appWindow.flags & Qt.MaximizeUsingFullscreenGeometryHint) {
-
-            screenPaddingStatusbar = mobileUI.statusbarHeight
-            screenPaddingNavbar = mobileUI.navbarHeight
-
-            screenPaddingTop = mobileUI.safeAreaTop
-            screenPaddingLeft = mobileUI.safeAreaLeft
-            screenPaddingRight = mobileUI.safeAreaRight
-            screenPaddingBottom = mobileUI.safeAreaBottom
-
-            // hacks
-            if (Qt.platform.os === "android") {
-                //
-            }
-            // hacks
-            if (Qt.platform.os === "ios") {
-                //
-            }
-        } else {
-            screenPaddingStatusbar = 0
-            screenPaddingNavbar = 0
-            screenPaddingTop = 0
-            screenPaddingLeft = 0
-            screenPaddingRight = 0
-            screenPaddingBottom = 0
-        }
-/*
-        console.log("> handleSafeAreas()")
-        console.log("- screen width:        " + Screen.width)
-        console.log("- screen width avail:  " + Screen.desktopAvailableWidth)
-        console.log("- screen height:       " + Screen.height)
-        console.log("- screen height avail: " + Screen.desktopAvailableHeight)
-        console.log("- screen orientation:  " + Screen.orientation)
-        console.log("- screen orientation (primary): " + Screen.primaryOrientation)
-        console.log("- screenSizeStatusbar: " + screenPaddingStatusbar)
-        console.log("- screenSizeNavbar:    " + screenPaddingNavbar)
-        console.log("- screenPaddingTop:    " + screenPaddingTop)
-        console.log("- screenPaddingLeft:   " + screenPaddingLeft)
-        console.log("- screenPaddingRight:  " + screenPaddingRight)
-        console.log("- screenPaddingBottom: " + screenPaddingBottom)
-*/
-    }
-
     MobileUI {
         id: mobileUI
 
-        statusbarColor: Theme.colorStatusbar
+        statusbarColor: "transparent"
+        statusbarTheme: Theme.themeStatusbar
         navbarColor: Theme.colorBackground
+
+        Component.onCompleted: handleSafeAreas()
+
+        function handleSafeAreas() {
+            // safe areas handling is a work in progress /!\
+            // safe areas are only taken into account when using maximized geometry / full screen mode
+
+            mobileUI.refreshUI() // hack
+
+            if (appWindow.visibility === Window.FullScreen ||
+                appWindow.flags & Qt.MaximizeUsingFullscreenGeometryHint) {
+
+                screenPaddingStatusbar = mobileUI.statusbarHeight
+                screenPaddingNavbar = mobileUI.navbarHeight
+
+                screenPaddingTop = mobileUI.safeAreaTop
+                screenPaddingLeft = mobileUI.safeAreaLeft
+                screenPaddingRight = mobileUI.safeAreaRight
+                screenPaddingBottom = mobileUI.safeAreaBottom
+
+                // hacks
+                if (Qt.platform.os === "android") {
+                    if (appWindow.visibility === Window.FullScreen) {
+                        screenPaddingStatusbar = 0
+                        screenPaddingNavbar = 0
+                    }
+                    if (appWindow.flags & Qt.MaximizeUsingFullscreenGeometryHint) {
+                        if (mobileUI.isPhone) {
+                            if (Screen.orientation === Qt.LandscapeOrientation) {
+                                screenPaddingLeft = screenPaddingStatusbar
+                                screenPaddingRight = screenPaddingNavbar
+                                screenPaddingNavbar = 0
+                            } else if (Screen.orientation === Qt.InvertedLandscapeOrientation) {
+                                screenPaddingLeft = screenPaddingNavbar
+                                screenPaddingRight = screenPaddingStatusbar
+                                screenPaddingNavbar = 0
+                            }
+                        }
+                    }
+                }
+                // hacks
+                if (Qt.platform.os === "ios") {
+                    if (appWindow.visibility === Window.FullScreen) {
+                        screenPaddingStatusbar = 0
+                    }
+                }
+            } else {
+                screenPaddingStatusbar = 0
+                screenPaddingNavbar = 0
+                screenPaddingTop = 0
+                screenPaddingLeft = 0
+                screenPaddingRight = 0
+                screenPaddingBottom = 0
+            }
+/*
+            console.log("> handleSafeAreas()")
+            console.log("- window mode:         " + appWindow.visibility)
+            console.log("- window flags:        " + appWindow.flags)
+            console.log("- screen dpi:          " + Screen.devicePixelRatio)
+            console.log("- screen width:        " + Screen.width)
+            console.log("- screen width avail:  " + Screen.desktopAvailableWidth)
+            console.log("- screen height:       " + Screen.height)
+            console.log("- screen height avail: " + Screen.desktopAvailableHeight)
+            console.log("- screen orientation (full): " + Screen.orientation)
+            console.log("- screen orientation (primary): " + Screen.primaryOrientation)
+            console.log("- screenSizeStatusbar: " + screenPaddingStatusbar)
+            console.log("- screenSizeNavbar:    " + screenPaddingNavbar)
+            console.log("- screenPaddingTop:    " + screenPaddingTop)
+            console.log("- screenPaddingLeft:   " + screenPaddingLeft)
+            console.log("- screenPaddingRight:  " + screenPaddingRight)
+            console.log("- screenPaddingBottom: " + screenPaddingBottom)
+*/
+        }
     }
 
     MobileHeader {
@@ -142,6 +167,11 @@ ApplicationWindow {
                     break
             }
         }
+    }
+
+    Connections {
+        target: Screen
+        function onOrientationChanged() { mobileUI.handleSafeAreas() }
     }
 
     // User generated events handling //////////////////////////////////////////
@@ -202,46 +232,39 @@ ApplicationWindow {
 
         anchors.top: appHeader.bottom
         anchors.left: parent.left
+        anchors.leftMargin: screenPaddingLeft
         anchors.right: parent.right
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: screenPaddingNavbar + screenPaddingBottom
+        anchors.rightMargin: screenPaddingRight
+        anchors.bottom: mobileMenu.top
 
         focus: true
         Keys.onBackPressed: backAction()
 
         ScreenMainView {
             id: screenMainView
-            anchors.bottomMargin: mobileMenu.hhv
         }
         ScreenMobileComponents {
             id: screenMobileComponents
-            anchors.bottomMargin: mobileMenu.hhv
         }
         ScreenFontInfos {
             id: screenFontInfos
-            anchors.bottomMargin: mobileMenu.hhv
         }
         ScreenHostInfos {
             id: screenHostInfos
-            anchors.bottomMargin: mobileMenu.hhv
         }
 
         ScreenSettings {
             id: screenSettings
-            anchors.bottomMargin: mobileMenu.hhv
         }
         ScreenAbout {
             id: screenAbout
-            anchors.bottomMargin: mobileMenu.hhv
         }
         MobilePermissions {
             id: screenAboutPermissions
-            anchors.bottomMargin: mobileMenu.hhv
         }
 
-        Component.onCompleted: {
-            //
-        }
+        // Initial state
+        state: "MobileComponents"
 
         onStateChanged: {
             if (state === "MainView" /*|| state === "MobileComponents"*/)
@@ -251,9 +274,6 @@ ApplicationWindow {
             else
                 appHeader.leftMenuMode = "back"
         }
-
-        // Initial state
-        state: "MobileComponents"
 
         states: [
             State {

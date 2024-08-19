@@ -61,9 +61,7 @@ Loader {
 
             Item { // element_appTheme
                 anchors.left: parent.left
-                anchors.leftMargin: screenPaddingLeft
                 anchors.right: parent.right
-                anchors.rightMargin: screenPaddingRight
                 height: Theme.componentHeightXL
 
                 IconSvg {
@@ -152,9 +150,7 @@ Loader {
 
             Item { // element_appTheme
                 anchors.left: parent.left
-                anchors.leftMargin: screenPaddingLeft
                 anchors.right: parent.right
-                anchors.rightMargin: screenPaddingRight
                 height: Theme.componentHeightXL
 
                 visible: isMobile
@@ -246,9 +242,7 @@ Loader {
 
             Item { // element_appThemeAuto
                 anchors.left: parent.left
-                anchors.leftMargin: screenPaddingLeft
                 anchors.right: parent.right
-                anchors.rightMargin: screenPaddingRight
                 height: Theme.componentHeightXL
 
                 IconSvg {
@@ -293,7 +287,7 @@ Loader {
             }
             Text { // legend_appThemeAuto
                 anchors.left: parent.left
-                anchors.leftMargin: screenPaddingLeft + contentColumn.padText
+                anchors.leftMargin: contentColumn.padText
                 anchors.right: parent.right
                 anchors.rightMargin: Theme.componentMargin
 
@@ -311,9 +305,7 @@ Loader {
 
             Item { // element_appThemeCSD
                 anchors.left: parent.left
-                anchors.leftMargin: screenPaddingLeft
                 anchors.right: parent.right
-                anchors.rightMargin: screenPaddingRight
                 height: Theme.componentHeightXL
 
                 visible: isDesktop
@@ -357,7 +349,7 @@ Loader {
             }
             Text { // legend_appThemeCSD
                 anchors.left: parent.left
-                anchors.leftMargin: screenPaddingLeft + contentColumn.padText
+                anchors.leftMargin: contentColumn.padText
                 anchors.right: parent.right
                 anchors.rightMargin: Theme.componentMargin
 
@@ -378,9 +370,7 @@ Loader {
 
             Item { // element_language
                 anchors.left: parent.left
-                anchors.leftMargin: screenPaddingLeft
                 anchors.right: parent.right
-                anchors.rightMargin: screenPaddingRight
                 height: Theme.componentHeightXL
 
                 IconSvg {
@@ -458,9 +448,7 @@ Loader {
 
             Item {
                 anchors.left: parent.left
-                anchors.leftMargin: screenPaddingLeft
                 anchors.right: parent.right
-                anchors.rightMargin: screenPaddingRight
                 height: Theme.componentHeightXL
 
                 IconSvg {
@@ -502,9 +490,7 @@ Loader {
 
             Item {
                 anchors.left: parent.left
-                anchors.leftMargin: screenPaddingLeft
                 anchors.right: parent.right
-                anchors.rightMargin: screenPaddingRight
                 height: Theme.componentHeightXL
 
                 IconSvg {

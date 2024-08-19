@@ -4,6 +4,7 @@ import ThemeEngine
 
 Item {
     id: mobileMenu
+
     anchors.left: parent.left
     anchors.right: parent.right
     anchors.bottom: parent.bottom
@@ -14,7 +15,8 @@ Item {
     property int www: 80
 
     z: 10
-    height: hhh + screenPaddingNavbar + screenPaddingBottom
+    height: (appWindow.screenOrientation === Qt.PortraitOrientation) ?
+                hhh + appWindow.screenPaddingNavbar + appWindow.screenPaddingBottom : 0
 
     // prevent clicks below this area
     MouseArea { anchors.fill: parent; acceptedButtons: Qt.AllButtons; }
@@ -41,7 +43,7 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-        height: screenPaddingNavbar + screenPaddingBottom
+        height: appWindow.screenPaddingNavbar + appWindow.screenPaddingBottom
 
         visible: (!mobileMenu.visible || appContent.state === "Tutorial")
         opacity: 0.95

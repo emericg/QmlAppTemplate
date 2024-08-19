@@ -7,8 +7,6 @@ import ThemeEngine
 Item {
     id: screenPermissions
     anchors.fill: parent
-    anchors.leftMargin: screenPaddingLeft
-    anchors.rightMargin: screenPaddingRight
 
     property string entryPoint: "About"
 
