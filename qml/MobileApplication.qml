@@ -35,6 +35,11 @@ ApplicationWindow {
     property int screenPaddingRight: 0
     property int screenPaddingBottom: 0
 
+    Connections {
+        target: Screen
+        function onOrientationChanged() { mobileUI.handleSafeAreas() }
+    }
+
     MobileUI {
         id: mobileUI
 
@@ -177,11 +182,6 @@ ApplicationWindow {
                     break
             }
         }
-    }
-
-    Connections {
-        target: Screen
-        function onOrientationChanged() { mobileUI.handleSafeAreas() }
     }
 
     // User generated events handling //////////////////////////////////////////

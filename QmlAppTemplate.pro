@@ -1,9 +1,6 @@
 TARGET  = QmlAppTemplate
 VERSION = 0.7
 
-QMAKE_TARGET_BUNDLE_PREFIX = io.emeric
-QMAKE_BUNDLE = qmlapptemplate
-
 DEFINES+= APP_NAME=\\\"$$TARGET\\\"
 DEFINES+= APP_VERSION=\\\"$$VERSION\\\"
 
@@ -12,6 +9,10 @@ QT     += core qml quick quickcontrols2 svg
 
 # Validate Qt version
 !versionAtLeast(QT_VERSION, 6.5) : error("You need at least Qt version 6.5 for $${TARGET}")
+
+# Bundle name
+QMAKE_TARGET_BUNDLE_PREFIX = io.emeric
+QMAKE_BUNDLE = qmlapptemplate
 
 # Project dependencies #########################################################
 

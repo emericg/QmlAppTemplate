@@ -45,10 +45,7 @@
 
 int main(int argc, char *argv[])
 {
-    // Couple of debug stuff you can enable
-    //qputenv("QSG_INFO", "1");               // print Qt Scene Graph info
-    //qputenv("QT_QPA_EGLFS_DEBUG", "1");     // print Qt Platform Abstraction EGL debug info
-    //qputenv("QT_DEBUG_PLUGINS", "1");       // print Qt plugins info
+    // Hacks ///////////////////////////////////////////////////////////////////
 
 #if defined(Q_OS_LINUX) && !defined(Q_OS_ANDROID)
     // NVIDIA driver suspend&resume hack
@@ -56,6 +53,20 @@ int main(int argc, char *argv[])
     format.setOption(QSurfaceFormat::ResetNotification);
     QSurfaceFormat::setDefaultFormat(format);
 #endif
+
+#if !defined(Q_OS_ANDROID) && !defined(Q_OS_IOS)
+    // Qt 6.6+ mouse wheel hack
+    qputenv("QT_QUICK_FLICKABLE_WHEEL_DECELERATION", "2500");
+#endif
+
+    // Qt 6.7+ debugger hack
+    qputenv("QT_ANDROID_DEBUGGER_MAIN_THREAD_SLEEP_MS", "0");
+
+    // DEBUG ///////////////////////////////////////////////////////////////////
+
+    //qputenv("QSG_INFO", "1");               // print Qt Scene Graph info
+    //qputenv("QT_QPA_EGLFS_DEBUG", "1");     // print Qt Platform Abstraction EGL debug info
+    //qputenv("QT_DEBUG_PLUGINS", "1");       // print Qt plugins info
 
     // GUI application /////////////////////////////////////////////////////////
 

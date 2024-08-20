@@ -9,7 +9,7 @@ Rectangle {
     anchors.left: parent.left
     anchors.right: parent.right
 
-    height: headerHeight + Math.max(screenPaddingTop, screenPaddingStatusbar)
+    height: headerHeight + Math.max(screenPaddingStatusbar, screenPaddingTop)
     color: Theme.colorHeader
     clip: true
     z: 10
@@ -36,7 +36,6 @@ Rectangle {
     // prevent clicks below this area
     MouseArea { anchors.fill: parent; acceptedButtons: Qt.AllButtons; }
 
-    // menu
     ActionMenu_bottom {
         id: actionMenu
 
@@ -63,13 +62,13 @@ Rectangle {
         anchors.left: parent.left
         anchors.right: parent.right
 
-        height: Math.max(screenPaddingTop, screenPaddingStatusbar)
+        height: Math.max(screenPaddingStatusbar, screenPaddingTop)
         color: Theme.colorStatusbar
     }
 
     Item {
         anchors.fill: parent
-        anchors.topMargin: Math.max(screenPaddingTop, screenPaddingStatusbar)
+        anchors.topMargin: Math.max(screenPaddingStatusbar, screenPaddingTop)
         anchors.leftMargin: screenPaddingLeft
         anchors.rightMargin: screenPaddingRight
 
