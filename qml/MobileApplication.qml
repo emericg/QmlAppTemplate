@@ -125,7 +125,7 @@ ApplicationWindow {
             else if (appContent.state === "Tutorial")
                 return "close"
 
-            return"back"
+            return "back"
         }
     }
 
