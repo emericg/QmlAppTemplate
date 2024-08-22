@@ -4,43 +4,40 @@
 <dict>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
-
 	<key>CFBundleName</key>
 	<string>QmlAppTemplate</string>
-
 	<key>CFBundleDisplayName</key>
 	<string>QmlAppTemplate</string>
-
 	<key>CFBundleExecutable</key>
-	<string>$(EXECUTABLE_NAME)</string>
-
+	<string>QmlAppTemplate</string>
 	<key>CFBundleIdentifier</key>
 	<string>io.emeric.qmlapptemplate</string>
-
-	<key>CFBundleVersion</key>
-	<string>000701</string>
-
 	<key>CFBundleShortVersionString</key>
 	<string>0.7</string>
-
+	<key>CFBundleVersion</key>
+	<string>000701</string>
 	<key>CFBundleIconFile</key>
-	<string>${ASSETCATALOG_COMPILER_APPICON_NAME}</string>
-
-	<key>MinimumOSVersion</key>
-	<string>${IPHONEOS_DEPLOYMENT_TARGET}</string>
-
-	<key>ITSAppUsesNonExemptEncryption</key>
-	<false/>
-
-	<key>LSRequiresIPhoneOS</key>
-	<true/>
-
-	<key>NSHighResolutionCapable</key>
-	<true/>
-
+	<string>Images</string>
+	<key>CFBundleIcons</key>
+	<dict>
+		<key>CFBundlePrimaryIcon</key>
+		<dict>
+			<key>CFBundleIconFiles</key>
+			<array>
+			<string>Images</string>
+			</array>
+		</dict>
+	</dict>
 	<key>UILaunchStoryboardName</key>
 	<string>AppLaunchScreen</string>
-
+	<key>MinimumOSVersion</key>
+	<string>14.0</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSHighResolutionCapable</key>
+	<true/>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
