@@ -13,7 +13,7 @@ Rectangle {
     width: isHdpi ? 72 : 80
     color: Theme.colorSidebar
 
-    ////////////////////////////////////////////////////////////////////////////
+    ////////////
 
     DragHandler {
         // Drag on the sidebar to drag the whole window // Qt 5.15+
@@ -28,7 +28,7 @@ Rectangle {
         anchors.horizontalCenter: parent.horizontalCenter
     }
 
-    ////////////////////////////////////////////////////////////////////////////
+    ////////////
 
     Column { // top menu
         anchors.top: parent.top
@@ -81,7 +81,7 @@ Rectangle {
         }
     }
 
-    ////////////////////////////////////////////////////////////////////////////
+    ////////////
 
     Column { // bottom menu
         anchors.left: parent.left
@@ -117,7 +117,7 @@ Rectangle {
         }
     }
 
-    ////////////////////////////////////////////////////////////////////////////
+    ////////////
 /*
     Rectangle { // shadow
         anchors.top: parent.top
@@ -134,4 +134,5 @@ Rectangle {
         }
     }
 */
+    ////////////
 }

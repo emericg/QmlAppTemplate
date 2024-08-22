@@ -97,7 +97,7 @@ ApplicationWindow {
         //console.log("activeFocusItem:" + activeFocusItem)
     }
 
-    onClosing: (close) =>  {
+    onClosing: (close) => {
         if (Qt.platform.os === "osx") {
             close.accepted = false
             appWindow.hide()
@@ -114,9 +114,6 @@ ApplicationWindow {
         }
     }
     function forwardAction() {
-        //
-    }
-    function deselectAction() {
         //
     }
 
@@ -139,18 +136,6 @@ ApplicationWindow {
     Shortcut {
         sequences: [StandardKey.Forward]
         onActivated: forwardAction()
-    }
-    Shortcut {
-        sequences: [StandardKey.Refresh]
-        //onActivated: //
-    }
-    Shortcut {
-        sequence: "Ctrl+F5"
-        //onActivated: //
-    }
-    Shortcut {
-        sequences: [StandardKey.Deselect, StandardKey.Cancel]
-        onActivated: deselectAction()
     }
     Shortcut {
         sequence: StandardKey.Preferences

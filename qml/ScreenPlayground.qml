@@ -29,7 +29,13 @@ Loader {
         anchors.fill: parent
         anchors.margins: 32
 
-        //
+        ////////
+
+        function backAction() {
+            if (isDesktop) screenDesktopComponents.loadScreen()
+            else if (isMobile) screenMobileComponents.loadScreen()
+        }
+        ////////
     }
 
     ////////////////////////////////////////////////////////////////////////////

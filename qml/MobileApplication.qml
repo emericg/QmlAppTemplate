@@ -209,9 +209,6 @@ ApplicationWindow {
     function forwardAction() {
         //
     }
-    function deselectAction() {
-        //
-    }
 
     // UI sizes ////////////////////////////////////////////////////////////////
 

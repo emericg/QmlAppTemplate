@@ -28,11 +28,16 @@ Loader {
     sourceComponent: Item {
         anchors.fill: parent
 
+        ////////
+
         function backAction() {
-            screenMainView.loadScreen()
+            if (isDesktop) screenDesktopComponents.loadScreen()
+            else if (isMobile) screenMobileComponents.loadScreen()
         }
 
-        // MENUS ///////////////////////////////////////////////////////////////////
+        ////////
+
+        // MENUS ///////////////////////////////////////////////////////////////
 
         Column {
             id: menusArea
@@ -220,7 +225,7 @@ Loader {
             }
         }
 
-        // CONTENT /////////////////////////////////////////////////////////////////
+        // CONTENT /////////////////////////////////////////////////////////////
 
         Column {
             anchors.right: parent.right

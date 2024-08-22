@@ -35,9 +35,14 @@ Loader {
         boundsBehavior: isDesktop ? Flickable.OvershootBounds : Flickable.DragAndOvershootBounds
         ScrollBar.vertical: ScrollBar { visible: false }
 
+        ////////
+
         function backAction() {
-            screenMainView.loadScreen()
+            if (isDesktop) screenDesktopComponents.loadScreen()
+            else if (isMobile) screenMobileComponents.loadScreen()
         }
+
+        ////////
 
         Column {
             id: contentColumn
@@ -100,30 +105,30 @@ Loader {
                     spacing: Theme.componentMargin
 
                     ButtonSolid {
-                        width: 160
-                        sourceSize: 28
+                        width: isPhone ? 150 : 160
 
                         text: qsTr("WEBSITE")
                         source: "qrc:/assets/icons/material-symbols/link.svg"
+                        sourceSize: 28
                         onClicked: Qt.openUrlExternally("https://emeric.io/")
                     }
 
                     ButtonSolid {
-                        width: 160
-                        sourceSize: 22
+                        width: isPhone ? 150 : 160
 
                         text: qsTr("SUPPORT")
                         source: "qrc:/assets/icons/material-symbols/support.svg"
+                        sourceSize: 22
                         onClicked: Qt.openUrlExternally("https://emeric.io/")
                     }
 
                     ButtonSolid {
-                        width: 160
-                        sourceSize: 22
+                        width: isPhone ? 150 : 160
                         visible: (appWindow.width > 800)
 
                         text: qsTr("GitHub")
                         source: "qrc:/assets/gfx/logos/github.svg"
+                        sourceSize: 22
                         onClicked: Qt.openUrlExternally("https://github.com/emericg/QmlAppTemplate")
                     }
                 }
@@ -204,9 +209,9 @@ Loader {
                 onClicked: Qt.openUrlExternally("https://github.com/emericg/QmlAppTemplate")
             }
 
-            ////////
-
             ListSeparator { }
+
+            ////////
 
             ListItemClickable { // tutorial
                 anchors.left: parent.left
@@ -219,9 +224,9 @@ Loader {
                 //onClicked: screenTutorial.openFrom("ScreenAbout")
             }
 
-            ////////
+            ListSeparator { }
 
-            ListSeparator { visible: (Qt.platform.os === "android") }
+            ////////
 
             ListItemClickable { // permissions
                 anchors.left: parent.left
@@ -235,9 +240,9 @@ Loader {
                 onClicked: screenAboutPermissions.loadScreen()
             }
 
-            ////////
+            ListSeparator { visible: (Qt.platform.os === "android") }
 
-            ListSeparator { }
+            ////////
 
             Item { // list dependencies
                 anchors.left: parent.left
@@ -306,9 +311,9 @@ Loader {
                 }
             }
 
-            ////////
-
             ListSeparator { }
+
+            ////////
 
             Item { // list translators
                 anchors.left: parent.left
@@ -319,11 +324,11 @@ Loader {
                 height: 40 + translatorsText.height + translatorsColumn.height
 
                 IconSvg {
-                    width: 24
-                    height: 24
                     anchors.left: parent.left
                     anchors.leftMargin: 4
                     anchors.verticalCenter: translatorsText.verticalCenter
+                    width: 24
+                    height: 24
 
                     source: "qrc:/assets/icons/material-icons/duotone/translate.svg"
                     color: Theme.colorSubText
@@ -375,9 +380,84 @@ Loader {
                 }
             }
 
+            ListSeparator { }
+
             ////////
 
-            ListSeparator { }
+            Item { // list debug infos
+                anchors.left: parent.left
+                anchors.leftMargin: Theme.componentMargin
+                anchors.right: parent.right
+                anchors.rightMargin: Theme.componentMargin
+
+                height: 32 + debugColumn.height
+                visible: utilsApp.isDebugBuild()
+
+                IconSvg {
+                    anchors.top: debugColumn.top
+                    anchors.topMargin: 0
+                    anchors.left: parent.left
+                    anchors.leftMargin: 4
+                    width: 24
+                    height: 24
+
+                    source: "qrc:/assets/icons/material-symbols/info.svg"
+                    color: Theme.colorSubText
+                }
+
+                Column {
+                    id: debugColumn
+                    anchors.left: parent.left
+                    anchors.leftMargin: appHeader.headerPosition - parent.anchors.leftMargin
+                    anchors.right: parent.right
+                    anchors.rightMargin: 8
+                    anchors.verticalCenter: parent.verticalCenter
+
+                    spacing: Theme.componentMargin * 0.33
+
+                    Text {
+                        color: Theme.colorSubText
+                        text: "App name: %1".arg(utilsApp.appName())
+                        textFormat: Text.PlainText
+                        font.pixelSize: Theme.fontSizeContent
+                    }
+                    Text {
+                        color: Theme.colorSubText
+                        text: "App version: %1".arg(utilsApp.appVersion())
+                        textFormat: Text.PlainText
+                        font.pixelSize: Theme.fontSizeContent
+                    }
+                    Text {
+                        color: Theme.colorSubText
+                        text: "Build mode: %1".arg(utilsApp.appBuildModeFull())
+                        textFormat: Text.PlainText
+                        font.pixelSize: Theme.fontSizeContent
+                    }
+                    Text {
+                        color: Theme.colorSubText
+                        text: "Build architecture: %1".arg(utilsApp.qtArchitecture())
+                        textFormat: Text.PlainText
+                        font.pixelSize: Theme.fontSizeContent
+                    }
+                    Text {
+                        color: Theme.colorSubText
+                        text: "Build date: %1".arg(utilsApp.appBuildDateTime())
+                        textFormat: Text.PlainText
+                        font.pixelSize: Theme.fontSizeContent
+                    }
+                    Text {
+                        color: Theme.colorSubText
+                        text: "Qt version: %1".arg(utilsApp.qtVersion())
+                        textFormat: Text.PlainText
+                        font.pixelSize: Theme.fontSizeContent
+                    }
+                }
+            }
+
+            ListSeparator { visible: utilsApp.isDebugBuild() }
+
+            ////////
+
         }
     }
 

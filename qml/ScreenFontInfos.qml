@@ -44,7 +44,8 @@ Loader {
         ////////
 
         function backAction() {
-            screenMainView.loadScreen()
+            if (isDesktop) screenDesktopComponents.loadScreen()
+            else if (isMobile) screenMobileComponents.loadScreen()
         }
 
         ////////

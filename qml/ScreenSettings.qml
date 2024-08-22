@@ -34,9 +34,14 @@ Loader {
         boundsBehavior: isDesktop ? Flickable.OvershootBounds : Flickable.DragAndOvershootBounds
         ScrollBar.vertical: ScrollBar { visible: false }
 
+        ////////
+
         function backAction() {
-            screenMainView.loadScreen()
+            if (isDesktop) screenDesktopComponents.loadScreen()
+            else if (isMobile) screenMobileComponents.loadScreen()
         }
+
+        ////////
 
         Column {
             id: contentColumn

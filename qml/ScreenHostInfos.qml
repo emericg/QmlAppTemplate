@@ -38,9 +38,14 @@ Loader {
         boundsBehavior: isDesktop ? Flickable.OvershootBounds : Flickable.DragAndOvershootBounds
         ScrollBar.vertical: ScrollBar { visible: false }
 
+        ////////
+
         function backAction() {
-            screenMainView.loadScreen()
+            if (isDesktop) screenDesktopComponents.loadScreen()
+            else if (isMobile) screenMobileComponents.loadScreen()
         }
+
+        ////////
 
         property int flow_width: (contentFlow.width - contentFlow.spacing)
         property int flow_divider: Math.round(flow_width / 512)

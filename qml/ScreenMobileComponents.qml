@@ -33,6 +33,10 @@ Loader {
     sourceComponent: Item {
         anchors.fill: parent
 
+        property alias stackViewDepth: stackView.depth
+
+        ////////
+
         function backAction() {
             //console.log("MobileComponents::backAction()")
 
@@ -44,7 +48,7 @@ Loader {
             return true
         }
 
-        property alias stackViewDepth: stackView.depth
+        ////////
 
         StackView {
             id: stackView
