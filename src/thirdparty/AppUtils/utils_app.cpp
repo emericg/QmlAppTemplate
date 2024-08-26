@@ -181,7 +181,7 @@ bool UtilsApp::qtIsShared()
     return false;
 }
 
-QString UtilsApp::qtRhiBackend()
+QString UtilsApp::qtRhiBackend() const
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 6, 0))
     if (m_quickwindow && m_quickwindow->rhi())
