@@ -1,6 +1,6 @@
 app-id: io.emeric.qmlapptemplate
 runtime: org.freedesktop.Platform
-runtime-version: '23.08'
+runtime-version: '24.08'
 sdk: org.freedesktop.Sdk
 command: qmlapptemplate
 
@@ -27,8 +27,8 @@ modules:
       - -DQT_BUILD_TESTS=OFF
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.7/6.7.0/submodules/qtbase-everywhere-src-6.7.0.tar.xz
-        sha256: 11b2e29e2e52fb0e3b453ea13bbe51a10fdff36e1c192d8868c5a40233b8b254
+        url: https://download.qt.io/archive/qt/6.7/6.7.3/submodules/qtbase-everywhere-src-6.7.3.tar.xz
+        sha256: 8ccbb9ab055205ac76632c9eeddd1ed6fc66936fc56afc2ed0fd5d9e23da3097
         x-checker-data:
           type: anitya
           project-id: 7927
@@ -41,14 +41,13 @@ modules:
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
-      - -DCMAKE_PREFIX_PATH=/app
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
       - -DQT_BUILD_EXAMPLES=OFF
       - -DQT_BUILD_TESTS=OFF
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.7/6.7.0/submodules/qttools-everywhere-src-6.7.0.tar.xz
-        sha256: c8da6b239e82fe1e23465cbf0936c0da5a334438d3fb433e19c503cbb1abee7b
+        url: https://download.qt.io/archive/qt/6.7/6.7.3/submodules/qttools-everywhere-src-6.7.3.tar.xz
+        sha256: f03bb7df619cd9ac9dba110e30b7bcab5dd88eb8bdc9cc752563b4367233203f
         x-checker-data:
           type: anitya
           project-id: 7927
@@ -59,12 +58,13 @@ modules:
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
       - -DQT_BUILD_EXAMPLES=OFF
       - -DQT_BUILD_TESTS=OFF
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.7/6.7.0/submodules/qtshadertools-everywhere-src-6.7.0.tar.xz
-        sha256: 3e13f967c62f0815c901e754cbc472a2e19170da0c7a505230d559615f7998af
+        url: https://download.qt.io/archive/qt/6.7/6.7.3/submodules/qtshadertools-everywhere-src-6.7.3.tar.xz
+        sha256: 74e512798c7ddbda354a2d8d975211454bbabb47afb7e598892067a5828c0995
         x-checker-data:
           type: anitya
           project-id: 7927
@@ -75,14 +75,13 @@ modules:
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
-      - -DCMAKE_PREFIX_PATH=/app
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
       - -DQT_BUILD_EXAMPLES=OFF
       - -DQT_BUILD_TESTS=OFF
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.7/6.7.0/submodules/qtdeclarative-everywhere-src-6.7.0.tar.xz
-        sha256: 5a0c39579a74d7cca581162c866ed0887287d4f8d5abff7ab9492d4a58fa9e2c
+        url: https://download.qt.io/archive/qt/6.7/6.7.3/submodules/qtdeclarative-everywhere-src-6.7.3.tar.xz
+        sha256: 937b70e441abf5bc4e50d44d26610e2714a28514acf3885cd36116cd610b9875
         x-checker-data:
           type: anitya
           project-id: 7927
@@ -97,8 +96,8 @@ modules:
       - -DQT_BUILD_TESTS=OFF
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.7/6.7.0/submodules/qtwayland-everywhere-src-6.7.0.tar.xz
-        sha256: d73470e4217da388d8cd2a517ee8bb373853f33c569306e80f04397845157aea
+        url: https://download.qt.io/archive/qt/6.7/6.7.3/submodules/qtwayland-everywhere-src-6.7.3.tar.xz
+        sha256: e326c7ceb628f503bfc20577d5d2df9690ee10db08eb940cb80c759a6972b2b5
         x-checker-data:
           type: anitya
           project-id: 7927
@@ -115,29 +114,13 @@ modules:
       - -DQT_BUILD_TESTS=OFF
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.7/6.7.0/submodules/qtsvg-everywhere-src-6.7.0.tar.xz
-        sha256: 1518f40e08ff5e6153a6e26e5b95b033413ac143b70795dc1317e7f73ebf922d
+        url: https://download.qt.io/archive/qt/6.7/6.7.3/submodules/qtsvg-everywhere-src-6.7.3.tar.xz
+        sha256: 40142cb71fb1e07ad612bc361b67f5d54cd9367f9979ae6b86124a064deda06b
         x-checker-data:
           type: anitya
           project-id: 7927
           stable-only: true
           url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qtsvg-everywhere-src-$version.tar.xz
-
-  - name: qtconnectivity
-    buildsystem: cmake-ninja
-    config-opts:
-      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
-      - -DQT_BUILD_EXAMPLES=OFF
-      - -DQT_BUILD_TESTS=OFF
-    sources:
-      - type: archive
-        url: https://download.qt.io/archive/qt/6.7/6.7.0/submodules/qtconnectivity-everywhere-src-6.7.0.tar.xz
-        sha256: 07afd6aac19ff73c8ba1471057f43d4ef2737d6a8a772393ec907988dd71244c
-        x-checker-data:
-          type: anitya
-          project-id: 7927
-          stable-only: true
-          url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qtconnectivity-everywhere-src-$version.tar.xz
 
   - name: qmlapptemplate
     buildsystem: qmake
