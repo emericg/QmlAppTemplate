@@ -15,15 +15,6 @@ QmlAppTemplate.files
 QmlAppTemplate.includes
 QmlAppTemplate.pro.*
 
-# Qt Quick Compiler
-qrc_resources.cpp
-qmlcache_loader.cpp
-qml_*qml.cpp
-
-# QMake temporary project files
-Makefile
-.qmake.stash
-
 # CMake temporary project files
 CMakeLists.txt.user
 

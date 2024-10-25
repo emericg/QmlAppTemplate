@@ -20,8 +20,7 @@ For Android builds, you'll need the appropriates JDK (17) SDK (24+) and NDK (26+
 ```bash
 $ git clone https://github.com/emericg/QmlAppTemplate.git --recursive
 $ cd QmlAppTemplate/build/
-$ qmake .. # configure with QMake
-$ cmake .. # OR configure with CMake
+$ cmake ..
 $ make
 ```
 
@@ -51,11 +50,7 @@ $ make
 
 These files are also useful to get an idea about the whole build and deploy process.
 
-> [Desktop (qmake)](.github/workflows/builds_desktop.yml) Linux, macOS and Windows workflow (with GitHub deployment)
-
 > [Desktop (cmake)](.github/workflows/builds_desktop_cmake.yml) Linux, macOS and Windows workflow
-
-> [Mobile (qmake)](.github/workflows/builds_mobile.yml) Android and iOS workflow
 
 > [Mobile (cmake)](.github/workflows/builds_mobile_cmake.yml) Android and iOS workflow (with store deployment)
 
