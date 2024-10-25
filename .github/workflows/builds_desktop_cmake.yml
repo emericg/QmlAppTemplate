@@ -2,7 +2,7 @@
 # Workflow configuration
 #-------------------------------------------------------------------------------
 
-name: "Desktop CI builds (cmake)"
+name: "Desktop CI builds"
 on:
   push:
   pull_request:
@@ -15,7 +15,7 @@ on:
 env:
   APP_NAME: "QmlAppTemplate"
   APP_VERSION: "0.8"
-  QT_VERSION: "6.7.3"
+  QT_VERSION: "6.8.0"
 
 #-------------------------------------------------------------------------------
 # Workflow jobs
@@ -59,21 +59,27 @@ jobs:
 
       # Deploy application
       - name: Deploy application
-        run: ./deploy_linux.sh -c -p
+        run: |
+             sudo rm /home/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/gcc_64/plugins/position/libqtposition_nmea.so
+             sudo rm /home/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/gcc_64/plugins/sqldrivers/libqsqlmimer.so
+             sudo rm /home/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/gcc_64/plugins/sqldrivers/libqsqlmysql.so
+             sudo rm /home/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/gcc_64/plugins/sqldrivers/libqsqlodbc.so
+             sudo rm /home/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/gcc_64/plugins/sqldrivers/libqsqlpsql.so
+             ./deploy_linux.sh -c -p
 
       # Upload application ZIP
       - name: Upload application ZIP
         uses: actions/upload-artifact@v4
         with:
           name: ${{env.APP_NAME}}-${{env.APP_VERSION}}-linux64.tar.gz
-          path: bin/${{env.APP_NAME}}-${{env.APP_VERSION}}-linux64.tar.gz
+          path: ${{env.APP_NAME}}-${{env.APP_VERSION}}-linux64.tar.gz
 
       # Upload AppImage
       - name: Upload AppImage
         uses: actions/upload-artifact@v4
         with:
           name: ${{env.APP_NAME}}-${{env.APP_VERSION}}-linux64.AppImage
-          path: bin/${{env.APP_NAME}}-${{env.APP_VERSION}}-linux64.AppImage
+          path: ${{env.APP_NAME}}-${{env.APP_VERSION}}-linux64.AppImage
 
   ## macOS build ###############################################################
   build-mac:

@@ -28,7 +28,6 @@
 #include <utils_os_macos_dock.h>
 
 #include <MobileUI>
-#include <MobileSharing>
 #include <SingleApplication>
 
 #include <QtGlobal>

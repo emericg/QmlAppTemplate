@@ -1,6 +1,6 @@
 import QtQuick
-import QtQuick.Controls
 import QtQuick.Window
+import QtQuick.Controls
 
 import ThemeEngine
 
@@ -67,7 +67,7 @@ ApplicationWindow {
         target: appHeader
 
         function onBackButtonClicked() {
-            backAction()
+            appWindow.backAction()
         }
         function onRightMenuClicked() {
             //
@@ -122,9 +122,9 @@ ApplicationWindow {
         acceptedButtons: Qt.BackButton | Qt.ForwardButton
         onClicked: (mouse) => {
             if (mouse.button === Qt.BackButton) {
-                backAction()
+                appWindow.backAction()
             } else if (mouse.button === Qt.ForwardButton) {
-                forwardAction()
+                appWindow.forwardAction()
             }
         }
     }

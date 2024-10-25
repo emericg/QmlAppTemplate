@@ -4,24 +4,18 @@ bin/*
 contribs/*
 appdir/*
 
+# CMake temporary project files
+CMakeLists.txt.user
+Makefile
+
 # Private signatures
 assets/ios/ios_signature.pri
 assets/macos/macos_signature.pri
 
-# QtCreator temporary project files
-QmlAppTemplate.config
-QmlAppTemplate.creator*
-QmlAppTemplate.files
-QmlAppTemplate.includes
-QmlAppTemplate.pro.*
-
-# CMake temporary project files
-CMakeLists.txt.user
-
 # XCode related
 Debug/*
 Release/*
-QmlAppTemplate.xcodeproj/*
+*.xcodeproj/*
 asset_catalog_compiler.Info.plist
 
 # Others

@@ -31,7 +31,7 @@
 	<key>UILaunchStoryboardName</key>
 	<string>AppLaunchScreen</string>
 	<key>MinimumOSVersion</key>
-	<string>14.0</string>
+	<string>16.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSHighResolutionCapable</key>

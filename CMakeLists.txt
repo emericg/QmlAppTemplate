@@ -20,7 +20,7 @@ message(STATUS "[SYSTEM] (HOST) SYSTEM NAME         = ${CMAKE_HOST_SYSTEM_NAME}"
 message(STATUS "[SYSTEM] (HOST) SYSTEM VERSION      = ${CMAKE_HOST_SYSTEM_VERSION}")
 message(STATUS "[SYSTEM] (TARGET) SYSTEM NAME       = ${CMAKE_SYSTEM_NAME}")
 message(STATUS "[SYSTEM] (TARGET) SYSTEM VERSION    = ${CMAKE_SYSTEM_VERSION}")
-message(STATUS "[PROJECT] SOURCE_DIR                = ${CMAKE_CURRENT_SOURCE_DIR}")
+message(STATUS "[PROJECT] SOURCE_DIR                = ${CMAKE_SOURCE_DIR}")
 message(STATUS "[PROJECT] BUILD_TYPE                = ${CMAKE_BUILD_TYPE}")
 message(STATUS "[PROJECT] TOOLCHAIN_FILE            = ${CMAKE_TOOLCHAIN_FILE}")
 message(STATUS "[PROJECT] QT_HOST_PATH              = ${QT_HOST_PATH}")
@@ -28,13 +28,18 @@ message(STATUS "[PROJECT] QT_HOST_PATH              = ${QT_HOST_PATH}")
 ################################################################################
 
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml Quick QuickControls2 Svg)
+find_package(Qt6 REQUIRED COMPONENTS LinguistTools)
 
-qt_standard_project_setup(REQUIRES 6.5)
+qt_standard_project_setup(REQUIRES 6.8)
+
+qt_policy(SET QTP0001 NEW)
+qt_policy(SET QTP0002 NEW)
+qt_policy(SET QTP0003 NEW)
+qt_policy(SET QTP0004 NEW)
 
 qt_add_executable(${CMAKE_PROJECT_NAME}
-    src/SettingsManager.cpp src/SettingsManager.h
     src/main.cpp
-    i18n/i18n.qrc
+    src/SettingsManager.cpp src/SettingsManager.h
     assets/assets.qrc
     assets/icons.qrc
     qml/qml.qrc
@@ -51,10 +56,6 @@ target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE AppUtils)
 # MobileUI
 add_subdirectory(src/thirdparty/MobileUI)
 target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE MobileUI)
-
-# MobileSharing
-add_subdirectory(src/thirdparty/MobileSharing)
-target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE MobileSharing)
 
 # SingleApplication
 set(QAPPLICATION_CLASS QGuiApplication)
@@ -74,17 +75,17 @@ target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE
 ################################################################################
 
 ## Android
-if(ANDROID)
+if (CMAKE_SYSTEM_NAME STREQUAL "Android")
     set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
-        QT_ANDROID_ABIS "armeabi-v7a;arm64-v8a;x86;x86_64"
-        QT_ANDROID_BUILD_ALL_ABIS ON
+        #QT_ANDROID_ABIS "armeabi-v7a;arm64-v8a;x86;x86_64"
+        #QT_ANDROID_BUILD_ALL_ABIS ON
         QT_ANDROID_MIN_SDK_VERSION 23
         QT_ANDROID_TARGET_SDK_VERSION 35
-        QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/assets/android/"
+        QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_SOURCE_DIR}/assets/android/"
     )
 endif()
 
-#if(APPLE)
+#if (APPLE)
 #    set(CMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_REQUIRED "NO")
 #    set(CMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "")
 #    set(CMAKE_XCODE_ATTRIBUTE_DEVELOPMENT_TEAM "")
@@ -92,67 +93,60 @@ endif()
 #endif()
 
 ## macOS
-if(APPLE AND NOT IOS)
+if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+    set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
+        MACOSX_BUNDLE ON
+    )
+
     set(CMAKE_XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER "io.emeric.qmlapptemplate")
     set(CMAKE_XCODE_ATTRIBUTE_MARKETING_VERSION "${CMAKE_PROJECT_VERSION}")
 
     set(CMAKE_OSX_ARCHITECTURES "x86_64;arm64")
     set(CMAKE_OSX_DEPLOYMENT_TARGET "11.0")
-    set(CMAKE_XCODE_ATTRIBUTE_INFOPLIST_FILE "${CMAKE_CURRENT_SOURCE_DIR}/assets/macos/Info.plist")
-    set(CMAKE_XCODE_ATTRIBUTE_CODE_SIGN_ENTITLEMENTS "${CMAKE_CURRENT_SOURCE_DIR}/assets/macos/${CMAKE_PROJECT_NAME}.entitlements")
-
-    set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
-        MACOSX_BUNDLE ON
-    )
+    set(CMAKE_XCODE_ATTRIBUTE_INFOPLIST_FILE "${CMAKE_SOURCE_DIR}/assets/macos/Info.plist")
+    set(CMAKE_XCODE_ATTRIBUTE_CODE_SIGN_ENTITLEMENTS "${CMAKE_SOURCE_DIR}/assets/macos/${CMAKE_PROJECT_NAME}.entitlements")
 endif()
 
 ## iOS
-if(IOS)
+if (CMAKE_SYSTEM_NAME STREQUAL "iOS")
     set(CMAKE_OSX_ARCHITECTURES "arm64")
     set(CMAKE_OSX_SYSROOT "iphoneos")
     set(CMAKE_OSX_DEPLOYMENT_TARGET "14.0")
     set(CMAKE_XCODE_ATTRIBUTE_IPHONEOS_DEPLOYMENT_TARGET "14.0")
     set(CMAKE_XCODE_ATTRIBUTE_TARGETED_DEVICE_FAMILY "1,2") # iPhone,iPad
-    set(CMAKE_XCODE_ATTRIBUTE_INFOPLIST_FILE "${CMAKE_CURRENT_SOURCE_DIR}/assets/ios/Info.plist")
+    set(CMAKE_XCODE_ATTRIBUTE_INFOPLIST_FILE "${CMAKE_SOURCE_DIR}/assets/ios/Info.plist")
 
     set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
         MACOSX_BUNDLE ON
-        # Old way ???
+        MACOSX_BUNDLE_INFO_PLIST "${CMAKE_SOURCE_DIR}/assets/ios/Info.plist"
+        XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER "io.emeric.qmlapptemplate"
+        XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME "AppIcon"
+        QT_IOS_LAUNCH_SCREEN "${CMAKE_SOURCE_DIR}/assets/ios/LaunchScreen.storyboard"
+
+        # WIP # Old way ???
         MACOSX_BUNDLE_GUI_IDENTIFIER            "io.emeric.qmlapptemplate"
         MACOSX_BUNDLE_BUNDLE_NAME               ${CMAKE_PROJECT_NAME}
         MACOSX_BUNDLE_BUNDLE_VERSION            ${CMAKE_PROJECT_VERSION}
         MACOSX_BUNDLE_SHORT_VERSION_STRING      ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
         MACOSX_BUNDLE_COPYRIGHT                 "Copyright © 2024 Emeric Grange"
-        MACOSX_BUNDLE_INFO_PLIST                "${CMAKE_CURRENT_SOURCE_DIR}/assets/ios/Info.plist"
-        #MACOSX_BUNDLE_INFO_PLIST                "${CMAKE_CURRENT_SOURCE_DIR}/assets/ios/Info.plist.in"
-        #QT_IOS_LAUNCH_SCREEN                    "${CMAKE_CURRENT_SOURCE_DIR}/assets/ios/LaunchScreen.storyboard"
-        # New Xcode attributes ???
-        XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER           "io.emeric.qmlapptemplate"
+        # WIP # New Xcode attributes ???
         XCODE_ATTRIBUTE_PRODUCT_NAME                        ${CMAKE_PROJECT_NAME}
         XCODE_ATTRIBUTE_CURRENT_PROJECT_VERSION             ${CMAKE_PROJECT_VERSION}
         XCODE_ATTRIBUTE_MARKETING_VERSION                   ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
-        XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME  "AppIcon"
-        XCODE_ATTRIBUTE_IPHONEOS_DEPLOYMENT_TARGET          "14.0"
+        XCODE_ATTRIBUTE_IPHONEOS_DEPLOYMENT_TARGET          "16.0"
         XCODE_ATTRIBUTE_TARGETED_DEVICE_FAMILY              "1,2"   # iPhone,iPad
-        XCODE_ATTRIBUTE_INFOPLIST_KEY_CFBundleDisplayName       ${CMAKE_PROJECT_NAME}
-        XCODE_ATTRIBUTE_INFOPLIST_KEY_LSApplicationCategoryType "public.app-category.mycategory"
-        XCODE_ATTRIBUTE_GCC_GENERATE_DEBUGGING_SYMBOLS      "YES"
     )
 endif()
 
 ## Windows
-if(WIN32)
+if (WIN32)
     set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
         WIN32_EXECUTABLE ON
     )
-
-    target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
-        _USE_MATH_DEFINES
-    )
 endif()
 
-## Debug or release
-if(CMAKE_BUILD_TYPE STREQUAL Release)
+## Release build? Set "no debug" macros
+if (CMAKE_BUILD_TYPE STREQUAL Release)
     target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
         NDEBUG
         QT_NO_DEBUG
@@ -160,31 +154,13 @@ if(CMAKE_BUILD_TYPE STREQUAL Release)
     )
 endif()
 
-################################################################################
-
-if(lupdate_only)
-    target_sources(${CMAKE_PROJECT_NAME} PUBLIC
-        qml/*.js qml/*.qml
-        qml/components/*.qml
-    )
-endif()
-
-################################################################################
-
-install(TARGETS ${CMAKE_PROJECT_NAME}
-    BUNDLE DESTINATION .
-    ARCHIVE DESTINATION .
-    LIBRARY DESTINATION .
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+# Output
+set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
+    MACOSX_BUNDLE ON
+    WIN32_EXECUTABLE ON
+    #ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/lib"
+    #LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/lib"
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin"
 )
-
-qt_generate_deploy_qml_app_script(
-    TARGET ${CMAKE_PROJECT_NAME}
-    OUTPUT_SCRIPT deploy_script
-    NO_UNSUPPORTED_PLATFORM_ERROR
-    DEPLOY_USER_QML_MODULES_ON_UNSUPPORTED_PLATFORM
-    MACOS_BUNDLE_POST_BUILD
-)
-install(SCRIPT ${deploy_script})
 
 ################################################################################
