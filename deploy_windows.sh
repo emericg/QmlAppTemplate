@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 export APP_NAME="QmlAppTemplate"
-export APP_VERSION=0.7
+export APP_VERSION=0.8
 export GIT_VERSION=$(git rev-parse --short HEAD)
 
 echo "> $APP_NAME packager (Windows x86_64) [v$APP_VERSION]"

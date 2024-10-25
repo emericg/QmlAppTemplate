@@ -1,5 +1,5 @@
 TARGET  = QmlAppTemplate
-VERSION = 0.7
+VERSION = 0.8
 
 DEFINES+= APP_NAME=\\\"$$TARGET\\\"
 DEFINES+= APP_VERSION=\\\"$$VERSION\\\"

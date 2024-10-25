@@ -18,10 +18,10 @@
 	<string>com.emeric.qmlapptemplate</string>
 
 	<key>CFBundleVersion</key>
-	<string>0.7.0</string>
+	<string>0.8.0</string>
 
 	<key>CFBundleShortVersionString</key>
-	<string>0.7</string>
+	<string>0.8</string>
 
 	<key>CFBundleIconFile</key>
 	<string>QmlAppTemplate.icns</string>
