@@ -71,9 +71,20 @@ These files are also useful to get an idea about the whole build and deploy proc
 ![GUI_DESKTOP1](https://i.imgur.com/4QGJn5G.png)
 ![GUI_DESKTOP2](https://i.imgur.com/e0VWdYz.png)
 
-## License
+## Licensing
 
-QmlAppTemplate is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.  
-Read the [LICENSE](LICENSE.md) file or [consult the license on the FSF website](https://www.gnu.org/licenses/gpl-3.0.txt) directly.
+QmlAppTemplate is released under the terms of the [MIT license](license.md).
 
 > Emeric Grange <emeric.grange@gmail.com>
+
+* [AppUtils](thirdparty/AppUtils/README.md) uses MIT license
+
+* [MobileUI](https://github.com/emericg/MobileUI) uses MIT license
+
+* [MobileSharing](thirdparty/MobileSharing/README.md) uses MIT license
+
+* [SingleApplication](thirdparty/SingleApplication/README.md) uses MIT license
+
+* [ComponentLibrary](thirdparty/ComponentLibrary/) uses MIT license
+
+* [IconLibrary](assets/icons/) uses a combinaison of licenses, see [COPYING](assets/icons/COPYING)
