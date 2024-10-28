@@ -2,7 +2,7 @@
 # Workflow configuration
 #-------------------------------------------------------------------------------
 
-name: "Desktop CI builds"
+name: "Desktop CI builds (cmake)"
 on:
   push:
   pull_request:

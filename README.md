@@ -1,17 +1,18 @@
 # QmlAppTemplate
 
-[![GitHub action](https://img.shields.io/github/actions/workflow/status/emericg/QmlAppTemplate/builds_desktop.yml?style=flat-square)](https://github.com/emericg/QmlAppTemplate/actions/workflows/builds_desktop.yml)
-[![GitHub action](https://img.shields.io/github/actions/workflow/status/emericg/QmlAppTemplate/builds_mobile.yml?style=flat-square)](https://github.com/emericg/QmlAppTemplate/actions/workflows/builds_mobile.yml)
-[![GitHub issues](https://img.shields.io/github/issues/emericg/QmlAppTemplate.svg?style=flat-square)](https://github.com/emericg/QmlAppTemplate/issues)
-[![License: GPL v3](https://img.shields.io/badge/license-GPL%20v3-blue.svg?style=flat-square)](http://www.gnu.org/licenses/gpl-3.0)
-
-A Qt6 / QML application template, with a full set of visual controls, helper modules, as well as build and deploy scripts and CI setups.
+[![GitHub action](https://img.shields.io/github/actions/workflow/status/emericg/QmlAppTemplate/builds_desktop_cmake.yml?style=flat-square)](actions/workflows/builds_desktop_cmake.yml)
+[![GitHub action](https://img.shields.io/github/actions/workflow/status/emericg/QmlAppTemplate/builds_mobile_cmake.yml?style=flat-square)](actions/workflows/builds_mobile_cmake.yml)
+[![GitHub issues](https://img.shields.io/github/issues/emericg/QmlAppTemplate.svg?style=flat-square)](issues/)
+[![GitHub license](https://img.shields.io/github/license/emericg/QmlAppTemplate?style=flat-square&color=blue)](LICENSE.md)
 
 ## About
 
-#### Dependencies
+A Qt6 / QML application template, with a full set of visual controls, helper modules, as well as build and deploy scripts and CI setups.
 
-You will need a C++17 compiler and Qt 6.8+.  
+#### Prerequisites
+
+You will need a C++17 compiler and Qt 6.8 LTS (or better).  
+
 For macOS and iOS builds, you'll need Xcode (15+) installed.  
 For Android builds, you'll need the appropriates JDK (17) SDK (28+) and NDK (26b+). You can customize Android build environment using the `assets/android/gradle.properties` file.  
 
@@ -23,14 +24,35 @@ For Android builds, you'll need the appropriates JDK (17) SDK (28+) and NDK (26b
 - Android 9+
 - iOS 16+
 
+#### Recent changes
+
+Qt 6.8 brings big changes and hard platform requirements, so I took this "opportunity"
+to modernize this template a bit. Let's embrace breaking everything! Again.
+
+For instance QmlAppTemplate is now using cmake only. Maintaining both cmake and qmake
+variants of many things was just too much work, and both sides were suffering of
+less than ideal support. Qt 6 is geared toward cmake, and latest Qt 6 releases are
+introducing even more tighly coupled features and tooling requirements anyway.
+
+At the time of this writing, Qt 6.8 just released, so if you can't meet these requirements,
+or still want to use qmake, you can check out the code from the 0.7 release.
+
 #### Building QmlAppTemplate
 
 ```bash
 $ git clone https://github.com/emericg/QmlAppTemplate.git --recursive
-$ cd QmlAppTemplate/build/
-$ cmake ..
-$ make
+$ cmake -B build/
+$ cmake --build build/
 ```
+
+To build for Android and iOS, you should use the qt-cmake script from your Qt installation.
+
+```bash
+$ /path/to/Qt/bin/qt-cmake -B build/
+$ cmake --build build/
+```
+
+## Content
 
 #### C++ modules
 
@@ -43,6 +65,10 @@ $ make
 > [SingleApplication](thirdparty/SingleApplication/README.md) Keep only one instance of your desktop application active at a time
 
 #### QML component library
+
+> TODO
+
+#### Icon library
 
 > TODO
 

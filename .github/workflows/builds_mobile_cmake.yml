@@ -2,7 +2,7 @@
 # Workflow configuration
 #-------------------------------------------------------------------------------
 
-name: "Mobile CI builds"
+name: "Mobile CI builds (cmake)"
 on:
   push:
   pull_request:
