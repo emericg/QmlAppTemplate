@@ -34,13 +34,13 @@ $ make
 
 #### C++ modules
 
-> [AppUtils](src/thirdparty/AppUtils/README.md) Various general purpose helpers
+> [AppUtils](thirdparty/AppUtils/README.md) Various general purpose helpers
 
 > [MobileUI](https://github.com/emericg/MobileUI) Interact with Android and iOS UI
 
-> [MobileSharing](src/thirdparty/MobileSharing/README.md) Use Android and iOS cross application sharing features
+> [MobileSharing](thirdparty/MobileSharing/README.md) Use Android and iOS cross application sharing features
 
-> [SingleApplication](src/thirdparty/SingleApplication/README.md) Keep only one instance of your application active at a time
+> [SingleApplication](thirdparty/SingleApplication/README.md) Keep only one instance of your desktop application active at a time
 
 #### QML component library
 

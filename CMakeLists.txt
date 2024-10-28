@@ -40,26 +40,26 @@ qt_policy(SET QTP0004 NEW)
 qt_add_executable(${CMAKE_PROJECT_NAME}
     src/main.cpp
     src/SettingsManager.cpp src/SettingsManager.h
-    assets/assets.qrc
     qml/qml.qrc
+    assets/assets.qrc
     assets/icons/IconLibrary.qrc
-    qml/ComponentLibrary/ComponentLibrary.qrc
+    thirdparty/ComponentLibrary/ComponentLibrary.qrc
 )
 
 target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC src/thirdparty/)
 
 # AppUtils
 set(UTILS_DOCK_ENABLED true)
-add_subdirectory(src/thirdparty/AppUtils)
+add_subdirectory(thirdparty/AppUtils)
 target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE AppUtils)
 
 # MobileUI
-add_subdirectory(src/thirdparty/MobileUI)
+add_subdirectory(thirdparty/MobileUI)
 target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE MobileUI)
 
 # SingleApplication
 set(QAPPLICATION_CLASS QGuiApplication)
-add_subdirectory(src/thirdparty/SingleApplication)
+add_subdirectory(thirdparty/SingleApplication)
 target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE SingleApplication)
 
 # Qt
