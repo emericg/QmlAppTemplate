@@ -1,6 +1,6 @@
 import QtQuick
 
-import ThemeEngine
+import ComponentLibrary
 
 Item { // action menu separator
     anchors.left: parent.left

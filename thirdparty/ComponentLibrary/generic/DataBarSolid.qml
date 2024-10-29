@@ -1,8 +1,7 @@
 import QtQuick
 import QtQuick.Effects
 
-import ThemeEngine
-import "qrc:/utils/UtilsNumber.js" as UtilsNumber
+import ComponentLibrary
 
 Item {
     id: control

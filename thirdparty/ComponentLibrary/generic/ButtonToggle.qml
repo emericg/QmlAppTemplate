@@ -4,8 +4,7 @@ import QtQuick.Effects
 import QtQuick.Controls.impl
 import QtQuick.Templates as T
 
-import ThemeEngine
-import "qrc:/utils/UtilsNumber.js" as UtilsNumber
+import ComponentLibrary
 
 T.Button {
     id: control
@@ -19,16 +18,19 @@ T.Button {
     rightPadding: 12
     spacing: 6
 
+    font.pixelSize: Theme.componentFontSize
+    font.bold: false
+
     // settings
     flat: true
     checkable: true
     hoverEnabled: isDesktop
     focusPolicy: Qt.NoFocus
-    font.pixelSize: Theme.componentFontSize
-    font.bold: false
 
     // layout
+    property int layoutAlignment: Qt.AlignCenter // Qt.AlignLeft // Qt.AlignRight
     property int layoutDirection: Qt.LeftToRight // Qt.RightToLeft
+    property bool layoutFillWidth: false
 
     // icon
     property url source

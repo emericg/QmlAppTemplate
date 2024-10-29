@@ -4,7 +4,7 @@ import QtQuick.Layouts
 import QtQuick.Controls.impl
 import QtQuick.Templates as T
 
-import ThemeEngine
+import ComponentLibrary
 
 T.Button {
     id: control
@@ -22,6 +22,8 @@ T.Button {
     height: Theme.componentHeight
 
     focusPolicy: Qt.NoFocus
+
+    opacity: control.enabled ? 1 : 0.66
 
     // settings
     property int index
@@ -42,7 +44,7 @@ T.Button {
             color: Theme.colorComponent
             //Behavior on color { ColorAnimation { duration: 133 } }
 
-            opacity: control.hovered ? 1 : 0
+            opacity: control.enabled && control.hovered ? 1 : 0
             //Behavior on opacity { OpacityAnimator { duration: 233 } }
         }
 

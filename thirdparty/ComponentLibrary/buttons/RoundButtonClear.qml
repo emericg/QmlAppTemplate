@@ -1,5 +1,6 @@
 import QtQuick
-import ThemeEngine
+
+import ComponentLibrary
 
 RoundButtonImpl {
     property color color: Theme.colorPrimary

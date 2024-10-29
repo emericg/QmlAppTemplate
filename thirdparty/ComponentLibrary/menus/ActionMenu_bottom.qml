@@ -4,7 +4,7 @@ import QtQuick.Controls.impl
 import QtQuick.Templates as T
 import Qt.labs.qmlmodels
 
-import ThemeEngine
+import ComponentLibrary
 
 T.Popup {
     id: actionMenu
@@ -45,7 +45,7 @@ T.Popup {
 
     T.Overlay.modal: Rectangle {
         color: "#000"
-        opacity: ThemeEngine.isLight ? 0.24 : 0.666
+        opacity: Theme.isLight ? 0.24 : 0.666
     }
 
     background: Rectangle {

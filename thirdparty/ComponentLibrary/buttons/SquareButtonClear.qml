@@ -1,5 +1,6 @@
 import QtQuick
-import ThemeEngine
+
+import ComponentLibrary
 
 SquareButtonImpl {
     property color color: Theme.colorPrimary

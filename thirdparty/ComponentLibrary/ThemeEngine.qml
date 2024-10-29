@@ -111,8 +111,6 @@ Item {
     readonly property color colorLightGrey: "#a9bcb8"
     readonly property color colorLightGreen: "#09debc"
     readonly property color colorNeutralNight: "#ffb300"
-    readonly property color colorMaterialLightGrey: "#f8f8f8"
-    readonly property color colorMaterialDarkGrey: "#ececec"
 
     ////////////////
 
@@ -120,6 +118,7 @@ Item {
     property color colorRed: "#ff7657"
     property color colorGreen: "#8cd200"
     property color colorBlue: "#4cafe9"
+    property color colorPurple: "#b563ff"
     property color colorYellow: "#ffcf00"
     property color colorOrange: "#ffa635"
     property color colorGrey: "#666"
@@ -143,6 +142,8 @@ Item {
     readonly property color colorMaterialDeepOrange: "#FF5722"
     readonly property color colorMaterialBrown: "#795548"
     readonly property color colorMaterialGrey: "#9E9E9E"
+    readonly property color colorMaterialLightGrey: "#f8f8f8"
+    readonly property color colorMaterialDarkGrey: "#ececec"
 
     ////////////////
 
@@ -172,14 +173,14 @@ Item {
         return 40
     }
     property int componentHeightL: {
-        if (isDesktop && isHdpi) return 42
-        if (isDesktop) return 46
+        if (isDesktop && isHdpi) return 40
+        if (isDesktop) return 44
         return 48
     }
     property int componentHeightXL: {
-        if (isDesktop && isHdpi) return 50
-        if (isDesktop) return 54
-        return 56
+        if (isDesktop && isHdpi) return 44
+        if (isDesktop) return 48
+        return 52
     }
 
     ////////////////
@@ -206,51 +207,51 @@ Item {
     ////////////////////////////////////////////////////////////////////////////
 
     function getThemeIndex(name) {
-        if (name === "THEME_MOBILE_LIGHT") return ThemeEngine.THEME_MOBILE_LIGHT
-        if (name === "THEME_MOBILE_DARK") return ThemeEngine.THEME_MOBILE_DARK
+        if (name === "THEME_MOBILE_LIGHT") return Theme.THEME_MOBILE_LIGHT
+        if (name === "THEME_MOBILE_DARK") return Theme.THEME_MOBILE_DARK
 
-        if (name === "THEME_MATERIAL_LIGHT") return ThemeEngine.THEME_MATERIAL_LIGHT
-        if (name === "THEME_MATERIAL_DARK") return ThemeEngine.THEME_MATERIAL_DARK
+        if (name === "THEME_MATERIAL_LIGHT") return Theme.THEME_MATERIAL_LIGHT
+        if (name === "THEME_MATERIAL_DARK") return Theme.THEME_MATERIAL_DARK
 
-        if (name === "THEME_DESKTOP_LIGHT") return ThemeEngine.THEME_DESKTOP_LIGHT
-        if (name === "THEME_DESKTOP_DARK") return ThemeEngine.THEME_DESKTOP_DARK
+        if (name === "THEME_DESKTOP_LIGHT") return Theme.THEME_DESKTOP_LIGHT
+        if (name === "THEME_DESKTOP_DARK") return Theme.THEME_DESKTOP_DARK
 
-        if (name === "THEME_SNOW") return ThemeEngine.THEME_SNOW
-        if (name === "THEME_PLANT") return ThemeEngine.THEME_PLANT
-        if (name === "THEME_RAIN") return ThemeEngine.THEME_RAIN
-        if (name === "THEME_DAY") return ThemeEngine.THEME_DAY
-        if (name === "THEME_NIGHT") return ThemeEngine.THEME_NIGHT
+        if (name === "THEME_SNOW") return Theme.THEME_SNOW
+        if (name === "THEME_PLANT") return Theme.THEME_PLANT
+        if (name === "THEME_RAIN") return Theme.THEME_RAIN
+        if (name === "THEME_DAY") return Theme.THEME_DAY
+        if (name === "THEME_NIGHT") return Theme.THEME_NIGHT
 
-        if (name === "THEME_LIGHT_AND_WARM") return ThemeEngine.THEME_LIGHT_AND_WARM
-        if (name === "THEME_DARK_AND_SPOOKY") return ThemeEngine.THEME_DARK_AND_SPOOKY
-        if (name === "THEME_PLAIN_AND_BORING") return ThemeEngine.THEME_PLAIN_AND_BORING
-        if (name === "THEME_BLOOD_AND_TEARS") return ThemeEngine.THEME_BLOOD_AND_TEARS
-        if (name === "THEME_MIGHTY_KITTENS") return ThemeEngine.THEME_MIGHTY_KITTENS
+        if (name === "THEME_LIGHT_AND_WARM") return Theme.THEME_LIGHT_AND_WARM
+        if (name === "THEME_DARK_AND_SPOOKY") return Theme.THEME_DARK_AND_SPOOKY
+        if (name === "THEME_PLAIN_AND_BORING") return Theme.THEME_PLAIN_AND_BORING
+        if (name === "THEME_BLOOD_AND_TEARS") return Theme.THEME_BLOOD_AND_TEARS
+        if (name === "THEME_MIGHTY_KITTENS") return Theme.THEME_MIGHTY_KITTENS
 
         return -1
     }
 
     function getThemeName(index) {
-        if (index === ThemeEngine.THEME_MOBILE_LIGHT) return "THEME_MOBILE_LIGHT"
-        if (index === ThemeEngine.THEME_MOBILE_DARK) return "THEME_MOBILE_DARK"
+        if (index === Theme.THEME_MOBILE_LIGHT) return "THEME_MOBILE_LIGHT"
+        if (index === Theme.THEME_MOBILE_DARK) return "THEME_MOBILE_DARK"
 
-        if (index === ThemeEngine.THEME_MATERIAL_LIGHT) return "THEME_MATERIAL_LIGHT"
-        if (index === ThemeEngine.THEME_MATERIAL_DARK) return "THEME_MATERIAL_DARK"
+        if (index === Theme.THEME_MATERIAL_LIGHT) return "THEME_MATERIAL_LIGHT"
+        if (index === Theme.THEME_MATERIAL_DARK) return "THEME_MATERIAL_DARK"
 
-        if (index === ThemeEngine.THEME_DESKTOP_LIGHT) return "THEME_DESKTOP_LIGHT"
-        if (index === ThemeEngine.THEME_DESKTOP_DARK) return "THEME_DESKTOP_DARK"
+        if (index === Theme.THEME_DESKTOP_LIGHT) return "THEME_DESKTOP_LIGHT"
+        if (index === Theme.THEME_DESKTOP_DARK) return "THEME_DESKTOP_DARK"
 
-        if (index === ThemeEngine.THEME_SNOW) return "THEME_SNOW"
-        if (index === ThemeEngine.THEME_PLANT) return "THEME_PLANT"
-        if (index === ThemeEngine.THEME_RAIN) return "THEME_RAIN"
-        if (index === ThemeEngine.THEME_DAY) return "THEME_DAY"
-        if (index === ThemeEngine.THEME_NIGHT) return "THEME_NIGHT"
+        if (index === Theme.THEME_SNOW) return "THEME_SNOW"
+        if (index === Theme.THEME_PLANT) return "THEME_PLANT"
+        if (index === Theme.THEME_RAIN) return "THEME_RAIN"
+        if (index === Theme.THEME_DAY) return "THEME_DAY"
+        if (index === Theme.THEME_NIGHT) return "THEME_NIGHT"
 
-        if (index === ThemeEngine.THEME_LIGHT_AND_WARM) return "THEME_LIGHT_AND_WARM"
-        if (index === ThemeEngine.THEME_DARK_AND_SPOOKY) return "THEME_DARK_AND_SPOOKY"
-        if (index === ThemeEngine.THEME_PLAIN_AND_BORING) return "THEME_PLAIN_AND_BORING"
-        if (index === ThemeEngine.THEME_BLOOD_AND_TEARS) return "THEME_BLOOD_AND_TEARS"
-        if (index === ThemeEngine.THEME_MIGHTY_KITTENS) return "THEME_MIGHTY_KITTENS"
+        if (index === Theme.THEME_LIGHT_AND_WARM) return "THEME_LIGHT_AND_WARM"
+        if (index === Theme.THEME_DARK_AND_SPOOKY) return "THEME_DARK_AND_SPOOKY"
+        if (index === Theme.THEME_PLAIN_AND_BORING) return "THEME_PLAIN_AND_BORING"
+        if (index === Theme.THEME_BLOOD_AND_TEARS) return "THEME_BLOOD_AND_TEARS"
+        if (index === Theme.THEME_MIGHTY_KITTENS) return "THEME_MIGHTY_KITTENS"
 
         return ""
     }
@@ -264,7 +265,7 @@ Item {
     }
 
     function loadTheme(newIndex) {
-        //console.log("ThemeEngine.loadTheme(" + newIndex + ")")
+        //console.log("Theme.loadTheme(" + newIndex + ")")
         var themeIndex = -1
 
         // Get the theme index
@@ -275,9 +276,9 @@ Item {
         }
 
         // Validate the result (or set the default)
-        if (themeIndex < 0 || themeIndex >= ThemeEngine.THEME_LAST) {
-            if (isDesktop) themeIndex = ThemeEngine.THEME_LIGHT_AND_WARM
-            else if (isMobile) themeIndex = ThemeEngine.THEME_MOBILE_LIGHT
+        if (themeIndex < 0 || themeIndex >= Theme.THEME_LAST) {
+            if (isDesktop) themeIndex = Theme.THEME_LIGHT_AND_WARM
+            else if (isMobile) themeIndex = Theme.THEME_MOBILE_LIGHT
             else themeIndex = 1
         }
 
@@ -286,24 +287,24 @@ Item {
             var rightnow = new Date()
             var hour = Qt.formatDateTime(rightnow, "hh")
             if (hour >= 21 || hour <= 8) {
-                if (themeIndex === ThemeEngine.THEME_MOBILE_LIGHT)
-                    themeIndex = ThemeEngine.THEME_MOBILE_DARK
+                if (themeIndex === Theme.THEME_MOBILE_LIGHT)
+                    themeIndex = Theme.THEME_MOBILE_DARK
 
-                if (themeIndex === ThemeEngine.THEME_MATERIAL_LIGHT)
-                    themeIndex = ThemeEngine.THEME_MATERIAL_DARK
+                if (themeIndex === Theme.THEME_MATERIAL_LIGHT)
+                    themeIndex = Theme.THEME_MATERIAL_DARK
 
-                if (themeIndex === ThemeEngine.THEME_DESKTOP_LIGHT)
-                    themeIndex = ThemeEngine.THEME_DESKTOP_DARK
+                if (themeIndex === Theme.THEME_DESKTOP_LIGHT)
+                    themeIndex = Theme.THEME_DESKTOP_DARK
 
-                if (themeIndex === ThemeEngine.THEME_SNOW ||
-                    themeIndex === ThemeEngine.THEME_PLANT ||
-                    themeIndex === ThemeEngine.THEME_RAIN ||
-                    themeIndex === ThemeEngine.THEME_DAY)
-                    themeIndex = ThemeEngine.THEME_NIGHT
+                if (themeIndex === Theme.THEME_SNOW ||
+                    themeIndex === Theme.THEME_PLANT ||
+                    themeIndex === Theme.THEME_RAIN ||
+                    themeIndex === Theme.THEME_DAY)
+                    themeIndex = Theme.THEME_NIGHT
 
-                if (themeIndex === ThemeEngine.THEME_LIGHT_AND_WARM ||
-                    themeIndex === ThemeEngine.THEME_PLAIN_AND_BORING)
-                    themeIndex = ThemeEngine.THEME_DARK_AND_SPOOKY
+                if (themeIndex === Theme.THEME_LIGHT_AND_WARM ||
+                    themeIndex === Theme.THEME_PLAIN_AND_BORING)
+                    themeIndex = Theme.THEME_DARK_AND_SPOOKY
 
                 // theme doesn't have a dark variant set? just don't change the theme...
             }
@@ -313,7 +314,7 @@ Item {
         if (themeIndex === currentTheme) return
 
         // Set the theme
-        if (themeIndex === ThemeEngine.THEME_MOBILE_LIGHT) { ///////////////////
+        if (themeIndex === Theme.THEME_MOBILE_LIGHT) { ///////////////////
 
             colorGreen  = "#07bf97"
             colorBlue   = "#4CA1D5"
@@ -369,7 +370,7 @@ Item {
             componentRadius = 6
             componentBorderWidth = 2
 
-        } else if (themeIndex === ThemeEngine.THEME_MOBILE_DARK) {
+        } else if (themeIndex === Theme.THEME_MOBILE_DARK) {
 
             colorGreen  = "#58CF77"
             colorBlue   = "#4dceeb"
@@ -425,7 +426,7 @@ Item {
             componentRadius = 6
             componentBorderWidth = 2
 
-        } else if (themeIndex === ThemeEngine.THEME_MATERIAL_LIGHT) { /////////
+        } else if (themeIndex === Theme.THEME_MATERIAL_LIGHT) { /////////
 
             colorGreen  = "#07bf97"
             colorBlue   = "#4CA1D5"
@@ -481,7 +482,7 @@ Item {
             componentRadius = 6
             componentBorderWidth = 2
 
-        } else if (themeIndex === ThemeEngine.THEME_MATERIAL_DARK) {
+        } else if (themeIndex === Theme.THEME_MATERIAL_DARK) {
 
             colorGreen  = "#58CF77"
             colorBlue   = "#4dceeb"
@@ -537,7 +538,7 @@ Item {
             componentRadius = 8
             componentBorderWidth = 2
 
-        } else if (themeIndex === ThemeEngine.THEME_DESKTOP_LIGHT) { ///////////
+        } else if (themeIndex === Theme.THEME_DESKTOP_LIGHT) { ///////////
 
             colorRed    = "#ff7657"
             colorGreen  = "#85c700"
@@ -605,7 +606,7 @@ Item {
             colorLVselected             = "#0080e0"
             colorLVseparator            = "#e2e2e2"
 
-        } else if (themeIndex === ThemeEngine.THEME_DESKTOP_DARK) {
+        } else if (themeIndex === Theme.THEME_DESKTOP_DARK) {
 
             colorRed    = "#e8635a"
             colorGreen  = "#58cf77"
@@ -673,7 +674,7 @@ Item {
             colorLVseparator            = "#333"
             colorLVselected             = "#e90c76"
 
-        } else if (themeIndex === ThemeEngine.THEME_SNOW) { ////////////////////
+        } else if (themeIndex === Theme.THEME_SNOW) { ////////////////////
 
             colorGreen = "#85c700"
             colorBlue = "#4cafe9"
@@ -732,7 +733,7 @@ Item {
             // (app)
             colorDeviceWidget = "#fdfdfd"
 
-        } else if (themeIndex === ThemeEngine.THEME_PLANT) {
+        } else if (themeIndex === Theme.THEME_PLANT) {
 
             colorGreen = "#07bf97"
             colorBlue = "#4CA1D5"
@@ -791,7 +792,7 @@ Item {
             // (app)
             colorDeviceWidget = "#fdfdfd"
 
-        } else if (themeIndex === ThemeEngine.THEME_RAIN) {
+        } else if (themeIndex === Theme.THEME_RAIN) {
 
             colorGreen = "#8cd200"
             colorBlue = "#4cafe9"
@@ -850,7 +851,7 @@ Item {
             // (app)
             colorDeviceWidget = "#fdfdfd"
 
-        } else if (themeIndex === ThemeEngine.THEME_DAY) {
+        } else if (themeIndex === Theme.THEME_DAY) {
 
             colorGreen  = "#8cd200"
             colorBlue   = "#4cafe9"
@@ -909,7 +910,7 @@ Item {
             // (app)
             colorDeviceWidget = "#fdfdfd"
 
-        } else if (themeIndex === ThemeEngine.THEME_NIGHT) {
+        } else if (themeIndex === Theme.THEME_NIGHT) {
 
             colorGreen = "#58CF77"
             colorBlue = "#4dceeb"
@@ -968,7 +969,7 @@ Item {
             // (app)
             colorDeviceWidget = "#333"
 
-        } else if (themeIndex === ThemeEngine.THEME_LIGHT_AND_WARM) { //////////
+        } else if (themeIndex === Theme.THEME_LIGHT_AND_WARM) { //////////
 
             isLight = true
             isDark = false
@@ -1021,7 +1022,7 @@ Item {
             // (app)
             sidebarSelector = ""
 
-        } else if (themeIndex === ThemeEngine.THEME_DARK_AND_SPOOKY) {
+        } else if (themeIndex === Theme.THEME_DARK_AND_SPOOKY) {
 
             isLight = false
             isDark = true
@@ -1074,7 +1075,7 @@ Item {
             // (app)
             sidebarSelector = ""
 
-        } else if (themeIndex === ThemeEngine.THEME_PLAIN_AND_BORING) {
+        } else if (themeIndex === Theme.THEME_PLAIN_AND_BORING) {
 
             isLight = true
             isDark = false
@@ -1127,7 +1128,7 @@ Item {
             // (app)
             sidebarSelector = "arrow"
 
-        } else if (themeIndex === ThemeEngine.THEME_BLOOD_AND_TEARS) {
+        } else if (themeIndex === Theme.THEME_BLOOD_AND_TEARS) {
 
             isLight = false
             isDark = true
@@ -1180,7 +1181,7 @@ Item {
             // (app)
             sidebarSelector = "bar"
 
-        } else if (themeIndex === ThemeEngine.THEME_MIGHTY_KITTENS) {
+        } else if (themeIndex === Theme.THEME_MIGHTY_KITTENS) {
 
             isLight = true
             isDark = false

@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Window
 
-import ThemeEngine
+import ComponentLibrary
 
 Loader {
     width: active ? 48 : 0
@@ -80,5 +80,7 @@ Loader {
                 }
             }
         }
+
+        ////////
     }
 }

@@ -3,7 +3,7 @@ import QtQuick.Layouts
 import QtQuick.Templates as T
 import QtQuick.Controls.impl
 
-import ThemeEngine
+import ComponentLibrary
 
 T.ItemDelegate {
     id: control
@@ -53,7 +53,7 @@ T.ItemDelegate {
                 anchors.left: parent.left
                 anchors.leftMargin: (32 - control.sourceSize) / 2
                 anchors.verticalCenter: parent.verticalCenter
-                //anchors.verticalCenterOffset: (control.height !== Theme.componentHeightXL) ? -(Theme.componentMargin / 2) : 0
+                anchors.verticalCenterOffset: (control.height !== Theme.componentHeightXL) ? -(Theme.componentMargin / 2) : 0
 
                 width: control.sourceSize
                 height: control.sourceSize

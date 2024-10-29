@@ -1,6 +1,6 @@
 import QtQuick
 
-import ThemeEngine
+import ComponentLibrary
 
 Item { // padded separator
     anchors.left: parent.left

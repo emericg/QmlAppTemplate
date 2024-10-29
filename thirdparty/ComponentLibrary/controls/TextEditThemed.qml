@@ -1,6 +1,6 @@
 import QtQuick
 
-import ThemeEngine
+import ComponentLibrary
 
 TextEdit {
     readOnly: false

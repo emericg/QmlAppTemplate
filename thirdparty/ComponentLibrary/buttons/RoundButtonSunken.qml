@@ -1,5 +1,6 @@
 import QtQuick
-import ThemeEngine
+
+import ComponentLibrary
 
 RoundButtonImpl {
     colorBackground: Theme.colorBackground

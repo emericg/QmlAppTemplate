@@ -3,7 +3,7 @@ import QtQuick.Effects
 import QtQuick.Layouts
 import QtQuick.Controls
 
-import ThemeEngine
+import ComponentLibrary
 
 Popup {
     id: popupTime

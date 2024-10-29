@@ -5,7 +5,7 @@ import QtQuick.Controls.impl
 import QtQuick.Controls.Material
 import QtQuick.Controls.Material.impl
 
-import ThemeEngine
+import ComponentLibrary
 
 T.ItemDelegate {
     id: control

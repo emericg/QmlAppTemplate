@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Controls.impl
 import QtQuick.Templates as T
 
-import ThemeEngine
+import ComponentLibrary
 
 T.TextField {
     id: control
@@ -26,7 +26,7 @@ T.TextField {
     placeholderText: ""
     placeholderTextColor: colorPlaceholderText
 
-    selectByMouse: false
+    selectByMouse: true
     selectionColor: colorSelection
     selectedTextColor: colorSelectedText
 

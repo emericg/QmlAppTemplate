@@ -4,8 +4,7 @@ import QtQuick.Effects
 import QtQuick.Controls.impl
 import QtQuick.Templates as T
 
-import ThemeEngine
-import "qrc:/utils/UtilsNumber.js" as UtilsNumber
+import ComponentLibrary
 
 T.Button {
     id: control

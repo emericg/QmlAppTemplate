@@ -1,8 +1,7 @@
 import QtQuick
-
 import QtLocation
 
-import ThemeEngine
+import ComponentLibrary
 
 MapQuickItem {
     id: posMarker

@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Effects
 
-import ThemeEngine
+import ComponentLibrary
 
 Rectangle {
     id: control
@@ -69,6 +69,6 @@ Rectangle {
     layer.effect: MultiEffect {
         autoPaddingEnabled: true
         shadowEnabled: true
-        shadowColor: ThemeEngine.isLight ? "#16000000" : "#88ffffff"
+        shadowColor: Theme.isLight ? "#16000000" : "#88ffffff"
     }
 }

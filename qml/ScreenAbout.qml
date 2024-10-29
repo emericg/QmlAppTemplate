@@ -1,8 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 
-import ThemeEngine
-import "qrc:/utils/UtilsNumber.js" as UtilsNumber
+import ComponentLibrary
 
 Loader {
     id: screenAbout
@@ -457,7 +456,6 @@ Loader {
             ListSeparator { visible: utilsApp.isDebugBuild() }
 
             ////////
-
         }
     }
 

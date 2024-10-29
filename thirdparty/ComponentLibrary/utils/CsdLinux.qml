@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Window
 
-import ThemeEngine
+import ComponentLibrary
 
 Loader {
     anchors.top: parent.top
@@ -101,5 +101,7 @@ Loader {
                 onClicked: appWindow.close()
             }
         }
+
+        ////////
     }
 }

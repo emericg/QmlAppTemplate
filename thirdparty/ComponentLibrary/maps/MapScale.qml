@@ -1,9 +1,7 @@
 import QtQuick
-
 import QtLocation
 
-import ThemeEngine
-import "qrc:/utils/UtilsString.js" as UtilsString
+import ComponentLibrary
 
 Item {
     id: mapScale

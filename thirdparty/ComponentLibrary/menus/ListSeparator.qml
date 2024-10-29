@@ -1,6 +1,6 @@
 import QtQuick
 
-import ThemeEngine
+import ComponentLibrary
 
 Rectangle { // separator
     anchors.left: parent.left

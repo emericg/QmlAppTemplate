@@ -3,16 +3,19 @@ import QtQuick.Effects
 import QtQuick.Controls.impl
 import QtQuick.Templates as T
 
-import ThemeEngine
-import "qrc:/utils/UtilsNumber.js" as UtilsNumber
+import ComponentLibrary
+
+//Column {
+//    anchors.right: parent.right
+//    anchors.bottom: parent.bottom
+//    anchors.margins: Theme.componentMarginXL
+//    spacing: Theme.componentMarginXL
+//    z: 10
+//}
 
 T.Button {
     id: control
-
-    //anchors.right: parent.right
-    //anchors.bottom: parent.bottom
-    //anchors.margins: Theme.componentMarginXL
-    //z: 10
+    anchors.right: parent.right
 
     implicitWidth: implicitBackgroundWidth
     implicitHeight: implicitBackgroundHeight
@@ -27,7 +30,7 @@ T.Button {
 
     // icon
     property url source: "qrc:/assets/icons/material-symbols/add.svg"
-    property int sourceSize: 32
+    property int sourceSize: 28
     property int sourceRotation: 0
 
     // colors

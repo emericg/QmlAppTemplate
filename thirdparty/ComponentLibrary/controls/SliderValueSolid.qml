@@ -3,8 +3,7 @@ import QtQuick.Effects
 import QtQuick.Controls.impl
 import QtQuick.Templates as T
 
-import ThemeEngine
-import "qrc:/utils/UtilsNumber.js" as UtilsNumber
+import ComponentLibrary
 
 T.Slider {
     id: control
@@ -27,6 +26,7 @@ T.Slider {
     // colors
     property color colorBackground: Theme.colorForeground
     property color colorForeground: Theme.colorPrimary
+    property color colorForegroundDisabled: Qt.tint(Theme.colorPrimary, "#44eeeeee")
     property color colorText: "white"
 
     ////////////////
@@ -49,7 +49,7 @@ T.Slider {
             height: control.horizontal ? control.hhh : parent.height - handle.y
 
             radius: control.hhh
-            color: control.colorForeground
+            color: enabled ? control.colorForeground : control.colorForegroundDisabled
         }
 
         layer.enabled: control.horizontal
@@ -82,8 +82,7 @@ T.Slider {
         width: (control.horizontal && control.showvalue) ? t1.contentWidth + 16 : control.hhh
         height: control.hhh
         radius: control.hhh
-        color: control.colorForeground
-        border.color: control.colorForeground
+        color: enabled ? control.colorForeground : control.colorForegroundDisabled
 
         Text {
             id: t1
@@ -108,6 +107,36 @@ T.Slider {
             verticalAlignment: Text.AlignVCenter
         }
     }
+/*
+    Item {
+        y: control.horizontal ? 0 : handle.y
+        width: control.horizontal ? Math.max(control.position * parent.width, handle.x + handle.width*0.66) : control.hhh
+        height: control.horizontal ? control.hhh : parent.height - handle.y
 
+        opacity: enabled ? 1 : 0.33
+
+        Text {
+            width: control.hhh
+            height: control.hhh
+            anchors.right: parent.right
+            visible: control.showvalue
+
+            text: {
+                var vvalue = control.value
+                if (control.unit === "°" && settingsManager.tempUnit === "F") vvalue = UtilsNumber.tempCelsiusToFahrenheit(vvalue)
+                vvalue = vvalue.toFixed(control.floatprecision)
+                return ((control.kshort && control.value > 999) ? (vvalue / 1000) : vvalue) + control.unit
+            }
+            textFormat: Text.PlainText
+            font.bold: true
+            font.pixelSize: isDesktop ? 12 : 13
+            fontSizeMode: Text.Fit
+            minimumPixelSize: Theme.fontSizeContentVerySmall
+            color: control.colorText
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+        }
+    }
+*/
     ////////////////
 }

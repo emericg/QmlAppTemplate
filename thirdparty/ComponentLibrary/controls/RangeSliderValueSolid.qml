@@ -2,8 +2,7 @@ import QtQuick
 import QtQuick.Controls.impl
 import QtQuick.Templates as T
 
-import ThemeEngine
-import "qrc:/utils/UtilsNumber.js" as UtilsNumber
+import ComponentLibrary
 
 T.RangeSlider {
     id: control
@@ -28,6 +27,7 @@ T.RangeSlider {
     // colors
     property color colorBackground: Theme.colorForeground
     property color colorForeground: Theme.colorPrimary
+    property color colorForegroundDisabled: Qt.tint(Theme.colorPrimary, "#44eeeeee")
     property color colorText: "white"
 
     ////////////////

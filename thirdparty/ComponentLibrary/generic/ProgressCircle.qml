@@ -1,6 +1,6 @@
 import QtQuick
 
-import ThemeEngine
+import ComponentLibrary
 
 // Based on the ProgressCircle component from ByteBau (Jörn Buchholz) @bytebau.com
 
@@ -61,7 +61,7 @@ Item {
     onBackgroundOpacityChanged: canvas.requestPaint()
 
     Connections {
-        target: ThemeEngine
+        target: Theme
         function onCurrentThemeChanged() { canvas.requestPaint() }
     }
 

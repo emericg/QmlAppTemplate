@@ -30,23 +30,83 @@ message(STATUS "[PROJECT] QT_HOST_PATH              = ${QT_HOST_PATH}")
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml Quick QuickControls2 Svg)
 find_package(Qt6 REQUIRED COMPONENTS LinguistTools)
 
-qt_standard_project_setup(REQUIRES 6.8)
+qt_standard_project_setup(REQUIRES 6.7)
 
 qt_policy(SET QTP0001 NEW)
 qt_policy(SET QTP0002 NEW)
 qt_policy(SET QTP0003 NEW)
-qt_policy(SET QTP0004 NEW)
+#qt_policy(SET QTP0004 NEW) # Qt 6.8
 
 qt_add_executable(${CMAKE_PROJECT_NAME}
     src/main.cpp
     src/SettingsManager.cpp src/SettingsManager.h
-    qml/qml.qrc
     assets/assets.qrc
     assets/icons/IconLibrary.qrc
-    thirdparty/ComponentLibrary/ComponentLibrary.qrc
 )
 
-target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC src/thirdparty/)
+qt_add_qml_module(${CMAKE_PROJECT_NAME}
+    URI ${CMAKE_PROJECT_NAME}
+    QML_FILES
+        qml/MobileApplication.qml
+        qml/MobileHeader.qml
+        qml/MobileDrawer.qml
+        qml/MobilePermissions.qml
+        qml/MobileMenu.qml
+        qml/MobileExit.qml
+
+        qml/DesktopApplication.qml
+        qml/DesktopHeader.qml
+        qml/DesktopSidebar.qml
+
+        qml/ScreenMainView.qml
+        qml/ScreenMobileComponents.qml
+        qml/ScreenDesktopComponents.qml
+        qml/ScreenPlayground.qml
+        qml/ScreenFontInfos.qml
+        qml/ScreenHostInfos.qml
+        qml/ScreenSettings.qml
+        qml/ScreenAbout.qml
+
+        qml/PageButtons.qml
+        qml/PageColors.qml
+        qml/PageDateTime.qml
+        qml/PageDialogs.qml
+        qml/PageIndicators.qml
+        qml/PageSelectors.qml
+        qml/PageSliders.qml
+        qml/PageTextFields.qml
+        qml/PageTickers.qml
+
+        qml/popups/PopupMessage.qml
+        qml/popups/PopupChoice.qml
+        qml/popups/PopupDate.qml
+        qml/popups/PopupTime.qml
+)
+
+target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE src/)
+target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE thirdparty/)
+
+################################################################################
+
+qt_standard_project_setup(
+    I18N_SOURCE_LANGUAGE en
+    I18N_TRANSLATED_LANGUAGES fr
+)
+qt_add_translations(${CMAKE_PROJECT_NAME}
+    TS_FILE_BASE ${CMAKE_PROJECT_NAME}
+    TS_FILE_DIR ${CMAKE_SOURCE_DIR}/i18n/
+    RESOURCE_PREFIX "/i18n"
+)
+
+################################################################################
+
+# ComponentLibrary
+add_subdirectory(thirdparty/ComponentLibrary)
+target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE ComponentLibraryplugin)
+
+# QML module import path for ComponentLibrary ???
+#set(QML_IMPORT_PATH "${CMAKE_SOURCE_DIR}/thirdparty/" CACHE STRING "ComponentLibraryPaths" FORCE)
+#include_directories(QML_IMPORT_PATH)
 
 # AppUtils
 set(UTILS_DOCK_ENABLED true)
@@ -119,10 +179,8 @@ if (CMAKE_SYSTEM_NAME STREQUAL "iOS")
     set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
         MACOSX_BUNDLE ON
         MACOSX_BUNDLE_INFO_PLIST "${CMAKE_SOURCE_DIR}/assets/ios/Info.plist"
-        XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER "io.emeric.qmlapptemplate"
-        XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME "AppIcon"
+        # Qt
         QT_IOS_LAUNCH_SCREEN "${CMAKE_SOURCE_DIR}/assets/ios/LaunchScreen.storyboard"
-
         # WIP # Old way ???
         MACOSX_BUNDLE_GUI_IDENTIFIER            "io.emeric.qmlapptemplate"
         MACOSX_BUNDLE_BUNDLE_NAME               ${CMAKE_PROJECT_NAME}
@@ -130,11 +188,13 @@ if (CMAKE_SYSTEM_NAME STREQUAL "iOS")
         MACOSX_BUNDLE_SHORT_VERSION_STRING      ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
         MACOSX_BUNDLE_COPYRIGHT                 "Copyright © 2024 Emeric Grange"
         # WIP # New Xcode attributes ???
+        XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER "io.emeric.qmlapptemplate"
         XCODE_ATTRIBUTE_PRODUCT_NAME                        ${CMAKE_PROJECT_NAME}
         XCODE_ATTRIBUTE_CURRENT_PROJECT_VERSION             ${CMAKE_PROJECT_VERSION}
         XCODE_ATTRIBUTE_MARKETING_VERSION                   ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
         XCODE_ATTRIBUTE_IPHONEOS_DEPLOYMENT_TARGET          "16.0"
         XCODE_ATTRIBUTE_TARGETED_DEVICE_FAMILY              "1,2"   # iPhone,iPad
+        XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME "AppIcon"
     )
 endif()
 
@@ -154,13 +214,21 @@ if (CMAKE_BUILD_TYPE STREQUAL Release)
     )
 endif()
 
-# Output
+################################################################################
+
+# Output?
 set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
     MACOSX_BUNDLE ON
     WIN32_EXECUTABLE ON
     #ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/lib"
     #LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/lib"
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin"
+)
+
+# Output?
+install(TARGETS ${CMAKE_PROJECT_NAME}
+    BUNDLE DESTINATION bin/
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
 
 ################################################################################

@@ -1,4 +1,4 @@
-import ThemeEngine
+import ComponentLibrary
 
 SquareButtonImpl {
     colorBackground: "white"

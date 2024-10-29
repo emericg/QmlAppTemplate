@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Controls.impl
 import QtQuick.Templates as T
 
-import ThemeEngine
+import ComponentLibrary
 
 T.ComboBox {
     id: control
@@ -56,7 +56,7 @@ T.ComboBox {
         rotation: control.popup.visible ? 180 : 0
 
         Connections {
-            target: ThemeEngine
+            target: Theme
             function onCurrentThemeChanged() { indicator.requestPaint() }
         }
 
@@ -75,6 +75,9 @@ T.ComboBox {
     ////////////////
 
     delegate: T.ItemDelegate {
+        required property var model
+        required property int index
+
         width: control.width - 2
         height: control.height
         highlighted: (control.highlightedIndex === index)
@@ -90,9 +93,7 @@ T.ComboBox {
         contentItem: Text {
             leftPadding: control.leftPadding
             rightPadding: control.rightPadding
-            text: control.textRole
-                ? (Array.isArray(control.model) ? modelData[control.textRole] : model[control.textRole])
-                : modelData
+            text: model[control.textRole]
             color: highlighted ? "black" : Theme.colorSubText
             font.pixelSize: Theme.componentFontSize
             elide: Text.ElideRight

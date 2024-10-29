@@ -3,8 +3,7 @@ import QtQuick.Effects
 import QtQuick.Controls.impl
 import QtQuick.Templates as T
 
-import ThemeEngine
-import "qrc:/utils/UtilsNumber.js" as UtilsNumber
+import ComponentLibrary
 
 T.SpinBox {
     id: control
@@ -33,7 +32,7 @@ T.SpinBox {
     ////////////////
 
     background: Rectangle {
-        implicitWidth: 128
+        implicitWidth: 140
         implicitHeight: Theme.componentHeight
 
         radius: Theme.componentRadius
@@ -42,18 +41,18 @@ T.SpinBox {
 
         Rectangle {
             width: control.height
-            height: control.height / 2
+            height: control.height
+            anchors.verticalCenter: parent.verticalCenter
             x: control.mirrored ? 0 : control.width - width
-            y: 0
             color: control.up.pressed ? Theme.colorComponentDown : Theme.colorComponent
             opacity: control.up.hovered ? 0.8 : 1
             Behavior on opacity { NumberAnimation { duration: 133 } }
         }
         Rectangle {
             width: control.height
-            height: control.height / 2
-            x: control.mirrored ? 0 : control.width - width
-            y: height
+            height: control.height
+            anchors.verticalCenter: parent.verticalCenter
+            x: control.mirrored ? control.width - width : 0
             color: control.down.pressed ? Theme.colorComponentDown : Theme.colorComponent
             opacity: control.down.hovered ? 0.8 : 1
             Behavior on opacity { NumberAnimation { duration: 133 } }
@@ -87,16 +86,11 @@ T.SpinBox {
     ////////////////
 
     contentItem: Item {
-        anchors.left: parent.left
-        anchors.leftMargin: control.leftPadding
-        anchors.right: parent.right
-        anchors.rightMargin: control.rightPadding + control.height
-
-        opacity: control.enabled ? 1 : 0.66
-
         Row {
             anchors.centerIn: parent
             spacing: 4
+
+            opacity: control.enabled ? 1 : 0.66
 
             TextInput {
                 height: control.height
@@ -156,38 +150,26 @@ T.SpinBox {
 
     up.indicator: Item {
         implicitWidth: Theme.componentHeight
-        implicitHeight: Theme.componentHeight / 2
+        implicitHeight: Theme.componentHeight
 
         width: control.height
-        height: control.height / 2
+        height: control.height
         x: control.mirrored ? 0 : control.width - width
-        y: 0
+        anchors.verticalCenter: control.verticalCenter
 
         opacity: enabled ? 1 : 0.5
 
-        Canvas {
-            id: arrowup
+        Rectangle {
             anchors.centerIn: parent
-            anchors.verticalCenterOffset: 2
-            width: control.height * 0.333
-            height: control.height * 0.166
-            rotation: 180
-
-            Connections {
-                target: ThemeEngine
-                function onCurrentThemeChanged() { arrowup.requestPaint() }
-            }
-
-            onPaint: {
-                var ctx = getContext("2d")
-                ctx.reset()
-                ctx.moveTo(0, 0)
-                ctx.lineTo(width, 0)
-                ctx.lineTo(width / 2, height)
-                ctx.closePath()
-                ctx.fillStyle = Theme.colorIcon
-                ctx.fill()
-            }
+            width: UtilsNumber.round2(parent.height * 0.4)
+            height: 2
+            color: Theme.colorComponentContent
+        }
+        Rectangle {
+            anchors.centerIn: parent
+            width: 2
+            height: UtilsNumber.round2(parent.height * 0.4)
+            color: Theme.colorComponentContent
         }
     }
 
@@ -195,38 +177,20 @@ T.SpinBox {
 
     down.indicator: Item {
         implicitWidth: Theme.componentHeight
-        implicitHeight: Theme.componentHeight / 2
+        implicitHeight: Theme.componentHeight
 
         width: control.height
-        height: control.height / 2
-        x: control.mirrored ? 0 : control.width - width
-        y: height
+        height: control.height
+        x: control.mirrored ? control.width - width : 0
+        anchors.verticalCenter: control.verticalCenter
 
         opacity: enabled ? 1 : 0.5
 
-        Canvas {
-            id: arrowdown
+        Rectangle {
             anchors.centerIn: parent
-            anchors.verticalCenterOffset: -2
-            width: control.height * 0.333
-            height: control.height * 0.166
-            rotation: 0
-
-            Connections {
-                target: ThemeEngine
-                function onCurrentThemeChanged() { arrowdown.requestPaint() }
-            }
-
-            onPaint: {
-                var ctx = getContext("2d")
-                ctx.reset()
-                ctx.moveTo(0, 0)
-                ctx.lineTo(width, 0)
-                ctx.lineTo(width / 2, height)
-                ctx.closePath()
-                ctx.fillStyle = Theme.colorIcon
-                ctx.fill()
-            }
+            width: UtilsNumber.round2(parent.height * 0.4)
+            height: 2
+            color: Theme.colorComponentContent
         }
     }
 

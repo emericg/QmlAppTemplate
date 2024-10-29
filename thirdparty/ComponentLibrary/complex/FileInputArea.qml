@@ -4,8 +4,7 @@ import QtQuick.Dialogs
 import QtQuick.Controls.impl
 import QtQuick.Templates as T
 
-import ThemeEngine
-import "qrc:/utils/UtilsPath.js" as UtilsPath
+import ComponentLibrary
 
 T.TextField {
     id: control

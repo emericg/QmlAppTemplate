@@ -1,5 +1,4 @@
-import QtQuick
-import ThemeEngine
+import ComponentLibrary
 
 ButtonImpl {
     colorBackground: Theme.colorComponent

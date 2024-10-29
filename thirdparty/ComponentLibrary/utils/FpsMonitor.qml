@@ -1,6 +1,8 @@
 import QtQuick
 import QtQuick.Window
 
+import ComponentLibrary
+
 Item {
     id: control
     height: 24

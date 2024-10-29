@@ -82,9 +82,6 @@ int main(int argc, char *argv[])
     // Translate the application
     utilsLanguage->loadLanguage(sm->getAppLanguage());
 
-    // ThemeEngine
-    qmlRegisterSingletonType(QUrl("qrc:/qml/ThemeEngine.qml"), "ThemeEngine", 1, 0, "Theme");
-
     // Force QtQuick components style? // Some styles are only available on target OS
     // Basic // Fusion // Imagine // macOS // iOS // Material // Universal // Windows
     //QQuickStyle::setStyle("Universal");
@@ -95,6 +92,9 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     QQmlContext *engine_context = engine.rootContext();
 
+    engine.addImportPath(":/qt/qml/QmlAppTemplate");
+    engine.addImportPath(":/qt/qml/ComponentLibrary");
+
     engine_context->setContextProperty("settingsManager", sm);
     engine_context->setContextProperty("utilsApp", utilsApp);
     engine_context->setContextProperty("utilsLanguage", utilsLanguage);
@@ -104,9 +104,9 @@ int main(int argc, char *argv[])
 
     // Load the main view
 #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(FORCE_MOBILE_UI)
-    engine.load(QUrl(QStringLiteral("qrc:/qml/MobileApplication.qml")));
+    engine.loadFromModule("QmlAppTemplate", "MobileApplication");
 #else
-    engine.load(QUrl(QStringLiteral("qrc:/qml/DesktopApplication.qml")));
+    engine.loadFromModule("QmlAppTemplate", "DesktopApplication");
 #endif
 
     if (engine.rootObjects().isEmpty())

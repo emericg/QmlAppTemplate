@@ -3,7 +3,7 @@ import QtQuick.Effects
 import QtQuick.Controls.impl
 import QtQuick.Templates as T
 
-import ThemeEngine
+import ComponentLibrary
 
 T.Button {
     id: control
@@ -75,6 +75,7 @@ T.Button {
                 anchors.centerIn: parent
                 source: control.source
                 width: control.sourceSize
+                height: control.sourceSize
                 color: control.colorText
             }
 

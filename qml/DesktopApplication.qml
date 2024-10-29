@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
 
-import ThemeEngine
+import ComponentLibrary
 
 ApplicationWindow {
     id: appWindow

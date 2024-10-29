@@ -3,7 +3,7 @@ import QtQuick.Effects
 import QtQuick.Controls.impl
 import QtQuick.Templates as T
 
-import ThemeEngine
+import ComponentLibrary
 
 T.Frame {
     id: control
@@ -41,7 +41,7 @@ T.Frame {
             layer.effect: MultiEffect {
                 autoPaddingEnabled: true
                 shadowEnabled: true
-                shadowColor: Theme.colorBoxShadow
+                shadowColor: "#66000000"
             }
         }
         Rectangle { // background

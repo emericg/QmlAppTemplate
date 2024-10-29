@@ -4,7 +4,7 @@ import QtQuick.Controls.impl
 import QtQuick.Templates as T
 import Qt.labs.qmlmodels
 
-import ThemeEngine
+import ComponentLibrary
 
 T.Popup {
     id: actionMenu
