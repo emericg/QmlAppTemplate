@@ -1,9 +1,9 @@
 # QmlAppTemplate
 
-[![GitHub action](https://img.shields.io/github/actions/workflow/status/emericg/QmlAppTemplate/builds_desktop_cmake.yml?style=flat-square)](actions/workflows/builds_desktop_cmake.yml)
-[![GitHub action](https://img.shields.io/github/actions/workflow/status/emericg/QmlAppTemplate/builds_mobile_cmake.yml?style=flat-square)](actions/workflows/builds_mobile_cmake.yml)
-[![GitHub issues](https://img.shields.io/github/issues/emericg/QmlAppTemplate.svg?style=flat-square)](issues/)
-[![GitHub license](https://img.shields.io/github/license/emericg/QmlAppTemplate?style=flat-square&color=blue)](LICENSE.md)
+[![GitHub action](https://img.shields.io/github/actions/workflow/status/emericg/QmlAppTemplate/builds_desktop_cmake.yml?style=flat-square)](https://github.com/emericg/QmlAppTemplate/actions/workflows/builds_desktop_cmake.yml)
+[![GitHub action](https://img.shields.io/github/actions/workflow/status/emericg/QmlAppTemplate/builds_mobile_cmake.yml?style=flat-square)](https://github.com/emericg/QmlAppTemplate/actions/workflows/builds_mobile_cmake.yml)
+[![GitHub issues](https://img.shields.io/github/issues/emericg/QmlAppTemplate.svg?style=flat-square)](https://github.com/emericg/QmlAppTemplate/issues)
+[![MIT license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE.md)
 
 ## About
 
