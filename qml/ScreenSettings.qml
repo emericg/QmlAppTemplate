@@ -108,9 +108,9 @@ Loader {
                         anchors.verticalCenter: parent.verticalCenter
 
                         radius: 2
-                        color: (Theme.currentTheme === ThemeEngine.THEME_MOBILE_LIGHT) ? Theme.colorForeground : "#dddddd"
+                        color: (Theme.currentTheme === Theme.THEME_MOBILE_LIGHT) ? Theme.colorForeground : "#dddddd"
                         border.color: Theme.colorSecondary
-                        border.width: (Theme.currentTheme === ThemeEngine.THEME_MOBILE_LIGHT) ? 2 : 0
+                        border.width: (Theme.currentTheme === Theme.THEME_MOBILE_LIGHT) ? 2 : 0
 
                         Text {
                             anchors.centerIn: parent
@@ -131,9 +131,9 @@ Loader {
                         anchors.verticalCenter: parent.verticalCenter
 
                         radius: 2
-                        color: (Theme.currentTheme === ThemeEngine.THEME_MOBILE_DARK) ? Theme.colorForeground : "#313236"
+                        color: (Theme.currentTheme === Theme.THEME_MOBILE_DARK) ? Theme.colorForeground : "#313236"
                         border.color: Theme.colorSecondary
-                        border.width: (Theme.currentTheme === ThemeEngine.THEME_MOBILE_DARK) ? 2 : 0
+                        border.width: (Theme.currentTheme === Theme.THEME_MOBILE_DARK) ? 2 : 0
 
                         Text {
                             anchors.centerIn: parent
