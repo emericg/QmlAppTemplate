@@ -154,17 +154,17 @@ endif()
 
 ## macOS
 if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
-    set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
-        MACOSX_BUNDLE ON
-    )
-
-    set(CMAKE_XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER "io.emeric.qmlapptemplate")
-    set(CMAKE_XCODE_ATTRIBUTE_MARKETING_VERSION "${CMAKE_PROJECT_VERSION}")
-
     set(CMAKE_OSX_ARCHITECTURES "x86_64;arm64")
     set(CMAKE_OSX_DEPLOYMENT_TARGET "11.0")
-    set(CMAKE_XCODE_ATTRIBUTE_INFOPLIST_FILE "${CMAKE_SOURCE_DIR}/assets/macos/Info.plist")
-    set(CMAKE_XCODE_ATTRIBUTE_CODE_SIGN_ENTITLEMENTS "${CMAKE_SOURCE_DIR}/assets/macos/${CMAKE_PROJECT_NAME}.entitlements")
+    set(CMAKE_XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER "io.emeric.qmlapptemplate")
+    set(CMAKE_XCODE_ATTRIBUTE_MARKETING_VERSION "${CMAKE_PROJECT_VERSION}")
+    #set(CMAKE_XCODE_ATTRIBUTE_INFOPLIST_FILE "${CMAKE_SOURCE_DIR}/assets/macos/Info.plist")
+    #set(CMAKE_XCODE_ATTRIBUTE_CODE_SIGN_ENTITLEMENTS "${CMAKE_SOURCE_DIR}/assets/macos/${CMAKE_PROJECT_NAME}.entitlements")
+
+    set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
+        MACOSX_BUNDLE ON
+        MACOSX_BUNDLE_INFO_PLIST "${CMAKE_SOURCE_DIR}/assets/macos/Info.plist"
+    )
 endif()
 
 ## iOS
@@ -176,11 +176,15 @@ if (CMAKE_SYSTEM_NAME STREQUAL "iOS")
     set(CMAKE_XCODE_ATTRIBUTE_TARGETED_DEVICE_FAMILY "1,2") # iPhone,iPad
     set(CMAKE_XCODE_ATTRIBUTE_INFOPLIST_FILE "${CMAKE_SOURCE_DIR}/assets/ios/Info.plist")
 
+    #set(assets_catalog_path "${CMAKE_SOURCE_DIR}/assets/ios/Assets.xcassets")
+    #target_sources(${CMAKE_PROJECT_NAME} PRIVATE ${assets_catalog_path})
+    #set_source_files_properties(${assets_catalog_path} PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
+
     set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
         MACOSX_BUNDLE ON
         MACOSX_BUNDLE_INFO_PLIST "${CMAKE_SOURCE_DIR}/assets/ios/Info.plist"
         # Qt
-        QT_IOS_LAUNCH_SCREEN "${CMAKE_SOURCE_DIR}/assets/ios/LaunchScreen.storyboard"
+        #QT_IOS_LAUNCH_SCREEN "${CMAKE_SOURCE_DIR}/assets/ios/LaunchScreen.storyboard"
         # WIP # Old way ???
         MACOSX_BUNDLE_GUI_IDENTIFIER            "io.emeric.qmlapptemplate"
         MACOSX_BUNDLE_BUNDLE_NAME               ${CMAKE_PROJECT_NAME}

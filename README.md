@@ -16,6 +16,8 @@ You will need a C++17 compiler and Qt 6.8 LTS (or better).
 For macOS and iOS builds, you'll need Xcode (15+) installed.  
 For Android builds, you'll need the appropriates JDK (17) SDK (28+) and NDK (26b+). You can customize Android build environment using the `assets/android/gradle.properties` file.  
 
+> https://doc.qt.io/qt-6.8/supported-platforms.html
+
 #### Platform support
 
 - Linux

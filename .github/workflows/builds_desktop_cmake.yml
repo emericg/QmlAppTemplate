@@ -15,7 +15,7 @@ on:
 env:
   APP_NAME: "QmlAppTemplate"
   APP_VERSION: "0.8"
-  QT_VERSION: "6.8.0"
+  QT_VERSION: "6.7.3"
 
 #-------------------------------------------------------------------------------
 # Workflow jobs
@@ -60,11 +60,6 @@ jobs:
       # Deploy application
       - name: Deploy application
         run: |
-             sudo rm /home/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/gcc_64/plugins/position/libqtposition_nmea.so
-             sudo rm /home/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/gcc_64/plugins/sqldrivers/libqsqlmimer.so
-             sudo rm /home/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/gcc_64/plugins/sqldrivers/libqsqlmysql.so
-             sudo rm /home/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/gcc_64/plugins/sqldrivers/libqsqlodbc.so
-             sudo rm /home/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/gcc_64/plugins/sqldrivers/libqsqlpsql.so
              ./deploy_linux.sh -c -p
 
       # Upload application ZIP
