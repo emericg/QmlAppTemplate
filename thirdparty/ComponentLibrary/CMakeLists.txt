@@ -170,7 +170,7 @@ set_source_files_properties(ThemeEngine.qml PROPERTIES
 
 set_target_properties(ComponentLibrary PROPERTIES AUTOMOC ON)
 
-target_link_libraries(ComponentLibrary PRIVATE Qt6::Quick)
+target_link_libraries(ComponentLibrary PRIVATE Qt::Quick)
 
 qt_add_qml_module(ComponentLibrary
     URI ComponentLibrary
