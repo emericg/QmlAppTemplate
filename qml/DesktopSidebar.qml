@@ -10,7 +10,8 @@ Rectangle {
     anchors.bottom: parent.bottom
 
     z: 10
-    width: isHdpi ? 72 : 80
+    //width: isHdpi ? 72 : 80
+    width: 220
     color: Theme.colorSidebar
 
     ////////////
@@ -30,6 +31,81 @@ Rectangle {
 
     ////////////
 
+    Column { // top menu
+        anchors.top: parent.top
+        anchors.topMargin: 16
+        anchors.left: parent.left
+        anchors.leftMargin: 12
+        anchors.right: parent.right
+        anchors.rightMargin: 12
+        spacing: 6
+
+        DesktopSidebarMenu {
+            text: "Desktop"
+            source: "qrc:/assets/icons/material-symbols/hardware/computer.svg"
+            checked: (appContent.state === "DesktopComponents")
+
+            onClicked: screenDesktopComponents.loadScreen()
+        }
+        DesktopSidebarMenu {
+            text: "Mobile"
+            source: "qrc:/assets/icons/material-symbols/hardware/smartphone-fill.svg"
+            checked: (appContent.state === "MobileComponents")
+
+            onClicked: screenMobileComponents.loadScreen()
+        }
+        DesktopSidebarSubMenu {
+            text: "Tools"
+            source: "qrc:/assets/icons/material-icons/duotone/touch_app.svg"
+            checked: (appContent.state === "Playground" ||
+                      appContent.state === "HostInfos" ||
+                      appContent.state === "FontInfos")
+            onClicked: screenPlayground.loadScreen()
+
+            submenus: [
+                { text: "playground", onClicked: function() { screenPlayground.loadScreen() } },
+                { text: "host", onClicked: function() { screenHostInfos.loadScreen() } },
+                { text: "fonts", onClicked: function() { screenFontInfos.loadScreen() }  }
+            ]
+        }
+    }
+
+    ////////////
+
+    Column { // bottom menu
+        anchors.left: parent.left
+        anchors.leftMargin: 12
+        anchors.right: parent.right
+        anchors.rightMargin: 12
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 16
+        spacing: 6
+
+        DesktopSidebarMenu {
+            text: "Settings"
+            source: "qrc:/assets/icons/material-icons/duotone/tune.svg"
+            checked: (appContent.state === "Settings")
+
+            onClicked: screenSettings.loadScreen()
+        }
+
+        DesktopSidebarMenu {
+            text: "Settings"
+            source: "qrc:/assets/icons/material-icons/duotone/info.svg"
+            checked: (appContent.state === "About")
+
+            onClicked: screenAbout.loadScreen()
+        }
+
+        DesktopSidebarMenu {
+            text: "Exit"
+            source: "qrc:/assets/icons/material-icons/duotone/exit_to_app.svg"
+            onClicked: Qt.quit()
+        }
+    }
+
+    ////////////
+/*
     Column { // top menu
         anchors.top: parent.top
         anchors.topMargin: 32
@@ -80,9 +156,9 @@ Rectangle {
             onClicked: screenFontInfos.loadScreen()
         }
     }
-
+*/
     ////////////
-
+/*
     Column { // bottom menu
         anchors.left: parent.left
         anchors.right: parent.right
@@ -116,7 +192,7 @@ Rectangle {
             onClicked: Qt.quit()
         }
     }
-
+*/
     ////////////
 /*
     Rectangle { // shadow

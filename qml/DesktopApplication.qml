@@ -97,13 +97,6 @@ ApplicationWindow {
         //console.log("activeFocusItem:" + activeFocusItem)
     }
 
-    onClosing: (close) => {
-        if (Qt.platform.os === "osx") {
-            close.accepted = false
-            appWindow.hide()
-        }
-    }
-
     // User generated events handling //////////////////////////////////////////
 
     function backAction() {
