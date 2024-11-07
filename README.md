@@ -11,33 +11,31 @@ A Qt6 / QML application template, with a full set of visual controls, helper mod
 
 #### Prerequisites
 
-You will need a C++17 compiler and Qt 6.8 LTS (or better).  
+You will need a C++17 compiler and Qt 6.7+.  
 
 For macOS and iOS builds, you'll need Xcode (15+) installed.  
+For windows builds, you'll need MSVC 2019 (or 2022) installed.  
 For Android builds, you'll need the appropriates JDK (17) SDK (28+) and NDK (26b+). You can customize Android build environment using the `assets/android/gradle.properties` file.  
 
-> https://doc.qt.io/qt-6.8/supported-platforms.html
+> https://doc.qt.io/qt-6.7/supported-platforms.html
 
 #### Platform support
 
 - Linux
-- macOS 12+
+- macOS 11+
 - Windows 10+
-- Android 9+
-- iOS 16+
+- Android 8+
+- iOS 14+
 
 #### Recent changes
 
 Qt 6.8 brings big changes and hard platform requirements, so I took this "opportunity"
 to modernize this template a bit. Let's embrace breaking everything! Again.
 
-For instance QmlAppTemplate is now using cmake only. Maintaining both cmake and qmake
-variants of many things was just too much work, and both sides were suffering of
-less than ideal support. Qt 6 is geared toward cmake, and latest Qt 6 releases are
-introducing even more tighly coupled features and tooling requirements anyway.
-
-At the time of this writing, Qt 6.8 just released, so if you can't meet these requirements,
-or still want to use qmake, you can check out the code from the 0.7 release.
+QmlAppTemplate is now **cmake only**. Maintaining both cmake and qmake variants
+of many things was just too much work, and both sides were suffering of less than
+ideal support. Qt 6 is geared toward cmake, and latest Qt 6 releases are introducing
+even more tighly coupled features and tooling requirements anyway.
 
 #### Building QmlAppTemplate
 

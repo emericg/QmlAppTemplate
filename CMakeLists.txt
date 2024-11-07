@@ -84,7 +84,6 @@ qt_add_qml_module(${CMAKE_PROJECT_NAME}
 )
 
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE src/)
-target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE thirdparty/)
 
 ################################################################################
 
@@ -104,10 +103,6 @@ qt_add_translations(${CMAKE_PROJECT_NAME}
 add_subdirectory(thirdparty/ComponentLibrary)
 target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE ComponentLibraryplugin)
 
-# QML module import path for ComponentLibrary ???
-#set(QML_IMPORT_PATH "${CMAKE_SOURCE_DIR}/thirdparty/" CACHE STRING "ComponentLibraryPaths" FORCE)
-#include_directories(QML_IMPORT_PATH)
-
 # AppUtils
 set(UTILS_DOCK_ENABLED true)
 add_subdirectory(thirdparty/AppUtils)
@@ -121,6 +116,10 @@ target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE MobileUI)
 set(QAPPLICATION_CLASS QGuiApplication)
 add_subdirectory(thirdparty/SingleApplication)
 target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE SingleApplication)
+
+target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE thirdparty/)
+
+################################################################################
 
 # Qt
 target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE
