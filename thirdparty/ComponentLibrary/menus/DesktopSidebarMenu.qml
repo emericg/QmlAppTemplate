@@ -23,8 +23,8 @@ ButtonImpl {
     sourceSize: 20
 
     property color color: checked ? Theme.colorPrimary : Theme.colorSidebarContent
-    colorBackground: Qt.rgba(color.r, color.g, color.b, checked ? 0.2 : 0.04)
-    colorHighlight: checked ? Theme.colorPrimary : Theme.colorSidebarContent
+    colorBackground: Qt.rgba(color.r, color.g, color.b, checked ? 0.2 : 1)
+    colorHighlight: checked ? Theme.colorPrimary : Theme.colorSidebarHighlight
     colorBorder: colorBackground
     colorText: checked ? Theme.colorPrimary : Theme.colorText
     flat: true

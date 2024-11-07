@@ -191,13 +191,31 @@ ApplicationWindow {
         anchors.left: parent.left
         anchors.bottom: parent.bottom
     }
-
+/*
     DesktopHeader {
         id: appHeader
 
         anchors.top: parent.top
         anchors.left: appSidebar.right
         anchors.right: parent.right
+    }
+*/
+    Item { // compat
+        id: appHeader
+
+        anchors.top: parent.top
+        anchors.left: appSidebar.right
+        anchors.right: parent.right
+
+        height: 0
+        property int headerPosition: 64
+
+        // compat
+        signal backButtonClicked()
+        signal rightMenuClicked()
+        signal menuComponentsClicked()
+        signal menuSettingsClicked()
+        signal menuAboutClicked()
     }
 
     Rectangle {

@@ -10,8 +10,7 @@ Rectangle {
     anchors.bottom: parent.bottom
 
     z: 10
-    //width: isHdpi ? 72 : 80
-    width: 220
+    width: isHdpi ? 220 : 240
     color: Theme.colorSidebar
 
     ////////////
@@ -194,21 +193,31 @@ Rectangle {
     }
 */
     ////////////
-/*
-    Rectangle { // shadow
+
+    Rectangle { // border
         anchors.top: parent.top
-        anchors.right: parent.left
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+
+        width: 2
+        opacity: 1.0
+        color: Theme.colorSeparator
+    }
+
+    Rectangle { // fake shadow
+        anchors.top: parent.top
+        anchors.left: parent.right
         anchors.bottom: parent.bottom
 
         width: 8
-        opacity: 0.66
+        opacity: 0.333
 
         gradient: Gradient {
             orientation: Gradient.Horizontal
-            GradientStop { position: 0.0; color: Theme.colorSidebarHighlight; }
-            GradientStop { position: 1.0; color: Theme.colorBackground; }
+            GradientStop { position: 0.0; color: Theme.colorSeparator; }
+            GradientStop { position: 1.0; color: "transparent"; }
         }
     }
-*/
+
     ////////////
 }

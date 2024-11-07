@@ -69,7 +69,7 @@ Popup {
 
     Overlay.modal: Rectangle {
         color: "#000"
-        opacity: Theme.isLight ? 0.24 : 0.666
+        opacity: Theme.isLight ? 0.24 : 0.48
     }
 
     background: Rectangle {
@@ -117,8 +117,9 @@ Popup {
         layer.enabled: !singleColumn
         layer.effect: MultiEffect { // shadow
             autoPaddingEnabled: true
+            blurMax: 64
             shadowEnabled: true
-            shadowColor: Theme.isLight ? "#aa000000" : "#aaffffff"
+            shadowColor: Theme.isLight ? "#aa000000" : "#cc000000"
         }
     }
 

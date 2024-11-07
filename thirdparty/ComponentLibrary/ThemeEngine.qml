@@ -154,7 +154,7 @@ Item {
     property color colorComponentBorder
     property color colorComponentDown
     property color colorComponentBackground
-    property color colorComponentShadow: isLight ? "#33000000" : "#aaffffff"
+    property color colorComponentShadow: isLight ? "#44000000" : "#88000000"
 
     property int componentRadius: 4
     property int componentBorderWidth: 2
@@ -277,9 +277,8 @@ Item {
 
         // Validate the result (or set the default)
         if (themeIndex < 0 || themeIndex >= Theme.THEME_LAST) {
-            if (isDesktop) themeIndex = Theme.THEME_LIGHT_AND_WARM
+            if (isDesktop) themeIndex = Theme.THEME_DESKTOP_LIGHT
             else if (isMobile) themeIndex = Theme.THEME_MOBILE_LIGHT
-            else themeIndex = 1
         }
 
         // Handle day/night themes
@@ -557,12 +556,12 @@ Item {
             colorHeaderContent          = "#444"
             colorHeaderHighlight        = "#e2e1df"
 
-            colorSidebar                = "white"
-            colorSidebarContent         = "#444"
-            colorSidebarHighlight       = "#888"
+            colorSidebar                = "#f2f2f2"
+            colorSidebarContent         = "#ececec"
+            colorSidebarHighlight       = "#c0c0c0"
 
             colorActionbar              = "#eaeaea"
-            colorActionbarContent       = "#444"
+            colorActionbarContent       = "#eaeaea"
             colorActionbarHighlight     = "#dadada"
 
             colorTabletmenu             = "#ffffff"
@@ -570,7 +569,7 @@ Item {
             colorTabletmenuHighlight    = "#cfcbcb"
 
             colorBackground             = "#f9f8f7"
-            colorForeground             = "#f3f2f1"
+            colorForeground             = "#fcfcfc"
 
             colorPrimary                = "#ffc900"
             colorSecondary              = "#ffeb00"
@@ -585,10 +584,10 @@ Item {
             colorLowContrast            = "white"
             colorHighContrast           = "#303030"
 
-            colorComponent              = "#eaeaea"
+            colorComponent              = "#ebebeb"
             colorComponentText          = "black"
             colorComponentContent       = "black"
-            colorComponentBorder        = "#ddd"
+            colorComponentBorder        = "#ebebeb"
             colorComponentDown          = "#dadada"
             colorComponentBackground    = "#fcfcfc"
 
@@ -625,9 +624,9 @@ Item {
             colorHeaderContent          = "white"
             colorHeaderHighlight        = "#725595"
 
-            colorSidebar                = "#b16bee"
-            colorSidebarContent         = "white"
-            colorSidebarHighlight       = "#725595"
+            colorSidebar                = "#373949"
+            colorSidebarContent         = "#494a5a"
+            colorSidebarHighlight       = "#1f254a"
 
             colorActionbar              = "#252024"
             colorActionbarContent       = "white"
@@ -637,8 +636,8 @@ Item {
             colorTabletmenuContent      = "#808080"
             colorTabletmenuHighlight    = "#bb86fc"
 
-            colorBackground             = "#2e2a2e"
-            colorForeground             = "#333"
+            colorBackground             = "#282a39"
+            colorForeground             = "#373949"
 
             colorPrimary                = "#bb86fc"
             colorSecondary              = "#b16bee"
@@ -649,16 +648,16 @@ Item {
             colorText                   = "#eee"
             colorSubText                = "#999"
             colorIcon                   = "#eee"
-            colorSeparator              = "#444"
+            colorSeparator              = "#1d1e27"
             colorLowContrast            = "#111"
             colorHighContrast           = "white"
 
-            colorComponent              = "#757575"
+            colorComponent              = "#53535c"
             colorComponentText          = "#eee"
             colorComponentContent       = "white"
-            colorComponentBorder        = "#777"
-            colorComponentDown          = "#595959"
-            colorComponentBackground    = "#393939"
+            colorComponentBorder        = "#717181"
+            colorComponentDown          = "#46464f"
+            colorComponentBackground    = "#363746"
 
             componentRadius = 6
             componentBorderWidth = 2
