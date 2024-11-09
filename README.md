@@ -41,6 +41,7 @@ even more tighly coupled features and tooling requirements anyway.
 
 ```bash
 $ git clone https://github.com/emericg/QmlAppTemplate.git --recursive
+$ cd QmlAppTemplate/
 $ cmake -B build/
 $ cmake --build build/
 ```

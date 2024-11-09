@@ -133,10 +133,10 @@ jobs:
           submodules: recursive
 
       # Configure MSVC
-      #- name: Configure MSVC
-      #  uses: ilammy/msvc-dev-cmd@v1
-      #  with:
-      #    arch: x86_64
+      - name: Configure MSVC
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x86_64
 
       # Install Qt
       - name: Install Qt
@@ -160,8 +160,8 @@ jobs:
       # Build application
       - name: Build application
         run: |
+             cmake -B build/ .. -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release
              cd build/
-             cmake .. -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release
              nmake
 
       # Deploy application

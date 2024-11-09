@@ -130,6 +130,8 @@ jobs:
         run: |
              echo "QT_HOST_PATH=/home/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/gcc_64" >> $GITHUB_ENV
              echo "QT_TARGET_PATH=/home/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/android_arm64_v8a" >> $GITHUB_ENV
+             cmake --version
+             qmake --version
 
       # Build application
       - name: Build application
@@ -177,7 +179,7 @@ jobs:
   ## iOS build #################################################################
   build-ios:
     name: "iOS CI build"
-    runs-on: macos-12
+    runs-on: macos-13
     steps:
       # Checkout repository (and submodules)
       - name: Checkout repository (and submodules)
@@ -204,6 +206,8 @@ jobs:
         run: |
              echo "QT_HOST_PATH=/Users/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/macos" >> $GITHUB_ENV
              echo "QT_TARGET_PATH=/Users/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/ios" >> $GITHUB_ENV
+             cmake --version
+             qmake --version
 
       # Build application
       - name: Build application
@@ -273,4 +277,3 @@ jobs:
         continue-on-error: true
         run: |
              ls build/
-             ls build/Release-iphoneos
