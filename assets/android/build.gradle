@@ -5,7 +5,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.6.0' // works with Qt 6.8+ // Java 17
+        classpath 'com.android.tools.build:gradle:8.6.1' // works with Qt 6.8+ // Java 17
     }
 }
 
@@ -98,7 +98,7 @@ android {
         exclude 'lib/*/*_Controls_Fusion_*'
         exclude 'lib/*/*_Controls_Imagine_*'
         exclude 'lib/*/*_Controls_Universal_*'
-        // app specific
+        // image formats
         exclude 'lib/*/*_imageformats_qgif_*'
         exclude 'lib/*/*_imageformats_qico_*'
         exclude 'lib/*/*_imageformats_qicns_*'

@@ -54,7 +54,7 @@ jobs:
       # Build application
       - name: Build application
         run: |
-             cmake -B build/ -G Ninja -DCMAKE_BUILD_TYPE=Release
+             cmake -B build/ -DCMAKE_BUILD_TYPE=Release G Ninja
              cmake --build build/ --config Release
 
       # Deploy application
@@ -160,7 +160,7 @@ jobs:
       # Build application
       - name: Build application
         run: |
-             cmake -B build/ .. -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release
+             cmake -B build/ -DCMAKE_BUILD_TYPE=Release -G "NMake Makefiles"
              cd build/
              nmake
 
