@@ -133,17 +133,17 @@ jobs:
           submodules: recursive
 
       # Configure MSVC
-      - name: Configure MSVC
-        uses: ilammy/msvc-dev-cmd@v1
-        with:
-          arch: x86_64
+      #- name: Configure MSVC
+      #  uses: ilammy/msvc-dev-cmd@v1
+      #  with:
+      #    arch: x86_64
 
       # Install Qt
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
           version: ${{env.QT_VERSION}}
-          arch: 'win64_msvc2022_64'
+          #arch: 'win64_msvc2022_64'
 
       # Install NSIS (already installed in 'windows-2022')
       #- name: Install NSIS
