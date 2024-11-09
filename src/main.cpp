@@ -132,7 +132,7 @@ int main(int argc, char *argv[])
     QObject::connect(&app, &SingleApplication::instanceStarted, window, &QQuickWindow::raise);
 
 #if defined(Q_OS_MACOS)
-    // Dock
+    // macOS dock
     MacOSDockHandler *dockIconHandler = MacOSDockHandler::getInstance();
     QObject::connect(dockIconHandler, &MacOSDockHandler::dockIconClicked, window, &QQuickWindow::show);
     QObject::connect(dockIconHandler, &MacOSDockHandler::dockIconClicked, window, &QQuickWindow::raise);

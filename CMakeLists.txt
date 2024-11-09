@@ -34,7 +34,7 @@ qt_standard_project_setup(REQUIRES 6.7)
 
 qt_policy(SET QTP0001 NEW)
 qt_policy(SET QTP0002 NEW)
-qt_policy(SET QTP0003 NEW)
+qt_policy(SET QTP0003 NEW) # Qt 6.7
 #qt_policy(SET QTP0004 NEW) # Qt 6.8
 
 qt_add_executable(${CMAKE_PROJECT_NAME}
@@ -99,9 +99,10 @@ qt_add_translations(${CMAKE_PROJECT_NAME}
 
 ################################################################################
 
-# ComponentLibrary
-add_subdirectory(thirdparty/ComponentLibrary)
-target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE ComponentLibraryplugin)
+# SingleApplication
+set(QAPPLICATION_CLASS QGuiApplication)
+add_subdirectory(thirdparty/SingleApplication)
+target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE SingleApplication)
 
 # AppUtils
 set(UTILS_DOCK_ENABLED true)
@@ -112,10 +113,9 @@ target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE AppUtils)
 add_subdirectory(thirdparty/MobileUI)
 target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE MobileUI)
 
-# SingleApplication
-set(QAPPLICATION_CLASS QGuiApplication)
-add_subdirectory(thirdparty/SingleApplication)
-target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE SingleApplication)
+# ComponentLibrary
+add_subdirectory(thirdparty/ComponentLibrary)
+target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE ComponentLibraryplugin)
 
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE thirdparty/)
 
@@ -197,7 +197,7 @@ if (CMAKE_SYSTEM_NAME STREQUAL "iOS")
         XCODE_ATTRIBUTE_MARKETING_VERSION                   ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
         XCODE_ATTRIBUTE_IPHONEOS_DEPLOYMENT_TARGET          "16.0"
         XCODE_ATTRIBUTE_TARGETED_DEVICE_FAMILY              "1,2"   # iPhone,iPad
-        XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME "AppIcon"
+        XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME  "AppIcon"
     )
 endif()
 
@@ -221,8 +221,6 @@ endif()
 
 # Output?
 set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
-    MACOSX_BUNDLE ON
-    WIN32_EXECUTABLE ON
     #ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/lib"
     #LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/lib"
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin"

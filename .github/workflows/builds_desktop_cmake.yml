@@ -79,7 +79,7 @@ jobs:
   ## macOS build ###############################################################
   build-mac:
     name: "macOS CI build"
-    runs-on: macos-12
+    runs-on: macos-13
     steps:
       # Checkout repository (and submodules)
       - name: Checkout repository (and submodules)
@@ -136,14 +136,14 @@ jobs:
       - name: Configure MSVC
         uses: ilammy/msvc-dev-cmd@v1
         with:
-          arch: x64
-          spectre: true
+          arch: x86_64
 
       # Install Qt
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
           version: ${{env.QT_VERSION}}
+          arch: 'win64_msvc2022_64'
 
       # Install NSIS (already installed in 'windows-2022')
       #- name: Install NSIS
