@@ -10,7 +10,7 @@ Rectangle {
     anchors.bottom: parent.bottom
 
     z: 10
-    width: isHdpi ? 220 : 240
+    width: isHdpi ? 220 : 256
     color: Theme.colorSidebar
 
     ////////////
@@ -40,32 +40,34 @@ Rectangle {
         spacing: 6
 
         DesktopSidebarMenu {
-            text: "Desktop"
+            text: qsTr("Desktop")
             source: "qrc:/assets/icons/material-symbols/hardware/computer.svg"
             checked: (appContent.state === "DesktopComponents")
 
             onClicked: screenDesktopComponents.loadScreen()
         }
         DesktopSidebarMenu {
-            text: "Mobile"
+            text: qsTr("Mobile")
             source: "qrc:/assets/icons/material-symbols/hardware/smartphone-fill.svg"
             checked: (appContent.state === "MobileComponents")
 
             onClicked: screenMobileComponents.loadScreen()
         }
         DesktopSidebarSubMenu {
-            text: "Tools"
-            source: "qrc:/assets/icons/material-icons/duotone/touch_app.svg"
+            text: qsTr("Tools")
+            source: "qrc:/assets/icons/material-symbols/build-fill.svg"
+
             checked: (appContent.state === "Playground" ||
                       appContent.state === "HostInfos" ||
                       appContent.state === "FontInfos")
-            onClicked: screenPlayground.loadScreen()
 
             submenus: [
-                { text: "playground", onClicked: function() { screenPlayground.loadScreen() } },
-                { text: "host", onClicked: function() { screenHostInfos.loadScreen() } },
-                { text: "fonts", onClicked: function() { screenFontInfos.loadScreen() }  }
+                { text: qsTr("Playground"), onClicked: function() { screenPlayground.loadScreen() } },
+                { text: qsTr("Host info"), onClicked: function() { screenHostInfos.loadScreen() } },
+                { text: qsTr("Fonts info"), onClicked: function() { screenFontInfos.loadScreen() }  }
             ]
+
+            onClicked: screenPlayground.loadScreen()
         }
     }
 
@@ -81,7 +83,7 @@ Rectangle {
         spacing: 6
 
         DesktopSidebarMenu {
-            text: "Settings"
+            text: qsTr("Settings")
             source: "qrc:/assets/icons/material-icons/duotone/tune.svg"
             checked: (appContent.state === "Settings")
 
@@ -89,7 +91,7 @@ Rectangle {
         }
 
         DesktopSidebarMenu {
-            text: "Settings"
+            text: qsTr("About")
             source: "qrc:/assets/icons/material-icons/duotone/info.svg"
             checked: (appContent.state === "About")
 
@@ -97,7 +99,7 @@ Rectangle {
         }
 
         DesktopSidebarMenu {
-            text: "Exit"
+            text: qsTr("Exit")
             source: "qrc:/assets/icons/material-icons/duotone/exit_to_app.svg"
             onClicked: Qt.quit()
         }

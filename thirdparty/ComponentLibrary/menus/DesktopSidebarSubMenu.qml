@@ -30,6 +30,7 @@ Column {
 
     DesktopSidebarMenu {
         text: sidebarSubMenu.text
+        source: sidebarSubMenu.source
         checked: sidebarSubMenu.checked
         onClicked: sidebarSubMenu.clicked()
     }
@@ -45,8 +46,9 @@ Column {
             font.bold: checked
             //visible: sidebarSubMenu.checked
 
-            source: "qrc:/assets/icons/material-symbols/arrow_right.svg"
-            sourceSize: 20
+            source: checked ? "qrc:/assets/icons/material-symbols/circle-fill.svg"
+                            : "qrc:/assets/icons/material-symbols/circle.svg"
+            sourceSize: 12
 
             checked: sidebarSubMenu.checked && sidebarSubMenu.selected === index
             onClicked: {
