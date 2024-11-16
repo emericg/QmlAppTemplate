@@ -155,26 +155,27 @@ endif()
 if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     set(CMAKE_OSX_ARCHITECTURES "x86_64;arm64")
     set(CMAKE_OSX_DEPLOYMENT_TARGET "11.0")
-    set(CMAKE_XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER "io.emeric.qmlapptemplate")
-    set(CMAKE_XCODE_ATTRIBUTE_MARKETING_VERSION "${CMAKE_PROJECT_VERSION}")
-    #set(CMAKE_XCODE_ATTRIBUTE_INFOPLIST_FILE "${CMAKE_SOURCE_DIR}/assets/macos/Info.plist")
     #set(CMAKE_XCODE_ATTRIBUTE_CODE_SIGN_ENTITLEMENTS "${CMAKE_SOURCE_DIR}/assets/macos/${CMAKE_PROJECT_NAME}.entitlements")
 
     set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
         MACOSX_BUNDLE ON
         MACOSX_BUNDLE_INFO_PLIST "${CMAKE_SOURCE_DIR}/assets/macos/Info.plist"
+        # Old way (???)
+        MACOSX_BUNDLE_GUI_IDENTIFIER            "io.emeric.qmlapptemplate"
+        MACOSX_BUNDLE_BUNDLE_NAME               ${CMAKE_PROJECT_NAME}
+        MACOSX_BUNDLE_BUNDLE_VERSION            ${CMAKE_PROJECT_VERSION}
+        MACOSX_BUNDLE_SHORT_VERSION_STRING      ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
+        # New Xcode attributes (???)
+        XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER           "io.emeric.qmlapptemplate"
+        XCODE_ATTRIBUTE_PRODUCT_NAME                        ${CMAKE_PROJECT_NAME}
+        XCODE_ATTRIBUTE_CURRENT_PROJECT_VERSION             ${CMAKE_PROJECT_VERSION}
+        XCODE_ATTRIBUTE_MARKETING_VERSION                   ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
+        XCODE_ATTRIBUTE_CODE_SIGN_ENTITLEMENTS              "${CMAKE_SOURCE_DIR}/assets/macos/${CMAKE_PROJECT_NAME}.entitlements"
     )
 endif()
 
 ## iOS
 if (CMAKE_SYSTEM_NAME STREQUAL "iOS")
-    set(CMAKE_OSX_ARCHITECTURES "arm64")
-    set(CMAKE_OSX_SYSROOT "iphoneos")
-    set(CMAKE_OSX_DEPLOYMENT_TARGET "14.0")
-    set(CMAKE_XCODE_ATTRIBUTE_IPHONEOS_DEPLOYMENT_TARGET "14.0")
-    set(CMAKE_XCODE_ATTRIBUTE_TARGETED_DEVICE_FAMILY "1,2") # iPhone,iPad
-    set(CMAKE_XCODE_ATTRIBUTE_INFOPLIST_FILE "${CMAKE_SOURCE_DIR}/assets/ios/Info.plist")
-
     #set(assets_catalog_path "${CMAKE_SOURCE_DIR}/assets/ios/Assets.xcassets")
     #target_sources(${CMAKE_PROJECT_NAME} PRIVATE ${assets_catalog_path})
     #set_source_files_properties(${assets_catalog_path} PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
@@ -184,20 +185,15 @@ if (CMAKE_SYSTEM_NAME STREQUAL "iOS")
         MACOSX_BUNDLE_INFO_PLIST "${CMAKE_SOURCE_DIR}/assets/ios/Info.plist"
         # Qt
         #QT_IOS_LAUNCH_SCREEN "${CMAKE_SOURCE_DIR}/assets/ios/LaunchScreen.storyboard"
-        # WIP # Old way ???
-        MACOSX_BUNDLE_GUI_IDENTIFIER            "io.emeric.qmlapptemplate"
-        MACOSX_BUNDLE_BUNDLE_NAME               ${CMAKE_PROJECT_NAME}
-        MACOSX_BUNDLE_BUNDLE_VERSION            ${CMAKE_PROJECT_VERSION}
-        MACOSX_BUNDLE_SHORT_VERSION_STRING      ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
-        MACOSX_BUNDLE_COPYRIGHT                 "Copyright © 2024 Emeric Grange"
-        # WIP # New Xcode attributes ???
-        XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER "io.emeric.qmlapptemplate"
+        # New Xcode attributes (???)
+        XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER           "io.emeric.qmlapptemplate"
         XCODE_ATTRIBUTE_PRODUCT_NAME                        ${CMAKE_PROJECT_NAME}
         XCODE_ATTRIBUTE_CURRENT_PROJECT_VERSION             ${CMAKE_PROJECT_VERSION}
         XCODE_ATTRIBUTE_MARKETING_VERSION                   ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
         XCODE_ATTRIBUTE_IPHONEOS_DEPLOYMENT_TARGET          "14.0"
         XCODE_ATTRIBUTE_TARGETED_DEVICE_FAMILY              "1,2"   # iPhone,iPad
         XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME  "AppIcon"
+        XCODE_ATTRIBUTE_GCC_GENERATE_DEBUGGING_SYMBOLS      "YES"
     )
 endif()
 
