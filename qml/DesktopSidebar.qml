@@ -37,7 +37,7 @@ Rectangle {
         anchors.leftMargin: 12
         anchors.right: parent.right
         anchors.rightMargin: 12
-        spacing: 6
+        spacing: 8
 
         DesktopSidebarMenu {
             text: qsTr("Desktop")
@@ -80,7 +80,7 @@ Rectangle {
         anchors.rightMargin: 12
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 16
-        spacing: 6
+        spacing: 8
 
         DesktopSidebarMenu {
             text: qsTr("Settings")

@@ -43,9 +43,11 @@ T.Popup {
     enter: Transition { NumberAnimation { duration: 233; property: "height"; from: 0; to: actionMenu.actualHeight; } }
     exit: Transition { NumberAnimation { duration: 233; property: "height"; from: actionMenu.actualHeight; to: 0; } }
 
+    ////////////////
+
     T.Overlay.modal: Rectangle {
         color: "#000"
-        opacity: Theme.isLight ? 0.24 : 0.666
+        opacity: Theme.isLight ? 0.24 : 0.48
     }
 
     background: Rectangle {

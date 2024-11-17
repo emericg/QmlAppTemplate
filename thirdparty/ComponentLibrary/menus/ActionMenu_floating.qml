@@ -47,7 +47,8 @@ T.Popup {
         layer.effect: MultiEffect {
             autoPaddingEnabled: true
             shadowEnabled: true
-            shadowColor: "#44000000"
+            shadowOpacity: 0.24
+            shadowColor: control.border.color
         }
     }
 

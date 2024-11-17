@@ -69,7 +69,8 @@ Rectangle {
     layer.effect: MultiEffect {
         autoPaddingEnabled: true
         shadowEnabled: true
-        shadowColor: Theme.isLight ? "#16000000" : "#88ffffff"
+        shadowOpacity: 0.24
+        shadowColor: control.border.color
     }
 
     ////////////////

@@ -198,6 +198,12 @@ ApplicationWindow {
                     mobileUI.backToHomeScreen()
                 }
             }
+        } else if (appContent.state === "Playground") {
+            screenPlayground.backAction()
+        } else if (appContent.state === "HostInfos") {
+            screenHostInfos.backAction()
+        } else if (appContent.state === "FontInfos") {
+            screenFontInfos.backAction()
         } else if (appContent.state === "Settings") {
             screenSettings.backAction()
         } else if (appContent.state === "About") {

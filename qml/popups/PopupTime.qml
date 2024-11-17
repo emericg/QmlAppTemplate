@@ -12,7 +12,7 @@ Popup {
     y: singleColumn ? (appWindow.height - height)
                     : ((appWindow.height / 2) - (height / 2))
 
-    width: singleColumn ? appWindow.width : 560
+    width: singleColumn ? appWindow.width : 640
     padding: 0
     margins: 0
 
@@ -34,7 +34,7 @@ Popup {
     ////////
 
     function openTime(time) {
-        console.log("openTime(" + time + ")")
+        //console.log("openTime(" + time + ")")
 
         initialTime = time
         selectedTime = time
@@ -194,10 +194,11 @@ Popup {
                 TumblerThemed {
                     id: tumblerHours
                     anchors.verticalCenter: parent.verticalCenter
-                    width: 48
-                    height: 160
 
-                    font.pixelSize: Theme.fontSizeContentVeryBig
+                    width: 48
+                    height: singleColumn ? 256: 320
+                    font.pixelSize: Theme.fontSizeContentVeryVeryBig
+                    visibleItemCount: 7
 
                     model: 24
                 }
@@ -207,56 +208,72 @@ Popup {
 
                     text: " : "
                     textFormat: Text.PlainText
-                    font.pixelSize: Theme.fontSizeContentVeryBig
+                    font.pixelSize: Theme.fontSizeContentVeryVeryBig
+                    color: Theme.colorText
                 }
 
                 TumblerThemed {
                     id: tumblerMinutes
                     anchors.verticalCenter: parent.verticalCenter
-                    width: 48
-                    height: 160
 
-                    font.pixelSize: Theme.fontSizeContentVeryBig
+                    width: 48
+                    height: singleColumn ? 256: 320
+                    font.pixelSize: Theme.fontSizeContentVeryVeryBig
+                    visibleItemCount: 7
 
                     model: 60
                 }
+
+                Item { width: 8; height: 8; } // spacer
 
                 TumblerThemed {
                     id: tumblerAmPm
                     anchors.verticalCenter: parent.verticalCenter
 
+                    height: 64
+                    font.pixelSize: Theme.fontSizeContentVeryVeryBig
+                    visibleItemCount: 2
+
                     model: ["AM", "PM"]
-                    wrap: false
+                    wrap: true
                 }
             }
 
             ////////
+        }
 
-            Row {
-                anchors.right: parent.right
-                anchors.rightMargin: Theme.componentMarginXL
-                spacing: Theme.componentMargin
+        ////////////////
 
-                ButtonClear {
-                    color: Theme.colorGrey
+        Flow {
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.margins: Theme.componentMarginXL
+            bottomPadding: Theme.componentMarginXL
+            spacing: Theme.componentMargin
 
-                    text: qsTr("Cancel")
-                    onClicked: popupTime.close()
-                }
+            property int btnCount: 2
+            property int btnSize: singleColumn ? width : ((width-(spacing*(btnCount-1))) / btnCount)
 
-                ButtonFlat {
-                    text: qsTr("Select")
-                    onClicked: {
-                        selectedTime.setHours(tumblerHours.currentIndex)
-                        selectedTime.setMinutes(tumblerMinutes.currentIndex)
+            ButtonClear {
+                width: parent.btnSize
+                color: Theme.colorGrey
 
-                        updateTime(selectedTime)
-                        popupTime.close()
-                    }
-                }
+                text: qsTr("Cancel")
+                onClicked: popupTime.close()
             }
 
-            ////////
+            ButtonFlat {
+                width: parent.btnSize
+
+                text: qsTr("Select")
+                onClicked: {
+                    selectedTime.setHours(tumblerHours.currentIndex)
+                    selectedTime.setMinutes(tumblerMinutes.currentIndex)
+
+                    updateTime(selectedTime)
+                    popupTime.close()
+                }
+            }
         }
 
         ////////////////
