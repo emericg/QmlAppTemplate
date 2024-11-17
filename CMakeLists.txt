@@ -99,6 +99,18 @@ qt_add_translations(${CMAKE_PROJECT_NAME}
 
 ################################################################################
 
+# Qt librariries
+target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE
+    Qt6::Core
+    Qt6::Gui
+    Qt6::Qml
+    Qt6::Quick
+    Qt6::QuickControls2
+    Qt6::Svg
+)
+
+################################################################################
+
 # SingleApplication
 set(QAPPLICATION_CLASS QGuiApplication)
 add_subdirectory(thirdparty/SingleApplication)
@@ -118,18 +130,6 @@ add_subdirectory(thirdparty/ComponentLibrary)
 target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE ComponentLibraryplugin)
 
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE thirdparty/)
-
-################################################################################
-
-# Qt
-target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE
-    Qt6::Core
-    Qt6::Gui
-    Qt6::Qml
-    Qt6::Quick
-    Qt6::QuickControls2
-    Qt6::Svg
-)
 
 ################################################################################
 
