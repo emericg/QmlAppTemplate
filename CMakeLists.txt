@@ -223,9 +223,9 @@ set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
 )
 
 # Output?
-install(TARGETS ${CMAKE_PROJECT_NAME}
-    BUNDLE DESTINATION bin/
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-)
+#install(TARGETS ${CMAKE_PROJECT_NAME}
+#    BUNDLE DESTINATION bin/
+#    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+#)
 
 ################################################################################

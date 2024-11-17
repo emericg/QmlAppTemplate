@@ -90,7 +90,7 @@ jobs:
       # Install dependencies (from package manager)
       #- name: Install dependencies (from package manager)
       #  run: |
-      #       brew install qt6 cmake
+      #       brew install qt6 cmake ninja
 
       # Install Qt
       - name: Install Qt
