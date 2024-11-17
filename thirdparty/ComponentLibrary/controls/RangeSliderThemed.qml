@@ -28,7 +28,7 @@ T.RangeSlider {
 
         radius: 2
         opacity: control.enabled ? 1 : 0.66
-        color: Theme.colorComponent
+        color: Theme.colorComponentBackground
         scale: control.horizontal && control.mirrored ? -1 : 1
 
         Rectangle {

@@ -57,7 +57,7 @@ T.Switch {
                 z: -1
                 radius: (width / 2)
                 color: parent.color
-                opacity: enabled && (control.pressed || control.hovered) ? 0.2 : 0
+                opacity: enabled && (control.pressed || control.hovered || control.visualFocus) ? 0.2 : 0
                 Behavior on opacity { NumberAnimation { duration: 133 } }
             }
         }

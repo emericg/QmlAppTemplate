@@ -58,7 +58,7 @@ Flickable {
             source: ""
         }
 
-        SwitchThemedDesktop {
+        SwitchThemed {
             anchors.horizontalCenter: parent.horizontalCenter
             text: "Switch desktop"
             checked: true

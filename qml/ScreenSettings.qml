@@ -276,7 +276,7 @@ Loader {
                     verticalAlignment: Text.AlignVCenter
                 }
 
-                SwitchThemedDesktop {
+                SwitchThemed {
                     id: switch_appThemeAuto
                     anchors.right: parent.right
                     anchors.rightMargin: 4
@@ -341,7 +341,7 @@ Loader {
                     verticalAlignment: Text.AlignVCenter
                 }
 
-                SwitchThemedDesktop {
+                SwitchThemed {
                     id: switch_appThemeCSD
                     anchors.right: parent.right
                     anchors.rightMargin: 4
@@ -482,7 +482,7 @@ Loader {
                     verticalAlignment: Text.AlignVCenter
                 }
 
-                SwitchThemedDesktop {
+                SwitchThemed {
                     id: switch_aaa
                     anchors.right: parent.right
                     anchors.rightMargin: 4

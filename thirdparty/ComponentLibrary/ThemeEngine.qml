@@ -331,13 +331,13 @@ Item {
             colorHeaderContent          = "#ff7b36"
             colorHeaderHighlight        = "white"
 
+            colorSidebar                = "#f2f2f2"
+            colorSidebarContent         = "#eaeaea"
+            colorSidebarHighlight       = "#c0c0c0"
+
             colorActionbar              = colorGreen
             colorActionbarContent       = "white"
             colorActionbarHighlight     = "#00a27d"
-
-            colorSidebar                = "#eee"
-            colorSidebarContent         = "#777"
-            colorSidebarHighlight       = "#ddd"
 
             colorTabletmenu             = "#f3f3f3"
             colorTabletmenuContent      = "#9d9d9d"
@@ -387,13 +387,13 @@ Item {
             colorHeaderContent          = "#ee8c21"
             colorHeaderHighlight        = "#444"
 
+            colorSidebar                = "#333"
+            colorSidebarContent         = "#444"
+            colorSidebarHighlight       = "#666"
+
             colorActionbar              = colorGreen
             colorActionbarContent       = "white"
             colorActionbarHighlight     = "#00a27d"
-
-            colorSidebar                = "#333"
-            colorSidebarContent         = "#ccc"
-            colorSidebarHighlight       = "#555"
 
             colorTabletmenu             = "#292929"
             colorTabletmenuContent      = "#808080"
@@ -443,13 +443,13 @@ Item {
             colorHeaderContent          = "#1a73e8"
             colorHeaderHighlight        = "white"
 
+            colorSidebar                = "#fafafa"
+            colorSidebarContent         = "#efefef"
+            colorSidebarHighlight       = "#ccc"
+
             colorActionbar              = colorGreen
             colorActionbarContent       = "white"
             colorActionbarHighlight     = "#00a27d"
-
-            colorSidebar                = "#eee"
-            colorSidebarContent         = "#777"
-            colorSidebarHighlight       = "#ddd"
 
             colorTabletmenu             = "#f3f3f3"
             colorTabletmenuContent      = "#888"
@@ -504,8 +504,8 @@ Item {
             colorActionbarHighlight     = "#00a27d"
 
             colorSidebar                = "#333"
-            colorSidebarContent         = "#ccc"
-            colorSidebarHighlight       = "#555"
+            colorSidebarContent         = "#444"
+            colorSidebarHighlight       = "#666"
 
             colorTabletmenu             = "#292929"
             colorTabletmenuContent      = "#808080"
@@ -557,7 +557,7 @@ Item {
             colorHeaderHighlight        = "#e2e1df"
 
             colorSidebar                = "#f2f2f2"
-            colorSidebarContent         = "#ececec"
+            colorSidebarContent         = "#e9e9e9"
             colorSidebarHighlight       = "#c0c0c0"
 
             colorActionbar              = "#eaeaea"
@@ -692,8 +692,8 @@ Item {
             colorHeaderHighlight        = colorMaterialDarkGrey
 
             colorSidebar                = "white"
-            colorSidebarContent         = "#444"
-            colorSidebarHighlight       = colorMaterialDarkGrey
+            colorSidebarContent         = "#f8f8f8"
+            colorSidebarHighlight       = "#d2d2d2"
 
             colorActionbar              = colorGreen
             colorActionbarContent       = "white"
@@ -750,9 +750,9 @@ Item {
             colorHeaderContent          = "white"
             colorHeaderHighlight        = "#009688"
 
-            colorSidebar                = colorGreen
-            colorSidebarContent         = "white"
-            colorSidebarHighlighttent       = "#009688"
+            colorSidebar                = "#f2f2f2"
+            colorSidebarContent         = "#ececec"
+            colorSidebarHighlight       = "#c0c0c0"
 
             colorActionbar              = "#00b5c4"
             colorActionbarContent       = "white"
@@ -809,9 +809,9 @@ Item {
             colorHeaderHighlight        = "#0f295c"
             colorHeaderContent          = "white"
 
-            colorSidebar                = "#ffcf00"
-            colorSidebarContent         = "white"
-            colorSidebarHighlight       = colorNeutralNight
+            colorSidebar                = "#fbfbfb"
+            colorSidebarContent         = "#f0f0f0"
+            colorSidebarHighlight       = "#d0d0d0"
 
             colorActionbar              = colorBlue
             colorActionbarContent       = "white"
@@ -868,9 +868,9 @@ Item {
             colorHeaderContent          = "white"
             colorHeaderHighlight        = colorNeutralNight
 
-            colorSidebar                = "#ffcf00"
-            colorSidebarContent         = "white"
-            colorSidebarHighlight       = colorNeutralNight
+            colorSidebar                = "#fcfcfc"
+            colorSidebarContent         = "#f7f7f7"
+            colorSidebarHighlight       = "#d6d6d6"
 
             colorActionbar              = colorGreen
             colorActionbarContent       = "white"
@@ -927,9 +927,9 @@ Item {
             colorHeaderContent          = "white"
             colorHeaderHighlight        = "#725595"
 
-            colorSidebar                = "#b16bee"
-            colorSidebarContent         = "white"
-            colorSidebarHighlight       = "#725595"
+            colorSidebar                = "#333"
+            colorSidebarContent         = "#444"
+            colorSidebarHighlight       = "#666"
 
             colorActionbar              = colorBlue
             colorActionbarContent       = "white"
@@ -980,9 +980,9 @@ Item {
             colorHeaderContent          = "#353637"
             colorHeaderHighlight        = Qt.darker(colorHeader, 1.08)
 
-            colorSidebar                = "#555"
-            colorSidebarContent         = "white"
-            colorSidebarHighlight       =  Qt.lighter(colorSidebar, 1.33)
+            colorSidebar                = "#efefef"
+            colorSidebarContent         = "#e6e6e6"
+            colorSidebarHighlight       = "#c0c0c0"
 
             colorActionbar              = "#e9e9e9"
             colorActionbarContent       = "#333"
@@ -1033,9 +1033,9 @@ Item {
             colorHeaderContent          = "#C0C0C0"
             colorHeaderHighlight        = Qt.lighter(colorHeader, 1.4)
 
-            colorSidebar                = "#2E2E2E"
-            colorSidebarContent         = "white"
-            colorSidebarHighlight       = Qt.lighter(colorSidebar, 1.5)
+            colorSidebar                = "#333"
+            colorSidebarContent         = "#444"
+            colorSidebarHighlight       = "#666"
 
             colorActionbar              = "#ff894a"
             colorActionbarContent       = "white"
@@ -1086,11 +1086,11 @@ Item {
             colorHeaderContent          = "#444"
             colorHeaderHighlight        = Qt.darker(colorHeader, 1.08)
 
-            colorSidebar                = "#eee"
-            colorSidebarContent         = "#444"
-            colorSidebarHighlight       = Qt.darker(colorSidebar, 1.08)
+            colorSidebar                = "#f6f6f6"
+            colorSidebarContent         = "#e9e9e9"
+            colorSidebarHighlight       = "#c0c0c0"
 
-            colorActionbar              = "#dadada"
+            colorActionbar              = "#e0e0e0"
             colorActionbarContent       = "#444"
             colorActionbarHighlight     = Qt.darker(colorActionbar, 1.08)
 
@@ -1140,8 +1140,8 @@ Item {
             colorHeaderHighlight        = "#222"
 
             colorSidebar                = "#181818"
-            colorSidebarContent         = "#DDD"
-            colorSidebarHighlight       = "#333"
+            colorSidebarContent         = "#444"
+            colorSidebarHighlight       = "#222"
 
             colorActionbar              = "#009EE2"
             colorActionbarContent       = "white"
@@ -1192,7 +1192,7 @@ Item {
             colorHeaderContent          = "#aa39ae"
             colorHeaderHighlight        = Qt.darker(colorHeader, 1.1)
 
-            colorSidebar                = "#E31D8D"
+            colorSidebar                = "#FFB4DC"
             colorSidebarContent         = "#ffc8e4"
             colorSidebarHighlight       = Qt.darker(colorSidebar, 1.15)
 

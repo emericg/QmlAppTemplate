@@ -17,7 +17,7 @@ Rectangle {
 
     color: Theme.colorForeground
     border.width: singleColumn ? 0 : Theme.componentBorderWidth
-    border.color: Theme.colorComponentBorder
+    border.color: Theme.colorSeparator
 
     property string source
     property int sourceSize: 24
@@ -69,6 +69,8 @@ Rectangle {
     layer.effect: MultiEffect {
         autoPaddingEnabled: true
         shadowEnabled: true
-        shadowColor: Theme.colorComponentShadow
+        shadowColor: Theme.isLight ? "#16000000" : "#88ffffff"
     }
+
+    ////////////////
 }

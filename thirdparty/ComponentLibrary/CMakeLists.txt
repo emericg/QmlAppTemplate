@@ -104,8 +104,7 @@ list(APPEND MODULE_QML_FILES
     controls/SliderValueSolid.qml
     controls/SpinBoxThemedDesktop.qml
     controls/SpinBoxThemedMobile.qml
-    controls/SwitchThemedDesktop.qml
-    controls/SwitchThemedMobile.qml
+    controls/SwitchThemed.qml
     controls/TextAreaThemed.qml
     controls/TextEditThemed.qml
     controls/TextFieldThemed.qml
@@ -116,13 +115,6 @@ list(APPEND MODULE_QML_FILES
     complex/DatePicker.qml
     complex/FileInputArea.qml
     complex/FolderInputArea.qml
-
-    maps/MapButton.qml
-    maps/MapButtonCompass.qml
-    maps/MapButtonZoom.qml
-    maps/MapFrameArea.qml
-    maps/MapMarker.qml
-    maps/MapScale.qml
 
     wip/TagClear.qml
     wip/TagDesktop.qml
@@ -141,10 +133,24 @@ list(APPEND MODULE_QML_FILES
     utils/WindowGeometrySaver.qml
 )
 
+if (TARGET Qt::Location)
+    list(APPEND MODULE_QML_FILES
+        maps/MapButton.qml
+        maps/MapButtonCompass.qml
+        maps/MapButtonZoom.qml
+        maps/MapFrameArea.qml
+        maps/MapMarker.qml
+        maps/MapScale.qml
+    )
+else()
+    message(NOTICE "Skipping the mapping components from ComponentLibrairy as Qt6::Location is not used.")
+endif()
+
 list(APPEND MODULE_QML_FILES
     deprecated/ButtonCompactable.qml
     deprecated/ButtonImage.qml
     deprecated/ButtonText.qml
+    deprecated/SwitchThemedMobile.qml
     deprecated/RoundButtonIcon.qml
     deprecated/RoundButtonText.qml
 )

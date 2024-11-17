@@ -253,7 +253,7 @@ Loader {
             anchors.right: parent.right
             anchors.bottom: parent.bottom
 
-            enabled: appHeader.componentsEnabled
+            //enabled: appHeader.componentsEnabled
 
             LayoutMirroring.enabled: appHeader.componentsMirrored
             //layoutDirection: Qt.RightToLeft
@@ -1562,13 +1562,7 @@ Loader {
                         text: "RadioButton"
                     }
 
-                    SwitchThemedMobile {
-                        anchors.verticalCenter: parent.verticalCenter
-                        text: "Switch"
-                        checked: true
-                    }
-
-                    SwitchThemedDesktop {
+                    SwitchThemed {
                         anchors.verticalCenter: parent.verticalCenter
                         text: "Switch"
                         checked: true
