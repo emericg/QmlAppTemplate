@@ -7,8 +7,8 @@ import ComponentLibrary
 Item {
     id: datePicker
 
-    implicitWidth: 320
-    implicitHeight: 480
+    implicitWidth: 400
+    implicitHeight: 640
 
     ////////////////////////////////////////////////////////////////////////////
 
@@ -23,7 +23,7 @@ Item {
     property var minDate: null
     property var maxDate: null
 
-    ////////////////////////////////////////////////////////////////////////////
+    ////////
 
     signal updateDate(var newdate)
 

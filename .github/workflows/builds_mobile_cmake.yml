@@ -132,7 +132,6 @@ jobs:
              echo "QT_TARGET_PATH=/home/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/android_arm64_v8a" >> $GITHUB_ENV
              qmake --version
              cmake --version
-             ${{env.QT_TARGET_PATH}}/bin/qt-cmake --version
 
       # Build application
       - name: Build application
@@ -209,7 +208,6 @@ jobs:
              echo "QT_TARGET_PATH=/Users/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/ios" >> $GITHUB_ENV
              qmake --version
              cmake --version
-             ${{env.QT_TARGET_PATH}}/bin/qt-cmake --version
 
       # Build application
       - name: Build application
