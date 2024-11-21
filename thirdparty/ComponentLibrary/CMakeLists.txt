@@ -143,7 +143,7 @@ if (TARGET Qt::Location)
         maps/MapScale.qml
     )
 else()
-    message(NOTICE "Skipping the mapping components from ComponentLibrairy as Qt6::Location is not used.")
+    message(NOTICE "Skipping the mapping components from ComponentLibrary as Qt6::Location is not used.")
 endif()
 
 list(APPEND MODULE_QML_FILES

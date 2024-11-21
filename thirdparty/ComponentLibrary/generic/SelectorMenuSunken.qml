@@ -11,9 +11,15 @@ Item {
 
     opacity: enabled ? 1 : 0.66
 
+    // colors
+    property color colorBackground: Theme.colorComponent
+    property color colorForeground: Theme.colorComponentBackground
+
+    // states
     signal menuSelected(var index)
     property int currentSelection: 1
 
+    // model
     property var model: null
 
     ////////////////
@@ -21,7 +27,7 @@ Item {
     Rectangle { // background
         anchors.fill: parent
         radius: Theme.componentRadius
-        color: Theme.colorComponent
+        color: control.colorBackground
     }
 
     ////////////////
@@ -37,7 +43,7 @@ Item {
             delegate: SelectorMenuItem {
                 colorContent: Theme.colorComponentText
                 colorContentHighlight: Theme.colorComponentText
-                colorBackgroundHighlight: Theme.colorComponentBackground
+                colorBackgroundHighlight: control.colorForeground
                 height: parent.height
                 highlighted: (control.currentSelection === idx)
                 index: idx ?? 0

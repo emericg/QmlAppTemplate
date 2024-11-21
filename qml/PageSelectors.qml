@@ -48,7 +48,7 @@ Flickable {
             anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
-            text: qsTr("Selectors")
+            text: qsTr("SelectorMenu")
             source: ""
         }
 
@@ -102,7 +102,7 @@ Flickable {
             anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
-            text: qsTr("Selectors")
+            text: qsTr("SelectorMenuSunken")
             source: ""
         }
 
@@ -154,7 +154,7 @@ Flickable {
             anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
-            text: qsTr("Selectors")
+            text: qsTr("SelectorMenuColorful")
             source: ""
         }
 

@@ -90,11 +90,10 @@ int main(int argc, char *argv[])
 
     // Then we start the UI
     QQmlApplicationEngine engine;
-    QQmlContext *engine_context = engine.rootContext();
-
     engine.addImportPath(":/qt/qml/QmlAppTemplate");
     engine.addImportPath(":/qt/qml/ComponentLibrary");
 
+    QQmlContext *engine_context = engine.rootContext();
     engine_context->setContextProperty("settingsManager", sm);
     engine_context->setContextProperty("utilsApp", utilsApp);
     engine_context->setContextProperty("utilsLanguage", utilsLanguage);
