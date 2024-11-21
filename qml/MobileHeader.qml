@@ -40,14 +40,14 @@ Rectangle {
         id: actionMenu
 
         titleTxt: "ActionMenu"
-        //titleSrc: "qrc:/assets/icons/material-symbols/chevron_left.svg"
+        //titleSrc: "qrc:/IconLibrary/material-symbols/chevron_left.svg"
 
         model: ListModel {
             id: lmActionMenu
-            ListElement { t: "itm"; idx: 1; txt: "Action 1"; src: "qrc:/assets/icons/material-symbols/accessibility.svg"; }
-            ListElement { t: "itm"; idx: 2; txt: "Action 2"; src: "qrc:/assets/icons/material-symbols/accessibility.svg"; }
+            ListElement { t: "itm"; idx: 1; txt: "Action 1"; src: "qrc:/IconLibrary/material-symbols/accessibility.svg"; }
+            ListElement { t: "itm"; idx: 2; txt: "Action 2"; src: "qrc:/IconLibrary/material-symbols/accessibility.svg"; }
             ListElement { t: "sep"; }
-            ListElement { t: "itm"; idx: 3; txt: "Action 3"; src: "qrc:/assets/icons/material-symbols/accessibility.svg"; }
+            ListElement { t: "itm"; idx: 3; txt: "Action 3"; src: "qrc:/IconLibrary/material-symbols/accessibility.svg"; }
         }
 
         onMenuSelected: (index) => {
@@ -106,9 +106,9 @@ Rectangle {
                     height: (headerHeight / 2)
 
                     source: {
-                        if (leftMenuMode === "drawer") return "qrc:/assets/icons/material-symbols/menu.svg"
-                        if (leftMenuMode === "close") return "qrc:/assets/icons/material-symbols/close.svg"
-                        return "qrc:/assets/icons/material-symbols/arrow_back.svg"
+                        if (leftMenuMode === "drawer") return "qrc:/IconLibrary/material-symbols/menu.svg"
+                        if (leftMenuMode === "close") return "qrc:/IconLibrary/material-symbols/close.svg"
+                        return "qrc:/IconLibrary/material-symbols/arrow_back.svg"
                     }
                     color: Theme.colorHeaderContent
                 }
@@ -160,7 +160,7 @@ Rectangle {
                     width: 24
                     height: 24
 
-                    source: "qrc:/assets/icons/material-symbols/autorenew.svg"
+                    source: "qrc:/IconLibrary/material-symbols/autorenew.svg"
                     color: Theme.colorHeaderContent
                     opacity: 0
                     Behavior on opacity { OpacityAnimator { duration: 333 } }
@@ -213,7 +213,7 @@ Rectangle {
                     width: (headerHeight / 2)
                     height: (headerHeight / 2)
 
-                    source: "qrc:/assets/icons/material-symbols/more_vert.svg"
+                    source: "qrc:/IconLibrary/material-symbols/more_vert.svg"
                     color: Theme.colorHeaderContent
                 }
             }

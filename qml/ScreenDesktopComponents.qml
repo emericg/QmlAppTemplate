@@ -87,7 +87,7 @@ Loader {
 
                     ButtonCompactable {
                         text: "oneone"
-                        source: "qrc:/assets/icons/material-symbols/warning-fill.svg"
+                        source: "qrc:/IconLibrary/material-symbols/warning-fill.svg"
 
                         textColor: Theme.colorActionbarContent
                         iconColor: Theme.colorActionbarContent
@@ -99,7 +99,7 @@ Loader {
 
                     ButtonCompactable {
                         text: "twotwo"
-                        source: "qrc:/assets/icons/material-symbols/warning-fill.svg"
+                        source: "qrc:/IconLibrary/material-symbols/warning-fill.svg"
 
                         compact: false
                         onClicked: compact = !compact
@@ -114,12 +114,12 @@ Loader {
 
                     ButtonSolid {
                         colorHighlight: Theme.colorActionbarHighlight
-                        source: "qrc:/assets/icons/material-symbols/warning-fill.svg"
+                        source: "qrc:/IconLibrary/material-symbols/warning-fill.svg"
                     }
                     ButtonSolid {
                         colorHighlight: Theme.colorActionbarHighlight
                         text: "Action 1"
-                        source: "qrc:/assets/icons/material-symbols/warning-fill.svg"
+                        source: "qrc:/IconLibrary/material-symbols/warning-fill.svg"
                     }
                     ButtonSolid {
                         colorHighlight: Theme.colorActionbarHighlight
@@ -135,7 +135,7 @@ Loader {
                     anchors.rightMargin: 24
                     anchors.verticalCenter: parent.verticalCenter
 
-                    source: "qrc:/assets/icons/material-symbols/close.svg"
+                    source: "qrc:/IconLibrary/material-symbols/close.svg"
                     iconColor: "white"
                     backgroundColor: Theme.colorActionbarHighlight
 
@@ -237,13 +237,13 @@ Loader {
 
             ButtonFab {
                 anchors.right: parent.right
-                source: "qrc:/assets/icons/material-symbols/add.svg"
+                source: "qrc:/IconLibrary/material-symbols/add.svg"
             }
 
             ButtonFabExtended {
                 anchors.right: parent.right
                 text: "Extended FAB"
-                source: "qrc:/assets/icons/material-symbols/add.svg"
+                source: "qrc:/IconLibrary/material-symbols/add.svg"
             }
         }
 
@@ -383,7 +383,7 @@ Loader {
                     spacing: Theme.componentMargin
 
                     ButtonOutline {
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                         color: Theme.colorMaterialGreen
                     }
 
@@ -394,13 +394,13 @@ Loader {
 
                     ButtonOutline {
                         text: "ButtonOutline"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                         color: Theme.colorMaterialRed
                     }
 
                     ButtonOutline {
                         text: "ButtonOutline"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                         color: Theme.colorMaterialDeepOrange
                         layoutDirection: Qt.RightToLeft
                     }
@@ -408,7 +408,7 @@ Loader {
                     ButtonOutline {
                         width: 200
                         text: "ButtonOutline"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                         color: Theme.colorMaterialOrange
                         layoutAlignment: Qt.AlignLeft
                         layoutDirection: Qt.LeftToRight
@@ -416,7 +416,7 @@ Loader {
                     ButtonOutline {
                         width: 200
                         text: "ButtonOutline"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                         color: Theme.colorMaterialDeepPurple
                         layoutAlignment: Qt.AlignCenter
                         layoutDirection: Qt.RightToLeft
@@ -424,7 +424,7 @@ Loader {
                     ButtonOutline {
                         width: 200
                         text: "ButtonOutline"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                         color: Theme.colorMaterialGrey
                         layoutAlignment: Qt.AlignRight
                         layoutDirection: Qt.RightToLeft
@@ -437,7 +437,7 @@ Loader {
                     spacing: Theme.componentMargin
 
                     ButtonClear {
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                         color: Theme.colorMaterialGreen
                     }
 
@@ -448,13 +448,13 @@ Loader {
 
                     ButtonClear {
                         text: "ButtonClear"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                         color: Theme.colorMaterialRed
                     }
 
                     ButtonClear {
                         text: "ButtonClear"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                         color: Theme.colorMaterialDeepOrange
                         layoutDirection: Qt.RightToLeft
                     }
@@ -462,7 +462,7 @@ Loader {
                     ButtonClear {
                         width: 200
                         text: "ButtonClear"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                         color: Theme.colorMaterialOrange
                         layoutAlignment: Qt.AlignLeft
                         layoutDirection: Qt.LeftToRight
@@ -471,13 +471,13 @@ Loader {
                     ButtonClear {
                         width: 200
                         text: "ButtonClear"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                         color: Theme.colorMaterialDeepPurple
                     }
                     ButtonClear {
                         width: 200
                         text: "ButtonClear"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                         color: Theme.colorMaterialGrey
                         layoutAlignment: Qt.AlignRight
                         layoutDirection: Qt.RightToLeft
@@ -491,7 +491,7 @@ Loader {
                     spacing: Theme.componentMargin
 
                     ButtonFlat {
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                         color: Theme.colorMaterialGreen
                     }
 
@@ -502,13 +502,13 @@ Loader {
 
                     ButtonFlat {
                         text: "ButtonFlat"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                         color: Theme.colorMaterialRed
                     }
 
                     ButtonFlat {
                         text: "ButtonFlat"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                         color: Theme.colorMaterialDeepOrange
                         layoutDirection: Qt.RightToLeft
                     }
@@ -516,7 +516,7 @@ Loader {
                     ButtonFlat {
                         width: 200
                         text: "ButtonFlat"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                         color: Theme.colorMaterialOrange
                         layoutAlignment: Qt.AlignLeft
                         layoutDirection: Qt.LeftToRight
@@ -524,7 +524,7 @@ Loader {
                     ButtonFlat {
                         width: 200
                         text: "ButtonFlat"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                         color: Theme.colorMaterialDeepPurple
                         layoutAlignment: Qt.AlignCenter
                         layoutDirection: Qt.RightToLeft
@@ -532,7 +532,7 @@ Loader {
                     ButtonFlat {
                         width: 200
                         text: "ButtonFlat"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                         color: Theme.colorMaterialGrey
                         layoutAlignment: Qt.AlignRight
                         layoutDirection: Qt.RightToLeft
@@ -545,7 +545,7 @@ Loader {
                     spacing: Theme.componentMargin
 
                     ButtonSolid {
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                     }
 
                     ButtonSolid {
@@ -553,31 +553,31 @@ Loader {
                     }
                     ButtonSolid {
                         text: "ButtonSolid"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                     }
                     ButtonSolid {
                         text: "ButtonSolid"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                         layoutDirection: Qt.RightToLeft
                     }
 
                     ButtonSolid {
                         width: 200
                         text: "ButtonSolid"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                         layoutAlignment: Qt.AlignLeft
                     }
                     ButtonSolid {
                         width: 200
                         text: "ButtonSolid"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                         layoutAlignment: Qt.AlignCenter
                         layoutDirection: Qt.RightToLeft
                     }
                     ButtonSolid {
                         width: 200
                         text: "ButtonSolid"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                         layoutAlignment: Qt.AlignRight
                         layoutDirection: Qt.RightToLeft
                     }
@@ -589,7 +589,7 @@ Loader {
                     spacing: Theme.componentMargin
 
                     ButtonWireframe {
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                     }
 
                     ButtonWireframe {
@@ -597,32 +597,32 @@ Loader {
                     }
                     ButtonWireframe {
                         text: "ButtonWireframe"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                     }
                     ButtonWireframe {
                         text: "ButtonWireframe"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                         layoutDirection: Qt.RightToLeft
                     }
 
                     ButtonWireframe {
                         width: 200
                         text: "ButtonWireframe"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                         layoutAlignment: Qt.AlignLeft
                         layoutDirection: Qt.LeftToRight
                     }
                     ButtonWireframe {
                         width: 200
                         text: "ButtonWireframe"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                         layoutAlignment: Qt.AlignCenter
                         layoutDirection: Qt.RightToLeft
                     }
                     ButtonWireframe {
                         width: 200
                         text: "ButtonWireframe"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                         layoutAlignment: Qt.AlignRight
                         layoutDirection: Qt.RightToLeft
                     }
@@ -634,7 +634,7 @@ Loader {
                     spacing: Theme.componentMargin
 
                     ButtonDesktop {
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                     }
 
                     ButtonDesktop {
@@ -642,32 +642,32 @@ Loader {
                     }
                     ButtonDesktop {
                         text: "ButtonDesktop"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                     }
                     ButtonDesktop {
                         text: "ButtonDesktop"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                         layoutDirection: Qt.RightToLeft
                     }
 
                     ButtonDesktop {
                         width: 200
                         text: "ButtonDesktop"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                         layoutAlignment: Qt.AlignLeft
                         layoutDirection: Qt.LeftToRight
                     }
                     ButtonDesktop {
                         width: 200
                         text: "ButtonDesktop"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                         layoutAlignment: Qt.AlignCenter
                         layoutDirection: Qt.RightToLeft
                     }
                     ButtonDesktop {
                         width: 200
                         text: "ButtonDesktop"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                         layoutAlignment: Qt.AlignRight
                         layoutDirection: Qt.RightToLeft
                     }
@@ -687,7 +687,7 @@ Loader {
                     spacing: Theme.componentMargin
 
                     ButtonClear {
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                         color: Theme.colorMaterialGreen
                     }
 
@@ -698,13 +698,13 @@ Loader {
 
                     ButtonClear {
                         text: "ButtonClear"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                         color: Theme.colorMaterialRed
                     }
 
                     ButtonClear {
                         text: "ButtonClear"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                         color: Theme.colorMaterialDeepOrange
                         layoutDirection: Qt.RightToLeft
                     }
@@ -712,7 +712,7 @@ Loader {
                     ButtonClear {
                         width: 200
                         text: "ButtonClear"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                         color: Theme.colorMaterialOrange
                         layoutAlignment: Qt.AlignLeft
                         layoutDirection: Qt.LeftToRight
@@ -721,13 +721,13 @@ Loader {
                     ButtonClear {
                         width: 200
                         text: "ButtonClear"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                         color: Theme.colorMaterialDeepPurple
                     }
                     ButtonClear {
                         width: 200
                         text: "ButtonClear"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                         color: Theme.colorMaterialGrey
                         layoutAlignment: Qt.AlignRight
                         layoutDirection: Qt.RightToLeft
@@ -741,37 +741,37 @@ Loader {
                     spacing: Theme.componentMargin
 
                     ButtonClear {
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                     }
 
                     ButtonClear {
                         text: "ButtonClear"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                     }
 
                     ButtonOutline {
                         text: "ButtonOutline"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                     }
 
                     ButtonFlat {
                         text: "ButtonFlat"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                     }
 
                     ButtonSolid {
                         text: "ButtonSolid"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                     }
 
                     ButtonWireframe {
                         text: "ButtonWireframe"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                     }
 
                     ButtonDesktop {
                         text: "ButtonDesktop"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                     }
                 }
 
@@ -784,23 +784,23 @@ Loader {
                         spacing: Theme.componentMargin
 
                         RoundButtonClear {
-                            source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                            source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                             tooltipText: "this one has a tooltip!"
                             width: 48; height: 48;
                         }
 
                         RoundButtonOutline {
-                            source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                            source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                             width: 48; height: 48;
                         }
 
                         RoundButtonFlat {
-                            source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                            source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                             width: 48; height: 48;
                         }
 
                         RoundButtonSunken {
-                            source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                            source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                             width: 48; height: 48;
 
                             tooltipText: "invisiblllllle!"
@@ -812,12 +812,12 @@ Loader {
                         spacing: Theme.componentMargin
 
                         RoundButtonSolid {
-                            source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                            source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                             width: 48; height: 48;
                         }
 
                         RoundButtonWireframe {
-                            source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                            source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                             width: 48; height: 48;
 
                             tooltipText: "this one has a tooltip!"
@@ -825,7 +825,7 @@ Loader {
                         }
 
                         RoundButtonDesktop {
-                            source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                            source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                             width: 48; height: 48;
 
                             tooltipText: "another tooltip!"
@@ -837,23 +837,23 @@ Loader {
                         spacing: Theme.componentMargin
 
                         SquareButtonClear {
-                            source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                            source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                             tooltipText: "this one has a tooltip!"
                             width: 48; height: 48;
                         }
 
                         SquareButtonOutline {
-                            source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                            source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                             width: 48; height: 48;
                         }
 
                         SquareButtonFlat {
-                            source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                            source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                             width: 48; height: 48;
                         }
 
                         SquareButtonSunken {
-                            source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                            source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                             width: 48; height: 48;
 
                             tooltipText: "invisiblllllle!"
@@ -865,12 +865,12 @@ Loader {
                         spacing: Theme.componentMargin
 
                         SquareButtonSolid {
-                            source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                            source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                             width: 48; height: 48;
                         }
 
                         SquareButtonWireframe {
-                            source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                            source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                             width: 48; height: 48;
 
                             tooltipText: "this one has a tooltip!"
@@ -878,7 +878,7 @@ Loader {
                         }
 
                         SquareButtonDesktop {
-                            source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                            source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                             width: 48; height: 48;
 
                             tooltipText: "another tooltip!"
@@ -901,7 +901,7 @@ Loader {
                     spacing: Theme.componentMargin
 
                     ButtonSunken {
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                     }
 
                     ButtonSunken {
@@ -909,23 +909,23 @@ Loader {
                     }
                     ButtonSunken {
                         text: "ButtonSunken"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                     }
                     ButtonSunken {
                         text: "ButtonSunken"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                         layoutDirection: Qt.RightToLeft
                     }
 
                     ButtonSunken {
                         text: "ButtonSunken"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                         colorHighlight: "white"
                         layoutDirection: Qt.LeftToRight
                     }
                     ButtonSunken {
                         text: "ButtonSunken"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                         colorHighlight: "white"
                         layoutDirection: Qt.RightToLeft
                     }
@@ -947,13 +947,13 @@ Loader {
 
                     ButtonChip {
                         text: "ButtonChip"
-                        leftIcon: "qrc:/assets/icons/material-symbols/supervised_user_circle.svg"
+                        leftIcon: "qrc:/IconLibrary/material-symbols/supervised_user_circle.svg"
                     }
 
                     ButtonChip {
                         text: "ButtonChip"
-                        leftIcon: "qrc:/assets/icons/material-symbols/supervised_user_circle.svg"
-                        rightIcon: "qrc:/assets/icons/material-symbols/close.svg"
+                        leftIcon: "qrc:/IconLibrary/material-symbols/supervised_user_circle.svg"
+                        rightIcon: "qrc:/IconLibrary/material-symbols/close.svg"
                     }
                 }
 
@@ -977,21 +977,21 @@ Loader {
                         RoundButtonIcon {
                             width: 48
                             height: 48
-                            source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                            source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                             backgroundVisible: true
                             highlightMode: "color"
                         }
                         RoundButtonIcon {
                             width: 48
                             height: 48
-                            source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                            source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                             backgroundVisible: false
                             highlightMode: "circle"
                         }
                         RoundButtonIcon {
                             width: 48
                             height: 48
-                            source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                            source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                             highlightMode: "color"
                             highlightColor: Theme.colorError
 
@@ -1044,16 +1044,16 @@ Loader {
                         spacing: 16
 
                         RoundButtonIcon {
-                            source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                            source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                             highlightMode: "color"
                         }
                         RoundButtonIcon {
-                            source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                            source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                             backgroundVisible: true
                             highlightMode: "circle"
                         }
                         RoundButtonIcon {
-                            source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                            source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                             highlightMode: "color"
                             highlightColor: Theme.colorError
 
@@ -1105,9 +1105,9 @@ Loader {
                         currentSelection: 1
                         model: ListModel {
                             id: lmSelectorMenuImg1
-                            ListElement { idx: 1; src: "qrc:/assets/icons/material-symbols/accessibility.svg"; sz: 20; }
-                            ListElement { idx: 2; src: "qrc:/assets/icons/material-symbols/accessibility.svg"; sz: 26; }
-                            ListElement { idx: 3; src: "qrc:/assets/icons/material-symbols/accessibility.svg"; sz: 32; }
+                            ListElement { idx: 1; src: "qrc:/IconLibrary/material-symbols/accessibility.svg"; sz: 20; }
+                            ListElement { idx: 2; src: "qrc:/IconLibrary/material-symbols/accessibility.svg"; sz: 26; }
+                            ListElement { idx: 3; src: "qrc:/IconLibrary/material-symbols/accessibility.svg"; sz: 32; }
                         }
 
                         onMenuSelected: (index) => {
@@ -1156,9 +1156,9 @@ Loader {
 
                         currentSelection: 1
                         model: ListModel {
-                            ListElement { idx: 1; src: "qrc:/assets/icons/material-symbols/accessibility.svg"; sz: 20; }
-                            ListElement { idx: 2; src: "qrc:/assets/icons/material-symbols/accessibility.svg"; sz: 26; }
-                            ListElement { idx: 3; src: "qrc:/assets/icons/material-symbols/accessibility.svg"; sz: 32; }
+                            ListElement { idx: 1; src: "qrc:/IconLibrary/material-symbols/accessibility.svg"; sz: 20; }
+                            ListElement { idx: 2; src: "qrc:/IconLibrary/material-symbols/accessibility.svg"; sz: 26; }
+                            ListElement { idx: 3; src: "qrc:/IconLibrary/material-symbols/accessibility.svg"; sz: 32; }
                         }
 
                         onMenuSelected: (index) => {
@@ -1507,7 +1507,7 @@ Loader {
                     AndroidButtonIcon {
                         anchors.verticalCenter: parent.verticalCenter
                         text: "AndroidButtonIcon"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                     }
 
                     AndroidTextField {
@@ -1599,7 +1599,7 @@ Loader {
                     ButtonIconThemed {
                         anchors.verticalCenter: parent.verticalCenter
                         text: "ButtonIconThemed"
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                     }
 
                     RoundButtonThemed {
@@ -1609,7 +1609,7 @@ Loader {
 
                     RoundButtonIconThemed {
                         anchors.verticalCenter: parent.verticalCenter
-                        source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                     }
 
                     SpinBoxThemedMobile {

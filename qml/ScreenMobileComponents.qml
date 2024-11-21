@@ -68,56 +68,56 @@ Loader {
                     ListElement {
                         title: "Colors"
                         text: "Predefined colors."
-                        icon: "qrc:/assets/icons/material-icons/duotone/style.svg"
+                        icon: "qrc:/IconLibrary/material-icons/duotone/style.svg"
                         page: "PageColors.qml"
                     }
 
                     ListElement {
                         title: "Buttons"
                         text: "So many buttons..."
-                        icon: "qrc:/assets/icons/material-icons/duotone/touch_app.svg"
+                        icon: "qrc:/IconLibrary/material-icons/duotone/touch_app.svg"
                         page: "PageButtons.qml"
                     }
 
                     ListElement {
                         title: "Selectors"
                         text: "Single choice selectors."
-                        icon: "qrc:/assets/icons/material-symbols/link.svg"
+                        icon: "qrc:/IconLibrary/material-symbols/link.svg"
                         page: "PageSelectors.qml"
                     }
 
                     ListElement {
                         title: "Dialogs & pickers"
                         text: "Various dialog popups and datetime pickers."
-                        icon: "qrc:/assets/icons/material-icons/duotone/date_range.svg"
+                        icon: "qrc:/IconLibrary/material-icons/duotone/date_range.svg"
                         page: "PageDialogs.qml"
                     }
 
                     ListElement {
                         title: "Indicators"
                         text: "Usually used to indicate."
-                        icon: "qrc:/assets/icons/material-icons/duotone/speed.svg"
+                        icon: "qrc:/IconLibrary/material-icons/duotone/speed.svg"
                         page: "PageIndicators.qml"
                     }
 
                     ListElement {
                         title: "Sliders"
                         text: "We like sliders. Sliders are cools."
-                        icon: "qrc:/assets/icons/material-symbols/sort.svg"
+                        icon: "qrc:/IconLibrary/material-symbols/sort.svg"
                         page: "PageSliders.qml"
                     }
 
                     ListElement {
                         title: "Text fields"
                         text: "Various text inputs."
-                        icon: "qrc:/assets/icons/material-icons/duotone/edit.svg"
+                        icon: "qrc:/IconLibrary/material-icons/duotone/edit.svg"
                         page: "PageTextFields.qml"
                     }
 
                     ListElement {
                         title: "Tickers"
                         text: "Checkboxes, radiobuttons and others."
-                        icon: "qrc:/assets/icons/material-symbols/flaky.svg"
+                        icon: "qrc:/IconLibrary/material-symbols/flaky.svg"
                         page: "PageTickers.qml"
                     }
                 }

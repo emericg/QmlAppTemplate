@@ -41,7 +41,7 @@ qt_add_executable(${CMAKE_PROJECT_NAME}
     src/main.cpp
     src/SettingsManager.cpp src/SettingsManager.h
     assets/assets.qrc
-    assets/icons/IconLibrary.qrc
+    thirdparty/IconLibrary/IconLibrary.qrc
 )
 
 qt_add_qml_module(${CMAKE_PROJECT_NAME}

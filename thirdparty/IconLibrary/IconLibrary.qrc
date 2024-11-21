@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/assets/icons">
+    <qresource prefix="/IconLibrary">
         <file>bootstrap/android.svg</file>
         <file>bootstrap/apple.svg</file>
         <file>bootstrap/bandaid.svg</file>
@@ -407,8 +407,10 @@
         <file>material-symbols/media/speaker-fill.svg</file>
         <file>material-symbols/media/speaker_group.svg</file>
         <file>material-symbols/media/speaker_group-fill.svg</file>
+        <file>material-symbols/media/stop.svg</file>
         <file>material-symbols/media/stop_circle.svg</file>
         <file>material-symbols/media/stop_circle-fill.svg</file>
+        <file>material-symbols/media/stop-fill.svg</file>
         <file>material-symbols/media/surround_sound.svg</file>
         <file>material-symbols/media/surround_sound-fill.svg</file>
         <file>material-symbols/media/switch_camera.svg</file>
@@ -828,7 +830,6 @@
         <file>material-symbols/stacks-fill.svg</file>
         <file>material-symbols/stars.svg</file>
         <file>material-symbols/stars-fill.svg</file>
-        <file>material-symbols/stop-fill.svg</file>
         <file>material-symbols/storage.svg</file>
         <file>material-symbols/straighten.svg</file>
         <file>material-symbols/subdirectory_arrow_left.svg</file>

@@ -41,21 +41,21 @@ Rectangle {
 
         DesktopSidebarMenu {
             text: qsTr("Desktop")
-            source: "qrc:/assets/icons/material-symbols/hardware/computer.svg"
+            source: "qrc:/IconLibrary/material-symbols/hardware/computer.svg"
             checked: (appContent.state === "DesktopComponents")
 
             onClicked: screenDesktopComponents.loadScreen()
         }
         DesktopSidebarMenu {
             text: qsTr("Mobile")
-            source: "qrc:/assets/icons/material-symbols/hardware/smartphone-fill.svg"
+            source: "qrc:/IconLibrary/material-symbols/hardware/smartphone-fill.svg"
             checked: (appContent.state === "MobileComponents")
 
             onClicked: screenMobileComponents.loadScreen()
         }
         DesktopSidebarSubMenu {
             text: qsTr("Tools")
-            source: "qrc:/assets/icons/material-symbols/build-fill.svg"
+            source: "qrc:/IconLibrary/material-symbols/build-fill.svg"
 
             checked: (appContent.state === "Playground" ||
                       appContent.state === "HostInfos" ||
@@ -84,7 +84,7 @@ Rectangle {
 
         DesktopSidebarMenu {
             text: qsTr("Settings")
-            source: "qrc:/assets/icons/material-icons/duotone/tune.svg"
+            source: "qrc:/IconLibrary/material-icons/duotone/tune.svg"
             checked: (appContent.state === "Settings")
 
             onClicked: screenSettings.loadScreen()
@@ -92,7 +92,7 @@ Rectangle {
 
         DesktopSidebarMenu {
             text: qsTr("About")
-            source: "qrc:/assets/icons/material-icons/duotone/info.svg"
+            source: "qrc:/IconLibrary/material-icons/duotone/info.svg"
             checked: (appContent.state === "About")
 
             onClicked: screenAbout.loadScreen()
@@ -100,7 +100,7 @@ Rectangle {
 
         DesktopSidebarMenu {
             text: qsTr("Exit")
-            source: "qrc:/assets/icons/material-icons/duotone/exit_to_app.svg"
+            source: "qrc:/IconLibrary/material-icons/duotone/exit_to_app.svg"
             onClicked: Qt.quit()
         }
     }

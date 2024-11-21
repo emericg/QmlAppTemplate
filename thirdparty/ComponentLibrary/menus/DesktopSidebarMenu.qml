@@ -19,7 +19,7 @@ ButtonImpl {
     text: sidebarMenu.text
     font.bold: checked
 
-    source: "qrc:/assets/icons/material-symbols/menu.svg"
+    source: "qrc:/IconLibrary/material-symbols/menu.svg"
     sourceSize: 20
 
     property color color: checked ? Theme.colorPrimary : Theme.colorSidebarContent

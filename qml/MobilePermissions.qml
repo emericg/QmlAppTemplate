@@ -76,7 +76,7 @@ Item {
 
                         property bool validperm: false
 
-                        source: (validperm) ? "qrc:/assets/icons/material-symbols/check.svg" : "qrc:/assets/icons/material-symbols/close.svg"
+                        source: (validperm) ? "qrc:/IconLibrary/material-symbols/check.svg" : "qrc:/IconLibrary/material-symbols/close.svg"
                         color: (validperm) ? Theme.colorPrimary : Theme.colorSubText
                         colorIcon: (validperm) ? "white" : "white"
 
@@ -123,7 +123,7 @@ Item {
                     colorBackground: Theme.colorForeground
 
                     text: qsTr("Official information")
-                    source: "qrc:/assets/icons/material-icons/duotone/launch.svg"
+                    source: "qrc:/IconLibrary/material-icons/duotone/launch.svg"
                     sourceSize: 20
 
                     onClicked: Qt.openUrlExternally("https://developer.android.com/guide/topics/connectivity/bluetooth/permissions#declare-android11-or-lower")
@@ -156,7 +156,7 @@ Item {
 
                         property bool validperm: false
 
-                        source: (validperm) ? "qrc:/assets/icons/material-symbols/check.svg" : "qrc:/assets/icons/material-symbols/close.svg"
+                        source: (validperm) ? "qrc:/IconLibrary/material-symbols/check.svg" : "qrc:/IconLibrary/material-symbols/close.svg"
                         color: (validperm) ? Theme.colorPrimary : Theme.colorSubText
                         colorIcon: (validperm) ? "white" : "white"
 
@@ -202,7 +202,7 @@ Item {
                     colorBackground: Theme.colorForeground
 
                     text: qsTr("Location info")
-                    source: "qrc:/assets/icons/material-icons/duotone/tune.svg"
+                    source: "qrc:/IconLibrary/material-icons/duotone/tune.svg"
                     sourceSize: 20
 
                     onClicked: utilsApp.openAndroidLocationSettings()
@@ -235,7 +235,7 @@ Item {
 
                         property bool validperm: true
 
-                        source: (validperm) ? "qrc:/assets/icons/material-symbols/check.svg" : "qrc:/assets/icons/material-symbols/close.svg"
+                        source: (validperm) ? "qrc:/IconLibrary/material-symbols/check.svg" : "qrc:/IconLibrary/material-symbols/close.svg"
                         color: (validperm) ? Theme.colorPrimary : Theme.colorSubText
                         colorIcon: (validperm) ? "white" : "white"
                     }
@@ -291,7 +291,7 @@ Item {
                         Layout.preferredHeight: 36
                         Layout.alignment: Qt.AlignVCenter
 
-                        source: "qrc:/assets/icons/material-icons/duotone/info.svg"
+                        source: "qrc:/IconLibrary/material-icons/duotone/info.svg"
                         color: Theme.colorSubText
                     }
 
@@ -328,7 +328,7 @@ Item {
                     colorBackground: Theme.colorForeground
 
                     text: qsTr("Application info")
-                    source: "qrc:/assets/icons/material-icons/duotone/tune.svg"
+                    source: "qrc:/IconLibrary/material-icons/duotone/tune.svg"
                     sourceSize: 20
 
                     onClicked: utilsApp.openAndroidAppInfo("io.emeric.qmlapptemplate")

@@ -59,7 +59,7 @@ Loader {
 
             //ListTitle {
             //    text: qsTr("Application")
-            //    source: "qrc:/assets/icons/material-symbols/settings.svg"
+            //    source: "qrc:/IconLibrary/material-symbols/settings.svg"
             //}
 
             ////////////////
@@ -77,7 +77,7 @@ Loader {
                     width: 24
                     height: 24
                     color: Theme.colorIcon
-                    source: "qrc:/assets/icons/material-icons/duotone/style.svg"
+                    source: "qrc:/IconLibrary/material-icons/duotone/style.svg"
                 }
 
                 Text {
@@ -168,7 +168,7 @@ Loader {
                     width: 24
                     height: 24
                     color: Theme.colorIcon
-                    source: "qrc:/assets/icons/material-icons/duotone/style.svg"
+                    source: "qrc:/IconLibrary/material-icons/duotone/style.svg"
                 }
 
                 Text {
@@ -258,7 +258,7 @@ Loader {
                     width: 24
                     height: 24
                     color: Theme.colorIcon
-                    source: "qrc:/assets/icons/material-icons/duotone/brightness_4.svg"
+                    source: "qrc:/IconLibrary/material-icons/duotone/brightness_4.svg"
                 }
 
                 Text {
@@ -323,7 +323,7 @@ Loader {
                     width: 24
                     height: 24
                     color: Theme.colorIcon
-                    source: "qrc:/assets/icons/material-symbols/close.svg"
+                    source: "qrc:/IconLibrary/material-symbols/close.svg"
                 }
 
                 Text {
@@ -386,7 +386,7 @@ Loader {
                     width: 24
                     height: 24
                     color: Theme.colorIcon
-                    source: "qrc:/assets/icons/material-icons/duotone/translate.svg"
+                    source: "qrc:/IconLibrary/material-icons/duotone/translate.svg"
                 }
 
                 Text {
@@ -464,7 +464,7 @@ Loader {
                     width: 24
                     height: 24
                     color: Theme.colorIcon
-                    source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                    source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                 }
 
                 Text {
@@ -506,7 +506,7 @@ Loader {
                     width: 24
                     height: 24
                     color: Theme.colorIcon
-                    source: "qrc:/assets/icons/material-symbols/accessibility.svg"
+                    source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                 }
 
                 Text {

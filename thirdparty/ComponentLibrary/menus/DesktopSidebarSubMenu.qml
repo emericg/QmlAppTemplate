@@ -15,7 +15,7 @@ Column {
 
     property string category
     property string text: "menu"
-    property string source: "qrc:/assets/icons/material-symbols/menu.svg"
+    property string source: "qrc:/IconLibrary/material-symbols/menu.svg"
 
     property bool checked: false
     property int selected: 0
@@ -46,8 +46,8 @@ Column {
             font.bold: checked
             //visible: sidebarSubMenu.checked
 
-            source: checked ? "qrc:/assets/icons/material-symbols/circle-fill.svg"
-                            : "qrc:/assets/icons/material-symbols/circle.svg"
+            source: checked ? "qrc:/IconLibrary/material-symbols/circle-fill.svg"
+                            : "qrc:/IconLibrary/material-symbols/circle.svg"
             sourceSize: 12
 
             checked: sidebarSubMenu.checked && sidebarSubMenu.selected === index

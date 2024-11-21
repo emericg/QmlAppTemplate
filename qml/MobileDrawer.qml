@@ -87,7 +87,7 @@ DrawerThemed {
 
                 DrawerItem {
                     text: qsTr("Components")
-                    source: "qrc:/assets/icons/material-icons/duotone/touch_app.svg"
+                    source: "qrc:/IconLibrary/material-icons/duotone/touch_app.svg"
                     highlighted: (appContent.state === "MobileComponents")
 
                     onClicked: {
@@ -98,7 +98,7 @@ DrawerThemed {
 
                 DrawerItem {
                     text: qsTr("Host infos")
-                    source: "qrc:/assets/icons/material-icons/duotone/memory.svg"
+                    source: "qrc:/IconLibrary/material-icons/duotone/memory.svg"
                     highlighted: (appContent.state === "HostInfos")
 
                     onClicked: {
@@ -109,7 +109,7 @@ DrawerThemed {
 
                 DrawerItem {
                     text: qsTr("Font infos")
-                    source: "qrc:/assets/icons/material-icons/duotone/format_size.svg"
+                    source: "qrc:/IconLibrary/material-icons/duotone/format_size.svg"
                     highlighted: (appContent.state === "FontInfos")
 
                     onClicked: {
@@ -126,7 +126,7 @@ DrawerThemed {
 
                 DrawerItem {
                     text: qsTr("Settings")
-                    source: "qrc:/assets/icons/material-symbols/settings-fill.svg"
+                    source: "qrc:/IconLibrary/material-symbols/settings-fill.svg"
                     highlighted: (appContent.state === "Settings")
 
                     onClicked: {
@@ -137,7 +137,7 @@ DrawerThemed {
 
                 DrawerItem {
                     text: qsTr("About")
-                    source: "qrc:/assets/icons/material-symbols/info-fill.svg"
+                    source: "qrc:/IconLibrary/material-symbols/info-fill.svg"
                     highlighted: (appContent.state === "About" || appContent.state === "AboutPermissions")
 
                     onClicked: {

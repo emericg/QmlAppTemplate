@@ -29,7 +29,7 @@ T.Button {
     property int shapeRadius: (shape === "rounded") ? 2 : 4
 
     // icon
-    property url source: "qrc:/assets/icons/material-symbols/add.svg"
+    property url source: "qrc:/IconLibrary/material-symbols/add.svg"
     property int sourceSize: 28
     property int sourceRotation: 0
 
