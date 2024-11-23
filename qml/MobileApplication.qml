@@ -258,6 +258,9 @@ ApplicationWindow {
         ScreenMobileComponents {
             id: screenMobileComponents
         }
+        ScreenPlayground {
+            id: screenPlayground
+        }
         ScreenFontInfos {
             id: screenFontInfos
         }
@@ -287,6 +290,18 @@ ApplicationWindow {
                 name: "MobileComponents"
                 PropertyChanges { target: appHeader; headerTitle: "QmlAppTemplate"; }
                 PropertyChanges { target: screenMobileComponents; visible: true; enabled: true; }
+                PropertyChanges { target: screenPlayground; visible: false; enabled: false; }
+                PropertyChanges { target: screenFontInfos; visible: false; enabled: false; }
+                PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
+                PropertyChanges { target: screenSettings; visible: false; enabled: false; }
+                PropertyChanges { target: screenAbout; visible: false; enabled: false; }
+                PropertyChanges { target: screenAboutPermissions; visible: false; enabled: false; }
+            },
+            State {
+                name: "Playground"
+                PropertyChanges { target: appHeader; headerTitle: "Playground"; }
+                PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenPlayground; visible: true; enabled: true; }
                 PropertyChanges { target: screenFontInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenSettings; visible: false; enabled: false; }
@@ -297,6 +312,7 @@ ApplicationWindow {
                 name: "FontInfos"
                 PropertyChanges { target: appHeader; headerTitle: "Font infos"; }
                 PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenPlayground; visible: false; enabled: false; }
                 PropertyChanges { target: screenFontInfos; visible: true; enabled: true; }
                 PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenSettings; visible: false; enabled: false; }
@@ -307,6 +323,7 @@ ApplicationWindow {
                 name: "HostInfos"
                 PropertyChanges { target: appHeader; headerTitle: "Host infos"; }
                 PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenPlayground; visible: false; enabled: false; }
                 PropertyChanges { target: screenFontInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenHostInfos; visible: true; enabled: true; }
                 PropertyChanges { target: screenSettings; visible: false; enabled: false; }
@@ -317,6 +334,7 @@ ApplicationWindow {
                 name: "Settings"
                 PropertyChanges { target: appHeader; headerTitle: qsTr("Settings"); }
                 PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenPlayground; visible: false; enabled: false; }
                 PropertyChanges { target: screenFontInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenSettings; visible: true; enabled: true; }
@@ -327,6 +345,7 @@ ApplicationWindow {
                 name: "About"
                 PropertyChanges { target: appHeader; headerTitle: qsTr("About"); }
                 PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenPlayground; visible: false; enabled: false; }
                 PropertyChanges { target: screenFontInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenSettings; visible: false; enabled: false; }
@@ -337,6 +356,7 @@ ApplicationWindow {
                 name: "AboutPermissions"
                 PropertyChanges { target: appHeader; headerTitle: qsTr("Permissions"); }
                 PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
+                PropertyChanges { target: screenPlayground; visible: false; enabled: false; }
                 PropertyChanges { target: screenFontInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenHostInfos; visible: false; enabled: false; }
                 PropertyChanges { target: screenSettings; visible: false; enabled: false; }

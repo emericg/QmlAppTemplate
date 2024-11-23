@@ -51,9 +51,86 @@ Loader {
 
         ////////
 
+        Loader {
+            id: stackViewHeader
+            anchors.left: parent.left
+            anchors.right: parent.right
+            height: 56
+            z: 10
+
+            active: isDesktop
+            asynchronous: true
+
+            sourceComponent: Rectangle {
+                anchors.left: parent.left
+                anchors.right: parent.right
+                height: 56
+
+                color: Theme.colorActionbar
+
+                Row {
+                    anchors.top: parent.top
+                    anchors.topMargin: 8
+                    anchors.left: parent.left
+                    anchors.leftMargin: 16
+                    anchors.bottom: parent.bottom
+                    anchors.bottomMargin: 8
+                    spacing: 16
+
+                    SquareButtonClear { // buttonBack
+                        anchors.top: parent.top
+                        anchors.bottom: parent.bottom
+                        width: height
+
+                        //colorBackground: Theme.colorActionbar
+                        //colorHighlight: Theme.colorActionbarHighlight
+                        //colorIcon: Theme.colorActionbarContent
+
+                        source: "qrc:/IconLibrary/material-symbols/arrow_back.svg"
+                        onClicked: backAction()
+                    }
+
+                    SquareButtonClear { // buttonMenu
+                        anchors.top: parent.top
+                        anchors.bottom: parent.bottom
+                        width: height
+
+                        //colorBackground: Theme.colorActionbar
+                        //colorHighlight: Theme.colorActionbarHighlight
+                        //colorIcon: Theme.colorActionbarContent
+
+                        source: "qrc:/IconLibrary/material-symbols/more_vert.svg"
+                        onClicked: actionMenu.open()
+
+                        ActionMenu_bottom {
+                            id: actionMenu
+
+                            titleTxt: "ActionMenu"
+                            //titleSrc: "qrc:/IconLibrary/material-symbols/chevron_left.svg"
+
+                            model: ListModel {
+                                id: lmActionMenu
+                                ListElement { t: "itm"; idx: 1; txt: "Action 1"; src: "qrc:/IconLibrary/material-symbols/accessibility.svg"; }
+                                ListElement { t: "itm"; idx: 2; txt: "Action 2"; src: "qrc:/IconLibrary/material-symbols/accessibility.svg"; }
+                                ListElement { t: "sep"; }
+                                ListElement { t: "itm"; idx: 3; txt: "Action 3"; src: "qrc:/IconLibrary/material-symbols/accessibility.svg"; }
+                            }
+
+                            onMenuSelected: (index) => {
+                                //console.log("ActionMenu clicked #" + index)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        ////////
+
         StackView {
             id: stackView
             anchors.fill: parent
+            anchors.topMargin: stackViewHeader.active ? stackViewHeader.height : 0
 
             initialItem: mainView
         }
@@ -146,8 +223,8 @@ Loader {
                     topMargin: Theme.componentMargin
                     bottomMargin: Theme.componentMargin
 
-                    delegate: listComponent
                     model: pagesModel
+                    delegate: listComponent
                 }
 
                 ////////

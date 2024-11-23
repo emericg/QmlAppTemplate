@@ -293,9 +293,8 @@ Loader {
                     }
 
                     ComboBoxThemed {
-                        id: comboBoxAppTheme
-                        width: 256
                         anchors.verticalCenter: parent.verticalCenter
+                        width: 256
 
                         model: ListModel {
                             id: cbAppTheme
@@ -365,6 +364,37 @@ Loader {
                         model: ListModel {
                             ListElement { idx: 0; txt: "light"; sz: 0; }
                             ListElement { idx: 1; txt: "dark"; sz: 0; }
+                        }
+                    }
+
+                    SquareButtonSunken {
+                        anchors.verticalCenter: parent.verticalCenter
+                        width: 40
+                        height: 40
+
+                        source: "qrc:/IconLibrary/material-symbols/more_vert.svg"
+                        onClicked: actionMenu.open()
+
+                        ActionMenu_floating {
+                            id: actionMenu
+                            parent: parent
+
+                            width: 240
+
+                            titleTxt: "back"
+                            titleSrc: "qrc:/IconLibrary/material-symbols/chevron_left.svg"
+
+                            model: ListModel {
+                                id: lmActionMenu
+                                ListElement { t: "itm"; idx: 1; txt: "Action 1"; src: "qrc:/IconLibrary/material-symbols/accessibility.svg"; }
+                                ListElement { t: "itm"; idx: 2; txt: "Action 2"; src: "qrc:/IconLibrary/material-symbols/accessibility.svg"; }
+                                ListElement { t: "sep"; }
+                                ListElement { t: "itm"; idx: 3; txt: "Action 3"; src: "qrc:/IconLibrary/material-symbols/accessibility.svg"; }
+                            }
+
+                            onMenuSelected: (index) => {
+                                //console.log("ActionMenu clicked #" + index)
+                            }
                         }
                     }
                 }

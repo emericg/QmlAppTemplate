@@ -47,9 +47,6 @@ Rectangle {
         anchors.bottomMargin: 6
         width: height
 
-        enabled: (source !== "qrc:/IconLibrary/material-symbols/arrow_back.svg" || wideMode)
-        visible: enabled
-
         colorBackground: Theme.colorHeader
         colorHighlight: Theme.colorHeaderHighlight
         colorIcon: Theme.colorHeaderContent
@@ -63,7 +60,6 @@ Rectangle {
         anchors.leftMargin: 72
         anchors.verticalCenter: parent.verticalCenter
 
-        visible: wideMode
         text: appHeader.headerTitle
         font.bold: true
         font.pixelSize: Theme.fontSizeHeader

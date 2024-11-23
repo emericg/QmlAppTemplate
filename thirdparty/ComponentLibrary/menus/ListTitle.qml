@@ -11,7 +11,7 @@ Rectangle {
     anchors.right: parent.right
     anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
-    height: Theme.componentHeightL
+    height: Theme.componentHeightXL
     radius: singleColumn ? 0 : Theme.componentRadius
     z: 2
 
@@ -69,7 +69,7 @@ Rectangle {
     layer.effect: MultiEffect {
         autoPaddingEnabled: true
         shadowEnabled: true
-        shadowOpacity: 0.24
+        shadowOpacity: 0.12
         shadowColor: control.border.color
     }
 

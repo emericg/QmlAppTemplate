@@ -51,6 +51,7 @@ int main(int argc, char *argv[])
 
     // Application name
     app.setApplicationName("QmlAppTemplate");
+    app.setApplicationDisplayName("QmlAppTemplate");
     app.setOrganizationName("emeric");
     app.setOrganizationDomain("emeric");
 
@@ -88,7 +89,6 @@ int main(int argc, char *argv[])
 
     MobileUI::registerQML();
 
-    // Then we start the UI
     QQmlApplicationEngine engine;
     engine.addImportPath(":/qt/qml/QmlAppTemplate");
     engine.addImportPath(":/qt/qml/ComponentLibrary");

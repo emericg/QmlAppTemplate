@@ -97,6 +97,17 @@ DrawerThemed {
                 }
 
                 DrawerItem {
+                    text: qsTr("Playground")
+                    source: "qrc:/IconLibrary/material-symbols/build-fill.svg"
+                    highlighted: (appContent.state === "Playground")
+
+                    onClicked: {
+                        screenPlayground.loadScreen()
+                        appDrawer.close()
+                    }
+                }
+
+                DrawerItem {
                     text: qsTr("Host infos")
                     source: "qrc:/IconLibrary/material-icons/duotone/memory.svg"
                     highlighted: (appContent.state === "HostInfos")
