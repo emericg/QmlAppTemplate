@@ -2,11 +2,11 @@ app-id: io.emeric.qmlapptemplate
 runtime: org.freedesktop.Platform
 runtime-version: '24.08'
 sdk: org.freedesktop.Sdk
-command: qmlapptemplate
+command: QmlAppTemplate
 
-rename-desktop-file: qmlapptemplate.desktop
-rename-appdata-file: qmlapptemplate.appdata.xml
-rename-icon: qmlapptemplate
+rename-desktop-file: QmlAppTemplate.desktop
+rename-appdata-file: QmlAppTemplate.appdata.xml
+rename-icon: QmlAppTemplate
 
 finish-args:
   # Our UI is GPU accelerated

@@ -4,9 +4,9 @@
 <component type="desktop-application">
   <id>io.emeric.qmlapptemplate</id>
   <name>QmlAppTemplate</name>
-  <launchable type="desktop-id">qmlapptemplate.desktop</launchable>
+  <launchable type="desktop-id">QmlAppTemplate.desktop</launchable>
 
-  <summary>Qt6 / QML Application Template</summary>
+  <summary>QML Application Template</summary>
   <description>
     <p>QmlAppTemplate is a Qt6 / QML Application Template</p>
   </description>

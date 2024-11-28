@@ -81,6 +81,8 @@ qt_add_qml_module(${CMAKE_PROJECT_NAME}
         qml/popups/PopupChoice.qml
         qml/popups/PopupDate.qml
         qml/popups/PopupTime.qml
+
+        qml/QmlImports.qml
 )
 
 ################################################################################
