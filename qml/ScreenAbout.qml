@@ -118,7 +118,7 @@ Loader {
                         text: qsTr("SUPPORT")
                         source: "qrc:/IconLibrary/material-symbols/support.svg"
                         sourceSize: 22
-                        onClicked: Qt.openUrlExternally("https://emeric.io/")
+                        onClicked: Qt.openUrlExternally("https://github.com/emericg/QmlAppTemplate/issues")
                     }
 
                     ButtonSolid {
@@ -172,7 +172,7 @@ Loader {
                     text: qsTr("SUPPORT")
                     source: "qrc:/IconLibrary/material-symbols/support.svg"
                     sourceSize: 22
-                    onClicked: Qt.openUrlExternally("https://emeric.io/")
+                    onClicked: Qt.openUrlExternally("https://github.com/emericg/QmlAppTemplate/issues")
                 }
             }
 

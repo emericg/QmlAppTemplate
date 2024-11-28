@@ -33,12 +33,6 @@ jobs:
         with:
           submodules: recursive
 
-      # Install Qt
-      - name: Install Qt
-        uses: jurplel/install-qt-action@v4
-        with:
-          version: ${{env.QT_VERSION}}
-
       # Install dependencies (from package manager)
       - name: Install dependencies (from package manager)
         run: |
@@ -46,14 +40,16 @@ jobs:
              sudo apt-get install cmake ninja-build pkgconf libtool -y;
              sudo apt-get install appstream -y;
 
-      # Setup env
-      - name: Setup env
-        run: |
-             cmake --version
+      # Install Qt
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: ${{env.QT_VERSION}}
 
       # Build application
       - name: Build application
         run: |
+             cmake --version
              cmake -B build/ -DCMAKE_BUILD_TYPE=Release -G Ninja
              cmake --build build/ --config Release
 
@@ -138,13 +134,6 @@ jobs:
         with:
           arch: x86_64
 
-      # Install Qt
-      - name: Install Qt
-        uses: jurplel/install-qt-action@v4
-        with:
-          version: ${{env.QT_VERSION}}
-          arch: 'win64_msvc2019_64'
-
       # Install NSIS (already installed in 'windows-2022')
       #- name: Install NSIS
       #  run: |
@@ -152,14 +141,17 @@ jobs:
       #       scoop bucket add extras
       #       scoop install nsis
 
-      # Setup env
-      - name: Setup env
-        run: |
-             cmake --version
+      # Install Qt
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: ${{env.QT_VERSION}}
+          arch: 'win64_msvc2019_64'
 
       # Build application
       - name: Build application
         run: |
+             cmake --version
              cmake -B build/ -DCMAKE_BUILD_TYPE=Release -G "NMake Makefiles"
              cd build/
              nmake

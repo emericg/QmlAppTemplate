@@ -83,8 +83,6 @@ qt_add_qml_module(${CMAKE_PROJECT_NAME}
         qml/popups/PopupTime.qml
 )
 
-target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE src/)
-
 ################################################################################
 
 qt_standard_project_setup(
@@ -134,7 +132,7 @@ target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE thirdparty/)
 ################################################################################
 
 ## Android
-if (CMAKE_SYSTEM_NAME STREQUAL "Android")
+if(CMAKE_SYSTEM_NAME STREQUAL "Android")
     set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
         #QT_ANDROID_ABIS "armeabi-v7a;arm64-v8a;x86;x86_64"
         #QT_ANDROID_BUILD_ALL_ABIS ON
@@ -144,7 +142,7 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Android")
     )
 endif()
 
-#if (APPLE)
+#if(APPLE)
 #    set(CMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_REQUIRED "NO")
 #    set(CMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "")
 #    set(CMAKE_XCODE_ATTRIBUTE_DEVELOPMENT_TEAM "")
@@ -152,18 +150,13 @@ endif()
 #endif()
 
 ## macOS
-if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     #set(CMAKE_OSX_ARCHITECTURES "x86_64;arm64")
     set(CMAKE_OSX_DEPLOYMENT_TARGET "11.0")
 
     set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
         MACOSX_BUNDLE ON
         MACOSX_BUNDLE_INFO_PLIST "${CMAKE_SOURCE_DIR}/assets/macos/Info.plist"
-        # Old way (???)
-        MACOSX_BUNDLE_GUI_IDENTIFIER            "io.emeric.qmlapptemplate"
-        MACOSX_BUNDLE_BUNDLE_NAME               ${CMAKE_PROJECT_NAME}
-        MACOSX_BUNDLE_BUNDLE_VERSION            ${CMAKE_PROJECT_VERSION}
-        MACOSX_BUNDLE_SHORT_VERSION_STRING      ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
         # New Xcode attributes (???)
         XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER           "io.emeric.qmlapptemplate"
         XCODE_ATTRIBUTE_PRODUCT_NAME                        ${CMAKE_PROJECT_NAME}
@@ -174,7 +167,7 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
 endif()
 
 ## iOS
-if (CMAKE_SYSTEM_NAME STREQUAL "iOS")
+if(CMAKE_SYSTEM_NAME STREQUAL "iOS")
     #set(assets_catalog_path "${CMAKE_SOURCE_DIR}/assets/ios/Assets.xcassets")
     #target_sources(${CMAKE_PROJECT_NAME} PRIVATE ${assets_catalog_path})
     #set_source_files_properties(${assets_catalog_path} PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
@@ -204,7 +197,7 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
 endif()
 
 ## Release build? Set "no debug" macros
-if (CMAKE_BUILD_TYPE STREQUAL Release)
+if(CMAKE_BUILD_TYPE STREQUAL Release)
     target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
         NDEBUG
         QT_NO_DEBUG
@@ -222,9 +215,9 @@ set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
 )
 
 # Output?
-#install(TARGETS ${CMAKE_PROJECT_NAME}
-#    BUNDLE DESTINATION bin/
-#    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-#)
+install(TARGETS ${CMAKE_PROJECT_NAME}
+    BUNDLE DESTINATION "${CMAKE_SOURCE_DIR}/bin"
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)
 
 ################################################################################
