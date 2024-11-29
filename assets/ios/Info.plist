@@ -15,10 +15,10 @@
 	<string>QmlAppTemplate</string>
 
 	<key>CFBundleExecutable</key>
-	<string>$(EXECUTABLE_NAME)</string>
+	<string>QmlAppTemplate</string>
 
 	<key>CFBundleIdentifier</key>
-	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<string>io.emeric.qmlapptemplate</string>
 
 	<key>CFBundleVersion</key>
 	<string>000801</string>

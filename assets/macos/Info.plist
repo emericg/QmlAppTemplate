@@ -15,19 +15,19 @@
 	<string>QmlAppTemplate</string>
 
 	<key>CFBundleExecutable</key>
-	<string>$(EXECUTABLE_NAME)</string>
+	<string>QmlAppTemplate</string>
 
 	<key>CFBundleIdentifier</key>
-	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<string>io.emeric.qmlapptemplate</string>
+
+	<key>CFBundleIconFile</key>
+	<string>QmlAppTemplate.icns</string>
 
 	<key>CFBundleVersion</key>
 	<string>000801</string>
 
 	<key>CFBundleShortVersionString</key>
 	<string>0.8</string>
-
-	<key>CFBundleIconFile</key>
-	<string>QmlAppTemplate.icns</string>
 
 	<key>LSMinimumSystemVersion</key>
 	<string>11.0</string>
