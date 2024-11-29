@@ -99,7 +99,7 @@ T.Popup {
 
             topPadding: Theme.componentMargin
             bottomPadding: 4
-            spacing: 4
+            spacing: 0
 
             ////
 
@@ -140,7 +140,7 @@ T.Popup {
                         roleValue: "itm"
                         ActionMenuItem {
                             width: actionMenu.width
-                            height: Theme.componentHeight + 4
+                            height: Theme.componentHeightL
                             layoutDirection: actionMenu.layoutDirection
                             index: idx
                             text: txt
