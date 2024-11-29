@@ -1,4 +1,13 @@
-qt_add_library(ComponentLibrary STATIC)
+project(ComponentLibrary LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+
+# Use that find_package() call in the root project:
+find_package(Qt6 6.5 REQUIRED COMPONENTS Svg Qml Quick QuickControls2 LabsQmlModels)
+
+################################################################################
 
 list(APPEND MODULE_ASSETS
     #
@@ -133,7 +142,7 @@ list(APPEND MODULE_QML_FILES
     utils/WindowGeometrySaver.qml
 )
 
-if (TARGET Qt::Location)
+if(TARGET Qt::Location)
     list(APPEND MODULE_QML_FILES
         maps/MapButton.qml
         maps/MapButtonCompass.qml
@@ -143,7 +152,7 @@ if (TARGET Qt::Location)
         maps/MapScale.qml
     )
 else()
-    message(STATUS "Skipping the mapping components from ComponentLibrary as Qt6::Location is not used.")
+    message(STATUS "ComponentLibrary > Skipping the mapping components as Qt6::Location is not used by the root project.")
 endif()
 
 list(APPEND MODULE_QML_FILES
@@ -166,6 +175,8 @@ list(APPEND MODULE_SOURCES
     #
 )
 
+################################################################################
+
 set_source_files_properties(QML_FILES PROPERTIES
     QT_QML_SKIP_CACHEGEN FALSE
 )
@@ -175,11 +186,7 @@ set_source_files_properties(ThemeEngine.qml PROPERTIES
     QT_QML_SOURCE_TYPENAME Theme
 )
 
-set_target_properties(ComponentLibrary PROPERTIES AUTOMOC ON)
-
-find_package(Qt6 REQUIRED COMPONENTS Qml Quick QuickControls2)
-
-target_link_libraries(ComponentLibrary PRIVATE Qt6::Qml Qt6::Quick Qt6::QuickControls2 Qt6::QmlModels)
+qt_add_library(ComponentLibrary STATIC ${MODULE_SOURCES})
 
 qt_add_qml_module(ComponentLibrary
     URI ComponentLibrary
@@ -189,3 +196,6 @@ qt_add_qml_module(ComponentLibrary
     RESOURCES ${MODULE_ASSETS}
     SOURCES ${MODULE_SOURCES}
 )
+
+target_link_libraries(ComponentLibrary PRIVATE Qt6::Qml Qt6::Quick Qt6::QuickControls2 Qt6::LabsQmlModels)
+target_include_directories(ComponentLibrary PUBLIC ${CMAKE_CURRENT_LIST_DIR})
