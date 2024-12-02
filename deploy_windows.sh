@@ -60,6 +60,10 @@ windeployqt bin/ --qmldir qml/
 #echo '---- Installation directory content recap (after windeployqt):'
 #find bin/
 
+#echo '---- Clean installation directory'
+#rm bin/qmltooling
+#rm bin/.gitkeep
+
 mv bin $APP_NAME
 
 ## PACKAGE (zip) ###############################################################

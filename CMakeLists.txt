@@ -30,24 +30,34 @@ message(STATUS "[PROJECT] QT_HOST_PATH              = ${QT_HOST_PATH}")
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Svg Qml Quick QuickControls2 LabsQmlModels)
 find_package(Qt6 REQUIRED COMPONENTS LinguistTools)
 
-qt_standard_project_setup(REQUIRES 6.7)
+qt_standard_project_setup(REQUIRES 6.7
+                          I18N_SOURCE_LANGUAGE en
+                          I18N_TRANSLATED_LANGUAGES fr)
 
 qt_policy(SET QTP0001 NEW)
 qt_policy(SET QTP0002 NEW)
 qt_policy(SET QTP0003 NEW) # Qt 6.7
 #qt_policy(SET QTP0004 NEW) # Qt 6.8
 
+# Set app icons
+if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    set(app_icon_windows "${CMAKE_SOURCE_DIR}/assets/windows/${CMAKE_PROJECT_NAME}.rc")
+elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+    set(app_icon_macos "${CMAKE_SOURCE_DIR}/assets/macos/${CMAKE_PROJECT_NAME}.icns")
+endif()
+
 qt_add_executable(${CMAKE_PROJECT_NAME}
     src/main.cpp
     src/SettingsManager.cpp src/SettingsManager.h
     assets/assets.qrc
     thirdparty/IconLibrary/IconLibrary.qrc
-    ${app_icon_macos}
     ${app_icon_windows}
+    ${app_icon_macos}
 )
 
 qt_add_qml_module(${CMAKE_PROJECT_NAME}
     URI ${CMAKE_PROJECT_NAME}
+    NO_PLUGIN
     QML_FILES
         qml/MobileApplication.qml
         qml/MobileHeader.qml
@@ -85,12 +95,6 @@ qt_add_qml_module(${CMAKE_PROJECT_NAME}
         qml/popups/PopupTime.qml
 )
 
-################################################################################
-
-qt_standard_project_setup(
-    I18N_SOURCE_LANGUAGE en
-    I18N_TRANSLATED_LANGUAGES fr
-)
 qt_add_translations(${CMAKE_PROJECT_NAME}
     TS_FILE_BASE ${CMAKE_PROJECT_NAME}
     TS_FILE_DIR ${CMAKE_SOURCE_DIR}/i18n/
@@ -167,7 +171,7 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
         XCODE_ATTRIBUTE_PRODUCT_NAME                        ${CMAKE_PROJECT_NAME}
         XCODE_ATTRIBUTE_CURRENT_PROJECT_VERSION             ${CMAKE_PROJECT_VERSION}
         XCODE_ATTRIBUTE_MARKETING_VERSION                   ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
-        XCODE_ATTRIBUTE_CODE_SIGN_ENTITLEMENTS              "${CMAKE_SOURCE_DIR}/assets/macos/${CMAKE_PROJECT_NAME}.entitlements"
+        XCODE_ATTRIBUTE_CODE_SIGN_ENTITLEMENTS             "${CMAKE_SOURCE_DIR}/assets/macos/${CMAKE_PROJECT_NAME}.entitlements"
     )
 endif()
 
@@ -195,7 +199,6 @@ endif()
 
 ## Windows
 if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
-
     set(app_icon_windows "${CMAKE_SOURCE_DIR}/assets/windows/${CMAKE_PROJECT_NAME}.rc")
 
     set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES

@@ -186,7 +186,7 @@ set_source_files_properties(ThemeEngine.qml PROPERTIES
     QT_QML_SOURCE_TYPENAME Theme
 )
 
-qt_add_library(ComponentLibrary STATIC ${MODULE_SOURCES})
+qt_add_library(ComponentLibrary STATIC)
 
 qt_add_qml_module(ComponentLibrary
     URI ComponentLibrary
