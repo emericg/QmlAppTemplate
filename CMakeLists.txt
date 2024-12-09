@@ -58,7 +58,6 @@ qt_add_executable(${CMAKE_PROJECT_NAME}
 qt_add_qml_module(${CMAKE_PROJECT_NAME}
     URI ${CMAKE_PROJECT_NAME}
     NO_PLUGIN
-    RESOURCE_PREFIX /
     QML_FILES
         qml/MobileApplication.qml
         qml/MobileHeader.qml
