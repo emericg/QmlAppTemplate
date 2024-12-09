@@ -4,26 +4,6 @@ import QtQuick.Controls
 import ComponentLibrary
 
 Item {
-
-    Column {
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-        anchors.margins: Theme.componentMarginXL
-        spacing: Theme.componentMarginXL
-        z: 10
-
-        ButtonFab {
-            anchors.right: parent.right
-            source: "qrc:/IconLibrary/material-symbols/add.svg"
-        }
-
-        ButtonFabExtended {
-            anchors.right: parent.right
-            text: "Extended FAB"
-            source: "qrc:/IconLibrary/material-symbols/add.svg"
-        }
-    }
-
     Flickable {
         anchors.fill: parent
 
@@ -364,6 +344,24 @@ Item {
                     tooltipText: "this one has a tooltip!"
                 }
             }
+        }
+    }
+
+    Column {
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        anchors.margins: Theme.componentMarginXL
+        spacing: Theme.componentMarginXL
+
+        ButtonFab {
+            anchors.right: parent.right
+            source: "qrc:/IconLibrary/material-symbols/add.svg"
+        }
+
+        ButtonFabExtended {
+            anchors.right: parent.right
+            text: "Extended FAB"
+            source: "qrc:/IconLibrary/material-symbols/add.svg"
         }
     }
 }

@@ -3,6 +3,7 @@ import QtQuick.Controls
 import QtQuick.Window
 
 import ComponentLibrary
+import QmlAppTemplate
 import MobileUI
 
 ApplicationWindow {
