@@ -37,7 +37,7 @@ ApplicationWindow {
     y: settingsManager.initialPosition.height
     visibility: settingsManager.initialVisibility
     visible: true
-
+/*
     WindowGeometrySaver {
         windowInstance: appWindow
         Component.onCompleted: {
@@ -45,7 +45,7 @@ ApplicationWindow {
             visibility = settingsManager.initialVisibility
         }
     }
-
+*/
     // Mobile stuff ////////////////////////////////////////////////////////////
 
     property int screenOrientation: Screen.primaryOrientation

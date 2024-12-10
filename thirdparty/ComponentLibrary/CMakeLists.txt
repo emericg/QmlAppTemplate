@@ -191,7 +191,6 @@ qt_add_library(ComponentLibrary STATIC)
 qt_add_qml_module(ComponentLibrary
     URI ComponentLibrary
     DEPENDENCIES QtCore QtQuick
-    RESOURCE_PREFIX /thirdparty/ComponentLibrary
     QML_FILES ${MODULE_QML_FILES} ${MODULE_JS_FILES}
     RESOURCES ${MODULE_ASSETS}
     SOURCES ${MODULE_SOURCES}
