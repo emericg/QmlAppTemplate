@@ -5,7 +5,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
 # Use that find_package() call in the root project:
-find_package(Qt6 6.5 REQUIRED COMPONENTS Svg Qml Quick QuickControls2 LabsQmlModels)
+find_package(Qt6 6.5 REQUIRED COMPONENTS Core Svg Qml Quick QuickControls2 LabsQmlModels)
 
 ################################################################################
 
@@ -190,12 +190,15 @@ qt_add_library(ComponentLibrary STATIC)
 
 qt_add_qml_module(ComponentLibrary
     URI ComponentLibrary
-    #VERSION 1.0 # not particularly necessary
-    #RESOURCE_PREFIX /ComponentLibrary/imports # ???
+    DEPENDENCIES QtCore QtQuick
+    RESOURCE_PREFIX /thirdparty/ComponentLibrary
     QML_FILES ${MODULE_QML_FILES} ${MODULE_JS_FILES}
     RESOURCES ${MODULE_ASSETS}
     SOURCES ${MODULE_SOURCES}
 )
 
-target_link_libraries(ComponentLibrary PRIVATE Qt6::Qml Qt6::Quick Qt6::QuickControls2 Qt6::LabsQmlModels)
-target_include_directories(ComponentLibrary PUBLIC ${CMAKE_CURRENT_LIST_DIR})
+target_include_directories(ComponentLibrary PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+
+target_compile_definitions(ComponentLibrary PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
+
+target_link_libraries(ComponentLibrary PRIVATE Qt6::Core Qt6::Qml Qt6::Quick Qt6::QuickControls2 Qt6::LabsQmlModels)
