@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 string(TIMESTAMP CURRENT_TIMESTAMP "%s" UTC)
 set(APP_NAME ${CMAKE_PROJECT_NAME})
@@ -112,6 +113,7 @@ target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE
     Qt6::Qml
     Qt6::Quick
     Qt6::QuickControls2
+    Qt6::LabsQmlModels
 )
 
 ################################################################################
