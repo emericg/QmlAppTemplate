@@ -90,6 +90,12 @@ int main(int argc, char *argv[])
     MobileUI::registerQML();
 
     QQmlApplicationEngine engine;
+    engine.addImportPath(":/");
+    engine.addImportPath(":/QmlAppTemplate");
+    engine.addImportPath(":/ComponentLibrary");
+    engine.addImportPath(":/ComponentLibrary/imports");
+    engine.addImportPath(":/thirdparty/ComponentLibrary");
+    engine.addImportPath(":/qt/qml");
     engine.addImportPath(":/qt/qml/QmlAppTemplate");
     engine.addImportPath(":/qt/qml/ComponentLibrary");
 
