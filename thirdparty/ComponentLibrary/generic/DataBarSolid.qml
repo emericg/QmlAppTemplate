@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Effects
 
 import ComponentLibrary
+import "qrc:/ComponentLibrary/UtilsNumber.js" as UtilsNumber
 
 Item {
     id: control

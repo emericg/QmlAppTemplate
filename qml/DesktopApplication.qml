@@ -3,7 +3,7 @@ import QtQuick.Window
 import QtQuick.Controls
 
 import ComponentLibrary
-import QmlAppTemplate
+//import QmlAppTemplate
 
 ApplicationWindow {
     id: appWindow

@@ -50,52 +50,54 @@ endif()
 qt_add_executable(${CMAKE_PROJECT_NAME}
     src/main.cpp
     src/SettingsManager.cpp src/SettingsManager.h
+    qml/qml.qrc
     assets/assets.qrc
     thirdparty/IconLibrary/IconLibrary.qrc
+    thirdparty/ComponentLibrary/ComponentLibrary.qrc
     ${app_icon_windows}
     ${app_icon_macos}
 )
 
-qt_add_qml_module(${CMAKE_PROJECT_NAME}
-    URI ${CMAKE_PROJECT_NAME}
-    RESOURCE_PREFIX /
-    NO_PLUGIN
-    QML_FILES
-        qml/MobileApplication.qml
-        qml/MobileHeader.qml
-        qml/MobileDrawer.qml
-        qml/MobilePermissions.qml
-        qml/MobileMenu.qml
-        qml/MobileExit.qml
-
-        qml/DesktopApplication.qml
-        qml/DesktopHeader.qml
-        qml/DesktopSidebar.qml
-
-        qml/ScreenMainView.qml
-        qml/ScreenMobileComponents.qml
-        qml/ScreenDesktopComponents.qml
-        qml/ScreenPlayground.qml
-        qml/ScreenFontInfos.qml
-        qml/ScreenHostInfos.qml
-        qml/ScreenSettings.qml
-        qml/ScreenAbout.qml
-
-        qml/PageButtons.qml
-        qml/PageColors.qml
-        qml/PageDateTime.qml
-        qml/PageDialogs.qml
-        qml/PageIndicators.qml
-        qml/PageSelectors.qml
-        qml/PageSliders.qml
-        qml/PageTextFields.qml
-        qml/PageTickers.qml
-
-        qml/popups/PopupMessage.qml
-        qml/popups/PopupChoice.qml
-        qml/popups/PopupDate.qml
-        qml/popups/PopupTime.qml
-)
+#qt_add_qml_module(${CMAKE_PROJECT_NAME}
+#    URI ${CMAKE_PROJECT_NAME}
+#    RESOURCE_PREFIX "/"
+#    NO_PLUGIN
+#    QML_FILES
+#        qml/MobileApplication.qml
+#        qml/MobileHeader.qml
+#        qml/MobileDrawer.qml
+#        qml/MobilePermissions.qml
+#        qml/MobileMenu.qml
+#        qml/MobileExit.qml
+#
+#        qml/DesktopApplication.qml
+#        qml/DesktopHeader.qml
+#        qml/DesktopSidebar.qml
+#
+#        qml/ScreenMainView.qml
+#        qml/ScreenMobileComponents.qml
+#        qml/ScreenDesktopComponents.qml
+#        qml/ScreenPlayground.qml
+#        qml/ScreenFontInfos.qml
+#        qml/ScreenHostInfos.qml
+#        qml/ScreenSettings.qml
+#        qml/ScreenAbout.qml
+#
+#        qml/PageButtons.qml
+#        qml/PageColors.qml
+#        qml/PageDateTime.qml
+#        qml/PageDialogs.qml
+#        qml/PageIndicators.qml
+#        qml/PageSelectors.qml
+#        qml/PageSliders.qml
+#        qml/PageTextFields.qml
+#        qml/PageTickers.qml
+#
+#        qml/popups/PopupMessage.qml
+#        qml/popups/PopupChoice.qml
+#        qml/popups/PopupDate.qml
+#        qml/popups/PopupTime.qml
+#)
 
 qt_add_translations(${CMAKE_PROJECT_NAME}
     TS_FILE_BASE ${CMAKE_PROJECT_NAME}
@@ -133,8 +135,8 @@ add_subdirectory(thirdparty/MobileUI)
 target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE MobileUI)
 
 # ComponentLibrary
-add_subdirectory(thirdparty/ComponentLibrary)
-target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE ComponentLibraryplugin)
+#add_subdirectory(thirdparty/ComponentLibrary)
+#target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE ComponentLibraryplugin)
 
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE thirdparty/)
 

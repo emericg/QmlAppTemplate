@@ -89,6 +89,9 @@ int main(int argc, char *argv[])
 
     MobileUI::registerQML();
 
+    // ThemeEngine
+    qmlRegisterSingletonType(QUrl("qrc:/ThemeEngine.qml"), "ComponentLibrary", 1, 0, "Theme");
+
     QQmlApplicationEngine engine;
     engine.addImportPath(":/");
     engine.addImportPath(":/QmlAppTemplate");
@@ -109,9 +112,11 @@ int main(int argc, char *argv[])
 
     // Load the main view
 #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(FORCE_MOBILE_UI)
-    engine.loadFromModule("QmlAppTemplate", "MobileApplication");
+    engine.load(QUrl(QStringLiteral("qrc:/MobileApplication.qml")));
+    //engine.loadFromModule("QmlAppTemplate", "MobileApplication");
 #else
-    engine.loadFromModule("QmlAppTemplate", "DesktopApplication");
+    engine.load(QUrl(QStringLiteral("qrc:/DesktopApplication.qml")));
+    //engine.loadFromModule("QmlAppTemplate", "DesktopApplication");
 #endif
 
     if (engine.rootObjects().isEmpty())
