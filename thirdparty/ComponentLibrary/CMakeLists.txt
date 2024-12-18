@@ -191,9 +191,9 @@ target_link_libraries(ComponentLibrary PRIVATE Qt6::Core Qt6::Quick Qt6::QuickCo
 
 qt_add_qml_module(ComponentLibrary
     URI ComponentLibrary
-    VERSION 1.0 # not particularly necessary
-    DEPENDENCIES QtCore QtQuick
-    RESOURCE_PREFIX /
+    VERSION 1.0
+    DEPENDENCIES QtCore QtQuick LabsQmlModels
+    RESOURCE_PREFIX "/ComponentLibrary"
     QML_FILES ${MODULE_QML_FILES} ${MODULE_JS_FILES}
     RESOURCES ${MODULE_ASSETS}
     SOURCES ${MODULE_SOURCES}

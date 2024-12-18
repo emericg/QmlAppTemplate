@@ -1,5 +1,6 @@
 <RCC>
-    <qresource prefix="/">
+    <qresource prefix="/ComponentLibrary">
+        <file>qmldir</file>
         <file>ThemeEngine.qml</file>
 
         <file alias="DesktopHeaderItem.qml">menus/DesktopHeaderItem.qml</file>
@@ -139,9 +140,7 @@
         <file alias="CsdLinux.qml">utils/CsdLinux.qml</file>
         <file alias="SwipeArea.qml">utils/SwipeArea.qml</file>
         <file alias="WindowGeometrySaver.qml">utils/WindowGeometrySaver.qml</file>
-    </qresource>
 
-    <qresource prefix="ComponentLibrary">
         <file alias="UtilsMedia.js">utils/UtilsMedia.js</file>
         <file alias="UtilsNumber.js">utils/UtilsNumber.js</file>
         <file alias="UtilsPath.js">utils/UtilsPath.js</file>

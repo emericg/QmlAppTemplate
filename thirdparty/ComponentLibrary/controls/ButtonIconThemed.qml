@@ -4,7 +4,6 @@ import QtQuick.Templates as T
 import QtQuick.Layouts
 
 import ComponentLibrary
-import "qrc:/ComponentLibrary/UtilsNumber.js" as UtilsNumber
 
 T.Button {
     id: control

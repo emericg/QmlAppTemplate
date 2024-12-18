@@ -20,6 +20,7 @@
 #include <QQuickWindow>
 #include <QQuickStyle>
 #include <QSurfaceFormat>
+#include <QDirIterator>
 
 /* ************************************************************************** */
 
@@ -36,7 +37,7 @@ int main(int argc, char *argv[])
 
 #if !defined(Q_OS_ANDROID) && !defined(Q_OS_IOS)
     // Qt 6.6+ mouse wheel hack
-    qputenv("QT_QUICK_FLICKABLE_WHEEL_DECELERATION", "2500");
+    qputenv("QT_QUICK_FLICKABLE_WHEEL_DECELERATION", "10000");
 #endif
 
     // DEBUG ///////////////////////////////////////////////////////////////////
@@ -51,7 +52,6 @@ int main(int argc, char *argv[])
 
     // Application name
     app.setApplicationName("QmlAppTemplate");
-    app.setApplicationDisplayName("QmlAppTemplate");
     app.setOrganizationName("emeric");
     app.setOrganizationDomain("emeric");
 
@@ -90,17 +90,16 @@ int main(int argc, char *argv[])
     MobileUI::registerQML();
 
     // ThemeEngine
-    qmlRegisterSingletonType(QUrl("qrc:/ThemeEngine.qml"), "ComponentLibrary", 1, 0, "Theme");
+    qmlRegisterSingletonType(QUrl("qrc:/ComponentLibrary/ThemeEngine.qml"), "ComponentLibrary", 1, 0, "Theme");
 
     QQmlApplicationEngine engine;
     engine.addImportPath(":/");
     engine.addImportPath(":/QmlAppTemplate");
     engine.addImportPath(":/ComponentLibrary");
-    engine.addImportPath(":/ComponentLibrary/imports");
-    engine.addImportPath(":/thirdparty/ComponentLibrary");
-    engine.addImportPath(":/qt/qml");
-    engine.addImportPath(":/qt/qml/QmlAppTemplate");
-    engine.addImportPath(":/qt/qml/ComponentLibrary");
+
+    qDebug() << engine.importPathList();
+    QDirIterator qrc(":", QDirIterator::Subdirectories);
+    while(qrc.hasNext()) qDebug() << qrc.next();
 
     QQmlContext *engine_context = engine.rootContext();
     engine_context->setContextProperty("settingsManager", sm);

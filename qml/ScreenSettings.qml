@@ -279,7 +279,7 @@ Loader {
                 SwitchThemed {
                     id: switch_appThemeAuto
                     anchors.right: parent.right
-                    anchors.rightMargin: 4
+                    anchors.rightMargin: Theme.componentMargin
                     anchors.verticalCenter: parent.verticalCenter
                     z: 1
 
@@ -344,7 +344,7 @@ Loader {
                 SwitchThemed {
                     id: switch_appThemeCSD
                     anchors.right: parent.right
-                    anchors.rightMargin: 4
+                    anchors.rightMargin: Theme.componentMargin
                     anchors.verticalCenter: parent.verticalCenter
                     z: 1
 
@@ -485,7 +485,7 @@ Loader {
                 SwitchThemed {
                     id: switch_aaa
                     anchors.right: parent.right
-                    anchors.rightMargin: 4
+                    anchors.rightMargin: Theme.componentMargin
                     anchors.verticalCenter: parent.verticalCenter
                     z: 1
                 }

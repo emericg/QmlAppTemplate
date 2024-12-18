@@ -52,7 +52,7 @@ if [[ $make_install = true ]] ; then
   #find bin/
 fi
 
-## DEPLOY ######################################################################
+## APP DEPLOY ##################################################################
 
 echo '---- Running windeployqt'
 windeployqt bin/ --qmldir qml/
@@ -61,8 +61,9 @@ windeployqt bin/ --qmldir qml/
 #find bin/
 
 #echo '---- Clean installation directory'
-#rm bin/qmltooling
 #rm bin/.gitkeep
+#rm bin/qmltooling
+#rm bin/generic
 
 mv bin $APP_NAME
 
