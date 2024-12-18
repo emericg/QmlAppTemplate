@@ -105,7 +105,7 @@ chmod a+x contribs/deploy/linuxdeploy-plugin-qt-x86_64.AppImage
 export EXTRA_PLATFORM_PLUGINS="libqwayland-egl.so;libqwayland-generic.so;"
 export EXTRA_QT_PLUGINS="wayland-shell-integration;waylandclient;wayland-graphics-integration-client;"
 export EXTRA_QT_MODULES="svg;"
-export QML_SOURCES_PATHS="$(pwd)/qml/"
+export QML_SOURCES_PATHS="$(pwd)/qml/;$(pwd)/thirdparty/ComponentLibrary/;"
 
 ## PACKAGE (AppImage) ##########################################################
 
