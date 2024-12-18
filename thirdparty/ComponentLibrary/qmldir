@@ -1,3 +1,4 @@
+Module ComponentLibrary
 depends QtCore
 depends QtQuick
 depends LabsQmlModels

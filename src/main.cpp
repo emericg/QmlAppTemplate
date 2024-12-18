@@ -20,7 +20,6 @@
 #include <QQuickWindow>
 #include <QQuickStyle>
 #include <QSurfaceFormat>
-#include <QDirIterator>
 
 /* ************************************************************************** */
 
@@ -97,9 +96,9 @@ int main(int argc, char *argv[])
     engine.addImportPath(":/QmlAppTemplate");
     engine.addImportPath(":/ComponentLibrary");
 
-    qDebug() << engine.importPathList();
-    QDirIterator qrc(":", QDirIterator::Subdirectories);
-    while(qrc.hasNext()) qDebug() << qrc.next();
+    //qDebug() << engine.importPathList();
+    //QDirIterator qrc(":", QDirIterator::Subdirectories);
+    //while(qrc.hasNext()) { qDebug() << qrc.next(); }
 
     QQmlContext *engine_context = engine.rootContext();
     engine_context->setContextProperty("settingsManager", sm);
