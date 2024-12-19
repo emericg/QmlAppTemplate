@@ -29,7 +29,7 @@ elseif(QAPPLICATION_CLASS STREQUAL QGuiApplication)
     list(APPEND CORE_LIBRARIES Qt6::Gui)
 endif()
 
-find_package(Qt6 COMPONENTS ${CORE_COMPONENTS} REQUIRED)
+find_package(Qt6 6.5 REQUIRED COMPONENTS ${CORE_COMPONENTS})
 
 if(WIN32)
     if(MSVC)

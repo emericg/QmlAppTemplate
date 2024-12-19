@@ -29,6 +29,7 @@ endif()
 ################################################################################
 
 add_library(MobileUI OBJECT ${CORE_SOURCES} ${PLATFORM_SOURCES})
+add_library(MobileUI::MobileUI ALIAS MobileUI)
 
 target_link_libraries(MobileUI PRIVATE ${CORE_LIBRARIES} ${PLATFORM_LIBRARIES})
 target_include_directories(MobileUI PUBLIC ${CMAKE_CURRENT_LIST_DIR})

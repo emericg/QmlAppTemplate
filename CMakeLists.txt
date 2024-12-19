@@ -60,7 +60,7 @@ qt_add_executable(${CMAKE_PROJECT_NAME}
 
 #qt_add_qml_module(${CMAKE_PROJECT_NAME}
 #    URI ${CMAKE_PROJECT_NAME}
-#    RESOURCE_PREFIX "/"
+#    RESOURCE_PREFIX "/QmlAppTemplate"
 #    NO_PLUGIN
 #    QML_FILES
 #        qml/MobileApplication.qml
@@ -203,7 +203,7 @@ endif()
 
 ## Windows
 if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
-    set(app_icon_windows "${CMAKE_SOURCE_DIR}/assets/windows/${CMAKE_PROJECT_NAME}.rc")
+    #set(app_icon_windows "${CMAKE_SOURCE_DIR}/assets/windows/${CMAKE_PROJECT_NAME}.rc")
 
     set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
         WIN32_EXECUTABLE ON

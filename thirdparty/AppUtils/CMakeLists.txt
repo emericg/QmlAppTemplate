@@ -51,8 +51,7 @@ set(CORE_SOURCES
     utils_versionchecker.h)
 
 # OS specific sources & dependencies
-if(CMAKE_SYSTEM_NAME STREQUAL Linux)
-if(NOT ANDROID)
+if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
     set(PLATFORM_SOURCES
         utils_os_linux.cpp
         utils_os_linux.h)
@@ -60,9 +59,8 @@ if(NOT ANDROID)
     find_package(Qt6 REQUIRED COMPONENTS DBus)
     set(PLATFORM_LIBRARIES Qt::DBus m)
 endif()
-endif()
 
-if(ANDROID)
+if(CMAKE_SYSTEM_NAME STREQUAL "Android")
     set(PLATFORM_SOURCES
         utils_os_android.cpp
         utils_os_android.h)
@@ -70,13 +68,13 @@ if(ANDROID)
     set(PLATFORM_LIBRARIES Qt::CorePrivate m)
 endif()
 
-if(WIN32)
+if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     set(PLATFORM_SOURCES
         utils_os_windows.cpp
         utils_os_windows.h)
 endif()
 
-if(APPLE AND NOT IOS)
+if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     set(PLATFORM_SOURCES
         utils_os_macos.mm
         utils_os_macos.h)
@@ -89,7 +87,7 @@ if(APPLE AND NOT IOS)
     endif()
 endif()
 
-if(IOS)
+if(CMAKE_SYSTEM_NAME STREQUAL "iOS")
     find_package(Qt6 REQUIRED COMPONENTS Quick)
     set(PLATFORM_LIBRARIES Qt::Quick)
     set(PLATFORM_LIBRARIES "-framework UIKit" m)
@@ -116,6 +114,7 @@ endif()
 ################################################################################
 
 add_library(AppUtils OBJECT ${CORE_SOURCES} ${PLATFORM_SOURCES})
+add_library(AppUtils::AppUtils ALIAS AppUtils)
 
 target_compile_definitions(AppUtils PUBLIC APP_NAME=\"${APP_NAME}\" APP_VERSION=\"${APP_VERSION}\")
 target_link_libraries(AppUtils PRIVATE ${CORE_LIBRARIES} ${PLATFORM_LIBRARIES})

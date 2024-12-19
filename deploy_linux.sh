@@ -99,11 +99,12 @@ if [[ $create_package = true ]] ; then
   if [[ -v QT_ROOT_DIR ]]; then
     # cleanup undeployable Qt plugins (present, but missing their own dependencies)
     # only if we are on a GitHub Action server, because this remove the plugins from the Qt directory
-    sudo rm $QT_ROOT_DIR/gcc_64/plugins/position/libqtposition_nmea.so
-    sudo rm $QT_ROOT_DIR/gcc_64/plugins/sqldrivers/libqsqlmimer.so
-    sudo rm $QT_ROOT_DIR/gcc_64/plugins/sqldrivers/libqsqlmysql.so
-    sudo rm $QT_ROOT_DIR/gcc_64/plugins/sqldrivers/libqsqlodbc.so
-    sudo rm $QT_ROOT_DIR/gcc_64/plugins/sqldrivers/libqsqlpsql.so
+    echo '---- Remove undeployable Qt plugins'
+    sudo rm $QT_ROOT_DIR/plugins/position/libqtposition_nmea.so
+    sudo rm $QT_ROOT_DIR/plugins/sqldrivers/libqsqlmimer.so
+    sudo rm $QT_ROOT_DIR/plugins/sqldrivers/libqsqlmysql.so
+    sudo rm $QT_ROOT_DIR/plugins/sqldrivers/libqsqlodbc.so
+    sudo rm $QT_ROOT_DIR/plugins/sqldrivers/libqsqlpsql.so
   fi
 fi
 
