@@ -21,6 +21,6 @@ jobs:
     - uses: actions/checkout@v4
     - uses: bilelmoussaoui/flatpak-github-actions/flatpak-builder@v6
       with:
-        bundle: qmlapptemplate.flatpak
-        manifest-path: assets/linux/qmlapptemplate.flatpak.yml
+        bundle: QmlAppTemplate.flatpak
+        manifest-path: assets/linux/QmlAppTemplate.flatpak.yml
         cache-key: flatpak-builder-${{ github.sha }}
