@@ -133,6 +133,8 @@ list(APPEND MODULE_QML_FILES
     utils/CsdMac.qml
     utils/CsdWindows.qml
     utils/CsdLinux.qml
+    utils/FpsMonitor.qml
+    utils/MovablePoint.qml
     utils/RectangleDebug.qml
     utils/SwipeArea.qml
     utils/WindowGeometrySaver.qml

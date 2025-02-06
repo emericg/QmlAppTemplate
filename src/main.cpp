@@ -39,6 +39,9 @@ int main(int argc, char *argv[])
     qputenv("QT_QUICK_FLICKABLE_WHEEL_DECELERATION", "10000");
 #endif
 
+    // Force OpenGL for Qt WebEngine or the MapLibre plugin
+    //qputenv("QSG_RHI_BACKEND", "opengl");
+
     // DEBUG ///////////////////////////////////////////////////////////////////
 
     //qputenv("QSG_INFO", "1");               // print Qt Scene Graph info
@@ -47,7 +50,7 @@ int main(int argc, char *argv[])
 
     // GUI application /////////////////////////////////////////////////////////
 
-    SingleApplication app(argc, argv, false);
+    SingleApplication app(argc, argv, true);
 
     // Application name
     app.setApplicationName("QmlAppTemplate");

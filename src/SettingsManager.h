@@ -31,8 +31,8 @@ class SettingsManager: public QObject
     bool m_firstlaunch = true;
 
     // Application window
-    QSize m_appSize;
-    QSize m_appPosition;
+    QSize m_appSize = QSize(1280, 720);
+    QSize m_appPosition = QSize(64, 64);
     unsigned m_appVisibility = 1;               //!< QWindow::Visibility
 
     // Application generic

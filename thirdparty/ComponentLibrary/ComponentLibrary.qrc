@@ -138,6 +138,9 @@
         <file alias="CsdMac.qml">utils/CsdMac.qml</file>
         <file alias="CsdWindows.qml">utils/CsdWindows.qml</file>
         <file alias="CsdLinux.qml">utils/CsdLinux.qml</file>
+        <file alias="FpsMonitor.qml">utils/FpsMonitor.qml</file>
+        <file alias="MovablePoint.qml">utils/MovablePoint.qml</file>
+        <file alias="RectangleDebug.qml">utils/RectangleDebug.qml</file>
         <file alias="SwipeArea.qml">utils/SwipeArea.qml</file>
         <file alias="WindowGeometrySaver.qml">utils/WindowGeometrySaver.qml</file>
 
