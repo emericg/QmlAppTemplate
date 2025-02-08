@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 
+import QmlAppTemplate
 import ComponentLibrary
 
 Rectangle {

@@ -101,7 +101,7 @@ int main(int argc, char *argv[])
 
     //qDebug() << engine.importPathList();
     //QDirIterator qrc(":", QDirIterator::Subdirectories);
-    //while(qrc.hasNext()) { qDebug() << qrc.next(); }
+    //while(qrc.hasNext()) { qWarning() << qrc.next(); }
 
     QQmlContext *engine_context = engine.rootContext();
     engine_context->setContextProperty("settingsManager", sm);
@@ -113,11 +113,11 @@ int main(int argc, char *argv[])
 
     // Load the main view
 #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(FORCE_MOBILE_UI)
-    engine.load(QUrl(QStringLiteral("qrc:/MobileApplication.qml")));
-    //engine.loadFromModule("QmlAppTemplate", "MobileApplication");
+    //engine.load(QUrl(QStringLiteral("qrc:/MobileApplication.qml")));
+    engine.loadFromModule("QmlAppTemplate", "MobileApplication");
 #else
-    engine.load(QUrl(QStringLiteral("qrc:/DesktopApplication.qml")));
-    //engine.loadFromModule("QmlAppTemplate", "DesktopApplication");
+    //engine.load(QUrl(QStringLiteral("qrc:/DesktopApplication.qml")));
+    engine.loadFromModule("QmlAppTemplate", "DesktopApplication");
 #endif
 
     if (engine.rootObjects().isEmpty())

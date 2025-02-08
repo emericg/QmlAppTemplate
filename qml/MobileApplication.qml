@@ -2,8 +2,8 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Window
 
+import QmlAppTemplate
 import ComponentLibrary
-//import QmlAppTemplate
 import MobileUI
 
 ApplicationWindow {
