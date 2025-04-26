@@ -637,6 +637,15 @@
         <file>material-symbols/close.svg</file>
         <file>material-symbols/close_fullscreen.svg</file>
         <file>material-symbols/close_small.svg</file>
+        <file>material-symbols/cloud.svg</file>
+        <file>material-symbols/cloud_done.svg</file>
+        <file>material-symbols/cloud_done-fill.svg</file>
+        <file>material-symbols/cloud_download.svg</file>
+        <file>material-symbols/cloud_off.svg</file>
+        <file>material-symbols/cloud_off-fill.svg</file>
+        <file>material-symbols/cloud_sync.svg</file>
+        <file>material-symbols/cloud_sync-fill.svg</file>
+        <file>material-symbols/cloud_upload.svg</file>
         <file>material-symbols/collapse_content.svg</file>
         <file>material-symbols/communication.svg</file>
         <file>material-symbols/construction.svg</file>
@@ -864,6 +873,7 @@
         <file>material-symbols/view_in_ar.svg</file>
         <file>material-symbols/warning.svg</file>
         <file>material-symbols/warning-fill.svg</file>
+        <file>material-symbols/wifi.svg</file>
         <file>material-symbols/wifi_channel-fill.svg</file>
         <file>material-symbols/wifi_tethering.svg</file>
         <file>material-symbols/wifi_tethering_off.svg</file>

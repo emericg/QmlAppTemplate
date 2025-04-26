@@ -109,6 +109,9 @@ T.ComboBox {
         implicitHeight: (contentItem.implicitHeight) ? contentItem.implicitHeight + 2 : 0
         padding: 1
 
+        topMargin: Math.max(screenPaddingStatusbar, screenPaddingTop)
+        bottomMargin: Math.max(screenPaddingNavbar, screenPaddingBottom)
+
         contentItem: ListView {
             implicitHeight: contentHeight
             clip: true

@@ -25,11 +25,14 @@ T.Button {
     property color colorContent: Theme.colorTabletmenuContent
     property color colorHighlight: Theme.colorTabletmenuHighlight
 
+    // animation
+    property bool animationRunning: false
+
     ////////////////
 
     background: Item {
         implicitWidth: 56
-        implicitHeight: Theme.componentHeight
+        implicitHeight: 56
     }
 
     ////////////////
@@ -69,6 +72,26 @@ T.Button {
 
                     opacity: control.highlighted ? 0.2 : 0
                     Behavior on opacity { OpacityAnimator { duration: 133 } }
+                }
+
+                Rectangle { // activityIndicator
+                    anchors.top: parent.top
+                    anchors.topMargin: 0
+                    anchors.right: parent.right
+                    anchors.rightMargin: 0
+                    width: 6
+                    height: 6
+                    radius: 6
+                    color: Theme.colorSuccess
+                    visible: control.animationRunning
+
+                    SequentialAnimation on opacity { // fade animation
+                        loops: Animation.Infinite
+                        running: control.animationRunning
+                        onStopped: opacity = 1
+                        PropertyAnimation { to: 0.88; duration: 666; }
+                        PropertyAnimation { to: 0.44; duration: 666; }
+                    }
                 }
             }
         }
