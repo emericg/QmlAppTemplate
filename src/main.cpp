@@ -91,9 +91,6 @@ int main(int argc, char *argv[])
 
     MobileUI::registerQML();
 
-    // ThemeEngine
-    qmlRegisterSingletonType(QUrl("qrc:/ComponentLibrary/ThemeEngine.qml"), "ComponentLibrary", 1, 0, "Theme");
-
     QQmlApplicationEngine engine;
     engine.addImportPath(":/");
     engine.addImportPath(":/QmlAppTemplate");
