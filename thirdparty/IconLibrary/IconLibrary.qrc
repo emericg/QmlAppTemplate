@@ -100,6 +100,7 @@
         <file>material-icons/duotone/child_friendly.svg</file>
         <file>material-icons/duotone/clean_hands.svg</file>
         <file>material-icons/duotone/data_usage.svg</file>
+        <file>material-icons/duotone/date_all.svg</file>
         <file>material-icons/duotone/date_clear.svg</file>
         <file>material-icons/duotone/date_range.svg</file>
         <file>material-icons/duotone/devices.svg</file>
@@ -111,8 +112,10 @@
         <file>material-icons/duotone/format_size.svg</file>
         <file>material-icons/duotone/healing.svg</file>
         <file>material-icons/duotone/hearing.svg</file>
+        <file>material-icons/duotone/indicators.svg</file>
         <file>material-icons/duotone/info.svg</file>
         <file>material-icons/duotone/insert_chart.svg</file>
+        <file>material-icons/duotone/inside.svg</file>
         <file>material-icons/duotone/launch.svg</file>
         <file>material-icons/duotone/library_add.svg</file>
         <file>material-icons/duotone/library_copy.svg</file>
@@ -126,6 +129,7 @@
         <file>material-icons/duotone/microwave.svg</file>
         <file>material-icons/duotone/minimize.svg</file>
         <file>material-icons/duotone/model_training.svg</file>
+        <file>material-icons/duotone/outside.svg</file>
         <file>material-icons/duotone/photo_library.svg</file>
         <file>material-icons/duotone/pin_drop.svg</file>
         <file>material-icons/duotone/qr_code_2.svg</file>
@@ -147,6 +151,7 @@
         <file>material-icons/duotone/style.svg</file>
         <file>material-icons/duotone/support_agent.svg</file>
         <file>material-icons/duotone/timer.svg</file>
+        <file>material-icons/duotone/tap_and_play_black.svg</file>
         <file>material-icons/duotone/touch_app.svg</file>
         <file>material-icons/duotone/transfer_within_a_station.svg</file>
         <file>material-icons/duotone/translate.svg</file>

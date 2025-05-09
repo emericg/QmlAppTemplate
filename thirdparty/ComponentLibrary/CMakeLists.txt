@@ -20,8 +20,9 @@ list(APPEND MODULE_QML_FILES
     menus/MobileMenuItem_vertical.qml
     menus/ActionMenu_bottom.qml
     menus/ActionMenu_floating.qml
-    menus/ActionMenuItem.qml
-    menus/ActionMenuSeparator.qml
+    menus/ActionMenuItem_button.qml
+    menus/ActionMenuItem_switch.qml
+    menus/ActionMenuItem_separator.qml
     menus/DrawerThemed.qml
     menus/DrawerItem.qml
     menus/DrawerButton.qml
