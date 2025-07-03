@@ -56,9 +56,10 @@ qt_add_executable(${CMAKE_PROJECT_NAME}
     ${app_icon_macos}
 )
 
+qt_standard_project_setup(REQUIRES 6.7)
+
 qt_add_qml_module(${CMAKE_PROJECT_NAME}
     URI ${CMAKE_PROJECT_NAME}
-    RESOURCE_PREFIX "/QmlAppTemplate"
     NO_PLUGIN
     QML_FILES
         qml/MobileApplication.qml
@@ -100,7 +101,6 @@ qt_add_qml_module(${CMAKE_PROJECT_NAME}
 qt_add_translations(${CMAKE_PROJECT_NAME}
     TS_FILE_BASE ${CMAKE_PROJECT_NAME}
     TS_FILE_DIR ${CMAKE_SOURCE_DIR}/i18n/
-    RESOURCE_PREFIX "/i18n"
 )
 
 ################################################################################
