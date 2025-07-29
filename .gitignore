@@ -4,13 +4,15 @@ bin/*
 contribs/*
 appdir/*
 
+# QtQuick Compiler
+qrc_resources.cpp
+qmlcache_loader.cpp
+qml_*qml.cpp
+.qmlls.ini
+
 # CMake temporary project files
 CMakeLists.txt.user
 Makefile
-
-# Private signatures
-assets/ios/ios_signature.pri
-assets/macos/macos_signature.pri
 
 # XCode related
 Debug/*

@@ -19,9 +19,9 @@ For Android builds, you'll need the appropriates JDK (17) SDK (28+) and NDK (26b
 
 > https://doc.qt.io/qt-6.7/supported-platforms.html
 
-#### Platform support
+#### Supported platforms
 
-- Linux
+- Linux (Ubuntu 22.04+)
 - macOS 11+
 - Windows 10+
 - Android 8+

@@ -38,7 +38,7 @@ jobs:
         run: |
              sudo apt-get install libgl1-mesa-dev libxkbcommon-x11-dev libx11-xcb-dev libzstd-dev -y;
              sudo apt-get install cmake ninja-build pkgconf libtool -y;
-             sudo apt-get install appstream -y;
+             sudo apt-get install libfuse2 appstream -y;
 
       # Install Qt
       - name: Install Qt
@@ -55,7 +55,8 @@ jobs:
 
       # Deploy application
       - name: Deploy application
-        run: ./deploy_linux.sh -c -p
+        run: |
+             ./deploy_linux.sh -c -p
 
       # Upload application ZIP
       - name: Upload application ZIP
@@ -93,17 +94,22 @@ jobs:
         with:
           version: ${{env.QT_VERSION}}
 
+      # Setup env
+      - name: Setup env
+        run: |
+             cmake --version
+
       # Build application
       - name: Build application
         run: |
              export CMAKE_BUILD_PARALLEL_LEVEL=`sysctl -n hw.logicalcpu`
-             cmake --version
              cmake -B build/ -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64"
              cmake --build build/ --config Release
 
       # Deploy application
       - name: Deploy application
-        run: ./deploy_macos.sh -c -p
+        run: |
+             ./deploy_macos.sh -c -p
 
       # Upload application ZIP
       - name: Upload application ZIP
@@ -153,7 +159,8 @@ jobs:
 
       # Deploy application
       - name: Deploy application
-        run: sh deploy_windows.sh -c -p
+        run: |
+             sh deploy_windows.sh -c -p
 
       # Upload application ZIP
       - name: Upload application ZIP

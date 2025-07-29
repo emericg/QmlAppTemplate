@@ -79,7 +79,7 @@ chmod a+x contribs/deploy/linuxdeploy-plugin-qt-x86_64.AppImage
 # linuxdeploy qt settings
 export EXTRA_PLATFORM_PLUGINS="libqwayland-egl.so;libqwayland-generic.so;"
 export EXTRA_QT_PLUGINS="wayland-shell-integration;waylandclient;wayland-graphics-integration-client;"
-export EXTRA_QT_MODULES="svg;"
+export EXTRA_QT_MODULES="svg;qmlmodels;"
 export QML_SOURCES_PATHS="$(pwd)/qml/"
 export QML_MODULES_PATHS=""
 
@@ -146,6 +146,12 @@ if [[ $create_package = true ]] ; then
   printf '[Paths]\nPrefix = .\nPlugins = plugins\nImports = qml\n' > bin/$APP_NAME/qt.conf
   printf '#!/bin/sh\nappname=`basename $0 | sed s,\.sh$,,`\ndirname=`dirname $0`\nexport LD_LIBRARY_PATH=$dirname\n$dirname/$appname' > bin/$APP_NAME/$APP_NAME_LOWERCASE.sh
   chmod +x bin/$APP_NAME/$APP_NAME_LOWERCASE.sh
+
+  #echo '---- MapLibre deployment hack'
+  #cp -r $QT_ROOT_DIR/qml/MapLibre/ bin/$APP_NAME/qml/MapLibre/
+  #cp $QT_ROOT_DIR/plugins/geoservices/libqtgeoservices_maplibre.so bin/$APP_NAME/plugins/geoservices/libqtgeoservices_maplibre.so
+  #cp $QT_ROOT_DIR/lib/libQMapLibre.so.3.0.0 bin/$APP_NAME/libQMapLibre.so.3
+  #cp $QT_ROOT_DIR/lib/libQMapLibreLocation.so.3.0.0 bin/$APP_NAME/libQMapLibreLocation.so.3
 
   echo '---- Compressing package'
   cd bin
