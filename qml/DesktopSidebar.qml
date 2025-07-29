@@ -1,8 +1,8 @@
 import QtQuick
 import QtQuick.Controls
 
-import QmlAppTemplate
 import ComponentLibrary
+import QmlAppTemplate
 
 Rectangle {
     id: appSidebar
@@ -106,95 +106,6 @@ Rectangle {
         }
     }
 
-    ////////////
-/*
-    Column { // top menu
-        anchors.top: parent.top
-        anchors.topMargin: 32
-        anchors.left: parent.left
-        anchors.right: parent.right
-
-        DesktopSidebarItem {
-            source: "qrc:/assets/icons/material-symbols/hardware/computer.svg"
-            sourceSize: 40
-
-            highlightMode: "indicator"
-            highlighted: (appContent.state === "DesktopComponents")
-            onClicked: screenDesktopComponents.loadScreen()
-        }
-        DesktopSidebarItem {
-            source: "qrc:/assets/icons/material-symbols/hardware/smartphone-fill.svg"
-            sourceSize: 40
-            highlightMode: "indicator"
-
-            highlighted: (appContent.state === "MobileComponents")
-            onClicked: screenMobileComponents.loadScreen()
-        }
-        DesktopSidebarItem {
-            source: "qrc:/assets/icons/material-icons/duotone/touch_app.svg"
-            sourceSize: 40
-
-            highlightMode: "indicator"
-            highlighted: (appContent.state === "Playground")
-
-            onClicked: screenPlayground.loadScreen()
-        }
-        DesktopSidebarItem {
-            source: "qrc:/assets/icons/material-icons/duotone/memory.svg"
-            sourceSize: 40
-
-            highlightMode: "indicator"
-            highlighted: (appContent.state === "HostInfos")
-
-            onClicked: screenHostInfos.loadScreen()
-        }
-        DesktopSidebarItem {
-            source: "qrc:/assets/icons/material-icons/duotone/format_size.svg"
-            sourceSize: 40
-
-            highlightMode: "indicator"
-            highlighted: (appContent.state === "FontInfos")
-
-            onClicked: screenFontInfos.loadScreen()
-        }
-    }
-*/
-    ////////////
-/*
-    Column { // bottom menu
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: 12
-
-        DesktopSidebarItem {
-            source: "qrc:/assets/icons/material-icons/duotone/tune.svg"
-            sourceSize: 40
-
-            highlightMode: "indicator"
-            highlighted: (appContent.state === "Settings")
-
-            onClicked: screenSettings.loadScreen()
-        }
-
-        DesktopSidebarItem {
-            source: "qrc:/assets/icons/material-icons/duotone/info.svg"
-            sourceSize: 40
-
-            highlightMode: "indicator"
-            highlighted: (appContent.state === "About")
-
-            onClicked: screenAbout.loadScreen()
-        }
-
-        DesktopSidebarItem {
-            source: "qrc:/assets/icons/material-icons/duotone/exit_to_app.svg"
-            sourceSize: 40
-            highlightMode: "circle"
-            onClicked: Qt.quit()
-        }
-    }
-*/
     ////////////
 
     Rectangle { // border

@@ -1,9 +1,9 @@
 import QtQuick
-import QtQuick.Window
 import QtQuick.Controls
+import QtQuick.Window
 
-import QmlAppTemplate
 import ComponentLibrary
+import QmlAppTemplate
 
 ApplicationWindow {
     id: appWindow
@@ -60,10 +60,6 @@ ApplicationWindow {
 
     // Events handling /////////////////////////////////////////////////////////
 
-    Component.onCompleted: {
-        //
-    }
-
     Connections {
         target: appHeader
 
@@ -83,6 +79,15 @@ ApplicationWindow {
         target: Qt.application
         function onStateChanged() {
             switch (Qt.application.state) {
+                case Qt.ApplicationSuspended:
+                    //console.log("Qt.ApplicationSuspended")
+                    break
+                case Qt.ApplicationHidden:
+                    //console.log("Qt.ApplicationHidden")
+                    break
+                case Qt.ApplicationInactive:
+                    //console.log("Qt.ApplicationInactive")
+                    break
                 case Qt.ApplicationActive:
                     //console.log("Qt.ApplicationActive")
 
@@ -94,21 +99,39 @@ ApplicationWindow {
         }
     }
 
-    onActiveFocusItemChanged: {
-        //console.log("activeFocusItem:" + activeFocusItem)
-    }
-
     // User generated events handling //////////////////////////////////////////
 
     function backAction() {
+        // backAction() calls will (sometime) return true if an action has been performed,
+        // so we know there is no need to go back the backAction() stack
+
         if (appContent.state === "MobileComponents") {
             screenMobileComponents.backAction()
         } else {
             screenDesktopComponents.loadScreen()
         }
     }
+
     function forwardAction() {
-        //
+        // nothing
+    }
+
+    function setFullScreen() {
+        if (appWindow.visibility !== Window.FullScreen) {
+            appWindow.visibility = Window.FullScreen
+        } else {
+            appWindow.visibility = Window.Windowed
+        }
+    }
+
+    function cleanExit() {
+        if (Qt.platform.os === "osx") {
+            // quit the app, it will still disconnect the devices (without the exit popup)
+            Qt.quit()
+        } else {
+            // close the window, it will quit the app (with the exit popup)
+            appWindow.close()
+        }
     }
 
     MouseArea {
@@ -132,15 +155,19 @@ ApplicationWindow {
         onActivated: forwardAction()
     }
     Shortcut {
-        sequence: StandardKey.Preferences
+        sequences: [StandardKey.Preferences]
         onActivated: screenSettings.loadScreen()
+    }
+    Shortcut {
+        sequences: [StandardKey.FullScreen]
+        onActivated: appWindow.setFullScreen()
     }
     Shortcut {
         sequences: [StandardKey.Close]
         onActivated: appWindow.close()
     }
     Shortcut {
-        sequence: StandardKey.Quit
+        sequences: [StandardKey.Quit]
         onActivated: appWindow.exit(0)
     }
 
@@ -177,12 +204,16 @@ ApplicationWindow {
             }
             MenuItem {
                 text: qsTr("&Exit")
-                onTriggered: Qt.quit();
+                onTriggered: appWindow.cleanExit()
             }
         }
     }
 */
     // QML /////////////////////////////////////////////////////////////////////
+
+    onActiveFocusItemChanged: { // DEBUG
+        //console.log("activeFocusItem:" + activeFocusItem)
+    }
 
     DesktopSidebar {
         id: appSidebar
@@ -257,14 +288,15 @@ ApplicationWindow {
 
         Component.onCompleted: {
             screenDesktopComponents.loadScreen()
-        }
-
-        onStateChanged: {
-            //
+            //screenPlayground.loadScreen()
         }
 
         // Initial state
         state: "MainView"
+
+        onStateChanged: {
+            //
+        }
 
         states: [
             State {

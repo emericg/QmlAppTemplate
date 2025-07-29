@@ -2,8 +2,8 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Window
 
-import QmlAppTemplate
 import ComponentLibrary
+import QmlAppTemplate
 import MobileUI
 
 ApplicationWindow {
@@ -38,7 +38,35 @@ ApplicationWindow {
 
     Connections {
         target: Screen
-        function onOrientationChanged() { mobileUI.handleSafeAreas() }
+        function onOrientationChanged() {
+            mobileUI.handleSafeAreas()
+            rotateTimer1.start()
+            rotateTimer2.start()
+            rotateTimer3.start()
+        }
+    }
+    Connections {
+        target: Theme
+        function onCurrentThemeChanged() { mobileUI.handleSafeAreas() }
+    }
+
+    Timer {
+        id: rotateTimer1
+        interval: 40
+        running: false; repeat: false;
+        onTriggered: { mobileUI.handleSafeAreas() }
+    }
+    Timer {
+        id: rotateTimer2
+        interval: 128
+        running: false; repeat: false;
+        onTriggered: { mobileUI.handleSafeAreas() }
+    }
+    Timer {
+        id: rotateTimer3
+        interval: 256
+        running: false; repeat: false;
+        onTriggered: { mobileUI.handleSafeAreas() }
     }
 
     MobileUI {
@@ -47,6 +75,7 @@ ApplicationWindow {
         statusbarColor: "transparent"
         statusbarTheme: Theme.themeStatusbar
         navbarColor: Theme.colorBackground
+        navbarTheme: Theme.themeStatusbar
 
         Component.onCompleted: handleSafeAreas()
 
@@ -55,6 +84,8 @@ ApplicationWindow {
             // safe areas are only taken into account when using maximized geometry / full screen mode
 
             mobileUI.refreshUI() // hack
+
+            mobileUI.statusbarTheme = Theme.themeStatusbar // hack
 
             if (appWindow.visibility === Window.FullScreen ||
                 appWindow.flags & Qt.MaximizeUsingFullscreenGeometryHint) {
@@ -143,10 +174,6 @@ ApplicationWindow {
 
     // Events handling /////////////////////////////////////////////////////////
 
-    Component.onCompleted: {
-        //
-    }
-
     Connections {
         target: appHeader
         function onLeftMenuClicked() {
@@ -213,8 +240,9 @@ ApplicationWindow {
             screenAbout.loadScreen()
         }
     }
+
     function forwardAction() {
-        //
+        // nothing
     }
 
     // UI sizes ////////////////////////////////////////////////////////////////
@@ -239,7 +267,7 @@ ApplicationWindow {
 
     // QML /////////////////////////////////////////////////////////////////////
 
-    onActiveFocusItemChanged: {
+    onActiveFocusItemChanged: { // DEBUG
         //console.log("activeFocusItem:" + activeFocusItem)
     }
 

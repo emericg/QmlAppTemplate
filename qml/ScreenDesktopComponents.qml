@@ -1265,7 +1265,13 @@ Loader {
                     }
                 }
 */
-                ////
+                ////////////////////////
+
+                ListSeparator {
+                    height: Theme.componentBorderWidth
+                    anchors.leftMargin: -24
+                    anchors.rightMargin: -24
+                }
 
                 Row {
                     anchors.left: parent.left
