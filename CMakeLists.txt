@@ -93,6 +93,7 @@ qt_add_qml_module(${CMAKE_PROJECT_NAME}
 
         qml/popups/PopupMessage.qml
         qml/popups/PopupChoice.qml
+        qml/popups/PopupBirthDate.qml
         qml/popups/PopupDate.qml
         qml/popups/PopupTime.qml
 )

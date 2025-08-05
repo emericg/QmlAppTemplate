@@ -6,7 +6,7 @@ import QtQuick.Controls
 import ComponentLibrary
 
 Popup {
-    id: popupDate
+    id: popupBirthDate
 
     x: singleColumn ? 0 : (appWindow.width / 2) - (width / 2)
     y: singleColumn ? (appWindow.height - height)
@@ -39,6 +39,11 @@ Popup {
     property var minDate: null
     property var maxDate: null
 
+    property int validatorBeforeToday: -1
+    property int validatorAfterToday: 0
+
+    property int currentView: 0 // 0: days; 1: years
+
     ////////
 
     signal updateDate(var newdate)
@@ -56,9 +61,13 @@ Popup {
         grid.year = date.getFullYear()
         grid.month = date.getMonth()
 
+        tumblerYear.positionViewAtYear(date.getFullYear(), Tumbler.Center)
+        tumblerMonth.positionViewAtIndex(date.getMonth(), Tumbler.Center)
+        currentView = 0
+
         printDate()
 
-        popupDate.open()
+        popupBirthDate.open()
     }
 
     function openDate_limits(newdatetime, min, max) {
@@ -72,11 +81,10 @@ Popup {
         bigDay.text = selectedDate.toLocaleString(locale, "dddd")
         bigDate.text = selectedDate.toLocaleString(locale, "dd MMMM yyyy")
 
-        var thismonth = new Date(grid.year, grid.month)
-        bigMonth.text = thismonth.toLocaleString(locale, "MMMM")
-
-        if (thismonth.getFullYear() !== today.getFullYear())
-            bigMonth.text += " " + thismonth.toLocaleString(locale, "yyyy")
+        //var thismonth = new Date(grid.year, grid.month)
+        //yearmonthButton.text = thismonth.toLocaleString(locale, "MMMM")
+        //if (thismonth.getFullYear() !== today.getFullYear())
+        //    yearmonthButton.text += " " + thismonth.toLocaleString(locale, "yyyy")
 
         isSelectedDateToday = (today.toLocaleString(locale, "dd MMMM yyyy") === selectedDate.toLocaleString(locale, "dd MMMM yyyy"))
     }
@@ -171,14 +179,14 @@ Popup {
 
                 Text {
                     id: bigDay
-                    text: popupDate.selectedDate.toLocaleString(popupDate.locale, "dddd") // "Vendredi"
+                    text: popupBirthDate.selectedDate.toLocaleString(popupBirthDate.locale, "dddd") // "Vendredi"
                     font.pixelSize: 24
                     font.capitalization: Font.Capitalize
                     color: "white"
                 }
                 Text {
                     id: bigDate
-                    text: popupDate.selectedDate.toLocaleString(popupDate.locale, "dd MMMM yyyy") // "15 octobre 2020"
+                    text: popupBirthDate.selectedDate.toLocaleString(popupBirthDate.locale, "dd MMMM yyyy") // "15 octobre 2020"
                     font.pixelSize: 20
                     color: "white"
                 }
@@ -193,14 +201,14 @@ Popup {
                 anchors.bottomMargin: 12
                 width: height
 
-                visible: !(grid.year === popupDate.today.getFullYear() && grid.month === popupDate.today.getMonth())
+                visible: !(grid.year === popupBirthDate.today.getFullYear() && grid.month === popupBirthDate.today.getMonth())
                 source: "qrc:/IconLibrary/material-icons/duotone/restart_alt.svg"
 
                 colorBackground: Theme.colorPrimary
                 colorHighlight: Qt.lighter(Theme.colorPrimary, 0.95)
                 colorIcon: "white"
 
-                onClicked: popupDate.resetView()
+                onClicked: popupBirthDate.resetView()
             }
         }
 
@@ -216,14 +224,14 @@ Popup {
 
             ////////
 
-            Rectangle { // month selector
+            Rectangle { // year/month selector
                 anchors.left: parent.left
                 anchors.leftMargin: Theme.componentBorderWidth
                 anchors.right: parent.right
                 anchors.rightMargin: Theme.componentBorderWidth
 
                 height: Theme.componentHeightXL
-                color: Theme.colorForeground
+                color: Theme.colorComponentBackground
 
                 SquareButtonSunken { // previous month
                     anchors.left: parent.left
@@ -243,18 +251,42 @@ Popup {
                             grid.month = 11
                             grid.year--
                         }
-                        popupDate.printDate()
+                        popupBirthDate.printDate()
                     }
                 }
 
-                Text {
-                    id: bigMonth
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.verticalCenter: parent.verticalCenter
-                    text: popupDate.selectedDate.toLocaleString(popupDate.locale, "MMMM") // "Octobre"
-                    font.capitalization: Font.Capitalize
-                    font.pixelSize: Theme.fontSizeContentBig
-                    color: Theme.colorText
+                Row { // day / yearmonth switch
+                    anchors.centerIn: parent
+                    spacing: Theme.componentMarginXL
+
+                    ButtonSunken {
+                        id: dayButton
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        text: popupBirthDate.selectedDate.toLocaleString(popupBirthDate.locale, "dd")
+                        font.capitalization: Font.Capitalize
+                        font.pixelSize: Theme.fontSizeContentBig
+
+                        colorBackground: (popupBirthDate.currentView === 0) ? Theme.colorBackground : Theme.colorComponentBackground
+                        colorHighlight: Theme.colorBackground
+                        colorBorder: (popupBirthDate.currentView === 0) ? Theme.colorComponentBorder : colorBackground
+
+                        onClicked: popupBirthDate.currentView = 0
+                    }
+                    ButtonSunken {
+                        id: yearmonthButton
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        text: popupBirthDate.selectedDate.toLocaleString(popupBirthDate.locale, "MMMM yyyy")
+                        font.capitalization: Font.Capitalize
+                        font.pixelSize: Theme.fontSizeContentBig
+
+                        colorBackground: (popupBirthDate.currentView === 1) ? Theme.colorBackground : Theme.colorComponentBackground
+                        colorHighlight: Theme.colorBackground
+                        colorBorder: (popupBirthDate.currentView === 1) ? Theme.colorComponentBorder : colorBackground
+
+                        onClicked: popupBirthDate.currentView = 1
+                    }
                 }
 
                 SquareButtonSunken { // next month
@@ -275,8 +307,93 @@ Popup {
                             grid.month = 0
                             grid.year++
                         }
-                        popupDate.printDate()
+                        popupBirthDate.printDate()
                     }
+                }
+            }
+
+            ////////////////
+
+            Row { // year/month
+                id: yearmonthSelector
+                anchors.horizontalCenter: parent.horizontalCenter
+                height: daysSelector.height
+
+                topPadding: Theme.componentMarginXL*2
+                bottomPadding: Theme.componentMarginXL*2
+                spacing: Theme.componentMarginXL
+
+                visible: (popupBirthDate.currentView === 1)
+
+                TumblerThemed {
+                    id: tumblerMonth
+                    anchors.verticalCenter: parent.verticalCenter
+
+                    width: 128
+                    height: parent.height
+                    font.pixelSize: Theme.fontSizeContentVeryBig
+                    visibleItemCount: 9
+
+                    //currentIndex: popupBirthDate.selectedDate.getMonth()
+                    onCurrentIndexChanged: {
+                        //console.log("tumbler month INDEX CHANGED " + currentIndex)
+                        popupBirthDate.selectedDate.setMonth(currentIndex)
+                        grid.month = currentIndex
+                        popupBirthDate.printDate()
+                    }
+
+                    model: 12
+                    delegate: Text {
+                        required property var modelData
+                        required property int index
+
+                        text: locale.monthName(modelData)
+                        textFormat: Text.PlainText
+                        font: tumblerMonth.font
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+
+                        color: (tumblerMonth.currentIndex === index) ? Theme.colorPrimary : Theme.colorText
+                        Behavior on color { ColorAnimation { duration: 133 } }
+
+                        opacity: 1.0 - Math.abs(Tumbler.displacement) / (tumblerMonth.visibleItemCount / 2)
+                    }
+                }
+
+                TumblerThemed {
+                    id: tumblerYear
+                    anchors.verticalCenter: parent.verticalCenter
+
+                    width: 128
+                    height: parent.height
+                    font.pixelSize: Theme.fontSizeContentVeryBig
+                    visibleItemCount: 9
+                    wrap: false
+
+                    //currentIndex: popupBirthDate.selectedDate.getFullYear()
+                    onCurrentIndexChanged: {
+                        //console.log("tumbler year INDEX CHANGED " + currentIndex + " " + currentItem.text)
+                        popupBirthDate.selectedDate.setYear(currentItem.text)
+                        grid.year = currentItem.text
+                        popupBirthDate.printDate()
+                    }
+
+                    function getYears(start, end) {
+                        var y = []
+                        while (end >= start) {
+                            y.push(end--)
+                        }
+                        return y
+                    }
+                    function positionViewAtYear(year, mode) {
+                        // 0 is this year
+                        // targetyear is popupBirthDate.today.getFullYear() - year
+                        var idx = popupBirthDate.today.getFullYear() - year
+                        //console.log("year " + year + " sould be index " + idx)
+                        positionViewAtIndex(idx, mode)
+                    }
+
+                    model: getYears(1924, popupBirthDate.today.getFullYear())
                 }
             }
 
@@ -289,12 +406,14 @@ Popup {
                 anchors.right: parent.right
                 anchors.rightMargin: 8
 
+                visible: (popupBirthDate.currentView === 0)
+
                 DayOfWeekRow {
                     id: dow
 
                     Layout.fillWidth: true
                     Layout.fillHeight: Theme.componentHeight
-                    //locale: popupDate.locale
+                    //locale: popupBirthDate.locale
 
                     delegate: Text {
                         text: shortName.substring(0, 1).toUpperCase()
@@ -309,7 +428,7 @@ Popup {
                     id: grid
 
                     Layout.fillWidth: true
-                    //locale: popupDate.locale
+                    //locale: popupBirthDate.locale
 
                     delegate: Text {
                         width: (grid.width / 7)
@@ -317,13 +436,13 @@ Popup {
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
 
-                        property bool isSelected: (day === popupDate.selectedDate.getDate() &&
-                                                   month === popupDate.selectedDate.getMonth() &&
-                                                   year === popupDate.selectedDate.getFullYear())
+                        property bool isSelected: (day === popupBirthDate.selectedDate.getDate() &&
+                                                   month === popupBirthDate.selectedDate.getMonth() &&
+                                                   year === popupBirthDate.selectedDate.getFullYear())
 
-                        property bool isToday: (day === popupDate.today.getDate() &&
-                                                month === popupDate.today.getMonth() &&
-                                                year === popupDate.today.getFullYear())
+                        property bool isToday: (day === popupBirthDate.today.getDate() &&
+                                                month === popupBirthDate.today.getMonth() &&
+                                                year === popupBirthDate.today.getFullYear())
 
                         text: day
                         font: grid.font
@@ -355,34 +474,34 @@ Popup {
                     onClicked: (date) => {
                         if (date.getMonth() === grid.month) {
                             // validate date (min / max)
-                            if (popupDate.minDate && popupDate.maxDate) {
-                                const diffMinTime = (popupDate.minDate - date)
+                            if (popupBirthDate.minDate && popupBirthDate.maxDate) {
+                                const diffMinTime = (popupBirthDate.minDate - date)
                                 const diffMinDays = -Math.ceil(diffMinTime / (1000 * 60 * 60 * 24) - 1)
                                 //console.log(diffMinDays + " diffMinDays")
-                                const diffMaxTime = (popupDate.minDate - date);
+                                const diffMaxTime = (popupBirthDate.minDate - date);
                                 const diffMaxDays = -Math.ceil(diffMaxTime / (1000 * 60 * 60 * 24) - 1)
                                 //console.log(diffMaxDays + " diffMaxDays")
 
                                 if (diffMinDays > -1 && diffMaxDays < 1) {
-                                    date.setHours(popupDate.selectedDate.getHours(),
-                                                  popupDate.selectedDate.getMinutes(),
-                                                  popupDate.selectedDate.getSeconds())
-                                    popupDate.selectedDate = date
+                                    date.setHours(popupBirthDate.selectedDate.getHours(),
+                                                  popupBirthDate.selectedDate.getMinutes(),
+                                                  popupBirthDate.selectedDate.getSeconds())
+                                    popupBirthDate.selectedDate = date
                                 }
                             } else {
-                                const diffTime = (popupDate.today - date)
+                                const diffTime = (popupBirthDate.today - date)
                                 const diffDays = -Math.ceil(diffTime / (1000 * 60 * 60 * 24) - 1)
                                 //console.log(diffDays + " days")
 
-                                // validate date (-21 / popupDate.today)
-                                if (diffDays > -21 && diffDays < 1) {
-                                    date.setHours(popupDate.selectedDate.getHours(),
-                                                  popupDate.selectedDate.getMinutes(),
-                                                  popupDate.selectedDate.getSeconds())
-                                    popupDate.selectedDate = date
+                                // validate date (-21 / popupBirthDate.today)
+                                if (/*diffDays > -21 &&*/ diffDays < 1) {
+                                    date.setHours(popupBirthDate.selectedDate.getHours(),
+                                                  popupBirthDate.selectedDate.getMinutes(),
+                                                  popupBirthDate.selectedDate.getSeconds())
+                                    popupBirthDate.selectedDate = date
                                 }
                             }
-                            popupDate.printDate()
+                            popupBirthDate.printDate()
                         }
                     }
                 }
@@ -411,7 +530,7 @@ Popup {
                 color: Theme.colorGrey
 
                 text: qsTr("Cancel")
-                onClicked: popupDate.close()
+                onClicked: popupBirthDate.close()
             }
 
             ButtonFlat {
@@ -419,8 +538,8 @@ Popup {
 
                 text: qsTr("Select")
                 onClicked: {
-                    popupDate.updateDate(popupDate.selectedDate)
-                    popupDate.close()
+                    popupBirthDate.updateDate(popupBirthDate.selectedDate)
+                    popupBirthDate.close()
                 }
             }
         }

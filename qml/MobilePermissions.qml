@@ -33,7 +33,7 @@ Item {
         id: retryPermissions
         interval: 1000
         repeat: false
-        onTriggered: refreshPermissions()
+        onTriggered: screenPermissions.refreshPermissions()
     }
 
     ////////////////////////////////////////////////////////////////////////////

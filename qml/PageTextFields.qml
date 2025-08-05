@@ -34,7 +34,7 @@ Flickable {
             anchors.right: parent.right
             anchors.rightMargin: Theme.componentMarginXL
 
-            text: "TextFieldThemed"
+            text: "TextEditThemed"
         }
 
         TextFieldThemed {

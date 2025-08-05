@@ -18,15 +18,20 @@ T.Button {
 
     // icon
     property url source
-    property int sourceSize: 24
+    property int sourceSize: 32
     property int sourceRotation: 0
 
     // colors
     property color colorContent: Theme.colorTabletmenuContent
     property color colorHighlight: Theme.colorTabletmenuHighlight
+    property color colorIndicator: Theme.colorPrimary
 
-    // animation
-    property bool animationRunning: false
+    // settings
+    property bool backgroundVisible: true
+
+    // activity indicator
+    property bool indicatorVisible: false
+    property bool indicatorAnimated: false
 
     ////////////////
 
@@ -67,6 +72,8 @@ T.Button {
                     color: control.colorHighlight
                     rotation: -control.sourceRotation
 
+                    visible: control.backgroundVisible
+
                     width: control.highlighted ? 60 : 0
                     Behavior on width { NumberAnimation { duration: 133 } }
 
@@ -82,15 +89,15 @@ T.Button {
                     width: 6
                     height: 6
                     radius: 6
-                    color: Theme.colorSuccess
-                    visible: control.animationRunning
+                    color: control.colorIndicator
+                    visible: control.indicatorVisible
 
                     SequentialAnimation on opacity { // fade animation
                         loops: Animation.Infinite
-                        running: control.animationRunning
+                        running: control.indicatorAnimated
                         onStopped: opacity = 1
-                        PropertyAnimation { to: 0.88; duration: 666; }
-                        PropertyAnimation { to: 0.44; duration: 666; }
+                        PropertyAnimation { to: 0.92; duration: 666; }
+                        PropertyAnimation { to: 0.33; duration: 666; }
                     }
                 }
             }

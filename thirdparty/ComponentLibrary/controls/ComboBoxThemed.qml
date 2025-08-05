@@ -34,12 +34,14 @@ T.ComboBox {
     ////////////////
 
     contentItem: Text {
+        rightPadding: indicator.width
+        verticalAlignment: Text.AlignVCenter
+
         text: control.displayText
         textFormat: Text.PlainText
 
         font: control.font
         elide: Text.ElideRight
-        verticalAlignment: Text.AlignVCenter
 
         opacity: control.enabled ? 1 : 0.66
         color: Theme.colorComponentContent

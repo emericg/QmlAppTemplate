@@ -148,11 +148,11 @@ ApplicationWindow {
 
     Shortcut {
         sequences: [StandardKey.Back, StandardKey.Backspace]
-        onActivated: backAction()
+        onActivated: appWindow.backAction()
     }
     Shortcut {
         sequences: [StandardKey.Forward]
-        onActivated: forwardAction()
+        onActivated: appWindow.forwardAction()
     }
     Shortcut {
         sequences: [StandardKey.Preferences]
@@ -168,7 +168,7 @@ ApplicationWindow {
     }
     Shortcut {
         sequences: [StandardKey.Quit]
-        onActivated: appWindow.exit(0)
+        onActivated: appWindow.cleanExit()
     }
 
     // UI sizes ////////////////////////////////////////////////////////////////

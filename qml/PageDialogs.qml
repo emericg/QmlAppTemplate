@@ -95,6 +95,23 @@ Flickable {
             anchors.right: parent.right
             anchors.rightMargin: Theme.componentMarginXL
 
+            text: "BirthDate"
+            source: "qrc:/IconLibrary/material-icons/duotone/date_range.svg"
+
+            PopupBirthDate {
+                id: popupBirthDate
+                onUpdateDate: (newdate) => { savethedate = newdate }
+            }
+
+            onClicked: popupBirthDate.openDate(savethedate)
+        }
+
+        ButtonSolid {
+            anchors.left: parent.left
+            anchors.leftMargin: Theme.componentMarginXL
+            anchors.right: parent.right
+            anchors.rightMargin: Theme.componentMarginXL
+
             text: "Time"
             source: "qrc:/IconLibrary/material-icons/duotone/schedule.svg"
 

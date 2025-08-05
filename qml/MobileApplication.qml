@@ -180,7 +180,7 @@ ApplicationWindow {
             if (appContent.state === "MobileComponents" && screenMobileComponents.stackViewDepth <= 1) {
                 appDrawer.open()
             } else {
-                backAction()
+                appWindow.backAction()
             }
         }
         function onRightMenuClicked() {
@@ -282,7 +282,7 @@ ApplicationWindow {
         anchors.bottom: mobileMenu.top
 
         focus: true
-        Keys.onBackPressed: backAction()
+        Keys.onBackPressed: appWindow.backAction()
 
         ScreenMobileComponents {
             id: screenMobileComponents
