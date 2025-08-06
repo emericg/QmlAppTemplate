@@ -195,7 +195,6 @@ qt_add_qml_module(ComponentLibrary
     URI ComponentLibrary
     VERSION 1.0
     DEPENDENCIES QtCore QtQuick LabsQmlModels
-    RESOURCE_PREFIX "/ComponentLibrary"
     QML_FILES ${MODULE_QML_FILES} ${MODULE_JS_FILES}
     RESOURCES ${MODULE_ASSETS}
     SOURCES ${MODULE_SOURCES}
