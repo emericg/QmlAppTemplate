@@ -51,7 +51,7 @@ qt_add_executable(${CMAKE_PROJECT_NAME}
     src/main.cpp
     src/SettingsManager.cpp src/SettingsManager.h
     assets/assets.qrc
-    thirdparty/IconLibrary/IconLibrary.qrc
+    thirdparty/IconLibrary/IconLibrary_material.qrc
     ${app_icon_windows}
     ${app_icon_macos}
 )
