@@ -241,7 +241,7 @@ public class QShareUtils
         Uri fileUri = FileProvider.getUriForFile(context, context.getPackageName() + ".fileprovider", file);
 
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
-        shareIntent.setType(mimeType);
+        shareIntent.setDataAndType(fileUri, mimeType);
         shareIntent.putExtra(Intent.EXTRA_STREAM, fileUri);
         shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
@@ -298,7 +298,7 @@ public class QShareUtils
         Uri fileUri = FileProvider.getUriForFile(context, context.getPackageName() + ".fileprovider", file);
 
         Intent shareIntent = new Intent(Intent.ACTION_VIEW);
-        shareIntent.setType(mimeType);
+        shareIntent.setDataAndType(fileUri, mimeType);
         shareIntent.putExtra(Intent.EXTRA_STREAM, fileUri);
         shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 

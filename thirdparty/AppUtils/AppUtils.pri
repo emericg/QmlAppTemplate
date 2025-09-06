@@ -39,7 +39,6 @@ versionAtLeast(QT_VERSION, 6.6) {
 # Linux OS utils
 linux:!android {
     QT += dbus
-
     SOURCES += $${PWD}/utils_os_linux.cpp
     HEADERS += $${PWD}/utils_os_linux.h
 }

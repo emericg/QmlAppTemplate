@@ -6,7 +6,7 @@ import ComponentLibrary
 import QmlAppTemplate
 import MobileUI
 
-ApplicationWindow {
+Window {
     id: appWindow
     minimumWidth: 480
     minimumHeight: 960
@@ -74,6 +74,7 @@ ApplicationWindow {
 
         statusbarColor: "transparent"
         statusbarTheme: Theme.themeStatusbar
+
         navbarColor: Theme.colorBackground
         navbarTheme: Theme.themeStatusbar
 

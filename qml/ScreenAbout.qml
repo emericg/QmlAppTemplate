@@ -294,7 +294,7 @@ Loader {
                             "MobileUI (MIT)",
                             "MobileSharing (MIT)",
                             "SingleApplication (MIT)",
-                            "Google Material Icons (MIT)",
+                            "Google Material Icons (Apache v2)",
                         ]
                         delegate: Text {
                             anchors.left: parent.left
