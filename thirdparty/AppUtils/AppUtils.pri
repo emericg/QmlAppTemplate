@@ -39,6 +39,7 @@ versionAtLeast(QT_VERSION, 6.6) {
 # Linux OS utils
 linux:!android {
     QT += dbus
+
     SOURCES += $${PWD}/utils_os_linux.cpp
     HEADERS += $${PWD}/utils_os_linux.h
 }
@@ -46,6 +47,7 @@ linux:!android {
 # macOS utils
 macx {
     LIBS    += -framework IOKit
+
     SOURCES += $${PWD}/utils_os_macos.mm
     HEADERS += $${PWD}/utils_os_macos.h
 
@@ -53,6 +55,7 @@ macx {
     UTILS_DOCK_ENABLED {
         DEFINES += UTILS_DOCK_ENABLED
         LIBS    += -framework AppKit
+
         SOURCES += $${PWD}/utils_os_macos_dock.mm
         HEADERS += $${PWD}/utils_os_macos_dock.h
     }
@@ -61,6 +64,7 @@ macx {
 # Windows OS utils
 win32 {
     DEFINES += _USE_MATH_DEFINES
+
     SOURCES += $${PWD}/utils_os_windows.cpp
     HEADERS += $${PWD}/utils_os_windows.h
 }
@@ -68,8 +72,8 @@ win32 {
 # Android OS utils
 android {
     DEFINES += UTILS_NOTIFICATIONS_ENABLED UTILS_WIFI_ENABLED
-
     QT += core-private
+
     SOURCES += $${PWD}/utils_os_android.cpp
     HEADERS += $${PWD}/utils_os_android.h
 }
@@ -77,6 +81,7 @@ android {
 # iOS utils
 ios {
     LIBS    += -framework UIKit
+
     SOURCES += $${PWD}/utils_os_ios.mm
     HEADERS += $${PWD}/utils_os_ios.h
 
@@ -84,6 +89,7 @@ ios {
     UTILS_NOTIFICATIONS_ENABLED {
         DEFINES += UTILS_NOTIFICATIONS_ENABLED
         LIBS    += -framework UserNotifications
+
         SOURCES += $${PWD}/utils_os_ios_notif.mm
         HEADERS += $${PWD}/utils_os_ios_notif.h
     }
@@ -92,6 +98,7 @@ ios {
     UTILS_WIFI_ENABLED {
         DEFINES += UTILS_WIFI_ENABLED
         LIBS    += -framework SystemConfiguration
+
         SOURCES += $${PWD}/utils_os_ios_wifi.mm
         HEADERS += $${PWD}/utils_os_ios_wifi.h
     }
