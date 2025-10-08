@@ -1,4 +1,7 @@
 
+# Optional stuff
+#CONFIG += UTILS_QT_RHI
+
 # Optional stuff (for macOS)
 #CONFIG += UTILS_DOCK_ENABLED
 
@@ -32,8 +35,11 @@ HEADERS += $${PWD}/utils_app.h \
 
 INCLUDEPATH += $${PWD}
 
-versionAtLeast(QT_VERSION, 6.6) {
-    QT += gui-private # to get RHI info
+# to get RHI info (optional)
+UTILS_QT_RHI {
+    versionAtLeast(QT_VERSION, 6.6) {
+        QT += gui-private
+    }
 }
 
 # Linux OS utils
