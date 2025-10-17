@@ -8,7 +8,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
 # Use that find_package() call in the root project:
-find_package(Qt6 6.7 REQUIRED COMPONENTS Core Gui Qml)
+find_package(Qt6 6.5 REQUIRED COMPONENTS Core Gui Qml)
 
 ################################################################################
 

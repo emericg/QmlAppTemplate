@@ -11,26 +11,28 @@ A Qt6 / QML application template, with a full set of visual controls, helper mod
 
 #### Prerequisites
 
-You will need a C++17 compiler and Qt 6.7+.  
+You will need a C++17 compiler and Qt 6.8+.  
 
 For macOS and iOS builds, you'll need Xcode (15+) installed.  
-For windows builds, you'll need MSVC 2019 (or 2022) installed.  
-For Android builds, you'll need the appropriates JDK (17) SDK (28+) and NDK (26b+). You can customize Android build environment using the `assets/android/gradle.properties` file.  
+For Windows builds, you'll need MSVC 2022 installed.  
+For Android builds, you'll need the appropriates JDK (17) SDK (28+) and NDK (28+). You can customize Android build environment using the `assets/android/gradle.properties` file.  
 
-> https://doc.qt.io/qt-6.7/supported-platforms.html
+> https://doc.qt.io/qt-6.8/supported-platforms.html
 
 #### Supported platforms
 
 - Linux (Ubuntu 22.04+)
-- macOS 11+
+- macOS 12+
 - Windows 10+
-- Android 8+
-- iOS 14+
+- Android 9+
+- iOS 16+
 
 #### Recent changes
 
 Qt 6.8 brings big changes and hard platform requirements, so I took this "opportunity"
 to modernize this template a bit. Let's embrace breaking everything! Again.
+
+Qt 6.x "minor" versions are full of major breakages, it's just too much work to support a matrix of many different versions or build systems.
 
 QmlAppTemplate is now **cmake only**. Maintaining both cmake and qmake variants
 of many things was just too much work, and both sides were suffering of less than
@@ -96,6 +98,7 @@ These files are also useful to get an idea about the whole build and deploy proc
 ![GUI_MOBILE](https://i.imgur.com/gbwRel0.png)
 
 ![GUI_DESKTOP1](https://i.imgur.com/4QGJn5G.png)
+
 ![GUI_DESKTOP2](https://i.imgur.com/e0VWdYz.png)
 
 ## Licensing
