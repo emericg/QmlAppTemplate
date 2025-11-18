@@ -33,13 +33,14 @@ env:
 ## Android upload:
 # - https://developers.google.com/android-publisher/getting_started
 # - https://github.com/fastlane/fastlane/blob/master/fastlane/lib/fastlane/actions/docs/upload_to_play_store.md
-# create the gplay service account, download the json key, convert it to base64
+# (a valid google developer account is required)
+# create the google play service account, download the json key, convert it to base64
 # save the base64 under the name GPLAY_SERVICEACCOUNTKEY_BASE64
 
 ## Apple secrets:
 # - https://developer.apple.com/help/account/reference/certificate-types
 # - https://docs.github.com/en/actions/deployment/deploying-xcode-applications/installing-an-apple-certificate-on-macos-runners-for-xcode-development
-# a valid apple developer account is required
+# (a valid apple developer account is required)
 # create a build certificate with xcode, download it, convert it to base64
 # save the build certificate base64 file under the name APPLE_BUILD_CERTIFICATE_BASE64
 # save the build certificate password under the name APPLE_BUILD_CERTIFICATE_PASSWORD
@@ -73,14 +74,14 @@ jobs:
       #    distribution: 'temurin'
       #    java-version: '17'
 
-      # Android environment (already installed in 'ubuntu-24.04')
-      #- name: Setup Android environment
-      #  uses: android-actions/setup-android@v3
-      #- name: Install Android SDK / NDK / tools
-      #  run: |
-      #       sdkmanager "platforms;android-36"
-      #       sdkmanager "ndk;26.1.10909125"
-      #       sdkmanager "build-tools;36.0.0"
+      # Android environment
+      - name: Setup Android environment
+        uses: android-actions/setup-android@v3
+      - name: Install Android SDK / NDK / tools
+        run: |
+             sdkmanager "platforms;android-36"
+             sdkmanager "ndk;28.2.13676358"
+             sdkmanager "build-tools;36.1.0"
 
       # Install Qt (desktop & Android)
       - name: Install Qt (desktop)
@@ -128,10 +129,11 @@ jobs:
       # Setup env
       - name: Setup env
         run: |
-             echo "QT_HOST_PATH=/home/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/gcc_64" >> $GITHUB_ENV
-             echo "QT_TARGET_PATH=/home/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/android_arm64_v8a" >> $GITHUB_ENV
+             echo "QT_HOST_PATH=/home/runner/work/${{github.event.repository.name}}/Qt/${{env.QT_VERSION}}/gcc_64" >> $GITHUB_ENV
+             echo "QT_TARGET_PATH=/home/runner/work/${{github.event.repository.name}}/Qt/${{env.QT_VERSION}}/android_arm64_v8a" >> $GITHUB_ENV
              qmake --version
              cmake --version
+             ninja --version
 
       # Build application
       - name: Build application
@@ -144,7 +146,7 @@ jobs:
                -DCMAKE_PREFIX_PATH:PATH=${{env.QT_TARGET_PATH}} \
                -DANDROID_SDK_ROOT=$ANDROID_SDK_ROOT \
                -DANDROID_NDK_ROOT=$ANDROID_NDK_ROOT \
-               -DANDROID_PLATFORM=android-23 \
+               -DANDROID_PLATFORM=android-28 \
                -DANDROID_ABI="arm64-v8a" \
                -DQT_HOST_PATH:PATH=${{env.QT_HOST_PATH}} \
                -DQT_ANDROID_BUILD_ALL_ABIS=ON \
@@ -204,10 +206,11 @@ jobs:
       # Setup env
       - name: Setup env
         run: |
-             echo "QT_HOST_PATH=/Users/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/macos" >> $GITHUB_ENV
-             echo "QT_TARGET_PATH=/Users/runner/work/${{env.APP_NAME}}/Qt/${{env.QT_VERSION}}/ios" >> $GITHUB_ENV
+             echo "QT_HOST_PATH=/Users/runner/work/${{github.event.repository.name}}/Qt/${{env.QT_VERSION}}/macos" >> $GITHUB_ENV
+             echo "QT_TARGET_PATH=/Users/runner/work/${{github.event.repository.name}}/Qt/${{env.QT_VERSION}}/ios" >> $GITHUB_ENV
              qmake --version
              cmake --version
+             ninja --version
 
       # Build application
       - name: Build application
