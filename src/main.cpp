@@ -27,20 +27,13 @@ int main(int argc, char *argv[])
 {
     // Hacks ///////////////////////////////////////////////////////////////////
 
-#if defined(Q_OS_LINUX) && !defined(Q_OS_ANDROID)
-    // NVIDIA driver suspend&resume hack
-    auto format = QSurfaceFormat::defaultFormat();
-    format.setOption(QSurfaceFormat::ResetNotification);
-    QSurfaceFormat::setDefaultFormat(format);
-#endif
-
 #if !defined(Q_OS_ANDROID) && !defined(Q_OS_IOS)
     // Qt 6.6+ mouse wheel hack
     qputenv("QT_QUICK_FLICKABLE_WHEEL_DECELERATION", "10000");
 #endif
 
-    // Force OpenGL for Qt WebEngine or the MapLibre plugin
-    //qputenv("QSG_RHI_BACKEND", "opengl");
+    //qputenv("QT_QPA_PLATFORM", "xcb");      // Force xcb / wayland ?
+    //qputenv("QSG_RHI_BACKEND", "vulkan");   // Force opengl / vulkan ?
 
     // DEBUG ///////////////////////////////////////////////////////////////////
 
