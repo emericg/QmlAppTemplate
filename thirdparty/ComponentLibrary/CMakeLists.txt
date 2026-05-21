@@ -1,12 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 
-qt_add_library(ComponentLibrary STATIC)
-
 ################################################################################
-
-list(APPEND MODULE_ASSETS
-    #
-)
 
 list(APPEND MODULE_QML_FILES
     ThemeEngine.qml
@@ -143,7 +137,7 @@ list(APPEND MODULE_QML_FILES
     utils/WindowGeometrySaver.qml
 )
 
-if(TARGET Qt::Location)
+if(TARGET Qt6::Location)
     list(APPEND MODULE_QML_FILES
         maps/MapButton.qml
         maps/MapButtonCompass.qml
@@ -176,6 +170,10 @@ list(APPEND MODULE_SOURCES
     #
 )
 
+list(APPEND MODULE_ASSETS
+    #
+)
+
 ################################################################################
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
@@ -190,12 +188,11 @@ set_source_files_properties(ThemeEngine.qml PROPERTIES
     QT_QML_SOURCE_TYPENAME Theme
 )
 
-set_target_properties(ComponentLibrary PROPERTIES AUTOMOC ON)
-set_target_properties(ComponentLibrary PROPERTIES AUTORCC ON)
+################################################################################
 
 find_package(Qt6 6.5 REQUIRED COMPONENTS Core Quick QuickControls2)
-target_link_libraries(ComponentLibrary PRIVATE Qt6::Core Qt6::Quick Qt6::QuickControls2)
-target_include_directories(ComponentLibrary PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+
+qt_add_library(ComponentLibrary STATIC)
 
 qt_add_qml_module(ComponentLibrary
     URI ComponentLibrary
@@ -205,3 +202,9 @@ qt_add_qml_module(ComponentLibrary
     RESOURCES ${MODULE_ASSETS}
     SOURCES ${MODULE_SOURCES}
 )
+
+target_link_libraries(ComponentLibrary PUBLIC Qt6::Core Qt6::Quick Qt6::QuickControls2)
+
+target_include_directories(ComponentLibrary PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+
+################################################################################

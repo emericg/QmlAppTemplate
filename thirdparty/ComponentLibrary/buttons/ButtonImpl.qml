@@ -26,6 +26,7 @@ T.Button {
     checkable: false
     hoverEnabled: isDesktop
     focusPolicy: Qt.NoFocus
+    property int radius: Theme.componentRadius
 
     // layout
     property int layoutAlignment: Qt.AlignCenter // Qt.AlignLeft // Qt.AlignRight
@@ -56,7 +57,7 @@ T.Button {
 
         Rectangle {
             anchors.fill: parent
-            radius: Theme.componentRadius
+            radius: control.radius
             color: control.colorBackground
             border.width: Theme.componentBorderWidth
             border.color: control.colorBorder
@@ -90,7 +91,7 @@ T.Button {
                         y: background.y
                         width: background.width
                         height: background.height
-                        radius: Theme.componentRadius
+                        radius: control.radius
                     }
                 }
             }

@@ -879,7 +879,7 @@ Item {
             colorActionbarHighlight     = "#7ab800"
 
             colorTabletmenu             = "#f3f3f3"
-            colorTabletmenuContent      = "#9d9d9d"
+            colorTabletmenuContent      = "#909090"
             colorTabletmenuHighlight    = "#0079fe"
 
             colorBackground             = "white"

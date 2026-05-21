@@ -47,7 +47,7 @@ T.Button {
         color: control.backgroundColor
 
         opacity: {
-            if (control.hovered) {
+            if (control.hovered || control.pressed) {
                return (control.highlightMode === "circle" ||
                        control.highlightMode === "both" ||
                        control.backgroundVisible) ? 1 : 0.75
