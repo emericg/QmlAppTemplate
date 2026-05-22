@@ -48,12 +48,12 @@ qt_policy(SET QTP0004 NEW)
 
 # Set app desktop icons
 if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
-    set(app_icon_windows "${CMAKE_SOURCE_DIR}/assets/windows/${CMAKE_PROJECT_NAME}.rc")
+    set(app_icon_windows "${PROJECT_SOURCE_DIR}/assets/windows/${PROJECT_NAME}.rc")
 elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
-    set(app_icon_macos "${CMAKE_SOURCE_DIR}/assets/macos/${CMAKE_PROJECT_NAME}.icns")
+    set(app_icon_macos "${PROJECT_SOURCE_DIR}/assets/macos/${PROJECT_NAME}.icns")
 endif()
 
-qt_add_executable(${CMAKE_PROJECT_NAME}
+qt_add_executable(${PROJECT_NAME}
     src/main.cpp
     src/SettingsManager.cpp src/SettingsManager.h
     assets/assets.qrc
@@ -62,8 +62,8 @@ qt_add_executable(${CMAKE_PROJECT_NAME}
     thirdparty/IconLibrary/IconLibrary_material.qrc
 )
 
-qt_add_qml_module(${CMAKE_PROJECT_NAME}
-    URI ${CMAKE_PROJECT_NAME}
+qt_add_qml_module(${PROJECT_NAME}
+    URI ${PROJECT_NAME}
     NO_PLUGIN
     QML_FILES
         qml/MobileApplication.qml
@@ -103,9 +103,9 @@ qt_add_qml_module(${CMAKE_PROJECT_NAME}
         qml/popups/PopupTime.qml
 )
 
-qt_add_translations(${CMAKE_PROJECT_NAME}
-    TS_FILE_BASE ${CMAKE_PROJECT_NAME}
-    TS_FILE_DIR ${CMAKE_SOURCE_DIR}/i18n/
+qt_add_translations(${PROJECT_NAME}
+    TS_FILE_BASE ${PROJECT_NAME}
+    TS_FILE_DIR ${PROJECT_SOURCE_DIR}/i18n/
     RESOURCE_PREFIX "/i18n"
 )
 
@@ -119,7 +119,7 @@ function(add_other_files target)
     endforeach()
 endfunction()
 
-add_other_files(${CMAKE_PROJECT_NAME}
+add_other_files(${PROJECT_NAME}
     README.md LICENSE.md
     deploy_linux.sh deploy_macos.sh deploy_windows.sh
     .github/workflows/builds_desktop_cmake.yml
@@ -134,23 +134,22 @@ add_other_files(${CMAKE_PROJECT_NAME}
 set(UTILS_QT_RHI ON)
 set(UTILS_DOCK_ENABLED ON)
 add_subdirectory(thirdparty/AppUtils)
-target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE AppUtils)
+target_link_libraries(${PROJECT_NAME} PRIVATE AppUtils)
 
 # ComponentLibrary
 add_subdirectory(thirdparty/ComponentLibrary)
-target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE ComponentLibraryplugin)
-#set(QML_IMPORT_PATH "${CMAKE_BINARY_DIR}/thirdparty" CACHE STRING "") # ???
+target_link_libraries(${PROJECT_NAME} PRIVATE ComponentLibrary_plugin)
 
 # SingleApplication
 add_subdirectory(thirdparty/SingleApplication)
-target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE SingleApplication)
+target_link_libraries(${PROJECT_NAME} PRIVATE SingleApplication)
 
 # MobileUI
 add_subdirectory(thirdparty/MobileUI)
-target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE MobileUI)
+target_link_libraries(${PROJECT_NAME} PRIVATE MobileUI MobileUI_plugin)
 
 # Qt libraries
-target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE
+target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt6::Core
     Qt6::Gui
     Qt6::Svg
@@ -159,15 +158,23 @@ target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE
     Qt6::QuickControls2
 )
 
-target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE src/)
-target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE thirdparty/)
+target_include_directories(${PROJECT_NAME} PRIVATE src/)
+target_include_directories(${PROJECT_NAME} PRIVATE thirdparty/)
 
-set(QT_QML_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}) # Usual Qt official hacks...
+# Qt official hacks...
+set(QML_IMPORT_PATH
+    "${CMAKE_BINARY_DIR}/thirdparty/"
+    "${CMAKE_BINARY_DIR}/thirdparty/MobileUI"
+    "${CMAKE_BINARY_DIR}/thirdparty/ComponentLibrary"
+    CACHE STRING "QML Modules import paths" FORCE)
+
+# Qt official hacks...
+set(QT_QML_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
 ################################################################################
 
 ## Release build? Set "no debug" macros
-target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
+target_compile_definitions(${PROJECT_NAME} PRIVATE
     $<$<CONFIG:Release>:NDEBUG>
     $<$<CONFIG:Release>:QT_NO_DEBUG>
     $<$<CONFIG:Release>:QT_NO_DEBUG_OUTPUT>
@@ -175,69 +182,87 @@ target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
 
 ################################################################################
 
+include(GNUInstallDirs)
+
 ## Linux
 if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
-    # System install rules
-    install(TARGETS ${CMAKE_PROJECT_NAME} RUNTIME DESTINATION bin/)
-    install(FILES ${CMAKE_SOURCE_DIR}/assets/linux/${CMAKE_PROJECT_NAME}.desktop DESTINATION share/applications/)
-    install(FILES ${CMAKE_SOURCE_DIR}/assets/linux/${CMAKE_PROJECT_NAME}.appdata.xml DESTINATION share/appdata/)
-    install(FILES ${CMAKE_SOURCE_DIR}/assets/linux/${CMAKE_PROJECT_NAME}.svg DESTINATION share/pixmaps/)
-    install(FILES ${CMAKE_SOURCE_DIR}/assets/linux/${CMAKE_PROJECT_NAME}.svg DESTINATION share/icons/hicolor/scalable/apps/)
-    install(FILES ${CMAKE_SOURCE_DIR}/LICENSE.md DESTINATION share/licenses/${CMAKE_PROJECT_NAME}/)
+    install(FILES ${PROJECT_SOURCE_DIR}/assets/linux/${PROJECT_NAME}.desktop DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications/)
+    install(FILES ${PROJECT_SOURCE_DIR}/assets/linux/${PROJECT_NAME}.appdata.xml DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/appdata/)
+    install(FILES ${PROJECT_SOURCE_DIR}/assets/linux/${PROJECT_NAME}.svg DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/pixmaps/)
+    install(FILES ${PROJECT_SOURCE_DIR}/assets/linux/${PROJECT_NAME}.svg DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/scalable/apps/)
+    install(FILES ${PROJECT_SOURCE_DIR}/LICENSE.md DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/licenses/${PROJECT_NAME}/)
 endif()
-
-## Android
-if(CMAKE_SYSTEM_NAME STREQUAL "Android")
-    set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
-        #QT_ANDROID_ABIS "armeabi-v7a;arm64-v8a;x86;x86_64"
-        #QT_ANDROID_BUILD_ALL_ABIS ON
-        QT_ANDROID_MIN_SDK_VERSION 28
-        QT_ANDROID_TARGET_SDK_VERSION 36
-        QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_SOURCE_DIR}/assets/android/"
-    )
-endif()
-
-#if(APPLE)
-#    set(CMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_REQUIRED "NO")
-#    set(CMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "")
-#    set(CMAKE_XCODE_ATTRIBUTE_DEVELOPMENT_TEAM "")
-#    set(CMAKE_XCODE_ATTRIBUTE_PROVISIONING_PROFILE "")
-#endif()
 
 ## macOS
 if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     #set(CMAKE_OSX_ARCHITECTURES "x86_64;arm64")
     set(CMAKE_OSX_DEPLOYMENT_TARGET "12.0")
 
-    set(app_icon_macos "${CMAKE_SOURCE_DIR}/assets/macos/${CMAKE_PROJECT_NAME}.icns")
+    set(app_icon_macos "${PROJECT_SOURCE_DIR}/assets/macos/${PROJECT_NAME}.icns")
     set_source_files_properties(${app_icon_macos} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
 
-    set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
+    set_target_properties(${PROJECT_NAME} PROPERTIES
         MACOSX_BUNDLE ON
-        MACOSX_BUNDLE_INFO_PLIST "${CMAKE_SOURCE_DIR}/assets/macos/Info.plist"
+        MACOSX_BUNDLE_INFO_PLIST "${PROJECT_SOURCE_DIR}/assets/macos/Info.plist"
         # New Xcode attributes (???)
         XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER           "io.emeric.qmlapptemplate"
-        XCODE_ATTRIBUTE_PRODUCT_NAME                        ${CMAKE_PROJECT_NAME}
-        XCODE_ATTRIBUTE_CURRENT_PROJECT_VERSION             ${CMAKE_PROJECT_VERSION}
+        XCODE_ATTRIBUTE_PRODUCT_NAME                        ${PROJECT_NAME}
+        XCODE_ATTRIBUTE_CURRENT_PROJECT_VERSION             ${PROJECT_VERSION}
         XCODE_ATTRIBUTE_MARKETING_VERSION                   ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
-        XCODE_ATTRIBUTE_CODE_SIGN_ENTITLEMENTS             "${CMAKE_SOURCE_DIR}/assets/macos/${CMAKE_PROJECT_NAME}.entitlements"
+        XCODE_ATTRIBUTE_CODE_SIGN_ENTITLEMENTS             "${PROJECT_SOURCE_DIR}/assets/macos/${PROJECT_NAME}.entitlements"
     )
+endif()
+
+## Windows
+if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    set_target_properties(${PROJECT_NAME} PROPERTIES
+        WIN32_EXECUTABLE ON
+    )
+endif()
+
+################################################################################
+
+## Android
+if(CMAKE_SYSTEM_NAME STREQUAL "Android")
+    set_target_properties(${PROJECT_NAME} PROPERTIES
+        #QT_ANDROID_ABIS "armeabi-v7a;arm64-v8a;x86;x86_64"
+        #QT_ANDROID_BUILD_ALL_ABIS ON
+        QT_ANDROID_MIN_SDK_VERSION 28
+        QT_ANDROID_TARGET_SDK_VERSION 36
+        QT_ANDROID_PACKAGE_SOURCE_DIR "${PROJECT_SOURCE_DIR}/assets/android/"
+    )
+
+    # Support 16 KB page sizes / pre NDK28
+    target_link_options(${PROJECT_NAME} PUBLIC "-Wl,-z,max-page-size=16384")
+
+    ## Download SSL Libraries
+    #include(FetchContent)
+    #FetchContent_Declare(
+    #    android_openssl
+    #    DOWNLOAD_EXTRACT_TIMESTAMP true
+    #    URL https://github.com/KDAB/android_openssl/archive/refs/heads/master.zip
+    #)
+    #FetchContent_MakeAvailable(android_openssl)
+
+    ## Include SSL Libraries
+    #include(${android_openssl_SOURCE_DIR}/android_openssl.cmake)
+    #add_android_openssl_libraries(${PROJECT_NAME})
 endif()
 
 ## iOS
 if(CMAKE_SYSTEM_NAME STREQUAL "iOS")
-    #set(app_icon_ios "${CMAKE_SOURCE_DIR}/assets/ios/Assets.xcassets")
+    #set(app_icon_ios "${PROJECT_SOURCE_DIR}/assets/ios/Assets.xcassets")
     #set_source_files_properties(${app_icon_ios} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
 
-    set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
+    set_target_properties(${PROJECT_NAME} PROPERTIES
         MACOSX_BUNDLE ON
-        MACOSX_BUNDLE_INFO_PLIST "${CMAKE_SOURCE_DIR}/assets/ios/Info.plist"
+        MACOSX_BUNDLE_INFO_PLIST "${PROJECT_SOURCE_DIR}/assets/ios/Info.plist"
         # Qt
-        #QT_IOS_LAUNCH_SCREEN "${CMAKE_SOURCE_DIR}/assets/ios/LaunchScreen.storyboard"
+        #QT_IOS_LAUNCH_SCREEN "${PROJECT_SOURCE_DIR}/assets/ios/LaunchScreen.storyboard"
         # New Xcode attributes (???)
         XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER           "io.emeric.qmlapptemplate"
-        XCODE_ATTRIBUTE_PRODUCT_NAME                        ${CMAKE_PROJECT_NAME}
-        XCODE_ATTRIBUTE_CURRENT_PROJECT_VERSION             ${CMAKE_PROJECT_VERSION}
+        XCODE_ATTRIBUTE_PRODUCT_NAME                        ${PROJECT_NAME}
+        XCODE_ATTRIBUTE_CURRENT_PROJECT_VERSION             ${PROJECT_VERSION}
         XCODE_ATTRIBUTE_MARKETING_VERSION                   ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
         XCODE_ATTRIBUTE_IPHONEOS_DEPLOYMENT_TARGET          "16.0"
         XCODE_ATTRIBUTE_TARGETED_DEVICE_FAMILY              "1,2" # iPhone,iPad
@@ -246,34 +271,23 @@ if(CMAKE_SYSTEM_NAME STREQUAL "iOS")
     )
 endif()
 
-## Windows
-if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
-    set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
-        WIN32_EXECUTABLE ON
-    )
-endif()
-
 ################################################################################
 
 # Output (build)
-set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
-    #ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/lib"
-    #LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/lib"
-    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin"
+set_target_properties(${PROJECT_NAME} PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
 )
 
 # Output (install)
-#include(GNUInstallDirs)
-#install(TARGETS ${CMAKE_PROJECT_NAME}
-#    LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}"
-#    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-#    BUNDLE DESTINATION "${CMAKE_INSTALL_BINDIR}"
-#    BUNDLE DESTINATION "${CMAKE_SOURCE_DIR}/bin"
-#)
+install(TARGETS ${PROJECT_NAME}
+    BUNDLE DESTINATION ${CMAKE_INSTALL_BINDIR}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)
 
-# Output (install & deploy)
+# Output (automatic deployment, similar to running linuxdeploy / macdeployqt / windeployqt)
 #qt_generate_deploy_qml_app_script(
-#    TARGET ${CMAKE_PROJECT_NAME}
+#    TARGET ${PROJECT_NAME}
 #    OUTPUT_SCRIPT deploy_script
 #    MACOS_BUNDLE_POST_BUILD
 #    NO_UNSUPPORTED_PLATFORM_ERROR

@@ -1,5 +1,10 @@
 cmake_minimum_required(VERSION 3.20)
 
+#project(ComponentLibrary LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 ################################################################################
 
 list(APPEND MODULE_QML_FILES
@@ -198,6 +203,7 @@ qt_add_qml_module(ComponentLibrary
     URI ComponentLibrary
     VERSION 1.0
     DEPENDENCIES QtCore QtQuick
+    PLUGIN_TARGET ComponentLibrary_plugin
     QML_FILES ${MODULE_QML_FILES} ${MODULE_JS_FILES}
     RESOURCES ${MODULE_ASSETS}
     SOURCES ${MODULE_SOURCES}

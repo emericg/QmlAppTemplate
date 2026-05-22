@@ -79,8 +79,6 @@ int main(int argc, char *argv[])
     // Basic // Fusion // Imagine // macOS // iOS // Material // Universal // Windows
     //QQuickStyle::setStyle("Universal");
 
-    MobileUI::registerQML();
-
     QQmlApplicationEngine engine;
 
     //qDebug() << engine.importPathList();

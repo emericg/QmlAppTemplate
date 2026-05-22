@@ -4,7 +4,6 @@ cmake_minimum_required(VERSION 3.20)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_AUTOMOC ON)
 
 ################################################################################
 
@@ -25,12 +24,20 @@ endif()
 
 find_package(Qt6 6.5 REQUIRED COMPONENTS Core Quick Qml)
 
-add_library(MobileUI STATIC ${CORE_SOURCES} ${PLATFORM_SOURCES})
-add_library(MobileUI::MobileUI ALIAS MobileUI)
+qt_add_library(MobileUI STATIC)
+
+qt_add_qml_module(MobileUI
+    URI MobileUI
+    VERSION 1.0
+    DEPENDENCIES QtQuick
+    PLUGIN_TARGET MobileUI_plugin
+    SOURCES ${CORE_SOURCES} ${PLATFORM_SOURCES}
+    #OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/qml/MobileUI"
+)
 
 target_link_libraries(MobileUI PUBLIC Qt6::Core Qt6::Quick Qt6::Qml)
 target_link_libraries(MobileUI PRIVATE ${PLATFORM_LIBRARIES})
 
-target_include_directories(MobileUI PUBLIC ${CMAKE_CURRENT_LIST_DIR})
+target_include_directories(MobileUI PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 ################################################################################
