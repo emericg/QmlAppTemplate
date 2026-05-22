@@ -1,7 +1,6 @@
 import QtQuick
 
 import ComponentLibrary
-import QmlAppTemplate
 
 Rectangle {
     id: appSidebar

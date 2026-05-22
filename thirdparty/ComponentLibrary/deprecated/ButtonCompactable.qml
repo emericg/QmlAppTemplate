@@ -188,7 +188,7 @@ T.Button {
         active: control.tooltipText && control.compactInternal
 
         sourceComponent: ToolTipFlat {
-            visible: control.mouseArea.containsMouse
+            visible: mouseArea.containsMouse
             text: control.tooltipText
             textColor: control.textColor
             tooltipPosition: control.tooltipPosition

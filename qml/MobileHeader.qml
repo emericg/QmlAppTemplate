@@ -9,14 +9,18 @@ Rectangle {
     anchors.left: parent.left
     anchors.right: parent.right
 
-    height: headerHeight + Math.max(screenPaddingStatusbar, screenPaddingTop)
+    height: headerFullHeight
     color: Theme.colorHeader
     clip: true
     z: 10
 
-    property int headerHeight: 52
+    property int headerFullHeight: headerHeight + Math.max(screenPaddingStatusbar, screenPaddingTop) - (headerUnicolor ? 12 : 0)
 
-    property int headerPosition: 56
+    property bool headerUnicolor: (Theme.colorHeader === Theme.colorStatusbar)
+
+    property int headerHeight: 56 // vertical
+
+    property int headerPosition: 56 // horizontal
 
     property string headerTitle: utilsApp.appName()
 
@@ -67,10 +71,14 @@ Rectangle {
     }
 
     Item {
-        anchors.fill: parent
-        anchors.topMargin: Math.max(screenPaddingStatusbar, screenPaddingTop)
+        anchors.left: parent.left
         anchors.leftMargin: screenPaddingLeft
+        anchors.right: parent.right
         anchors.rightMargin: screenPaddingRight
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: appHeader.headerUnicolor ? -4 : 0
+
+        height: appHeader.headerHeight
 
         ////////////
 
@@ -156,9 +164,7 @@ Rectangle {
                 IconSvg {
                     id: workingIndicator
                     anchors.centerIn: parent
-
-                    width: 24
-                    height: 24
+                    width: 24; height: 24;
 
                     source: "qrc:/IconLibrary/material-symbols/autorenew.svg"
                     color: Theme.colorHeaderContent

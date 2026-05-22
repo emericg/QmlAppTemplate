@@ -34,10 +34,10 @@ to modernize this template a bit. Let's embrace breaking everything! Again.
 
 Qt 6.x "minor" versions are full of major breakages, it's just too much work to support a matrix of many different versions or build systems.
 
-QmlAppTemplate is now **cmake only**. Maintaining both cmake and qmake variants
+QmlAppTemplate is now **CMake only**. Maintaining both CMake and QMake variants
 of many things was just too much work, and both sides were suffering of less than
-ideal support. Qt 6 is geared toward cmake, and latest Qt 6 releases are introducing
-even more tighly coupled features and tooling requirements anyway.
+ideal support. Qt 6 is geared toward CMake, and latest Qt 6 releases are introducing
+even more tighly coupled features and tooling requirements anyway...
 
 #### Building QmlAppTemplate
 
@@ -69,7 +69,7 @@ $ cmake --build build/
 
 #### QML component library
 
-> TODO
+> [ComponentLibrary](thirdparty/ComponentLibrary/README.md) Many themed or entirely new QML components
 
 #### Icon library
 
@@ -79,7 +79,7 @@ $ cmake --build build/
 
 > [Linux](deploy_linux.sh) application ZIP and AppImage
 
-> [macOS](deploy_macos.sh) application ZIP (with code signing)
+> [macOS](deploy_macos.sh) application ZIP (with code signing available)
 
 > [Windows](deploy_windows.sh) application ZIP and NSIS installer
 
@@ -115,6 +115,6 @@ QmlAppTemplate is released under the terms of the [MIT license](license.md).
 
 * [SingleApplication](thirdparty/SingleApplication/README.md) uses MIT license
 
-* [ComponentLibrary](thirdparty/ComponentLibrary/) uses MIT license
+* [ComponentLibrary](thirdparty/ComponentLibrary/README.md) uses MIT license
 
 * [IconLibrary](thirdparty/IconLibrary/) uses a combinaison of licenses, see [COPYING](thirdparty/IconLibrary/COPYING)
