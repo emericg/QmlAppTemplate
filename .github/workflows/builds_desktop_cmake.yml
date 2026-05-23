@@ -94,10 +94,11 @@ jobs:
         run: |
              cmake -B build/ -G Ninja -DCMAKE_BUILD_TYPE=Release
              cmake --build build/ --config Release
+             cmake --install build/
 
       # Deploy application
       - name: Deploy application
-        run: ./deploy_linux.sh -i -p
+        run: ./deploy_linux.sh -p
 
       # Upload application ZIP
       - name: Upload application ZIP
@@ -168,12 +169,13 @@ jobs:
         run: |
              cmake -B build/ -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64"
              cmake --build build/ --config Release
+             cmake --install build/
 
       # Deploy application
       - name: Deploy application
         env:
           MACOS_CERTIFICATE_NAME: ${{ secrets.MACOS_CERTIFICATE_NAME }}
-        run: ./deploy_macos.sh -i -n
+        run: ./deploy_macos.sh -n
 
       # Codesign application bundle
       - name: Codesign application bundle
@@ -254,10 +256,11 @@ jobs:
         run: |
              cmake -B build/ -G Ninja -DCMAKE_BUILD_TYPE=Release
              cmake --build build/ --config Release
+             cmake --install build/
 
       # Deploy application
       - name: Deploy application
-        run: sh deploy_windows.sh -i -p
+        run: sh deploy_windows.sh -p
 
       # Upload application ZIP
       - name: Upload application ZIP
