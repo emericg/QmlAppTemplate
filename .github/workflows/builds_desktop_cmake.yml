@@ -94,7 +94,6 @@ jobs:
         run: |
              cmake -B build/ -G Ninja -DCMAKE_BUILD_TYPE=Release
              cmake --build build/ --config Release
-             cmake --install build/
 
       # Deploy application
       - name: Deploy application
@@ -169,7 +168,6 @@ jobs:
         run: |
              cmake -B build/ -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64"
              cmake --build build/ --config Release
-             cmake --install build/
 
       # Deploy application
       - name: Deploy application
@@ -256,7 +254,6 @@ jobs:
         run: |
              cmake -B build/ -G Ninja -DCMAKE_BUILD_TYPE=Release
              cmake --build build/ --config Release
-             cmake --install build/
 
       # Deploy application
       - name: Deploy application
