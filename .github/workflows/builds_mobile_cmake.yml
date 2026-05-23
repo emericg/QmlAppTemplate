@@ -282,7 +282,7 @@ jobs:
              cmake --build build/ --config Release
 
       # Recap stuff
-      - name: Recap stuff
-        continue-on-error: true
-        run: |
-             ls build/
+      #- name: Recap stuff
+      #  continue-on-error: true
+      #  run: |
+      #       ls build/
