@@ -92,7 +92,7 @@ jobs:
       # Build application
       - name: Build application
         run: |
-             cmake -B build/ -G ninja -DCMAKE_BUILD_TYPE=Release
+             cmake -B build/ -G Ninja -DCMAKE_BUILD_TYPE=Release
              cmake --build build/ --config Release
 
       # Deploy application
@@ -166,7 +166,7 @@ jobs:
       # Build application
       - name: Build application
         run: |
-             cmake -B build/ -G ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64"
+             cmake -B build/ -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64"
              cmake --build build/ --config Release
 
       # Deploy application
@@ -252,7 +252,7 @@ jobs:
       # Build application
       - name: Build application
         run: |
-             cmake -B build/ -G ninja -DCMAKE_BUILD_TYPE=Release
+             cmake -B build/ -G Ninja -DCMAKE_BUILD_TYPE=Release
              cmake --build build/ --config Release
 
       # Deploy application
