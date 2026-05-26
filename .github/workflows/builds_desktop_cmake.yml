@@ -101,14 +101,14 @@ jobs:
 
       # Upload application ZIP
       - name: Upload application ZIP
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ env.APP_NAME }}-${{ env.APP_VERSION }}-linux64.tar.gz
           path: ${{ env.APP_NAME }}-${{ env.APP_VERSION }}-linux64.tar.gz
 
       # Upload AppImage
       - name: Upload AppImage
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ env.APP_NAME }}-${{ env.APP_VERSION }}-linux64.AppImage
           path: ${{ env.APP_NAME }}-${{ env.APP_VERSION }}-linux64.AppImage
@@ -145,12 +145,12 @@ jobs:
 
       # Setup certificate(s)
       - name: Setup certificate(s)
-        if: env.MACOS_CERTIFICATE
         env:
           MACOS_CERTIFICATE: ${{ secrets.MACOS_CERTIFICATE }}
           MACOS_CERTIFICATE_NAME: ${{ secrets.MACOS_CERTIFICATE_NAME }}
           MACOS_CERTIFICATE_PASSWORD: ${{ secrets.MACOS_CERTIFICATE_PASSWORD }}
           MACOS_CI_KEYCHAIN_PASSWORD: ${{ secrets.MACOS_CI_KEYCHAIN_PASSWORD }}
+        if: env.MACOS_CERTIFICATE
         run: |
             # Turn our base64-encoded certificate(s) back to a regular file(s)
             echo "$MACOS_CERTIFICATE" | base64 --decode > certificate.p12
@@ -207,7 +207,7 @@ jobs:
 
       # Upload application bundle
       - name: Upload application bundle
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ env.APP_NAME }}-${{ env.APP_VERSION }}-macOS.zip
           path: ${{ env.APP_NAME }}-${{ env.APP_VERSION }}-macOS.zip
@@ -248,6 +248,7 @@ jobs:
         run: |
              qmake --version
              cmake --version
+             ninja --version
 
       # Build application
       - name: Build application
@@ -261,14 +262,14 @@ jobs:
 
       # Upload application ZIP
       - name: Upload application ZIP
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ env.APP_NAME }}-${{ env.APP_VERSION }}-win64.zip
           path: ${{ env.APP_NAME }}-${{ env.APP_VERSION }}-win64.zip
 
       # Upload NSIS installer
       - name: Upload NSIS installer
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ env.APP_NAME }}-${{ env.APP_VERSION }}-win64.exe
           path: ${{ env.APP_NAME }}-${{ env.APP_VERSION }}-win64.exe

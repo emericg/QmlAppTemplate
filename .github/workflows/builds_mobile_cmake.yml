@@ -174,7 +174,7 @@ jobs:
       # Upload Android app bundle (GitHub CI)
       - name: Upload Android app bundle (GitHub CI)
         if: ${{ github.event_name == 'workflow_dispatch' }}
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ env.APP_NAME }}-${{ env.APP_VERSION }}-Android.aab
           path: build/android-build/build/outputs/bundle/release/android-build-release.aab
