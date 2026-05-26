@@ -3,9 +3,14 @@
 #define SETTINGS_MANAGER_H
 /* ************************************************************************** */
 
+#include <QtQml/qqmlregistration.h>
+
 #include <QObject>
 #include <QString>
 #include <QSize>
+
+class QJSEngine;
+class QQmlEngine;
 
 /* ************************************************************************** */
 
@@ -15,6 +20,8 @@
 class SettingsManager: public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
+    QML_SINGLETON
 
     Q_PROPERTY(bool firstLaunch READ isFirstLaunch NOTIFY firstLaunchChanged)
 
@@ -63,6 +70,7 @@ Q_SIGNALS:
 
 public:
     static SettingsManager *getInstance();
+    static SettingsManager *create(QQmlEngine *, QJSEngine *);
 
     bool isFirstLaunch() const { return m_firstlaunch; }
 
@@ -70,7 +78,7 @@ public:
     QSize getInitialPosition() { return m_appPosition; }
     unsigned getInitialVisibility() { return m_appVisibility; }
 
-    QString getAppTheme() const { return m_appTheme; }
+    const QString &getAppTheme() const { return m_appTheme; }
     void setAppTheme(const QString &value);
 
     bool getAppThemeAuto() const { return m_appThemeAuto; }
@@ -82,7 +90,7 @@ public:
     unsigned getAppUnits() const { return m_appUnits; }
     void setAppUnits(unsigned value);
 
-    QString getAppLanguage() const { return m_appLanguage; }
+    const QString &getAppLanguage() const { return m_appLanguage; }
     void setAppLanguage(const QString &value);
 
     // Utils

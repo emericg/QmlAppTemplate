@@ -220,7 +220,7 @@ Window {
                     //console.log("Qt.ApplicationActive")
 
                     // Check if we need an 'automatic' theme change
-                    Theme.loadTheme(settingsManager.appTheme)
+                    Theme.loadTheme(SettingsManager.appTheme)
 
                     break
             }

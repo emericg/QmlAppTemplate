@@ -7,8 +7,8 @@ import QmlAppTemplate
 
 ApplicationWindow {
     id: appWindow
-    flags: settingsManager.appThemeCSD ? Qt.Window | Qt.FramelessWindowHint : Qt.Window
-    color: settingsManager.appThemeCSD ? "transparent" : Theme.colorBackground
+    flags: SettingsManager.appThemeCSD ? Qt.Window | Qt.FramelessWindowHint : Qt.Window
+    color: SettingsManager.appThemeCSD ? "transparent" : Theme.colorBackground
 
     property bool isHdpi: (utilsScreen.screenDpi >= 128 || utilsScreen.screenPar >= 2.0)
     property bool isDesktop: true
@@ -22,27 +22,27 @@ ApplicationWindow {
     minimumHeight: 560
 
     width: {
-        if (settingsManager.initialSize.width > 0)
-            return settingsManager.initialSize.width
+        if (SettingsManager.initialSize.width > 0)
+            return SettingsManager.initialSize.width
         else
             return isHdpi ? 800 : 1280
     }
     height: {
-        if (settingsManager.initialSize.height > 0)
-            return settingsManager.initialSize.height
+        if (SettingsManager.initialSize.height > 0)
+            return SettingsManager.initialSize.height
         else
             return isHdpi ? 560 : 720
     }
-    x: settingsManager.initialPosition.width
-    y: settingsManager.initialPosition.height
-    visibility: settingsManager.initialVisibility
+    x: SettingsManager.initialPosition.width
+    y: SettingsManager.initialPosition.height
+    visibility: SettingsManager.initialVisibility
     visible: true
 
     WindowGeometrySaver {
         windowInstance: appWindow
         Component.onCompleted: {
             // Make sure we handle window visibility correctly
-            visibility = settingsManager.initialVisibility
+            visibility = SettingsManager.initialVisibility
         }
     }
 
@@ -92,7 +92,7 @@ ApplicationWindow {
                     //console.log("Qt.ApplicationActive")
 
                     // Check if we need an 'automatic' theme change
-                    Theme.loadTheme(settingsManager.appTheme)
+                    Theme.loadTheme(SettingsManager.appTheme)
 
                     break
             }

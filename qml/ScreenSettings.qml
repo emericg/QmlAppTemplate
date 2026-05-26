@@ -122,7 +122,7 @@ Loader {
                         }
                         MouseArea {
                             anchors.fill: parent
-                            onClicked: settingsManager.appTheme = "THEME_MOBILE_LIGHT"
+                            onClicked: SettingsManager.appTheme = "THEME_MOBILE_LIGHT"
                         }
                     }
                     Rectangle { // theme mobile dark
@@ -145,7 +145,7 @@ Loader {
                         }
                         MouseArea {
                             anchors.fill: parent
-                            onClicked: settingsManager.appTheme = "THEME_MOBILE_DARK"
+                            onClicked: SettingsManager.appTheme = "THEME_MOBILE_DARK"
                         }
                     }
                 }
@@ -216,29 +216,29 @@ Loader {
                     }
 
                     Component.onCompleted: {
-                        currentIndex = Theme.getThemeIndex(settingsManager.appTheme)
+                        currentIndex = Theme.getThemeIndex(SettingsManager.appTheme)
                     }
                     onActivated: {
-                        if (currentText === "MOBILE LIGHT") settingsManager.appTheme = "THEME_MOBILE_LIGHT"
-                        else if (currentText === "MOBILE DARK") settingsManager.appTheme = "THEME_MOBILE_DARK"
+                        if (currentText === "MOBILE LIGHT") SettingsManager.appTheme = "THEME_MOBILE_LIGHT"
+                        else if (currentText === "MOBILE DARK") SettingsManager.appTheme = "THEME_MOBILE_DARK"
 
-                        else if (currentText === "MATERIAL LIGHT") settingsManager.appTheme = "THEME_MATERIAL_LIGHT"
-                        else if (currentText === "MATERIAL DARK") settingsManager.appTheme = "THEME_MATERIAL_DARK"
+                        else if (currentText === "MATERIAL LIGHT") SettingsManager.appTheme = "THEME_MATERIAL_LIGHT"
+                        else if (currentText === "MATERIAL DARK") SettingsManager.appTheme = "THEME_MATERIAL_DARK"
 
-                        else if (currentText === "DESKTOP LIGHT") settingsManager.appTheme = "THEME_DESKTOP_LIGHT"
-                        else if (currentText === "DESKTOP DARK") settingsManager.appTheme = "THEME_DESKTOP_DARK"
+                        else if (currentText === "DESKTOP LIGHT") SettingsManager.appTheme = "THEME_DESKTOP_LIGHT"
+                        else if (currentText === "DESKTOP DARK") SettingsManager.appTheme = "THEME_DESKTOP_DARK"
 
-                        else if (currentText === "SNOW") settingsManager.appTheme = "THEME_SNOW"
-                        else if (currentText === "PLANT") settingsManager.appTheme = "THEME_PLANT"
-                        else if (currentText === "RAIN") settingsManager.appTheme = "THEME_RAIN"
-                        else if (currentText === "DAY") settingsManager.appTheme = "THEME_DAY"
-                        else if (currentText === "NIGHT") settingsManager.appTheme = "THEME_NIGHT"
+                        else if (currentText === "SNOW") SettingsManager.appTheme = "THEME_SNOW"
+                        else if (currentText === "PLANT") SettingsManager.appTheme = "THEME_PLANT"
+                        else if (currentText === "RAIN") SettingsManager.appTheme = "THEME_RAIN"
+                        else if (currentText === "DAY") SettingsManager.appTheme = "THEME_DAY"
+                        else if (currentText === "NIGHT") SettingsManager.appTheme = "THEME_NIGHT"
 
-                        else if (currentText === "LIGHT AND WARM") settingsManager.appTheme = "THEME_LIGHT_AND_WARM"
-                        else if (currentText === "DARK AND SPOOKY") settingsManager.appTheme = "THEME_DARK_AND_SPOOKY"
-                        else if (currentText === "PLAIN AND BORING") settingsManager.appTheme = "THEME_PLAIN_AND_BORING"
-                        else if (currentText === "BLOOD AND TEARS") settingsManager.appTheme = "THEME_BLOOD_AND_TEARS"
-                        else if (currentText === "MIGHTY KITTENS") settingsManager.appTheme = "THEME_MIGHTY_KITTENS"
+                        else if (currentText === "LIGHT AND WARM") SettingsManager.appTheme = "THEME_LIGHT_AND_WARM"
+                        else if (currentText === "DARK AND SPOOKY") SettingsManager.appTheme = "THEME_DARK_AND_SPOOKY"
+                        else if (currentText === "PLAIN AND BORING") SettingsManager.appTheme = "THEME_PLAIN_AND_BORING"
+                        else if (currentText === "BLOOD AND TEARS") SettingsManager.appTheme = "THEME_BLOOD_AND_TEARS"
+                        else if (currentText === "MIGHTY KITTENS") SettingsManager.appTheme = "THEME_MIGHTY_KITTENS"
                     }
                 }
             }
@@ -283,10 +283,10 @@ Loader {
                     anchors.verticalCenter: parent.verticalCenter
                     z: 1
 
-                    checked: settingsManager.appThemeAuto
+                    checked: SettingsManager.appThemeAuto
                     onClicked: {
-                        settingsManager.appThemeAuto = checked
-                        Theme.loadTheme(settingsManager.appTheme)
+                        SettingsManager.appThemeAuto = checked
+                        Theme.loadTheme(SettingsManager.appTheme)
                     }
                 }
             }
@@ -348,8 +348,8 @@ Loader {
                     anchors.verticalCenter: parent.verticalCenter
                     z: 1
 
-                    checked: settingsManager.appThemeCSD
-                    onClicked: settingsManager.appThemeCSD = checked
+                    checked: SettingsManager.appThemeCSD
+                    onClicked: SettingsManager.appThemeCSD = checked
                 }
             }
             Text { // legend_appThemeCSD
@@ -435,14 +435,14 @@ Loader {
 
                     Component.onCompleted: {
                         for (var i = 0; i < cbAppLanguage.count; i++) {
-                            if (cbAppLanguage.get(i).text === settingsManager.appLanguage) {
+                            if (cbAppLanguage.get(i).text === SettingsManager.appLanguage) {
                                 currentIndex = i
                             }
                         }
                     }
                     onActivated: {
                         utilsLanguage.loadLanguage(cbAppLanguage.get(currentIndex).text)
-                        settingsManager.appLanguage = cbAppLanguage.get(currentIndex).text
+                        SettingsManager.appLanguage = cbAppLanguage.get(currentIndex).text
                     }
                 }
             }

@@ -101,6 +101,9 @@ qt_add_qml_module(${PROJECT_NAME}
         qml/popups/PopupBirthDate.qml
         qml/popups/PopupDate.qml
         qml/popups/PopupTime.qml
+
+    SOURCES
+        src/SettingsManager.cpp src/SettingsManager.h
 )
 
 qt_add_translations(${PROJECT_NAME}
