@@ -143,10 +143,6 @@ target_link_libraries(${PROJECT_NAME} PRIVATE AppUtils)
 add_subdirectory(thirdparty/ComponentLibrary)
 target_link_libraries(${PROJECT_NAME} PRIVATE ComponentLibrary_plugin)
 
-# SingleApplication
-add_subdirectory(thirdparty/SingleApplication)
-target_link_libraries(${PROJECT_NAME} PRIVATE SingleApplication)
-
 # MobileUI
 add_subdirectory(thirdparty/MobileUI)
 target_link_libraries(${PROJECT_NAME} PRIVATE MobileUI MobileUI_plugin)

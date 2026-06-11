@@ -9,7 +9,6 @@
 #include <utils_os_macos_dock.h>
 
 #include <MobileUI>
-#include <SingleApplication>
 
 #include <QtGlobal>
 #include <QLibraryInfo>
@@ -43,7 +42,7 @@ int main(int argc, char *argv[])
 
     // GUI application /////////////////////////////////////////////////////////
 
-    SingleApplication app(argc, argv, true);
+    QGuiApplication app(argc, argv, true);
 
     // Application name
     app.setApplicationName("QmlAppTemplate");
@@ -119,10 +118,6 @@ int main(int argc, char *argv[])
     // QQuickWindow must be valid at this point
     QQuickWindow *window = qobject_cast<QQuickWindow *>(engine.rootObjects().value(0));
     if (!window) return EXIT_FAILURE;
-
-    // React to secondary instances
-    QObject::connect(&app, &SingleApplication::instanceStarted, window, &QQuickWindow::show);
-    QObject::connect(&app, &SingleApplication::instanceStarted, window, &QQuickWindow::raise);
 
 #if defined(Q_OS_MACOS)
     // macOS dock

@@ -293,7 +293,6 @@ Loader {
                             "Qt6 (LGPL v3)",
                             "MobileUI (MIT)",
                             "MobileSharing (MIT)",
-                            "SingleApplication (MIT)",
                             "Google Material Icons (Apache v2)",
                         ]
                         delegate: Text {

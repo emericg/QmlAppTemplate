@@ -65,8 +65,6 @@ $ cmake --build build/
 
 > [MobileSharing](thirdparty/MobileSharing/README.md) Use Android and iOS cross application sharing features
 
-> [SingleApplication](thirdparty/SingleApplication/README.md) Keep only one instance of your desktop application active at a time
-
 #### QML component library
 
 > [ComponentLibrary](thirdparty/ComponentLibrary/README.md) Many themed or entirely new QML components
@@ -112,8 +110,6 @@ QmlAppTemplate is released under the terms of the [MIT license](license.md).
 * [MobileUI](https://github.com/emericg/MobileUI) uses MIT license
 
 * [MobileSharing](thirdparty/MobileSharing/README.md) uses MIT license
-
-* [SingleApplication](thirdparty/SingleApplication/README.md) uses MIT license
 
 * [ComponentLibrary](thirdparty/ComponentLibrary/README.md) uses MIT license
 
