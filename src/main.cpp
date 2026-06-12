@@ -8,8 +8,6 @@
 #include <utils_wifi.h>
 #include <utils_os_macos_dock.h>
 
-#include <MobileUI>
-
 #include <QtGlobal>
 #include <QLibraryInfo>
 #include <QVersionNumber>
