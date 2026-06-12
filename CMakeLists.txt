@@ -56,9 +56,10 @@ endif()
 qt_add_executable(${PROJECT_NAME}
     src/main.cpp
     src/SettingsManager.cpp src/SettingsManager.h
-    assets/assets.qrc
-    ${app_icon_windows}
+
     ${app_icon_macos}
+    ${app_icon_windows}
+    assets/assets.qrc
     thirdparty/IconLibrary/IconLibrary_material.qrc
 )
 

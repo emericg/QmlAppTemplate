@@ -92,10 +92,8 @@ int main(int argc, char *argv[])
 
     // Load the main view
 #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(FORCE_MOBILE_UI)
-    //engine.load(QUrl(QStringLiteral("qrc:/MobileApplication.qml")));
     engine.loadFromModule("QmlAppTemplate", "MobileApplication");
 #else
-    //engine.load(QUrl(QStringLiteral("qrc:/DesktopApplication.qml")));
     engine.loadFromModule("QmlAppTemplate", "DesktopApplication");
 #endif
 

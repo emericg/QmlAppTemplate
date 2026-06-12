@@ -59,7 +59,7 @@ if(UTILS_QT_RHI)
 
     if(Qt6Gui_VERSION VERSION_GREATER_EQUAL 6.10.0)
         find_package(Qt6 REQUIRED COMPONENTS GuiPrivate)
-        set(CORE_LIBRARIES ${CORE_LIBRARIES} Qt6::GuiPrivate)                   # to get RHI infos
+        set(CORE_LIBRARIES ${CORE_LIBRARIES} Qt6::GuiPrivate)
     else()
         find_package(Qt6 REQUIRED COMPONENTS Gui)
         set(CORE_LIBRARIES ${CORE_LIBRARIES} Qt6::GuiPrivate)

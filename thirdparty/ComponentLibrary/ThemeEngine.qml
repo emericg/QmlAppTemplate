@@ -268,6 +268,8 @@ Item {
     Connections {
         target: settingsManager
         function onAppThemeChanged() { loadTheme(settingsManager.appTheme) }
+        //function onAppThemeAutoChanged() { loadTheme(settingsManager.appTheme) }
+        //function onAppThemeAutoMethodChanged() { loadTheme(settingsManager.appTheme) }
     }
 
     function loadTheme(newIndex) {
@@ -773,7 +775,7 @@ Item {
             isDark = false
 
             themeStatusbar = Material.Dark
-            colorStatusbar = "#009688"
+            colorStatusbar = colorGreen // "#009688"
 
             colorHeader                 = colorGreen
             colorHeaderContent          = "white"
@@ -791,8 +793,8 @@ Item {
             colorTabletmenuContent      = "#9d9d9d"
             colorTabletmenuHighlight    = "#0079fe"
 
-            colorBackground             = (Qt.platform.os === "android" || Qt.platform.os === "ios") ? "white" : colorMaterialLightGrey
-            colorForeground             = (Qt.platform.os === "android" || Qt.platform.os === "ios") ? colorMaterialLightGrey : "#eeeeee"
+            colorBackground             = (Qt.platform.os === "android" || Qt.platform.os === "ios") ? "#fafafa" : "#f8f8f8"
+            colorForeground             = (Qt.platform.os === "android" || Qt.platform.os === "ios") ? "#f0f0f0" : "#eeeeee"
 
             colorPrimary                = colorGreen
             colorSecondary              = colorLightGreen
@@ -832,7 +834,7 @@ Item {
             isDark = false
 
             themeStatusbar = Material.Dark
-            colorStatusbar = "#1e3c77"
+            colorStatusbar = "#325da9" // "#1e3c77"
 
             colorHeader                 = "#325da9"
             colorHeaderHighlight        = "#0f295c"
@@ -891,7 +893,7 @@ Item {
             isDark = false
 
             themeStatusbar = Material.Dark
-            colorStatusbar = colorNeutralNight
+            colorStatusbar = "#ffcf00" // colorNeutralNight
 
             colorHeader                 = "#ffcf00"
             colorHeaderContent          = "white"
@@ -950,9 +952,9 @@ Item {
             isDark = true
 
             themeStatusbar = Material.Dark
-            colorStatusbar = "#725595"
+            colorStatusbar = "#9b5ed0" // "#725595"
 
-            colorHeader                 = "#b16bee"
+            colorHeader                 = "#9b5ed0"
             colorHeaderContent          = "white"
             colorHeaderHighlight        = "#725595"
 
