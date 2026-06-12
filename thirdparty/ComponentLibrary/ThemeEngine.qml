@@ -6,6 +6,8 @@ import QtQuick.Controls.Material
 import ComponentLibrary
 
 Item {
+    ////////////////////////////////////////////////////////////////////////////
+
     enum ThemeNames {
         // Generic mobile themes
         THEME_MOBILE_LIGHT,
@@ -100,6 +102,7 @@ Item {
     property color colorBoxBorder: "#f4f4f4"
     property color colorBoxShadow: "#20000000"
     property color colorGrid: "#ebebeb"
+    property color colorAxis: "#a0a0a0"
     property color colorLVheader: "#fafafa"
     property color colorLVpair: "white"
     property color colorLVimpair: "#f5f5f5"
@@ -289,6 +292,9 @@ Item {
             var rightnow = new Date()
             var hour = Qt.formatDateTime(rightnow, "hh")
             if (hour >= 21 || hour <= 8) {
+
+                // Simple light/dark toggle
+
                 if (themeIndex === Theme.THEME_MOBILE_LIGHT)
                     themeIndex = Theme.THEME_MOBILE_DARK
 
@@ -297,6 +303,8 @@ Item {
 
                 if (themeIndex === Theme.THEME_DESKTOP_LIGHT)
                     themeIndex = Theme.THEME_DESKTOP_DARK
+
+                // Complex cases
 
                 if (themeIndex === Theme.THEME_SNOW ||
                     themeIndex === Theme.THEME_PLANT ||
@@ -309,6 +317,22 @@ Item {
                     themeIndex = Theme.THEME_DARK_AND_SPOOKY
 
                 // theme doesn't have a dark variant set? just don't change the theme...
+
+            } else {
+
+                // Simple light/dark toggle
+
+                if (themeIndex === Theme.THEME_MOBILE_DARK)
+                    themeIndex = Theme.THEME_MOBILE_LIGHT
+
+                if (themeIndex === Theme.THEME_MATERIAL_DARK)
+                    themeIndex = Theme.THEME_MATERIAL_LIGHT
+
+                if (themeIndex === Theme.THEME_DESKTOP_DARK)
+                    themeIndex = Theme.THEME_DESKTOP_LIGHT
+
+                // that's it
+
             }
         }
 
@@ -316,7 +340,7 @@ Item {
         if (themeIndex === currentTheme) return
 
         // Set the theme
-        if (themeIndex === Theme.THEME_MOBILE_LIGHT) { ///////////////////
+        if (themeIndex === Theme.THEME_MOBILE_LIGHT) { /////////////////////////
 
             colorGreen  = "#07bf97"
             colorBlue   = "#4CA1D5"
@@ -372,7 +396,7 @@ Item {
             componentRadius = 6
             componentBorderWidth = 2
 
-        } else if (themeIndex === Theme.THEME_MOBILE_DARK) {
+        } else if (themeIndex === Theme.THEME_MOBILE_DARK) { ///////////////////
 
             colorGreen  = "#58CF77"
             colorBlue   = "#4dceeb"
@@ -428,7 +452,7 @@ Item {
             componentRadius = 6
             componentBorderWidth = 2
 
-        } else if (themeIndex === Theme.THEME_MATERIAL_LIGHT) { /////////
+        } else if (themeIndex === Theme.THEME_MATERIAL_LIGHT) { ////////////////
 
             colorGreen  = "#07bf97"
             colorBlue   = "#4CA1D5"
@@ -484,7 +508,7 @@ Item {
             componentRadius = 6
             componentBorderWidth = 2
 
-        } else if (themeIndex === Theme.THEME_MATERIAL_DARK) {
+        } else if (themeIndex === Theme.THEME_MATERIAL_DARK) { /////////////////
 
             colorGreen  = "#58CF77"
             colorBlue   = "#4dceeb"
@@ -540,7 +564,7 @@ Item {
             componentRadius = 8
             componentBorderWidth = 2
 
-        } else if (themeIndex === Theme.THEME_DESKTOP_LIGHT) { ///////////
+        } else if (themeIndex === Theme.THEME_DESKTOP_LIGHT) { /////////////////
 
             colorRed    = "#ff7657"
             colorGreen  = "#85c700"
@@ -602,13 +626,14 @@ Item {
             colorBoxBorder              = "#f4f4f4"
             colorBoxShadow              = "#20000000"
             colorGrid                   = "#ebebeb"
+            colorAxis                   = "#b0b0b0"
             colorLVheader               = "#fafafa"
             colorLVpair                 = "white"
             colorLVimpair               = "#f5f5f5"
             colorLVselected             = "#0080e0"
             colorLVseparator            = "#e2e2e2"
 
-        } else if (themeIndex === Theme.THEME_DESKTOP_DARK) {
+        } else if (themeIndex === Theme.THEME_DESKTOP_DARK) { //////////////////
 
             colorRed    = "#e8635a"
             colorGreen  = "#58cf77"
@@ -670,13 +695,14 @@ Item {
             colorBoxBorder              = "#333"
             colorBoxShadow              = "#aa000000"
             colorGrid                   = "#333"
+            colorAxis                   = "#a0a0a0"
             colorLVheader               = "#252024"
             colorLVpair                 = "#302b2e"
             colorLVimpair               = "#252024"
             colorLVseparator            = "#333"
             colorLVselected             = "#e90c76"
 
-        } else if (themeIndex === Theme.THEME_SNOW) { ////////////////////
+        } else if (themeIndex === Theme.THEME_SNOW) { //////////////////////////
 
             colorGreen = "#85c700"
             colorBlue = "#4cafe9"
@@ -735,7 +761,7 @@ Item {
             // (app)
             colorDeviceWidget = "#fdfdfd"
 
-        } else if (themeIndex === Theme.THEME_PLANT) {
+        } else if (themeIndex === Theme.THEME_PLANT) { /////////////////////////
 
             colorGreen = "#07bf97"
             colorBlue = "#4CA1D5"
@@ -794,7 +820,7 @@ Item {
             // (app)
             colorDeviceWidget = "#fdfdfd"
 
-        } else if (themeIndex === Theme.THEME_RAIN) {
+        } else if (themeIndex === Theme.THEME_RAIN) { //////////////////////////
 
             colorGreen = "#8cd200"
             colorBlue = "#4cafe9"
@@ -853,7 +879,7 @@ Item {
             // (app)
             colorDeviceWidget = "#fdfdfd"
 
-        } else if (themeIndex === Theme.THEME_DAY) {
+        } else if (themeIndex === Theme.THEME_DAY) { ///////////////////////////
 
             colorGreen  = "#8cd200"
             colorBlue   = "#4cafe9"
@@ -912,7 +938,7 @@ Item {
             // (app)
             colorDeviceWidget = "#fdfdfd"
 
-        } else if (themeIndex === Theme.THEME_NIGHT) {
+        } else if (themeIndex === Theme.THEME_NIGHT) { /////////////////////////
 
             colorGreen = "#58CF77"
             colorBlue = "#4dceeb"
@@ -971,7 +997,7 @@ Item {
             // (app)
             colorDeviceWidget = "#333"
 
-        } else if (themeIndex === Theme.THEME_LIGHT_AND_WARM) { //////////
+        } else if (themeIndex === Theme.THEME_LIGHT_AND_WARM) { ////////////////
 
             isLight = true
             isDark = false
@@ -1024,7 +1050,7 @@ Item {
             // (app)
             sidebarSelector = ""
 
-        } else if (themeIndex === Theme.THEME_DARK_AND_SPOOKY) {
+        } else if (themeIndex === Theme.THEME_DARK_AND_SPOOKY) { ///////////////
 
             isLight = false
             isDark = true
@@ -1077,7 +1103,7 @@ Item {
             // (app)
             sidebarSelector = ""
 
-        } else if (themeIndex === Theme.THEME_PLAIN_AND_BORING) {
+        } else if (themeIndex === Theme.THEME_PLAIN_AND_BORING) { //////////////
 
             isLight = true
             isDark = false
@@ -1130,7 +1156,7 @@ Item {
             // (app)
             sidebarSelector = "arrow"
 
-        } else if (themeIndex === Theme.THEME_BLOOD_AND_TEARS) {
+        } else if (themeIndex === Theme.THEME_BLOOD_AND_TEARS) { ///////////////
 
             isLight = false
             isDark = true
@@ -1183,7 +1209,7 @@ Item {
             // (app)
             sidebarSelector = "bar"
 
-        } else if (themeIndex === Theme.THEME_MIGHTY_KITTENS) {
+        } else if (themeIndex === Theme.THEME_MIGHTY_KITTENS) { ////////////////
 
             isLight = true
             isDark = false
@@ -1241,4 +1267,6 @@ Item {
         // This will emit the signal 'onCurrentThemeChanged'
         currentTheme = themeIndex
     }
+
+    ////////////////////////////////////////////////////////////////////////////
 }

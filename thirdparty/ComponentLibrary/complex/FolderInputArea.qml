@@ -68,6 +68,8 @@ T.TextField {
         sourceComponent: FolderDialog {
             title: control.dialogTitle
 
+            //options: FolderDialog.DontUseNativeDialog
+
             currentFolder: UtilsPath.makeUrl(control.text)
             //currentFolder: UtilsPath.makeUrl(control.currentFolder)
 

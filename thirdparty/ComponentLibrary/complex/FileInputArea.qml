@@ -73,6 +73,8 @@ T.TextField {
             nameFilters: control.dialogFilter
             fileMode: control.dialogFileMode
 
+            //options: FolderDialog.DontUseNativeDialog
+
             currentFolder: UtilsPath.makeUrl(control.text)
             currentFile: UtilsPath.makeUrl(control.text)
 
