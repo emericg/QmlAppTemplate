@@ -268,8 +268,8 @@ Item {
     Connections {
         target: settingsManager
         function onAppThemeChanged() { loadTheme(settingsManager.appTheme) }
-        //function onAppThemeAutoChanged() { loadTheme(settingsManager.appTheme) }
-        //function onAppThemeAutoMethodChanged() { loadTheme(settingsManager.appTheme) }
+        function onAppThemeAutoChanged() { loadTheme(settingsManager.appTheme) }
+        function onAppThemeAutoMethodChanged() { loadTheme(settingsManager.appTheme) }
     }
 
     function loadTheme(newIndex) {

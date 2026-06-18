@@ -7,8 +7,8 @@ import QmlAppTemplate
 
 ApplicationWindow {
     id: appWindow
-    flags: SettingsManager.appThemeCSD ? Qt.Window | Qt.FramelessWindowHint : Qt.Window
-    color: SettingsManager.appThemeCSD ? "transparent" : Theme.colorBackground
+    flags: Qt.Window
+    color: Theme.colorBackground
 
     property bool isHdpi: (utilsScreen.screenDpi >= 128 || utilsScreen.screenPar >= 2.0)
     property bool isDesktop: true

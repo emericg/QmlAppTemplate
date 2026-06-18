@@ -72,8 +72,11 @@ bool SettingsManager::readSettings()
         if (settings.contains("settings/appThemeAuto"))
             m_appThemeAuto = settings.value("settings/appThemeAuto").toBool();
 
-        if (settings.contains("settings/appThemeCSD"))
-            m_appThemeCSD = settings.value("settings/appThemeCSD").toBool();
+        if (settings.contains("settings/appThemeAutoMethod"))
+            m_appThemeAutoMethod = settings.value("settings/appThemeAutoMethod").toUInt();
+
+        if (settings.contains("settings/appUnitSystem"))
+            m_appUnitSystem = settings.value("settings/appUnitSystem").toUInt();
 
         if (settings.contains("settings/appLanguage"))
             m_appLanguage = settings.value("settings/appLanguage").toString();
@@ -100,7 +103,8 @@ bool SettingsManager::writeSettings()
     {
         settings.setValue("settings/appTheme", m_appTheme);
         settings.setValue("settings/appThemeAuto", m_appThemeAuto);
-        settings.setValue("settings/appThemeCSD", m_appThemeCSD);
+        settings.setValue("settings/appThemeAutoMethod", m_appThemeAutoMethod);
+        settings.setValue("settings/appUnitSystem", m_appUnitSystem);
         settings.setValue("settings/appLanguage", m_appLanguage);
 
         if (settings.status() == QSettings::NoError)
@@ -124,14 +128,14 @@ bool SettingsManager::writeSettings()
 
 void SettingsManager::resetSettings()
 {
-    m_appTheme = "green";
+    m_appTheme = "THEME_DEFAULT";
     Q_EMIT appThemeChanged();
     m_appThemeAuto = false;
     Q_EMIT appThemeAutoChanged();
-    m_appThemeCSD = false;
-    Q_EMIT appThemeCSDChanged();
-    m_appUnits = 0;
-    Q_EMIT appUnitsChanged();
+    m_appThemeAutoMethod = 0;
+    Q_EMIT appThemeAutoMethodChanged();
+    m_appUnitSystem = 0;
+    Q_EMIT appUnitSystemChanged();
     m_appLanguage = "auto";
     Q_EMIT appLanguageChanged();
 }
@@ -159,23 +163,23 @@ void SettingsManager::setAppThemeAuto(const bool value)
     }
 }
 
-void SettingsManager::setAppThemeCSD(const bool value)
+void SettingsManager::setAppThemeAutoMethod(const unsigned value)
 {
-    if (m_appThemeCSD != value)
+    if (m_appThemeAutoMethod != value)
     {
-        m_appThemeCSD = value;
+        m_appThemeAutoMethod = value;
         writeSettings();
-        Q_EMIT appThemeCSDChanged();
+        Q_EMIT appThemeAutoMethodChanged();
     }
 }
 
-void SettingsManager::setAppUnits(const unsigned value)
+void SettingsManager::setAppUnitSystem(const unsigned value)
 {
-    if (m_appUnits != value)
+    if (m_appUnitSystem != value)
     {
-        m_appUnits = value;
+        m_appUnitSystem = value;
         writeSettings();
-        Q_EMIT appUnitsChanged();
+        Q_EMIT appUnitSystemChanged();
     }
 }
 
@@ -188,5 +192,9 @@ void SettingsManager::setAppLanguage(const QString &value)
         Q_EMIT appLanguageChanged();
     }
 }
+
+/* ************************************************************************** */
+
+// Yours to fill
 
 /* ************************************************************************** */

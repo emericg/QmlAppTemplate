@@ -308,69 +308,6 @@ Loader {
 
             ////////
 
-            Item { // element_appThemeCSD
-                anchors.left: parent.left
-                anchors.right: parent.right
-                height: Theme.componentHeightXL
-
-                visible: isDesktop
-
-                IconSvg {
-                    anchors.left: parent.left
-                    anchors.leftMargin: contentColumn.padIcon
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    width: 24
-                    height: 24
-                    color: Theme.colorIcon
-                    source: "qrc:/IconLibrary/material-symbols/close.svg"
-                }
-
-                Text {
-                    anchors.left: parent.left
-                    anchors.leftMargin: contentColumn.padText
-                    anchors.right: switch_appThemeCSD.left
-                    anchors.rightMargin: Theme.componentMargin
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    text: qsTr("Client Side Decoration")
-                    textFormat: Text.PlainText
-                    font.pixelSize: Theme.fontSizeContent
-                    color: Theme.colorText
-                    wrapMode: Text.WordWrap
-                    verticalAlignment: Text.AlignVCenter
-                }
-
-                SwitchThemed {
-                    id: switch_appThemeCSD
-                    anchors.right: parent.right
-                    anchors.rightMargin: Theme.componentMargin
-                    anchors.verticalCenter: parent.verticalCenter
-                    z: 1
-
-                    checked: SettingsManager.appThemeCSD
-                    onClicked: SettingsManager.appThemeCSD = checked
-                }
-            }
-            Text { // legend_appThemeCSD
-                anchors.left: parent.left
-                anchors.leftMargin: contentColumn.padText
-                anchors.right: parent.right
-                anchors.rightMargin: Theme.componentMargin
-
-                topPadding: -12
-                bottomPadding: 0
-                visible: isDesktop
-
-                text: qsTr("qetxyjcgkcul.")
-                textFormat: Text.PlainText
-                wrapMode: Text.WordWrap
-                color: Theme.colorSubText
-                font.pixelSize: Theme.fontSizeContentSmall
-            }
-
-            ////////
-
             ListSeparator { }
 
             Item { // element_language

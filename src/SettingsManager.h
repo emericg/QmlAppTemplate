@@ -31,8 +31,8 @@ class SettingsManager: public QObject
 
     Q_PROPERTY(QString appTheme READ getAppTheme WRITE setAppTheme NOTIFY appThemeChanged)
     Q_PROPERTY(bool appThemeAuto READ getAppThemeAuto WRITE setAppThemeAuto NOTIFY appThemeAutoChanged)
-    Q_PROPERTY(bool appThemeCSD READ getAppThemeCSD WRITE setAppThemeCSD NOTIFY appThemeCSDChanged)
-    Q_PROPERTY(uint appUnits READ getAppUnits WRITE setAppUnits NOTIFY appUnitsChanged)
+    Q_PROPERTY(uint appThemeAutoMethod READ getAppThemeAutoMethod WRITE setAppThemeAutoMethod NOTIFY appThemeAutoChanged)
+    Q_PROPERTY(uint appUnitSystem READ getAppUnitSystem WRITE setAppUnitSystem NOTIFY appUnitSystemChanged)
     Q_PROPERTY(QString appLanguage READ getAppLanguage WRITE setAppLanguage NOTIFY appLanguageChanged)
 
     bool m_firstlaunch = true;
@@ -45,11 +45,13 @@ class SettingsManager: public QObject
     // Application generic
     QString m_appTheme = "THEME_DEFAULT";
     bool m_appThemeAuto = false;
-    bool m_appThemeCSD = false;
-    unsigned m_appUnits = 0;                    //!< QLocale::MeasurementSystem
+    unsigned m_appThemeAutoMethod = 0;
+    unsigned m_appUnitSystem = 0;               //!< QLocale::MeasurementSystem
     QString m_appLanguage = "auto";
 
     // Application specific
+
+    // Yours to fill
 
     // Singleton
     static SettingsManager *instance;
@@ -64,13 +66,15 @@ Q_SIGNALS:
     void initialSizeChanged();
     void appThemeChanged();
     void appThemeAutoChanged();
-    void appThemeCSDChanged();
-    void appUnitsChanged();
+    void appThemeAutoMethodChanged();
+    void appUnitSystemChanged();
     void appLanguageChanged();
 
 public:
     static SettingsManager *getInstance();
     static SettingsManager *create(QQmlEngine *, QJSEngine *);
+
+    // Generic
 
     bool isFirstLaunch() const { return m_firstlaunch; }
 
@@ -84,16 +88,21 @@ public:
     bool getAppThemeAuto() const { return m_appThemeAuto; }
     void setAppThemeAuto(const bool value);
 
-    bool getAppThemeCSD() const { return m_appThemeCSD; }
-    void setAppThemeCSD(const bool value);
+    unsigned getAppThemeAutoMethod() const { return m_appThemeAutoMethod; }
+    void setAppThemeAutoMethod(const unsigned value);
 
-    unsigned getAppUnits() const { return m_appUnits; }
-    void setAppUnits(unsigned value);
+    unsigned getAppUnitSystem() const { return m_appUnitSystem; }
+    void setAppUnitSystem(const unsigned value);
 
     const QString &getAppLanguage() const { return m_appLanguage; }
     void setAppLanguage(const QString &value);
 
+    // App
+
+    // Yours to fill
+
     // Utils
+
     Q_INVOKABLE void resetSettings();
 };
 
