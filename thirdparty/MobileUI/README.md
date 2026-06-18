@@ -1,6 +1,6 @@
 # MobileUI
 
-MobileUI allows QML applications to interact with Mobile specific features, like Android and iOS `status bar` and Android `navigation bar`.
+MobileUI allows QML applications to interact with mobile specific features, like Android and iOS `status bar` and Android `navigation bar`.
 
 You can see it in action in the [MobileUI demo](https://github.com/emericg/MobileUI_demo).
 
@@ -30,9 +30,11 @@ You can see it in action in the [MobileUI demo](https://github.com/emericg/Mobil
 - Trigger haptic feedback (vibration)
 - Android back button helper
 
+
 ## Screenshots
 
 ![MobileUIs](https://raw.githubusercontent.com/emericg/screenshots_flathub/master/MobileUI/MobileUI.png)
+
 
 ## Quick start
 
@@ -55,7 +57,7 @@ set(QT_QML_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
 ### Use
 
-MobileUI is a QML singleton, so it is registered automatically by the QML engine.
+MobileUI is a proper CMake QML module (and a QML singleton), so it is registered automatically by the QML engine.
 
 ```qml
 import QtQuick
@@ -217,7 +219,7 @@ On Android API 28+, the theme must be set each time the window visibility or ori
 
 You can get the device OS theme by reading the deviceTheme property.
 
-MobileUI doesn't listen to the change affecting this value and won't signal you when it's changed.
+MobileUI listen to the change affecting this value and will signal you when it's changed.
 
 You should probably not switch your app theme while it's being used anyway,
 so it may be wise to only check this value when the application is loading or brought back to the foreground.
@@ -235,7 +237,8 @@ Connections {
 
 ### Safe areas
 
-Safe areas handling is not straightforward, unfortunately. Most of it will be left into your care.
+Safe areas handling is never straightforward, unfortunately. The module provides the values, but how you decide to use it is left in your care.  
+MobileUI listen to the change affecting these values.  
 
 > statusbarHeight
 
@@ -275,8 +278,8 @@ MobileUI.screenAlwaysOn: true
 
 ### Set screen orientation
 
-This will force the device screen orientation into one of the available values.
-This cannot be used to read the actual device orientation.
+This will force the device screen orientation into one of the available values.  
+This cannot be used to read the actual device orientation.  
 
 Either call `setScreenOrientation(MobileUI.ScreenOrientation)` or set `screenOrientation: MobileUI.ScreenOrientation` (in QML).
 
@@ -328,7 +331,7 @@ MobileUI.vibrate()
 
 #### Android
 
-You can use this method to bypass the default behavior for the Android back button,
+You can use this method to bypass the default Qt behavior for the Android back button,
 which is to kill the application instead of doing what every single Android application does,
 going back to the home screen...
 
@@ -373,6 +376,7 @@ get a light grey depending on your device. It's bad if you're coming from a whit
 - Qt 6.11 force your app to go fullscreen each time it goes back to the foreground...
 
 - All in all, window modes, geometry, rotation and many smaller things are just buggy on Qt for Android, and often subtly broken depending on which Qt version is used. Using only Qt 6.8 and up helps a lot...
+
 
 ## Licensing
 

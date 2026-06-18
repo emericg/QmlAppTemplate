@@ -88,12 +88,17 @@ MobileUI::~MobileUI() = default;
 
 void MobileUI::connectSignals()
 {
+    // When orientation changes, we need to at least recompute the safe areas.
+
     QScreen *screen = qApp->primaryScreen();
     if (screen)
     {
         QObject::connect(screen, &QScreen::orientationChanged,
                          this, [this](Qt::ScreenOrientation) { refreshMobileUI(); });
     }
+
+    // The OS may reset the native system bar styles/colors when the application
+    // returns to the foreground, so we re-apply them when becoming active again.
 
     const QWindowList windows = qApp->allWindows();
     QWindow *window = windows.isEmpty() ? nullptr : windows.first();
@@ -103,13 +108,12 @@ void MobileUI::connectSignals()
                          this, [this](QWindow::Visibility) { refreshMobileUI(); });
     }
 
-    // The OS may reset the native system bar styles/colors when the application
-    // returns to the foreground, so we re-apply them when becoming active again.
     QObject::connect(qApp, &QGuiApplication::applicationStateChanged,
-                     this, [this](Qt::ApplicationState state) { if (state == Qt::ApplicationActive) refreshSafeAreas(); });
+                     this, [this](Qt::ApplicationState state) { if (state == Qt::ApplicationActive) refreshMobileUI(); });
 
     // A light/dark mode change does not emit orientationChanged/visibilityChanged,
     // so make sure we re-apply our settings.
+
     if (QStyleHints *hints = qApp->styleHints())
     {
         QObject::connect(hints, &QStyleHints::colorSchemeChanged,
@@ -249,14 +253,7 @@ void MobileUI::refreshSafeAreas()
 
     const QWindowList windows = qApp->allWindows();
     QWindow *window = windows.isEmpty() ? nullptr : windows.first();
-
     const bool fullscreenMode = (window && window->visibility() == QWindow::FullScreen);
-
-#if QT_VERSION >= QT_VERSION_CHECK(6, 9, 0)
-    const bool maximizedHint = (window && (window->flags() & Qt::ExpandedClientAreaHint));
-#else
-    const bool maximizedHint = (window && (window->flags() & Qt::MaximizeUsingFullscreenGeometryHint));
-#endif
 
     // Safe areas
     top = d->getSafeAreaTop();
