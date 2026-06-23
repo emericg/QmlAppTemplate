@@ -20,11 +20,12 @@ Item {
     property color colorBackground: Theme.colorComponentBackground
 
     // states
-    property int currentSelection: 1
+    property int currentSelection: 0
     signal menuSelected(var index)
 
     // model
     property var model: null
+    readonly property int count: model ? (model.count ?? model.length ?? 0) : 0
 
     ////////////////
 
@@ -48,16 +49,18 @@ Item {
         Repeater {
             model: selectorMenu.model
             delegate: SelectorMenuColorfulItem {
+                required property var model
+
                 Layout.preferredHeight: selectorMenu.height
-                Layout.preferredWidth: selectorMenu.fullWidth ? (selectorMenu.width / selectorMenu.model.count) : implicitWidth
+                Layout.preferredWidth: selectorMenu.fullWidth ? (selectorMenu.width / Math.max(1, selectorMenu.count)) : implicitWidth
 
                 readOnly: selectorMenu.readOnly
-                highlighted: (selectorMenu.currentSelection === idx)
-                index: idx ?? 0
-                text: txt ?? ""
-                source: src ?? ""
-                sourceSize: sz ?? 32
-                onClicked: selectorMenu.menuSelected(idx)
+                highlighted: (selectorMenu.currentSelection === model.idx)
+                index: model.idx ?? 0
+                text: model.txt ?? ""
+                source: model.src ?? ""
+                sourceSize: model.sz ?? 32
+                onClicked: selectorMenu.menuSelected(model.idx)
             }
         }
     }

@@ -1200,6 +1200,7 @@ Loader {
                         height: 32
                         anchors.verticalCenter: parent.verticalCenter
 
+                        currentSelection: 1
                         model: ListModel {
                             ListElement { idx: 1; txt: "4/3"; src: ""; sz: 0; }
                             ListElement { idx: 2; txt: "16/9"; src: ""; sz: 0; }

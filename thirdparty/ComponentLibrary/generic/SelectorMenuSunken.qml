@@ -17,7 +17,7 @@ Item {
 
     // states
     signal menuSelected(var index)
-    property int currentSelection: 1
+    property int currentSelection: 0
 
     // model
     property var model: null
@@ -41,16 +41,18 @@ Item {
         Repeater {
             model: control.model
             delegate: SelectorMenuItem {
+                required property var model
+
                 colorContent: Theme.colorComponentText
                 colorContentHighlight: Theme.colorComponentText
                 colorBackgroundHighlight: control.colorForeground
                 height: parent.height
-                highlighted: (control.currentSelection === idx)
-                index: idx ?? 0
-                text: txt ?? ""
-                source: src ?? ""
-                sourceSize: sz ?? 32
-                onClicked: control.menuSelected(idx)
+                highlighted: (control.currentSelection === model.idx)
+                index: model.idx ?? 0
+                text: model.txt ?? ""
+                source: model.src ?? ""
+                sourceSize: model.sz ?? 32
+                onClicked: control.menuSelected(model.idx)
             }
         }
     }

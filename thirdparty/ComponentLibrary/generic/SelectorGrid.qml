@@ -44,14 +44,16 @@ Item {
         Repeater {
             model: selectorGrid.model
             delegate: SelectorGridItem {
+                required property var model
+
                 width: selectorGrid.btnWidth
                 height: selectorGrid.btnHeight
 
-                highlighted: (selectorGrid.currentSelection === idx)
-                source: src
-                text: txt
-                index: idx
-                onClicked: selectorGrid.menuSelected(idx)
+                highlighted: (selectorGrid.currentSelection === model.idx)
+                source: model.src ?? ""
+                text: model.txt ?? ""
+                index: model.idx ?? 0
+                onClicked: selectorGrid.menuSelected(model.idx)
             }
         }
     }

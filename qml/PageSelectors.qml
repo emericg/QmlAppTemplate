@@ -87,6 +87,7 @@ Flickable {
             anchors.horizontalCenter: parent.horizontalCenter
             height: 36
 
+            currentSelection: 1
             model: lmSelectorMenuImgTxt
 
             onMenuSelected: (index) => {
@@ -141,6 +142,7 @@ Flickable {
             anchors.horizontalCenter: parent.horizontalCenter
             height: 36
 
+            currentSelection: 1
             model: lmSelectorMenuImgTxt
 
             onMenuSelected: (index) => {
@@ -178,6 +180,7 @@ Flickable {
             anchors.horizontalCenter: parent.horizontalCenter
             height: 40
 
+            currentSelection: 1
             model: lmSelectorMenuImg
 
             onMenuSelected: (index) => {
@@ -192,6 +195,7 @@ Flickable {
             anchors.horizontalCenter: parent.horizontalCenter
             height: 36
 
+            currentSelection: 1
             model: lmSelectorMenuImgTxt
 
             onMenuSelected: (index) => {
