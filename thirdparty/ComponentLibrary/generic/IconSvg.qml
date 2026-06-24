@@ -20,7 +20,6 @@ Item {
         sourceSize: Qt.size(width, height)
         fillMode: Image.PreserveAspectFit
         smooth: parent.smooth
-        asynchronous: false
     }
 
     MultiEffect {

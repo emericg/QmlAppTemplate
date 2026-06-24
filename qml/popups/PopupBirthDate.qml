@@ -164,6 +164,8 @@ Popup {
     contentItem: Column {
         bottomPadding: screenPaddingNavbar + screenPaddingBottom
 
+        ////////////////
+
         Item { // headerArea
             anchors.left: parent.left
             anchors.right: parent.right

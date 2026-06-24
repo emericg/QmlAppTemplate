@@ -82,6 +82,7 @@ Item {
         function onWidthChanged() { saveSettingsTimer.restart(); }
         function onHeightChanged() { saveSettingsTimer.restart(); }
         function onVisibilityChanged() { saveSettingsTimer.restart(); }
+        function onClosing() { control.saveSettings(); }
     }
 
     Timer {
