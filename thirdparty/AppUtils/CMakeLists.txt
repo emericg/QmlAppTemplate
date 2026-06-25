@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.20)
 # To avoid CMake Warnings, you should add Qt6 'CorePrivate' or 'CoreGui', as needed,
 # to your root level find_package()
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 
@@ -26,32 +26,24 @@ option(UTILS_NOTIFICATIONS_ENABLED "iOS notification handling" OFF)
 ################################################################################
 
 # Generic dependencies
-find_package(Qt6 6.6 REQUIRED COMPONENTS Core Gui Qml Quick)
+find_package(Qt6 6.8 REQUIRED COMPONENTS Core Gui Qml Quick)
 set(CORE_LIBRARIES Qt6::Core Qt6::Gui Qt6::Qml Qt6::Quick)
 
 # Generic sources
 set(CORE_SOURCES
-    utils_app.cpp
-    utils_app.h
-    utils_bits.cpp
-    utils_bits.h
-    utils_clipboard.cpp
-    utils_clipboard.h
-    utils_fpsmonitor.cpp
-    utils_fpsmonitor.h
-    utils_language.cpp
-    utils_language.h
-    utils_log.cpp
-    utils_log.h
-    utils_maths.cpp
-    utils_maths.h
-    utils_screen.cpp
-    utils_screen.h
-    utils_sysinfo.cpp
-    utils_sysinfo.h
-    utils_wifi.cpp
-    utils_wifi.h
-    utils_versionchecker.h)
+    PermissionManager.cpp PermissionManager.h
+    utils_app.cpp utils_app.h
+    utils_app.cpp utils_app.h
+    utils_bits.cpp utils_bits.h
+    utils_clipboard.cpp utils_clipboard.h
+    utils_fpsmonitor.cpp utils_fpsmonitor.h
+    utils_language.cpp utils_language.h
+    utils_log.cpp utils_log.h
+    utils_maths.cpp utils_maths.h
+    utils_screen.cpp utils_screen.h
+    utils_sysinfo.cpp utils_sysinfo.h
+    utils_wifi.cpp utils_wifi.h
+)
 
 # Qt optional tools
 if(UTILS_QT_RHI)
@@ -141,7 +133,8 @@ add_library(AppUtils::AppUtils ALIAS AppUtils)
 
 target_compile_definitions(AppUtils PUBLIC APP_NAME=\"${APP_NAME}\" APP_VERSION=\"${APP_VERSION}\")
 
-target_link_libraries(AppUtils PUBLIC ${CORE_LIBRARIES} ${PLATFORM_LIBRARIES})
+target_link_libraries(AppUtils PUBLIC ${CORE_LIBRARIES})
+target_link_libraries(AppUtils PRIVATE ${PLATFORM_LIBRARIES})
 
 target_include_directories(AppUtils PUBLIC ${CMAKE_CURRENT_LIST_DIR})
 
