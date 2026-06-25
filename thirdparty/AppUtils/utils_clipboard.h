@@ -37,10 +37,11 @@ class UtilsClipboard : public QObject
     Q_OBJECT
 
 public:
-    Q_INVOKABLE static void clear();
-
     Q_INVOKABLE static void setText(const QString &txt);
-    Q_INVOKABLE static  QString getText();
+
+    Q_INVOKABLE static QString getText();
+
+    Q_INVOKABLE static void clear();
 };
 
 /* ************************************************************************** */

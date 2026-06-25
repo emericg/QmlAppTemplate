@@ -89,7 +89,7 @@ void UtilsLanguage::loadLanguage(const QString &lng)
     }
     if (m_appTranslator)
     {
-        m_qt_app->installTranslator(m_appTranslator);
+        m_qt_app->removeTranslator(m_appTranslator);
         delete m_appTranslator;
     }
 

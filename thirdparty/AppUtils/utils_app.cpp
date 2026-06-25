@@ -274,7 +274,7 @@ bool UtilsApp::isQColorLight(const QColor &color)
 
 bool UtilsApp::isOsThemeDark()
 {
-    const QStyleHints *styleHints = static_cast<QGuiApplication *>qApp->styleHints();
+    const QStyleHints *styleHints = QGuiApplication::styleHints();
     return (styleHints && styleHints->colorScheme() == Qt::ColorScheme::Dark);
 }
 
@@ -687,7 +687,7 @@ QString UtilsApp::getMobileStorageExternal(int index)
 #if defined(Q_OS_ANDROID)
     QStringList storages = UtilsAndroid::get_storages_by_api();
 
-    if (storages.size() > index)
+    if (storages.size() > (1 + index))
         return storages.at(1 + index);
 #endif
 

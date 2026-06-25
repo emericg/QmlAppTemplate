@@ -28,18 +28,13 @@
 
 /* ************************************************************************** */
 
-void UtilsClipboard::clear()
-{
-    //
-}
-
 void UtilsClipboard::setText(const QString &txt)
 {
     QClipboard *clipboard = QGuiApplication::clipboard();
-    QString originalText = clipboard->text();
-
     clipboard->setText(txt);
 }
+
+/* ************************************************************************** */
 
 QString UtilsClipboard::getText()
 {
@@ -57,6 +52,13 @@ QString UtilsClipboard::getText()
     }
 
     return QString();
+}
+
+/* ************************************************************************** */
+
+void UtilsClipboard::clear()
+{
+    QGuiApplication::clipboard()->clear();
 }
 
 /* ************************************************************************** */
