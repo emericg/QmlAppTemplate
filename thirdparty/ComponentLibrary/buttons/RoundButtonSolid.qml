@@ -2,7 +2,7 @@ import QtQuick
 
 import ComponentLibrary
 
-RoundButtonImpl {
+SquareButtonImpl {
     property color color: Theme.colorPrimary
 
     colorBackground: color
@@ -10,4 +10,6 @@ RoundButtonImpl {
     colorBorder: Qt.darker(color, 1.02)
     colorIcon: "white"
     flat: false
+
+    radius: width / 2
 }

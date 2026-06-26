@@ -1,9 +1,11 @@
 import ComponentLibrary
 
-RoundButtonImpl {
+SquareButtonImpl {
     colorBackground: "white"
     colorHighlight: Theme.colorComponentBorder
     colorBorder: Theme.colorComponentBorder
     colorIcon: Theme.colorPrimary
     flat: false
+
+    radius: width / 2
 }

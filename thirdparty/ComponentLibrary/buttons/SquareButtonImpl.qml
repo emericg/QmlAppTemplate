@@ -10,6 +10,9 @@ T.Button {
     implicitWidth: implicitBackgroundWidth
     implicitHeight: implicitBackgroundHeight
 
+    font.pixelSize: Theme.componentFontSize+2
+    font.bold: true
+
     flat: true
     checkable: false
     hoverEnabled: Theme.isDesktop
@@ -129,13 +132,31 @@ T.Button {
                 easing.type: Easing.Linear
             }
         }
+
+        Text {
+            anchors.fill: parent
+
+            visible: !control.source.toString().length
+            opacity: control.enabled ? 1 : 0.66
+
+            color: control.hovered ? control.colorIconHighlight : control.colorIcon
+            Behavior on color { ColorAnimation { duration: 133 } }
+
+            text: control.text
+            textFormat: Text.PlainText
+
+            font: control.font
+            elide: Text.ElideMiddle
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+        }
     }
 
     ////////////////
 
     Loader {
         anchors.fill: control
-        active: control.tooltipText && control.hovered
+        active: control.tooltipText !== "" && control.hovered
 
         sourceComponent: ToolTipFlat {
             visible: control.hovered

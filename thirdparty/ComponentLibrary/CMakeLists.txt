@@ -38,14 +38,7 @@ list(APPEND MODULE_QML_FILES
     buttons/ButtonSunken.qml
     buttons/ButtonWireframe.qml
     buttons/ButtonImpl.qml
-    buttons/RoundButtonDesktop.qml
-    buttons/RoundButtonOutline.qml
-    buttons/RoundButtonClear.qml
-    buttons/RoundButtonFlat.qml
-    buttons/RoundButtonSolid.qml
-    buttons/RoundButtonWireframe.qml
-    buttons/RoundButtonSunken.qml
-    buttons/RoundButtonImpl.qml
+    buttons/SquareButtonImpl.qml
     buttons/SquareButtonDesktop.qml
     buttons/SquareButtonOutline.qml
     buttons/SquareButtonClear.qml
@@ -53,7 +46,13 @@ list(APPEND MODULE_QML_FILES
     buttons/SquareButtonSolid.qml
     buttons/SquareButtonWireframe.qml
     buttons/SquareButtonSunken.qml
-    buttons/SquareButtonImpl.qml
+    buttons/RoundButtonDesktop.qml
+    buttons/RoundButtonOutline.qml
+    buttons/RoundButtonClear.qml
+    buttons/RoundButtonFlat.qml
+    buttons/RoundButtonSolid.qml
+    buttons/RoundButtonWireframe.qml
+    buttons/RoundButtonSunken.qml
 
     generic/BannerButton.qml
     generic/BannerProgressButton.qml

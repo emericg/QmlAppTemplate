@@ -4,14 +4,6 @@ import QtQuick.Templates as T
 
 import ComponentLibrary
 
-//Column {
-//    anchors.right: parent.right
-//    anchors.bottom: parent.bottom
-//    anchors.margins: Theme.componentMarginXL
-//    spacing: Theme.componentMarginXL
-//    z: 10
-//}
-
 T.Button {
     id: control
     anchors.right: parent.right
@@ -46,7 +38,7 @@ T.Button {
     property color colorIcon: "white"
 
     // animation
-    property string animation: "" // available: rotate, fade
+    property string animation: "" // available: rotate, fade, both
     property bool animationRunning: false
 
     ////////////////////////////////////////////////////////////////////////////
@@ -143,7 +135,6 @@ T.Button {
                     }
                 }
             }
-
 
             Text {
                 height: 56

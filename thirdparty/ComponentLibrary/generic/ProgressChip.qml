@@ -13,7 +13,7 @@ T.Button {
                              implicitContentHeight + topPadding + bottomPadding)
 
     leftPadding: leftIcon.length ? 2 : 12
-    rightPadding: rightIcon.length ? 2 : 12
+    rightPadding: 12
     spacing: 6
 
     // settings
@@ -28,19 +28,14 @@ T.Button {
     property color color: Theme.colorPrimary
     property color colorBackground: Theme.colorComponentBackground // Theme.colorGrey
 
-    // progress
-    property int progress: 0
-
-    // icons
+    // icon
     property string leftIcon
     property int leftIconSize: UtilsNumber.alignTo(height * 0.66, 2)
     property int leftIconRotation: 0
     property bool leftIconBackground: true
 
-    property string rightIcon
-    property int rightIconSize: UtilsNumber.alignTo(height * 0.5, 2)
-    property int rightIconRotation: 0
-    property bool rightIconBackground: true
+    // progress
+    property int progress: 0
 
     ////////////////
 
