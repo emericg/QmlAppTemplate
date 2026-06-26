@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.20)
 
 #project(ComponentLibrary LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 ################################################################################
@@ -196,7 +196,8 @@ set_source_files_properties(ThemeEngine.qml PROPERTIES
 
 ################################################################################
 
-find_package(Qt6 6.5 REQUIRED COMPONENTS Core Quick QuickControls2)
+find_package(Qt6 6.8 REQUIRED COMPONENTS Core Quick QuickControls2)
+find_package(Qt6 6.8 REQUIRED COMPONENTS LinguistTools)
 
 qt_add_library(ComponentLibrary STATIC)
 

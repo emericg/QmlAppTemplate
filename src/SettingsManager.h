@@ -9,8 +9,8 @@
 #include <QString>
 #include <QSize>
 
-class QJSEngine;
 class QQmlEngine;
+class QJSEngine;
 
 /* ************************************************************************** */
 
@@ -53,13 +53,12 @@ class SettingsManager: public QObject
 
     // Yours to fill
 
-    // Singleton
-    static SettingsManager *instance;
-    SettingsManager();
-    ~SettingsManager();
-
+    // Read / Write settings
     bool readSettings();
     bool writeSettings();
+
+    // Singleton
+    explicit SettingsManager(QObject *parent = nullptr);
 
 Q_SIGNALS:
     void firstLaunchChanged();
@@ -72,7 +71,7 @@ Q_SIGNALS:
 
 public:
     static SettingsManager *getInstance();
-    static SettingsManager *create(QQmlEngine *, QJSEngine *);
+    static SettingsManager *create(QQmlEngine *engine, QJSEngine *scriptEngine);
 
     // Generic
 

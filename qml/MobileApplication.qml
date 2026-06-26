@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Window
 
 import ComponentLibrary
+import AppUtils
 import QmlAppTemplate
 import MobileUI
 
@@ -14,11 +15,27 @@ Window {
     color: Theme.colorBackground
     visible: true
 
-    property bool isHdpi: (utilsScreen.screenDpi >= 128 || utilsScreen.screenPar >= 2.0)
+    property bool isHdpi: (UtilsScreen.screenDpi >= 128 || UtilsScreen.screenPar >= 2.0)
     property bool isDesktop: (Qt.platform.os !== "ios" && Qt.platform.os !== "android")
     property bool isMobile: (Qt.platform.os === "ios" || Qt.platform.os === "android")
-    property bool isPhone: ((Qt.platform.os === "ios" || Qt.platform.os === "android") && (utilsScreen.screenSize < 7.0))
-    property bool isTablet: ((Qt.platform.os === "ios" || Qt.platform.os === "android") && (utilsScreen.screenSize >= 7.0))
+    property bool isPhone: ((Qt.platform.os === "ios" || Qt.platform.os === "android") && (UtilsScreen.screenSize < 7.0))
+    property bool isTablet: ((Qt.platform.os === "ios" || Qt.platform.os === "android") && (UtilsScreen.screenSize >= 7.0))
+
+    Component.onCompleted: {
+        // Setup ThemeEngine
+        Theme.screenDpi = Qt.binding(() => UtilsScreen.screenDpi)
+        Theme.screenPar = Qt.binding(() => UtilsScreen.screenPar)
+        Theme.screenSize = Qt.binding(() => UtilsScreen.screenSize)
+        Theme.appThemeAuto = Qt.binding(() => SettingsManager.appThemeAuto)
+        Theme.appThemeAutoMethod = Qt.binding(() => SettingsManager.appThemeAutoMethod)
+        Theme.appTheme = Qt.binding(() => SettingsManager.appTheme)
+        Theme.screenPaddingStatusbar = Qt.binding(() => appWindow.screenPaddingStatusbar)
+        Theme.screenPaddingNavbar = Qt.binding(() => appWindow.screenPaddingNavbar)
+        Theme.screenPaddingTop = Qt.binding(() => appWindow.screenPaddingTop)
+        Theme.screenPaddingLeft = Qt.binding(() => appWindow.screenPaddingLeft)
+        Theme.screenPaddingRight = Qt.binding(() => appWindow.screenPaddingRight)
+        Theme.screenPaddingBottom = Qt.binding(() => appWindow.screenPaddingBottom)
+    }
 
     // Mobile stuff ////////////////////////////////////////////////////////////
 
@@ -39,19 +56,14 @@ Window {
 
     Binding {
         target: MobileUI
-        property: "statusbarTheme"
-        value: { return Theme.themeStatusbar }
+        property: "statusbarColor"
+        value: { return Theme.colorStatusbar }
     }
     Binding {
         target: MobileUI
         property: "navbarColor"
-        value: { return Theme.colorBackground }
+        value: { return Theme.colorTabletmenu }
     }
-    //Binding {
-    //    target: MobileUI
-    //    property: "navbarTheme"
-    //    value: { return Theme.themeStatusbar }
-    //}
 
     MobileHeader {
         id: appHeader

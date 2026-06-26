@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls
 
 import ComponentLibrary
+import AppUtils
 
 Loader {
     id: screenSettings
@@ -378,7 +379,7 @@ Loader {
                         }
                     }
                     onActivated: {
-                        utilsLanguage.loadLanguage(cbAppLanguage.get(currentIndex).text)
+                        UtilsLanguage.loadLanguage(cbAppLanguage.get(currentIndex).text)
                         SettingsManager.appLanguage = cbAppLanguage.get(currentIndex).text
                     }
                 }

@@ -3,6 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 import ComponentLibrary
+import AppUtils
 
 Loader {
     id: screenHostInfos
@@ -16,7 +17,7 @@ Loader {
         appContent.state = "HostInfos"
 
         // get current wifi info (on mobile)
-        utilsWiFi.refreshWiFi()
+        UtilsWiFi.refreshWiFi()
     }
 
     function backAction() {
@@ -86,7 +87,7 @@ Loader {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: utilsApp.appName()
+                            text: UtilsApp.appName()
                             textFormat: Text.PlainText
                             font.pixelSize: Theme.fontSizeContentBig
                             color: Theme.colorHighContrast
@@ -103,7 +104,7 @@ Loader {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: utilsApp.appVersion()
+                            text: UtilsApp.appVersion()
                             textFormat: Text.PlainText
                             font.pixelSize: Theme.fontSizeContentBig
                             color: Theme.colorHighContrast
@@ -120,7 +121,7 @@ Loader {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: utilsApp.appBuildDateTime()
+                            text: UtilsApp.appBuildDateTime()
                             textFormat: Text.PlainText
                             font.pixelSize: Theme.fontSizeContentBig
                             color: Theme.colorHighContrast
@@ -137,7 +138,7 @@ Loader {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: utilsApp.appBuildModeFull()
+                            text: UtilsApp.appBuildModeFull()
                             textFormat: Text.PlainText
                             font.pixelSize: Theme.fontSizeContentBig
                             color: Theme.colorHighContrast
@@ -166,7 +167,7 @@ Loader {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: utilsApp.qtVersion()
+                            text: UtilsApp.qtVersion()
                             textFormat: Text.PlainText
                             font.pixelSize: Theme.fontSizeContentBig
                             color: Theme.colorHighContrast
@@ -185,7 +186,7 @@ Loader {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: utilsApp.qtBuildMode()
+                            text: UtilsApp.qtBuildMode()
                             textFormat: Text.PlainText
                             font.pixelSize: Theme.fontSizeContentBig
                             color: Theme.colorHighContrast
@@ -202,7 +203,7 @@ Loader {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: utilsApp.qtArchitecture()
+                            text: UtilsApp.qtArchitecture()
                             textFormat: Text.PlainText
                             font.pixelSize: Theme.fontSizeContentBig
                             color: Theme.colorHighContrast
@@ -210,7 +211,7 @@ Loader {
                     }
 
                     Column {
-                        visible: utilsApp.qtRhiBackend()
+                        visible: UtilsApp.qtRhiBackend()
 
                         Text {
                             text: qsTr("Qt RHI backend")
@@ -221,7 +222,7 @@ Loader {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: utilsApp.qtRhiBackend()
+                            text: UtilsApp.qtRhiBackend()
                             textFormat: Text.PlainText
                             font.pixelSize: Theme.fontSizeContentBig
                             color: Theme.colorHighContrast
@@ -250,7 +251,7 @@ Loader {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: utilsSysInfo.os_name
+                            text: UtilsSysInfo.os_name
                             textFormat: Text.PlainText
                             color: Theme.colorHighContrast
                             font.pixelSize: Theme.fontSizeContentBig
@@ -258,7 +259,7 @@ Loader {
                     }
 
                     Column {
-                        visible: (utilsSysInfo.os_version !== "unknown")
+                        visible: (UtilsSysInfo.os_version !== "unknown")
 
                         Text {
                             text: qsTr("Operating System VERSION")
@@ -269,7 +270,7 @@ Loader {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: utilsSysInfo.os_version
+                            text: UtilsSysInfo.os_version
                             textFormat: Text.PlainText
                             color: Theme.colorHighContrast
                             font.pixelSize: Theme.fontSizeContentBig
@@ -277,7 +278,7 @@ Loader {
                     }
 
                     Column {
-                        visible: utilsSysInfo.os_display_server
+                        visible: UtilsSysInfo.os_display_server
 
                         Text {
                             text: qsTr("Display Server")
@@ -288,7 +289,7 @@ Loader {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: utilsSysInfo.os_display_server
+                            text: UtilsSysInfo.os_display_server
                             textFormat: Text.PlainText
                             color: Theme.colorHighContrast
                             font.pixelSize: Theme.fontSizeContentBig
@@ -296,7 +297,7 @@ Loader {
                     }
 
                     Column {
-                        visible: utilsApp.getAndroidSdkVersion() !== 0
+                        visible: UtilsApp.getAndroidSdkVersion() !== 0
 
                         Text {
                             text: qsTr("Android SDK version")
@@ -307,7 +308,7 @@ Loader {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: utilsApp.getAndroidSdkVersion()
+                            text: UtilsApp.getAndroidSdkVersion()
                             textFormat: Text.PlainText
                             color: Theme.colorHighContrast
                             font.pixelSize: Theme.fontSizeContentBig
@@ -336,7 +337,7 @@ Loader {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: utilsSysInfo.cpu_arch
+                            text: UtilsSysInfo.cpu_arch
                             textFormat: Text.PlainText
                             font.pixelSize: Theme.fontSizeContentBig
                             color: Theme.colorHighContrast
@@ -353,7 +354,7 @@ Loader {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: utilsSysInfo.cpu_coreCount_physical + " / " + utilsSysInfo.cpu_coreCount_logical
+                            text: UtilsSysInfo.cpu_coreCount_physical + " / " + UtilsSysInfo.cpu_coreCount_logical
                             textFormat: Text.PlainText
                             font.pixelSize: Theme.fontSizeContentBig
                             color: Theme.colorHighContrast
@@ -370,7 +371,7 @@ Loader {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: utilsSysInfo.ram_total + " " + qsTr("MB")
+                            text: UtilsSysInfo.ram_total + " " + qsTr("MB")
                             textFormat: Text.PlainText
                             color: Theme.colorHighContrast
                             font.pixelSize: Theme.fontSizeContentBig
@@ -390,7 +391,7 @@ Loader {
                     spacing: Theme.componentMarginS
 
                     Column {
-                        visible: (utilsScreen.screenPar != 1)
+                        visible: (UtilsScreen.screenPar != 1)
 
                         Text {
                             text: qsTr("Screen geometry (physical)")
@@ -401,8 +402,8 @@ Loader {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: (utilsScreen.screenWidth*utilsScreen.screenPar).toFixed(1) + " x "
-                                  + (utilsScreen.screenHeight*utilsScreen.screenPar).toFixed(1)
+                            text: (UtilsScreen.screenWidth*UtilsScreen.screenPar).toFixed(1) + " x "
+                                  + (UtilsScreen.screenHeight*UtilsScreen.screenPar).toFixed(1)
                             textFormat: Text.PlainText
                             font.pixelSize: Theme.fontSizeContentBig
                             color: Theme.colorHighContrast
@@ -410,7 +411,7 @@ Loader {
                     }
 
                     Column {
-                        visible: (utilsScreen.screenPar != 1)
+                        visible: (UtilsScreen.screenPar != 1)
 
                         Text {
                             text: qsTr("Screen DPI (physical)")
@@ -421,7 +422,7 @@ Loader {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: (utilsScreen.screenDpi*utilsScreen.screenPar).toFixed(1)
+                            text: (UtilsScreen.screenDpi*UtilsScreen.screenPar).toFixed(1)
                             textFormat: Text.PlainText
                             font.pixelSize: Theme.fontSizeContentBig
                             color: Theme.colorHighContrast
@@ -438,7 +439,7 @@ Loader {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: utilsScreen.screenWidth + " x " + utilsScreen.screenHeight
+                            text: UtilsScreen.screenWidth + " x " + UtilsScreen.screenHeight
                             textFormat: Text.PlainText
                             font.pixelSize: Theme.fontSizeContentBig
                             color: Theme.colorHighContrast
@@ -455,7 +456,7 @@ Loader {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: utilsScreen.screenDpi
+                            text: UtilsScreen.screenDpi
                             textFormat: Text.PlainText
                             font.pixelSize: Theme.fontSizeContentBig
                             color: Theme.colorHighContrast
@@ -472,7 +473,7 @@ Loader {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: utilsScreen.screenPar.toFixed(1)
+                            text: UtilsScreen.screenPar.toFixed(1)
                             textFormat: Text.PlainText
                             font.pixelSize: Theme.fontSizeContentBig
                             color: Theme.colorHighContrast
@@ -489,7 +490,7 @@ Loader {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: utilsScreen.screenDar.toFixed(2) + " (" + utilsScreen.screenDarStr + ")"
+                            text: UtilsScreen.screenDar.toFixed(2) + " (" + UtilsScreen.screenDarStr + ")"
                             textFormat: Text.PlainText
                             font.pixelSize: Theme.fontSizeContentBig
                             color: Theme.colorHighContrast
@@ -506,7 +507,7 @@ Loader {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: utilsScreen.screenSize.toFixed(1) + " " + qsTr("inches")
+                            text: UtilsScreen.screenSize.toFixed(1) + " " + qsTr("inches")
                             textFormat: Text.PlainText
                             font.pixelSize: Theme.fontSizeContentBig
                             color: Theme.colorHighContrast
@@ -523,7 +524,7 @@ Loader {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: utilsScreen.screenRefreshRate.toFixed(1) + " Hz"
+                            text: UtilsScreen.screenRefreshRate.toFixed(1) + " Hz"
                             textFormat: Text.PlainText
                             font.pixelSize: Theme.fontSizeContentBig
                             color: Theme.colorHighContrast
@@ -540,7 +541,7 @@ Loader {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: utilsScreen.screenDepth + " bpp"
+                            text: UtilsScreen.screenDepth + " bpp"
                             textFormat: Text.PlainText
                             font.pixelSize: Theme.fontSizeContentBig
                             color: Theme.colorHighContrast
@@ -555,7 +556,7 @@ Loader {
                 id: itemNwInfo
                 width: www
 
-                visible: utilsWiFi.currentSSID
+                visible: UtilsWiFi.currentSSID
 
                 ColumnLayout {
                     anchors.fill: parent
@@ -571,7 +572,7 @@ Loader {
                             font.capitalization: Font.AllUppercase
                         }
                         Text {
-                            text: utilsWiFi.currentSSID
+                            text: UtilsWiFi.currentSSID
                             textFormat: Text.PlainText
                             font.pixelSize: Theme.fontSizeContentBig
                             color: Theme.colorHighContrast

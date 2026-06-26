@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls
 
 import ComponentLibrary
+import AppUtils
 
 Loader {
     id: screenAbout
@@ -89,7 +90,7 @@ Loader {
                         }
                         Text {
                             color: Theme.colorSubText
-                            text: qsTr("version %1 %2").arg(utilsApp.appVersion()).arg(utilsApp.appBuildMode())
+                            text: qsTr("version %1 %2").arg(UtilsApp.appVersion()).arg(UtilsApp.appBuildMode())
                             font.pixelSize: Theme.fontSizeContentBig
                         }
                     }
@@ -389,7 +390,7 @@ Loader {
                 anchors.rightMargin: Theme.componentMargin
 
                 height: 32 + debugColumn.height
-                visible: utilsApp.isDebugBuild()
+                visible: UtilsApp.isDebugBuild()
 
                 IconSvg {
                     anchors.top: debugColumn.top
@@ -415,44 +416,44 @@ Loader {
 
                     Text {
                         color: Theme.colorSubText
-                        text: "App name: %1".arg(utilsApp.appName())
+                        text: "App name: %1".arg(UtilsApp.appName())
                         textFormat: Text.PlainText
                         font.pixelSize: Theme.fontSizeContent
                     }
                     Text {
                         color: Theme.colorSubText
-                        text: "App version: %1".arg(utilsApp.appVersion())
+                        text: "App version: %1".arg(UtilsApp.appVersion())
                         textFormat: Text.PlainText
                         font.pixelSize: Theme.fontSizeContent
                     }
                     Text {
                         color: Theme.colorSubText
-                        text: "Build mode: %1".arg(utilsApp.appBuildModeFull())
+                        text: "Build mode: %1".arg(UtilsApp.appBuildModeFull())
                         textFormat: Text.PlainText
                         font.pixelSize: Theme.fontSizeContent
                     }
                     Text {
                         color: Theme.colorSubText
-                        text: "Build architecture: %1".arg(utilsApp.qtArchitecture())
+                        text: "Build architecture: %1".arg(UtilsApp.qtArchitecture())
                         textFormat: Text.PlainText
                         font.pixelSize: Theme.fontSizeContent
                     }
                     Text {
                         color: Theme.colorSubText
-                        text: "Build date: %1".arg(utilsApp.appBuildDateTime())
+                        text: "Build date: %1".arg(UtilsApp.appBuildDateTime())
                         textFormat: Text.PlainText
                         font.pixelSize: Theme.fontSizeContent
                     }
                     Text {
                         color: Theme.colorSubText
-                        text: "Qt version: %1".arg(utilsApp.qtVersion())
+                        text: "Qt version: %1".arg(UtilsApp.qtVersion())
                         textFormat: Text.PlainText
                         font.pixelSize: Theme.fontSizeContent
                     }
                 }
             }
 
-            ListSeparator { visible: utilsApp.isDebugBuild() }
+            ListSeparator { visible: UtilsApp.isDebugBuild() }
 
             ////////
         }

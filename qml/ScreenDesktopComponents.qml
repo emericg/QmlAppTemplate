@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls
 
 import ComponentLibrary
+import AppUtils
 
 Loader {
     id: screenDesktopComponents
@@ -359,7 +360,7 @@ Loader {
                         anchors.verticalCenter: parent.verticalCenter
                         readOnly: true
 
-                        currentSelection: utilsApp.isOsThemeDark()
+                        currentSelection: UtilsApp.isOsThemeDark()
                         model: ListModel {
                             ListElement { idx: 0; txt: "light"; sz: 0; }
                             ListElement { idx: 1; txt: "dark"; sz: 0; }

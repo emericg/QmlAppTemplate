@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 
 import ComponentLibrary
+import AppUtils
 
 Item {
     id: screenPermissions
@@ -80,8 +81,8 @@ Item {
                         colorIcon: (validperm) ? "white" : "white"
 
                         onClicked: {
-                            utilsApp.vibrate(25)
-                            //validperm = utilsApp.getMobileBleLocationPermission()
+                            UtilsApp.vibrate(25)
+                            //validperm = UtilsApp.getMobileBleLocationPermission()
                             //retryPermissions.start()
                         }
                     }
@@ -160,8 +161,8 @@ Item {
                         colorIcon: (validperm) ? "white" : "white"
 
                         onClicked: {
-                            utilsApp.vibrate(25)
-                            //validperm = utilsApp.isMobileGpsEnabled()
+                            UtilsApp.vibrate(25)
+                            //validperm = UtilsApp.isMobileGpsEnabled()
                             //retryPermissions.start()
                         }
                     }
@@ -204,7 +205,7 @@ Item {
                     source: "qrc:/IconLibrary/material-icons/duotone/tune.svg"
                     sourceSize: 20
 
-                    onClicked: utilsApp.openAndroidLocationSettings()
+                    onClicked: UtilsApp.openAndroidLocationSettings()
                 }
             }
 
@@ -330,7 +331,7 @@ Item {
                     source: "qrc:/IconLibrary/material-icons/duotone/tune.svg"
                     sourceSize: 20
 
-                    onClicked: utilsApp.openAndroidAppInfo("io.emeric.qmlapptemplate")
+                    onClicked: UtilsApp.openAndroidAppInfo("io.emeric.qmlapptemplate")
                 }
             }
 

@@ -59,11 +59,8 @@ int main(int argc, char *argv[])
 
     // Init generic utils
     UtilsApp *utilsApp = UtilsApp::getInstance();
-    UtilsScreen *utilsScreen = UtilsScreen::getInstance();
-    UtilsSysInfo *utilsSysInfo = UtilsSysInfo::getInstance();
-    UtilsWiFi *utilsWiFi = UtilsWiFi::getInstance();
     UtilsLanguage *utilsLanguage = UtilsLanguage::getInstance();
-    if (!utilsApp || !utilsScreen || !utilsSysInfo || !utilsLanguage)
+    if (!utilsApp || !utilsLanguage)
     {
         qWarning() << "Cannot init generic utils!";
         return EXIT_FAILURE;
@@ -81,14 +78,6 @@ int main(int argc, char *argv[])
     //qDebug() << engine.importPathList();
     //QDirIterator qrc(":", QDirIterator::Subdirectories);
     //while(qrc.hasNext()) { qWarning() << qrc.next(); }
-
-    QQmlContext *engine_context = engine.rootContext();
-    engine_context->setContextProperty("settingsManager", sm);
-    engine_context->setContextProperty("utilsApp", utilsApp);
-    engine_context->setContextProperty("utilsLanguage", utilsLanguage);
-    engine_context->setContextProperty("utilsScreen", utilsScreen);
-    engine_context->setContextProperty("utilsSysInfo", utilsSysInfo);
-    engine_context->setContextProperty("utilsWiFi", utilsWiFi);
 
     // Load the main view
 #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(FORCE_MOBILE_UI)

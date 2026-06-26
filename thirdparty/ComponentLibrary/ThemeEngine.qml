@@ -39,12 +39,34 @@ Item {
 
     ////////////////
 
+    // Inputs // bind these from the application // sensible defaults let the library run standalone
+
+    // Theme engine
+    property var appTheme: -1
+    property bool appThemeAuto: false
+    property int appThemeAutoMethod: 0
+
+    // Screen metric
+    property real screenDpi: 96
+    property real screenPar: 1.0
+    property real screenSize: 5.0
+
+    // Mobile "safe areas"
+    property int screenPaddingStatusbar: 0
+    property int screenPaddingNavbar: 0
+    property int screenPaddingTop: 0
+    property int screenPaddingLeft: 0
+    property int screenPaddingRight: 0
+    property int screenPaddingBottom: 0
+
+    ////////////////
+
     property bool isDesktop: (Qt.platform.os !== "ios" && Qt.platform.os !== "android")
     property bool isMobile: (Qt.platform.os === "ios" || Qt.platform.os === "android")
 
-    property bool isHdpi: (utilsScreen.screenDpi >= 128 || utilsScreen.screenPar >= 2.0)
-    property bool isPhone: ((Qt.platform.os === "ios" || Qt.platform.os === "android") && (utilsScreen.screenSize < 7.0))
-    property bool isTablet: ((Qt.platform.os === "ios" || Qt.platform.os === "android") && (utilsScreen.screenSize >= 7.0))
+    property bool isHdpi: (screenDpi >= 128 || screenPar >= 2.0)
+    property bool isPhone: (isMobile && (screenSize < 7.0))
+    property bool isTablet: (isMobile && (screenSize >= 7.0))
 
     ////////////////
 
@@ -262,23 +284,20 @@ Item {
 
     ////////////////////////////////////////////////////////////////////////////
 
-    Component.onCompleted: loadTheme(settingsManager.appTheme)
-    Connections {
-        target: settingsManager
-        function onAppThemeChanged() { loadTheme(settingsManager.appTheme) }
-        function onAppThemeAutoChanged() { loadTheme(settingsManager.appTheme) }
-        function onAppThemeAutoMethodChanged() { loadTheme(settingsManager.appTheme) }
-    }
+    Component.onCompleted: loadTheme(appTheme)
+    onAppThemeChanged: loadTheme(appTheme)
+    onAppThemeAutoChanged: loadTheme(appTheme)
+    onAppThemeAutoMethodChanged: loadTheme(appTheme)
 
-    function loadTheme(newIndex) {
-        //console.log("Theme.loadTheme(" + newIndex + ")")
-        var themeIndex = -1
+    function loadTheme(newTheme) {
+        //console.log("Theme.loadTheme(" + newTheme + ")")
 
         // Get the theme index
-        if ((typeof newIndex === 'string' || newIndex instanceof String)) {
-            themeIndex = getThemeIndex(newIndex)
+        var themeIndex = -1
+        if ((typeof newTheme === 'string' || newTheme instanceof String)) {
+            themeIndex = getThemeIndex(newTheme)
         } else {
-            themeIndex = newIndex
+            themeIndex = newTheme
         }
 
         // Validate the result (or set the default)
@@ -288,7 +307,7 @@ Item {
         }
 
         // Handle day/night themes
-        if (settingsManager.appThemeAuto) {
+        if (appThemeAuto) {
             var rightnow = new Date()
             var hour = Qt.formatDateTime(rightnow, "hh")
             if (hour >= 21 || hour <= 8) {

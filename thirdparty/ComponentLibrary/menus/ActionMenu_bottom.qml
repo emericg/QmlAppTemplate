@@ -37,7 +37,7 @@ T.Popup {
 
     property int actualHeight: {
         if (typeof mobileMenu !== "undefined" && mobileMenu.height)
-            return contentColumn.height + screenPaddingNavbar + screenPaddingBottom
+            return contentColumn.height + Theme.screenPaddingNavbar + Theme.screenPaddingBottom
         return contentColumn.height
     }
 
@@ -94,9 +94,9 @@ T.Popup {
             anchors.top: parent.top
             anchors.topMargin: 0
             anchors.left: parent.left
-            anchors.leftMargin: screenPaddingLeft
+            anchors.leftMargin: Theme.screenPaddingLeft
             anchors.right: parent.right
-            anchors.rightMargin: screenPaddingRight
+            anchors.rightMargin: Theme.screenPaddingRight
 
             topPadding: Theme.componentMargin
             bottomPadding: 4

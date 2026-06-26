@@ -10,31 +10,22 @@
 
 /* ************************************************************************** */
 
-SettingsManager *SettingsManager::instance = nullptr;
-
 SettingsManager *SettingsManager::getInstance()
 {
-    if (instance == nullptr)
-    {
-        instance = new SettingsManager();
-    }
-
+    static SettingsManager *instance = new SettingsManager(QCoreApplication::instance());
     return instance;
 }
 
 SettingsManager *SettingsManager::create(QQmlEngine *, QJSEngine *)
 {
-    return getInstance();
+    SettingsManager *instance = getInstance();
+    QJSEngine::setObjectOwnership(instance, QJSEngine::CppOwnership);
+    return instance;
 }
 
-SettingsManager::SettingsManager()
+SettingsManager::SettingsManager(QObject *parent) : QObject(parent)
 {
     readSettings();
-}
-
-SettingsManager::~SettingsManager()
-{
-    //
 }
 
 /* ************************************************************************** */

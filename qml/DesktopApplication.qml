@@ -3,6 +3,7 @@ import QtQuick.Controls
 import QtQuick.Window
 
 import ComponentLibrary
+import AppUtils
 import QmlAppTemplate
 
 ApplicationWindow {
@@ -10,11 +11,21 @@ ApplicationWindow {
     flags: Qt.Window
     color: Theme.colorBackground
 
-    property bool isHdpi: (utilsScreen.screenDpi >= 128 || utilsScreen.screenPar >= 2.0)
+    property bool isHdpi: (UtilsScreen.screenDpi >= 128 || UtilsScreen.screenPar >= 2.0)
     property bool isDesktop: true
     property bool isMobile: false
     property bool isPhone: false
     property bool isTablet: false
+
+    Component.onCompleted: {
+        // Setup ThemeEngine
+        Theme.screenDpi = Qt.binding(() => UtilsScreen.screenDpi)
+        Theme.screenPar = Qt.binding(() => UtilsScreen.screenPar)
+        Theme.screenSize = Qt.binding(() => UtilsScreen.screenSize)
+        Theme.appThemeAuto = Qt.binding(() => SettingsManager.appThemeAuto)
+        Theme.appThemeAutoMethod = Qt.binding(() => SettingsManager.appThemeAutoMethod)
+        Theme.appTheme = Qt.binding(() => SettingsManager.appTheme)
+    }
 
     // Desktop stuff ///////////////////////////////////////////////////////////
 
