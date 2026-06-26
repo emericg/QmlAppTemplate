@@ -24,6 +24,7 @@
 #define PERMISSION_MANAGER_H
 /* ************************************************************************** */
 
+#include <QtQml/qqmlregistration.h>
 #include <QObject>
 
 #if !QT_CONFIG(permissions)
@@ -31,6 +32,9 @@
 #endif
 
 #include <QPermission>
+
+class QQmlEngine;
+class QJSEngine;
 
 /* ************************************************************************** */
 
@@ -50,6 +54,8 @@
 class PermissionManager: public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
+    QML_SINGLETON
 
     Q_PROPERTY(bool bluetoothPermission READ hasBluetoothPermission NOTIFY bluetoothPermissionChanged)
     Q_PROPERTY(bool calendarPermission READ hasCalendarPermission NOTIFY calendarPermissionChanged)
@@ -58,9 +64,7 @@ class PermissionManager: public QObject
     Q_PROPERTY(bool locationPermission READ hasLocationPermission NOTIFY locationPermissionChanged)
     Q_PROPERTY(bool microphonePermission READ hasMicrophonePermission NOTIFY microphonePermissionChanged)
 
-    static PermissionManager *instance;
-    PermissionManager();
-    ~PermissionManager();
+    explicit PermissionManager(QObject *parent = nullptr);
 
     static const int s_waittimeout = 10000; // in ms
     static const int s_waittimeout_interval = 33; // in ms
@@ -93,6 +97,7 @@ Q_SIGNALS:
 
 public:
     static PermissionManager *getInstance();
+    static PermissionManager *create(QQmlEngine *engine, QJSEngine *scriptEngine);
 
     bool hasBluetoothPermission() const { return m_bluetoothPermission; }
     bool hasCalendarPermission() const { return m_calendarPermission; }

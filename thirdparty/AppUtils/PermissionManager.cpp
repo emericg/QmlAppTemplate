@@ -23,6 +23,7 @@
 #include "PermissionManager.h"
 
 #include <QCoreApplication>
+#include <QQmlEngine>
 #include <QDebug>
 
 #include <QPermission>
@@ -31,25 +32,20 @@
 /* ************************************************************************** */
 /* ************************************************************************** */
 
-PermissionManager *PermissionManager::instance = nullptr;
-
 PermissionManager *PermissionManager::getInstance()
 {
-    if (instance == nullptr)
-    {
-        instance = new PermissionManager();
-        return instance;
-    }
-
+    static PermissionManager *instance = new PermissionManager(QCoreApplication::instance());
     return instance;
 }
 
-PermissionManager::PermissionManager()
+PermissionManager *PermissionManager::create(QQmlEngine *, QJSEngine *)
 {
-    //
+    PermissionManager *instance = getInstance();
+    QJSEngine::setObjectOwnership(instance, QJSEngine::CppOwnership);
+    return instance;
 }
 
-PermissionManager::~PermissionManager()
+PermissionManager::PermissionManager(QObject *parent) : QObject(parent)
 {
     //
 }

@@ -33,7 +33,6 @@ set(CORE_LIBRARIES Qt6::Core Qt6::Gui Qt6::Qml Qt6::Quick)
 set(CORE_SOURCES
     PermissionManager.cpp PermissionManager.h
     utils_app.cpp utils_app.h
-    utils_app.cpp utils_app.h
     utils_bits.cpp utils_bits.h
     utils_clipboard.cpp utils_clipboard.h
     utils_fpsmonitor.cpp utils_fpsmonitor.h
@@ -128,8 +127,14 @@ endif()
 
 ################################################################################
 
-add_library(AppUtils STATIC ${CORE_SOURCES} ${PLATFORM_SOURCES})
-add_library(AppUtils::AppUtils ALIAS AppUtils)
+qt_add_library(AppUtils STATIC)
+
+qt_add_qml_module(AppUtils
+    URI AppUtils
+    VERSION 1.0
+    PLUGIN_TARGET AppUtils_plugin
+    SOURCES ${CORE_SOURCES} ${PLATFORM_SOURCES}
+)
 
 target_compile_definitions(AppUtils PUBLIC APP_NAME=\"${APP_NAME}\" APP_VERSION=\"${APP_VERSION}\")
 

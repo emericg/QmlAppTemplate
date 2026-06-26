@@ -44,16 +44,13 @@ class UtilsLog : public QObject
     const QString &getDebugLog() const { return m_debuglog; }
 
     // Singleton
-    static UtilsLog *instance;
-    UtilsLog(const bool enabled);
-    UtilsLog();
-    ~UtilsLog();
+    explicit UtilsLog(QObject *parent = nullptr);
 
 Q_SIGNALS:
     void debugLogUpdated();
 
 public:
-    static UtilsLog *getInstance(const bool enabled = true);
+    static UtilsLog *getInstance();
 
     void setEnabled(const bool enabled);
 

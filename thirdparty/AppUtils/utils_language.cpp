@@ -23,6 +23,7 @@
 #include "utils_language.h"
 
 #include <QCoreApplication>
+#include <QQmlEngine>
 #include <QLibraryInfo>
 #include <QTranslator>
 #include <QLocale>
@@ -30,28 +31,24 @@
 
 /* ************************************************************************** */
 
-UtilsLanguage *UtilsLanguage::instance = nullptr;
-
 UtilsLanguage *UtilsLanguage::getInstance()
 {
-    if (instance == nullptr)
-    {
-        instance = new UtilsLanguage();
-    }
-
+    static UtilsLanguage *instance = new UtilsLanguage(QCoreApplication::instance());
     return instance;
 }
 
-UtilsLanguage::UtilsLanguage()
+UtilsLanguage *UtilsLanguage::create(QQmlEngine *, QJSEngine *)
+{
+    UtilsLanguage *instance = getInstance();
+    QJSEngine::setObjectOwnership(instance, QJSEngine::CppOwnership);
+    return instance;
+}
+
+UtilsLanguage::UtilsLanguage(QObject *parent) : QObject(parent)
 {
     // Set a default application name and Qt application instance
     m_appName = QCoreApplication::applicationName();
     m_qt_app = QCoreApplication::instance();
-}
-
-UtilsLanguage::~UtilsLanguage()
-{
-    //
 }
 
 /* ************************************************************************** */

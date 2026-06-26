@@ -24,17 +24,23 @@
 #define UTILS_LANGUAGE_H
 /* ************************************************************************** */
 
+#include <QtQml/qqmlregistration.h>
 #include <QObject>
 #include <QCoreApplication>
 #include <QQmlApplicationEngine>
 #include <QTranslator>
 #include <QString>
 
+class QQmlEngine;
+class QJSEngine;
+
 /* ************************************************************************** */
 
 class UtilsLanguage : public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
+    QML_SINGLETON
 
     QString m_appName;
     QString m_appLanguage;
@@ -49,12 +55,11 @@ class UtilsLanguage : public QObject
     QTranslator *m_appTranslator = nullptr;
 
     // Singleton
-    static UtilsLanguage *instance;
-    UtilsLanguage();
-    ~UtilsLanguage();
+    explicit UtilsLanguage(QObject *parent = nullptr);
 
 public:
     static UtilsLanguage *getInstance();
+    static UtilsLanguage *create(QQmlEngine *engine, QJSEngine *scriptEngine);
 
     void setAppName(const QString &name, const bool forceLowerCase = false);
     void setAppInstance(QCoreApplication *app);

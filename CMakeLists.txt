@@ -138,15 +138,15 @@ add_other_files(${PROJECT_NAME}
 set(UTILS_QT_RHI ON)
 set(UTILS_DOCK_ENABLED ON)
 add_subdirectory(thirdparty/AppUtils)
-target_link_libraries(${PROJECT_NAME} PRIVATE AppUtils)
-
-# ComponentLibrary
-add_subdirectory(thirdparty/ComponentLibrary)
-target_link_libraries(${PROJECT_NAME} PRIVATE ComponentLibrary_plugin)
+target_link_libraries(${PROJECT_NAME} PRIVATE AppUtils AppUtils_plugin)
 
 # MobileUI
 add_subdirectory(thirdparty/MobileUI)
 target_link_libraries(${PROJECT_NAME} PRIVATE MobileUI MobileUI_plugin)
+
+# ComponentLibrary
+add_subdirectory(thirdparty/ComponentLibrary)
+target_link_libraries(${PROJECT_NAME} PRIVATE ComponentLibrary_plugin)
 
 # Qt libraries
 target_link_libraries(${PROJECT_NAME} PRIVATE

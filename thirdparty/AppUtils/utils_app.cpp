@@ -36,14 +36,15 @@
 #include <QColor>
 
 #include <QCoreApplication>
-#include <QStandardPaths>
 #include <QDesktopServices>
+#include <QStandardPaths>
 #include <QLibraryInfo>
 #include <QSysInfo>
 
 #include <QGuiApplication>
 #include <QQuickWindow>
 #include <QStyleHints>
+#include <QQmlEngine>
 #include <QPalette>
 
 #if defined(UTILS_QT_RHI)
@@ -52,30 +53,26 @@
 
 /* ************************************************************************** */
 
-UtilsApp *UtilsApp::instance = nullptr;
-
 UtilsApp *UtilsApp::getInstance()
 {
-    if (instance == nullptr)
-    {
-        instance = new UtilsApp();
-    }
-
+    static UtilsApp *instance = new UtilsApp(QCoreApplication::instance());
     return instance;
 }
 
-UtilsApp::UtilsApp()
+UtilsApp *UtilsApp::create(QQmlEngine *, QJSEngine *)
+{
+    UtilsApp *instance = getInstance();
+    QJSEngine::setObjectOwnership(instance, QJSEngine::CppOwnership);
+    return instance;
+}
+
+UtilsApp::UtilsApp(QObject *parent) : QObject(parent)
 {
     // Set default application path
     m_appPath = QCoreApplication::applicationDirPath();
 
     // Make sure the path is terminated with a separator?
     //if (!m_appPath.endsWith('/')) m_appPath += '/';
-}
-
-UtilsApp::~UtilsApp()
-{
-    //
 }
 
 /* ************************************************************************** */

@@ -22,9 +22,31 @@
 
 #include "utils_clipboard.h"
 
+#include <QCoreApplication>
+#include <QQmlEngine>
 #include <QGuiApplication>
 #include <QClipboard>
 #include <QMimeData>
+
+/* ************************************************************************** */
+
+UtilsClipboard *UtilsClipboard::getInstance()
+{
+    static UtilsClipboard *instance = new UtilsClipboard(QCoreApplication::instance());
+    return instance;
+}
+
+UtilsClipboard *UtilsClipboard::create(QQmlEngine *, QJSEngine *)
+{
+    UtilsClipboard *instance = getInstance();
+    QJSEngine::setObjectOwnership(instance, QJSEngine::CppOwnership);
+    return instance;
+}
+
+UtilsClipboard::UtilsClipboard(QObject *parent) : QObject(parent)
+{
+    //
+}
 
 /* ************************************************************************** */
 

@@ -24,6 +24,7 @@
 #define UTILS_APP_H
 /* ************************************************************************** */
 
+#include <QtQml/qqmlregistration.h>
 #include <QObject>
 #include <QUrl>
 #include <QColor>
@@ -31,24 +32,27 @@
 #include <QStringList>
 
 class QQuickWindow;
+class QQmlEngine;
+class QJSEngine;
 
 /* ************************************************************************** */
 
 class UtilsApp : public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
+    QML_SINGLETON
 
     QString m_appPath;
 
     QQuickWindow *m_quickwindow = nullptr;
 
     // Singleton
-    static UtilsApp *instance;
-    UtilsApp();
-    ~UtilsApp();
+    explicit UtilsApp(QObject *parent = nullptr);
 
 public:
     static UtilsApp *getInstance();
+    static UtilsApp *create(QQmlEngine *engine, QJSEngine *scriptEngine);
 
     // app info
 

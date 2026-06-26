@@ -22,6 +22,7 @@
 
 #include "utils_log.h"
 
+#include <QCoreApplication>
 #include <QDebug>
 #include <QFile>
 #include <QTextStream>
@@ -30,35 +31,15 @@
 
 /* ************************************************************************** */
 
-UtilsLog *UtilsLog::instance = nullptr;
-
-UtilsLog *UtilsLog::getInstance(const bool enabled)
+UtilsLog *UtilsLog::getInstance()
 {
-    if (instance == nullptr)
-    {
-        instance = new UtilsLog(enabled);
-        return instance;
-    }
-    else
-    {
-        return instance;
-    }
+    static UtilsLog *instance = new UtilsLog(QCoreApplication::instance());
+    return instance;
 }
 
-UtilsLog::UtilsLog(const bool enabled)
-{
-    m_logging = enabled;
-    openLogFile();
-}
-
-UtilsLog::UtilsLog()
+UtilsLog::UtilsLog(QObject *parent) : QObject(parent)
 {
     openLogFile();
-}
-
-UtilsLog::~UtilsLog()
-{
-    //
 }
 
 /* ************************************************************************** */
