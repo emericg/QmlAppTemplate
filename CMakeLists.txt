@@ -233,7 +233,7 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Android")
     )
 
     # Support 16 KB page sizes / pre NDK28
-    target_link_options(${PROJECT_NAME} PUBLIC "-Wl,-z,max-page-size=16384")
+    target_link_options(${PROJECT_NAME} PRIVATE "-Wl,-z,max-page-size=16384")
 
     ## Download SSL Libraries
     #include(FetchContent)

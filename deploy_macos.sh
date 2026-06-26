@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 export APP_NAME="QmlAppTemplate"
-export APP_VERSION=0.8
+export APP_VERSION=$(sed -n 's/^project(.*VERSION \([0-9.]*\).*/\1/p' CMakeLists.txt)
 export GIT_VERSION=$(git rev-parse --short HEAD)
 
 echo "> $APP_NAME packager (macOS) [v$APP_VERSION]"
@@ -101,7 +101,5 @@ fi
 ## UPLOAD ######################################################################
 
 if [[ $upload_package = true ]] ; then
-  printf "---- Uploading to transfer.sh"
-  curl --upload-file $APP_NAME*.zip https://transfer.sh/$APP_NAME.$APP_VERSION-git$GIT_VERSION-macOS.zip
-  printf "\n"
+  #
 fi

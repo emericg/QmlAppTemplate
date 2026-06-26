@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 export APP_NAME="QmlAppTemplate"
-export APP_VERSION=0.8
+export APP_VERSION=$(sed -n 's/^project(.*VERSION \([0-9.]*\).*/\1/p' CMakeLists.txt)
 export GIT_VERSION=$(git rev-parse --short HEAD)
 
 echo "> $APP_NAME packager (Windows x86_64) [v$APP_VERSION]"
@@ -44,7 +44,7 @@ done
 
 ## PREP WORK ###################################################################
 
-if [[ -v QT_ROOT_DIR ]]; then
+if [[ -n "${QT_ROOT_DIR:-}" ]]; then
   # cleanup undeployable Qt plugins (present, but missing their own dependencies)
   # only if we are on a GitHub Action server, because this remove the plugins from the Qt directory
   echo '---- Remove undeployable Qt plugins'
@@ -108,9 +108,5 @@ fi
 ## UPLOAD ######################################################################
 
 if [[ $upload_package = true ]] ; then
-  printf "---- Uploading to transfer.sh"
-  curl --upload-file $APP_NAME*.zip https://transfer.sh/$APP_NAME-$APP_VERSION-git$GIT_VERSION-win64.zip
-  printf "\n"
-  curl --upload-file $APP_NAME*.exe https://transfer.sh/$APP_NAME-$APP_VERSION-git$GIT_VERSION-win64.exe
-  printf "\n"
+  #
 fi

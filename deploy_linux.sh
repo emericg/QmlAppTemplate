@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 export APP_NAME="QmlAppTemplate"
-export APP_VERSION=0.8
+export APP_VERSION=$(sed -n 's/^project(.*VERSION \([0-9.]*\).*/\1/p' CMakeLists.txt)
 export GIT_VERSION=$(git rev-parse --short HEAD)
 
 #export APP_NAME_LOWERCASE=${APP_NAME,,}  # lowercase
@@ -58,7 +58,7 @@ if [[ $use_contribs = true ]] ; then
   export LD_LIBRARY_PATH=$(pwd)/contribs/src/env/linux_x86_64/usr/lib/:$LD_LIBRARY_PATH
 fi
 
-if [[ -v QT_ROOT_DIR ]] ; then
+if [[ -n "${QT_ROOT_DIR:-}" ]] ; then
   # cleanup undeployable Qt plugins (present, but missing their own dependencies)
   # only if we are on a GitHub Action server, because this remove the plugins from the Qt directory
   echo '---- Remove undeployable Qt plugins'
@@ -159,9 +159,5 @@ fi
 ## UPLOAD ######################################################################
 
 if [[ $upload_package = true ]] ; then
-  printf "---- Uploading to transfer.sh"
-  curl --upload-file $APP_NAME*.tar.gz https://transfer.sh/$APP_NAME-$APP_VERSION-git$GIT_VERSION-linux64.tar.gz
-  printf "\n"
-  curl --upload-file $APP_NAME*.AppImage https://transfer.sh/$APP_NAME-$APP_VERSION-git$GIT_VERSION-linux64.AppImage
-  printf "\n"
+  #
 fi
