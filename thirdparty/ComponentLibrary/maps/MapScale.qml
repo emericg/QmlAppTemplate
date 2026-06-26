@@ -11,52 +11,55 @@ Item {
 
     property Map map: null
 
+    property int appUnits: 0 // QLocale::MeasurementSystem
+
+    property color colorScale: "#555"
+
     ////////////////
 
+    Component.onCompleted: computeScale()
+
     Connections {
-        target: map
+        target: mapScale.map
 
         function onMapReadyChanged() {
-            computeScale()
+            mapScale.computeScale()
         }
         function onZoomLevelChanged() {
-            computeScale()
+            mapScale.computeScale()
+        }
+        function onCenterChanged() {
+            mapScale.computeScale()
         }
     }
 
     ////////////////
 
-    property variant scaleLengths: [5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000,
-                                    20000, 50000, 100000, 200000, 500000, 1000000, 2000000]
+    property var scaleLengths: [5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000,
+                                20000, 50000, 100000, 200000, 500000, 1000000, 2000000]
 
     function computeScale() {
         if (!map || !map.mapReady) return
 
-        var f = 0
+        // distance (in meters) covered by 100 pixels at the current zoom/latitude
         var coord1 = map.toCoordinate(Qt.point(0, 100))
         var coord2 = map.toCoordinate(Qt.point(100, 100))
         var dist = Math.round(coord1.distanceTo(coord2))
+        if (dist <= 0) return // not visible // not ready yet
 
         //console.log("computeScale(zoom: " + map.zoomLevel + " | dist: " + dist +")")
 
-        if (dist <= 0) {
-            return // not visible // not ready yet
-        } else {           
-            for (var i = 0; i < scaleLengths.length-1; i++) {
-                if (dist < (scaleLengths[i] + scaleLengths[i+1]) / 2 ) {
-                    f = scaleLengths[i] / dist
-                    dist = scaleLengths[i]
-                    break
-                }
-            }
-            if (f === 0) {
-                f = dist / scaleLengths[i]
-                dist = scaleLengths[i]
+        // pick the nicest scale length, then scale the bar width accordingly
+        var scale = scaleLengths[scaleLengths.length - 1]
+        for (var i = 0; i < scaleLengths.length - 1; i++) {
+            if (dist < (scaleLengths[i] + scaleLengths[i+1]) / 2) {
+                scale = scaleLengths[i]
+                break
             }
         }
 
-        mapScale.width = 100 * f
-        mapScaleText.text = UtilsString.distanceToString(dist, 0, settingsManager.appUnits)
+        mapScale.width = 100 * (scale / dist)
+        mapScaleText.text = UtilsString.distanceToString(scale, 0, mapScale.appUnits)
     }
 
     ////////////////
@@ -66,7 +69,7 @@ Item {
         anchors.centerIn: parent
         text: "100m"
         textFormat: Text.PlainText
-        color: "#555"
+        color: mapScale.colorScale
         font.pixelSize: Theme.fontSizeContentVerySmall
     }
 
@@ -76,7 +79,7 @@ Item {
 
         width: 2
         height: 6
-        color: "#555"
+        color: mapScale.colorScale
     }
     Rectangle {
         anchors.left: parent.left
@@ -84,7 +87,7 @@ Item {
         anchors.bottom: parent.bottom
 
         height: 2
-        color: "#555"
+        color: mapScale.colorScale
     }
     Rectangle {
         anchors.right: parent.right
@@ -92,7 +95,7 @@ Item {
 
         width: 2
         height: 6
-        color:"#555"
+        color: mapScale.colorScale
     }
 
     ////////////////

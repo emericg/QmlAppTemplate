@@ -1,6 +1,5 @@
 import QtQuick
 import QtQuick.Effects
-import QtQuick.Controls.impl
 import QtQuick.Templates as T
 
 import ComponentLibrary
@@ -13,7 +12,7 @@ T.Button {
 
     focusPolicy: Qt.NoFocus
 
-    // image
+    // icon
     property url source_top: "qrc:/gfx/compass_top.svg"
     property url source_bottom: "qrc:/gfx/compass_bottom.svg"
     property int sourceSize: UtilsNumber.alignTo(height * 0.8, 2)
@@ -25,10 +24,11 @@ T.Button {
     property string highlightMode: "off" // available: off
 
     // colors
-    property color iconColor: Theme.colorIcon
-    property color highlightColor: Theme.colorComponent
-    property color borderColor: Theme.colorSeparator
-    property color backgroundColor: Theme.colorLowContrast
+    property color colorIcon: Theme.colorIcon
+    property color colorNeedle: Theme.colorRed
+    property color colorHighlight: Theme.colorComponent
+    property color colorBorder: Theme.colorSeparator
+    property color colorBackground: Theme.colorLowContrast
 
     ////////////////
 
@@ -38,9 +38,9 @@ T.Button {
 
         Rectangle { // background_alpha_borders
             anchors.fill: parent
-            anchors.margins: isPhone ? -2 : -3
+            anchors.margins: Theme.isPhone ? -2 : -3
             radius: control.radius
-            color: control.borderColor
+            color: control.colorBorder
             opacity: 0.66
 
             layer.enabled: true
@@ -53,7 +53,7 @@ T.Button {
         Rectangle { // background
             anchors.fill: parent
             radius: control.radius
-            color: control.backgroundColor
+            color: control.colorBackground
         }
 
         Item {
@@ -67,12 +67,12 @@ T.Button {
                 clip: visible
                 pressed: control.pressed
                 active: enabled && (control.down || control.visualFocus || control.hovered)
-                color: Qt.rgba(control.highlightColor.r, control.highlightColor.g, control.highlightColor.b, 0.66)
+                color: Qt.rgba(control.colorHighlight.r, control.colorHighlight.g, control.colorHighlight.b, 0.66)
             }
 */
             Rectangle { // button_bg
                 anchors.fill: parent
-                color: control.highlightColor
+                color: control.colorHighlight
                 opacity: control.hovered ? 0.66 : 0
                 Behavior on opacity { NumberAnimation { duration: 333 } }
             }
@@ -101,7 +101,7 @@ T.Button {
 
     contentItem: Item {
         rotation: control.sourceRotation
-        Behavior on rotation { RotationAnimation { duration: 333; direction: RotationAnimator.Shortest} }
+        Behavior on rotation { RotationAnimation { duration: 333; direction: RotationAnimator.Shortest } }
 
         IconSvg {
             anchors.centerIn: parent
@@ -109,7 +109,7 @@ T.Button {
             width: control.sourceSize
             height: control.sourceSize
 
-            color: Theme.colorRed
+            color: control.colorNeedle
             source: control.source_top
         }
         IconSvg {
@@ -118,7 +118,7 @@ T.Button {
             width: control.sourceSize
             height: control.sourceSize
 
-            color: control.iconColor
+            color: control.colorIcon
             source: control.source_bottom
         }
     }

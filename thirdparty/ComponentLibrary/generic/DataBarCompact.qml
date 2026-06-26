@@ -91,9 +91,9 @@ Item {
                 Rectangle {
                     id: rect_data
                     width: {
-                        var res = UtilsNumber.normalize( control.value, control.valueMin, control.valueMax) * rect_bg.width
+                        var res = UtilsNumber.normalize(control.value, control.valueMin, control.valueMax) * rect_bg.width
 
-                        if ( control.value <= control.valueMin ||control.value >= control.valueMax)
+                        if (control.value <= control.valueMin || control.value >= control.valueMax)
                             res += 0
                         else
                             res += 1.5*radius // +radius, so the indicator arrow point to the real value, not the rounded end of the data bar
@@ -136,7 +136,7 @@ Item {
 
                     visible: (control.limitMax > 0 && control.limitMax > control.valueMin && control.limitMax < control.valueMax)
                     x: UtilsNumber.normalize(control.limitMax, control.valueMin, control.valueMax) * rect_bg.width
-                    color: (control.limitMax <control.value) ? Theme.colorLowContrast : Theme.colorHighContrast
+                    color: (control.limitMax < control.value) ? Theme.colorLowContrast : Theme.colorHighContrast
                     opacity: (control.limitMax < control.value) ? 0.66 : 0.33
 
                     Behavior on x { NumberAnimation { duration: control.animated ? 333 : 0 } }
@@ -161,10 +161,10 @@ Item {
                 }
 
                 text: {
-                    if ( control.value < -20)
+                    if (control.value < -20)
                         return " ? ";
                     else {
-                        if ( control.value % 1 === 0)
+                        if (control.value % 1 === 0)
                             return control.prefix + control.value + control.suffix
                         else
                             return control.prefix + control.value.toFixed(control.floatprecision) + control.suffix

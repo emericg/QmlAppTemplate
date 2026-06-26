@@ -17,7 +17,7 @@ T.Button {
     anchors.right: parent.right
 
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
-                            rowrowrow.width + leftPadding + rightPadding)
+                            contentRow.width + leftPadding + rightPadding)
     implicitHeight: implicitBackgroundHeight
 
     leftPadding: 16
@@ -34,6 +34,7 @@ T.Button {
     property string shape: "squared" // available: rounded, squared
     property int shapeRadius: (shape === "rounded") ? 2 : 4
     property bool extended: true
+
     // icon
     property url source: "qrc:/IconLibrary/material-symbols/add.svg"
     property int sourceSize: 24
@@ -100,7 +101,7 @@ T.Button {
 
     contentItem: Item {
         Row {
-            id: rowrowrow
+            id: contentRow
 
             anchors.centerIn: parent
             spacing: control.spacing

@@ -10,25 +10,18 @@
 function cleanUrl(pathInput) {
     var stringOut = '';
 
-    var input = Qt.resolvedUrl(pathInput)
-    if (!(typeof input === 'string' || input instanceof String)) {
-        input = input.toString();
-    }
+    const input = Qt.resolvedUrl(pathInput).toString();
 
-    if (typeof input === 'string' || input instanceof String) {
-        if (input.slice(0, 8) === "file:///") {
-            var k = input.charAt(9) === ':' ? 8 : 7;
-            stringOut = input.substring(k);
-        } else if (input.slice(0, 10) === "content://") {
-            // 'content://com.android.providers.media.documents/document/' + filename
-            // 'content://' + 'app.package' + '/root/' + path
-            var kk = input.indexOf("/root/"); kk += 5;
-            stringOut = input.substring(kk);
-        } else {
-            stringOut = input;
-        }
+    if (input.slice(0, 8) === "file:///") {
+        const k = input.charAt(9) === ':' ? 8 : 7;
+        stringOut = input.substring(k);
+    } else if (input.slice(0, 10) === "content://") {
+        // 'content://com.android.providers.media.documents/document/' + filename
+        // 'content://' + 'app.package' + '/root/' + path
+        const kk = input.indexOf("/root/") + 5;
+        stringOut = input.substring(kk);
     } else {
-        console.log("cleanUrl() has been given an unknown type...");
+        stringOut = input;
     }
 
     //console.log("cleanUrl() in: " + pathInput + " / out: " + stringOut)
@@ -42,7 +35,7 @@ function makeUrl(pathInput) {
     var urlOut = '';
 
     if (typeof pathInput === 'string' || pathInput instanceof String) {
-        if (pathInput.slice(0, 7) != "file://") {
+        if (pathInput.slice(0, 7) !== "file://") {
             urlOut = "file://" + pathInput;
         } else {
             urlOut = pathInput;

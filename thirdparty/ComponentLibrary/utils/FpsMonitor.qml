@@ -79,8 +79,8 @@ Item {
 
             color: "#ddd"
             font.pixelSize: 16
-            //font.family: "Monospace"
-            textFormat: Text.MarkdownText
+            font.family: "Monospace" // not available on every OS
+            textFormat: Text.MarkdownText // renders as plain proportional text
 
             text: {
                 var txt = ""
@@ -90,7 +90,7 @@ Item {
                 } else {
                     // FPS from the UI animation
                     //txt += "Ø " + control.fpsAvg.toString().padStart(control.digits, "0")
-                    if (txt.length) txt += " | "
+                    //if (txt.length) txt += " | "
                     txt += control.fps.toString().padStart(control.digits, "0") + " FPS"
                 }
                 return txt

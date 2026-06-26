@@ -141,7 +141,7 @@ function durationToString_supercompact(duration) {
 
     if (seconds < 60 && milliseconds > 0) {
         text += seconds.toString() + qsTr("s", "short for seconds") + " " +
-                milliseconds.toString() + qsTr("ms", "short for miliseconds");
+                milliseconds.toString() + qsTr("ms", "short for milliseconds");
     }
 
     return text;

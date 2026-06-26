@@ -1,6 +1,5 @@
 import QtQuick
 import QtQuick.Effects
-import QtQuick.Controls.impl
 import QtQuick.Templates as T
 
 import ComponentLibrary
@@ -9,19 +8,21 @@ T.Button {
     id: control
 
     implicitWidth: Theme.componentHeight
-    implicitHeight: Theme.componentHeight
+    implicitHeight: Theme.componentHeight * 2
 
     focusPolicy: Qt.NoFocus
 
     signal mapZoomIn()
     signal mapZoomOut()
 
-    property int zoomLevel
-    property int zoomLevel_minimum
-    property int zoomLevel_maximum
+    property real zoomLevel: 0
+    property real zoomLevel_minimum: 0
+    property real zoomLevel_maximum: 20
 
-    // image
+    // icon
+    property url source: "qrc:/IconLibrary/material-symbols/remove.svg"
     property int sourceSize: UtilsNumber.alignTo(width * 0.5, 2)
+    property int sourceRotation: 0
 
     // settings
     property int radius: width * 0.28
@@ -29,10 +30,10 @@ T.Button {
     property string highlightMode: "off" // available: off
 
     // colors
-    property color iconColor: Theme.colorIcon
-    property color highlightColor: Theme.colorComponent
-    property color borderColor: Theme.colorSeparator
-    property color backgroundColor: Theme.colorLowContrast
+    property color colorIcon: Theme.colorIcon
+    property color colorHighlight: Theme.colorComponent
+    property color colorBorder: Theme.colorSeparator
+    property color colorBackground: Theme.colorLowContrast
 
     ////////////////
 
@@ -42,9 +43,9 @@ T.Button {
 
         Rectangle { // background_alpha_border
             anchors.fill: parent
-            anchors.margins: isPhone ? -2 : -3
+            anchors.margins: Theme.isPhone ? -2 : -3
             radius: control.radius
-            color: control.borderColor
+            color: control.colorBorder
             opacity: 0.66
 
             layer.enabled: true
@@ -57,7 +58,7 @@ T.Button {
         Rectangle { // background
             anchors.fill: parent
             radius: control.radius
-            color: control.backgroundColor
+            color: control.colorBackground
         }
 
         Item {
@@ -69,7 +70,7 @@ T.Button {
                 width: parent.width
                 height: parent.width
 
-                color: control.highlightColor
+                color: control.colorHighlight
                 opacity: button1_ma.containsMouse ? 0.66 : 0
                 Behavior on opacity { NumberAnimation { duration: 333 } }
             }
@@ -78,7 +79,7 @@ T.Button {
                 width: parent.width
                 height: parent.width
 
-                color: control.highlightColor
+                color: control.colorHighlight
                 opacity: button2_ma.containsMouse ? 0.66 : 0
                 Behavior on opacity { NumberAnimation { duration: 333 } }
             }
@@ -127,7 +128,7 @@ T.Button {
                 opacity: control.zoomLevel < control.zoomLevel_maximum ? 1 : 0.4
                 Behavior on opacity { NumberAnimation { duration: 333 } }
 
-                color: control.iconColor
+                color: control.colorIcon
                 source: "qrc:/IconLibrary/material-symbols/add.svg"
             }
         }
@@ -152,8 +153,9 @@ T.Button {
                 opacity: control.zoomLevel > control.zoomLevel_minimum ? 1 : 0.4
                 Behavior on opacity { NumberAnimation { duration: 333 } }
 
-                color: control.iconColor
-                source: "qrc:/IconLibrary/material-symbols/remove.svg"
+                color: control.colorIcon
+                source: control.source
+                rotation: control.sourceRotation
             }
         }
     }

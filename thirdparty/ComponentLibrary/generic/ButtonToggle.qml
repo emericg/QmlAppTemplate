@@ -9,7 +9,7 @@ T.Button {
     id: control
 
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
-                            rowrowrow.width + leftPadding + rightPadding)
+                            contentRow.width + leftPadding + rightPadding)
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              implicitContentHeight + topPadding + bottomPadding)
 
@@ -92,7 +92,7 @@ T.Button {
 
     contentItem: Item {
         RowLayout {
-            id: rowrowrow
+            id: contentRow
             anchors.centerIn: parent
 
             spacing: control.spacing

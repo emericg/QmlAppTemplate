@@ -6,9 +6,6 @@ import QtQuick.Controls
 Item {
     id: control
 
-    // This code should only run for desktop/windowed applications.
-    enabled: (Qt.platform.os !== "android" && Qt.platform.os !== "ios")
-
     // The ApplicationWindow instance that will be manipulated. MUST be set by the calling application.
     property ApplicationWindow windowInstance: null
 
@@ -59,11 +56,9 @@ Item {
         }
 
         // Now apply saved settings
-        if (windowSettings.x && windowSettings.y) {
+        if (windowSettings.width > 0 && windowSettings.height > 0) {
             windowInstance.x = windowSettings.x;
             windowInstance.y = windowSettings.y;
-        }
-        if (windowSettings.width && windowSettings.height) {
             windowInstance.width = windowSettings.width;
             windowInstance.height = windowSettings.height;
             windowInstance.visibility = windowSettings.visibility;

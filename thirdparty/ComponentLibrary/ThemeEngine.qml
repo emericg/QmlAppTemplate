@@ -3,8 +3,6 @@ pragma Singleton
 import QtQuick
 import QtQuick.Controls.Material
 
-import ComponentLibrary
-
 Item {
     ////////////////////////////////////////////////////////////////////////////
 

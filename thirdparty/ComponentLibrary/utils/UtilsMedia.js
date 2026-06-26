@@ -42,11 +42,11 @@ function darToString(width, height) {
         ar_string = "32:9";
     }
     // mobile displays // add more as we go...
-    else if (ar_float === 2) { // 2
+    else if ((ar_float > 1.98 && ar_float < 2.02)) { // 2
         ar_string = "18:9";
-    } else if (ar_float > 2 && ar_float < 2.1) { // 2,0555
+    } else if (ar_float > 2.03 && ar_float < 2.08) { // 2,0555
         ar_string = "18.5:9";
-    } else if (ar_float > 2.1 && ar_float < 2.14) { // 2,111
+    } else if (ar_float > 2.08 && ar_float < 2.14) { // 2,111
         ar_string = "19:9";
     } else if (ar_float > 2.14 && ar_float < 2.2) { // 2,1666
         ar_string = "19.5:9";
@@ -99,9 +99,9 @@ function varToString(width, height) {
         ar_string = "1.85:1";
     } else if (ar_float > 1.886 && ar_float < 1.906) {
         ar_string = "1.896:1";
-    } else if (ar_float > 1.99 && ar_float < 2.01) {
+    } else if (ar_float > 1.98 && ar_float < 2.02) {
         ar_string = "2:1";
-    } else if (ar_float > 2 && ar_float < 2.1) { // mobile screenshot... 2,0555
+    } else if (ar_float > 2.03 && ar_float < 2.08) { // mobile screenshot... 2,0555
         ar_string = "18.5:9";
     } else if (ar_float > 2.1 && ar_float < 2.14) { // mobile screenshot... 2,111
         ar_string = "19:9";
