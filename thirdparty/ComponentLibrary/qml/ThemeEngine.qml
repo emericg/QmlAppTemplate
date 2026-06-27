@@ -40,11 +40,16 @@ Item {
     // Inputs // bind these from the application // sensible defaults let the library run standalone
 
     // Theme engine
-    property var appTheme: -1
+    property string appTheme: "THEME_DEFAULT"
     property bool appThemeAuto: false
     property int appThemeAutoMethod: 0
 
-    // Screen metric
+    // Screen / app window geometry
+    property int appWidth: 0
+    property int appHeight: 0
+    property int screenOrientation: 0
+
+    // Screen metrics
     property real screenDpi: 96
     property real screenPar: 1.0
     property real screenSize: 5.0
@@ -57,7 +62,9 @@ Item {
     property int screenPaddingRight: 0
     property int screenPaddingBottom: 0
 
-    ////////////////
+    ////////////////////////////////////////////////////////////////////////////
+
+    // device presets
 
     property bool isDesktop: (Qt.platform.os !== "ios" && Qt.platform.os !== "android")
     property bool isMobile: (Qt.platform.os === "ios" || Qt.platform.os === "android")
@@ -65,6 +72,26 @@ Item {
     property bool isHdpi: (screenDpi >= 128 || screenPar >= 2.0)
     property bool isPhone: (isMobile && (screenSize < 7.0))
     property bool isTablet: (isMobile && (screenSize >= 7.0))
+
+    // app presets
+
+    property bool singleColumn: {
+        if (isMobile) {
+            if ((isPhone && screenOrientation === Qt.PortraitOrientation) ||
+                (isTablet && appWidth > 0 && appWidth < 512)) { // can be a 2/3 split screen on tablet
+                return true
+            } else {
+                return false
+            }
+        } else {
+            return (appWidth < appHeight)
+        }
+    }
+
+    property bool wideMode: (isDesktop && appWidth > 0 && appWidth >= 560) ||
+                            (isTablet && appWidth >= 480)
+
+    property bool wideWideMode: (appWidth >= 640)
 
     ////////////////////////////////////////////////////////////////////////////
 

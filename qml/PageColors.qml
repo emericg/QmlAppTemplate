@@ -20,8 +20,16 @@ Flickable {
         bottomPadding: Theme.componentMarginXL
         spacing: Theme.componentMarginXL
 
+        property int maxSize: 64
         property int www: 48
         property int hhh: 48
+
+        property int maxColumns: 16
+        property int columns: {
+            if (Theme.isPhone) return 6
+            if (Theme.isTablet) return 12
+            return 20
+        }
 
         ListTitle { ////////////////////////////////////////////////////////////
             anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
@@ -32,12 +40,8 @@ Flickable {
         }
 
         Grid {
-            anchors.left: parent.left
-            anchors.leftMargin: Theme.componentMarginXL
-            anchors.right: parent.right
-            anchors.rightMargin: Theme.componentMarginXL
-
-            columns: 6
+            anchors.horizontalCenter: parent.horizontalCenter
+            columns: contentColumn.columns
             spacing: -2
 
             ColoredSquare { color: Theme.colorRed }
@@ -60,12 +64,8 @@ Flickable {
         }
 
         Grid {
-            anchors.left: parent.left
-            anchors.leftMargin: Theme.componentMarginXL
-            anchors.right: parent.right
-            anchors.rightMargin: Theme.componentMarginXL
-
-            columns: 6
+            anchors.horizontalCenter: parent.horizontalCenter
+            columns: contentColumn.columns
             spacing: -2
 
             ColoredSquare { color: Theme.colorMaterialRed }
@@ -101,12 +101,8 @@ Flickable {
         }
 
         Grid {
-            anchors.left: parent.left
-            anchors.leftMargin: Theme.componentMarginXL
-            anchors.right: parent.right
-            anchors.rightMargin: Theme.componentMarginXL
-
-            columns: 6
+            anchors.horizontalCenter: parent.horizontalCenter
+            columns: contentColumn.columns
             spacing: -2
 
             Repeater {

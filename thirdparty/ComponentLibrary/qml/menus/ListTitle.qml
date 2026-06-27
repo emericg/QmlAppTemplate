@@ -49,8 +49,13 @@ Rectangle {
 
     Text {
         anchors.left: control.left
-        anchors.leftMargin: control.source ? (singleColumn ? appHeader.headerPosition : Theme.componentMarginL*2 + sourceSize)
-                                           : Theme.componentMarginL
+        anchors.leftMargin: {
+            if (control.source.toString().length) {
+                if (singleColumn) return appHeader.headerPosition
+                return (Theme.componentMarginL*2 + control.sourceSize)
+            }
+            return Theme.componentMarginL
+        }
         anchors.right: control.right
         anchors.rightMargin: Theme.componentMarginL
         anchors.verticalCenter: control.verticalCenter

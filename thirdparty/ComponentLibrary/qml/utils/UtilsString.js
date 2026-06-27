@@ -300,7 +300,7 @@ function durationToString_ISO8601_full(duration_ms) {
         if (seconds === 0)
             text += "00";
         if (milliseconds > 0)
-            text += "." + milliseconds.toString();
+            text += "." + _padNumber(milliseconds, 3).toString();
     } else {
         text = "00:00:00";
     }

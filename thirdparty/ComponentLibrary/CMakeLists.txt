@@ -174,6 +174,7 @@ list(APPEND MODULE_QML_FILES
     qml/deprecated/ButtonText.qml
     qml/deprecated/RoundButtonIcon.qml
     qml/deprecated/RoundButtonText.qml
+    qml/deprecated/SwitchThemedMobile.qml
 )
 
 list(APPEND MODULE_JS_FILES

@@ -15,8 +15,8 @@ Item {
     property int www: 80
 
     z: 10
-    height: (appWindow.screenOrientation === Qt.PortraitOrientation) ?
-                hhh + appWindow.screenPaddingNavbar + appWindow.screenPaddingBottom : 0
+    height: (appWindow.screenOrientation === Qt.PortraitOrientation)
+                ? hhh + Math.max(Theme.screenPaddingNavbar, Theme.screenPaddingBottom) : 0
 
     // prevent clicks below this area
     MouseArea { anchors.fill: parent; acceptedButtons: Qt.AllButtons; }
@@ -43,7 +43,7 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-        height: appWindow.screenPaddingNavbar + appWindow.screenPaddingBottom
+        height: Math.max(Theme.screenPaddingNavbar, Theme.screenPaddingBottom)
 
         visible: (!mobileMenu.visible || appContent.state === "Tutorial")
         opacity: 0.95

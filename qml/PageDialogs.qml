@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Dialogs
 import QtQuick.Controls
 
 import ComponentLibrary
@@ -39,7 +40,7 @@ Flickable {
             anchors.rightMargin: Theme.componentMarginXL
 
             text: "Message"
-            source: "qrc:/IconLibrary/material-symbols/delete.svg"
+            source: "qrc:/IconLibrary/material-icons/duotone/format_size.svg"
 
             PopupMessage {
                 id: popupMessage
@@ -55,13 +56,61 @@ Flickable {
             anchors.rightMargin: Theme.componentMarginXL
 
             text: "Choice"
-            source: "qrc:/IconLibrary/material-symbols/delete.svg"
+            source: "qrc:/IconLibrary/material-icons/duotone/touch_app.svg"
 
             PopupChoice {
                 id: popupChoice
             }
 
             onClicked: popupChoice.open()
+        }
+
+        ButtonSolid {
+            anchors.left: parent.left
+            anchors.leftMargin: Theme.componentMarginXL
+            anchors.right: parent.right
+            anchors.rightMargin: Theme.componentMarginXL
+
+            text: "Choice (3 ways)"
+            source: "qrc:/IconLibrary/material-icons/duotone/touch_app.svg"
+
+            PopupChoice {
+                id: popupManyChoice
+                title: qsTr("Are you sure you want to delete data for this sensor?")
+                text: qsTr("You can either delete data from the application, or from both the sensor and application.")
+                buttonClose: qsTr("Cancel")
+                buttonSecondary: qsTr("Delete local data")
+                buttonPrimary: qsTr("Delete sensor data")
+            }
+
+            onClicked: popupManyChoice.open()
+        }
+
+        ListTitle { ////////////////////////////////////////////////////////////
+            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
+
+            text: qsTr("Color pickers")
+            source: ""
+        }
+
+        ButtonSolid {
+            anchors.left: parent.left
+            anchors.leftMargin: Theme.componentMarginXL
+            anchors.right: parent.right
+            anchors.rightMargin: Theme.componentMarginXL
+
+            text: "Qt colors"
+            source: "qrc:/IconLibrary/material-icons/duotone/style.svg"
+
+            ColorDialog {
+                id: dialogColors
+
+                // selectedColor
+                // onAccepted
+            }
+
+            onClicked: dialogColors.open()
         }
 
         ListTitle { ////////////////////////////////////////////////////////////

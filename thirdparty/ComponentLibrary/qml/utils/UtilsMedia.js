@@ -52,7 +52,7 @@ function darToString(width, height) {
         ar_string = "19.5:9";
     }
 
-    if (ar_invert) {
+    if (ar_invert && ar_string.length) {
         var splits = ar_string.split(':');
         ar_string = splits[1] + ":" + splits[0];
     }
