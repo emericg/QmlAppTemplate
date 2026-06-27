@@ -92,8 +92,8 @@ Popup {
 
     ////////////////////////////////////////////////////////////////////////////
 
-    enter: Transition { NumberAnimation { property: "opacity"; from: 0.333; to: 1.0; duration: 133; } }
-    //exit: Transition { NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; duration: 200; } }
+    enter: Transition { NumberAnimation { property: "opacity"; from: 0.333; to: 1.0; duration: Theme.animationFastSpeed; } }
+    //exit: Transition { NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; duration: Theme.animationMediumSpeed; } }
 
     Overlay.modal: Rectangle {
         color: "#000"
@@ -142,6 +142,14 @@ Popup {
             }
         }
 
+        Rectangle { // top separator
+            anchors.left: parent.left
+            anchors.right: parent.right
+            height: Theme.componentBorderWidth
+            visible: singleColumn
+            color: Qt.darker(Theme.colorPrimary, 1.02)
+        }
+
         layer.enabled: !singleColumn
         layer.effect: MultiEffect { // shadow
             autoPaddingEnabled: true
@@ -154,7 +162,7 @@ Popup {
     ////////////////////////////////////////////////////////////////////////////
 
     contentItem: Column {
-        bottomPadding: screenPaddingNavbar + screenPaddingBottom
+        bottomPadding: Math.max(Theme.screenPaddingNavbar, Theme.screenPaddingBottom)
 
         Item { // headerArea
             anchors.left: parent.left
@@ -223,7 +231,7 @@ Popup {
                 anchors.rightMargin: Theme.componentBorderWidth
 
                 height: Theme.componentHeightXL
-                color: Theme.colorForeground
+                color: Theme.colorComponentBackground
 
                 SquareButtonSunken { // previous month
                     anchors.left: parent.left
@@ -354,12 +362,12 @@ Popup {
 
                     onClicked: (date) => {
                         if (date.getMonth() === grid.month) {
-                            // validate date (min / max)
                             if (popupDate.minDate && popupDate.maxDate) {
+                                // validate date (min / max)
                                 const diffMinTime = (popupDate.minDate - date)
                                 const diffMinDays = -Math.ceil(diffMinTime / (1000 * 60 * 60 * 24) - 1)
                                 //console.log(diffMinDays + " diffMinDays")
-                                const diffMaxTime = (popupDate.minDate - date);
+                                const diffMaxTime = (popupDate.maxDate - date);
                                 const diffMaxDays = -Math.ceil(diffMaxTime / (1000 * 60 * 60 * 24) - 1)
                                 //console.log(diffMaxDays + " diffMaxDays")
 
@@ -370,17 +378,10 @@ Popup {
                                     popupDate.selectedDate = date
                                 }
                             } else {
-                                const diffTime = (popupDate.today - date)
-                                const diffDays = -Math.ceil(diffTime / (1000 * 60 * 60 * 24) - 1)
-                                //console.log(diffDays + " days")
-
-                                // validate date (-21 / popupDate.today)
-                                if (diffDays > -21 && diffDays < 1) {
-                                    date.setHours(popupDate.selectedDate.getHours(),
-                                                  popupDate.selectedDate.getMinutes(),
-                                                  popupDate.selectedDate.getSeconds())
-                                    popupDate.selectedDate = date
-                                }
+                                date.setHours(popupDate.selectedDate.getHours(),
+                                              popupDate.selectedDate.getMinutes(),
+                                              popupDate.selectedDate.getSeconds())
+                                popupDate.selectedDate = date
                             }
                             popupDate.printDate()
                         }

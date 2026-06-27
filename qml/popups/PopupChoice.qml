@@ -12,7 +12,7 @@ Popup {
                     : ((appWindow.height / 2) - (height / 2))
 
     width: singleColumn ? appWindow.width : 720
-    height: columnContent.height + padding*2 + screenPaddingNavbar + screenPaddingBottom
+    height: columnContent.height + padding*2 + Math.max(Theme.screenPaddingNavbar, Theme.screenPaddingBottom)
     padding: Theme.componentMarginXL
     margins: 0
 
@@ -22,12 +22,21 @@ Popup {
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
     parent: Overlay.overlay
 
+    property string title: "Popup Title"
+    property string text: "This is a generic message, empty of any kind of meaning."
+
+    property string buttonClose: qsTr("Cancel")
+    property string buttonSecondary
+    property string buttonPrimary: qsTr("Confirm")
+
     signal confirmed()
+    signal confirmedPrimary()
+    signal confirmedSecondary()
 
     ////////////////////////////////////////////////////////////////////////////
 
-    enter: Transition { NumberAnimation { property: "opacity"; from: 0.5; to: 1.0; duration: 133; } }
-    //exit: Transition { NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; duration: 200; } }
+    enter: Transition { NumberAnimation { property: "opacity"; from: 0.5; to: 1.0; duration: Theme.animationFastSpeed; } }
+    //exit: Transition { NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; duration: Theme.animationMediumSpeed; } }
 
     Overlay.modal: Rectangle {
         color: "#000"
@@ -72,8 +81,7 @@ Popup {
                 anchors.left: parent.left
                 anchors.right: parent.right
 
-                text: qsTr("Are you sure you want to delete data for this sensor?")
-                textFormat: Text.PlainText
+                text: popupChoice.title
                 font.pixelSize: Theme.fontSizeContentVeryBig
                 color: Theme.colorText
                 wrapMode: Text.WordWrap
@@ -85,8 +93,7 @@ Popup {
                 anchors.left: parent.left
                 anchors.right: parent.right
 
-                text: qsTr("You can either delete data from the application, or from both the sensor and application.")
-                textFormat: Text.PlainText
+                text: popupChoice.text
                 font.pixelSize: Theme.fontSizeContent
                 color: Theme.colorSubText
                 wrapMode: Text.WordWrap
@@ -99,14 +106,14 @@ Popup {
                 anchors.right: parent.right
                 spacing: Theme.componentMargin
 
-                property int btnCount: 3
+                property int btnCount: popupChoice.buttonSecondary ? 3 : 2
                 property int btnSize: singleColumn ? width : ((width-(spacing*(btnCount-1))) / btnCount)
 
                 ButtonClear {
                     width: parent.btnSize
                     color: Theme.colorGrey
 
-                    text: qsTr("Cancel")
+                    text: popupChoice.buttonClose
                     onClicked: popupChoice.close()
                 }
 
@@ -114,9 +121,10 @@ Popup {
                     width: parent.btnSize
                     color: Theme.colorWarning
 
-                    text: qsTr("Delete local data")
+                    visible: popupChoice.buttonSecondary
+                    text: popupChoice.buttonSecondary
                     onClicked: {
-                        popupChoice.confirmed()
+                        popupChoice.confirmedSecondary()
                         popupChoice.close()
                     }
                 }
@@ -125,8 +133,9 @@ Popup {
                     width: parent.btnSize
                     color: Theme.colorError
 
-                    text: qsTr("Delete sensor data")
+                    text: popupChoice.buttonPrimary
                     onClicked: {
+                        popupChoice.confirmedPrimary()
                         popupChoice.confirmed()
                         popupChoice.close()
                     }

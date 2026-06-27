@@ -12,7 +12,7 @@ Popup {
                     : ((appWindow.height / 2) - (height / 2))
 
     width: singleColumn ? appWindow.width : 720
-    height: columnContent.height + padding*2 + screenPaddingNavbar + screenPaddingBottom
+    height: columnContent.height + padding*2 + Math.max(Theme.screenPaddingNavbar, Theme.screenPaddingBottom)
     padding: Theme.componentMarginXL
     margins: 0
 
@@ -22,10 +22,15 @@ Popup {
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
     parent: Overlay.overlay
 
+    property string title: "Popup Title"
+    property string text: "This is a generic message, empty of any kind of meaning."
+
+    property string buttonText: qsTr("OK")
+
     ////////////////////////////////////////////////////////////////////////////
 
-    enter: Transition { NumberAnimation { property: "opacity"; from: 0.5; to: 1.0; duration: 133; } }
-    //exit: Transition { NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; duration: 200; } }
+    enter: Transition { NumberAnimation { property: "opacity"; from: 0.5; to: 1.0; duration: Theme.animationFastSpeed; } }
+    //exit: Transition { NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; duration: Theme.animationMediumSpeed; } }
 
     Overlay.modal: Rectangle {
         color: "#000"
@@ -38,7 +43,7 @@ Popup {
         border.width: singleColumn ? 0 : Theme.componentBorderWidth
         radius: singleColumn ? 0 : Theme.componentRadius
 
-        Rectangle {
+        Rectangle { // top separator
             anchors.left: parent.left
             anchors.right: parent.right
             height: Theme.componentBorderWidth
@@ -70,8 +75,7 @@ Popup {
                 anchors.left: parent.left
                 anchors.right: parent.right
 
-                text: qsTr("Message popup title")
-                textFormat: Text.PlainText
+                text: popupMessage.title
                 font.pixelSize: Theme.fontSizeContentVeryBig
                 color: Theme.colorText
                 wrapMode: Text.WordWrap
@@ -83,8 +87,7 @@ Popup {
                 anchors.left: parent.left
                 anchors.right: parent.right
 
-                text: qsTr("Message popup text. This is a message, empty of any kind of meaning.")
-                textFormat: Text.PlainText
+                text: popupMessage.text
                 font.pixelSize: Theme.fontSizeContent
                 color: Theme.colorSubText
                 wrapMode: Text.WordWrap
@@ -96,7 +99,7 @@ Popup {
                 anchors.right: parent.right
                 width: singleColumn ? parent.width : (parent.width / 2)
 
-                text: qsTr("OK")
+                text: popupMessage.buttonText
                 onClicked: popupMessage.close()
             }
 

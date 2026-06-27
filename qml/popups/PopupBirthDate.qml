@@ -100,8 +100,8 @@ Popup {
 
     ////////////////////////////////////////////////////////////////////////////
 
-    enter: Transition { NumberAnimation { property: "opacity"; from: 0.333; to: 1.0; duration: 133; } }
-    //exit: Transition { NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; duration: 200; } }
+    enter: Transition { NumberAnimation { property: "opacity"; from: 0.333; to: 1.0; duration: Theme.animationFastSpeed; } }
+    //exit: Transition { NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; duration: Theme.animationMediumSpeed; } }
 
     Overlay.modal: Rectangle {
         color: "#000"
@@ -150,6 +150,14 @@ Popup {
             }
         }
 
+        Rectangle { // top separator
+            anchors.left: parent.left
+            anchors.right: parent.right
+            height: Theme.componentBorderWidth
+            visible: singleColumn
+            color: Qt.darker(Theme.colorPrimary, 1.02)
+        }
+
         layer.enabled: !singleColumn
         layer.effect: MultiEffect { // shadow
             autoPaddingEnabled: true
@@ -162,7 +170,7 @@ Popup {
     ////////////////////////////////////////////////////////////////////////////
 
     contentItem: Column {
-        bottomPadding: screenPaddingNavbar + screenPaddingBottom
+        bottomPadding: Math.max(Theme.screenPaddingNavbar, Theme.screenPaddingBottom)
 
         ////////////////
 
@@ -356,7 +364,7 @@ Popup {
                         verticalAlignment: Text.AlignVCenter
 
                         color: (tumblerMonth.currentIndex === index) ? Theme.colorPrimary : Theme.colorText
-                        Behavior on color { ColorAnimation { duration: 133 } }
+                        Behavior on color { ColorAnimation { duration: Theme.animationFastSpeed } }
 
                         opacity: 1.0 - Math.abs(Tumbler.displacement) / (tumblerMonth.visibleItemCount / 2)
                     }
@@ -480,7 +488,7 @@ Popup {
                                 const diffMinTime = (popupBirthDate.minDate - date)
                                 const diffMinDays = -Math.ceil(diffMinTime / (1000 * 60 * 60 * 24) - 1)
                                 //console.log(diffMinDays + " diffMinDays")
-                                const diffMaxTime = (popupBirthDate.minDate - date);
+                                const diffMaxTime = (popupBirthDate.maxDate - date);
                                 const diffMaxDays = -Math.ceil(diffMaxTime / (1000 * 60 * 60 * 24) - 1)
                                 //console.log(diffMaxDays + " diffMaxDays")
 

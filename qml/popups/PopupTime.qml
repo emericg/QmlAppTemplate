@@ -26,6 +26,9 @@ Popup {
 
     //property var locale: Qt.locale()
 
+    // 12h (with AM/PM) or 24h clock toggle
+    property bool is24Hour: false
+
     property date initialTime
     property date selectedTime
 
@@ -38,9 +41,8 @@ Popup {
 
         initialTime = time
         selectedTime = time
-        tumblerHours.positionViewAtIndex(time.getHours(), Tumbler.Center)
-        tumblerMinutes.positionViewAtIndex(time.getMinutes(), Tumbler.Center)
 
+        resetView()
         printTime()
 
         popupTime.open()
@@ -52,20 +54,26 @@ Popup {
     }
 
     function resetView() {
-        // TODO
+        var h = selectedTime.getHours()
+        if (popupTime.is24Hour) {
+            tumblerHours.positionViewAtIndex(h, Tumbler.Center)
+        } else {
+            tumblerHours.positionViewAtIndex(h % 12, Tumbler.Center)
+            tumblerAmPm.positionViewAtIndex(h < 12 ? 0 : 1, Tumbler.Center)
+        }
+        tumblerMinutes.positionViewAtIndex(selectedTime.getMinutes(), Tumbler.Center)
     }
     function resetTime() {
         selectedTime = initialTime
-        tumblerHours.positionViewAtIndex(initialTime.getHours(), Tumbler.Center)
-        tumblerMinutes.positionViewAtIndex(initialTime.getMinutes(), Tumbler.Center)
 
+        resetView()
         printTime()
     }
 
     ////////////////////////////////////////////////////////////////////////////
 
-    enter: Transition { NumberAnimation { property: "opacity"; from: 0.333; to: 1.0; duration: 133; } }
-    //exit: Transition { NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; duration: 200; } }
+    enter: Transition { NumberAnimation { property: "opacity"; from: 0.333; to: 1.0; duration: Theme.animationFastSpeed; } }
+    //exit: Transition { NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; duration: Theme.animationMediumSpeed; } }
 
     Overlay.modal: Rectangle {
         color: "#000"
@@ -114,6 +122,14 @@ Popup {
             }
         }
 
+        Rectangle { // top separator
+            anchors.left: parent.left
+            anchors.right: parent.right
+            height: Theme.componentBorderWidth
+            visible: singleColumn
+            color: Qt.darker(Theme.colorPrimary, 1.02)
+        }
+
         layer.enabled: !singleColumn
         layer.effect: MultiEffect { // shadow
             autoPaddingEnabled: true
@@ -126,7 +142,7 @@ Popup {
     ////////////////////////////////////////////////////////////////////////////
 
     contentItem: Column {
-        bottomPadding: screenPaddingNavbar + screenPaddingBottom
+        bottomPadding: Math.max(Theme.screenPaddingNavbar, Theme.screenPaddingBottom)
 
         Item { // titleArea
             anchors.left: parent.left
@@ -143,14 +159,14 @@ Popup {
 
                 Text {
                     id: bigTime
-                    text: selectedTime.toLocaleString(locale, "hh:mm:ss")
+                    text: popupTime.selectedTime.toLocaleString(locale, "hh:mm:ss")
                     font.pixelSize: 24
                     font.capitalization: Font.Capitalize
                     color: "white"
                 }
                 Text {
                     id: bigDate
-                    text: selectedTime.toLocaleString(locale, "dd MMMM yyyy") // "15 octobre 2020"
+                    text: popupTime.selectedTime.toLocaleString(locale, "dd MMMM yyyy") // "15 octobre 2020"
                     font.pixelSize: 20
                     color: "white"
                 }
@@ -200,7 +216,7 @@ Popup {
                     font.pixelSize: Theme.fontSizeContentVeryVeryBig
                     visibleItemCount: 7
 
-                    model: 24
+                    model: popupTime.is24Hour ? 24 : [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
                 }
 
                 Text {
@@ -224,18 +240,20 @@ Popup {
                     model: 60
                 }
 
-                Item { width: 8; height: 8; } // spacer
+                Item { width: 8; height: 8; visible: !popupTime.is24Hour } // spacer
 
                 TumblerThemed {
                     id: tumblerAmPm
                     anchors.verticalCenter: parent.verticalCenter
 
-                    height: 64
-                    font.pixelSize: Theme.fontSizeContentVeryVeryBig
+                    visible: !popupTime.is24Hour
+                    width: 64
+                    height: 128
+                    font.pixelSize: Theme.fontSizeContentVeryBig
                     visibleItemCount: 2
 
                     model: ["AM", "PM"]
-                    wrap: true
+                    wrap: false
                 }
             }
 
@@ -267,10 +285,15 @@ Popup {
 
                 text: qsTr("Select")
                 onClicked: {
-                    selectedTime.setHours(tumblerHours.currentIndex)
-                    selectedTime.setMinutes(tumblerMinutes.currentIndex)
+                    // 24h: index is the hour
+                    // 12h: index 0..11 maps to 12,1..11 and PM adds 12 (12 AM = 0h, 12 PM = 12h)
+                    var h = popupTime.is24Hour ? tumblerHours.currentIndex
+                                               : tumblerHours.currentIndex + (tumblerAmPm.currentIndex === 1 ? 12 : 0)
 
-                    updateTime(selectedTime)
+                    popupTime.selectedTime.setHours(h)
+                    popupTime.selectedTime.setMinutes(tumblerMinutes.currentIndex)
+
+                    updateTime(popupTime.selectedTime)
                     popupTime.close()
                 }
             }
