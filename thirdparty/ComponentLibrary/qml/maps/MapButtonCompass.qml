@@ -13,8 +13,8 @@ T.Button {
     focusPolicy: Qt.NoFocus
 
     // icon
-    property url source_top: "qrc:/gfx/compass_top.svg"
-    property url source_bottom: "qrc:/gfx/compass_bottom.svg"
+    property url source_top: "../../assets/maps/compass_top.svg"
+    property url source_bottom: "../../assets/maps/compass_bottom.svg"
     property int sourceSize: UtilsNumber.alignTo(height * 0.8, 2)
     property int sourceRotation: 0
 
@@ -72,12 +72,13 @@ T.Button {
 */
             Rectangle { // button_bg
                 anchors.fill: parent
+                radius: control.radius
                 color: control.colorHighlight
                 opacity: control.hovered ? 0.66 : 0
                 Behavior on opacity { NumberAnimation { duration: 333 } }
             }
 
-            layer.enabled: true
+            layer.enabled: false // only if ripple is enabled
             layer.effect: MultiEffect {
                 maskEnabled: true
                 maskInverted: false

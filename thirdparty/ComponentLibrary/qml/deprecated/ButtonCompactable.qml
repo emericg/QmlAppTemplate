@@ -19,7 +19,7 @@ T.Button {
 
     width: compactInternal ? height : implicitWidth
     height: compactInternal ? height : implicitHeight
-    Behavior on width { NumberAnimation { duration: 133 } }
+    Behavior on width { NumberAnimation { duration: Theme.animationFastSpeed } }
 
     font.pixelSize: Theme.componentFontSize
     font.bold: false
@@ -90,7 +90,7 @@ T.Button {
         color: control.backgroundColor
 
         //opacity: (mouseArea.containsMouse) ? 1 : 0
-        Behavior on opacity { NumberAnimation { duration: 233 } }
+        Behavior on opacity { NumberAnimation { duration: Theme.animationMediumSpeed } }
 
         Rectangle {
             id: mouseBackground
@@ -101,8 +101,8 @@ T.Button {
             //visible: !control.compact
             color: "white"
             opacity: mouseArea.containsMouse ? 0.16 : 0
-            Behavior on opacity { NumberAnimation { duration: 333 } }
-            Behavior on width { NumberAnimation { duration: 200 } }
+            Behavior on opacity { NumberAnimation { duration: Theme.animationSlowSpeed } }
+            Behavior on width { NumberAnimation { duration: Theme.animationMediumSpeed } }
         }
 
         layer.enabled: true

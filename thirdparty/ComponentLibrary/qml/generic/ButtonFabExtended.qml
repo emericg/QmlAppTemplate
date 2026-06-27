@@ -6,7 +6,6 @@ import ComponentLibrary
 
 T.Button {
     id: control
-    anchors.right: parent.right
 
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                             contentRow.width + leftPadding + rightPadding)

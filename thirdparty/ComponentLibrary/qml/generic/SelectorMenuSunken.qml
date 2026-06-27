@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Layouts
 
 import ComponentLibrary
 
@@ -11,6 +12,10 @@ Item {
 
     opacity: enabled ? 1 : 0.66
 
+    // settings
+    property bool readOnly: false
+    property bool fullWidth: false
+
     // colors
     property color colorBackground: Theme.colorComponent
     property color colorForeground: Theme.colorComponentBackground
@@ -21,6 +26,7 @@ Item {
 
     // model
     property var model: null
+    readonly property int count: model ? (model.count ?? model.length ?? 0) : 0
 
     ////////////////
 
@@ -32,10 +38,9 @@ Item {
 
     ////////////////
 
-    Row {
+    RowLayout {
         id: contentRow
         anchors.centerIn: parent
-        height: parent.height - Theme.componentBorderWidth*2
         spacing: Theme.componentBorderWidth
 
         Repeater {
@@ -43,10 +48,13 @@ Item {
             delegate: SelectorMenuItem {
                 required property var model
 
+                Layout.preferredHeight: control.height - Theme.componentBorderWidth*2
+                Layout.preferredWidth: control.fullWidth ? ((control.width - Theme.componentBorderWidth*2) / Math.max(1, control.count)) : implicitWidth
+
                 colorContent: Theme.colorComponentText
                 colorContentHighlight: Theme.colorComponentText
                 colorBackgroundHighlight: control.colorForeground
-                height: parent.height
+                readOnly: control.readOnly
                 highlighted: (control.currentSelection === model.idx)
                 index: model.idx ?? 0
                 text: model.txt ?? ""

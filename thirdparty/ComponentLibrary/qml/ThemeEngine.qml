@@ -10,8 +10,6 @@ Item {
         // Generic mobile themes
         THEME_MOBILE_LIGHT,
         THEME_MOBILE_DARK,
-
-        // Generic mobile material themes
         THEME_MATERIAL_LIGHT,
         THEME_MATERIAL_DARK,
 
@@ -37,7 +35,7 @@ Item {
     }
     property int currentTheme: -1
 
-    ////////////////
+    ////////////////////////////////////////////////////////////////////////////
 
     // Inputs // bind these from the application // sensible defaults let the library run standalone
 
@@ -68,7 +66,9 @@ Item {
     property bool isPhone: (isMobile && (screenSize < 7.0))
     property bool isTablet: (isMobile && (screenSize >= 7.0))
 
-    ////////////////
+    ////////////////////////////////////////////////////////////////////////////
+
+    // Theming colors, size, speeds...
 
     property bool isLight
     property bool isDark
@@ -115,65 +115,25 @@ Item {
     property color colorLowContrast
     property color colorHighContrast
 
-    ////////////////
+    // Animation speeds
 
-    // App specific (toolBLEx)
-    property color colorBox: "white"
-    property color colorBoxBorder: "#f4f4f4"
-    property color colorBoxShadow: "#20000000"
-    property color colorGrid: "#ebebeb"
-    property color colorAxis: "#a0a0a0"
-    property color colorLVheader: "#fafafa"
-    property color colorLVpair: "white"
-    property color colorLVimpair: "#f5f5f5"
-    property color colorLVselected: "#0080e0"
-    property color colorLVseparator: "#e2e2e2"
+    readonly property int animationFastSpeed: 133
+    readonly property int animationMediumSpeed: 233
+    readonly property int animationSlowSpeed: 333
 
-    // App specific (OffloadBuddy)
-    property string sidebarSelector // 'arrow' or 'bar'
+    // Fonts sizes (in pixel)
+    readonly property int fontSizeHeader: isMobile ? 22 : 26
+    readonly property int fontSizeTitle: isMobile ? 24 : 28
+    readonly property int fontSizeContentVeryVerySmall: 10
+    readonly property int fontSizeContentVerySmall: 12
+    readonly property int fontSizeContentSmall: 14
+    readonly property int fontSizeContent: 16
+    readonly property int fontSizeContentBig: 18
+    readonly property int fontSizeContentVeryBig: 20
+    readonly property int fontSizeContentVeryVeryBig: 22
 
-    // App specific (WatchFlower)
-    property color colorDeviceWidget
-    readonly property color colorLightGrey: "#a9bcb8"
-    readonly property color colorLightGreen: "#09debc"
-    readonly property color colorNeutralNight: "#ffb300"
+    // Component theming
 
-    ////////////////
-
-    // Palette colors
-    property color colorRed: "#ff7657"
-    property color colorGreen: "#8cd200"
-    property color colorBlue: "#4cafe9"
-    property color colorPurple: "#b563ff"
-    property color colorYellow: "#ffcf00"
-    property color colorOrange: "#ffa635"
-    property color colorGrey: "#666"
-
-    // Material colors
-    readonly property color colorMaterialRed: "#F44336"
-    readonly property color colorMaterialPink: "#E91E63"
-    readonly property color colorMaterialPurple: "#9C27B0"
-    readonly property color colorMaterialDeepPurple: "#673AB7"
-    readonly property color colorMaterialIndigo: "#3F51B5"
-    readonly property color colorMaterialBlue: "#2196F3"
-    readonly property color colorMaterialLightBlue: "#03A9F4"
-    readonly property color colorMaterialCyan: "#00BCD4"
-    readonly property color colorMaterialTeal: "#009688"
-    readonly property color colorMaterialGreen: "#4CAF50"
-    readonly property color colorMaterialLightGreen: "#8BC34A"
-    readonly property color colorMaterialLime: "#CDDC39"
-    readonly property color colorMaterialYellow: "#FFEB3B"
-    readonly property color colorMaterialAmber: "#FFC107"
-    readonly property color colorMaterialOrange: "#FF9800"
-    readonly property color colorMaterialDeepOrange: "#FF5722"
-    readonly property color colorMaterialBrown: "#795548"
-    readonly property color colorMaterialGrey: "#9E9E9E"
-    readonly property color colorMaterialLightGrey: "#f8f8f8"
-    readonly property color colorMaterialDarkGrey: "#ececec"
-
-    ////////////////
-
-    // Qt Quick Controls & theming
     property color colorComponent
     property color colorComponentText
     property color colorComponentContent
@@ -209,26 +169,61 @@ Item {
         return 52
     }
 
-    ////////////////
+    ////////////////////////////////////////////////////////////////////////////
 
-    // Fonts (sizes in pixel)
-    readonly property int fontSizeHeader: isMobile ? 22 : 26
-    readonly property int fontSizeTitle: isMobile ? 24 : 28
-    readonly property int fontSizeContentVeryVerySmall: 10
-    readonly property int fontSizeContentVerySmall: 12
-    readonly property int fontSizeContentSmall: 14
-    readonly property int fontSizeContent: 16
-    readonly property int fontSizeContentBig: 18
-    readonly property int fontSizeContentVeryBig: 20
-    readonly property int fontSizeContentVeryVeryBig: 22
+    // App specific (toolBLEx)
+    property color colorBox: "white"
+    property color colorBoxBorder: "#f4f4f4"
+    property color colorBoxShadow: "#20000000"
+    property color colorGrid: "#ebebeb"
+    property color colorAxis: "#a0a0a0"
+    property color colorLVheader: "#fafafa"
+    property color colorLVpair: "white"
+    property color colorLVimpair: "#f5f5f5"
+    property color colorLVselected: "#0080e0"
+    property color colorLVseparator: "#e2e2e2"
 
-    // Fonts
-    property font headerFont: Qt.font({
-        family: 'Encode Sans',
-        weight: Font.Black,
-        italic: false,
-        pixelSize: fontSizeHeader
-    })
+    // App specific (OffloadBuddy)
+    property string sidebarSelector // 'arrow' or 'bar'
+
+    // App specific (WatchFlower)
+    property color colorDeviceWidget
+    readonly property color colorLightGrey: "#a9bcb8"
+    readonly property color colorLightGreen: "#09debc"
+    readonly property color colorNeutralNight: "#ffb300"
+
+    ////////////////////////////////////////////////////////////////////////////
+
+    // Palette colors
+    property color colorRed: "#ff7657"
+    property color colorGreen: "#8cd200"
+    property color colorBlue: "#4cafe9"
+    property color colorPurple: "#b563ff"
+    property color colorYellow: "#ffcf00"
+    property color colorOrange: "#ffa635"
+    property color colorGrey: "#666"
+
+    // Material colors
+    readonly property color colorMaterialRed: "#F44336"
+    readonly property color colorMaterialPink: "#E91E63"
+    readonly property color colorMaterialPurple: "#9C27B0"
+    readonly property color colorMaterialDeepPurple: "#673AB7"
+    readonly property color colorMaterialIndigo: "#3F51B5"
+    readonly property color colorMaterialBlue: "#2196F3"
+    readonly property color colorMaterialLightBlue: "#03A9F4"
+    readonly property color colorMaterialCyan: "#00BCD4"
+    readonly property color colorMaterialTeal: "#009688"
+    readonly property color colorMaterialGreen: "#4CAF50"
+    readonly property color colorMaterialLightGreen: "#8BC34A"
+    readonly property color colorMaterialLime: "#CDDC39"
+    readonly property color colorMaterialYellow: "#FFEB3B"
+    readonly property color colorMaterialAmber: "#FFC107"
+    readonly property color colorMaterialOrange: "#FF9800"
+    readonly property color colorMaterialDeepOrange: "#FF5722"
+    readonly property color colorMaterialBrown: "#795548"
+    readonly property color colorMaterialGrey: "#9E9E9E"
+    readonly property color colorMaterialLightGrey: "#f8f8f8"
+    readonly property color colorMaterialDarkGrey: "#ececec"
 
     ////////////////////////////////////////////////////////////////////////////
 

@@ -29,7 +29,7 @@ Item {
     property alias animationBegin: animationArcBegin.enabled
     property alias animationEnd: animationArcEnd.enabled
     property alias animationValue: animationArcValue.enabled
-    property int animationDuration: 333
+    property int animationDuration: Theme.animationSlowSpeed
 
     // private
     property real arcBegin: 0

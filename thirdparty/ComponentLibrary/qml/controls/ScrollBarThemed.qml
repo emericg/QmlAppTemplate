@@ -39,8 +39,8 @@ T.ScrollBar {
         from: "active"
         SequentialAnimation {
             PauseAnimation { duration: 450 }
-            NumberAnimation { target: control.background; duration: 200; property: "opacity"; to: 0.0 }
-            NumberAnimation { target: control.contentItem; duration: 200; property: "opacity"; to: 0.0 }
+            NumberAnimation { target: control.background; duration: Theme.animationMediumSpeed; property: "opacity"; to: 0.0 }
+            NumberAnimation { target: control.contentItem; duration: Theme.animationMediumSpeed; property: "opacity"; to: 0.0 }
         }
     }
 

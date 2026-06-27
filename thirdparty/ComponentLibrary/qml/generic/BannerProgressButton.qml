@@ -74,7 +74,7 @@ Rectangle {
                 rotation: control.sourceRotation
 
                 opacity: 1
-                Behavior on opacity { OpacityAnimator { duration: 233 } }
+                Behavior on opacity { OpacityAnimator { duration: Theme.animationMediumSpeed } }
 
                 SequentialAnimation on opacity {
                     running: (control.animationRunning &&
@@ -121,7 +121,7 @@ Rectangle {
 
                 height: 6
                 visible: control.progressRunning
-                color: Qt.rgba(255, 255, 255, 0.1)
+                color: Qt.rgba(1, 1, 1, 0.1)
 
                 Rectangle { // progress bar
                     width: control.progress ? (parent.width * (control.progress/100)) : 0

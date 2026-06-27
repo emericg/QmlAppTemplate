@@ -32,7 +32,6 @@ Rectangle {
     property url source: "qrc:/IconLibrary/material-symbols/autorenew.svg"
 
     property bool running: false
-    property int progress: 0
 
     signal clicked()
 
@@ -53,7 +52,7 @@ Rectangle {
             color: "white"
             source: control.source
             opacity: 1
-            Behavior on opacity { OpacityAnimator { duration: 233 } }
+            Behavior on opacity { OpacityAnimator { duration: Theme.animationMediumSpeed } }
 
             NumberAnimation on rotation { // refreshAnimation (rotate)
                 from: 0

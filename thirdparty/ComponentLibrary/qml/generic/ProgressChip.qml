@@ -8,12 +8,13 @@ import ComponentLibrary
 T.Button {
     id: control
 
-    implicitWidth: (implicitBackgroundWidth + leftInset + rightInset)
+    implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
+                            contentRow.width + leftPadding + rightPadding)
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              implicitContentHeight + topPadding + bottomPadding)
 
-    leftPadding: leftIcon.length ? 2 : 12
-    rightPadding: 12
+    leftPadding: leftIcon.toString().length ? 2 : 12
+    rightPadding: 16
     spacing: 6
 
     // settings
@@ -26,10 +27,10 @@ T.Button {
 
     // colors
     property color color: Theme.colorPrimary
-    property color colorBackground: Theme.colorComponentBackground // Theme.colorGrey
+    property color colorProgress: Qt.darker(Theme.colorPrimary, 1.04)
 
     // icon
-    property string leftIcon
+    property url leftIcon
     property int leftIconSize: UtilsNumber.alignTo(height * 0.66, 2)
     property int leftIconRotation: 0
     property bool leftIconBackground: true
@@ -43,21 +44,20 @@ T.Button {
         implicitWidth: 128
         implicitHeight: Theme.componentHeight
 
-        Rectangle {
+        Rectangle { // background
             anchors.fill: parent
             radius: (height / 2)
-            color: control.colorBackground
-            opacity: 1
+            color: control.color
+            opacity: 0.1
         }
-
-        Rectangle {
+        Rectangle { // progress
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.bottom: parent.bottom
             width: control.width * (control.progress / 100)
             radius: (height / 2)
-            color: control.color
-            opacity: 0.12
+            color: control.colorProgress
+            opacity: 0.2
         }
 
         RippleThemed {
@@ -91,34 +91,55 @@ T.Button {
     ////////////////
 
     contentItem: Item {
-        Item {
-            width: control.height
-            height: control.height
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-            visible: control.leftIcon.length
+        RowLayout {
+            id: contentRow
+            anchors.centerIn: parent
 
-            Rectangle {
-                anchors.centerIn: parent
-                width: control.height - 4
-                height: width
-                radius: width
+            opacity: control.enabled ? 1 : 0.66
+            spacing: control.spacing
 
-                visible: control.leftIconBackground
-                color: control.color
-                opacity: 0.20
+            Item {
+                Layout.preferredWidth: control.height
+                Layout.preferredHeight: control.height
+                Layout.alignment: Qt.AlignVCenter
+                visible: control.leftIcon.toString().length
+
+                Rectangle {
+                    anchors.centerIn: parent
+                    width: control.height - 4
+                    height: width
+                    radius: width
+
+                    visible: control.leftIconBackground
+                    color: control.color
+                    opacity: 0.1
+                }
+
+                IconSvg {
+                    anchors.centerIn: parent
+                    width: control.leftIconSize
+                    height: control.leftIconSize
+                    rotation: control.leftIconRotation
+
+                    color: control.color
+                    source: control.leftIcon
+                }
             }
 
-            IconSvg {
-                anchors.centerIn: parent
-                width: control.leftIconSize
-                height: control.leftIconSize
-                rotation: control.leftIconRotation
+            Text {
+                Layout.alignment: Qt.AlignVCenter
+
+                visible: control.text
+                text: control.text
+                textFormat: Text.PlainText
 
                 color: control.color
-                source: control.leftIcon
+                font: control.font
+                elide: Text.ElideMiddle
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
             }
         }
-
     }
 
     ////////////////

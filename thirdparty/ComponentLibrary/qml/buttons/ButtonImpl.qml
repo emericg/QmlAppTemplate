@@ -163,7 +163,7 @@ T.Button {
                 color: control.colorText
                 opacity: control.enabled ? 1 : 0.66
 
-                visible: control.text.length
+                visible: control.text
                 text: control.text
                 textFormat: Text.PlainText
 

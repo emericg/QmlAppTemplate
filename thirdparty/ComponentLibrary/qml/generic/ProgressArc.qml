@@ -26,7 +26,7 @@ Item {
     property color backgroundColor: Theme.colorForeground
 
     property alias animation: animationArcValue.enabled
-    property int animationDuration: 333
+    property int animationDuration: Theme.animationSlowSpeed
 
     // private
     property real arcBegin: ((360 - arcSpan) / 2)

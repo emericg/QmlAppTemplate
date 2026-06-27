@@ -6,18 +6,18 @@ import ComponentLibrary
 MapQuickItem {
     id: posMarker
 
-    property url source: "qrc:/gfx/gps_marker.svg"
-    property url source_bearing: "qrc:/gfx/gps_marker_bearing.svg"
-
-    property bool has_bearing: (map_bearing !== 0.0 || compass_bearing !== 0.0)
-    property real map_bearing: 0.0
-    property real compass_bearing: 0.0
-
     width: 64
     height: 64
 
     anchorPoint.x: (posMarker.width / 2)
     anchorPoint.y: (posMarker.height / 2)
+
+    property url source: "../../assets/maps/gps_marker.svg"
+    property url source_bearing: "../../assets/maps/gps_marker_bearing.svg"
+
+    property bool has_bearing: (map_bearing !== 0.0 || compass_bearing !== 0.0)
+    property real map_bearing: 0.0
+    property real compass_bearing: 0.0
 
     //coordinate: QtPositioning.coordinate(1, 2)
 

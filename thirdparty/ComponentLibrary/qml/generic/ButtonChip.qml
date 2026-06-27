@@ -13,8 +13,8 @@ T.Button {
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              implicitContentHeight + topPadding + bottomPadding)
 
-    leftPadding: leftIcon.length ? 2 : 12
-    rightPadding: rightIcon.length ? 2 : 12
+    leftPadding: (leftIcon.toString().length) ? 2 : 12
+    rightPadding: (rightIcon.toString().length) ? 2 : 16
     spacing: 6
 
     // settings
@@ -29,12 +29,12 @@ T.Button {
     property color color: Theme.colorPrimary
 
     // icons
-    property string leftIcon
+    property url leftIcon
     property int leftIconSize: UtilsNumber.alignTo(height * 0.66, 2)
     property int leftIconRotation: 0
     property bool leftIconBackground: true
 
-    property string rightIcon
+    property url rightIcon
     property int rightIconSize: UtilsNumber.alignTo(height * 0.5, 2)
     property int rightIconRotation: 0
     property bool rightIconBackground: true
@@ -99,7 +99,7 @@ T.Button {
                 Layout.preferredWidth: control.height
                 Layout.preferredHeight: control.height
                 Layout.alignment: Qt.AlignVCenter
-                visible: control.leftIcon.length
+                visible: control.leftIcon.toString().length
 
                 Rectangle {
                     anchors.centerIn: parent
@@ -141,7 +141,7 @@ T.Button {
                 Layout.preferredWidth: control.height
                 Layout.preferredHeight: control.height
                 Layout.alignment: Qt.AlignVCenter
-                visible: control.rightIcon.length
+                visible: control.rightIcon.toString().length
 
                 Rectangle {
                     anchors.centerIn: parent

@@ -15,11 +15,16 @@ T.Button {
     rightPadding: 16
 
     focusPolicy: Qt.NoFocus
+    hoverEnabled: enabled && !readOnly
 
     // settings
     property int index
+    property bool readOnly: false
+
+    // icon
     property url source
     property int sourceSize: 32
+    property int sourceRotation: 0
 
     // colors
     property color colorContent: Theme.colorComponentText
@@ -40,7 +45,7 @@ T.Button {
             else if (control.hovered) return 0.5
             return 0
         }
-        Behavior on opacity { OpacityAnimator { duration: 133 } }
+        Behavior on opacity { OpacityAnimator { duration: Theme.animationFastSpeed } }
     }
 
     ////////////////
@@ -56,6 +61,7 @@ T.Button {
 
                 width: control.sourceSize
                 height: control.sourceSize
+                rotation: control.sourceRotation
 
                 source: control.source
                 color: control.highlighted ? control.colorContentHighlight : control.colorContent

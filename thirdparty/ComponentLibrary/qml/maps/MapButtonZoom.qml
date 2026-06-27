@@ -4,7 +4,7 @@ import QtQuick.Templates as T
 
 import ComponentLibrary
 
-T.Button {
+T.Control {
     id: control
 
     implicitWidth: Theme.componentHeight
@@ -20,7 +20,8 @@ T.Button {
     property real zoomLevel_maximum: 20
 
     // icon
-    property url source: "qrc:/IconLibrary/material-symbols/remove.svg"
+    property url sourceIn: "../../assets/icons/add.svg"
+    property url sourceOut: "../../assets/icons/remove.svg"
     property int sourceSize: UtilsNumber.alignTo(width * 0.5, 2)
     property int sourceRotation: 0
 
@@ -129,7 +130,8 @@ T.Button {
                 Behavior on opacity { NumberAnimation { duration: 333 } }
 
                 color: control.colorIcon
-                source: "qrc:/IconLibrary/material-symbols/add.svg"
+                source: control.sourceIn
+                rotation: control.sourceRotation
             }
         }
         MouseArea {
@@ -154,7 +156,7 @@ T.Button {
                 Behavior on opacity { NumberAnimation { duration: 333 } }
 
                 color: control.colorIcon
-                source: control.source
+                source: control.sourceOut
                 rotation: control.sourceRotation
             }
         }

@@ -57,7 +57,7 @@ T.Button {
             anchor: control
 
             pressed: control.pressed
-            active: enabled && (control.down || control.visualFocus)
+            active: control.enabled && (control.down || control.visualFocus)
             color: Qt.rgba(Theme.colorForeground.r, Theme.colorForeground.g, Theme.colorForeground.b, 0.5)
 
             layer.enabled: true

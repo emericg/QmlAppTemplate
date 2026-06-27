@@ -20,8 +20,8 @@ Item {
     property color colorBackground: Theme.colorComponentBackground
 
     // states
-    property int currentSelection: 0
     signal menuSelected(var index)
+    property int currentSelection: 0
 
     // model
     property var model: null

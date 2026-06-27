@@ -107,7 +107,7 @@ T.Button {
             rotation: control.sourceRotation
 
             color: control.hovered ? control.colorIconHighlight : control.colorIcon
-            Behavior on color { ColorAnimation { duration: 133 } }
+            Behavior on color { ColorAnimation { duration: Theme.animationFastSpeed } }
 
             source: control.source
 
@@ -140,7 +140,7 @@ T.Button {
             opacity: control.enabled ? 1 : 0.66
 
             color: control.hovered ? control.colorIconHighlight : control.colorIcon
-            Behavior on color { ColorAnimation { duration: 133 } }
+            Behavior on color { ColorAnimation { duration: Theme.animationFastSpeed } }
 
             text: control.text
             textFormat: Text.PlainText

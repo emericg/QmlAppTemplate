@@ -33,7 +33,7 @@ T.PageIndicator {
 
         required property int index
 
-        Behavior on opacity { OpacityAnimator { duration: 133 } }
+        Behavior on opacity { OpacityAnimator { duration: Theme.animationFastSpeed } }
     }
 
     ////////////////

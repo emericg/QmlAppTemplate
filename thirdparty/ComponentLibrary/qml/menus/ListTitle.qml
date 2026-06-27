@@ -38,7 +38,7 @@ Rectangle {
         anchors.leftMargin: Theme.componentMarginL
         anchors.verticalCenter: control.verticalCenter
 
-        visible: control.source
+        visible: control.source.toString().length
         width: control.sourceSize
         height: control.sourceSize
         rotation: control.sourceRotation

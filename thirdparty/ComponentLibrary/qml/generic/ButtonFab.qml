@@ -4,10 +4,8 @@ import QtQuick.Templates as T
 
 import ComponentLibrary
 
-
 T.Button {
     id: control
-    anchors.right: parent.right
 
     implicitWidth: implicitBackgroundWidth
     implicitHeight: implicitBackgroundHeight

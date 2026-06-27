@@ -6,8 +6,12 @@ import ComponentLibrary
 Item {
     id: mapScale
 
-    implicitWidth: 128
+    implicitWidth: mapScale.referenceWidth
     implicitHeight: 20
+
+    // maximum width of the scale bar, in pixels
+    // the bar shrinks from here to fit a "nice" round distance
+    property int referenceWidth: 100
 
     property Map map: null
 
@@ -41,9 +45,10 @@ Item {
     function computeScale() {
         if (!map || !map.mapReady) return
 
-        // distance (in meters) covered by 100 pixels at the current zoom/latitude
-        var coord1 = map.toCoordinate(Qt.point(0, 100))
-        var coord2 = map.toCoordinate(Qt.point(100, 100))
+        // distance (in meters) covered by 'referenceWidth' pixels at the current zoom/latitude
+        var y = 100 // arbitrary vertical sampling offset, away from the top edge
+        var coord1 = map.toCoordinate(Qt.point(0, y))
+        var coord2 = map.toCoordinate(Qt.point(mapScale.referenceWidth, y))
         var dist = Math.round(coord1.distanceTo(coord2))
         if (dist <= 0) return // not visible // not ready yet
 
@@ -58,7 +63,7 @@ Item {
             }
         }
 
-        mapScale.width = 100 * (scale / dist)
+        mapScale.width = mapScale.referenceWidth * (scale / dist)
         mapScaleText.text = UtilsString.distanceToString(scale, 0, mapScale.appUnits)
     }
 

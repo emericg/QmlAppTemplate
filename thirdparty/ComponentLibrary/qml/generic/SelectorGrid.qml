@@ -13,15 +13,21 @@ Item {
 
     opacity: enabled ? 1 : 0.66
 
+    // settings
+    property bool readOnly: false
+
     property int btnCols: 4
     property int btnRows: 3
     property int btnWidth: ((width - ((selectorGrid.btnCols-1) * contentPositioner.spacing)) / selectorGrid.btnCols)
     property int btnHeight: Theme.componentHeight
 
+    // states
     signal menuSelected(var index)
     property int currentSelection: 0
 
+    // model
     property var model: null
+    readonly property int count: model ? (model.count ?? model.length ?? 0) : 0
 
     ////////////////
 
@@ -49,6 +55,7 @@ Item {
                 width: selectorGrid.btnWidth
                 height: selectorGrid.btnHeight
 
+                readOnly: selectorGrid.readOnly
                 highlighted: (selectorGrid.currentSelection === model.idx)
                 source: model.src ?? ""
                 text: model.txt ?? ""

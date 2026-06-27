@@ -41,10 +41,10 @@ T.Button {
             radius: Theme.componentRadius
 
             color: Theme.colorComponent
-            //Behavior on color { ColorAnimation { duration: 133 } }
+            //Behavior on color { ColorAnimation { duration: Theme.animationFastSpeed } }
 
             opacity: control.enabled && control.hovered ? 1 : 0
-            //Behavior on opacity { OpacityAnimator { duration: 233 } }
+            //Behavior on opacity { OpacityAnimator { duration: Theme.animationMediumSpeed } }
         }
 
         RippleThemed {
