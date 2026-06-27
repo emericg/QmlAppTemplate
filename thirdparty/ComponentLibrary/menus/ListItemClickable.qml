@@ -16,7 +16,7 @@ T.ItemDelegate {
     spacing: Theme.componentMargin
     verticalPadding: 0
 
-    property string source
+    property url source
     property color sourceColor: Theme.colorIcon
     property int sourceSize: 32
 

@@ -77,7 +77,7 @@ T.Popup {
         anchors.right: parent.right
         anchors.bottom: parent.bottom
 
-        height: opening ? actionMenu.actualHeight : 0
+        height: actionMenu.opening ? actionMenu.actualHeight : 0
         Behavior on height { NumberAnimation { duration: 233 } }
 
         color: Theme.colorComponentBackground

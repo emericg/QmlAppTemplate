@@ -19,14 +19,14 @@ Rectangle {
     border.width: singleColumn ? 0 : Theme.componentBorderWidth
     border.color: Theme.colorSeparator
 
-    property string source
+    property url source
     property int sourceSize: 24
     property int sourceRotation: 0
     property color sourceColor: Theme.colorIcon
 
     property string text: "title"
     property color textColor: Theme.colorText
-    property int textSize: source ? Theme.fontSizeContentBig : Theme.fontSizeContentVeryBig
+    property int textSize: source.length ? Theme.fontSizeContentBig : Theme.fontSizeContentVeryBig
     property bool textBold: false
 
     property bool shadow: !singleColumn

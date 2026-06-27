@@ -31,9 +31,6 @@ T.Button {
     property int sourceRotation: 0
     property int layoutDirection: Qt.RightToLeft
 
-    //property bool checked: false
-    //signal toggled()
-
     ////////////////
 
     background: Item {
@@ -84,6 +81,7 @@ T.Button {
 
         SwitchThemed {
             rightPadding: -6
+            checkable: control.checkable
             checked: control.checked
             onToggled: control.clicked()
         }

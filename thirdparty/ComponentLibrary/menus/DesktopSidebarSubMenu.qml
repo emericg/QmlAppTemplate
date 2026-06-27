@@ -1,5 +1,4 @@
 import QtQuick
-import QtQuick.Layouts
 
 import ComponentLibrary
 
@@ -15,7 +14,7 @@ Column {
 
     property string category
     property string text: "menu"
-    property string source: "qrc:/IconLibrary/material-symbols/menu.svg"
+    property url source: "qrc:/IconLibrary/material-symbols/menu.svg"
 
     property bool checked: false
     property int selected: 0

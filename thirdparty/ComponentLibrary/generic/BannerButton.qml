@@ -29,7 +29,7 @@ Rectangle {
 
     property string text: "Banner button..."
     property string textButton: "Cancel"
-    property string source: "qrc:/IconLibrary/material-symbols/autorenew.svg"
+    property url source: "qrc:/IconLibrary/material-symbols/autorenew.svg"
 
     property bool running: false
     property int progress: 0

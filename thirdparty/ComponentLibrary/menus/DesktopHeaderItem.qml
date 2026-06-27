@@ -18,7 +18,7 @@ T.Button {
     // settings
     property url source
     property int sourceSize: 32
-    property string highlightMode: "background" // available: background, indicator, content
+    property string highlightMode: "background" // available: background, indicator, circle, content
 
     // colors
     property color colorContent: Theme.colorHeaderContent
