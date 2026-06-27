@@ -67,6 +67,7 @@ int main(int argc, char *argv[])
     }
 
     // Translate the application
+    utilsLanguage->addTranslationCatalog("ComponentLibrary");
     utilsLanguage->loadLanguage(sm->getAppLanguage());
 
     // Force QtQuick components style? // Some styles are only available on target OS

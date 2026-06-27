@@ -227,3 +227,21 @@ target_link_libraries(ComponentLibrary PUBLIC Qt6::Core Qt6::Quick Qt6::QuickCon
 target_include_directories(ComponentLibrary PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 ################################################################################
+
+# The library ships its own translations catalog, embedded in its own resources
+# At runtime the host application must install a QTranslator for this catalog:
+#   QTranslator t;
+#   t.load(":/i18n/ComponentLibrary_" + <lang> + ".qm");
+#   qApp->installTranslator(&t);
+
+qt_add_translations(ComponentLibrary
+    SOURCE_TARGETS ComponentLibrary # pins lupdate to this module so it doesn't scan the whole project
+    TS_FILE_BASE ComponentLibrary
+    TS_FILE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/i18n/
+    RESOURCE_PREFIX "/i18n"
+    #LUPDATE_OPTIONS -no-obsolete
+    LUPDATE_TARGET ComponentLibrary_lupdate
+    LRELEASE_TARGET ComponentLibrary_lrelease
+)
+
+################################################################################
