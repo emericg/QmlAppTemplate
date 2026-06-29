@@ -1,5 +1,4 @@
 // UtilsNumber.js
-// Version 9
 .pragma library
 
 /* ************************************************************************** */
@@ -12,12 +11,8 @@
  *
  * example: padNumber(2, 3, 'x') => xx2
  */
-function padNumber(n, width, z) {
-    z = z || '0';
-    width = width || 2;
-
-    n = n + '';
-    return (n.length >= width) ? n : new Array(width - n.length + 1).join(z) + n;
+function padNumber(n, width = 2, z = '0') {
+    return String(n).padStart(width, z);
 }
 
 /*!
@@ -44,12 +39,14 @@ function trimNumber(n, p) {
  * example: mapNumber(5, 0, 10, 100, 200) => 150
  */
 function mapNumber(n, srcMin, srcMax, dstMin, dstMax) {
+    if (srcMax === srcMin) return dstMin
     if (n < srcMin) n = srcMin
     if (n > srcMax) n = srcMax
     return (dstMin + ((n - srcMin) * (dstMax - dstMin)) / (srcMax - srcMin))
 }
 
 function mapNumber_nocheck(n, srcMin, srcMax, dstMin, dstMax) {
+    if (srcMax === srcMin) return dstMin
     return (dstMin + ((n - srcMin) * (dstMax - dstMin)) / (srcMax - srcMin))
 }
 
@@ -63,9 +60,25 @@ function normalize(n, min, max) {
 }
 
 /*!
- * Align n to the closest r
+ * Align n up to the next multiple of r
+ * \param n: value to align
+ * \param r: alignment step (any positive number)
+ *
+ * example: alignTo(13, 2) => 14 / alignTo(13, 8) => 16 / alignTo(16, 8) => 16
  */
 function alignTo(n, r) {
+    if (r <= 0) return n;
+    return Math.ceil(n / r) * r;
+}
+
+/*!
+ * Align n up to the next multiple of r, faster than alignTo(), BUT:
+ * - 'r' MUST be a power of two
+ * - 'n' will be truncated to 32 bits (because of bitwise ops)
+ *
+ * example: alignToPow2(13, 8) => 16 / alignToPow2(16, 8) => 16
+ */
+function alignToPow2(n, r) {
     return (n + (r - 1)) & ~(r - 1);
 }
 

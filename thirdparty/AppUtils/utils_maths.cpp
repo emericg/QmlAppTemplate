@@ -31,13 +31,15 @@
 
 /* ************************************************************************** */
 
-int roundTo(const int value, const int roundTo)
+int alignToPow2(const int value, const int r)
 {
-    return (value + (roundTo - 1)) & ~(roundTo - 1);
+    return (value + (r - 1)) & ~(r - 1);
 }
 
 int mapNumber(const int value, const int a1, const int a2, const int b1, const int b2, bool checks)
 {
+    if (a2 == a1) return b1;
+
     int n = value;
     if (checks)
     {

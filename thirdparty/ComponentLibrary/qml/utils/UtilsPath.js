@@ -1,5 +1,4 @@
 // UtilsPath.js
-// Version 6
 .pragma library
 
 /* ************************************************************************** */
@@ -29,19 +28,19 @@ function cleanUrl(pathInput) {
 }
 
 /*!
- * Take a path (url or string) and make sure we output a clean url.
+ * Take a local path (url or string) and make sure we output a clean url.
+ * Scheme detection requires 2+ chars before ':', so a Windows drive ("C:")
+ * is still treated as a local path.
  */
 function makeUrl(pathInput) {
-    var urlOut = '';
+    if (!(typeof pathInput === 'string' || pathInput instanceof String)) {
+        return pathInput;
+    }
 
-    if (typeof pathInput === 'string' || pathInput instanceof String) {
-        if (pathInput.slice(0, 7) !== "file://") {
-            urlOut = "file://" + pathInput;
-        } else {
-            urlOut = pathInput;
-        }
-    } else {
-        urlOut = pathInput;
+    var urlOut = pathInput;
+
+    if (!/^[a-zA-Z][a-zA-Z0-9+.-]+:/.test(pathInput)) {
+        urlOut = "file://" + pathInput;
     }
 
     //console.log("makeUrl() in: " + pathInput + " / out: " + urlOut)
@@ -52,18 +51,10 @@ function makeUrl(pathInput) {
  * Take an url or string from a file, return the absolute path of the folder containing that file.
  */
 function fileToFolder(filePath) {
-    if (!(typeof filePath === 'string' || filePath instanceof String)) {
-        filePath = filePath.toString();
-    }
+    if (!filePath) return '';
 
-    var folderPath = '';
-    if (typeof filePath === 'string' || filePath instanceof String) {
-        folderPath = filePath.substring(0, filePath.lastIndexOf("/"));
-    } else {
-        console.log("fileToFolder(filePath) has been given an unknown type...");
-    }
-
-    return folderPath;
+    filePath = filePath.toString();
+    return filePath.substring(0, filePath.lastIndexOf("/"));
 }
 
 function openWith(filePath) {

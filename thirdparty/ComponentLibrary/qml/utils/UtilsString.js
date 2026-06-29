@@ -5,14 +5,10 @@
 /* ************************************************************************** */
 
 /*!
- * _padNumber()
  * Only used for padding durations whithin this file.
  */
-function _padNumber(n, width) {
-    width = width || 2;
-
-    n = n + '';
-    return (n.length >= width) ? n : new Array(width - n.length + 1).join('0') + n;
+function _padNumber(n, width = 2) {
+    return String(n).padStart(width, '0');
 }
 
 /*!
