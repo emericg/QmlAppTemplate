@@ -102,19 +102,19 @@ QString UtilsApp::appBuildDateTime()
 QString UtilsApp::appBuildMode()
 {
 #if !defined(QT_NO_DEBUG) && !defined(NDEBUG)
-    return "DEBUG";
+    return QStringLiteral("DEBUG");
 #endif
 
-    return "";
+    return QString();
 }
 
 QString UtilsApp::appBuildModeFull()
 {
 #if defined(QT_NO_DEBUG) || defined(NDEBUG)
-    return "RELEASE";
+    return QStringLiteral("RELEASE");
 #endif
 
-    return "DEBUG";
+    return QStringLiteral("DEBUG");
 }
 
 bool UtilsApp::isDebugBuild()
@@ -138,10 +138,10 @@ QString UtilsApp::qtBuildMode()
 {
     if (QLibraryInfo::isDebugBuild())
     {
-        return "DEBUG";
+        return QStringLiteral("DEBUG");
     }
 
-    return "RELEASE";
+    return QStringLiteral("RELEASE");
 }
 
 QString UtilsApp::qtArchitecture()

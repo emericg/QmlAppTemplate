@@ -17,7 +17,7 @@ Item {
     property bool readOnly: false
 
     property int btnCols: 4
-    property int btnRows: 3
+    property int btnRows: Math.max(1, Math.ceil(selectorGrid.count / selectorGrid.btnCols))
     property int btnWidth: ((width - ((selectorGrid.btnCols-1) * contentPositioner.spacing)) / selectorGrid.btnCols)
     property int btnHeight: Theme.componentHeight
 

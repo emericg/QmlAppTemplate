@@ -39,7 +39,7 @@ function durationToString_long(duration) {
     var hours = Math.floor(duration / 3600000);
     var minutes = Math.floor((duration - (hours * 3600000)) / 60000);
     var seconds = Math.floor((duration - (hours * 3600000) - (minutes * 60000)) / 1000);
-    var milliseconds = Math.round(duration - (hours * 3600000) - (minutes * 60000)) - (seconds * 1000);
+    var milliseconds = Math.floor(duration - (hours * 3600000) - (minutes * 60000) - (seconds * 1000));
 
     if (hours > 0) {
         text += hours.toString();
@@ -75,7 +75,7 @@ function durationToString_short(duration) {
     var hours = Math.floor(duration / 3600000);
     var minutes = Math.floor((duration - (hours * 3600000)) / 60000);
     var seconds = Math.floor((duration - (hours * 3600000) - (minutes * 60000)) / 1000);
-    var milliseconds = Math.round(duration - (hours * 3600000) - (minutes * 60000)) - (seconds * 1000);
+    var milliseconds = Math.floor(duration - (hours * 3600000) - (minutes * 60000) - (seconds * 1000));
 
     if (hours > 0) {
         text += hours.toString() + " " + qsTr("h", "short for hours") + " ";
@@ -108,7 +108,7 @@ function durationToString_compact(duration) {
     var hours = Math.floor(duration / 3600000);
     var minutes = Math.floor((duration - (hours * 3600000)) / 60000);
     var seconds = Math.floor((duration - (hours * 3600000) - (minutes * 60000)) / 1000);
-    var milliseconds = Math.round(duration - (hours * 3600000) - (minutes * 60000)) - (seconds * 1000);
+    var milliseconds = Math.floor(duration - (hours * 3600000) - (minutes * 60000) - (seconds * 1000));
 
     if (hours > 0) {
         text += hours.toString() + qsTr("h", "short for hours") + " ";
@@ -142,7 +142,7 @@ function durationToString_supercompact(duration) {
     var hours = Math.floor(duration / 3600000);
     var minutes = Math.floor((duration - (hours * 3600000)) / 60000);
     var seconds = Math.floor((duration - (hours * 3600000) - (minutes * 60000)) / 1000);
-    var milliseconds = Math.round(duration - (hours * 3600000) - (minutes * 60000)) - (seconds * 1000);
+    var milliseconds = Math.floor(duration - (hours * 3600000) - (minutes * 60000) - (seconds * 1000));
 
     if (hours > 0) {
         text += hours.toString() + qsTr("h", "short for hours") + " ";
@@ -151,9 +151,11 @@ function durationToString_supercompact(duration) {
         text += minutes.toString() + qsTr("m", "short for minutes") + " ";
     }
 
-    if (seconds < 60 && milliseconds > 0) {
-        text += seconds.toString() + qsTr("s", "short for seconds") + " " +
-                milliseconds.toString() + qsTr("ms", "short for milliseconds");
+    if (hours === 0 && minutes === 0) {
+        text += seconds.toString() + qsTr("s", "short for seconds");
+        if (milliseconds > 0) {
+            text += " " + milliseconds.toString() + qsTr("ms", "short for milliseconds");
+        }
     }
 
     return text;
@@ -252,7 +254,7 @@ function durationToString_ISO8601_full_loose(duration_ms) {
         var hours = Math.floor(duration_ms / 3600000);
         var minutes = Math.floor((duration_ms - (hours * 3600000)) / 60000);
         var seconds = Math.floor((duration_ms - (hours * 3600000) - (minutes * 60000)) / 1000);
-        var milliseconds = Math.round((duration_ms - (hours * 3600000) - (minutes * 60000)) - (seconds * 1000));
+        var milliseconds = Math.floor((duration_ms - (hours * 3600000) - (minutes * 60000)) - (seconds * 1000));
 
         if (hours > 0) {
             text += _padNumber(hours);
@@ -291,7 +293,7 @@ function durationToString_ISO8601_full(duration_ms) {
         var hours = Math.floor(duration_ms / 3600000);
         var minutes = Math.floor((duration_ms - (hours * 3600000)) / 60000);
         var seconds = Math.floor((duration_ms - (hours * 3600000) - (minutes * 60000)) / 1000);
-        var milliseconds = Math.round((duration_ms - (hours * 3600000) - (minutes * 60000)) - (seconds * 1000));
+        var milliseconds = Math.floor((duration_ms - (hours * 3600000) - (minutes * 60000)) - (seconds * 1000));
 
         if (hours > 0)
             text += _padNumber(hours);
@@ -344,6 +346,8 @@ function bytesToString(bytes, unit) {
             text = (bytes/(base*base)).toFixed(1) + " " + ((unit === 1) ? "MiB" : "MB");
         else if ((bytes/base) >= 1.0)
             text = (bytes/base).toFixed(1) + " " + ((unit === 1) ? "KiB" : "KB");
+        else
+            text = bytes.toFixed(0) + " B";
     }
 
     return text;
@@ -371,6 +375,8 @@ function bytesToString_short(bytes, unit) {
             text = (bytes/(base*base)).toFixed(1) + " " + ((unit === 1) ? "MiB" : "MB");
         else if ((bytes/base) >= 1.0)
             text = (bytes/base).toFixed(1) + " " + ((unit === 1) ? "KiB" : "KB");
+        else
+            text = bytes.toFixed(0) + " B";
     }
 
     return text;
@@ -380,6 +386,7 @@ function bytesToString_short(bytes, unit) {
 
 /*!
  * altitudeToString()
+ * unit: 0 is metric, 1 is imperial
  */
 function altitudeToString(value, precision, unit) {
     var text = '';
@@ -388,23 +395,24 @@ function altitudeToString(value, precision, unit) {
     if (unit === 0) {
         text = value.toFixed(precision) + " " + qsTr("m", "short for meters");
     } else {
-        text = (value / 0.3048).toFixed(precision) + " " + qsTr("ft", "short for feets");
+        text = (value / 0.3048).toFixed(precision) + " " + qsTr("ft", "short for feet");
     }
 
     return text;
 }
 
 /*!
- * altitudeUnit()
+ * Return the altitude unit name, for use in legends and stuff
+ * unit: 0 is metric, 1 is imperial
  */
 function altitudeUnit(unit) {
-    var text = '';
+    var text = "";
     unit = unit || 0;
 
     if (unit === 0) {
-        text = qsTr("meter");
+        text = qsTr("meter", "altitude unit")
     } else {
-        text = qsTr("feet");
+        text = qsTr("foot", "altitude unit")
     }
 
     return text;
@@ -412,6 +420,7 @@ function altitudeUnit(unit) {
 
 /*!
  * distanceToString()
+ * unit: 0 is metric, 1 is imperial
  */
 function distanceToString(value_m, precision, unit) {
     var text = "";
@@ -436,6 +445,7 @@ function distanceToString(value_m, precision, unit) {
 
 /*!
  * distanceToString_km()
+ * unit: 0 is metric, 1 is imperial
  */
 function distanceToString_km(value_km, precision, unit) {
     var text = "";
@@ -444,7 +454,7 @@ function distanceToString_km(value_km, precision, unit) {
     if (unit === 0) {
         text = value_km.toFixed(precision) + " " + qsTr("km", "short for kilometers");
     } else {
-        text = (value_km / 1609.344).toFixed(precision) + " " + qsTr("mi", "short for miles");
+        text = (value_km / 1.609344).toFixed(precision) + " " + qsTr("mi", "short for miles");
     }
 
     return text;
@@ -452,9 +462,19 @@ function distanceToString_km(value_km, precision, unit) {
 
 /*!
  * speedToString()
+ * unit: 0 is metric, 1 is imperial
  */
-function speedToString(value, precision, unit) {
-    return distanceToString(value, precision, unit) + qsTr("/h", "short for per hour");
+function speedToString(value_m, precision, unit) {
+    var text = "";
+    unit = unit || 0;
+
+    if (unit === 0) {
+        text = (value_m / 1000).toFixed(precision) + " " + qsTr("km/h", "kilometers per hour");
+    } else {
+        text = (value_m / 1609.344).toFixed(precision) + " " + qsTr("mi/h", "miles per hour");
+    }
+
+    return text;
 }
 
 function speedToString_km(value, precision, unit) {
@@ -462,7 +482,8 @@ function speedToString_km(value, precision, unit) {
 }
 
 /*!
- * speedUnit()
+ * Return the speed unit name, for use in legends and stuff
+ * unit: 0 is km/h, 1 is mi/h
  */
 function speedUnit(unit) {
     var text = "";

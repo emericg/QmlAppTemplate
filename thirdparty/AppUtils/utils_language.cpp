@@ -110,15 +110,15 @@ void UtilsLanguage::loadLanguage(const QString &lng)
     else if (m_appLanguage == "Chinese (simplified)") m_locale_str_full = "zh_CN";
     else if (m_appLanguage == "Dansk") m_locale_str_full = "da_DK"; // Danish
     else if (m_appLanguage == "Deutsch") m_locale_str_full = "de_DE";
-    else if (m_appLanguage == "English") m_locale_str_full = "en_EN";
+    else if (m_appLanguage == "English") m_locale_str_full = "en_US";
     else if (m_appLanguage == "Español") m_locale_str_full = "es_ES";
     else if (m_appLanguage == "Italiano") m_locale_str_full = "it_IT";
     else if (m_appLanguage == "Français") m_locale_str_full = "fr_FR";
     else if (m_appLanguage == "Frysk") m_locale_str_full = "fy_NL";
     else if (m_appLanguage == "Hungarian") m_locale_str_full = "hu_HU";
     else if (m_appLanguage == "Nederlands") m_locale_str_full = "nl_NL"; // Dutch
-    else if (m_appLanguage == "Norsk (Bokmål)") m_locale_str_full = "nb_NO"; // Swedish
-    else if (m_appLanguage == "Norsk (Nynorsk)") m_locale_str_full = "nn_NO"; // Swedish
+    else if (m_appLanguage == "Norsk (Bokmål)") m_locale_str_full = "nb_NO"; // Norwegian
+    else if (m_appLanguage == "Norsk (Nynorsk)") m_locale_str_full = "nn_NO"; // Norwegian
     else if (m_appLanguage == "Polski") m_locale_str_full = "pl_PL"; // Polish
     else if (m_appLanguage == "Pусский") m_locale_str_full = "ru_RU"; // Russian
     else

@@ -17,7 +17,7 @@ Item {
         anchors.fill: parent
         sourceSize: Qt.size(width, height)
 
-        visible: parent.color ? false : true
+        visible: !(parent.color.a > 0)
         fillMode: Image.PreserveAspectFit
         smooth: parent.smooth
     }
@@ -27,7 +27,7 @@ Item {
         anchors.fill: sourceImg
         source: sourceImg
 
-        visible: parent.color ? true : false
+        visible: (parent.color.a > 0)
         brightness: 1.0
         colorization: 1.0
     }

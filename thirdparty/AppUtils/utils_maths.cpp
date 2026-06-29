@@ -60,12 +60,12 @@ double normalize(const int value, const int min, const int max)
 int alignTo(const int value, const int r)
 {
     if (r <= 0) return value;
-    return static_cast<int>(std::ceil(static_cast<double>(value) / r) * r);
+    return ((value + r - 1) / r) * r;
 }
 
 int alignToEven(const int value)
 {
-    return static_cast<int>(std::ceil(static_cast<double>(value) / 2) * 2);
+    return (value + 1) & ~1;
 }
 
 int alignToPow2(const int value, const int r)

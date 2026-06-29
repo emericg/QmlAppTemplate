@@ -15,6 +15,8 @@ function darToString(width, height) {
     var ar_float = 1.0;
     var ar_invert = false;
 
+    if (width <= 0 || height <= 0) return ar_string;
+
     if (width >= height) {
         ar_float = width / height;
     } else {
@@ -68,6 +70,8 @@ function varToString(width, height) {
     var ar_string = '';
     var ar_float = 1.0;
     var ar_invert = false;
+
+    if (width <= 0 || height <= 0) return ar_string;
 
     if (width >= height) {
         ar_float = width / height;
@@ -136,6 +140,8 @@ function varToString(width, height) {
 function varToDescString(width, height) {
     var ar_string = '';
     var ar_float = 1.0;
+
+    if (width <= 0 || height <= 0) return ar_string;
 
     if (width >= height) {
         ar_float = width / height;
@@ -317,9 +323,9 @@ function orientationExifToString(orientation) {
     else if (orientation === 6)
         text = qsTr("Rotate 90°");
     else if (orientation === 7)
-        text = qsTr("Mirror and rotate 90");
+        text = qsTr("Mirror and rotate 90°");
     else if (orientation === 8)
-        text = qsTr("Rotate 270");
+        text = qsTr("Rotate 270°");
     else
         text = qsTr("Invalid transformation");
 

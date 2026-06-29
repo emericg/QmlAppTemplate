@@ -24,7 +24,7 @@ Rectangle {
     layer.effect: MultiEffect {
         autoPaddingEnabled: true
         shadowEnabled: true
-        shadowColor: "#30000000"
+        shadowColor: Theme.colorComponentShadow
     }
 
     ////////////////
@@ -60,27 +60,33 @@ Rectangle {
             id: workingIndicator
             anchors.verticalCenter: parent.verticalCenter
 
-            width: 24
-            height: 24
+            width: control.sourceSize
+            height: control.sourceSize
             color: control.colorContent
             source: control.source
+            rotation: control.sourceRotation
+
             opacity: 1
             Behavior on opacity { OpacityAnimator { duration: Theme.animationMediumSpeed } }
 
-            NumberAnimation on rotation { // refreshAnimation (rotate)
+            NumberAnimation on rotation {
+                running: (control.animation === "rotate" && control.animationRunning)
+                alwaysRunToEnd: true
+                loops: Animation.Infinite
+
+                duration: 2000
                 from: 0
                 to: 360
-                duration: 2000
-                loops: Animation.Infinite
                 easing.type: Easing.Linear
-                running: control.animationRunning
-                alwaysRunToEnd: true
+
                 onStarted: workingIndicator.opacity = 1
                 onStopped: workingIndicator.opacity = 0
             }
-            SequentialAnimation on opacity { // scanAnimation (fade)
+            SequentialAnimation on opacity {
+                running: (control.animation === "fade" && control.animationRunning)
+                alwaysRunToEnd: true
                 loops: Animation.Infinite
-                running: control.animationRunning
+
                 onStopped: workingIndicator.opacity = 0
                 PropertyAnimation { to: 1; duration: 750; }
                 PropertyAnimation { to: 0.33; duration: 750; }

@@ -48,7 +48,7 @@ set(CORE_SOURCES
     utils_sysinfo.cpp utils_sysinfo.h
     utils_wifi.cpp utils_wifi.h
     # pure c++
-    utils_bits.cpp utils_bits.h
+    utils_bits.h
     utils_maths.cpp utils_maths.h
 )
 
@@ -145,10 +145,10 @@ qt_add_qml_module(AppUtils
 )
 
 # App name and version for UtilsApp
-target_compile_definitions(AppUtils PUBLIC APP_NAME=\"${APP_NAME}\" APP_VERSION=\"${APP_VERSION}\")
+target_compile_definitions(AppUtils PRIVATE APP_NAME=\"${APP_NAME}\" APP_VERSION=\"${APP_VERSION}\")
 
 # Math constants on MSVC for UtilsMaths
-target_compile_definitions(AppUtils PUBLIC _USE_MATH_DEFINES)
+target_compile_definitions(AppUtils PRIVATE _USE_MATH_DEFINES)
 
 target_link_libraries(AppUtils PUBLIC ${CORE_LIBRARIES})
 target_link_libraries(AppUtils PRIVATE ${PLATFORM_LIBRARIES})

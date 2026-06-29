@@ -15,19 +15,6 @@ function padNumber(n, width = 2, z = '0') {
     return String(n).padStart(width, z);
 }
 
-/*!
- * Trim a number
- * \param n: number to trim
- * \param p: defines number of digit after coma
- *
- * example: trimNumber(154.54645698, 100000) => 154.54645
- */
-function trimNumber(n, p) {
-    p = p || 100000;
-
-    return (Math.round(n * p)) / p;
-}
-
 /* ************************************************************************** */
 
 /*!
@@ -53,12 +40,12 @@ function mapNumber(n, srcMin, srcMax, dstMin, dstMax, checks = true) {
 /*!
  * Normalize n between min and max
 
- * example: normalize(0, 0, 100) => 0.5
+ * example: normalize(5, 0, 10) => 0.5
  */
 function normalize(n, min, max) {
     if (n <= min) return 0
     if (n >= max) return 1
-    return Math.min(((n - min) / (max - min)), 1)
+    return ((n - min) / (max - min))
 }
 
 /*!

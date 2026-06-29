@@ -53,7 +53,7 @@ T.Button {
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.bottom: parent.bottom
-            width: control.width * (control.progress / 100)
+            width: control.width * (Math.max(0, Math.min(control.progress, 100)) / 100)
             radius: (height / 2)
             color: control.colorProgress
             opacity: 0.2

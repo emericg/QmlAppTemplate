@@ -25,7 +25,7 @@ Rectangle {
     layer.effect: MultiEffect {
         autoPaddingEnabled: true
         shadowEnabled: true
-        shadowColor: "#30000000"
+        shadowColor: Theme.colorComponentShadow
     }
 
     ////////////////
@@ -126,7 +126,7 @@ Rectangle {
 
                 height: 6
                 visible: control.progressRunning
-                color: Qt.rgba(control.colorContent, control.colorContent, control.colorContent, 0.1)
+                color: Qt.rgba(control.colorContent.r, control.colorContent.g, control.colorContent.b, 0.1)
 
                 Rectangle { // progress bar
                     width: control.progress ? (parent.width * (control.progress/100)) : 0
