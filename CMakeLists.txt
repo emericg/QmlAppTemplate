@@ -7,9 +7,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(APP_NAME ${PROJECT_NAME})
-set(APP_VERSION ${PROJECT_VERSION})
-
 ################################################################################
 
 message(STATUS ">>> BUILDING ${PROJECT_NAME} v${PROJECT_VERSION} >>>")

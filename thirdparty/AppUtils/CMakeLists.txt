@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.20)
 
 #project(AppUtils LANGUAGES CXX)
 
-# To avoid CMake Warnings, you should add Qt6 'CorePrivate' or 'CoreGui', as needed,
-# to your root level find_package()
+# To avoid CMake Warnings, you should add Qt6 'CorePrivate' or 'CoreGui',
+# as needed, to your root level find_package()
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -12,6 +12,10 @@ set(CMAKE_AUTOMOC ON)
 set(QT_NO_PRIVATE_MODULE_WARNING ON)
 
 ################################################################################
+
+# These definitions will use the TOP LEVEL project name / version
+set(APP_NAME ${CMAKE_PROJECT_NAME})
+set(APP_VERSION ${CMAKE_PROJECT_VERSION})
 
 # Optional stuff
 option(UTILS_QT_RHI "Qt RHI (Rendering Hardware Interface) utils" OFF)
@@ -31,17 +35,21 @@ set(CORE_LIBRARIES Qt6::Core Qt6::Gui Qt6::Qml Qt6::Quick)
 
 # Generic sources
 set(CORE_SOURCES
-    PermissionManager.cpp PermissionManager.h
+    # app utils
     utils_app.cpp utils_app.h
-    utils_bits.cpp utils_bits.h
+    utils_log.cpp utils_log.h
     utils_clipboard.cpp utils_clipboard.h
     utils_fpsmonitor.cpp utils_fpsmonitor.h
     utils_language.cpp utils_language.h
-    utils_log.cpp utils_log.h
-    utils_maths.cpp utils_maths.h
+    PermissionManager.cpp PermissionManager.h
+    # os utils
+    utils_os.cpp utils_os.h
     utils_screen.cpp utils_screen.h
     utils_sysinfo.cpp utils_sysinfo.h
     utils_wifi.cpp utils_wifi.h
+    # pure c++
+    utils_bits.cpp utils_bits.h
+    utils_maths.cpp utils_maths.h
 )
 
 # Qt optional tools
@@ -136,6 +144,7 @@ qt_add_qml_module(AppUtils
     SOURCES ${CORE_SOURCES} ${PLATFORM_SOURCES}
 )
 
+# App name and version for UtilsApp
 target_compile_definitions(AppUtils PUBLIC APP_NAME=\"${APP_NAME}\" APP_VERSION=\"${APP_VERSION}\")
 
 # Math constants on MSVC for UtilsMaths

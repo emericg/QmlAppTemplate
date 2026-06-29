@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 
 import ComponentLibrary
+import MobileUI
 import AppUtils
 
 Item {
@@ -81,7 +82,7 @@ Item {
                         colorIcon: (validperm) ? "white" : "white"
 
                         onClicked: {
-                            UtilsApp.vibrate(25)
+                            MobileUI.hapticFeedback()
                             //validperm = UtilsApp.getMobileBleLocationPermission()
                             //retryPermissions.start()
                         }
@@ -161,7 +162,7 @@ Item {
                         colorIcon: (validperm) ? "white" : "white"
 
                         onClicked: {
-                            UtilsApp.vibrate(25)
+                            MobileUI.hapticFeedback()
                             //validperm = UtilsApp.isMobileGpsEnabled()
                             //retryPermissions.start()
                         }
