@@ -651,7 +651,7 @@ double MobileUI::colorLuminance(const QColor &color)
 
 bool MobileUI::isColorLight_android(const QColor &color)
 {
-    return colorLuminance(color) > 0.66;
+    return colorLuminance(color) > 0.8;
 }
 
 bool MobileUI::isColorLight_hyperos(const QColor &color)
