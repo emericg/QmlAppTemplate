@@ -17,6 +17,9 @@ T.ComboBox {
 
     font.pixelSize: Theme.componentFontSize
 
+    // settings
+    property int radius: Theme.componentRadius
+
     // colors
     property color colorBackground: control.down ? Theme.colorComponentDown : Theme.colorComponent
     property color colorBackgroundBorder: Theme.colorComponentBorder
@@ -27,7 +30,7 @@ T.ComboBox {
         implicitWidth: 200
         implicitHeight: Theme.componentHeight
 
-        radius: Theme.componentRadius
+        radius: control.radius
         opacity: control.enabled ? 1 : 0.66
         color: control.colorBackground
         border.width: 2
@@ -91,7 +94,7 @@ T.ComboBox {
             implicitWidth: 200
             implicitHeight: Theme.componentHeight
 
-            radius: Theme.componentRadius
+            radius: control.radius
             color: highlighted ? "#F6F6F6" : "white"
         }
 
@@ -125,7 +128,7 @@ T.ComboBox {
         }
 
         background: Rectangle {
-            radius: Theme.componentRadius
+            radius: control.radius
             color: "white"
             border.color: Theme.colorComponentBorder
             border.width: control.visualFocus ? 0 : 1

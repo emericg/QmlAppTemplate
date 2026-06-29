@@ -7,15 +7,17 @@ import ComponentLibrary
 Rectangle {
     id: control
 
-    anchors.left: parent.left
-    anchors.leftMargin: Theme.componentMargin
-    anchors.right: parent.right
-    anchors.rightMargin: Theme.componentMargin
-    anchors.bottom: parent.bottom
-    anchors.bottomMargin: Theme.componentMargin
+    // Standard anchors:
+    //anchors.left: parent.left
+    //anchors.leftMargin: Theme.componentMargin
+    //anchors.right: parent.right
+    //anchors.rightMargin: Theme.componentMargin
+    //anchors.bottom: parent.bottom
+    //anchors.bottomMargin: Theme.componentMargin
 
-    radius: 8
     height: 44
+    radius: 8
+
     color: Theme.colorMaterialBlue
     //opacity: enabled ? 1 : 0.66
 
@@ -28,17 +30,21 @@ Rectangle {
 
     ////////////////
 
-    property string text: "Banner progress button..."
-    property string textButton: "Cancel"
+    // colors
+    property color colorContent: "white"
 
     // icon
-    property url source
-    property int sourceSize: 24 // UtilsNumber.alignTo(height * 0.5, 2)
+    property url source: "qrc:/IconLibrary/material-symbols/autorenew.svg"
+    property int sourceSize: UtilsNumber.alignTo(height * 0.5, 2)
     property int sourceRotation: 0
+
+    // text
+    property string text: "Banner progress button..."
+    property string textButton: qsTr("Cancel")
 
     // progress
     property int progress: -1
-    property bool progressRunning: false // (control.progress >= 0)
+    property bool progressRunning: (control.progress >= 0)
 
     // animation
     property string animation // available: rotate, fade, both
@@ -53,7 +59,6 @@ Rectangle {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
-        spacing: 0 // Theme.componentMargin / 2
 
         ////////
 
@@ -69,7 +74,7 @@ Rectangle {
 
                 width: control.sourceSize
                 height: control.sourceSize
-                color: "white"
+                color: control.colorContent
                 source: control.source
                 rotation: control.sourceRotation
 
@@ -110,7 +115,7 @@ Rectangle {
             Text {
                 text: control.text
                 font.pixelSize: Theme.componentFontSize
-                color: "white"
+                color: control.colorContent
             }
 
             ////
@@ -121,12 +126,12 @@ Rectangle {
 
                 height: 6
                 visible: control.progressRunning
-                color: Qt.rgba(1, 1, 1, 0.1)
+                color: Qt.rgba(control.colorContent, control.colorContent, control.colorContent, 0.1)
 
                 Rectangle { // progress bar
                     width: control.progress ? (parent.width * (control.progress/100)) : 0
                     height: parent.height
-                    color: "white"
+                    color: control.colorContent
                 }
             }
 
@@ -136,10 +141,10 @@ Rectangle {
         ////////
 
         ButtonSunken {
-            id: button
+            Layout.fillHeight: true
 
             colorBackground: Theme.colorMaterialBlue
-            colorText: "white"
+            colorText: control.colorContent
             text: control.textButton
 
             onClicked: control.clicked()

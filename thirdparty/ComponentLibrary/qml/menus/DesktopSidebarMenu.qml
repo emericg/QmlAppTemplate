@@ -16,7 +16,7 @@ ButtonImpl {
     rightPadding: 16
     spacing: 12
 
-    text: sidebarMenu.text
+    text: "menu"
     font.bold: checked
 
     source: "qrc:/IconLibrary/material-symbols/menu.svg"

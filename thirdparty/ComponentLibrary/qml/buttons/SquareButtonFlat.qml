@@ -9,5 +9,6 @@ SquareButtonImpl {
     colorHighlight: "white"
     colorBorder: color
     colorIcon: "white"
+
     flat: true
 }

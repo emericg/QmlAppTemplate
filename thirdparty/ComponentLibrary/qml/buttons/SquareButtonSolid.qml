@@ -9,5 +9,6 @@ SquareButtonImpl {
     colorHighlight: "white"
     colorBorder: Qt.darker(color, 1.02)
     colorIcon: "white"
+
     flat: false
 }

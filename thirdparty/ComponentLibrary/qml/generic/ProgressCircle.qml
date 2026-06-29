@@ -26,21 +26,13 @@ Item {
     property real backgroundOpacity: 1
     property color backgroundColor: Theme.colorForeground
 
-    property alias animationBegin: animationArcBegin.enabled
-    property alias animationEnd: animationArcEnd.enabled
-    property alias animationValue: animationArcValue.enabled
+    property bool animation: true
     property int animationDuration: Theme.animationSlowSpeed
 
     // private
     property real arcBegin: 0
     property real arcEnd: 360
-    property real arcValue: mapNumber(value, valueMin, valueMax, arcBegin, arcEnd)
-
-    function mapNumber(n, srcMin, srcMax, dstMin, dstMax) {
-        if (n < srcMin) n = srcMin
-        if (n > srcMax) n = srcMax
-        return (dstMin + ((n - srcMin) * (dstMax - dstMin)) / (srcMax - srcMin))
-    }
+    property real arcValue: UtilsNumber.mapNumber(value, valueMin, valueMax, arcBegin, arcEnd)
 
     ////////////////////////////////////////////////////////////////////////////
 
@@ -67,8 +59,7 @@ Item {
     }
 
     Behavior on arcBegin {
-        id: animationArcBegin
-        enabled: true
+        enabled: control.animation
         NumberAnimation {
             duration: control.animationDuration
             easing.type: Easing.InOutCubic
@@ -76,8 +67,7 @@ Item {
     }
 
     Behavior on arcEnd {
-        id: animationArcEnd
-        enabled: true
+        enabled: control.animation
         NumberAnimation {
             duration: control.animationDuration
             easing.type: Easing.InOutCubic
@@ -85,8 +75,7 @@ Item {
     }
 
     Behavior on arcValue {
-        id: animationArcValue
-        enabled: true
+        enabled: control.animation
         NumberAnimation {
             duration: control.animationDuration
             easing.type: Easing.InOutCubic

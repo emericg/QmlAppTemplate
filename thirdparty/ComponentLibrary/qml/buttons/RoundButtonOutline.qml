@@ -9,7 +9,7 @@ SquareButtonImpl {
     colorHighlight: color
     colorBorder: Qt.rgba(color.r, color.g, color.b, 0.5)
     colorIcon: color
-    flat: true
 
+    flat: true
     radius: width / 2
 }

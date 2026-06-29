@@ -9,5 +9,6 @@ ButtonImpl {
     colorHighlight: "white"
     colorBorder: Qt.darker(color, 1.02)
     colorText: "white"
+
     flat: false
 }

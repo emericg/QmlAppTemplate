@@ -18,6 +18,8 @@ T.Control {
     font.pixelSize: Theme.componentFontSize
     font.bold: false
 
+    property int radius: Theme.componentRadius
+
     // text
     property string text: "TAG"
 
@@ -32,7 +34,7 @@ T.Control {
         implicitWidth: 48
         implicitHeight: 26
 
-        radius: Theme.componentRadius
+        radius: control.radius
         color: control.colorBackground
         border.width: Theme.componentBorderWidth
         border.color: control.colorBorder

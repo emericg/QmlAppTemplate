@@ -13,12 +13,12 @@ T.Button {
     font.pixelSize: Theme.componentFontSize+2
     font.bold: true
 
+    // settings
     flat: true
     checkable: false
     hoverEnabled: Theme.isDesktop
     focusPolicy: Qt.NoFocus
 
-    // settings
     property int radius: (width / 4)
 
     // icon

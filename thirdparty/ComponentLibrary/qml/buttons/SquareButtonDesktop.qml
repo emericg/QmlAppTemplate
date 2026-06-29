@@ -7,5 +7,6 @@ SquareButtonImpl {
     colorHighlight: "white"
     colorBorder: Theme.colorComponentBorder
     colorIcon: Theme.colorText
+
     flat: true
 }

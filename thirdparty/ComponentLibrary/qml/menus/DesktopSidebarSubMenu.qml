@@ -13,7 +13,7 @@ Column {
     //Behavior on height { NumberAnimation { duration: Theme.animationSlowSpeed } }
 
     property string category
-    property string text: "menu"
+    property string text: "submenu"
     property url source: "qrc:/IconLibrary/material-symbols/menu.svg"
 
     property bool checked: false

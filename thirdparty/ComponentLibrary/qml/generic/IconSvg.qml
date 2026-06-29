@@ -15,17 +15,19 @@ Item {
     Image {
         id: sourceImg
         anchors.fill: parent
+        sourceSize: Qt.size(width, height)
 
         visible: parent.color ? false : true
-        sourceSize: Qt.size(width, height)
         fillMode: Image.PreserveAspectFit
         smooth: parent.smooth
     }
 
     MultiEffect {
         id: overlayImg
-        source: sourceImg
         anchors.fill: sourceImg
+        source: sourceImg
+
+        visible: parent.color ? true : false
         brightness: 1.0
         colorization: 1.0
     }

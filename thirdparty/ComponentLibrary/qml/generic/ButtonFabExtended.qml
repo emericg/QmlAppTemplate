@@ -7,6 +7,12 @@ import ComponentLibrary
 T.Button {
     id: control
 
+    // Standard anchors:
+    //anchors.right: parent.right
+    //anchors.rightMargin: Theme.componentMarginXL
+    //anchors.bottom: parent.bottom
+    //anchors.bottomMargin: Theme.componentMarginXL
+
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                             contentRow.width + leftPadding + rightPadding)
     implicitHeight: implicitBackgroundHeight

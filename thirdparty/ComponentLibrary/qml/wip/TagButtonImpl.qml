@@ -19,6 +19,7 @@ T.Button {
     font.bold: true
     font.pixelSize: Theme.componentFontSize
 
+    // settings
     property int radius: Theme.componentRadius
 
     // icon

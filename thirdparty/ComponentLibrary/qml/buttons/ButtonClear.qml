@@ -9,5 +9,6 @@ ButtonImpl {
     colorHighlight: color
     colorBorder: colorBackground
     colorText: color
+
     flat: true
 }

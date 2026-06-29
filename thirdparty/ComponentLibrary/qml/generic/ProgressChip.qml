@@ -106,7 +106,7 @@ T.Button {
 
                 Rectangle {
                     anchors.centerIn: parent
-                    width: control.height - 4
+                    width: control.height - 6
                     height: width
                     radius: width
 

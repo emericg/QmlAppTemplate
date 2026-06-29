@@ -5,5 +5,6 @@ ButtonImpl {
     colorHighlight: Theme.colorComponentBorder
     colorBorder: Theme.colorComponentBorder
     colorText: Theme.colorPrimary
+
     flat: false
 }

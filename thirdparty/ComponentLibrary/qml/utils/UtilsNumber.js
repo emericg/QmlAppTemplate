@@ -36,29 +36,29 @@ function trimNumber(n, p) {
 /*!
  * Map a number from one range to another
  * \param n: number to map
- * \param a1: start of the range n is from
- * \param a2: end of the range n is from
- * \param b1: start of the range to map n to
- * \param b2: end of the range to map n to
+ * \param srcMin: start of the range n is from
+ * \param srcMax: end of the range n is from
+ * \param dstMin: start of the range to map n to
+ * \param dstMax: end of the range to map n to
  *
  * example: mapNumber(5, 0, 10, 100, 200) => 150
  */
-function mapNumber(n, a1, a2, b1, b2) {
-    if (n < a1) n = a1;
-    if (n > a2) n = a2;
-
-    return (b1 + ((n-a1) * (b2-b1)) / (a2-a1));
+function mapNumber(n, srcMin, srcMax, dstMin, dstMax) {
+    if (n < srcMin) n = srcMin
+    if (n > srcMax) n = srcMax
+    return (dstMin + ((n - srcMin) * (dstMax - dstMin)) / (srcMax - srcMin))
 }
 
-function mapNumber_nocheck(n, a1, a2, b1, b2) {
-    return (b1 + ((n-a1) * (b2-b1)) / (a2-a1));
+function mapNumber_nocheck(n, srcMin, srcMax, dstMin, dstMax) {
+    return (dstMin + ((n - srcMin) * (dstMax - dstMin)) / (srcMax - srcMin))
 }
 
 /*!
  * Normalize n between min and max
  */
 function normalize(n, min, max) {
-    if (n <= 0) return 0
+    if (n <= min) return 0
+    if (n >= max) return 1
     return Math.min(((n - min) / (max - min)), 1)
 }
 
@@ -80,8 +80,7 @@ function round2(n) {
  * Euclidean modulo
  */
 function mod(n, modulo) {
-    var m = ((n % modulo) + modulo) % modulo;
-    return m < 0 ? m + Math.abs(modulo) : m;
+    return ((n % modulo) + modulo) % modulo;
 }
 
 /* ************************************************************************** */

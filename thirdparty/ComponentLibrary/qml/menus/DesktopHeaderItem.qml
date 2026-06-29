@@ -89,7 +89,7 @@ T.Button {
         }
 
         Text {
-            Layout.preferredHeight: parent.height
+            Layout.fillHeight: true
 
             visible: text
 
