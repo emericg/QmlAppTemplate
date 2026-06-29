@@ -1,5 +1,4 @@
 import QtQuick
-import QtQuick.Effects
 import QtQuick.Templates as T
 
 import ComponentLibrary
@@ -29,28 +28,12 @@ T.Button {
         RippleThemed {
             anchors.fill: parent
             anchor: control
+            clip: true
+            clipRadius: 8
 
             pressed: control.pressed
             active: control.enabled && (control.down || control.visualFocus)
             color: Qt.rgba(control.colorPrimary.r, control.colorPrimary.g, control.colorPrimary.b, 0.1)
-
-            layer.enabled: true
-            layer.effect: MultiEffect {
-                maskEnabled: true
-                maskInverted: false
-                maskThresholdMin: 0.5
-                maskSpreadAtMin: 1.0
-                maskSpreadAtMax: 0.0
-                maskSource: ShaderEffectSource {
-                    sourceItem: Rectangle {
-                        x: control.background.x
-                        y: control.background.y
-                        width: control.background.width
-                        height: control.background.height
-                        radius: 8
-                    }
-                }
-            }
         }
     }
 

@@ -62,27 +62,12 @@ T.Button {
         RippleThemed {
             anchors.fill: parent
             anchor: control
+            clip: true
+            clipRadius: (control.background.width / control.shapeRadius)
 
             pressed: control.pressed
             active: control.enabled && (control.down || control.visualFocus)
             color: Qt.rgba(control.colorHighlight.r, control.colorHighlight.g, control.colorHighlight.b, 0.1)
-
-            layer.enabled: true
-            layer.effect: MultiEffect {
-                maskEnabled: true
-                maskThresholdMin: 0.5
-                maskSpreadAtMin: 1.0
-                maskSpreadAtMax: 0.0
-                maskSource: ShaderEffectSource {
-                    sourceItem: Rectangle {
-                        x: control.background.x
-                        y: control.background.y
-                        width: control.background.width
-                        height: control.background.height
-                        radius: (control.background.width / control.shapeRadius)
-                    }
-                }
-            }
         }
     }
 
