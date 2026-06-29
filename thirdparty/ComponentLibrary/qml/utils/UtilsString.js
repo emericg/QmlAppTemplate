@@ -11,6 +11,22 @@ function _padNumber(n, width = 2) {
     return String(n).padStart(width, '0');
 }
 
+/* ************************************************************************** */
+
+/*!
+ * Capitalize the first character of a string.
+ *
+ * example: capitalizeFirst("utils utils utils") => "Utils utils utils"
+ */
+function capitalizeFirst(str) {
+    if (!str) return '';
+
+    str = str.toString();
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+/* ************************************************************************** */
+
 /*!
  * durationToString_long()
  * Format is 'XX hours XX min XX sec XX ms'
@@ -160,9 +176,9 @@ function durationToString_ISO8601_compact(duration) {
         var minutes = Math.floor((duration - (hours * 3600000)) / 60000);
         var seconds = Math.round((duration - (hours * 3600000) - (minutes * 60000)) / 1000);
 
-        if (hours > 0) text += _padNumber(hours).toString() + ":";
-        text += _padNumber(minutes).toString() + ":";
-        text += _padNumber(seconds).toString();
+        if (hours > 0) text += _padNumber(hours) + ":";
+        text += _padNumber(minutes) + ":";
+        text += _padNumber(seconds);
     } else {
         text = "00:00";
     }
@@ -185,9 +201,9 @@ function durationToString_ISO8601_compact_loose(duration) {
         var minutes = Math.floor((duration - (hours * 3600000)) / 60000);
         var seconds = Math.round((duration - (hours * 3600000) - (minutes * 60000)) / 1000);
 
-        if (hours > 0) text += _padNumber(hours).toString() + ":";
-        text += _padNumber(minutes).toString() + ":";
-        text += _padNumber(seconds).toString();
+        if (hours > 0) text += _padNumber(hours) + ":";
+        text += _padNumber(minutes) + ":";
+        text += _padNumber(seconds);
     } else if (duration > 0) {
         text = "~00:01";
     } else {
@@ -211,9 +227,9 @@ function durationToString_ISO8601_regular(duration_ms) {
         var minutes = Math.floor((duration_ms - (hours * 3600000)) / 60000);
         var seconds = Math.round((duration_ms - (hours * 3600000) - (minutes * 60000)) / 1000);
 
-        text += _padNumber(hours).toString() + ":";
-        text += _padNumber(minutes).toString() + ":";
-        text += _padNumber(seconds).toString();
+        text += _padNumber(hours) + ":";
+        text += _padNumber(minutes) + ":";
+        text += _padNumber(seconds);
     } else if (duration_ms > 0) {
         text = "00:00:01";
     } else {
@@ -239,21 +255,21 @@ function durationToString_ISO8601_full_loose(duration_ms) {
         var milliseconds = Math.round((duration_ms - (hours * 3600000) - (minutes * 60000)) - (seconds * 1000));
 
         if (hours > 0) {
-            text += _padNumber(hours).toString();
+            text += _padNumber(hours);
             text += ":";
         }
 
         if (minutes > 0) {
-            text += _padNumber(minutes).toString();
+            text += _padNumber(minutes);
             text += ":";
         }
 
         if (seconds > 0)
-            text += _padNumber(seconds).toString();
+            text += _padNumber(seconds);
         if (seconds === 0)
             text += "00";
         if (milliseconds > 0)
-            text += "." + _padNumber(milliseconds, 3).toString();
+            text += "." + _padNumber(milliseconds, 3);
     } else {
         text = "00:00";
     }
@@ -278,25 +294,25 @@ function durationToString_ISO8601_full(duration_ms) {
         var milliseconds = Math.round((duration_ms - (hours * 3600000) - (minutes * 60000)) - (seconds * 1000));
 
         if (hours > 0)
-            text += _padNumber(hours).toString();
+            text += _padNumber(hours);
         if (hours === 0)
             text += "00";
 
         text += ":";
 
         if (minutes > 0)
-            text += _padNumber(minutes).toString();
+            text += _padNumber(minutes);
         if (minutes === 0)
             text += "00";
 
         text += ":";
 
         if (seconds > 0)
-            text += _padNumber(seconds).toString();
+            text += _padNumber(seconds);
         if (seconds === 0)
             text += "00";
         if (milliseconds > 0)
-            text += "." + _padNumber(milliseconds, 3).toString();
+            text += "." + _padNumber(milliseconds, 3);
     } else {
         text = "00:00:00";
     }
@@ -456,6 +472,44 @@ function speedUnit(unit) {
         text = qsTr("km/h", "kilometers per hour");
     } else {
         text = qsTr("mi/h", "miles per hour");
+    }
+
+    return text;
+}
+
+/* ************************************************************************** */
+
+/*!
+ * weightToString()
+ * unit: 0 is kg, 1 is lb
+ */
+function weightToString(value_kg, precision, unit) {
+    var text = "";
+    unit = unit || 0;
+
+    if (unit === 0) {
+        text = value_kg.toFixed(precision) + " " + qsTr("kg", "short for kilograms");
+    } else {
+        text = (value_kg * 2.20462262185).toFixed(precision) + " " + qsTr("lb", "short for pounds");
+    }
+
+    return text;
+}
+
+/* ************************************************************************** */
+
+/*!
+ * temperatureToString()
+ * unit: 0 is °C, 1 is °F
+ */
+function temperatureToString(value_c, precision, unit) {
+    var text = "";
+    unit = unit || 0;
+
+    if (unit === 0) {
+        text = value_c.toFixed(precision) + " " + qsTr("°C", "degrees Celsius");
+    } else {
+        text = (value_c * 1.8 + 32).toFixed(precision) + " " + qsTr("°F", "degrees Fahrenheit");
     }
 
     return text;

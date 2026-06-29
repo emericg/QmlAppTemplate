@@ -57,6 +57,31 @@ function fileToFolder(filePath) {
     return filePath.substring(0, filePath.lastIndexOf("/"));
 }
 
+/*!
+ * Take an url or string from a file, return the file name (with its extension).
+ */
+function getFileName(filePath) {
+    if (!filePath) return '';
+
+    filePath = filePath.toString();
+    return filePath.substring(filePath.lastIndexOf("/") + 1);
+}
+
+/*!
+ * Take an url or string from a file, return its lowercased extension (without the dot).
+ * Returns '' when there is no extension.
+ */
+function getFileExtension(filePath) {
+    if (!filePath) return '';
+
+    filePath = filePath.toString();
+    var lastDot = filePath.lastIndexOf(".");
+    var lastSlash = filePath.lastIndexOf("/");
+    if (lastDot <= lastSlash + 1) return ''; // no dot, or dot belongs to a folder / dotfile
+
+    return filePath.substring(lastDot + 1).toLowerCase();
+}
+
 function openWith(filePath) {
     Qt.openUrlExternally(filePath)
 }
@@ -71,11 +96,7 @@ function isMediaFile(filePath) {
 function isVideoFile(filePath) {
     if (!filePath) return false
 
-    if (!(typeof filePath === 'string' || filePath instanceof String)) {
-        filePath = filePath.toString();
-    }
-
-    var extension = filePath.split('.').pop().toLowerCase();
+    var extension = getFileExtension(filePath);
     var valid = false;
 
     if (extension.length !== 0) {
@@ -95,11 +116,7 @@ function isVideoFile(filePath) {
 function isPictureFile(filePath) {
     if (!filePath) return false
 
-    if (!(typeof filePath === 'string' || filePath instanceof String)) {
-        filePath = filePath.toString();
-    }
-
-    var extension = filePath.split('.').pop().toLowerCase();
+    var extension = getFileExtension(filePath);
     var valid = false;
 
     if (extension.length !== 0) {
@@ -123,11 +140,7 @@ function isPictureFile(filePath) {
 function isAudioFile(filePath) {
     if (!filePath) return false
 
-    if (!(typeof filePath === 'string' || filePath instanceof String)) {
-        filePath = filePath.toString();
-    }
-
-    var extension = filePath.split('.').pop().toLowerCase();
+    var extension = getFileExtension(filePath);
     var valid = false;
 
     if (extension.length !== 0) {
@@ -138,6 +151,53 @@ function isAudioFile(filePath) {
             extension === "flac" ||
             extension === "amb" || extension === "wav" || extension === "wave" ||
             extension === "ogg" || extension === "opus" || extension === "vorbis") {
+            valid = true;
+        }
+    }
+
+    return valid;
+}
+
+function isDocumentFile(filePath) {
+    if (!filePath) return false
+
+    var extension = getFileExtension(filePath);
+    var valid = false;
+
+    if (extension.length !== 0) {
+        if (extension === "pdf" ||
+            //plain text
+            extension === "txt" || extension === "md" || extension === "rtf" ||
+            // office docs
+            extension === "doc" || extension === "docx" || extension === "odt" ||
+            extension === "xls" || extension === "xlsx" || extension === "ods" || extension === "csv" ||
+            extension === "ppt" || extension === "pptx" || extension === "odp" ||
+            extension === "pages" || extension === "numbers" || extension === "key" ||
+            // e-books
+            extension === "epub" || extension === "mobi" || extension === "azw" || extension === "azw3") {
+            valid = true;
+        }
+    }
+
+    return valid;
+}
+
+function isArchiveFile(filePath) {
+    if (!filePath) return false
+
+    var extension = getFileExtension(filePath);
+    var valid = false;
+
+    if (extension.length !== 0) {
+        if (extension === "zip" || extension === "rar" || extension === "7z" ||
+            // tarballs
+            extension === "tar" || extension === "tgz" || extension === "tbz2" || extension === "txz" ||
+            // compressors
+            extension === "gz" || extension === "bz2" || extension === "xz" || extension === "lz" ||
+            extension === "lzma" || extension === "zst" || extension === "z" ||
+            // packages
+            extension === "arj" || extension === "ace" || extension === "cab" || extension === "iso" ||
+            extension === "deb" || extension === "rpm") {
             valid = true;
         }
     }

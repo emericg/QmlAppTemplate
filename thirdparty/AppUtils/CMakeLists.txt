@@ -138,6 +138,9 @@ qt_add_qml_module(AppUtils
 
 target_compile_definitions(AppUtils PUBLIC APP_NAME=\"${APP_NAME}\" APP_VERSION=\"${APP_VERSION}\")
 
+# Math constants on MSVC for UtilsMaths
+target_compile_definitions(AppUtils PUBLIC _USE_MATH_DEFINES)
+
 target_link_libraries(AppUtils PUBLIC ${CORE_LIBRARIES})
 target_link_libraries(AppUtils PRIVATE ${PLATFORM_LIBRARIES})
 

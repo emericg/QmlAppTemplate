@@ -160,14 +160,14 @@ T.SpinBox {
 
         Rectangle {
             anchors.centerIn: parent
-            width: UtilsNumber.round2(parent.height * 0.4)
+            width: UtilsNumber.alignToEven(parent.height * 0.4)
             height: 2
             color: Theme.colorComponentContent
         }
         Rectangle {
             anchors.centerIn: parent
             width: 2
-            height: UtilsNumber.round2(parent.height * 0.4)
+            height: UtilsNumber.alignToEven(parent.height * 0.4)
             color: Theme.colorComponentContent
         }
     }
@@ -187,7 +187,7 @@ T.SpinBox {
 
         Rectangle {
             anchors.centerIn: parent
-            width: UtilsNumber.round2(parent.height * 0.4)
+            width: UtilsNumber.alignToEven(parent.height * 0.4)
             height: 2
             color: Theme.colorComponentContent
         }

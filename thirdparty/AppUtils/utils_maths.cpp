@@ -22,32 +22,65 @@
 
 #include "utils_maths.h"
 
-#if defined(_MSC_VER) && !defined(_USE_MATH_DEFINES)
-#define _USE_MATH_DEFINES
-#endif
-
 #include <cmath>
 #include <limits>
+#include <random>
 
 /* ************************************************************************** */
+
+int mapNumber(const int value, const int srcMin, const int srcMax,
+                               const int dstMin, const int dstMax, bool checks)
+{
+    if (srcMax == srcMin) return dstMin;
+
+    int n = value;
+    if (checks)
+    {
+        if (n < srcMin) n = srcMin;
+        if (n > srcMax) n = srcMax;
+    }
+
+    return (dstMin + ((n - srcMin) * (dstMax - dstMin)) / (srcMax - srcMin));
+}
+
+/* ************************************************************************** */
+
+double roundTo(const double value, const int decimals)
+{
+    const double p = std::pow(10.0, decimals);
+    return std::round(value * p) / p;
+}
+
+double normalize(const int value, const int min, const int max)
+{
+    if (value <= min) return 0.0;
+    if (value >= max) return 1.0;
+    return static_cast<double>(value - min) / static_cast<double>(max - min);
+}
+
+int alignTo(const int value, const int r)
+{
+    if (r <= 0) return value;
+    return static_cast<int>(std::ceil(static_cast<double>(value) / r) * r);
+}
+
+int alignToEven(const int value)
+{
+    return static_cast<int>(std::ceil(static_cast<double>(value) / 2) * 2);
+}
 
 int alignToPow2(const int value, const int r)
 {
     return (value + (r - 1)) & ~(r - 1);
 }
 
-int mapNumber(const int value, const int a1, const int a2, const int b1, const int b2, bool checks)
+/* ************************************************************************** */
+
+int randomInt(int min, int max)
 {
-    if (a2 == a1) return b1;
-
-    int n = value;
-    if (checks)
-    {
-        if (n < a1) n = a1;
-        if (n > a2) n = a2;
-    }
-
-    return (b1 + ((n - a1) * (b2 - b1)) / (a2 - a1));
+    static thread_local std::mt19937 generator{std::random_device{}()};
+    std::uniform_int_distribution<int> distribution(min, max);
+    return distribution(generator);
 }
 
 /* ************************************************************************** */
