@@ -1,14 +1,18 @@
 // UtilsString.js
-// Version 12
 .pragma library
 
 /* ************************************************************************** */
 
 /*!
- * Only used for padding durations whithin this file.
+ * Pad a number
+ * \param n: number to pad
+ * \param width: width after padding (default 2)
+ * \param z: character to insert (default '0')
+ *
+ * example: padNumber(2, 3, 'x') => xx2
  */
-function _padNumber(n, width = 2) {
-    return String(n).padStart(width, '0');
+function padNumber(n, width = 2, z = '0') {
+    return String(n).padStart(width, z);
 }
 
 /* ************************************************************************** */
@@ -178,9 +182,9 @@ function durationToString_ISO8601_compact(duration) {
         var minutes = Math.floor((duration - (hours * 3600000)) / 60000);
         var seconds = Math.round((duration - (hours * 3600000) - (minutes * 60000)) / 1000);
 
-        if (hours > 0) text += _padNumber(hours) + ":";
-        text += _padNumber(minutes) + ":";
-        text += _padNumber(seconds);
+        if (hours > 0) text += padNumber(hours) + ":";
+        text += padNumber(minutes) + ":";
+        text += padNumber(seconds);
     } else {
         text = "00:00";
     }
@@ -203,9 +207,9 @@ function durationToString_ISO8601_compact_loose(duration) {
         var minutes = Math.floor((duration - (hours * 3600000)) / 60000);
         var seconds = Math.round((duration - (hours * 3600000) - (minutes * 60000)) / 1000);
 
-        if (hours > 0) text += _padNumber(hours) + ":";
-        text += _padNumber(minutes) + ":";
-        text += _padNumber(seconds);
+        if (hours > 0) text += padNumber(hours) + ":";
+        text += padNumber(minutes) + ":";
+        text += padNumber(seconds);
     } else if (duration > 0) {
         text = "~00:01";
     } else {
@@ -229,9 +233,9 @@ function durationToString_ISO8601_regular(duration_ms) {
         var minutes = Math.floor((duration_ms - (hours * 3600000)) / 60000);
         var seconds = Math.round((duration_ms - (hours * 3600000) - (minutes * 60000)) / 1000);
 
-        text += _padNumber(hours) + ":";
-        text += _padNumber(minutes) + ":";
-        text += _padNumber(seconds);
+        text += padNumber(hours) + ":";
+        text += padNumber(minutes) + ":";
+        text += padNumber(seconds);
     } else if (duration_ms > 0) {
         text = "00:00:01";
     } else {
@@ -257,21 +261,21 @@ function durationToString_ISO8601_full_loose(duration_ms) {
         var milliseconds = Math.floor((duration_ms - (hours * 3600000) - (minutes * 60000)) - (seconds * 1000));
 
         if (hours > 0) {
-            text += _padNumber(hours);
+            text += padNumber(hours);
             text += ":";
         }
 
         if (minutes > 0) {
-            text += _padNumber(minutes);
+            text += padNumber(minutes);
             text += ":";
         }
 
         if (seconds > 0)
-            text += _padNumber(seconds);
+            text += padNumber(seconds);
         if (seconds === 0)
             text += "00";
         if (milliseconds > 0)
-            text += "." + _padNumber(milliseconds, 3);
+            text += "." + padNumber(milliseconds, 3);
     } else {
         text = "00:00";
     }
@@ -296,25 +300,25 @@ function durationToString_ISO8601_full(duration_ms) {
         var milliseconds = Math.floor((duration_ms - (hours * 3600000) - (minutes * 60000)) - (seconds * 1000));
 
         if (hours > 0)
-            text += _padNumber(hours);
+            text += padNumber(hours);
         if (hours === 0)
             text += "00";
 
         text += ":";
 
         if (minutes > 0)
-            text += _padNumber(minutes);
+            text += padNumber(minutes);
         if (minutes === 0)
             text += "00";
 
         text += ":";
 
         if (seconds > 0)
-            text += _padNumber(seconds);
+            text += padNumber(seconds);
         if (seconds === 0)
             text += "00";
         if (milliseconds > 0)
-            text += "." + _padNumber(milliseconds, 3);
+            text += "." + padNumber(milliseconds, 3);
     } else {
         text = "00:00:00";
     }

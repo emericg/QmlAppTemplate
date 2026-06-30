@@ -49,7 +49,7 @@ set(CORE_SOURCES
     utils_wifi.cpp utils_wifi.h
     # pure c++
     utils_bits.h
-    utils_maths.cpp utils_maths.h
+    utils_maths.h
 )
 
 # Qt optional tools

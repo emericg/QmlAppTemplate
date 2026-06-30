@@ -4,21 +4,7 @@
 /* ************************************************************************** */
 
 /*!
- * Pad a number
- * \param n: number to pad
- * \param width: width after padding (default 2)
- * \param z: character to insert (default '0')
- *
- * example: padNumber(2, 3, 'x') => xx2
- */
-function padNumber(n, width = 2, z = '0') {
-    return String(n).padStart(width, z);
-}
-
-/* ************************************************************************** */
-
-/*!
- * Map a number from one range to another
+ * Map a number from range [srcMin, srcMax] to [dstMin, dstMax]
  * \param n: number to map
  * \param srcMin: start of the range n is from
  * \param srcMax: end of the range n is from
@@ -31,15 +17,20 @@ function padNumber(n, width = 2, z = '0') {
 function mapNumber(n, srcMin, srcMax, dstMin, dstMax, checks = true) {
     if (srcMax === srcMin) return dstMin
     if (checks) {
-        if (n < srcMin) n = srcMin
-        if (n > srcMax) n = srcMax
+        var lo = Math.min(srcMin, srcMax)
+        var hi = Math.max(srcMin, srcMax)
+        if (n < lo) n = lo
+        if (n > hi) n = hi
     }
     return (dstMin + ((n - srcMin) * (dstMax - dstMin)) / (srcMax - srcMin))
 }
 
 /*!
- * Normalize n between min and max
-
+ * Normalize n into [0, 1] relative to [min, max]
+ * \param n: number to normalize
+ * \param min: start of the range
+ * \param max: end of the range
+ *
  * example: normalize(5, 0, 10) => 0.5
  */
 function normalize(n, min, max) {
