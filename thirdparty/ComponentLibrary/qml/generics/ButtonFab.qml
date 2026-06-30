@@ -46,7 +46,7 @@ T.Button {
 
         Rectangle {
             anchors.fill: parent
-            radius: (width / control.shapeRadius)
+            radius: (height / control.shapeRadius)
             color: control.colorBackground
 
             layer.enabled: true

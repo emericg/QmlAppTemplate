@@ -50,36 +50,34 @@ T.Button {
 
     ////////////////
 
-    contentItem: Item {
-        Row {
-            anchors.centerIn: parent
-            spacing: 4
+    contentItem: Row {
+        anchors.centerIn: parent
+        spacing: 4
 
-            IconSvg { // contentImage
-                anchors.verticalCenter: parent.verticalCenter
-                visible: control.source.toString().length
+        IconSvg { // contentImage
+            anchors.verticalCenter: parent.verticalCenter
+            visible: control.source.toString().length
 
-                width: control.sourceSize
-                height: control.sourceSize
-                rotation: control.sourceRotation
+            width: control.sourceSize
+            height: control.sourceSize
+            rotation: control.sourceRotation
 
-                source: control.source
-                color: control.highlighted ? control.colorContentHighlight : control.colorContent
-                opacity: control.highlighted ? 1 : 0.5
-            }
+            source: control.source
+            color: control.highlighted ? control.colorContentHighlight : control.colorContent
+            opacity: control.highlighted ? 1 : 0.5
+        }
 
-            Text { // contentText
-                anchors.verticalCenter: parent.verticalCenter
-                visible: control.text
+        Text { // contentText
+            anchors.verticalCenter: parent.verticalCenter
+            visible: control.text
 
-                text: control.text
-                textFormat: Text.PlainText
-                font: control.font
-                verticalAlignment: Text.AlignVCenter
+            text: control.text
+            textFormat: Text.PlainText
+            font: control.font
+            verticalAlignment: Text.AlignVCenter
 
-                color: control.highlighted ? control.colorContentHighlight : control.colorContent
-                opacity: control.highlighted ? 1 : 0.66
-            }
+            color: control.highlighted ? control.colorContentHighlight : control.colorContent
+            opacity: control.highlighted ? 1 : 0.66
         }
     }
 

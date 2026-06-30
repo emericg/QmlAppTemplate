@@ -90,10 +90,11 @@ T.Button {
 
             Item {
                 width: control.sourceSize
-                height: 56
+                height: Theme.componentHeightXL
 
                 IconSvg {
                     anchors.centerIn: parent
+
                     width: control.sourceSize
                     height: control.sourceSize
                     rotation: control.sourceRotation
@@ -127,7 +128,7 @@ T.Button {
             }
 
             Text {
-                height: 56
+                height: Theme.componentHeightXL
 
                 color: control.colorIcon
                 opacity: control.enabled ? 1 : 0.66

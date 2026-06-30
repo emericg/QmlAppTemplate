@@ -5,6 +5,7 @@ import ComponentLibrary
 
 Item {
     id: control
+
     implicitWidth: 128
     implicitHeight: 32
 

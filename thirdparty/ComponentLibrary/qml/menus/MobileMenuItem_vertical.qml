@@ -41,16 +41,14 @@ T.Button {
 
     ////////////////
 
-    contentItem: ColumnLayout {
-        spacing: -8
-
-        Item {
-            Layout.preferredWidth: 32
-            Layout.preferredHeight: 32
-            Layout.alignment: Qt.AlignHCenter
+    contentItem: Item {
+        Column {
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.verticalCenterOffset: 0
+            spacing: 0
 
             IconSvg { // contentImage
-                anchors.centerIn: parent
+                anchors.horizontalCenter: parent.horizontalCenter
                 width: control.sourceSize
                 height: control.sourceSize
 
@@ -64,13 +62,13 @@ T.Button {
 
                 Rectangle { // backgroundIndicator
                     anchors.centerIn: parent
+
+                    height: control.sourceSize
+                    radius: height
                     z: -1
 
-                    height: 32
-                    radius: height
                     color: control.colorHighlight
                     rotation: -control.sourceRotation
-
                     visible: control.backgroundVisible
 
                     width: control.highlighted ? 60 : 0
@@ -85,6 +83,7 @@ T.Button {
                     anchors.topMargin: 0
                     anchors.right: parent.right
                     anchors.rightMargin: 0
+
                     width: 6
                     height: 6
                     radius: 6
@@ -100,22 +99,21 @@ T.Button {
                     }
                 }
             }
-        }
 
-        Text { // contentText
-            Layout.preferredWidth: control.width
-            Layout.alignment: Qt.AlignHCenter
+            Text { // contentText
+                width: control.width
 
-            visible: control.text
+                visible: control.text
 
-            text: control.text
-            textFormat: Text.PlainText
-            horizontalAlignment: Text.AlignHCenter
-            font.pixelSize: Theme.fontSizeContentVerySmall
-            font.bold: true
+                text: control.text
+                textFormat: Text.PlainText
+                horizontalAlignment: Text.AlignHCenter
+                font.pixelSize: Theme.fontSizeContentVerySmall
+                font.bold: true
 
-            color: control.highlighted ? control.colorHighlight : control.colorContent
-            Behavior on color { ColorAnimation { duration: Theme.animationMediumSpeed } }
+                color: control.highlighted ? control.colorHighlight : control.colorContent
+                Behavior on color { ColorAnimation { duration: Theme.animationMediumSpeed } }
+            }
         }
     }
 

@@ -5,6 +5,7 @@ import ComponentLibrary
 
 Item {
     id: selectorMenu
+
     implicitWidth: 128
     implicitHeight: 32
 
@@ -15,6 +16,9 @@ Item {
     // settings
     property bool readOnly: false
     property bool fullWidth: false
+
+    // colors
+    property color colorBackground: Theme.colorComponentBackground
 
     // states
     signal menuSelected(var index)
@@ -28,8 +32,12 @@ Item {
 
     Rectangle { // background
         anchors.fill: parent
-        radius: Theme.componentRadius
-        color: Theme.colorComponentBackground
+
+        radius: height
+        color: selectorMenu.colorBackground
+
+        border.width: 2
+        border.color: Theme.colorComponentDown
     }
 
     ////////////////
@@ -37,11 +45,11 @@ Item {
     RowLayout {
         id: contentRow
         anchors.horizontalCenter: parent.horizontalCenter
-        spacing: Theme.componentBorderWidth
+        spacing: -4
 
         Repeater {
             model: selectorMenu.model
-            delegate: SelectorMenuItem {
+            delegate: SelectorMenuColorfulItem {
                 required property var model
 
                 Layout.preferredHeight: selectorMenu.height
@@ -56,15 +64,6 @@ Item {
                 onClicked: selectorMenu.menuSelected(model.idx)
             }
         }
-    }
-
-    Rectangle { // foreground border
-        anchors.fill: parent
-        radius: Theme.componentRadius
-
-        color: "transparent"
-        border.width: Theme.componentBorderWidth
-        border.color: Theme.colorComponentBorder
     }
 
     ////////////////

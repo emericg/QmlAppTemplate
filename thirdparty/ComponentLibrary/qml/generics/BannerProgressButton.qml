@@ -129,7 +129,7 @@ Rectangle {
                 color: Qt.rgba(control.colorContent.r, control.colorContent.g, control.colorContent.b, 0.1)
 
                 Rectangle { // progress bar
-                    width: control.progress ? (parent.width * (control.progress/100)) : 0
+                    width: control.width * (Math.max(0, Math.min(control.progress, 100)) / 100)
                     height: parent.height
                     color: control.colorContent
                 }
