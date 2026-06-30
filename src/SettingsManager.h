@@ -37,21 +37,25 @@ class SettingsManager: public QObject
 
     bool m_firstlaunch = true;
 
-    // Application window
+    /// Application window
+
     QSize m_appSize = QSize(1280, 720);
     QSize m_appPosition = QSize(64, 64);
     unsigned m_appVisibility = 1;               //!< QWindow::Visibility
 
-    // Application generic
+    /// Application generic
+
     QString m_appTheme = "THEME_DEFAULT";
     bool m_appThemeAuto = false;
     unsigned m_appThemeAutoMethod = 0;
     unsigned m_appUnitSystem = 0;               //!< QLocale::MeasurementSystem
     QString m_appLanguage = "auto";
 
-    // Application specific
+    /// Application specific
 
-    // Yours to fill
+    // Add custom settings here
+
+    /// SettingsManager
 
     // Read / Write settings
     bool readSettings();
@@ -73,7 +77,7 @@ public:
     static SettingsManager *getInstance();
     static SettingsManager *create(QQmlEngine *engine, QJSEngine *scriptEngine);
 
-    // Generic
+    /// Generic
 
     bool isFirstLaunch() const { return m_firstlaunch; }
 
@@ -96,11 +100,11 @@ public:
     const QString &getAppLanguage() const { return m_appLanguage; }
     void setAppLanguage(const QString &value);
 
-    // App
+    /// App
 
-    // Yours to fill
+    // Add custom settings here
 
-    // Utils
+    /// Utils
 
     Q_INVOKABLE void resetSettings();
 };

@@ -9,6 +9,7 @@
 #include <QDebug>
 
 /* ************************************************************************** */
+/* ************************************************************************** */
 
 SettingsManager *SettingsManager::getInstance()
 {
@@ -79,6 +80,12 @@ bool SettingsManager::readSettings()
         qWarning() << "SettingsManager::readSettings() error:" << settings.status();
     }
 
+    if (m_firstlaunch)
+    {
+        // force settings file creation?
+        //writeSettings();
+    }
+
     return status;
 }
 
@@ -139,8 +146,9 @@ void SettingsManager::setAppTheme(const QString &value)
     if (m_appTheme != value)
     {
         m_appTheme = value;
-        writeSettings();
         Q_EMIT appThemeChanged();
+
+        writeSettings();
     }
 }
 
@@ -149,8 +157,9 @@ void SettingsManager::setAppThemeAuto(const bool value)
     if (m_appThemeAuto != value)
     {
         m_appThemeAuto = value;
-        writeSettings();
         Q_EMIT appThemeAutoChanged();
+
+        writeSettings();
     }
 }
 
@@ -159,8 +168,9 @@ void SettingsManager::setAppThemeAutoMethod(const unsigned value)
     if (m_appThemeAutoMethod != value)
     {
         m_appThemeAutoMethod = value;
-        writeSettings();
         Q_EMIT appThemeAutoMethodChanged();
+
+        writeSettings();
     }
 }
 
@@ -169,8 +179,9 @@ void SettingsManager::setAppUnitSystem(const unsigned value)
     if (m_appUnitSystem != value)
     {
         m_appUnitSystem = value;
-        writeSettings();
         Q_EMIT appUnitSystemChanged();
+
+        writeSettings();
     }
 }
 
@@ -179,13 +190,14 @@ void SettingsManager::setAppLanguage(const QString &value)
     if (m_appLanguage != value)
     {
         m_appLanguage = value;
-        writeSettings();
         Q_EMIT appLanguageChanged();
+
+        writeSettings();
     }
 }
 
 /* ************************************************************************** */
 
-// Yours to fill
+// Add custom settings here
 
 /* ************************************************************************** */

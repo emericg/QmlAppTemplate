@@ -3,7 +3,6 @@ import QtQuick.Dialogs
 import QtQuick.Controls
 
 import ComponentLibrary
-import QmlAppTemplate
 
 Flickable {
     contentWidth: -1

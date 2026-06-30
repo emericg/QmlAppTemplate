@@ -3,7 +3,6 @@ import QtQuick.Window
 
 import ComponentLibrary
 import AppUtils
-import QmlAppTemplate
 import MobileUI
 
 Window {
@@ -44,8 +43,6 @@ Window {
     property int screenOrientation: Screen.primaryOrientation
     property int screenOrientationFull: Screen.orientation
 
-    // MobileUI keeps these up to date on its own, reacting to orientation and
-    // window visibility changes (see thirdparty/MobileUI/).
     property int screenPaddingStatusbar: MobileUI.statusbarHeight
     property int screenPaddingNavbar: MobileUI.navbarHeight
 

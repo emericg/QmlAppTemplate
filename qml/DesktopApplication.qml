@@ -4,7 +4,6 @@ import QtQuick.Window
 
 import ComponentLibrary
 import AppUtils
-import QmlAppTemplate
 
 ApplicationWindow {
     id: appWindow

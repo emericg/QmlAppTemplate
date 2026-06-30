@@ -275,7 +275,7 @@ Loader {
                 bottomPadding: Theme.componentMargin
                 spacing: Theme.componentMargin
 
-                ////////////////
+                /// VARIOUS //////////////
 
                 Row {
                     anchors.left: parent.left
@@ -399,7 +399,7 @@ Loader {
                     }
                 }
 
-                ////////////////
+                /// A LOT of buttons /////////////
 /*
                 ListSeparator {
                     height: Theme.componentBorderWidth
@@ -703,7 +703,7 @@ Loader {
                     }
                 }
 */
-                ////////////////
+                /// Buttons (only a small selection) /////////////
 
                 ListSeparator {
                     height: Theme.componentBorderWidth
@@ -803,6 +803,14 @@ Loader {
                         text: "ButtonDesktop"
                         source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                     }
+                }
+
+                /// Round and Squared buttons /////////////
+
+                ListSeparator {
+                    height: Theme.componentBorderWidth
+                    anchors.leftMargin: -24
+                    anchors.rightMargin: -24
                 }
 
                 Flow {
@@ -917,7 +925,160 @@ Loader {
                     }
                 }
 
-                ////////////////
+                Flow { // with text
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    spacing: Theme.componentMarginXL
+
+                    Row {
+                        spacing: Theme.componentMargin
+
+                        RoundButtonClear {
+                            tooltipText: "this one has a tooltip!"
+                            width: 48; height: 48;
+                            text: "+"
+                        }
+
+                        RoundButtonOutline {
+                            width: 48; height: 48;
+                            text: "-"
+                        }
+
+                        RoundButtonFlat {
+                            width: 48; height: 48;
+                            text: "o"
+                        }
+
+                        RoundButtonSunken {
+                            width: 48; height: 48;
+                            text: "O"
+                            tooltipText: "invisiblllllle!"
+                            tooltipPosition: "bottom"
+                        }
+                    }
+
+                    Row {
+                        spacing: Theme.componentMargin
+
+                        RoundButtonSolid {
+                            width: 48; height: 48;
+                            text: "+"
+                        }
+
+                        RoundButtonWireframe {
+                            width: 48; height: 48;
+                            text: "-"
+                            tooltipText: "this one has a tooltip!"
+                            tooltipPosition: "bottom"
+                        }
+
+                        RoundButtonDesktop {
+                            width: 48; height: 48;
+                            text: "o"
+                            tooltipText: "another tooltip!"
+                            tooltipPosition: "right"
+                        }
+                    }
+
+                    Row {
+                        spacing: Theme.componentMargin
+
+                        SquareButtonClear {
+                            source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
+                            tooltipText: "this one has a tooltip!"
+                            width: 48; height: 48;
+                        }
+
+                        SquareButtonOutline {
+                            width: 48; height: 48;
+                            text: "+"
+                        }
+
+                        SquareButtonFlat {
+                            width: 48; height: 48;
+                            text: "-"
+                        }
+
+                        SquareButtonSunken {
+                            width: 48; height: 48;
+                            text: "o"
+                            tooltipText: "invisiblllllle!"
+                            tooltipPosition: "bottom"
+                        }
+                    }
+
+                    Row {
+                        spacing: Theme.componentMargin
+
+                        SquareButtonSolid {
+                            width: 48; height: 48;
+                            text: "+"
+                        }
+
+                        SquareButtonWireframe {
+                            width: 48; height: 48;
+                            text: "-"
+                            tooltipText: "this one has a tooltip!"
+                            tooltipPosition: "bottom"
+                        }
+
+                        SquareButtonDesktop {
+                            width: 48; height: 48;
+                            text: "o"
+                            tooltipText: "another tooltip!"
+                            tooltipPosition: "right"
+                        }
+                    }
+                }
+
+                /// Chips /////////////
+
+                ListSeparator {
+                    height: Theme.componentBorderWidth
+                    anchors.leftMargin: -24
+                    anchors.rightMargin: -24
+                }
+
+                Flow {
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    spacing: Theme.componentMargin
+
+                    ButtonChip {
+                        text: "ButtonChip"
+                        highlighted: true
+                    }
+
+                    ButtonChip {
+                        text: "ButtonChip"
+                    }
+
+                    ButtonChip {
+                        text: "ButtonChip"
+                        leftIcon: "qrc:/IconLibrary/material-symbols/supervised_user_circle.svg"
+                    }
+
+                    ButtonChip {
+                        text: "ButtonChip"
+                        leftIcon: "qrc:/IconLibrary/material-symbols/supervised_user_circle.svg"
+                        rightIcon: "qrc:/IconLibrary/material-symbols/close.svg"
+                    }
+
+                    ProgressChip {
+                        text: "ProgressChip"
+                        leftIcon: "qrc:/IconLibrary/material-symbols/supervised_user_circle.svg"
+                        progress: progressChipSlider.value
+                    }
+                    SliderThemed {
+                        id: progressChipSlider
+                        //anchors.verticalCenter: parent.verticalCenter
+                        from: 0
+                        to: 100
+                        value:50
+                    }
+                }
+
+                /// Sunken buttons /////////////
 
                 ListSeparator {
                     height: Theme.componentBorderWidth
@@ -961,33 +1122,7 @@ Loader {
                     }
                 }
 
-                Flow {
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    spacing: Theme.componentMargin
-
-                    ButtonChip {
-                        text: "ButtonChip"
-                        highlighted: true
-                    }
-
-                    ButtonChip {
-                        text: "ButtonChip"
-                    }
-
-                    ButtonChip {
-                        text: "ButtonChip"
-                        leftIcon: "qrc:/IconLibrary/material-symbols/supervised_user_circle.svg"
-                    }
-
-                    ButtonChip {
-                        text: "ButtonChip"
-                        leftIcon: "qrc:/IconLibrary/material-symbols/supervised_user_circle.svg"
-                        rightIcon: "qrc:/IconLibrary/material-symbols/close.svg"
-                    }
-                }
-
-                ////////////////
+                /// DEPRECATED /////////////
 
                 ListSeparator {
                     height: Theme.componentBorderWidth
@@ -1034,7 +1169,7 @@ Loader {
                         height: 16
                     }
 
-                    Row {
+                    Row { // second row
                         height: 48
                         spacing: 16
 
@@ -1121,24 +1256,70 @@ Loader {
                     }
                 }
 
-                ////
+                /// Selectors /////////////
+
+                ListSeparator {
+                    height: Theme.componentBorderWidth
+                    anchors.leftMargin: -24
+                    anchors.rightMargin: -24
+                }
 
                 Row {
                     anchors.left: parent.left
                     anchors.right: parent.right
                     spacing: Theme.componentMargin
 
-                    SelectorMenu {
-                        height: 40
+                    ////
+
+                    ListModel {
+                        id: lmSelectorMenuImg
+                        ListElement { idx: 1; src: "qrc:/IconLibrary/material-symbols/accessibility.svg"; sz: 20; }
+                        ListElement { idx: 2; src: "qrc:/IconLibrary/material-symbols/accessibility.svg"; sz: 26; }
+                        ListElement { idx: 3; src: "qrc:/IconLibrary/material-symbols/accessibility.svg"; sz: 32; }
+                    }
+                    ListModel {
+                        id: lmSelectorMenuTxt
+                        ListElement { idx: 1; txt: "4/3"; src: ""; sz: 0; }
+                        ListElement { idx: 2; txt: "16/9"; src: ""; sz: 0; }
+                        ListElement { idx: 3; txt: "21/9"; src: ""; sz: 0; }
+                    }
+
+                    ////
+
+                    SelectorMenuColorful {
                         anchors.verticalCenter: parent.verticalCenter
+                        height: 40
 
                         currentSelection: 1
-                        model: ListModel {
-                            id: lmSelectorMenuImg1
-                            ListElement { idx: 1; src: "qrc:/IconLibrary/material-symbols/accessibility.svg"; sz: 20; }
-                            ListElement { idx: 2; src: "qrc:/IconLibrary/material-symbols/accessibility.svg"; sz: 26; }
-                            ListElement { idx: 3; src: "qrc:/IconLibrary/material-symbols/accessibility.svg"; sz: 32; }
+                        model: lmSelectorMenuImg
+
+                        onMenuSelected: (index) => {
+                            //console.log("SelectorMenu clicked #" + index)
+                            currentSelection = index
                         }
+                    }
+
+                    SelectorMenuColorful {
+                        anchors.verticalCenter: parent.verticalCenter
+                        height: 32
+
+                        currentSelection: 1
+                        model: lmSelectorMenuImg
+
+                        onMenuSelected: (index) => {
+                            //console.log("SelectorMenu clicked #" + index)
+                            currentSelection = index
+                        }
+                    }
+
+                    ////
+
+                    SelectorMenu {
+                        anchors.verticalCenter: parent.verticalCenter
+                        height: 40
+
+                        currentSelection: 1
+                        model: lmSelectorMenuImg
 
                         onMenuSelected: (index) => {
                             //console.log("SelectorMenu clicked #" + index)
@@ -1151,11 +1332,22 @@ Loader {
                         anchors.verticalCenter: parent.verticalCenter
 
                         currentSelection: 1
-                        model: ListModel {
-                            ListElement { idx: 1; txt: "4/3"; src: ""; sz: 0; }
-                            ListElement { idx: 2; txt: "16/9"; src: ""; sz: 0; }
-                            ListElement { idx: 3; txt: "21/9"; src: ""; sz: 0; }
+                        model: lmSelectorMenuImg
+
+                        onMenuSelected: (index) => {
+                            //console.log("SelectorMenu clicked #" + index)
+                            currentSelection = index
                         }
+                    }
+
+                    ////
+
+                    SelectorMenuSunken {
+                        anchors.verticalCenter: parent.verticalCenter
+                        height: 40
+
+                        currentSelection: 1
+                        model: lmSelectorMenuImg
 
                         onMenuSelected: (index) => {
                             //console.log("SelectorMenu clicked #" + index)
@@ -1164,15 +1356,11 @@ Loader {
                     }
 
                     SelectorMenuSunken {
+                        anchors.verticalCenter: parent.verticalCenter
                         height: 32
-                        anchors.verticalCenter: parent.verticalCenter
 
                         currentSelection: 1
-                        model: ListModel {
-                            ListElement { idx: 1; txt: "4/3"; src: ""; sz: 0; }
-                            ListElement { idx: 2; txt: "16/9"; src: ""; sz: 0; }
-                            ListElement { idx: 3; txt: "21/9"; src: ""; sz: 0; }
-                        }
+                        model: lmSelectorMenuImg
 
                         onMenuSelected: (index) => {
                             //console.log("SelectorMenu clicked #" + index)
@@ -1180,49 +1368,17 @@ Loader {
                         }
                     }
 
-                    SelectorMenuColorful {
-                        height: 40
-                        anchors.verticalCenter: parent.verticalCenter
-
-                        currentSelection: 1
-                        model: ListModel {
-                            ListElement { idx: 1; src: "qrc:/IconLibrary/material-symbols/accessibility.svg"; sz: 20; }
-                            ListElement { idx: 2; src: "qrc:/IconLibrary/material-symbols/accessibility.svg"; sz: 26; }
-                            ListElement { idx: 3; src: "qrc:/IconLibrary/material-symbols/accessibility.svg"; sz: 32; }
-                        }
-
-                        onMenuSelected: (index) => {
-                            //console.log("SelectorMenu clicked #" + index)
-                            currentSelection = index
-                        }
-                    }
-
-                    SelectorMenuColorful {
-                        height: 32
-                        anchors.verticalCenter: parent.verticalCenter
-
-                        currentSelection: 1
-                        model: ListModel {
-                            ListElement { idx: 1; txt: "4/3"; src: ""; sz: 0; }
-                            ListElement { idx: 2; txt: "16/9"; src: ""; sz: 0; }
-                            ListElement { idx: 3; txt: "21/9"; src: ""; sz: 0; }
-                        }
-
-                        onMenuSelected: (index) => {
-                            //console.log("SelectorMenu clicked #" + index)
-                            currentSelection = index
-                        }
-                    }
+                    ////
                 }
-
-                ////
 /*
+                ////////
+
                 Row {
                     anchors.left: parent.left
                     anchors.right: parent.right
                     spacing: Theme.componentMargin
 
-                    Rectangle { // new effect
+                    Rectangle { // mask // new effect
                         id: rectangle1
 
                         width: 64
@@ -1249,7 +1405,7 @@ Loader {
                         }
                     }
 
-                    Rectangle { // old effect
+                    Rectangle { // mask // old effect
                         id: rectangle2
 
                         width: 64
@@ -1662,7 +1818,7 @@ Loader {
                     }
                 }
 
-                ////////////////////////
+                /// Qt Quick controls /////////////////////
 
                 ListSeparator {
                     height: Theme.componentBorderWidth
