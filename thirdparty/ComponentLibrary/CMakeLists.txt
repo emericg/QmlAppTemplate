@@ -54,31 +54,31 @@ list(APPEND MODULE_QML_FILES
     qml/buttons/RoundButtonWireframe.qml
     qml/buttons/RoundButtonSunken.qml
 
-    qml/generic/BannerButton.qml
-    qml/generic/BannerProgressButton.qml
-    qml/generic/ButtonChip.qml
-    qml/generic/ButtonFab.qml
-    qml/generic/ButtonFabExtended.qml
-    qml/generic/ButtonToggle.qml
-    qml/generic/AndroidButton.qml
-    qml/generic/AndroidButtonIcon.qml
-    qml/generic/AndroidTextField.qml
-    qml/generic/DataBarCompact.qml
-    qml/generic/DataBarSolid.qml
-    qml/generic/IconSvg.qml
-    qml/generic/ItemLicenseBadge.qml
-    qml/generic/ItemBadge.qml
-    qml/generic/ProgressArc.qml
-    qml/generic/ProgressCircle.qml
-    qml/generic/ProgressChip.qml
-    qml/generic/SelectorMenu.qml
-    qml/generic/SelectorMenuSunken.qml
-    qml/generic/SelectorMenuItem.qml
-    qml/generic/SelectorMenuColorful.qml
-    qml/generic/SelectorMenuColorfulItem.qml
-    qml/generic/SelectorGrid.qml
-    qml/generic/SelectorGridItem.qml
-    qml/generic/TextSelectable.qml
+    qml/generics/BannerButton.qml
+    qml/generics/BannerProgressButton.qml
+    qml/generics/ButtonChip.qml
+    qml/generics/ButtonFab.qml
+    qml/generics/ButtonFabExtended.qml
+    qml/generics/ButtonToggle.qml
+    qml/generics/AndroidButton.qml
+    qml/generics/AndroidButtonIcon.qml
+    qml/generics/AndroidTextField.qml
+    qml/generics/DataBarCompact.qml
+    qml/generics/DataBarSolid.qml
+    qml/generics/IconSvg.qml
+    qml/generics/ItemLicenseBadge.qml
+    qml/generics/ItemBadge.qml
+    qml/generics/ProgressArc.qml
+    qml/generics/ProgressCircle.qml
+    qml/generics/ProgressChip.qml
+    qml/generics/SelectorMenu.qml
+    qml/generics/SelectorMenuSunken.qml
+    qml/generics/SelectorMenuItem.qml
+    qml/generics/SelectorMenuColorful.qml
+    qml/generics/SelectorMenuColorfulItem.qml
+    qml/generics/SelectorGrid.qml
+    qml/generics/SelectorGridItem.qml
+    qml/generics/TextSelectable.qml
 
     qml/layouts/FrameBox.qml
     qml/layouts/FrameThemed.qml

@@ -16,15 +16,15 @@ ApplicationWindow {
     property bool isPhone: false
     property bool isTablet: false
 
-    Component.onCompleted: {
-        // Setup ThemeEngine
-        Theme.screenDpi = Qt.binding(() => UtilsScreen.screenDpi)
-        Theme.screenPar = Qt.binding(() => UtilsScreen.screenPar)
-        Theme.screenSize = Qt.binding(() => UtilsScreen.screenSize)
-        Theme.appThemeAuto = Qt.binding(() => SettingsManager.appThemeAuto)
-        Theme.appThemeAutoMethod = Qt.binding(() => SettingsManager.appThemeAutoMethod)
-        Theme.appTheme = Qt.binding(() => SettingsManager.appTheme)
-    }
+    // Setup ThemeEngine
+    Binding { target: Theme; property: "appTheme";               value: SettingsManager.appTheme }
+    Binding { target: Theme; property: "appThemeAuto";           value: SettingsManager.appThemeAuto }
+    Binding { target: Theme; property: "appThemeAutoMethod";     value: SettingsManager.appThemeAutoMethod }
+    Binding { target: Theme; property: "appWidth";               value: appWindow.width }
+    Binding { target: Theme; property: "appHeight";              value: appWindow.height }
+    Binding { target: Theme; property: "screenDpi";              value: UtilsScreen.screenDpi }
+    Binding { target: Theme; property: "screenPar";              value: UtilsScreen.screenPar }
+    Binding { target: Theme; property: "screenSize";             value: UtilsScreen.screenSize }
 
     // Desktop stuff ///////////////////////////////////////////////////////////
 

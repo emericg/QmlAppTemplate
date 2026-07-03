@@ -17,7 +17,7 @@ T.Drawer {
     // We use Screen.width/height on this mobile component,
     // it's (mostly) equivalent to the dimension of the app window
 
-    width: (singleColumn || Screen.width < 480 ||
+    width: (Theme.singleColumn || Screen.width < 480 ||
             Screen.primaryOrientation === Qt.PortraitOrientation)
                 ? 0.8 * Screen.width : 0.5 * Screen.width
     height: Screen.height

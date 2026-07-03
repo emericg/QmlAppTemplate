@@ -1,7 +1,6 @@
 pragma Singleton
 
 import QtQuick
-import QtQuick.Controls.Material
 
 Item {
     ////////////////////////////////////////////////////////////////////////////
@@ -35,9 +34,17 @@ Item {
     }
     property int currentTheme: -1
 
+    enum ThemeColors { // Same values than MobileUI.Theme or Material.theme
+        Light = 0,
+        Dark = 1
+    }
+
     ////////////////////////////////////////////////////////////////////////////
 
-    // Inputs // bind these from the application // sensible defaults let the library run standalone
+    // Inputs
+
+    // Sensible defaults let the library run standalone
+    // Bind these from the calling application OR set values directly here
 
     // Theme engine
     property string appTheme: "THEME_DEFAULT"
@@ -64,7 +71,7 @@ Item {
 
     ////////////////////////////////////////////////////////////////////////////
 
-    // device presets
+    // Device presets
 
     property bool isDesktop: (Qt.platform.os !== "ios" && Qt.platform.os !== "android")
     property bool isMobile: (Qt.platform.os === "ios" || Qt.platform.os === "android")
@@ -73,7 +80,7 @@ Item {
     property bool isPhone: (isMobile && (screenSize < 7.0))
     property bool isTablet: (isMobile && (screenSize >= 7.0))
 
-    // app presets
+    // App presets
 
     property bool singleColumn: {
         if (isMobile) {
@@ -392,7 +399,7 @@ Item {
             isLight = true
             isDark = false
 
-            themeStatusbar = Material.Light
+            themeStatusbar = Theme.Light
             colorStatusbar = "#eeeeee"
 
             colorHeader                 = "#eeeeee"
@@ -448,7 +455,7 @@ Item {
             isLight = false
             isDark = true
 
-            themeStatusbar = Material.Dark
+            themeStatusbar = Theme.Dark
             colorStatusbar = "#292929"
 
             colorHeader                 = "#292929"
@@ -504,7 +511,7 @@ Item {
             isLight = true
             isDark = false
 
-            themeStatusbar = Material.Light
+            themeStatusbar = Theme.Light
             colorStatusbar = "white"
 
             colorHeader                 = "white"
@@ -560,7 +567,7 @@ Item {
             isLight = false
             isDark = true
 
-            themeStatusbar = Material.Dark
+            themeStatusbar = Theme.Dark
             colorStatusbar = "#313236"
 
             colorHeader                 = "#313236"
@@ -617,7 +624,7 @@ Item {
             isLight = true
             isDark = false
 
-            themeStatusbar = Material.Light
+            themeStatusbar = Theme.Light
             colorStatusbar = "#f1f0ef"
 
             colorHeader                 = "#f1f0ef"
@@ -686,7 +693,7 @@ Item {
             isLight = false
             isDark = true
 
-            themeStatusbar              = Material.Dark
+            themeStatusbar              = Theme.Dark
             colorStatusbar              = "#b16bee"
 
             colorHeader                 = "#b16bee"
@@ -754,7 +761,7 @@ Item {
             isLight = true
             isDark = false
 
-            themeStatusbar = Material.Light
+            themeStatusbar = Theme.Light
             colorStatusbar = "white"
 
             colorHeader                 = "white"
@@ -813,7 +820,7 @@ Item {
             isLight = true
             isDark = false
 
-            themeStatusbar = Material.Dark
+            themeStatusbar = Theme.Dark
             colorStatusbar = colorGreen // "#009688"
 
             colorHeader                 = colorGreen
@@ -872,7 +879,7 @@ Item {
             isLight = true
             isDark = false
 
-            themeStatusbar = Material.Dark
+            themeStatusbar = Theme.Dark
             colorStatusbar = "#325da9" // "#1e3c77"
 
             colorHeader                 = "#325da9"
@@ -931,7 +938,7 @@ Item {
             isLight = true
             isDark = false
 
-            themeStatusbar = Material.Dark
+            themeStatusbar = Theme.Dark
             colorStatusbar = "#ffcf00" // colorNeutralNight
 
             colorHeader                 = "#ffcf00"
@@ -990,7 +997,7 @@ Item {
             isLight = false
             isDark = true
 
-            themeStatusbar = Material.Dark
+            themeStatusbar = Theme.Dark
             colorStatusbar = "#9b5ed0" // "#725595"
 
             colorHeader                 = "#9b5ed0"
@@ -1043,7 +1050,7 @@ Item {
             isLight = true
             isDark = false
 
-            themeStatusbar = Material.Dark
+            themeStatusbar = Theme.Dark
             colorStatusbar = "#BBB"
 
             colorHeader                 = "#e4e5e6"
@@ -1096,7 +1103,7 @@ Item {
             isLight = false
             isDark = true
 
-            themeStatusbar = Material.Dark
+            themeStatusbar = Theme.Dark
             colorStatusbar = "black"
 
             colorHeader                 = "#282828"
@@ -1149,7 +1156,7 @@ Item {
             isLight = true
             isDark = false
 
-            themeStatusbar = Material.Dark
+            themeStatusbar = Theme.Dark
             colorStatusbar = "#BBB"
 
             colorHeader                 = "#eee"
@@ -1202,7 +1209,7 @@ Item {
             isLight = false
             isDark = true
 
-            themeStatusbar = Material.Dark
+            themeStatusbar = Theme.Dark
             colorStatusbar = "black"
 
             colorHeader                 = "#141414"
@@ -1255,7 +1262,7 @@ Item {
             isLight = true
             isDark = false
 
-            themeStatusbar = Material.Dark
+            themeStatusbar = Theme.Dark
             colorStatusbar = "#944197"
 
             colorHeader                 = "#FFB4DC"

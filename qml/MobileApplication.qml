@@ -2,8 +2,8 @@ import QtQuick
 import QtQuick.Window
 
 import ComponentLibrary
-import AppUtils
 import MobileUI
+import AppUtils
 
 Window {
     id: appWindow
@@ -14,27 +14,33 @@ Window {
     color: Theme.colorBackground
     visible: true
 
+    // Helpers
     property bool isHdpi: (UtilsScreen.screenDpi >= 128 || UtilsScreen.screenPar >= 2.0)
     property bool isDesktop: (Qt.platform.os !== "ios" && Qt.platform.os !== "android")
     property bool isMobile: (Qt.platform.os === "ios" || Qt.platform.os === "android")
     property bool isPhone: ((Qt.platform.os === "ios" || Qt.platform.os === "android") && (UtilsScreen.screenSize < 7.0))
     property bool isTablet: ((Qt.platform.os === "ios" || Qt.platform.os === "android") && (UtilsScreen.screenSize >= 7.0))
 
-    Component.onCompleted: {
-        // Setup ThemeEngine
-        Theme.screenDpi = Qt.binding(() => UtilsScreen.screenDpi)
-        Theme.screenPar = Qt.binding(() => UtilsScreen.screenPar)
-        Theme.screenSize = Qt.binding(() => UtilsScreen.screenSize)
-        Theme.appThemeAuto = Qt.binding(() => SettingsManager.appThemeAuto)
-        Theme.appThemeAutoMethod = Qt.binding(() => SettingsManager.appThemeAutoMethod)
-        Theme.appTheme = Qt.binding(() => SettingsManager.appTheme)
-        Theme.screenPaddingStatusbar = Qt.binding(() => appWindow.screenPaddingStatusbar)
-        Theme.screenPaddingNavbar = Qt.binding(() => appWindow.screenPaddingNavbar)
-        Theme.screenPaddingTop = Qt.binding(() => appWindow.screenPaddingTop)
-        Theme.screenPaddingLeft = Qt.binding(() => appWindow.screenPaddingLeft)
-        Theme.screenPaddingRight = Qt.binding(() => appWindow.screenPaddingRight)
-        Theme.screenPaddingBottom = Qt.binding(() => appWindow.screenPaddingBottom)
-    }
+    // Setup ThemeEngine
+    Binding { target: Theme; property: "appTheme";               value: SettingsManager.appTheme }
+    Binding { target: Theme; property: "appThemeAuto";           value: SettingsManager.appThemeAuto }
+    Binding { target: Theme; property: "appThemeAutoMethod";     value: SettingsManager.appThemeAutoMethod }
+    Binding { target: Theme; property: "appWidth";               value: appWindow.width }
+    Binding { target: Theme; property: "appHeight";              value: appWindow.height }
+    Binding { target: Theme; property: "screenOrientation";      value: Screen.primaryOrientation }
+    Binding { target: Theme; property: "screenDpi";              value: UtilsScreen.screenDpi }
+    Binding { target: Theme; property: "screenPar";              value: UtilsScreen.screenPar }
+    Binding { target: Theme; property: "screenSize";             value: UtilsScreen.screenSize }
+    Binding { target: Theme; property: "screenPaddingStatusbar"; value: MobileUI.statusbarHeight }
+    Binding { target: Theme; property: "screenPaddingNavbar";    value: MobileUI.navbarHeight }
+    Binding { target: Theme; property: "screenPaddingTop";       value: MobileUI.safeAreaTop }
+    Binding { target: Theme; property: "screenPaddingLeft";      value: MobileUI.safeAreaLeft }
+    Binding { target: Theme; property: "screenPaddingRight";     value: MobileUI.safeAreaRight }
+    Binding { target: Theme; property: "screenPaddingBottom";    value: MobileUI.safeAreaBottom }
+
+    // Setup MobileUI
+    Binding { target: MobileUI; property: "statusbarColor";      value: Theme.colorStatusbar }
+    Binding { target: MobileUI; property: "navbarColor";         value: Theme.colorTabletmenu }
 
     // Mobile stuff ////////////////////////////////////////////////////////////
 
@@ -50,17 +56,6 @@ Window {
     property int screenPaddingLeft: MobileUI.safeAreaLeft
     property int screenPaddingRight: MobileUI.safeAreaRight
     property int screenPaddingBottom: MobileUI.safeAreaBottom
-
-    Binding {
-        target: MobileUI
-        property: "statusbarColor"
-        value: { return Theme.colorStatusbar }
-    }
-    Binding {
-        target: MobileUI
-        property: "navbarColor"
-        value: { return Theme.colorTabletmenu }
-    }
 
     MobileHeader {
         id: appHeader
