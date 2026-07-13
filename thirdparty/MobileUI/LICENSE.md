@@ -1,6 +1,8 @@
 ### MIT License
 
-> Copyright © 2018 - 2026 Emeric Grange
+> Copyright © 2016 J-P Nurmi
+
+> Copyright © 2026 Emeric Grange
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -30,7 +30,7 @@
 	<string>0.8</string>
 
 	<key>LSMinimumSystemVersion</key>
-	<string>11.0</string>
+	<string>12.0</string>
 
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.utilities</string>
@@ -39,7 +39,7 @@
 	<string>NSApplication</string>
 
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright Emeric Grange 2024</string>
+	<string>Copyright Emeric Grange 2026</string>
 
 	<key>NSHighResolutionCapable</key>
 	<true/>

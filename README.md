@@ -101,15 +101,13 @@ These files are also useful to get an idea about the whole build and deploy proc
 
 ## Licensing
 
-QmlAppTemplate is released under the terms of the [MIT license](license.md).
+QmlAppTemplate is released under the terms of the [MIT license](LICENSE.md).
 
-> Emeric Grange <emeric.grange@gmail.com>
+> Copyright (c) Emeric Grange <emeric.grange@gmail.com>
 
 * [AppUtils](thirdparty/AppUtils/README.md) uses MIT license
 
-* [MobileUI](https://github.com/emericg/MobileUI) uses MIT license
-
-* [MobileSharing](thirdparty/MobileSharing/README.md) uses MIT license
+* [MobileUI](thirdparty/MobileUI/README.md) uses MIT license
 
 * [ComponentLibrary](thirdparty/ComponentLibrary/README.md) uses MIT license
 

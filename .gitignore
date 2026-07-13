@@ -1,8 +1,8 @@
 # Binaries and build artifacts
+appdir/*
 build/*
 bin/*
 contribs/*
-appdir/*
 
 # QtQuick Compiler
 qrc_resources.cpp

@@ -1,13 +1,12 @@
 cmake_minimum_required(VERSION 3.20)
 
-#project(AppUtils LANGUAGES CXX)
-
-# To avoid CMake Warnings, you should add Qt6 'CorePrivate' or 'CoreGui',
-# as needed, to your root level find_package()
+project(AppUtils LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_AUTOMOC ON)
+
+# To avoid CMake Warnings, you should add Qt6 'CorePrivate' or 'CoreGui',
+# as needed, to your root level find_package()
 
 set(QT_NO_PRIVATE_MODULE_WARNING ON)
 
@@ -32,6 +31,8 @@ option(UTILS_NOTIFICATIONS_ENABLED "iOS notification handling" OFF)
 # Generic dependencies
 find_package(Qt6 6.8 REQUIRED COMPONENTS Core Gui Qml Quick)
 set(CORE_LIBRARIES Qt6::Core Qt6::Gui Qt6::Qml Qt6::Quick)
+
+qt_standard_project_setup()
 
 # Generic sources
 set(CORE_SOURCES
