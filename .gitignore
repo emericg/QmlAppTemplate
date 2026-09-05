@@ -1,8 +1,8 @@
 # Binaries and build artifacts
+contribs/*
 appdir/*
 build/*
 bin/*
-contribs/*
 
 # QtQuick Compiler
 qrc_resources.cpp
@@ -12,7 +12,6 @@ qml_*qml.cpp
 
 # CMake temporary project files
 CMakeLists.txt.user
-Makefile
 
 # XCode related
 Debug/*

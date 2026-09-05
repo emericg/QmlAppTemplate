@@ -7,9 +7,11 @@ import AppUtils
 
 ApplicationWindow {
     id: appWindow
+
     flags: Qt.Window
     color: Theme.colorBackground
 
+    // Helpers
     property bool isHdpi: (UtilsScreen.screenDpi >= 128 || UtilsScreen.screenPar >= 2.0)
     property bool isDesktop: true
     property bool isMobile: false

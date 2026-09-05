@@ -111,4 +111,4 @@ QmlAppTemplate is released under the terms of the [MIT license](LICENSE.md).
 
 * [ComponentLibrary](thirdparty/ComponentLibrary/README.md) uses MIT license
 
-* [IconLibrary](thirdparty/IconLibrary/) uses a combinaison of licenses, see [COPYING](thirdparty/IconLibrary/COPYING)
+* [IconLibrary](thirdparty/IconLibrary/) uses a combination of licenses, see [COPYING](thirdparty/IconLibrary/COPYING)

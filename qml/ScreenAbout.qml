@@ -292,8 +292,9 @@ Loader {
                     Repeater {
                         model: [
                             "Qt6 (LGPL v3)",
+                            "AppUtils (MIT)",
                             "MobileUI (MIT)",
-                            "MobileSharing (MIT)",
+                            "ComponentLibrary (MIT)",
                             "Google Material Icons (Apache v2)",
                         ]
                         delegate: Text {
