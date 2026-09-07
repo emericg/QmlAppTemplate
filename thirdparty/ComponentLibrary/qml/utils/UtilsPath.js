@@ -29,8 +29,13 @@ function cleanUrl(pathInput) {
 
 /*!
  * Take a local path (url or string) and make sure we output a clean url.
- * Scheme detection requires 2+ chars before ':', so a Windows drive ("C:")
- * is still treated as a local path.
+ *
+ * Scheme detection requires 2+ chars before ':', so a Windows drive ("C:") for
+ * instance is still treated as a local path.
+ *
+ * Always emit a 'file:///' (triple-slash) url, matching cleanUrl():
+ * - unix    "/home/x" -> "file:///home/x"
+ * - windows "C:/x"    -> "file:///C:/x"
  */
 function makeUrl(pathInput) {
     if (!(typeof pathInput === 'string' || pathInput instanceof String)) {
@@ -40,7 +45,7 @@ function makeUrl(pathInput) {
     var urlOut = pathInput;
 
     if (!/^[a-zA-Z][a-zA-Z0-9+.-]+:/.test(pathInput)) {
-        urlOut = "file://" + pathInput;
+        urlOut = "file://" + (pathInput.charAt(0) === '/' ? pathInput : '/' + pathInput);
     }
 
     //console.log("makeUrl() in: " + pathInput + " / out: " + urlOut)

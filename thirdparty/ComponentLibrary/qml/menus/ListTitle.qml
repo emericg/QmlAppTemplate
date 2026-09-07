@@ -17,19 +17,23 @@ Rectangle {
 
     color: Theme.colorForeground
     border.width: Theme.singleColumn ? 0 : Theme.componentBorderWidth
-    border.color: Theme.colorSeparator
+    border.color: Theme.colorComponentBorder
 
+    // settings
+    property int headerPosition: 64
+    property bool shadow: !Theme.singleColumn
+
+    // icon
     property url source
     property int sourceSize: 24
     property int sourceRotation: 0
     property color sourceColor: Theme.colorIcon
 
+    // text
     property string text: "title"
     property color textColor: Theme.colorText
     property int textSize: source.length ? Theme.fontSizeContentBig : Theme.fontSizeContentVeryBig
     property bool textBold: false
-
-    property bool shadow: !Theme.singleColumn
 
     ////////////////
 
@@ -51,7 +55,7 @@ Rectangle {
         anchors.left: control.left
         anchors.leftMargin: {
             if (control.source.toString().length) {
-                if (Theme.singleColumn) return appHeader.headerPosition
+                if (Theme.singleColumn) return control.headerPosition
                 return (Theme.componentMarginL*2 + control.sourceSize)
             }
             return Theme.componentMarginL

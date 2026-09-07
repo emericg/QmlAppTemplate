@@ -13,6 +13,8 @@ list(APPEND MODULE_QML_FILES
     qml/menus/DesktopHeaderItem.qml
     qml/menus/DesktopSidebarItem.qml
     qml/menus/DesktopSidebarMenu.qml
+    qml/menus/DesktopSidebarButton.qml
+    qml/menus/DesktopSidebarCombobox.qml
     qml/menus/DesktopSidebarSubMenu.qml
     qml/menus/MobileMenuItem_horizontal.qml
     qml/menus/MobileMenuItem_vertical.qml
@@ -57,6 +59,8 @@ list(APPEND MODULE_QML_FILES
     qml/generics/BannerButton.qml
     qml/generics/BannerProgressButton.qml
     qml/generics/ButtonChip.qml
+    qml/generics/ButtonChipBig.qml
+    qml/generics/ButtonSimple.qml
     qml/generics/ButtonFab.qml
     qml/generics/ButtonFabExtended.qml
     qml/generics/ButtonToggle.qml
@@ -78,7 +82,16 @@ list(APPEND MODULE_QML_FILES
     qml/generics/SelectorMenuColorfulItem.qml
     qml/generics/SelectorGrid.qml
     qml/generics/SelectorGridItem.qml
+    qml/generics/TagClear.qml
+    qml/generics/TagDesktop.qml
+    qml/generics/TagFlat.qml
+    qml/generics/TagImpl.qml
+    qml/generics/TagButtonClear.qml
+    qml/generics/TagButtonDesktop.qml
+    qml/generics/TagButtonFlat.qml
+    qml/generics/TagButtonImpl.qml
     qml/generics/TextSelectable.qml
+    qml/generics/TipLine.qml
 
     qml/layouts/FrameBox.qml
     qml/layouts/FrameThemed.qml
@@ -123,33 +136,51 @@ list(APPEND MODULE_QML_FILES
     qml/complex/FileInputArea.qml
     qml/complex/FolderInputArea.qml
 
-    qml/wip/TagClear.qml
-    qml/wip/TagDesktop.qml
-    qml/wip/TagFlat.qml
-    qml/wip/TagImpl.qml
-    qml/wip/TagButtonClear.qml
-    qml/wip/TagButtonDesktop.qml
-    qml/wip/TagButtonFlat.qml
-    qml/wip/TagButtonImpl.qml
-
     qml/utils/CsdMac.qml
     qml/utils/CsdWindows.qml
     qml/utils/CsdLinux.qml
     qml/utils/FpsMonitor.qml
+    qml/utils/HazardBand.qml
     qml/utils/MovablePoint.qml
     qml/utils/RectangleDebug.qml
     qml/utils/SwipeArea.qml
     qml/utils/WindowGeometrySaver.qml
 )
+list(APPEND MODULE_QML_FILES # DEPRECATED
+    qml/deprecated/ButtonCompactable.qml
+    qml/deprecated/ButtonImage.qml
+    qml/deprecated/ButtonText.qml
+    qml/deprecated/RoundButtonIcon.qml
+    qml/deprecated/RoundButtonText.qml
+    qml/deprecated/SwitchThemedMobile.qml
+)
+list(APPEND MODULE_QML_FILES # WIP
+    #
+)
+
+list(APPEND MODULE_JS_FILES
+    qml/utils/UtilsColor.js
+    qml/utils/UtilsMedia.js
+    qml/utils/UtilsNumber.js
+    qml/utils/UtilsPath.js
+    qml/utils/UtilsString.js
+)
+
+list(APPEND MODULE_SOURCES
+    #
+)
+
 list(APPEND MODULE_ASSETS
     assets/icons/add.svg
     assets/icons/autorenew.svg
+    assets/icons/circle.svg
+    assets/icons/circle-fill.svg
     assets/icons/close.svg
     assets/icons/menu.svg
     assets/icons/remove.svg
 )
 
-if(TARGET Qt6::Location)
+if(TARGET Qt6::Location) # Mapping components (optional)
     list(APPEND MODULE_QML_FILES
         qml/maps/MapButton.qml
         qml/maps/MapButtonCompass.qml
@@ -168,30 +199,6 @@ else()
     message(STATUS "ComponentLibrary > Skipping the mapping components as Qt6::Location is not used by the root project.")
 endif()
 
-list(APPEND MODULE_QML_FILES
-    qml/deprecated/ButtonCompactable.qml
-    qml/deprecated/ButtonImage.qml
-    qml/deprecated/ButtonText.qml
-    qml/deprecated/RoundButtonIcon.qml
-    qml/deprecated/RoundButtonText.qml
-    qml/deprecated/SwitchThemedMobile.qml
-)
-
-list(APPEND MODULE_JS_FILES
-    qml/utils/UtilsMedia.js
-    qml/utils/UtilsNumber.js
-    qml/utils/UtilsPath.js
-    qml/utils/UtilsString.js
-)
-
-list(APPEND MODULE_SOURCES
-    #
-)
-
-list(APPEND MODULE_ASSETS
-    #
-)
-
 ################################################################################
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
@@ -201,6 +208,7 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     )
 endif()
 
+# Mark ThemeEngine as a singleton
 set_source_files_properties(qml/ThemeEngine.qml PROPERTIES
     QT_QML_SINGLETON_TYPE TRUE
     QT_QML_SOURCE_TYPENAME Theme

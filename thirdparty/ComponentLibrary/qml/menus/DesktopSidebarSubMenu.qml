@@ -14,7 +14,7 @@ Column {
 
     property string category
     property string text: "submenu"
-    property url source: "qrc:/IconLibrary/material-symbols/menu.svg"
+    property url source: "qrc:/ComponentLibrary/icons/menu.svg"
 
     property bool checked: false
     property int selected: 0

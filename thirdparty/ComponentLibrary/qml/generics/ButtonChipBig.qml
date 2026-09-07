@@ -1,6 +1,5 @@
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Effects
 import QtQuick.Templates as T
 
 import ComponentLibrary
@@ -13,9 +12,9 @@ T.Button {
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              implicitContentHeight + topPadding + bottomPadding)
 
-    leftPadding: leftIcon.toString().length ? 2 : 12
-    rightPadding: 16
-    spacing: 6
+    leftPadding: (leftIcon.toString().length) ? 2 : 12
+    rightPadding: (rightIcon.toString().length) ? 2 : 16
+    spacing: 8
 
     // settings
     focusPolicy: Qt.NoFocus
@@ -27,37 +26,33 @@ T.Button {
 
     // colors
     property color color: Theme.colorPrimary
-    property color colorProgress: Qt.darker(Theme.colorPrimary, 1.04)
 
-    // icon
+    //texts
+    //property string text
+    property string subText
+
+    // icons
     property url leftIcon
-    property int leftIconSize: UtilsNumber.alignTo(height * 0.66, 2)
+    property int leftIconSize: 40
     property int leftIconRotation: 0
     property bool leftIconBackground: true
 
-    // progress
-    property int progress: 0
+    property url rightIcon
+    property int rightIconSize: 40
+    property int rightIconRotation: 0
+    property bool rightIconBackground: true
 
     ////////////////
 
     background: Item {
-        implicitWidth: 128
-        implicitHeight: Theme.componentHeight
+        implicitWidth: 64
+        implicitHeight: 64
 
-        Rectangle { // background
+        Rectangle {
             anchors.fill: parent
             radius: (height / 2)
             color: control.color
             opacity: 0.1
-        }
-        Rectangle { // progress
-            anchors.top: parent.top
-            anchors.left: parent.left
-            anchors.bottom: parent.bottom
-            width: control.width * (Math.max(0, Math.min(control.progress, 100)) / 100)
-            radius: (height / 2)
-            color: control.colorProgress
-            opacity: 0.2
         }
 
         RippleThemed {
@@ -69,24 +64,6 @@ T.Button {
             pressed: control.pressed
             active: control.enabled && (control.down || control.visualFocus)
             color: Qt.rgba(control.color.r, control.color.g, control.color.b, 0.16)
-        }
-
-        layer.enabled: true
-        layer.effect: MultiEffect {
-            maskEnabled: true
-            maskInverted: false
-            maskThresholdMin: 0.5
-            maskSpreadAtMin: 1.0
-            maskSpreadAtMax: 0.0
-            maskSource: ShaderEffectSource {
-                sourceItem: Rectangle {
-                    x: control.background.x
-                    y: control.background.y
-                    width: control.background.width
-                    height: control.background.height
-                    radius: (control.background.height / 2)
-                }
-            }
         }
     }
 
@@ -100,6 +77,8 @@ T.Button {
             opacity: control.enabled ? 1 : 0.66
             spacing: control.spacing
 
+            ////
+
             Item {
                 Layout.preferredWidth: control.height
                 Layout.preferredHeight: control.height
@@ -108,7 +87,7 @@ T.Button {
 
                 Rectangle {
                     anchors.centerIn: parent
-                    width: control.height - 6
+                    width: control.height - 12
                     height: width
                     radius: width
 
@@ -128,19 +107,71 @@ T.Button {
                 }
             }
 
-            Text {
+            ////
+
+            Column {
+                Layout.preferredWidth: Math.max(textTitle.implicitWidth,
+                                                textSubTitle.visible ? textSubTitle.implicitWidth : 0)
                 Layout.alignment: Qt.AlignVCenter
+                Layout.rightMargin: 12
 
-                visible: control.text
-                text: control.text
-                textFormat: Text.PlainText
+                Text {
+                    id: textTitle
+                    width: parent.width
 
-                color: control.color
-                font: control.font
-                elide: Text.ElideMiddle
-                horizontalAlignment: Text.AlignLeft
-                verticalAlignment: Text.AlignVCenter
+                    color: control.color
+                    opacity: 1
+
+                    text: control.text
+                    elide: Text.ElideRight
+                    font.pixelSize: Theme.fontSizeContentBig
+                }
+                Text {
+                    id: textSubTitle
+                    width: parent.width
+
+                    visible: control.subText
+
+                    color: control.color
+                    opacity: 1
+
+                    text: control.subText
+                    elide: Text.ElideRight
+                    font.pixelSize: Theme.fontSizeContentBig
+                }
             }
+
+            ////
+
+            Item {
+                Layout.preferredWidth: control.height
+                Layout.preferredHeight: control.height
+                Layout.alignment: Qt.AlignVCenter
+                visible: control.rightIcon.toString().length
+
+                Rectangle {
+                    anchors.centerIn: parent
+                    width: control.height - 12
+                    height: width
+                    radius: width
+
+                    visible: control.rightIconBackground
+                    color: control.color
+                    opacity: 0.1
+                }
+
+                IconSvg {
+                    anchors.centerIn: parent
+                    width: control.rightIconSize
+                    height: control.rightIconSize
+                    rotation: control.rightIconRotation
+
+                    color: control.color
+                    source: control.rightIcon
+                }
+            }
+
+            ////
         }
     }
 

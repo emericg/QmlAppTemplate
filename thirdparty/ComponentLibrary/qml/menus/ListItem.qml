@@ -16,11 +16,14 @@ T.ItemDelegate {
     spacing: Theme.componentMargin
     verticalPadding: 0
 
+    property int headerPosition: 64
+
+    // icon
     property url source
     property color sourceColor: Theme.colorIcon
     property int sourceSize: 32
 
-    //property string text
+    // text
     property color textColor: Theme.colorText
     property int textSize: Theme.fontSizeContent
 
@@ -44,7 +47,7 @@ T.ItemDelegate {
         opacity: control.enabled ? 1 : 0.4
 
         Item {
-            Layout.preferredWidth: appHeader.headerPosition - parent.anchors.leftMargin
+            Layout.preferredWidth: control.headerPosition - parent.anchors.leftMargin
             Layout.preferredHeight: Theme.componentHeightXL
 
             Layout.alignment: Qt.AlignTop

@@ -16,14 +16,18 @@ T.ItemDelegate {
     spacing: Theme.componentMargin
     verticalPadding: 0
 
+    property int headerPosition: 64
+
+    // icon
     property url source
     property color sourceColor: Theme.colorIcon
     property int sourceSize: 32
 
-    //property string text
+    // text
     property color textColor: Theme.colorText
     property int textSize: Theme.fontSizeContent
 
+    // indicator
     property string indicatorSource
     property color indicatorColor: Theme.colorIcon
     property int indicatorSize: 20
@@ -58,7 +62,7 @@ T.ItemDelegate {
         spacing: 0
 
         Item {
-            Layout.preferredWidth: appHeader.headerPosition - parent.anchors.leftMargin
+            Layout.preferredWidth: control.headerPosition - parent.anchors.leftMargin
             Layout.preferredHeight: Theme.componentHeightXL
             Layout.alignment: Qt.AlignTop
 

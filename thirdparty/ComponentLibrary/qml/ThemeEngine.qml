@@ -32,6 +32,11 @@ Item {
         THEME_BLOOD_AND_TEARS,
         THEME_MIGHTY_KITTENS,
 
+        // OS themes
+        THEME_ADWAITA,
+        THEME_MACOS,
+        THEME_WINDOWS,
+
         THEME_LAST
     }
     property int currentTheme: -1
@@ -71,6 +76,10 @@ Item {
     property int screenPaddingLeft: 0
     property int screenPaddingRight: 0
     property int screenPaddingBottom: 0
+
+    // Desktop CSD window settings
+    property int windowBorders: 0
+    property int windowCornersRadius: 0
 
     ////////////////////////////////////////////////////////////////////////////
 
@@ -305,6 +314,10 @@ Item {
         if (name === "THEME_BLOOD_AND_TEARS") return Theme.THEME_BLOOD_AND_TEARS
         if (name === "THEME_MIGHTY_KITTENS") return Theme.THEME_MIGHTY_KITTENS
 
+        if (name === "THEME_ADWAITA") return Theme.THEME_ADWAITA
+        if (name === "THEME_MACOS") return Theme.THEME_MACOS
+        if (name === "THEME_WINDOWS") return Theme.THEME_WINDOWS
+
         return -1
     }
 
@@ -329,6 +342,10 @@ Item {
         if (index === Theme.THEME_PLAIN_AND_BORING) return "THEME_PLAIN_AND_BORING"
         if (index === Theme.THEME_BLOOD_AND_TEARS) return "THEME_BLOOD_AND_TEARS"
         if (index === Theme.THEME_MIGHTY_KITTENS) return "THEME_MIGHTY_KITTENS"
+
+        if (index === Theme.THEME_ADWAITA) return "THEME_ADWAITA"
+        if (index === Theme.THEME_MACOS) return "THEME_MACOS"
+        if (index === Theme.THEME_WINDOWS) return "THEME_WINDOWS"
 
         return ""
     }
@@ -1338,6 +1355,213 @@ Item {
 
             // (app)
             sidebarSelector             = ""
+
+        } else if (themeIndex === Theme.THEME_ADWAITA) { ///////////////////////
+
+            colorRed    = "#ff7657"
+            colorGreen  = "#85c700"
+            colorBlue   = "#4cafe9"
+            colorYellow = "#ffcf00"
+            colorOrange = "#ffa635"
+            colorGrey   = "#9E9E9E"
+
+            isLight = true
+            isDark = false
+
+            themeStatusbar = Theme.Light
+            colorStatusbar = "#f1f0ef"
+
+            colorHeader                 = "#f2f2f4"
+            colorHeaderContent          = "#444"
+            colorHeaderHighlight        = "#e2e1df"
+
+            colorSidebar                = "#f2f2f4"
+            colorSidebarContent         = "#f2f2f4"
+            colorSidebarHighlight       = "#dfdfe1"
+
+            colorActionbar              = "#eaeaea"
+            colorActionbarContent       = "#eaeaea"
+            colorActionbarHighlight     = "#dadada"
+
+            colorTabletmenu             = "#ffffff"
+            colorTabletmenuContent      = "#9d9d9d"
+            colorTabletmenuHighlight    = "#cfcbcb"
+
+            colorBackground             = "#ffffff"
+            colorForeground             = "#fafafb"
+
+            colorPrimary                = "#9141ac"
+            colorSecondary              = "#c085d5"
+            colorSuccess                = colorGreen
+            colorWarning                = colorOrange
+            colorError                  = colorRed
+
+            colorText                   = "#373737"
+            colorSubText                = "#666666"
+            colorIcon                   = "#373737"
+            colorSeparator              = "#e8e8e8"
+            colorLowContrast            = "white"
+            colorHighContrast           = "#303030"
+
+            colorComponent              = "#f4f4f4"
+            colorComponentText          = "black"
+            colorComponentContent       = "black"
+            colorComponentBorder        = "#f0f0f0"
+            colorComponentDown          = "#eaeaea"
+            colorComponentBackground    = "#f9f9f9"
+
+            componentRadius             = 6
+            componentBorderWidth        = 2
+
+            // (app)
+            colorBox                    = "white"
+            colorBoxBorder              = "#f4f4f4"
+            colorBoxShadow              = "#20000000"
+            colorGrid                   = "#ebebeb"
+            colorAxis                   = "#b0b0b0"
+            colorLVheader               = "#fafafa"
+            colorLVpair                 = "white"
+            colorLVimpair               = "#f5f5f5"
+            colorLVselected             = "#0080e0"
+            colorLVseparator            = "#e2e2e2"
+
+        } else if (themeIndex === Theme.THEME_MACOS) { /////////////////////////
+
+            colorRed    = "#ff7657"
+            colorGreen  = "#85c700"
+            colorBlue   = "#4cafe9"
+            colorYellow = "#ffcf00"
+            colorOrange = "#ffa635"
+            colorGrey   = "#9E9E9E"
+
+            isLight = true
+            isDark = false
+
+            themeStatusbar = Theme.Light
+            colorStatusbar = "#f1f0ef"
+
+            colorHeader                 = "#f1f1f1"
+            colorHeaderContent          = "#444"
+            colorHeaderHighlight        = "#e2e2e2"
+
+            colorSidebar                = "#e0e0e0"
+            colorSidebarContent         = "#e0e0e0"
+            colorSidebarHighlight       = "#aaaaaa"
+
+            colorActionbar              = "#eaeaea"
+            colorActionbarContent       = "#eaeaea"
+            colorActionbarHighlight     = "#dadada"
+
+            colorTabletmenu             = "#ffffff"
+            colorTabletmenuContent      = "#9d9d9d"
+            colorTabletmenuHighlight    = "#cfcbcb"
+
+            colorBackground             = "#ffffff"
+            colorForeground             = "#f5f5f5"
+
+            colorPrimary                = "#1066f5"
+            colorSecondary              = "#5c99ff"
+            colorSuccess                = colorGreen
+            colorWarning                = colorOrange
+            colorError                  = colorRed
+
+            colorText                   = "#222222"
+            colorSubText                = "#828282"
+            colorIcon                   = "#222222"
+            colorSeparator              = "#d5d7d6"
+            colorLowContrast            = "white"
+            colorHighContrast           = "#303030"
+
+            colorComponent              = "#f2f2f2"
+            colorComponentText          = "black"
+            colorComponentContent       = "black"
+            colorComponentBorder        = "#eee"
+            colorComponentDown          = "#e4e4e4"
+            colorComponentBackground    = "#fcfcfc"
+
+            componentRadius             = 6
+            componentBorderWidth        = 2
+
+            // (app)
+            colorBox                    = "white"
+            colorBoxBorder              = "#f4f4f4"
+            colorBoxShadow              = "#20000000"
+            colorGrid                   = "#ebebeb"
+            colorAxis                   = "#b0b0b0"
+            colorLVheader               = "#fafafa"
+            colorLVpair                 = "white"
+            colorLVimpair               = "#f5f5f5"
+            colorLVselected             = "#0080e0"
+            colorLVseparator            = "#e2e2e2"
+
+        } else if (themeIndex === Theme.THEME_WINDOWS) { ///////////////////////
+
+            colorRed    = "#ff7657"
+            colorGreen  = "#85c700"
+            colorBlue   = "#4cafe9"
+            colorYellow = "#ffcf00"
+            colorOrange = "#ffa635"
+            colorGrey   = "#9E9E9E"
+
+            isLight = true
+            isDark = false
+
+            themeStatusbar = Theme.Light
+            colorStatusbar = "#f1f0ef"
+
+            colorHeader                 = "#f6f6f6"
+            colorHeaderContent          = "#444"
+            colorHeaderHighlight        = "#e2e1df"
+
+            colorSidebar                = "#f6f6f6"
+            colorSidebarContent         = "#f6f6f6"
+            colorSidebarHighlight       = "#e8e8e8"
+
+            colorActionbar              = "#eaeaea"
+            colorActionbarContent       = "#eaeaea"
+            colorActionbarHighlight     = "#dadada"
+
+            colorTabletmenu             = "#ffffff"
+            colorTabletmenuContent      = "#9d9d9d"
+            colorTabletmenuHighlight    = "#cfcbcb"
+
+            colorBackground             = "#f2f2f2"
+            colorForeground             = "#f9f9f9"
+
+            colorPrimary                = "#8379fc"
+            colorSecondary              = "#c085d5"
+            colorSuccess                = colorGreen
+            colorWarning                = colorOrange
+            colorError                  = colorRed
+
+            colorText                   = "#373737"
+            colorSubText                = "#666666"
+            colorIcon                   = "#373737"
+            colorSeparator              = "#e8e8e8"
+            colorLowContrast            = "white"
+            colorHighContrast           = "#303030"
+
+            colorComponent              = "#fafafa"
+            colorComponentText          = "black"
+            colorComponentContent       = "black"
+            colorComponentBorder        = "#ececec"
+            colorComponentDown          = "#dadada"
+            colorComponentBackground    = "#fcfcfc"
+
+            componentRadius             = 6
+            componentBorderWidth        = 2
+
+            // (app)
+            colorBox                    = "white"
+            colorBoxBorder              = "#f4f4f4"
+            colorBoxShadow              = "#20000000"
+            colorGrid                   = "#ebebeb"
+            colorAxis                   = "#b0b0b0"
+            colorLVheader               = "#fafafa"
+            colorLVpair                 = "white"
+            colorLVimpair               = "#f5f5f5"
+            colorLVselected             = "#0080e0"
+            colorLVseparator            = "#e2e2e2"
 
         }
 

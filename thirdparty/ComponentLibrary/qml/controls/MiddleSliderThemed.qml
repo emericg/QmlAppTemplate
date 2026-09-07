@@ -29,10 +29,14 @@ T.Slider {
         scale: control.horizontal && control.mirrored ? -1 : 1
 
         Rectangle {
-            x: control.horizontal ? ((control.handle.x < control.availableWidth / 2) ? control.handle.x : control.width / 2) : -1
-            y: control.horizontal ? -1 : ((control.handle.y < control.availableHeight / 2) ? control.handle.y : control.height / 2)
-            width: control.horizontal ? Math.abs((control.width / 2) - control.handle.x) : 6
-            height: control.horizontal ? 6 : Math.abs((control.height / 2) - control.handle.y)
+            readonly property real center: control.horizontal ? parent.width / 2 : parent.height / 2
+            readonly property real head: control.horizontal ? control.handle.x - control.leftPadding + control.handle.width / 2
+                                                            : control.handle.y - control.topPadding + control.handle.height / 2
+
+            x: control.horizontal ? Math.min(center, head) : -1
+            y: control.horizontal ? -1 : Math.min(center, head)
+            width: control.horizontal ? Math.abs(center - head) : 6
+            height: control.horizontal ? 6 : Math.abs(center - head)
 
             radius: 2
             color: Theme.colorPrimary
@@ -42,8 +46,10 @@ T.Slider {
     ////////////////
 
     handle: Rectangle {
-        x: control.leftPadding + (control.horizontal ? (control.visualPosition * (control.availableWidth - width)) : (control.availableWidth - width))
-        y: control.topPadding + (control.horizontal ? (control.availableHeight - height) / 2 : (control.visualPosition * (control.availableHeight - height)))
+        x: control.leftPadding + (control.horizontal ? (control.visualPosition * (control.availableWidth - width))
+                                                     : (control.availableWidth - width))
+        y: control.topPadding + (control.horizontal ? (control.availableHeight - height) / 2
+                                                    : (control.visualPosition * (control.availableHeight - height)))
 
         implicitWidth: 18
         implicitHeight: 18
