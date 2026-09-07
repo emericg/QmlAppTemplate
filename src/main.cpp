@@ -26,17 +26,17 @@ int main(int argc, char *argv[])
 
 #if !defined(Q_OS_ANDROID) && !defined(Q_OS_IOS)
     // Qt 6.6+ mouse wheel hack
-    qputenv("QT_QUICK_FLICKABLE_WHEEL_DECELERATION", "10000");
+    qputenv("QT_QUICK_FLICKABLE_WHEEL_DECELERATION", "7500");
 #endif
-
-    //qputenv("QT_QPA_PLATFORM", "xcb");      // Force xcb / wayland ?
-    //qputenv("QSG_RHI_BACKEND", "vulkan");   // Force opengl / vulkan ?
 
     // DEBUG ///////////////////////////////////////////////////////////////////
 
     //qputenv("QSG_INFO", "1");               // print Qt Scene Graph info
-    //qputenv("QT_QPA_EGLFS_DEBUG", "1");     // print Qt Platform Abstraction EGL debug info
     //qputenv("QT_DEBUG_PLUGINS", "1");       // print Qt plugins info
+
+    //qputenv("QT_QPA_EGLFS_DEBUG", "1");     // print Qt Platform Abstraction EGL debug info
+    //qputenv("QT_QPA_PLATFORM", "xcb");      // Force xcb / wayland ?
+    //qputenv("QSG_RHI_BACKEND", "vulkan");   // Force opengl / vulkan ?
 
     // GUI application /////////////////////////////////////////////////////////
 

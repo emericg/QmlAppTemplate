@@ -18,7 +18,7 @@ BEGIN
             VALUE "CompanyName", "QmlAppTemplate"
             VALUE "FileDescription", "QmlAppTemplate"
             VALUE "FileVersion", "1.0.0.0"
-            VALUE "LegalCopyright", "Copyright (C) 2024 QmlAppTemplate"
+            VALUE "LegalCopyright", "Copyright (C) 2026 QmlAppTemplate"
             VALUE "InternalName", "QmlAppTemplate"
             VALUE "OriginalFilename", "QmlAppTemplate.exe"
             VALUE "ProductName", "QmlAppTemplate"

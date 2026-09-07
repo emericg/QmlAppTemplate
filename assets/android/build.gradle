@@ -6,7 +6,7 @@ buildscript {
 
     dependencies {
         //noinspection AndroidGradlePluginVersion
-        //classpath 'com.android.tools.build:gradle:8.10.1' // works with Qt 6.10+ // Java 17
+        //classpath 'com.android.tools.build:gradle:9.2.1' // works with Qt 6.12+ // Java 17
         classpath 'com.android.tools.build:gradle:8.6.1' // works with Qt 6.8+ // Java 17
     }
 }
@@ -20,8 +20,8 @@ apply plugin: 'com.android.application'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'androidx.core:core:1.6.1'
+    implementation 'androidx.appcompat:appcompat:1.8.0'
+    implementation 'androidx.core:core:1.8.0'
 }
 
 def getTimestampStr() { return new Date().format('yyyyMMddHHmmss') }
@@ -92,7 +92,7 @@ android {
         ndk.abiFilters = qtTargetAbiList.split(",")
 
         namespace "io.emeric.qmlapptemplate"
-        versionName "0.8"
+        versionName "0.9"
         versionCode timestampInt
         //manifestPlaceholders = [versionName: versionName, versionCode: versionCode]
     }

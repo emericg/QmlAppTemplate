@@ -24,10 +24,10 @@
 	<string>QmlAppTemplate.icns</string>
 
 	<key>CFBundleVersion</key>
-	<string>000801</string>
+	<string>000901</string>
 
 	<key>CFBundleShortVersionString</key>
-	<string>0.8</string>
+	<string>0.9</string>
 
 	<key>LSMinimumSystemVersion</key>
 	<string>12.0</string>

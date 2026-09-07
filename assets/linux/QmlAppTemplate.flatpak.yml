@@ -1,6 +1,6 @@
 app-id: io.emeric.qmlapptemplate
 runtime: org.freedesktop.Platform
-runtime-version: '25.08'
+runtime-version: '26.08'
 sdk: org.freedesktop.Sdk
 
 command: QmlAppTemplate
@@ -67,5 +67,5 @@ modules:
     buildsystem: cmake-ninja
     sources:
       - type: archive
-        url: https://github.com/emericg/QmlAppTemplate/archive/refs/tags/v0.8.tar.gz
+        url: https://github.com/emericg/QmlAppTemplate/archive/refs/tags/v0.9.tar.gz
         sha256: 
