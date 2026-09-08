@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
     app.setApplicationDisplayName("QmlAppTemplate");
     app.setOrganizationName("emeric");
     app.setOrganizationDomain("emeric");
-    app.setWindowIcon(QIcon(":/assets/gfx/logos/logo.svg"));
+    app.setWindowIcon(QIcon(":/assets/logos/logo.svg"));
 
     // Init app components
     SettingsManager *sm = SettingsManager::getInstance();

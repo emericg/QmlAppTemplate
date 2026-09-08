@@ -4,10 +4,20 @@ export APP_NAME="QmlAppTemplate"
 export APP_VERSION=$(sed -n 's/^project(.*VERSION \([0-9.]*\).*/\1/p' CMakeLists.txt)
 export GIT_VERSION=$(git rev-parse --short HEAD)
 
-#export APP_NAME_LOWERCASE=${APP_NAME,,}  # lowercase
-export APP_NAME_LOWERCASE=$APP_NAME       # not actually lowercase
+#export APP_NAME_CASE=${APP_NAME,,}   # lowercase
+export APP_NAME_CASE=$APP_NAME        # not lowercase
 
-echo "> $APP_NAME packager (Linux x86_64) [v$APP_VERSION]"
+# Detect the (host) OS architecture
+export ARCH=$(uname -m)
+
+# Target architecture for packaging (override with $PKG_ARCH for cross-compilation)
+case "${PKG_ARCH:-$ARCH}" in
+  x86_64)        PKG_ARCH="x86_64"; LD_ARCH="x86_64"  ;;
+  aarch64|arm64) PKG_ARCH="arm64";  LD_ARCH="aarch64" ;;
+  *) echo "Unsupported architecture: ${PKG_ARCH:-$ARCH}" 1>&2; exit 1 ;;
+esac
+
+echo "> $APP_NAME packager (Linux $PKG_ARCH) [v$APP_VERSION]"
 
 ## CHECKS ######################################################################
 
@@ -55,7 +65,7 @@ done
 #unset LD_LIBRARY_PATH; #unset QT_PLUGIN_PATH;
 
 if [[ $use_contribs = true ]] ; then
-  export LD_LIBRARY_PATH=$(pwd)/contribs/src/env/linux_x86_64/usr/lib/:$LD_LIBRARY_PATH
+  export LD_LIBRARY_PATH=$(pwd)/contribs/src/env/linux_$LD_ARCH/usr/lib/:$LD_LIBRARY_PATH
 fi
 
 if [[ -n "${QT_ROOT_DIR:-}" ]] ; then
@@ -75,14 +85,14 @@ fi
 echo '---- Prepare linuxdeploy + plugins'
 
 # linuxdeploy and plugins
-if [ ! -x contribs/deploy/linuxdeploy-x86_64.AppImage ]; then
-  wget -c -nv "https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage" -P contribs/deploy/
-  wget -c -nv "https://github.com/linuxdeploy/linuxdeploy-plugin-appimage/releases/download/continuous/linuxdeploy-plugin-appimage-x86_64.AppImage" -P contribs/deploy/
-  wget -c -nv "https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage" -P contribs/deploy/
+if [ ! -x contribs/deploy/linuxdeploy-$LD_ARCH.AppImage ]; then
+  wget -c -nv "https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-$LD_ARCH.AppImage" -P contribs/deploy/
+  wget -c -nv "https://github.com/linuxdeploy/linuxdeploy-plugin-appimage/releases/download/continuous/linuxdeploy-plugin-appimage-$LD_ARCH.AppImage" -P contribs/deploy/
+  wget -c -nv "https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-$LD_ARCH.AppImage" -P contribs/deploy/
 fi
-chmod a+x contribs/deploy/linuxdeploy-x86_64.AppImage
-chmod a+x contribs/deploy/linuxdeploy-plugin-appimage-x86_64.AppImage
-chmod a+x contribs/deploy/linuxdeploy-plugin-qt-x86_64.AppImage
+chmod a+x contribs/deploy/linuxdeploy-$LD_ARCH.AppImage
+chmod a+x contribs/deploy/linuxdeploy-plugin-appimage-$LD_ARCH.AppImage
+chmod a+x contribs/deploy/linuxdeploy-plugin-qt-$LD_ARCH.AppImage
 
 # linuxdeploy-plugin-qt hacks
 #export QMAKE="qmake6" # force Qt6, if you have Qt5 installed
@@ -116,14 +126,14 @@ if [[ $create_package = true ]] ; then
   mkdir -p bin/usr/share/pixmaps/
   mkdir -p bin/usr/share/icons/hicolor/scalable/apps/
   mv bin/$APP_NAME bin/usr/bin/$APP_NAME
-  cp assets/linux/$APP_NAME_LOWERCASE.appdata.xml bin/usr/share/appdata/$APP_NAME_LOWERCASE.appdata.xml
-  cp assets/linux/$APP_NAME_LOWERCASE.desktop bin/usr/share/applications/$APP_NAME_LOWERCASE.desktop
-  cp assets/linux/$APP_NAME_LOWERCASE.svg bin/usr/share/pixmaps/$APP_NAME_LOWERCASE.svg
-  cp assets/linux/$APP_NAME_LOWERCASE.svg  bin/usr/share/icons/hicolor/scalable/apps/$APP_NAME_LOWERCASE.svg
+  cp platforms/linux/$APP_NAME_CASE.appdata.xml bin/usr/share/appdata/$APP_NAME_CASE.appdata.xml
+  cp platforms/linux/$APP_NAME_CASE.desktop bin/usr/share/applications/$APP_NAME_CASE.desktop
+  cp platforms/linux/$APP_NAME_CASE.svg bin/usr/share/pixmaps/$APP_NAME_CASE.svg
+  cp platforms/linux/$APP_NAME_CASE.svg  bin/usr/share/icons/hicolor/scalable/apps/$APP_NAME_CASE.svg
 
   echo '---- Running AppImage packager'
-  ./contribs/deploy/linuxdeploy-x86_64.AppImage --appdir bin --plugin qt --output appimage
-  mv $APP_NAME-x86_64.AppImage $APP_NAME-$APP_VERSION-linux64.AppImage
+  ./contribs/deploy/linuxdeploy-$LD_ARCH.AppImage --appdir bin --plugin qt --output appimage
+  mv $APP_NAME-$LD_ARCH.AppImage $APP_NAME-$APP_VERSION-$PKG_ARCH.AppImage
 
   #echo '---- Installation directory content recap (after linuxdeploy):'
   #find bin/
@@ -138,22 +148,35 @@ if [[ $create_package = true ]] ; then
   mv bin/usr/lib/* bin/$APP_NAME/
   mv bin/usr/plugins bin/$APP_NAME/
   mv bin/usr/qml bin/$APP_NAME/
-  mv bin/usr/share/appdata/$APP_NAME_LOWERCASE.appdata.xml bin/$APP_NAME/
-  mv bin/usr/share/applications/$APP_NAME_LOWERCASE.desktop bin/$APP_NAME/
-  mv bin/usr/share/pixmaps/$APP_NAME_LOWERCASE.svg bin/$APP_NAME/
+  mv bin/usr/share/appdata/$APP_NAME_CASE.appdata.xml bin/$APP_NAME/
+  mv bin/usr/share/applications/$APP_NAME_CASE.desktop bin/$APP_NAME/
+  mv bin/usr/share/pixmaps/$APP_NAME_CASE.svg bin/$APP_NAME/
   printf '[Paths]\nPrefix = .\nPlugins = plugins\nImports = qml\n' > bin/$APP_NAME/qt.conf
-  printf '#!/bin/sh\nappname=`basename $0 | sed s,\.sh$,,`\ndirname=`dirname $0`\nexport LD_LIBRARY_PATH=$dirname\n$dirname/$appname' > bin/$APP_NAME/$APP_NAME_LOWERCASE.sh
-  chmod +x bin/$APP_NAME/$APP_NAME_LOWERCASE.sh
+  printf '#!/bin/sh\nappname=`basename $0 | sed s,\.sh$,,`\ndirname=`dirname $0`\nexport LD_LIBRARY_PATH=$dirname\n$dirname/$appname' > bin/$APP_NAME/$APP_NAME_CASE.sh
+  chmod +x bin/$APP_NAME/$APP_NAME_CASE.sh
 
   #echo '---- MapLibre deployment hack'
+  #export MAPLIBRE_VERSION=3.0.0
   #cp -r $QT_ROOT_DIR/qml/MapLibre/ bin/$APP_NAME/qml/MapLibre/
   #cp $QT_ROOT_DIR/plugins/geoservices/libqtgeoservices_maplibre.so bin/$APP_NAME/plugins/geoservices/libqtgeoservices_maplibre.so
-  #cp $QT_ROOT_DIR/lib/libQMapLibre.so.3.0.0 bin/$APP_NAME/libQMapLibre.so.3
-  #cp $QT_ROOT_DIR/lib/libQMapLibreLocation.so.3.0.0 bin/$APP_NAME/libQMapLibreLocation.so.3
+  #cp $QT_ROOT_DIR/lib/libQMapLibre.so.$MAPLIBRE_VERSION            bin/$APP_NAME/libQMapLibre.so.3
+  #cp $QT_ROOT_DIR/lib/libQMapLibreLocation.so.$MAPLIBRE_VERSION    bin/$APP_NAME/libQMapLibreLocation.so.3
+
+  #echo '---- WebEngine deployment hack'
+  #export QT_VERSION=6.10.3
+  #mkdir -p bin/$APP_NAME/plugins/webview
+  #cp $QT_ROOT_DIR/plugins/webview/libqtwebview_webengine.so  bin/$APP_NAME/plugins/webview/libqtwebview_webengine.so
+  #cp $QT_ROOT_DIR/lib/libQt6WebEngineCore.so.$QT_VERSION     bin/$APP_NAME/libQt6WebEngineCore.so.6
+  #cp $QT_ROOT_DIR/lib/libQt6WebEngineQuick.so.$QT_VERSION    bin/$APP_NAME/libQt6WebEngineQuick.so.6
+  #cp $QT_ROOT_DIR/lib/libQt6WebChannel.so.$QT_VERSION        bin/$APP_NAME/libQt6WebChannel.so.6
+  #cp $QT_ROOT_DIR/lib/libQt6WebChannelQuick.so.$QT_VERSION   bin/$APP_NAME/libQt6WebChannelQuick.so.6
+  #cp $QT_ROOT_DIR/libexec/QtWebEngineProcess                 bin/$APP_NAME/QtWebEngineProcess
+  #cp -r $QT_ROOT_DIR/resources bin/$APP_NAME/resources
+  #rm bin/$APP_NAME/resources/qtwebengine_devtools_resources.pak
 
   echo '---- Compressing package'
   cd bin
-  tar zcvf ../$APP_NAME-$APP_VERSION-linux64.tar.gz $APP_NAME/
+  tar zcvf ../$APP_NAME-$APP_VERSION-$PKG_ARCH.tar.gz $APP_NAME/
 fi
 
 ## UPLOAD ######################################################################

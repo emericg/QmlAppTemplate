@@ -14,7 +14,7 @@ on:
 
 env:
   APP_NAME: "QmlAppTemplate"
-  APP_VERSION: "0.8"
+  APP_VERSION: "0.9"
   QT_VERSION: "6.10.3"
 
 #-------------------------------------------------------------------------------
@@ -64,7 +64,7 @@ jobs:
     steps:
       # Checkout repository (and submodules)
       - name: Checkout repository (and submodules)
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           submodules: recursive
 
@@ -120,7 +120,7 @@ jobs:
     steps:
       # Checkout repository (and submodules)
       - name: Checkout repository (and submodules)
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           submodules: recursive
 
@@ -182,7 +182,7 @@ jobs:
           MACOS_CERTIFICATE_NAME: ${{ secrets.MACOS_CERTIFICATE_NAME }}
         run: |
           /usr/bin/codesign --deep --force --options runtime \
-            --entitlements "assets/macos/${{ env.APP_NAME }}.entitlements" \
+            --entitlements "platforms/macos/${{ env.APP_NAME }}.entitlements" \
             --sign "${{ secrets.MACOS_CERTIFICATE_NAME }}" \
             bin/${{ env.APP_NAME }}.app
 
@@ -219,7 +219,7 @@ jobs:
     steps:
       # Checkout repository (and submodules)
       - name: Checkout repository (and submodules)
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           submodules: recursive
 

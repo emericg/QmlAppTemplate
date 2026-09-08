@@ -4,7 +4,17 @@ export APP_NAME="QmlAppTemplate"
 export APP_VERSION=$(sed -n 's/^project(.*VERSION \([0-9.]*\).*/\1/p' CMakeLists.txt)
 export GIT_VERSION=$(git rev-parse --short HEAD)
 
-echo "> $APP_NAME packager (Windows x86_64) [v$APP_VERSION]"
+# Detect the (host) OS architecture
+export ARCH=$(uname -m)
+
+# Target architecture for packaging (override with $PKG_ARCH for cross-compilation)
+case "${PKG_ARCH:-$ARCH}" in
+  x86_64)        PKG_ARCH="x86_64"; LD_ARCH="x86_64"  ;;
+  aarch64|arm64) PKG_ARCH="arm64";  LD_ARCH="aarch64" ;;
+  *) echo "Unsupported architecture: ${PKG_ARCH:-$ARCH}" 1>&2; exit 1 ;;
+esac
+
+echo "> $APP_NAME packager (Windows $PKG_ARCH) [v$APP_VERSION]"
 
 ## CHECKS ######################################################################
 
@@ -93,16 +103,16 @@ mv bin $APP_NAME
 
 if [[ $create_package = true ]] ; then
   echo '---- Compressing package'
-  7z a $APP_NAME-$APP_VERSION-win64.zip $APP_NAME
+  7z a $APP_NAME-$APP_VERSION-$PKG_ARCH.zip $APP_NAME
 fi
 
 ## PACKAGE (NSIS) ##############################################################
 
 if [[ $create_package = true ]] ; then
   echo '---- Creating installer'
-  mv $APP_NAME assets/windows/$APP_NAME
-  makensis assets/windows/setup.nsi
-  mv assets/windows/*.exe $APP_NAME-$APP_VERSION-win64.exe
+  mv $APP_NAME platforms/windows/$APP_NAME
+  makensis platforms/windows/setup.nsi
+  mv platforms/windows/*.exe $APP_NAME-$APP_VERSION-$PKG_ARCH.exe
 fi
 
 ## UPLOAD ######################################################################

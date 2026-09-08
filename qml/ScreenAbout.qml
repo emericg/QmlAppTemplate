@@ -75,7 +75,7 @@ Loader {
                         height: 80
                         anchors.verticalCenter: parent.verticalCenter
 
-                        source: "qrc:/assets/gfx/logos/logo.svg"
+                        source: "qrc:/assets/logos/logo.svg"
                         sourceSize: Qt.size(width, height)
                     }
 
@@ -127,7 +127,7 @@ Loader {
                         visible: (appWindow.width > 800)
 
                         text: qsTr("GitHub")
-                        source: "qrc:/assets/gfx/logos/github.svg"
+                        source: "qrc:/assets/logos/github.svg"
                         sourceSize: 22
                         onClicked: Qt.openUrlExternally("https://github.com/emericg/QmlAppTemplate")
                     }

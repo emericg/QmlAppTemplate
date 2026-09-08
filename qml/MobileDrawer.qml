@@ -42,7 +42,7 @@ DrawerThemed {
 
                     width: 40
                     height: 40
-                    source: "qrc:/assets/gfx/logos/logo.svg"
+                    source: "qrc:/assets/logos/logo.svg"
                     sourceSize: Qt.size(width, height)
                 }
                 Text {
