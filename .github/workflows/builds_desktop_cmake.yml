@@ -65,8 +65,8 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - { runner: ubuntu-22.04,     qt_host: linux,       qt_arch: linux_gcc_64,    pkg_arch: x64 }
-          - { runner: ubuntu-22.04-arm, qt_host: linux_arm64, qt_arch: linux_gcc_arm64, pkg_arch: arm64 }
+          - { runner: ubuntu-22.04,     qt_host: linux,       qt_arch: linux_gcc_64,    pkg_arch: x64,   fuse_pkg: libfuse2 }
+          - { runner: ubuntu-24.04-arm, qt_host: linux_arm64, qt_arch: linux_gcc_arm64, pkg_arch: arm64, fuse_pkg: libfuse2t64 }
     steps:
       # Checkout repository (and submodules)
       - name: Checkout repository (and submodules)
@@ -79,7 +79,7 @@ jobs:
         run: |
              sudo apt-get install libgl1-mesa-dev libxkbcommon-x11-dev libx11-xcb-dev libzstd-dev -y;
              sudo apt-get install cmake ninja-build pkgconf libtool -y;
-             sudo apt-get install libfuse2 appstream -y;
+             sudo apt-get install ${{ matrix.fuse_pkg }} appstream -y;
 
       # Install Qt
       - name: Install Qt
