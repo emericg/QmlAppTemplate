@@ -156,11 +156,11 @@ if [[ $create_package = true ]] ; then
   chmod +x bin/$APP_NAME/$APP_NAME_CASE.sh
 
   #echo '---- MapLibre deployment hack'
-  #export MAPLIBRE_VERSION=3.0.0
+  #export MAPLIBRE_VERSION=4.0.0
   #cp -r $QT_ROOT_DIR/qml/MapLibre/ bin/$APP_NAME/qml/MapLibre/
   #cp $QT_ROOT_DIR/plugins/geoservices/libqtgeoservices_maplibre.so bin/$APP_NAME/plugins/geoservices/libqtgeoservices_maplibre.so
-  #cp $QT_ROOT_DIR/lib/libQMapLibre.so.$MAPLIBRE_VERSION            bin/$APP_NAME/libQMapLibre.so.3
-  #cp $QT_ROOT_DIR/lib/libQMapLibreLocation.so.$MAPLIBRE_VERSION    bin/$APP_NAME/libQMapLibreLocation.so.3
+  #cp $QT_ROOT_DIR/lib/libQMapLibre.so.$MAPLIBRE_VERSION            bin/$APP_NAME/libQMapLibre.so.4
+  #cp $QT_ROOT_DIR/lib/libQMapLibreLocation.so.$MAPLIBRE_VERSION    bin/$APP_NAME/libQMapLibreLocation.so.4
 
   #echo '---- WebEngine deployment hack'
   #export QT_VERSION=6.10.3

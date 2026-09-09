@@ -127,7 +127,7 @@ Loader {
                     }
                 }
 
-                RoundButtonIcon {
+                RoundButtonClear {
                     id: itemImageButtonX
                     width: 40
                     height: 40
@@ -136,8 +136,8 @@ Loader {
                     anchors.verticalCenter: parent.verticalCenter
 
                     source: "qrc:/IconLibrary/material-symbols/close.svg"
-                    iconColor: "white"
-                    backgroundColor: Theme.colorActionbarHighlight
+                    colorIcon: "white"
+                    colorBackground: Theme.colorActionbarHighlight
 
                     onClicked: {
                         rectangleActions.height = 0
@@ -318,6 +318,10 @@ Loader {
                             ListElement { text: "PLAIN AND BORING"; }
                             ListElement { text: "BLOOD AND TEARS"; }
                             ListElement { text: "MIGHTY KITTENS"; }
+
+                            ListElement { text: "ADWAITA"; }
+                            ListElement { text: "MACOS"; }
+                            ListElement { text: "WINDOWS"; }
                         }
 
                         Component.onCompleted: {
@@ -344,6 +348,10 @@ Loader {
                             else if (currentText === "PLAIN AND BORING") SettingsManager.appTheme = "THEME_PLAIN_AND_BORING"
                             else if (currentText === "BLOOD AND TEARS") SettingsManager.appTheme = "THEME_BLOOD_AND_TEARS"
                             else if (currentText === "MIGHTY KITTENS") SettingsManager.appTheme = "THEME_MIGHTY_KITTENS"
+
+                            else if (currentText === "ADWAITA") SettingsManager.appTheme = "THEME_ADWAITA"
+                            else if (currentText === "MACOS") SettingsManager.appTheme = "THEME_MACOS"
+                            else if (currentText === "WINDOWS") SettingsManager.appTheme = "THEME_WINDOWS"
                         }
                     }
 
@@ -1064,26 +1072,30 @@ Loader {
                         rightIcon: "qrc:/IconLibrary/material-symbols/close.svg"
                     }
 
-                    ProgressChip {
-                        text: "ProgressChip"
+                    Row {
+                        spacing: 8
+
+                        ProgressChip {
+                            text: "ProgressChip"
                         leftIcon: "qrc:/IconLibrary/material-symbols/supervised_user_circle.svg"
                         progress: progressChipSlider.value
-                    }
-                    SliderThemed {
-                        id: progressChipSlider
-                        //anchors.verticalCenter: parent.verticalCenter
-                        from: 0
-                        to: 100
-                        value:50
+                        }
+                        SliderThemed {
+                            id: progressChipSlider
+                            anchors.verticalCenter: parent.verticalCenter
+                            from: 0
+                            to: 100
+                            value:50
+                        }
                     }
                 }
 
                 /// Sunken buttons /////////////
 
                 ListSeparator {
-                    height: Theme.componentBorderWidth
                     anchors.leftMargin: -24
                     anchors.rightMargin: -24
+                    height: Theme.componentBorderWidth
                 }
 
                 Flow {
@@ -1111,148 +1123,12 @@ Loader {
                     ButtonSunken {
                         text: "ButtonSunken"
                         source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
-                        colorHighlight: "white"
                         layoutDirection: Qt.LeftToRight
                     }
                     ButtonSunken {
                         text: "ButtonSunken"
                         source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
-                        colorHighlight: "white"
                         layoutDirection: Qt.RightToLeft
-                    }
-                }
-
-                /// DEPRECATED /////////////
-
-                ListSeparator {
-                    height: Theme.componentBorderWidth
-                    anchors.leftMargin: -24
-                    anchors.rightMargin: -24
-                }
-
-                Row {
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    spacing: Theme.componentMargin
-
-                    Row {
-                        height: 48
-                        spacing: 16
-
-                        RoundButtonIcon {
-                            width: 48
-                            height: 48
-                            source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
-                            backgroundVisible: true
-                            highlightMode: "color"
-                        }
-                        RoundButtonIcon {
-                            width: 48
-                            height: 48
-                            source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
-                            backgroundVisible: false
-                            highlightMode: "circle"
-                        }
-                        RoundButtonIcon {
-                            width: 48
-                            height: 48
-                            source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
-                            highlightMode: "color"
-                            highlightColor: Theme.colorError
-
-                            tooltipText: "this one has a tooltip!"
-                        }
-                    }
-
-                    Item {
-                        width: 16
-                        height: 16
-                    }
-
-                    Row { // second row
-                        height: 48
-                        spacing: 16
-
-                        RoundButtonText {
-                            width: 48
-                            height: 48
-                            text: "+"
-                            backgroundVisible: true
-                            highlightMode: "color"
-                        }
-                        RoundButtonText {
-                            width: 48
-                            height: 48
-                            text: "-"
-                            backgroundVisible: false
-                            highlightMode: "circle"
-                        }
-                        RoundButtonText {
-                            width: 48
-                            height: 48
-                            text: "a"
-                            highlightMode: "color"
-                            highlightColor: Theme.colorError
-                            borderVisible: true
-
-                            tooltipText: "this one has a tooltip!"
-                        }
-                    }
-
-                    Item {
-                        width: 16
-                        height: 16
-                    }
-
-                    Row {
-                        height: 48
-                        spacing: 16
-
-                        RoundButtonIcon {
-                            source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
-                            highlightMode: "color"
-                        }
-                        RoundButtonIcon {
-                            source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
-                            backgroundVisible: true
-                            highlightMode: "circle"
-                        }
-                        RoundButtonIcon {
-                            source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
-                            highlightMode: "color"
-                            highlightColor: Theme.colorError
-
-                            tooltipText: "another tooltip!"
-                        }
-                    }
-
-                    Item {
-                        width: 16
-                        height: 16
-                    }
-
-                    Row {
-                        height: 48
-                        spacing: 16
-
-                        RoundButtonText {
-                            text: "+"
-                            backgroundVisible: true
-                            highlightMode: "color"
-                        }
-                        RoundButtonText {
-                            text: "-"
-                            backgroundVisible: false
-                            highlightMode: "circle"
-                        }
-                        RoundButtonText {
-                            text: "a"
-                            highlightMode: "color"
-                            highlightColor: Theme.colorError
-                            borderVisible: true
-
-                            tooltipText: "this one has a tooltip!"
-                        }
                     }
                 }
 
@@ -1674,7 +1550,7 @@ Loader {
                         height: 128
                         hoverMode: "glow"
                         clickMode: "pull"
-                        source: "qrc:/assets/gfx/logos/logo.svg"
+                        source: "qrc:/assets/logos/logo.svg"
                         sourceSize: 96
                     }
                 }

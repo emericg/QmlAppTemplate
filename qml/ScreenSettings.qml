@@ -214,6 +214,10 @@ Loader {
                         ListElement { text: "PLAIN AND BORING"; }
                         ListElement { text: "BLOOD AND TEARS"; }
                         ListElement { text: "MIGHTY KITTENS"; }
+
+                        ListElement { text: "ADWAITA"; }
+                        ListElement { text: "MACOS"; }
+                        ListElement { text: "WINDOWS"; }
                     }
 
                     Component.onCompleted: {
@@ -240,6 +244,10 @@ Loader {
                         else if (currentText === "PLAIN AND BORING") SettingsManager.appTheme = "THEME_PLAIN_AND_BORING"
                         else if (currentText === "BLOOD AND TEARS") SettingsManager.appTheme = "THEME_BLOOD_AND_TEARS"
                         else if (currentText === "MIGHTY KITTENS") SettingsManager.appTheme = "THEME_MIGHTY_KITTENS"
+
+                        else if (currentText === "ADWAITA") SettingsManager.appTheme = "THEME_ADWAITA"
+                        else if (currentText === "MACOS") SettingsManager.appTheme = "THEME_MACOS"
+                        else if (currentText === "WINDOWS") SettingsManager.appTheme = "THEME_WINDOWS"
                     }
                 }
             }

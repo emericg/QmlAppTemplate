@@ -150,8 +150,8 @@ list(APPEND MODULE_QML_FILES # DEPRECATED
     qml/deprecated/ButtonCompactable.qml
     qml/deprecated/ButtonImage.qml
     qml/deprecated/ButtonText.qml
-    qml/deprecated/RoundButtonIcon.qml
-    qml/deprecated/RoundButtonText.qml
+    #qml/deprecated/RoundButtonIcon.qml
+    #qml/deprecated/RoundButtonText.qml
     qml/deprecated/SwitchThemedMobile.qml
 )
 list(APPEND MODULE_QML_FILES # WIP

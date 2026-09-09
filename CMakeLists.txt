@@ -145,7 +145,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE MobileUI MobileUI_plugin)
 
 # ComponentLibrary
 add_subdirectory(thirdparty/ComponentLibrary)
-target_link_libraries(${PROJECT_NAME} PRIVATE ComponentLibrary_plugin)
+target_link_libraries(${PROJECT_NAME} PRIVATE ComponentLibrary ComponentLibrary_plugin)
 
 # Qt libraries
 target_link_libraries(${PROJECT_NAME} PRIVATE
