@@ -182,6 +182,10 @@ ApplicationWindow {
         sequences: [StandardKey.Quit]
         onActivated: appWindow.cleanExit()
     }
+    Shortcut {
+        sequence: "Ctrl+E"
+        onActivated: themeEditor.toggle()
+    }
 
     // UI sizes ////////////////////////////////////////////////////////////////
 
@@ -268,6 +272,7 @@ ApplicationWindow {
         anchors.top: appHeader.bottom
         anchors.left: appSidebar.right
         anchors.right: parent.right
+        anchors.rightMargin: themeEditor.width
         anchors.bottom: parent.bottom
 
         color: Theme.colorBackground
@@ -400,6 +405,16 @@ ApplicationWindow {
                 PropertyChanges { target: screenAbout; visible: true; enabled: true; focus: true; }
             }
         ]
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
+
+    EditorPanel {
+        id: themeEditor
+
+        anchors.top: appHeader.bottom
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
     }
 
     ////////////////////////////////////////////////////////////////////////////

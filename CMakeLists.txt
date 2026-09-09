@@ -84,6 +84,13 @@ qt_add_qml_module(${PROJECT_NAME}
         qml/ScreenSettings.qml
         qml/ScreenAbout.qml
 
+        qml/editor/EditorPanel.qml
+        qml/editor/EditorElementBool.qml
+        qml/editor/EditorElementColor.qml
+        qml/editor/EditorElementFont.qml
+        qml/editor/EditorElementSpinBox.qml
+        qml/editor/EditorElementString.qml
+
         qml/PageButtons.qml
         qml/PageColors.qml
         qml/PageDateTime.qml

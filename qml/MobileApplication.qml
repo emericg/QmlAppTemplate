@@ -7,6 +7,7 @@ import AppUtils
 
 Window {
     id: appWindow
+
     minimumWidth: 480
     minimumHeight: 960
 
