@@ -59,8 +59,14 @@ env:
 jobs:
   ## GNU/Linux build ###########################################################
   build-linux:
-    name: "Linux CI build"
-    runs-on: ubuntu-22.04
+    name: "Linux CI build (${{ matrix.pkg_arch }})"
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { runner: ubuntu-22.04,     qt_host: linux,       qt_arch: linux_gcc_64,    pkg_arch: x64 }
+          - { runner: ubuntu-22.04-arm, qt_host: linux_arm64, qt_arch: linux_gcc_arm64, pkg_arch: arm64 }
     steps:
       # Checkout repository (and submodules)
       - name: Checkout repository (and submodules)
@@ -80,6 +86,8 @@ jobs:
         uses: jurplel/install-qt-action@v4
         with:
           version: ${{ env.QT_VERSION }}
+          host: ${{ matrix.qt_host }}
+          arch: ${{ matrix.qt_arch }}
 
       # Setup env
       - name: Setup env
@@ -103,15 +111,15 @@ jobs:
       - name: Upload application ZIP
         uses: actions/upload-artifact@v7
         with:
-          name: ${{ env.APP_NAME }}-${{ env.APP_VERSION }}-linux64.tar.gz
-          path: ${{ env.APP_NAME }}-${{ env.APP_VERSION }}-linux64.tar.gz
+          name: ${{ env.APP_NAME }}-${{ env.APP_VERSION }}-${{ matrix.pkg_arch }}.tar.gz
+          path: ${{ env.APP_NAME }}-${{ env.APP_VERSION }}-${{ matrix.pkg_arch }}.tar.gz
 
       # Upload AppImage
       - name: Upload AppImage
         uses: actions/upload-artifact@v7
         with:
-          name: ${{ env.APP_NAME }}-${{ env.APP_VERSION }}-linux64.AppImage
-          path: ${{ env.APP_NAME }}-${{ env.APP_VERSION }}-linux64.AppImage
+          name: ${{ env.APP_NAME }}-${{ env.APP_VERSION }}-${{ matrix.pkg_arch }}.AppImage
+          path: ${{ env.APP_NAME }}-${{ env.APP_VERSION }}-${{ matrix.pkg_arch }}.AppImage
 
   ## macOS build ###############################################################
   build-mac:
@@ -214,8 +222,14 @@ jobs:
 
   ## Windows build #############################################################
   build-windows:
-    name: "Windows CI build"
-    runs-on: windows-2022
+    name: "Windows CI build (${{ matrix.pkg_arch }})"
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { runner: windows-2022,   qt_host: windows,       qt_arch: win64_msvc2022_64,    msvc_arch: x86_64, pkg_arch: x64 }
+          - { runner: windows-11-arm, qt_host: windows_arm64, qt_arch: win64_msvc2022_arm64, msvc_arch: arm64,  pkg_arch: arm64 }
     steps:
       # Checkout repository (and submodules)
       - name: Checkout repository (and submodules)
@@ -227,21 +241,20 @@ jobs:
       - name: Configure MSVC
         uses: ilammy/msvc-dev-cmd@v1
         with:
-          arch: x86_64
+          arch: ${{ matrix.msvc_arch }}
 
-      # Install NSIS (already installed in 'windows-2022')
-      #- name: Install NSIS
-      #  run: |
-      #       Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
-      #       scoop bucket add extras
-      #       scoop install nsis
+      # Install NSIS (preinstalled on 'windows-2022', missing on 'windows-11-arm')
+      - name: Install NSIS
+        if: matrix.pkg_arch == 'arm64'
+        run: choco install nsis -y
 
       # Install Qt
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
           version: ${{ env.QT_VERSION }}
-          arch: 'win64_msvc2022_64'
+          host: ${{ matrix.qt_host }}
+          arch: ${{ matrix.qt_arch }}
 
       # Setup env
       - name: Setup env
@@ -258,18 +271,20 @@ jobs:
 
       # Deploy application
       - name: Deploy application
+        env:
+          PKG_ARCH: ${{ matrix.pkg_arch }}
         run: sh deploy_windows.sh -p
 
       # Upload application ZIP
       - name: Upload application ZIP
         uses: actions/upload-artifact@v7
         with:
-          name: ${{ env.APP_NAME }}-${{ env.APP_VERSION }}-win64.zip
-          path: ${{ env.APP_NAME }}-${{ env.APP_VERSION }}-win64.zip
+          name: ${{ env.APP_NAME }}-${{ env.APP_VERSION }}-${{ matrix.pkg_arch }}.zip
+          path: ${{ env.APP_NAME }}-${{ env.APP_VERSION }}-${{ matrix.pkg_arch }}.zip
 
       # Upload NSIS installer
       - name: Upload NSIS installer
         uses: actions/upload-artifact@v7
         with:
-          name: ${{ env.APP_NAME }}-${{ env.APP_VERSION }}-win64.exe
-          path: ${{ env.APP_NAME }}-${{ env.APP_VERSION }}-win64.exe
+          name: ${{ env.APP_NAME }}-${{ env.APP_VERSION }}-${{ matrix.pkg_arch }}.exe
+          path: ${{ env.APP_NAME }}-${{ env.APP_VERSION }}-${{ matrix.pkg_arch }}.exe

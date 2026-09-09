@@ -9,7 +9,7 @@ export ARCH=$(uname -m)
 
 # Target architecture for packaging (override with $PKG_ARCH for cross-compilation)
 case "${PKG_ARCH:-$ARCH}" in
-  x86_64)        PKG_ARCH="x86_64"; LD_ARCH="x86_64"  ;;
+  x86_64)        PKG_ARCH="x64"; LD_ARCH="x86_64"  ;;
   aarch64|arm64) PKG_ARCH="arm64";  LD_ARCH="aarch64" ;;
   *) echo "Unsupported architecture: ${PKG_ARCH:-$ARCH}" 1>&2; exit 1 ;;
 esac
