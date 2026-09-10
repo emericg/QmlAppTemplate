@@ -120,6 +120,7 @@ list(APPEND MODULE_QML_FILES
     qml/controls/RoundButtonIconThemed.qml
     qml/controls/ScrollBarThemed.qml
     qml/controls/SliderArrow.qml
+    qml/controls/SliderGraduation.qml
     qml/controls/SliderThemed.qml
     qml/controls/SliderValueSolid.qml
     qml/controls/SpinBoxThemedDesktop.qml

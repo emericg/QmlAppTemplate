@@ -28,7 +28,7 @@ Flickable {
             source: ""
         }
 
-        Column {
+        Column { // horizontal
             anchors.left: parent.left
             anchors.leftMargin: Theme.componentMarginXL
             anchors.right: parent.right
@@ -53,12 +53,12 @@ Flickable {
                 anchors.left: parent.left
                 anchors.right: parent.right
 
-                second.value: 0.75
                 first.value: 0.25
+                second.value: 0.75
             }
         }
 
-        Row {
+        Row { // vertical
             anchors.left: parent.left
             anchors.leftMargin: Theme.componentMarginXL
             anchors.right: parent.right
@@ -77,8 +77,74 @@ Flickable {
 
             RangeSliderThemed {
                 orientation: Qt.Vertical
-                second.value: 0.75
                 first.value: 0.25
+                second.value: 0.75
+            }
+        }
+
+        ListTitle { ////////////////////////////////////////////////////////////
+            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
+
+            text: qsTr("Conventional sliders (with graduations framework)")
+            source: ""
+        }
+
+        Column { // horizontal
+            anchors.left: parent.left
+            anchors.leftMargin: Theme.componentMarginXL
+            anchors.right: parent.right
+            anchors.rightMargin: Theme.componentMarginXL
+            spacing: Theme.componentMarginXL
+
+            SliderThemed {
+                anchors.left: parent.left
+                anchors.right: parent.right
+
+                value: 0.2
+
+                graduation: true
+                graduationTicks: [0, 0.1, 0.2, 0.4, 0.8, 1.0]
+                graduationDefault: true
+                graduationDefaultValue: 0.2
+            }
+
+            SliderThemed {
+                anchors.left: parent.left
+                anchors.right: parent.right
+
+                value: 0.5
+
+                graduation: true
+                graduationStepSize: 0.1
+                graduationDefault: true
+                graduationDefaultValue: 0.5
+            }
+
+            MiddleSliderThemed {
+                anchors.left: parent.left
+                anchors.right: parent.right
+
+                value: 0.5
+
+                graduation: true
+                graduationStepSize: 0.1
+                graduationDefault: true
+                graduationDefaultValue: 0.5
+            }
+
+            RangeSliderThemed {
+                anchors.left: parent.left
+                anchors.right: parent.right
+
+                first.value: 0.25
+                second.value: 0.75
+
+                graduation: true
+                graduationStepSize: 0.05
+                graduationDefault: true
+                graduationDefaultValue_first: 0.25
+                graduationDefaultValue_second: 0.75
             }
         }
 
@@ -90,7 +156,7 @@ Flickable {
             source: ""
         }
 
-        Column {
+        Column { // horizontal
             anchors.left: parent.left
             anchors.leftMargin: Theme.componentMarginXL
             anchors.right: parent.right
@@ -125,7 +191,7 @@ Flickable {
             }
         }
 
-        Row {
+        Row { // vertical
             anchors.left: parent.left
             anchors.leftMargin: Theme.componentMarginXL
             anchors.right: parent.right
@@ -165,7 +231,7 @@ Flickable {
             source: ""
         }
 
-        Column {
+        Column { // horizontal
             anchors.left: parent.left
             anchors.leftMargin: Theme.componentMarginXL
             anchors.right: parent.right
@@ -176,13 +242,13 @@ Flickable {
                 anchors.left: parent.left
                 anchors.right: parent.right
 
-                second.value: 0.8
                 first.value: 0.2
+                second.value: 0.8
                 stepSize: 0.1
             }
         }
 
-        Row {
+        Row { // vertical
             anchors.left: parent.left
             anchors.leftMargin: Theme.componentMarginXL
             anchors.right: parent.right
@@ -192,8 +258,8 @@ Flickable {
             RangeSliderValue {
                 orientation: Qt.Vertical
 
-                second.value: 0.8
                 first.value: 0.2
+                second.value: 0.8
                 stepSize: 0.1
             }
         }
@@ -206,7 +272,7 @@ Flickable {
             source: ""
         }
 
-        Column {
+        Column { // horizontal
             anchors.left: parent.left
             anchors.leftMargin: Theme.componentMarginXL
             anchors.right: parent.right
@@ -235,13 +301,13 @@ Flickable {
                 anchors.left: parent.left
                 anchors.right: parent.right
 
-                second.value: 0.8
                 first.value: 0.2
+                second.value: 0.8
                 stepSize: 0.1
             }
         }
 
-        Row {
+        Row { // vertical
             anchors.left: parent.left
             anchors.leftMargin: Theme.componentMarginXL
             anchors.right: parent.right
@@ -267,8 +333,8 @@ Flickable {
             RangeSliderValueSolid {
                 orientation: Qt.Vertical
 
-                second.value: 0.8
                 first.value: 0.2
+                second.value: 0.8
                 stepSize: 0.1
             }
         }
