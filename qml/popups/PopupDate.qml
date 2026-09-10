@@ -8,14 +8,14 @@ import ComponentLibrary
 Popup {
     id: popupDate
 
-    x: singleColumn ? 0 : (appWindow.width / 2) - (width / 2)
-    y: singleColumn ? (appWindow.height - height)
-                    : ((appWindow.height / 2) - (height / 2))
+    x: Theme.singleColumn ? 0 : (Theme.appWidth / 2) - (width / 2)
+    y: Theme.singleColumn ? (Theme.appHeight - height)
+                          : ((Theme.appHeight / 2) - (height / 2))
 
     width: {
-        if (singleColumn) return appWindow.width
-        if (isTablet && screenOrientation === Qt.LandscapeOrientation) return 480
-        return 640
+        if (Theme.singleColumn) return Theme.appWidth
+        if (Theme.isTablet && Theme.screenOrientation === Qt.LandscapeOrientation) return 512
+        return 720
     }
     padding: 0
     margins: 0
@@ -95,13 +95,20 @@ Popup {
     enter: Transition { NumberAnimation { property: "opacity"; from: 0.333; to: 1.0; duration: Theme.animationFastSpeed; } }
     //exit: Transition { NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; duration: Theme.animationMediumSpeed; } }
 
-    Overlay.modal: Rectangle {
-        color: "#000"
-        opacity: Theme.isLight ? 0.24 : 0.48
+    Overlay.modal: Item {
+        Rectangle {
+            anchors.fill: parent
+            anchors.margins: Theme.windowBorders
+            radius: Theme.windowCornersRadius
+            color: "#000000"
+            opacity: Theme.isLight ? 0.24 : 0.48
+        }
     }
 
+    ////////////////////////////////////////////////////////////////////////////
+
     background: Rectangle {
-        radius: singleColumn ? 0 : Theme.componentRadius
+        radius: Theme.singleColumn ? 0 : Theme.componentRadius
         color: Theme.colorBackground
 
         Item {
@@ -119,11 +126,11 @@ Popup {
                 radius: Theme.componentRadius
                 color: "transparent"
                 border.color: Theme.colorSeparator
-                border.width: singleColumn ? 0 : Theme.componentBorderWidth
+                border.width: Theme.singleColumn ? 0 : Theme.componentBorderWidth
                 opacity: 0.4
             }
 
-            layer.enabled: !singleColumn
+            layer.enabled: !Theme.singleColumn
             layer.effect: MultiEffect { // clip
                 maskEnabled: true
                 maskInverted: false
@@ -146,11 +153,11 @@ Popup {
             anchors.left: parent.left
             anchors.right: parent.right
             height: Theme.componentBorderWidth
-            visible: singleColumn
+            visible: Theme.singleColumn
             color: Qt.darker(Theme.colorPrimary, 1.02)
         }
 
-        layer.enabled: !singleColumn
+        layer.enabled: !Theme.singleColumn
         layer.effect: MultiEffect { // shadow
             autoPaddingEnabled: true
             blurMax: 64
@@ -405,7 +412,7 @@ Popup {
             spacing: Theme.componentMargin
 
             property int btnCount: 2
-            property int btnSize: singleColumn ? width : ((width-(spacing*(btnCount-1))) / btnCount)
+            property int btnSize: Theme.singleColumn ? width : ((width-(spacing*(btnCount-1))) / btnCount)
 
             ButtonClear {
                 width: parent.btnSize

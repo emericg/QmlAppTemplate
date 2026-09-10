@@ -32,6 +32,8 @@ list(APPEND MODULE_QML_FILES
     qml/menus/ListSeparatorPadded.qml
     qml/menus/ListTitle.qml
 
+    qml/popups/PopupThemed.qml
+
     qml/buttons/ButtonDesktop.qml
     qml/buttons/ButtonOutline.qml
     qml/buttons/ButtonClear.qml

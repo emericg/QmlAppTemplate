@@ -7,11 +7,11 @@ import ComponentLibrary
 Popup {
     id: popupChoice
 
-    x: singleColumn ? 0 : (appWindow.width / 2) - (width / 2)
-    y: singleColumn ? (appWindow.height - height)
-                    : ((appWindow.height / 2) - (height / 2))
+    x: Theme.singleColumn ? 0 : (Theme.appWidth / 2) - (width / 2)
+    y: Theme.singleColumn ? (Theme.appHeight - height)
+                    : ((Theme.appHeight / 2) - (height / 2))
 
-    width: singleColumn ? appWindow.width : 720
+    width: Theme.singleColumn ? Theme.appWidth : 720
     height: columnContent.height + padding*2 + Math.max(Theme.screenPaddingNavbar, Theme.screenPaddingBottom)
     padding: Theme.componentMarginXL
     margins: 0
@@ -38,26 +38,33 @@ Popup {
     enter: Transition { NumberAnimation { property: "opacity"; from: 0.5; to: 1.0; duration: Theme.animationFastSpeed; } }
     //exit: Transition { NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; duration: Theme.animationMediumSpeed; } }
 
-    Overlay.modal: Rectangle {
-        color: "#000"
-        opacity: Theme.isLight ? 0.24 : 0.48
+    Overlay.modal: Item {
+        Rectangle {
+            anchors.fill: parent
+            anchors.margins: Theme.windowBorders
+            radius: Theme.windowCornersRadius
+            color: "#000000"
+            opacity: Theme.isLight ? 0.24 : 0.48
+        }
     }
+
+    ////////////////////////////////////////////////////////////////////////////
 
     background: Rectangle {
         color: Theme.colorBackground
         border.color: Theme.colorSeparator
-        border.width: singleColumn ? 0 : Theme.componentBorderWidth
-        radius: singleColumn ? 0 : Theme.componentRadius
+        border.width: Theme.singleColumn ? 0 : Theme.componentBorderWidth
+        radius: Theme.singleColumn ? 0 : Theme.componentRadius
 
         Rectangle {
             anchors.left: parent.left
             anchors.right: parent.right
             height: Theme.componentBorderWidth
-            visible: singleColumn
+            visible: Theme.singleColumn
             color: Theme.colorSeparator
         }
 
-        layer.enabled: !singleColumn
+        layer.enabled: !Theme.singleColumn
         layer.effect: MultiEffect { // shadow
             autoPaddingEnabled: true
             blurMax: 64
@@ -107,7 +114,7 @@ Popup {
                 spacing: Theme.componentMargin
 
                 property int btnCount: popupChoice.buttonSecondary ? 3 : 2
-                property int btnSize: singleColumn ? width : ((width-(spacing*(btnCount-1))) / btnCount)
+                property int btnSize: Theme.singleColumn ? width : ((width-(spacing*(btnCount-1))) / btnCount)
 
                 ButtonClear {
                     width: parent.btnSize

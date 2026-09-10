@@ -5,27 +5,26 @@ import QtQuick.Controls
 import ComponentLibrary
 
 Popup {
-    id: popupMessage
+    id: popupThemed
 
     x: Theme.singleColumn ? 0 : (Theme.appWidth / 2) - (width / 2)
     y: Theme.singleColumn ? (Theme.appHeight - height)
-                    : ((Theme.appHeight / 2) - (height / 2))
+                          : ((Theme.appHeight / 2) - (height / 2))
 
-    width: Theme.singleColumn ? Theme.appWidth : 720
-    height: columnContent.height + padding*2 + Math.max(Theme.screenPaddingNavbar, Theme.screenPaddingBottom)
-    padding: Theme.componentMarginXL
+    width: {
+        if (Theme.singleColumn) return Theme.appWidth
+        if (Theme.isTablet && Theme.screenOrientation === Qt.LandscapeOrientation) return 512
+        return 720
+    }
+    padding: 0
     margins: 0
 
     dim: true
     modal: true
     focus: true
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+
     parent: Overlay.overlay
-
-    property string title: "Popup Title"
-    property string text: "This is a generic message, empty of any kind of meaning."
-
-    property string buttonText: qsTr("OK")
 
     ////////////////////////////////////////////////////////////////////////////
 
@@ -50,7 +49,9 @@ Popup {
         border.width: Theme.singleColumn ? 0 : Theme.componentBorderWidth
         radius: Theme.singleColumn ? 0 : Theme.componentRadius
 
-        Rectangle { // top separator
+        ////
+
+        Rectangle { // top separator (singleColumn)
             anchors.left: parent.left
             anchors.right: parent.right
             height: Theme.componentBorderWidth
@@ -65,53 +66,8 @@ Popup {
             shadowEnabled: true
             shadowColor: Theme.isLight ? "#aa000000" : "#cc000000"
         }
-    }
 
-    ////////////////////////////////////////////////////////////////////////////
-
-    contentItem: Item {
-        Column {
-            id: columnContent
-            anchors.left: parent.left
-            anchors.right: parent.right
-            spacing: Theme.componentMarginXL
-
-            ////////
-
-            Text {
-                anchors.left: parent.left
-                anchors.right: parent.right
-
-                text: popupMessage.title
-                font.pixelSize: Theme.fontSizeContentVeryBig
-                color: Theme.colorText
-                wrapMode: Text.WordWrap
-            }
-
-            ////////
-
-            Text {
-                anchors.left: parent.left
-                anchors.right: parent.right
-
-                text: popupMessage.text
-                font.pixelSize: Theme.fontSizeContent
-                color: Theme.colorSubText
-                wrapMode: Text.WordWrap
-            }
-
-            ////////
-
-            ButtonFlat {
-                anchors.right: parent.right
-                width: Theme.singleColumn ? parent.width : (parent.width / 2)
-
-                text: popupMessage.buttonText
-                onClicked: popupMessage.close()
-            }
-
-            ////////
-        }
+        ////
     }
 
     ////////////////////////////////////////////////////////////////////////////
