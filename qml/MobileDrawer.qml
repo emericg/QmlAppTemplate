@@ -137,7 +137,7 @@ DrawerThemed {
                 DrawerItem {
                     text: qsTr("Settings")
                     source: "qrc:/IconLibrary/material-symbols/settings-fill.svg"
-                    highlighted: (appContent.state === "Settings")
+                    highlighted: (appContent.state === "ScreenSettings")
 
                     onClicked: {
                         screenSettings.loadScreen()
@@ -148,7 +148,8 @@ DrawerThemed {
                 DrawerItem {
                     text: qsTr("About")
                     source: "qrc:/IconLibrary/material-symbols/info-fill.svg"
-                    highlighted: (appContent.state === "About" || appContent.state === "AboutPermissions")
+                    highlighted: (appContent.state === "ScreenAbout" ||
+                                  appContent.state === "ScreenAboutPermissions")
 
                     onClicked: {
                         screenAbout.loadScreen()

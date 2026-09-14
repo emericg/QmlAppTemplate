@@ -14,6 +14,6 @@ Item {
     }
 
     function backAction() {
-        //
+        return true
     }
 }

@@ -42,10 +42,10 @@ Loader {
 
             if (stackView.depth > 1) {
                 stackView.pop()
-                return false
+                return true
             }
 
-            return true
+            return false
         }
 
         ////////
@@ -145,56 +145,56 @@ Loader {
                         title: "Colors"
                         text: "Predefined colors."
                         icon: "qrc:/IconLibrary/material-icons/duotone/style.svg"
-                        page: "PageColors.qml"
+                        page: "demo/PageColors.qml"
                     }
 
                     ListElement {
                         title: "Buttons"
                         text: "So many buttons..."
                         icon: "qrc:/IconLibrary/material-icons/duotone/touch_app.svg"
-                        page: "PageButtons.qml"
+                        page: "demo/PageButtons.qml"
                     }
 
                     ListElement {
                         title: "Selectors"
                         text: "Single choice selectors."
                         icon: "qrc:/IconLibrary/material-symbols/link.svg"
-                        page: "PageSelectors.qml"
+                        page: "demo/PageSelectors.qml"
                     }
 
                     ListElement {
                         title: "Dialogs & pickers"
                         text: "Various dialog popups and datetime pickers."
                         icon: "qrc:/IconLibrary/material-icons/duotone/date_range.svg"
-                        page: "PageDialogs.qml"
+                        page: "demo/PageDialogs.qml"
                     }
 
                     ListElement {
                         title: "Indicators"
                         text: "Usually used to indicate."
                         icon: "qrc:/IconLibrary/material-icons/duotone/speed.svg"
-                        page: "PageIndicators.qml"
+                        page: "demo/PageIndicators.qml"
                     }
 
                     ListElement {
                         title: "Sliders"
                         text: "We like sliders. Sliders are cools."
                         icon: "qrc:/IconLibrary/material-symbols/sort.svg"
-                        page: "PageSliders.qml"
+                        page: "demo/PageSliders.qml"
                     }
 
                     ListElement {
                         title: "Text fields"
                         text: "Various text inputs."
                         icon: "qrc:/IconLibrary/material-icons/duotone/edit.svg"
-                        page: "PageTextFields.qml"
+                        page: "demo/PageTextFields.qml"
                     }
 
                     ListElement {
                         title: "Tickers"
                         text: "Checkboxes, radiobuttons and others."
                         icon: "qrc:/IconLibrary/material-symbols/flaky.svg"
-                        page: "PageTickers.qml"
+                        page: "demo/PageTickers.qml"
                     }
                 }
 

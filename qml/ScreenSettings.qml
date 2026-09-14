@@ -13,12 +13,14 @@ Loader {
         screenSettings.active = true
 
         // change screen
-        appContent.state = "Settings"
+        appContent.state = "ScreenSettings"
     }
 
     function backAction() {
         if (screenSettings.status === Loader.Ready)
-            screenSettings.item.backAction()
+            return screenSettings.item.backAction()
+
+        return false
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -32,36 +34,43 @@ Loader {
         contentWidth: -1
         contentHeight: contentColumn.height
 
-        boundsBehavior: isDesktop ? Flickable.OvershootBounds : Flickable.DragAndOvershootBounds
+        boundsBehavior: Theme.isDesktop ? Flickable.OvershootBounds : Flickable.DragAndOvershootBounds
         ScrollBar.vertical: ScrollBar { visible: false }
 
         ////////
 
         function backAction() {
-            if (isDesktop) screenDesktopComponents.loadScreen()
-            else if (isMobile) screenMobileComponents.loadScreen()
+            return false
         }
 
         ////////
 
         Column {
             id: contentColumn
+
             anchors.left: parent.left
+            anchors.leftMargin: Theme.isPhone ? 0 : parent.width*0.125
             anchors.right: parent.right
+            anchors.rightMargin: Theme.isPhone ? 0 : parent.width*0.125
 
-            topPadding: 16
-            bottomPadding: 16
-            spacing: 8
+            topPadding: Theme.componentMarginXL
+            bottomPadding: Theme.componentMarginXL
+            spacing: Theme.isPhone ? Theme.componentMarginXS : Theme.componentMarginXL
 
-            property int padIcon: singleColumn ? Theme.componentMarginL : Theme.componentMarginL
+            property int padIcon: Theme.singleColumn ? Theme.componentMarginL : Theme.componentMarginL
             property int padText: appHeader.headerPosition
 
             ////////////////
 
-            //ListTitle {
-            //    text: qsTr("Application")
-            //    source: "qrc:/IconLibrary/material-symbols/settings.svg"
-            //}
+            SectionHeader {
+                anchors.left: parent.left
+                anchors.leftMargin: 0
+                anchors.right: parent.right
+                anchors.rightMargin: 0
+
+                text: qsTr("Application")
+                source: "qrc:/IconLibrary/material-symbols/settings.svg"
+            }
 
             ////////////////
 
@@ -104,7 +113,7 @@ Loader {
                     spacing: Theme.componentMargin
 
                     Rectangle { // theme mobile light
-                        width: wideWideMode ? 80 : 32
+                        width: Theme.wideWideMode ? 80 : 32
                         height: 32
                         anchors.verticalCenter: parent.verticalCenter
 
@@ -115,7 +124,7 @@ Loader {
 
                         Text {
                             anchors.centerIn: parent
-                            visible: wideWideMode
+                            visible: Theme.wideWideMode
                             text: qsTr("light")
                             color: "#313236"
                             font.bold: true
@@ -127,7 +136,7 @@ Loader {
                         }
                     }
                     Rectangle { // theme mobile dark
-                        width: wideWideMode ? 80 : 32
+                        width: Theme.wideWideMode ? 80 : 32
                         height: 32
                         anchors.verticalCenter: parent.verticalCenter
 
@@ -138,7 +147,7 @@ Loader {
 
                         Text {
                             anchors.centerIn: parent
-                            visible: wideWideMode
+                            visible: Theme.wideWideMode
                             text: qsTr("dark")
                             color: "#dddddd"
                             font.bold: true
@@ -159,7 +168,7 @@ Loader {
                 anchors.right: parent.right
                 height: Theme.componentHeightXL
 
-                visible: isMobile
+                //visible: isMobile
 
                 IconSvg {
                     anchors.left: parent.left
@@ -352,7 +361,7 @@ Loader {
 
                 ComboBoxThemed {
                     id: combobox_language
-                    width: wideMode ? 256 : 160
+                    width: Theme.wideMode ? 256 : 160
                     anchors.right: parent.right
                     anchors.rightMargin: Theme.componentMargin
                     anchors.verticalCenter: parent.verticalCenter
@@ -393,9 +402,19 @@ Loader {
                 }
             }
 
-            ListSeparator { }
+            ////////////////
 
-            ////////
+            SectionHeader {
+                anchors.left: parent.left
+                anchors.leftMargin: 0
+                anchors.right: parent.right
+                anchors.rightMargin: 0
+
+                text: qsTr("Test settings")
+                source: "qrc:/IconLibrary/material-symbols/settings.svg"
+            }
+
+            ////////////////
 
             Item {
                 anchors.left: parent.left

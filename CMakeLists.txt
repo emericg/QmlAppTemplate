@@ -84,22 +84,25 @@ qt_add_qml_module(${PROJECT_NAME}
         qml/ScreenSettings.qml
         qml/ScreenAbout.qml
 
+        qml/components/AboutHeader.qml
+        qml/components/SectionHeader.qml
+
+        qml/demo/PageButtons.qml
+        qml/demo/PageColors.qml
+        qml/demo/PageDateTime.qml
+        qml/demo/PageDialogs.qml
+        qml/demo/PageIndicators.qml
+        qml/demo/PageSelectors.qml
+        qml/demo/PageSliders.qml
+        qml/demo/PageTextFields.qml
+        qml/demo/PageTickers.qml
+
         qml/editor/EditorPanel.qml
         qml/editor/EditorElementBool.qml
         qml/editor/EditorElementColor.qml
         qml/editor/EditorElementFont.qml
         qml/editor/EditorElementSpinBox.qml
         qml/editor/EditorElementString.qml
-
-        qml/PageButtons.qml
-        qml/PageColors.qml
-        qml/PageDateTime.qml
-        qml/PageDialogs.qml
-        qml/PageIndicators.qml
-        qml/PageSelectors.qml
-        qml/PageSliders.qml
-        qml/PageTextFields.qml
-        qml/PageTickers.qml
 
         qml/popups/PopupMessage.qml
         qml/popups/PopupChoice.qml

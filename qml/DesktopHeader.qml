@@ -193,7 +193,7 @@ Rectangle {
                 colorHighlight: Theme.colorHeaderHighlight
                 highlightMode: "background"
 
-                highlighted: (appContent.state === "Settings")
+                highlighted: (appContent.state === "ScreenSettings")
                 source: "qrc:/IconLibrary/material-icons/duotone/tune.svg"
                 onClicked: menuSettingsClicked()
             }
@@ -205,7 +205,7 @@ Rectangle {
                 colorHighlight: Theme.colorHeaderHighlight
                 highlightMode: "background"
 
-                highlighted: (appContent.state === "About")
+                highlighted: (appContent.state === "ScreenAbout")
                 source: "qrc:/IconLibrary/material-icons/duotone/info.svg"
                 onClicked: menuAboutClicked()
             }

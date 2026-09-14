@@ -84,7 +84,7 @@ Rectangle {
         DesktopSidebarMenu {
             text: qsTr("Settings")
             source: "qrc:/IconLibrary/material-icons/duotone/tune.svg"
-            checked: (appContent.state === "Settings")
+            checked: (appContent.state === "ScreenSettings")
 
             onClicked: screenSettings.loadScreen()
         }
@@ -92,7 +92,7 @@ Rectangle {
         DesktopSidebarMenu {
             text: qsTr("About")
             source: "qrc:/IconLibrary/material-icons/duotone/info.svg"
-            checked: (appContent.state === "About")
+            checked: (appContent.state === "ScreenAbout")
 
             onClicked: screenAbout.loadScreen()
         }

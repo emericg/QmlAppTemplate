@@ -18,7 +18,9 @@ Loader {
 
     function backAction() {
         if (screenDesktopComponents.status === Loader.Ready)
-            screenDesktopComponents.item.backAction()
+            return screenDesktopComponents.item.backAction()
+
+        return false
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -32,8 +34,7 @@ Loader {
         ////////
 
         function backAction() {
-            if (isDesktop) screenDesktopComponents.loadScreen()
-            else if (isMobile) screenMobileComponents.loadScreen()
+            return false
         }
 
         ////////
@@ -261,7 +262,7 @@ Loader {
             contentWidth: parent.width
             contentHeight: contentColumn.height
 
-            boundsBehavior: isDesktop ? Flickable.OvershootBounds : Flickable.DragAndOvershootBounds
+            boundsBehavior: Theme.isDesktop ? Flickable.OvershootBounds : Flickable.DragAndOvershootBounds
             ScrollBar.vertical: ScrollBarThemed { visible: isDesktop }
 
             Column {

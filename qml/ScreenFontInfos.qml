@@ -18,7 +18,7 @@ Loader {
 
     function backAction() {
         if (screenFontInfos.status === Loader.Ready)
-            screenFontInfos.item.backAction()
+            return screenFontInfos.item.backAction()
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -44,8 +44,7 @@ Loader {
         ////////
 
         function backAction() {
-            if (isDesktop) screenDesktopComponents.loadScreen()
-            else if (isMobile) screenMobileComponents.loadScreen()
+            return false
         }
 
         ////////

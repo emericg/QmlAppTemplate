@@ -22,7 +22,9 @@ Loader {
 
     function backAction() {
         if (screenHostInfos.status === Loader.Ready)
-            screenHostInfos.item.backAction()
+            return screenHostInfos.item.backAction()
+
+        return false
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -36,14 +38,13 @@ Loader {
         contentWidth: -1
         contentHeight: contentFlow.height
 
-        boundsBehavior: isDesktop ? Flickable.OvershootBounds : Flickable.DragAndOvershootBounds
+        boundsBehavior: Theme.isDesktop ? Flickable.OvershootBounds : Flickable.DragAndOvershootBounds
         ScrollBar.vertical: ScrollBar { visible: false }
 
         ////////
 
         function backAction() {
-            if (isDesktop) screenDesktopComponents.loadScreen()
-            else if (isMobile) screenMobileComponents.loadScreen()
+            return false
         }
 
         ////////

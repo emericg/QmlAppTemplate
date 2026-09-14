@@ -40,8 +40,10 @@ Window {
     Binding { target: Theme; property: "screenPaddingBottom";    value: MobileUI.safeAreaBottom }
 
     // Setup MobileUI
-    Binding { target: MobileUI; property: "statusbarColor";      value: Theme.colorStatusbar }
-    Binding { target: MobileUI; property: "navbarColor";         value: Theme.colorTabletmenu }
+    Binding { target: MobileUI; property: "statusbarColor";         value: "transparent" }
+    Binding { target: MobileUI; property: "statusbarContentColor";  value: Theme.colorStatusbar }
+    Binding { target: MobileUI; property: "navbarColor";            value: "transparent" }
+    Binding { target: MobileUI; property: "navbarContentColor";     value: Theme.colorTabletmenu }
 
     // Mobile stuff ////////////////////////////////////////////////////////////
 
@@ -120,6 +122,11 @@ Window {
     // User generated events handling //////////////////////////////////////////
 
     function backAction() {
+        var state = false
+
+        // backAction() calls will (sometime) return true if an action has been performed,
+        // so we know there is no need to go back the backAction() stack
+
         if (appContent.state === "MobileComponents") {
             if (screenMobileComponents.backAction()) {
                 if (mobileExit.enabled) {
@@ -131,18 +138,17 @@ Window {
                     MobileUI.backToHomeScreen()
                 }
             }
-        } else if (appContent.state === "Playground") {
-            screenPlayground.backAction()
-        } else if (appContent.state === "HostInfos") {
-            screenHostInfos.backAction()
-        } else if (appContent.state === "FontInfos") {
-            screenFontInfos.backAction()
-        } else if (appContent.state === "Settings") {
-            screenSettings.backAction()
-        } else if (appContent.state === "About") {
-            screenAbout.backAction()
-        } else if (appContent.state === "AboutPermissions") {
-            screenAbout.loadScreen()
+        }
+        else if (appContent.state === "Playground") state = screenPlayground.backAction()
+        else if (appContent.state === "HostInfos") state = screenHostInfos.backAction()
+        else if (appContent.state === "FontInfos") state = screenFontInfos.backAction()
+        else if (appContent.state === "ScreenSettings") state = screenSettings.backAction()
+        else if (appContent.state === "ScreenAbout") state = screenAbout.backAction()
+        else if (appContent.state === "ScreenAboutPermissions") state = screenAboutPermissions.backAction()
+
+        if (state === false) { // generic action
+            if (Theme.isDesktop) screenDesktopComponents.loadScreen()
+            else screenMobileComponents.loadScreen()
         }
     }
 
@@ -151,8 +157,6 @@ Window {
     }
 
     // UI sizes ////////////////////////////////////////////////////////////////
-
-    property bool headerUnicolor: (Theme.colorHeader === Theme.colorBackground)
 
     property bool singleColumn: {
         if (isMobile) {
@@ -166,9 +170,6 @@ Window {
             return (appWindow.width < appWindow.height)
         }
     }
-
-    property bool wideMode: (isDesktop && width >= 560) || (isTablet && width >= 480)
-    property bool wideWideMode: (width >= 640)
 
     // QML /////////////////////////////////////////////////////////////////////
 
@@ -265,7 +266,7 @@ Window {
                 PropertyChanges { target: screenAboutPermissions; visible: false; enabled: false; }
             },
             State {
-                name: "Settings"
+                name: "ScreenSettings"
                 PropertyChanges { target: appHeader; headerTitle: qsTr("Settings"); }
                 PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
                 PropertyChanges { target: screenPlayground; visible: false; enabled: false; }
@@ -276,7 +277,7 @@ Window {
                 PropertyChanges { target: screenAboutPermissions; visible: false; enabled: false; }
             },
             State {
-                name: "About"
+                name: "ScreenAbout"
                 PropertyChanges { target: appHeader; headerTitle: qsTr("About"); }
                 PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
                 PropertyChanges { target: screenPlayground; visible: false; enabled: false; }
@@ -287,7 +288,7 @@ Window {
                 PropertyChanges { target: screenAboutPermissions; visible: false; enabled: false; }
             },
             State {
-                name: "AboutPermissions"
+                name: "ScreenAboutPermissions"
                 PropertyChanges { target: appHeader; headerTitle: qsTr("Permissions"); }
                 PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
                 PropertyChanges { target: screenPlayground; visible: false; enabled: false; }

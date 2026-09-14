@@ -18,7 +18,9 @@ Loader {
 
     function backAction() {
         if (screenPlayground.status === Loader.Ready)
-            screenPlayground.item.backAction()
+            return screenPlayground.item.backAction()
+
+        return false
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -33,8 +35,7 @@ Loader {
         ////////
 
         function backAction() {
-            if (isDesktop) screenDesktopComponents.loadScreen()
-            else if (isMobile) screenMobileComponents.loadScreen()
+            return false
         }
 
         ////////

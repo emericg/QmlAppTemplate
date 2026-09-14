@@ -13,12 +13,14 @@ Loader {
         screenAbout.active = true
 
         // change screen
-        appContent.state = "About"
+        appContent.state = "ScreenAbout"
     }
 
     function backAction() {
         if (screenAbout.status === Loader.Ready)
-            screenAbout.item.backAction()
+            return screenAbout.item.backAction()
+
+        return false
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -32,14 +34,13 @@ Loader {
         contentWidth: -1
         contentHeight: contentColumn.height
 
-        boundsBehavior: isDesktop ? Flickable.OvershootBounds : Flickable.DragAndOvershootBounds
+        boundsBehavior: Theme.isDesktop ? Flickable.OvershootBounds : Flickable.DragAndOvershootBounds
         ScrollBar.vertical: ScrollBar { visible: false }
 
         ////////
 
         function backAction() {
-            if (isDesktop) screenDesktopComponents.loadScreen()
-            else if (isMobile) screenMobileComponents.loadScreen()
+            return false
         }
 
         ////////
@@ -48,7 +49,13 @@ Loader {
             id: contentColumn
 
             anchors.left: parent.left
+            anchors.leftMargin: Theme.isPhone ? 0 : parent.width*0.125
             anchors.right: parent.right
+            anchors.rightMargin: Theme.isPhone ? 0 : parent.width*0.125
+
+            topPadding: Theme.componentMarginXL
+            bottomPadding: Theme.componentMarginXL
+            spacing: Theme.componentMarginXS
 
             ////////////////
 
@@ -101,7 +108,7 @@ Loader {
                     anchors.rightMargin: screenPaddingRight + Theme.componentMargin
                     anchors.verticalCenter: parent.verticalCenter
 
-                    visible: wideWideMode
+                    visible: Theme.wideWideMode
                     spacing: Theme.componentMargin
 
                     ButtonSolid {
@@ -153,7 +160,7 @@ Loader {
                 anchors.right: parent.right
                 anchors.rightMargin: screenPaddingRight + Theme.componentMargin
 
-                visible: !wideWideMode
+                visible: !Theme.wideWideMode
                 spacing: Theme.componentMargin
 
                 ButtonSolid {

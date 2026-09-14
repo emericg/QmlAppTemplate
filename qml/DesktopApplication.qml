@@ -30,20 +30,20 @@ ApplicationWindow {
 
     // Desktop stuff ///////////////////////////////////////////////////////////
 
-    minimumWidth: 800
-    minimumHeight: 560
+    minimumWidth: 1024
+    minimumHeight: 640
 
     width: {
         if (SettingsManager.initialSize.width > 0)
             return SettingsManager.initialSize.width
         else
-            return isHdpi ? 800 : 1280
+            return isHdpi ? 1280 : 1440
     }
     height: {
         if (SettingsManager.initialSize.height > 0)
             return SettingsManager.initialSize.height
         else
-            return isHdpi ? 560 : 720
+            return isHdpi ? 720 : 920
     }
     x: SettingsManager.initialPosition.width
     y: SettingsManager.initialPosition.height
@@ -114,13 +114,22 @@ ApplicationWindow {
     // User generated events handling //////////////////////////////////////////
 
     function backAction() {
+        var state = false
+
         // backAction() calls will (sometime) return true if an action has been performed,
         // so we know there is no need to go back the backAction() stack
 
-        if (appContent.state === "MobileComponents") {
-            screenMobileComponents.backAction()
-        } else {
-            screenDesktopComponents.loadScreen()
+        if (appContent.state === "DesktopComponents") state = screenDesktopComponents.backAction()
+        if (appContent.state === "MobileComponents") state = screenMobileComponents.backAction()
+        if (appContent.state === "Playground") state = screenPlayground.backAction()
+        if (appContent.state === "HostInfos") state = screenHostInfos.backAction()
+        if (appContent.state === "FontInfos") state = screenFontInfos.backAction()
+        if (appContent.state === "ScreenSettings") state = screenSettings.backAction()
+        if (appContent.state === "ScreenAbout") state = screenAbout.backAction()
+
+        if (state === false) { // generic action
+            if (Theme.isDesktop) screenDesktopComponents.loadScreen()
+            else screenMobileComponents.loadScreen()
         }
     }
 
@@ -138,11 +147,9 @@ ApplicationWindow {
 
     function cleanExit() {
         if (Qt.platform.os === "osx") {
-            // quit the app, it will still disconnect the devices (without the exit popup)
-            Qt.quit()
+            Qt.quit() // exit the app explicitely
         } else {
-            // close the window, it will quit the app (with the exit popup)
-            appWindow.close()
+            appWindow.close() // close the window
         }
     }
 
@@ -204,9 +211,6 @@ ApplicationWindow {
             return (appWindow.width < appWindow.height)
         }
     }
-
-    property bool wideMode: (isDesktop && width >= 560) || (isTablet && width >= 480)
-    property bool wideWideMode: (width >= 640)
 
     // Menubar /////////////////////////////////////////////////////////////////
 /*
@@ -383,7 +387,7 @@ ApplicationWindow {
                 PropertyChanges { target: screenAbout; visible: false; enabled: false; }
             },
             State {
-                name: "Settings"
+                name: "ScreenSettings"
                 PropertyChanges { target: screenMainView; visible: false; enabled: false; }
                 PropertyChanges { target: screenDesktopComponents; visible: false; enabled: false; }
                 PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
@@ -394,7 +398,7 @@ ApplicationWindow {
                 PropertyChanges { target: screenAbout; visible: false; enabled: false; }
             },
             State {
-                name: "About"
+                name: "ScreenAbout"
                 PropertyChanges { target: screenMainView; visible: false; enabled: false; }
                 PropertyChanges { target: screenDesktopComponents; visible: false; enabled: false; }
                 PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }

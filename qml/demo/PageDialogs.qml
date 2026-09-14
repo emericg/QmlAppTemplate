@@ -8,7 +8,7 @@ Flickable {
     contentWidth: -1
     contentHeight: contentColumn.height
 
-    boundsBehavior: isDesktop ? Flickable.OvershootBounds : Flickable.DragAndOvershootBounds
+    boundsBehavior: Theme.isDesktop ? Flickable.OvershootBounds : Flickable.DragAndOvershootBounds
     ScrollBar.vertical: ScrollBar { visible: false }
 
     property var savethedate: new Date()
@@ -85,12 +85,49 @@ Flickable {
             onClicked: popupManyChoice.open()
         }
 
+        ButtonSolid {
+            anchors.left: parent.left
+            anchors.leftMargin: Theme.componentMarginXL
+            anchors.right: parent.right
+            anchors.rightMargin: Theme.componentMarginXL
+
+            text: "Dialog (themed)"
+            source: "qrc:/IconLibrary/material-icons/duotone/touch_app.svg"
+
+            DialogThemed {
+                id: dialogThemed
+                title: qsTr("Are you sure you want to delete data for this sensor?")
+                text: qsTr("You can either delete data from the application, or from both the sensor and application.")
+                standardButtons: Dialog.Discard | Dialog.Save | Dialog.Cancel
+            }
+
+            onClicked: dialogThemed.open()
+        }
+
         ListTitle { ////////////////////////////////////////////////////////////
             anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Color pickers")
             source: ""
+        }
+
+        ButtonSolid {
+            anchors.left: parent.left
+            anchors.leftMargin: Theme.componentMarginXL
+            anchors.right: parent.right
+            anchors.rightMargin: Theme.componentMarginXL
+
+            text: "Colors"
+            source: "qrc:/IconLibrary/material-icons/duotone/style.svg"
+
+            PopupColors {
+                id: popupColors
+                onUpdateColor: (newColor) => { }
+            }
+            onClicked: {
+                popupColors.openColor(Theme.colorPrimary)
+            }
         }
 
         ButtonSolid {
