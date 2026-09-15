@@ -80,7 +80,7 @@ jobs:
 
       # Android environment
       - name: Setup Android environment
-        uses: android-actions/setup-android@v3
+        uses: android-actions/setup-android@v4
       - name: Install Android SDK / NDK / tools
         run: |
              sdkmanager "platforms;android-36"
