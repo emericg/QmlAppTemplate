@@ -154,7 +154,7 @@ Popup {
             anchors.right: parent.right
             height: Theme.componentBorderWidth
             visible: Theme.singleColumn
-            color: Qt.darker(Theme.colorPrimary, 1.02)
+            color: Qt.darker(Theme.colorPrimary, 1.05)
         }
 
         layer.enabled: !Theme.singleColumn

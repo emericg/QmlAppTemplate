@@ -49,9 +49,9 @@ Loader {
             id: contentColumn
 
             anchors.left: parent.left
-            anchors.leftMargin: Theme.isPhone ? 0 : parent.width*0.125
+            anchors.leftMargin: Theme.singleColumn ? 0 : parent.width*0.125
             anchors.right: parent.right
-            anchors.rightMargin: Theme.isPhone ? 0 : parent.width*0.125
+            anchors.rightMargin: Theme.singleColumn ? 0 : parent.width*0.125
 
             topPadding: Theme.componentMarginXL
             bottomPadding: Theme.componentMarginXL

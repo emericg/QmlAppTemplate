@@ -49,9 +49,9 @@ Loader {
             id: contentColumn
 
             anchors.left: parent.left
-            anchors.leftMargin: Theme.isPhone ? 0 : parent.width*0.125
+            anchors.leftMargin: Theme.singleColumn ? 0 : parent.width*0.125
             anchors.right: parent.right
-            anchors.rightMargin: Theme.isPhone ? 0 : parent.width*0.125
+            anchors.rightMargin: Theme.singleColumn ? 0 : parent.width*0.125
 
             topPadding: Theme.componentMarginXL
             bottomPadding: Theme.componentMarginXL
@@ -59,13 +59,34 @@ Loader {
 
             ////////////////
 
-            Rectangle { // header area
+            AboutHeader { // header area (desktop)
+                anchors.left: parent.left
+                anchors.leftMargin: -screenPaddingLeft
+                anchors.right: parent.right
+                anchors.rightMargin: -screenPaddingRight
+
+                visible: !Theme.isPhone
+
+                description: qsTr("A Qt6 / QML application template, with a full set of visual controls, as well as build and deploy scripts and CI setups.")
+
+                btn_size: isPhone ? 150 : 160
+                link_web: "https://emeric.io/"
+                link_donate: "https://www.paypal.com/paypalme/EmericGrange"
+                link_support: "https://github.com/emericg/QmlAppTemplate/issues"
+                link_repository: "https://github.com/emericg/QmlAppTemplate"
+                src_repository: "qrc:/assets/logos/github.svg"
+            }
+
+            ////////////////
+
+            Rectangle { // header area (phone)
                 anchors.left: parent.left
                 anchors.leftMargin: -screenPaddingLeft
                 anchors.right: parent.right
                 anchors.rightMargin: -screenPaddingRight
 
                 height: 96
+                visible: Theme.isPhone
                 color: Theme.colorForeground
 
                 Row {
@@ -151,7 +172,7 @@ Loader {
             }
 
             ////////////////
-
+/*
             Row { // buttons row
                 height: 72
 
@@ -183,6 +204,10 @@ Loader {
                     onClicked: Qt.openUrlExternally("https://github.com/emericg/QmlAppTemplate/issues")
                 }
             }
+*/
+            ////////////////
+
+            Item { width: 16; height: 16; } // spacer
 
             ////////////////
 

@@ -41,8 +41,8 @@ T.RangeSlider {
     background: Rectangle {
         x: control.leftPadding + (control.horizontal ? 0 : (control.availableWidth - width) / 2)
         y: control.topPadding + (control.horizontal ? (control.availableHeight - height) / 2 : 0)
-        implicitWidth: control.horizontal ? 200 : 4
-        implicitHeight: control.horizontal ? 4 : 200
+        implicitWidth: control.horizontal ? 200 : 6
+        implicitHeight: control.horizontal ? 6 : 200
         width: control.horizontal ? control.availableWidth : implicitWidth
         height: control.horizontal ? implicitHeight : control.availableHeight
 

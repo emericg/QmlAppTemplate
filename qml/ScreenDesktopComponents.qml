@@ -79,6 +79,13 @@ Loader {
                         color: Theme.colorActionbarContent
                         verticalAlignment: Text.AlignVCenter
                     }
+
+                    ButtonSolid {
+                        text: "Colors"
+                        source: "qrc:/IconLibrary/material-icons/duotone/style.svg"
+                        PopupColors { id: popupColors }
+                        onClicked: { popupColors.openColor(Theme.colorPrimary) }
+                    }
                 }
 
                 Row { // middle
@@ -1078,8 +1085,8 @@ Loader {
 
                         ProgressChip {
                             text: "ProgressChip"
-                        leftIcon: "qrc:/IconLibrary/material-symbols/supervised_user_circle.svg"
-                        progress: progressChipSlider.value
+                            leftIcon: "qrc:/IconLibrary/material-symbols/supervised_user_circle.svg"
+                            progress: progressChipSlider.value
                         }
                         SliderThemed {
                             id: progressChipSlider

@@ -10,11 +10,11 @@ Popup {
 
     x: Theme.singleColumn ? 0 : (Theme.appWidth / 2) - (width / 2)
     y: Theme.singleColumn ? (Theme.appHeight - height)
-                    : ((Theme.appHeight / 2) - (height / 2))
+                          : ((Theme.appHeight / 2) - (height / 2))
 
     width: {
         if (Theme.singleColumn) return Theme.appWidth
-        if (isTablet && screenOrientation === Qt.LandscapeOrientation) return 512
+        if (Theme.isTablet && Theme.screenOrientation === Qt.LandscapeOrientation) return 512
         return 720
     }
     padding: 0
@@ -162,7 +162,7 @@ Popup {
             anchors.right: parent.right
             height: Theme.componentBorderWidth
             visible: Theme.singleColumn
-            color: Qt.darker(Theme.colorPrimary, 1.02)
+            color: Qt.darker(Theme.colorPrimary, 1.05)
         }
 
         layer.enabled: !Theme.singleColumn

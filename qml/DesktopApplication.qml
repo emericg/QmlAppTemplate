@@ -314,11 +314,19 @@ ApplicationWindow {
 
         // Initial state
         state: "MainView"
-
+/*
         onStateChanged: {
-            //
-        }
+            // Reflect the active screen as a checkmark in the macOS View menu
+            if (state === "MainView") MenubarManager.setCurrentView(0)
+            else if (state === "DesktopComponents") MenubarManager.setCurrentView(1)
+            else if (state === "MobileComponents") MenubarManager.setCurrentView(2)
+            else if (state === "Playground" || state === "HostInfos" || state === "FontInfos") MenubarManager.setCurrentView(3)
 
+            else if (state === "ScreenSettings") MenubarManager.setCurrentView(4)
+            else if (state === "ScreenAbout") MenubarManager.setCurrentView(5)
+            else MenubarManager.setCurrentView(-1)
+        }
+*/
         states: [
             State {
                 name: "MainView"

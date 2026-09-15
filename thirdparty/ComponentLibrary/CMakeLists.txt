@@ -33,6 +33,7 @@ list(APPEND MODULE_QML_FILES
     qml/menus/ListTitle.qml
 
     qml/popups/PopupThemed.qml
+    qml/popups/DialogThemed.qml
 
     qml/buttons/ButtonDesktop.qml
     qml/buttons/ButtonOutline.qml

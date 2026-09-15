@@ -9,7 +9,7 @@ Popup {
 
     x: Theme.singleColumn ? 0 : (Theme.appWidth / 2) - (width / 2)
     y: Theme.singleColumn ? (Theme.appHeight - height)
-                    : ((Theme.appHeight / 2) - (height / 2))
+                          : ((Theme.appHeight / 2) - (height / 2))
 
     width: Theme.singleColumn ? Theme.appWidth : 720
     height: columnContent.height + padding*2 + Math.max(Theme.screenPaddingNavbar, Theme.screenPaddingBottom)
@@ -25,13 +25,14 @@ Popup {
     property string title: "Popup Title"
     property string text: "This is a generic message, empty of any kind of meaning."
 
-    property string buttonClose: qsTr("Cancel")
-    property string buttonSecondary
-    property string buttonPrimary: qsTr("Confirm")
+    property string buttonClose: "Close"
+    property string buttonCancel: "Cancel"
+    property string buttonPrimary: "OK"
+    property string buttonSecondary: "Maybe"
 
-    signal confirmed()
-    signal confirmedPrimary()
-    signal confirmedSecondary()
+    signal rejected()
+    signal accepted()
+    signal acceptedSecondary()
 
     ////////////////////////////////////////////////////////////////////////////
 
@@ -131,7 +132,7 @@ Popup {
                     visible: popupChoice.buttonSecondary
                     text: popupChoice.buttonSecondary
                     onClicked: {
-                        popupChoice.confirmedSecondary()
+                        popupChoice.acceptedSecondary()
                         popupChoice.close()
                     }
                 }
@@ -142,8 +143,7 @@ Popup {
 
                     text: popupChoice.buttonPrimary
                     onClicked: {
-                        popupChoice.confirmedPrimary()
-                        popupChoice.confirmed()
+                        popupChoice.accepted()
                         popupChoice.close()
                     }
                 }

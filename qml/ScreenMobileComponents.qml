@@ -128,8 +128,14 @@ Loader {
 
         StackView {
             id: stackView
-            anchors.fill: parent
+
+            anchors.top: parent.top
             anchors.topMargin: stackViewHeader.active ? stackViewHeader.height : 0
+            anchors.left: parent.left
+            anchors.leftMargin: Theme.singleColumn ? 0 : parent.width*0.125
+            anchors.right: parent.right
+            anchors.rightMargin: Theme.singleColumn ? 0 : parent.width*0.125
+            anchors.bottom: parent.bottom
 
             initialItem: mainView
         }
