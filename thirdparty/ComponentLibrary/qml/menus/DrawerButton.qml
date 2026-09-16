@@ -19,8 +19,8 @@ T.ItemDelegate {
     property int sourceRotation: 0
     property color sourceColor: Theme.colorIcon
 
-    //property string text
-    property int textSize: 13
+    property int textSize: Theme.fontSizeContentSmall
+    property bool textBold: true
     property color textColor: Theme.colorText
 
     property bool iconAnimated: false
@@ -59,6 +59,7 @@ T.ItemDelegate {
         anchors.rightMargin: Theme.screenPaddingRight + Theme.componentMargin / 2
 
         opacity: control.enabled ? 1 : 0.66
+        spacing: Theme.componentMargin
 
         Item {
             Layout.preferredWidth: Theme.componentHeightL - Theme.componentMargin
@@ -103,9 +104,9 @@ T.ItemDelegate {
 
             text: control.text
             color: control.textColor
-            wrapMode: Text.WordWrap
-            font.bold: true
+            font.bold: control.textBold
             font.pixelSize: control.textSize
+            wrapMode: Text.WordWrap
         }
     }
 

@@ -53,8 +53,8 @@ T.Slider {
             readonly property real head: control.horizontal ? control.handle.x - control.leftPadding + control.handle.width / 2
                                                             : control.handle.y - control.topPadding + control.handle.height / 2
 
-            x: control.horizontal ? Math.min(center, head) : -1
-            y: control.horizontal ? -1 : Math.min(center, head)
+            x: control.horizontal ? Math.min(center, head) : 0
+            y: control.horizontal ? 0 : Math.min(center, head)
             width: control.horizontal ? Math.abs(center - head) : 6
             height: control.horizontal ? 6 : Math.abs(center - head)
 

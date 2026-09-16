@@ -51,7 +51,7 @@ Popup {
 
         ////
 
-        Rectangle { // top separator (singleColumn)
+        Rectangle { // top separator (single column)
             anchors.left: parent.left
             anchors.right: parent.right
             height: Theme.componentBorderWidth

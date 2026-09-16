@@ -11,8 +11,6 @@ Item {
         // Generic mobile themes
         THEME_MOBILE_LIGHT,
         THEME_MOBILE_DARK,
-        THEME_MATERIAL_LIGHT,
-        THEME_MATERIAL_DARK,
 
         // Generic desktop themes
         THEME_DESKTOP_LIGHT,
@@ -114,17 +112,23 @@ Item {
 
     ////////////////////////////////////////////////////////////////////////////
 
-    // Base font size, inherited from the OS / desktop environment
+    // Base font size (in pixels), inherited from the OS / desktop environment
 
     readonly property real fontSizeOS: {
-        let osfont = Qt.application.font
         //console.log("Qt.application.font > " + osfont)
 
-        var fontsize = isMobile ? 14 : 13 // default values
+        // Set default values
+        var fontsize = isMobile ? 16 : 13
+
+        // Read os font size
+        let osfont = Qt.application.font
         if (osfont.pixelSize > 0) fontsize = osfont.pixelSize
         else if (osfont.pointSize > 0) fontsize = ((osfont.pointSize * screenDpiLogical) / 72.0)
 
-        if (fontsize < 11) fontsize = 11 // sanity check
+        // Sanity checks...
+        if (isMobile && fontsize < 15) fontsize = 15
+        else if (fontsize < 11) fontsize = 11
+
         return fontsize
     }
 
@@ -185,8 +189,8 @@ Item {
 
     // Fonts sizes (in pixel)
 
-    readonly property int fontSizeHeader: Math.round(fontSizeOS * (isMobile ? 1.40 : 1.65))
     readonly property int fontSizeTitle: Math.round(fontSizeOS * (isMobile ? 1.55 : 1.80))
+    readonly property int fontSizeHeader: Math.round(fontSizeOS * (isMobile ? 1.40 : 1.65))
     readonly property int fontSizeContentVeryVerySmall: Math.round(fontSizeOS - 6)
     readonly property int fontSizeContentVerySmall: Math.round(fontSizeOS - 4)
     readonly property int fontSizeContentSmall: Math.round(fontSizeOS - 2)
@@ -296,9 +300,6 @@ Item {
         if (name === "THEME_MOBILE_LIGHT") return Theme.THEME_MOBILE_LIGHT
         if (name === "THEME_MOBILE_DARK") return Theme.THEME_MOBILE_DARK
 
-        if (name === "THEME_MATERIAL_LIGHT") return Theme.THEME_MATERIAL_LIGHT
-        if (name === "THEME_MATERIAL_DARK") return Theme.THEME_MATERIAL_DARK
-
         if (name === "THEME_DESKTOP_LIGHT") return Theme.THEME_DESKTOP_LIGHT
         if (name === "THEME_DESKTOP_DARK") return Theme.THEME_DESKTOP_DARK
 
@@ -324,9 +325,6 @@ Item {
     function getThemeName(index) {
         if (index === Theme.THEME_MOBILE_LIGHT) return "THEME_MOBILE_LIGHT"
         if (index === Theme.THEME_MOBILE_DARK) return "THEME_MOBILE_DARK"
-
-        if (index === Theme.THEME_MATERIAL_LIGHT) return "THEME_MATERIAL_LIGHT"
-        if (index === Theme.THEME_MATERIAL_DARK) return "THEME_MATERIAL_DARK"
 
         if (index === Theme.THEME_DESKTOP_LIGHT) return "THEME_DESKTOP_LIGHT"
         if (index === Theme.THEME_DESKTOP_DARK) return "THEME_DESKTOP_DARK"
@@ -369,12 +367,13 @@ Item {
         }
 
         // Validate the result
-        if (themeIndex === Theme.THEME_DEFAULT) { // set the default
+        if (themeIndex <= Theme.THEME_DEFAULT || themeIndex >= Theme.THEME_LAST) {
+            // set the default
             if (isDesktop) themeIndex = Theme.THEME_DESKTOP_LIGHT
             else if (isMobile) themeIndex = Theme.THEME_MOBILE_LIGHT
         }
-        if (themeIndex <= 0 || themeIndex >= Theme.THEME_LAST) { // or exit
-            return
+        if (themeIndex <= 0 || themeIndex >= Theme.THEME_LAST) {
+            return // or exit
         }
 
         // Handle day/night themes
@@ -387,13 +386,10 @@ Item {
 
             if (needSwitch) {
 
-                // Simple light/dark toggle
+                // Simple light > dark toggle
 
                 if (themeIndex === Theme.THEME_MOBILE_LIGHT)
                     themeIndex = Theme.THEME_MOBILE_DARK
-
-                if (themeIndex === Theme.THEME_MATERIAL_LIGHT)
-                    themeIndex = Theme.THEME_MATERIAL_DARK
 
                 if (themeIndex === Theme.THEME_DESKTOP_LIGHT)
                     themeIndex = Theme.THEME_DESKTOP_DARK
@@ -410,22 +406,24 @@ Item {
                     themeIndex === Theme.THEME_PLAIN_AND_BORING)
                     themeIndex = Theme.THEME_DARK_AND_SPOOKY
 
+                if (themeIndex === Theme.THEME_ADWAITA ||
+                    themeIndex === Theme.THEME_MACOS ||
+                    themeIndex === Theme.THEME_WINDOWS)
+                    themeIndex = Theme.THEME_DESKTOP_DARK
+
                 // theme doesn't have a dark variant set? just don't change the theme...
 
             } else {
 
-                // Simple light/dark toggle
+                // Simple dark > light toggle
 
                 if (themeIndex === Theme.THEME_MOBILE_DARK)
                     themeIndex = Theme.THEME_MOBILE_LIGHT
 
-                if (themeIndex === Theme.THEME_MATERIAL_DARK)
-                    themeIndex = Theme.THEME_MATERIAL_LIGHT
-
                 if (themeIndex === Theme.THEME_DESKTOP_DARK)
                     themeIndex = Theme.THEME_DESKTOP_LIGHT
 
-                // that's it
+                // that's it // we don't handle complex cases
 
             }
         }
@@ -446,122 +444,10 @@ Item {
             isDark = false
 
             themeStatusbar = Theme.Light
-            colorStatusbar = "#eeeeee"
-
-            colorHeader                 = "#eeeeee"
-            colorHeaderContent          = "#ff7b36"
-            colorHeaderHighlight        = "white"
-
-            colorSidebar                = "#f2f2f2"
-            colorSidebarContent         = "#eaeaea"
-            colorSidebarHighlight       = "#c0c0c0"
-
-            colorActionbar              = colorGreen
-            colorActionbarContent       = "white"
-            colorActionbarHighlight     = "#00a27d"
-
-            colorTabletmenu             = "#f3f3f3"
-            colorTabletmenuContent      = "#9d9d9d"
-            colorTabletmenuHighlight    = colorMaterialDeepOrange // "#ff7b36"
-
-            colorBackground             = colorMaterialLightGrey
-            colorForeground             = "#f0f0f0"
-
-            colorPrimary                = colorMaterialDeepOrange // colorRed
-            colorSecondary              = colorMaterialOrange // "#ff7b36"
-            colorSuccess                = colorGreen
-            colorWarning                = colorOrange
-            colorError                  = colorRed
-
-            colorText                   = "#303030"
-            colorSubText                = "#666666"
-            colorIcon                   = "#303030"
-            colorSeparator              = "#ececec"
-            colorLowContrast            = "white"
-            colorHighContrast           = "#303030"
-
-            colorComponent              = "#f0f0f0"
-            colorComponentText          = "black"
-            colorComponentContent       = "black"
-            colorComponentBorder        = "#e0e0e0"
-            colorComponentDown          = "#e9e9e9"
-            colorComponentBackground    = "white"
-
-            componentRadius             = 6
-            componentBorderWidth        = 2
-
-        } else if (themeIndex === Theme.THEME_MOBILE_DARK) { ///////////////////
-
-            colorGreen  = "#58CF77"
-            colorBlue   = "#4dceeb"
-            colorYellow = "#fcc632"
-            colorOrange = "#ff7657"
-            colorRed    = "#e8635a"
-
-            isLight = false
-            isDark = true
-
-            themeStatusbar = Theme.Dark
-            colorStatusbar = "#292929"
-
-            colorHeader                 = "#292929"
-            colorHeaderContent          = "#ee8c21"
-            colorHeaderHighlight        = "#444"
-
-            colorSidebar                = "#333"
-            colorSidebarContent         = "#444"
-            colorSidebarHighlight       = "#666"
-
-            colorActionbar              = colorGreen
-            colorActionbarContent       = "white"
-            colorActionbarHighlight     = "#00a27d"
-
-            colorTabletmenu             = "#292929"
-            colorTabletmenuContent      = "#808080"
-            colorTabletmenuHighlight    = "#ff9f1a"
-
-            colorBackground             = "#313236"
-            colorForeground             = "#292929"
-
-            colorPrimary                = "#ff9f1a"
-            colorSecondary              = "#ffb81a"
-            colorSuccess                = colorGreen
-            colorWarning                = colorOrange
-            colorError                  = colorRed
-
-            colorText                   = "white"
-            colorSubText                = "#aaa"
-            colorIcon                   = "#ddd"
-            colorSeparator              = "#404040"
-            colorLowContrast            = "black"
-            colorHighContrast           = "white"
-
-            colorComponent              = "#666"
-            colorComponentText          = "#eee"
-            colorComponentContent       = "white"
-            colorComponentBorder        = "#666"
-            colorComponentDown          = "#444"
-            colorComponentBackground    = "#505050"
-
-            componentRadius             = 6
-            componentBorderWidth        = 2
-
-        } else if (themeIndex === Theme.THEME_MATERIAL_LIGHT) { ////////////////
-
-            colorGreen  = "#07bf97"
-            colorBlue   = "#4CA1D5"
-            colorYellow = "#ffba5a"
-            colorOrange = "#ff863a"
-            colorRed    = "#ff523a"
-
-            isLight = true
-            isDark = false
-
-            themeStatusbar = Theme.Light
             colorStatusbar = "white"
 
             colorHeader                 = "white"
-            colorHeaderContent          = "#1a73e8"
+            colorHeaderContent          = "#684be2"
             colorHeaderHighlight        = "white"
 
             colorSidebar                = "#fafafa"
@@ -572,15 +458,15 @@ Item {
             colorActionbarContent       = "white"
             colorActionbarHighlight     = "#00a27d"
 
-            colorTabletmenu             = "#f3f3f3"
+            colorTabletmenu             = "#f7f6f9"
             colorTabletmenuContent      = "#888"
             colorTabletmenuHighlight    = colorMaterialDeepOrange
 
             colorBackground             = "white"
-            colorForeground             = "#f9f9f9"
+            colorForeground             = "#f3f5f9"
 
-            colorPrimary                = "#1a73e8"
-            colorSecondary              = "#ff7b36"
+            colorPrimary                = "#684be2"
+            colorSecondary              = "#a08afa"
             colorSuccess                = colorGreen
             colorWarning                = colorOrange
             colorError                  = colorRed
@@ -602,7 +488,7 @@ Item {
             componentRadius             = 6
             componentBorderWidth        = 2
 
-        } else if (themeIndex === Theme.THEME_MATERIAL_DARK) { /////////////////
+        } else if (themeIndex === Theme.THEME_MOBILE_DARK) { ///////////////////
 
             colorGreen  = "#58CF77"
             colorBlue   = "#4dceeb"
@@ -689,11 +575,14 @@ Item {
             colorTabletmenuContent      = "#9d9d9d"
             colorTabletmenuHighlight    = "#cfcbcb"
 
-            colorBackground             = "#f9f8f7"
-            colorForeground             = "#fcfcfc"
+            colorBackground             = "#fcfbfa"
+            colorForeground             = "#f5f4f3"
 
-            colorPrimary                = "#ffc900"
+            colorPrimary                = "#7b74cf" // purple
             colorSecondary              = "#ffeb00"
+            //colorPrimary                = "#ffc900" // yellow
+            //colorSecondary              = "#ffeb00"
+
             colorSuccess                = colorGreen
             colorWarning                = colorOrange
             colorError                  = colorRed
@@ -705,10 +594,10 @@ Item {
             colorLowContrast            = "white"
             colorHighContrast           = "#303030"
 
-            colorComponent              = "#ebebeb"
+            colorComponent              = "#eaeaea"
             colorComponentText          = "black"
             colorComponentContent       = "black"
-            colorComponentBorder        = "#ebebeb"
+            colorComponentBorder        = "#ddd"
             colorComponentDown          = "#dadada"
             colorComponentBackground    = "#fcfcfc"
 
@@ -742,11 +631,11 @@ Item {
             themeStatusbar              = Theme.Dark
             colorStatusbar              = "#b16bee"
 
-            colorHeader                 = "#b16bee"
+            colorHeader                 = "#252024"
             colorHeaderContent          = "white"
             colorHeaderHighlight        = "#725595"
 
-            colorSidebar                = "#373949"
+            colorSidebar                = "#252024"
             colorSidebarContent         = "#494a5a"
             colorSidebarHighlight       = "#1f254a"
 
@@ -758,8 +647,8 @@ Item {
             colorTabletmenuContent      = "#808080"
             colorTabletmenuHighlight    = "#bb86fc"
 
-            colorBackground             = "#282a39"
-            colorForeground             = "#373949"
+            colorBackground             = "#2e2a2e"
+            colorForeground             = "#333"
 
             colorPrimary                = "#bb86fc"
             colorSecondary              = "#b16bee"
@@ -770,16 +659,16 @@ Item {
             colorText                   = "#eee"
             colorSubText                = "#999"
             colorIcon                   = "#eee"
-            colorSeparator              = "#1d1e27"
+            colorSeparator              = "#444"
             colorLowContrast            = "#111"
             colorHighContrast           = "white"
 
-            colorComponent              = "#53535c"
+            colorComponent              = "#757575"
             colorComponentText          = "#eee"
             colorComponentContent       = "white"
-            colorComponentBorder        = "#717181"
-            colorComponentDown          = "#46464f"
-            colorComponentBackground    = "#363746"
+            colorComponentBorder        = "#777"
+            colorComponentDown          = "#595959"
+            colorComponentBackground    = "#393939"
 
             componentRadius             = 6
             componentBorderWidth        = 2
@@ -1115,10 +1004,10 @@ Item {
             colorTabletmenuContent      = "#9d9d9d"
             colorTabletmenuHighlight    = "#0079fe"
 
-            colorBackground             = "#F4F4F4"
-            colorForeground             = "#E9E9E9"
+            colorBackground             = "#F8F8F8"
+            colorForeground             = "#E8E8E8"
 
-            colorPrimary                = "#FFCA28"
+            colorPrimary                = "#f9c700"
             colorSecondary              = "#FFDD28"
             colorSuccess                = "#8CD200"
             colorWarning                = "#FFAC00"
@@ -1127,18 +1016,18 @@ Item {
             colorText                   = "#222"
             colorSubText                = "#555"
             colorIcon                   = "#333"
-            colorSeparator              = "#E4E4E4"
+            colorSeparator              = "#ececec"
             colorLowContrast            = "white"
             colorHighContrast           = "#303030"
 
-            colorComponent              = "#EAEAEA"
+            colorComponent              = "#ededed"
             colorComponentText          = "black"
             colorComponentContent       = "black"
-            colorComponentBorder        = "#DDD"
+            colorComponentBorder        = "#e0e0e0"
             colorComponentDown          = "#E6E6E6"
             colorComponentBackground    = "#FAFAFA"
 
-            componentRadius             = 6
+            componentRadius             = 4
             componentBorderWidth        = 2
 
             // (app)
@@ -1171,8 +1060,11 @@ Item {
             colorBackground             = "#3F3F3F"
             colorForeground             = "#555555"
 
-            colorPrimary                = "#FF9F1A" // indigo: "#6C5ECD"
-            colorSecondary              = "#FFB81A" // indigo2: "#9388E5"
+            colorPrimary                = "#FF9F1A" // pumpkin
+            colorSecondary              = "#FFB81A"
+            //colorPrimary                = "#6C5ECD" // indigo
+            //colorSecondary              = "#9388E5"
+
             colorSuccess                = colorMaterialLightGreen
             colorWarning                = "#FE8F2D"
             colorError                  = "#D33E39"
@@ -1209,7 +1101,7 @@ Item {
             colorHeaderContent          = "#444"
             colorHeaderHighlight        = Qt.darker(colorHeader, 1.08)
 
-            colorSidebar                = "#f6f6f6"
+            colorSidebar                = "#f4f4f4"
             colorSidebarContent         = "#e9e9e9"
             colorSidebarHighlight       = "#c0c0c0"
 
@@ -1224,7 +1116,7 @@ Item {
             colorBackground             = "#fefefe"
             colorForeground             = "#f6f6f6"
 
-            colorPrimary                = "#ffca28"
+            colorPrimary                = "#2d8eff"
             colorSecondary              = "#ffdb28"
             colorSuccess                = colorMaterialLightGreen
             colorWarning                = "#ffac00"
@@ -1240,7 +1132,7 @@ Item {
             colorComponent              = "#f5f5f5"
             colorComponentText          = "black"
             colorComponentContent       = "black"
-            colorComponentBorder        = "#ddd"
+            colorComponentBorder        = "#edeef1"
             colorComponentDown          = "#eee"
             colorComponentBackground    = "#f8f8f8"
 
@@ -1375,7 +1267,7 @@ Item {
             colorHeaderContent          = "#444"
             colorHeaderHighlight        = "#e2e1df"
 
-            colorSidebar                = "#f2f2f4"
+            colorSidebar                = "#ebebed"
             colorSidebarContent         = "#f2f2f4"
             colorSidebarHighlight       = "#dfdfe1"
 
@@ -1388,7 +1280,7 @@ Item {
             colorTabletmenuHighlight    = "#cfcbcb"
 
             colorBackground             = "#ffffff"
-            colorForeground             = "#fafafb"
+            colorForeground             = "#f3f3f5"
 
             colorPrimary                = "#9141ac"
             colorSecondary              = "#c085d5"

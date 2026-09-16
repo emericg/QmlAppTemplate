@@ -31,15 +31,15 @@ Loader {
         anchors.fill: parent
 
         anchors.topMargin: Theme.componentMargin
-        anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
-        anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
-        anchors.bottomMargin: singleColumn ? 0 : Theme.componentMargin
+        anchors.leftMargin: Theme.singleColumn ? 0 : Theme.componentMargin
+        anchors.rightMargin: Theme.singleColumn ? 0 : Theme.componentMargin
+        anchors.bottomMargin: Theme.singleColumn ? 0 : Theme.componentMargin
 
-        rows: singleColumn ? 2 : 1
+        rows: Theme.singleColumn ? 2 : 1
         columns: 1-rows
 
-        property int wwww: Math.floor((grid.width) / (singleColumn ? 1 : 2))
-        property int hhhh: Math.floor((grid.height) / (singleColumn ? 2 : 1))
+        property int wwww: Math.floor((grid.width) / (Theme.singleColumn ? 1 : 2))
+        property int hhhh: Math.floor((grid.height) / (Theme.singleColumn ? 2 : 1))
 
         ////////
 
@@ -54,7 +54,7 @@ Loader {
             height: grid.hhhh
 
             ListTitle {
-                Layout.preferredWidth: singleColumn ? parent.width : parent.width - Theme.componentMargin*0.5
+                Layout.preferredWidth: Theme.singleColumn ? parent.width : parent.width - Theme.componentMargin*0.5
                 Layout.alignment: Qt.AlignLeft
 
                 anchors.left: undefined
@@ -64,7 +64,7 @@ Loader {
             }
 
             ListView {
-                Layout.preferredWidth: singleColumn ? parent.width : parent.width - Theme.componentMargin*0.5
+                Layout.preferredWidth: Theme.singleColumn ? parent.width : parent.width - Theme.componentMargin*0.5
                 Layout.fillHeight: true
                 Layout.alignment: Qt.AlignLeft
 
@@ -73,8 +73,8 @@ Loader {
 
                 model: ListModel {
                     Component.onCompleted: {
-                        append( {"text": "Header", value: Theme.fontSizeHeader} );
                         append( {"text": "Title", value: Theme.fontSizeTitle} );
+                        append( {"text": "Header", value: Theme.fontSizeHeader} );
                         append( {"text": "VeryVeryBig", value: Theme.fontSizeContentVeryVeryBig} );
                         append( {"text": "VeryBig", value: Theme.fontSizeContentVeryBig} );
                         append( {"text": "Big", value: Theme.fontSizeContentBig} );
@@ -124,7 +124,7 @@ Loader {
             height: grid.hhhh
 
             ListTitle {
-                Layout.preferredWidth: singleColumn ? parent.width : parent.width - Theme.componentMargin*0.5
+                Layout.preferredWidth: Theme.singleColumn ? parent.width : parent.width - Theme.componentMargin*0.5
                 Layout.alignment: Qt.AlignRight
 
                 anchors.left: undefined
@@ -134,7 +134,7 @@ Loader {
             }
 
             ListView {
-                Layout.preferredWidth: singleColumn ? parent.width : parent.width - Theme.componentMargin*0.5
+                Layout.preferredWidth: Theme.singleColumn ? parent.width : parent.width - Theme.componentMargin*0.5
                 Layout.fillHeight: true
                 Layout.alignment: Qt.AlignRight
 

@@ -39,6 +39,13 @@ Rectangle {
         spacing: 8
 
         DesktopSidebarMenu {
+            text: qsTr("Home")
+            source: "qrc:/IconLibrary/material-symbols/home.svg"
+            checked: (appContent.state === "MainView")
+
+            onClicked: screenMainView.loadScreen()
+        }
+        DesktopSidebarMenu {
             text: qsTr("Desktop")
             source: "qrc:/IconLibrary/material-symbols/hardware/computer.svg"
             checked: (appContent.state === "DesktopComponents")

@@ -55,15 +55,18 @@ Loader {
 
         Flow {
             id: contentFlow
-            anchors.left: parent.left
-            anchors.right: parent.right
 
+            anchors.left: parent.left
+            anchors.leftMargin: Theme.singleColumn ? 0 : parent.width*0.125
+            anchors.right: parent.right
+            anchors.rightMargin: Theme.singleColumn ? 0 : parent.width*0.125
+
+            height: Theme.singleColumn ? maxheight : screenHostInfos.height
             property int maxheight: topPadding + bottomPadding + 5*spacing +
                                     itemAppInfo.height + itemQtInfo.height +
                                     itemOsInfo.height + itemHwInfo.height +
                                     itemScreenInfo.height + itemNwInfo.height
 
-            height: singleColumn ? maxheight : screenHostInfos.height
             spacing: Theme.componentMargin
             padding: Theme.componentMargin
             flow: Flow.TopToBottom

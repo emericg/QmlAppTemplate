@@ -67,7 +67,7 @@ Loader {
                     anchors.left: parent.left
                     anchors.leftMargin: 24
                     anchors.verticalCenter: parent.verticalCenter
-                    visible: !singleColumn
+                    visible: !Theme.singleColumn
                     spacing: 16
 
                     Text {
@@ -90,7 +90,7 @@ Loader {
 
                 Row { // middle
                     anchors.centerIn: parent
-                    visible: !singleColumn
+                    visible: !Theme.singleColumn
                     spacing: 16
 
                     ButtonCompactable {
@@ -309,9 +309,6 @@ Loader {
                             ListElement { text: "MOBILE LIGHT"; }
                             ListElement { text: "MOBILE DARK"; }
 
-                            ListElement { text: "MATERIAL LIGHT"; }
-                            ListElement { text: "MATERIAL DARK"; }
-
                             ListElement { text: "DESKTOP LIGHT"; }
                             ListElement { text: "DESKTOP DARK"; }
 
@@ -338,9 +335,6 @@ Loader {
                         onActivated: {
                             if (currentText === "MOBILE LIGHT") SettingsManager.appTheme = "THEME_MOBILE_LIGHT"
                             else if (currentText === "MOBILE DARK") SettingsManager.appTheme = "THEME_MOBILE_DARK"
-
-                            else if (currentText === "MATERIAL LIGHT") SettingsManager.appTheme = "THEME_MATERIAL_LIGHT"
-                            else if (currentText === "MATERIAL DARK") SettingsManager.appTheme = "THEME_MATERIAL_DARK"
 
                             else if (currentText === "DESKTOP LIGHT") SettingsManager.appTheme = "THEME_DESKTOP_LIGHT"
                             else if (currentText === "DESKTOP DARK") SettingsManager.appTheme = "THEME_DESKTOP_DARK"

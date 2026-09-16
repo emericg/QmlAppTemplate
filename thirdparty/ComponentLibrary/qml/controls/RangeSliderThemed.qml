@@ -52,8 +52,8 @@ T.RangeSlider {
         scale: control.horizontal && control.mirrored ? -1 : 1
 
         Rectangle {
-            x: control.horizontal ? control.first.position * parent.width + 3 : -1
-            y: control.horizontal ? -1 : control.second.visualPosition * parent.height + 3
+            x: control.horizontal ? control.first.position * parent.width + 3 : 0
+            y: control.horizontal ? 0 : control.second.visualPosition * parent.height + 3
             width: control.horizontal ? control.second.position * parent.width - control.first.position * parent.width - 6 : 6
             height: control.horizontal ? 6 : control.second.position * parent.height - control.first.position * parent.height - 6
 

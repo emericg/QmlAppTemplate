@@ -16,8 +16,8 @@ Item {
 
     height: heightHeader
 
-    property int heightHeader: 64
-    property int headerPosition: 64
+    property int heightHeader: 56
+    property int headerPosition: 56
 
     // settings
     property color backgroundColor: Theme.colorBackground
@@ -27,7 +27,7 @@ Item {
 
     // icon
     property url source
-    property int sourceSize: 36
+    property int sourceSize: 32
     property int sourceRotation: 0
     property color sourceColor: Theme.colorIcon
 
@@ -42,7 +42,7 @@ Item {
     Rectangle { // background
         anchors.fill: parent
 
-        radius: 8
+        radius: 6
         color: control.backgroundColor
         border.width: Theme.singleColumn ? 0 : Theme.componentBorderWidth
         border.color: control.borderColor

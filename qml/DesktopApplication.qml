@@ -212,7 +212,7 @@ ApplicationWindow {
         }
     }
 
-    // Menubar /////////////////////////////////////////////////////////////////
+    // QML (disabled) //////////////////////////////////////////////////////////
 /*
     menuBar: MenuBar {
         id: appMenubar
@@ -229,20 +229,6 @@ ApplicationWindow {
         }
     }
 */
-    // QML /////////////////////////////////////////////////////////////////////
-
-    onActiveFocusItemChanged: { // DEBUG
-        //console.log("activeFocusItem:" + activeFocusItem)
-    }
-
-    DesktopSidebar {
-        id: appSidebar
-        z: 2
-
-        anchors.top: parent.top
-        anchors.left: parent.left
-        anchors.bottom: parent.bottom
-    }
 /*
     DesktopHeader {
         id: appHeader
@@ -258,16 +244,34 @@ ApplicationWindow {
         anchors.top: parent.top
         anchors.left: appSidebar.right
         anchors.right: parent.right
-
         height: 0
-        property int headerPosition: 64
 
         // compat
+        property int headerPosition: 64
         signal backButtonClicked()
         signal rightMenuClicked()
         signal menuComponentsClicked()
         signal menuSettingsClicked()
         signal menuAboutClicked()
+    }
+
+    // QML /////////////////////////////////////////////////////////////////////
+
+    Component.onCompleted: {
+        screenMainView.loadScreen()
+    }
+
+    onActiveFocusItemChanged: { // DEBUG
+        //console.log("activeFocusItem:" + activeFocusItem)
+    }
+
+    DesktopSidebar {
+        id: appSidebar
+        z: 2
+
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.bottom: parent.bottom
     }
 
     Rectangle {
@@ -307,26 +311,11 @@ ApplicationWindow {
             id: screenAbout
         }
 
-        Component.onCompleted: {
-            screenDesktopComponents.loadScreen()
-            //screenPlayground.loadScreen()
-        }
-
-        // Initial state
-        state: "MainView"
-/*
+        state: ""
         onStateChanged: {
-            // Reflect the active screen as a checkmark in the macOS View menu
-            if (state === "MainView") MenubarManager.setCurrentView(0)
-            else if (state === "DesktopComponents") MenubarManager.setCurrentView(1)
-            else if (state === "MobileComponents") MenubarManager.setCurrentView(2)
-            else if (state === "Playground" || state === "HostInfos" || state === "FontInfos") MenubarManager.setCurrentView(3)
-
-            else if (state === "ScreenSettings") MenubarManager.setCurrentView(4)
-            else if (state === "ScreenAbout") MenubarManager.setCurrentView(5)
-            else MenubarManager.setCurrentView(-1)
+            //
         }
-*/
+
         states: [
             State {
                 name: "MainView"

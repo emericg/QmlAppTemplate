@@ -49,8 +49,8 @@ T.Slider {
         scale: control.horizontal && control.mirrored ? -1 : 1
 
         Rectangle {
-            x: control.horizontal ? 0 : -1
-            y: control.horizontal ? -1 : control.visualPosition * parent.height
+            x: control.horizontal ? 0 : 0
+            y: control.horizontal ? 0 : control.visualPosition * parent.height
             width: control.horizontal ? control.position * parent.width : 6
             height: control.horizontal ? 6 : control.position * parent.height
 

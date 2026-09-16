@@ -103,6 +103,8 @@ Loader {
                     verticalAlignment: Text.AlignVCenter
                 }
 
+                ////
+/*
                 Row {
                     id: appTheme_selector
                     anchors.right: parent.right
@@ -112,94 +114,36 @@ Loader {
                     z: 1
                     spacing: Theme.componentMargin
 
-                    Rectangle { // theme mobile light
-                        width: Theme.wideWideMode ? 80 : 32
-                        height: 32
+                    ThemeSwatch {
                         anchors.verticalCenter: parent.verticalCenter
+                        width: Theme.wide ? 80 : 32
 
-                        radius: 2
-                        color: (Theme.currentTheme === Theme.THEME_MOBILE_LIGHT) ? Theme.colorForeground : "#dddddd"
-                        border.color: Theme.colorSecondary
-                        border.width: (Theme.currentTheme === Theme.THEME_MOBILE_LIGHT) ? 2 : 0
-
-                        Text {
-                            anchors.centerIn: parent
-                            visible: Theme.wideWideMode
-                            text: qsTr("light")
-                            color: "#313236"
-                            font.bold: true
-                            font.pixelSize: Theme.fontSizeContentSmall
-                        }
-                        MouseArea {
-                            anchors.fill: parent
-                            onClicked: SettingsManager.appTheme = "THEME_MOBILE_LIGHT"
-                        }
+                        themeId: Theme.THEME_MOBILE_LIGHT
+                        themeName: "THEME_MOBILE_LIGHT"
+                        label: qsTr("light")
+                        previewColor: "#dddddd"
+                        labelColor: "#313236"
                     }
-                    Rectangle { // theme mobile dark
-                        width: Theme.wideWideMode ? 80 : 32
-                        height: 32
+                    ThemeSwatch {
                         anchors.verticalCenter: parent.verticalCenter
+                        width: Theme.wide ? 80 : 32
 
-                        radius: 2
-                        color: (Theme.currentTheme === Theme.THEME_MOBILE_DARK) ? Theme.colorForeground : "#313236"
-                        border.color: Theme.colorSecondary
-                        border.width: (Theme.currentTheme === Theme.THEME_MOBILE_DARK) ? 2 : 0
-
-                        Text {
-                            anchors.centerIn: parent
-                            visible: Theme.wideWideMode
-                            text: qsTr("dark")
-                            color: "#dddddd"
-                            font.bold: true
-                            font.pixelSize: Theme.fontSizeContentSmall
-                        }
-                        MouseArea {
-                            anchors.fill: parent
-                            onClicked: SettingsManager.appTheme = "THEME_MOBILE_DARK"
-                        }
+                        themeId: Theme.THEME_MOBILE_DARK
+                        themeName: "THEME_MOBILE_DARK"
+                        label: qsTr("dark")
+                        previewColor: "#313236"
+                        labelColor: "#dddddd"
                     }
                 }
-            }
-
-            ////////
-
-            Item { // element_appTheme
-                anchors.left: parent.left
-                anchors.right: parent.right
-                height: Theme.componentHeightXL
-
-                //visible: isMobile
-
-                IconSvg {
-                    anchors.left: parent.left
-                    anchors.leftMargin: contentColumn.padIcon
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    width: 24
-                    height: 24
-                    color: Theme.colorIcon
-                    source: "qrc:/IconLibrary/material-icons/duotone/style.svg"
-                }
-
-                Text {
-                    anchors.left: parent.left
-                    anchors.leftMargin: contentColumn.padText
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    text: qsTr("Theme")
-                    textFormat: Text.PlainText
-                    font.pixelSize: Theme.fontSizeContent
-                    color: Theme.colorText
-                    wrapMode: Text.WordWrap
-                    verticalAlignment: Text.AlignVCenter
-                }
+*/
+                ////
 
                 ComboBoxThemed {
-                    //anchors.left: parent.left
-                    //anchors.leftMargin: contentColumn.padText
                     anchors.right: parent.right
                     anchors.rightMargin: Theme.componentMargin
                     anchors.verticalCenter: parent.verticalCenter
+
+                    visible: Theme.isPhone
 
                     model: ListModel {
                         id: cbAppTheme
@@ -236,9 +180,6 @@ Loader {
                         if (currentText === "MOBILE LIGHT") SettingsManager.appTheme = "THEME_MOBILE_LIGHT"
                         else if (currentText === "MOBILE DARK") SettingsManager.appTheme = "THEME_MOBILE_DARK"
 
-                        else if (currentText === "MATERIAL LIGHT") SettingsManager.appTheme = "THEME_MATERIAL_LIGHT"
-                        else if (currentText === "MATERIAL DARK") SettingsManager.appTheme = "THEME_MATERIAL_DARK"
-
                         else if (currentText === "DESKTOP LIGHT") SettingsManager.appTheme = "THEME_DESKTOP_LIGHT"
                         else if (currentText === "DESKTOP DARK") SettingsManager.appTheme = "THEME_DESKTOP_DARK"
 
@@ -258,6 +199,92 @@ Loader {
                         else if (currentText === "MACOS") SettingsManager.appTheme = "THEME_MACOS"
                         else if (currentText === "WINDOWS") SettingsManager.appTheme = "THEME_WINDOWS"
                     }
+                }
+
+                ////
+            }
+
+            Flow { // element_appThemeFlow
+                anchors.left: parent.left
+                anchors.leftMargin: contentColumn.padIcon
+                anchors.right: parent.right
+                anchors.rightMargin: Theme.componentMargin
+
+                visible: !Theme.isPhone
+
+                spacing: Theme.componentMarginS
+
+                ThemeSwatch {
+                    themeId: Theme.THEME_MOBILE_LIGHT; themeName: "THEME_MOBILE_LIGHT"
+                    label: qsTr("Mobile light"); previewColor: "#f8f8f8"; labelColor: "#303030"
+                }
+                ThemeSwatch {
+                    themeId: Theme.THEME_MOBILE_DARK; themeName: "THEME_MOBILE_DARK"
+                    label: qsTr("Mobile dark"); previewColor: "#313236"; labelColor: "white"
+                }
+
+                ThemeSwatch {
+                    themeId: Theme.THEME_DESKTOP_LIGHT; themeName: "THEME_DESKTOP_LIGHT"
+                    label: qsTr("Desktop light"); previewColor: "#f9f8f7"; labelColor: "#373737"
+                }
+                ThemeSwatch {
+                    themeId: Theme.THEME_DESKTOP_DARK; themeName: "THEME_DESKTOP_DARK"
+                    label: qsTr("Desktop dark"); previewColor: "#2e2a2e"; labelColor: "#eee"
+                }
+
+                ThemeSwatch {
+                    themeId: Theme.THEME_SNOW; themeName: "THEME_SNOW"
+                    label: qsTr("Snow"); previewColor: "white"; labelColor: "#474747"
+                }
+                ThemeSwatch {
+                    themeId: Theme.THEME_PLANT; themeName: "THEME_PLANT"
+                    label: qsTr("Plant"); previewColor: "#f8f8f8"; labelColor: "#333333"
+                }
+                ThemeSwatch {
+                    themeId: Theme.THEME_RAIN; themeName: "THEME_RAIN"
+                    label: qsTr("Rain"); previewColor: "white"; labelColor: "#474747"
+                }
+                ThemeSwatch {
+                    themeId: Theme.THEME_DAY; themeName: "THEME_DAY"
+                    label: qsTr("Day"); previewColor: "white"; labelColor: "#474747"
+                }
+                ThemeSwatch {
+                    themeId: Theme.THEME_NIGHT; themeName: "THEME_NIGHT"
+                    label: qsTr("Night"); previewColor: "#313236"; labelColor: "#EEE"
+                }
+
+                ThemeSwatch {
+                    themeId: Theme.THEME_LIGHT_AND_WARM; themeName: "THEME_LIGHT_AND_WARM"
+                    label: qsTr("Light and warm"); previewColor: "#F4F4F4"; labelColor: "#222"
+                }
+                ThemeSwatch {
+                    themeId: Theme.THEME_DARK_AND_SPOOKY; themeName: "THEME_DARK_AND_SPOOKY"
+                    label: qsTr("Dark and spooky"); previewColor: "#3F3F3F"; labelColor: "white"
+                }
+                ThemeSwatch {
+                    themeId: Theme.THEME_PLAIN_AND_BORING; themeName: "THEME_PLAIN_AND_BORING"
+                    label: qsTr("Plain and boring"); previewColor: "#fefefe"; labelColor: "#222222"
+                }
+                ThemeSwatch {
+                    themeId: Theme.THEME_BLOOD_AND_TEARS; themeName: "THEME_BLOOD_AND_TEARS"
+                    label: qsTr("Blood and tears"); previewColor: "#222"; labelColor: "#D4D4D4"
+                }
+                ThemeSwatch {
+                    themeId: Theme.THEME_MIGHTY_KITTENS; themeName: "THEME_MIGHTY_KITTENS"
+                    label: qsTr("Mighty kittens"); previewColor: "white"; labelColor: "#932A97"
+                }
+
+                ThemeSwatch {
+                    themeId: Theme.THEME_ADWAITA; themeName: "THEME_ADWAITA"
+                    label: qsTr("Adwaita"); previewColor: "#ffffff"; labelColor: "#373737"
+                }
+                ThemeSwatch {
+                    themeId: Theme.THEME_MACOS; themeName: "THEME_MACOS"
+                    label: qsTr("macOS"); previewColor: "#ffffff"; labelColor: "#222222"
+                }
+                ThemeSwatch {
+                    themeId: Theme.THEME_WINDOWS; themeName: "THEME_WINDOWS"
+                    label: qsTr("Windows"); previewColor: "#f2f2f2"; labelColor: "#373737"
                 }
             }
 
@@ -510,6 +537,47 @@ Loader {
             }
 
             ////////////////
+        }
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
+
+    component ThemeSwatch: Rectangle {
+        id: swatch
+
+        required property int themeId           // Theme.THEME_* enum value, for the selected highlight
+        required property string themeName      // "THEME_*" string passed to SettingsManager.appTheme
+
+        property string label: ""
+        property color previewColor: "#dddddd"
+        property color labelColor: "#313236"
+        property bool wide: Theme.wideWideMode
+
+        width: wide ? 160 : 32
+        height: wide ? 40 : 32
+        radius: 2
+
+        color: (Theme.currentTheme === swatch.themeId) ? Theme.colorForeground : swatch.previewColor
+        border.color: Theme.colorSecondary
+        border.width: (Theme.currentTheme === swatch.themeId) ? 2 : 0
+
+        Text {
+            anchors.fill: parent
+            anchors.margins: 4
+            visible: swatch.wide
+
+            text: swatch.label
+            color: swatch.labelColor
+            font.bold: true
+            font.pixelSize: Theme.fontSizeContentSmall
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            elide: Text.ElideRight
+        }
+
+        MouseArea {
+            anchors.fill: parent
+            onClicked: SettingsManager.appTheme = swatch.themeName
         }
     }
 
