@@ -5,6 +5,7 @@
 
 /*!
  * Take a path (url or string) and make sure we output a clean string path.
+ * Use decodeURIComponent() so that special characters (brackets, '#', '%'...) survives.
  */
 function cleanUrl(pathInput) {
     var stringOut = '';
@@ -13,12 +14,12 @@ function cleanUrl(pathInput) {
 
     if (input.slice(0, 8) === "file:///") {
         const k = input.charAt(9) === ':' ? 8 : 7;
-        stringOut = input.substring(k);
+        stringOut = decodeURIComponent(input.substring(k));
     } else if (input.slice(0, 10) === "content://") {
         // 'content://com.android.providers.media.documents/document/' + filename
         // 'content://' + 'app.package' + '/root/' + path
         const kk = input.indexOf("/root/") + 5;
-        stringOut = input.substring(kk);
+        stringOut = decodeURIComponent(input.substring(kk));
     } else {
         stringOut = input;
     }

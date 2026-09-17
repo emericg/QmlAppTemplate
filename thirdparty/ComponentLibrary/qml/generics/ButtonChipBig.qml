@@ -21,9 +21,6 @@ T.Button {
     font.pixelSize: Theme.componentFontSize
     font.bold: false
 
-    // layout
-    property int alignment: Qt.AlignCenter // Qt.AlignLeft // Qt.AlignRight
-
     // colors
     property color color: Theme.colorPrimary
 

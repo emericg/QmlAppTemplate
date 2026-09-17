@@ -88,10 +88,12 @@ qt_add_qml_module(${PROJECT_NAME}
         qml/components/SectionHeader.qml
 
         qml/demo/PageButtons.qml
+        qml/demo/PageCards.qml
         qml/demo/PageColors.qml
         qml/demo/PageDateTime.qml
         qml/demo/PageDialogs.qml
         qml/demo/PageIndicators.qml
+        qml/demo/PageLayouts.qml
         qml/demo/PageSelectors.qml
         qml/demo/PageSliders.qml
         qml/demo/PageTextFields.qml

@@ -3,20 +3,19 @@ import QtQuick
 Item {
     id: hazardBand
 
-    implicitHeight: 40
-
     clip: true
 
     property color colorBackground: "#1a1a1a"
     property color colorStripe: "#f2c21a"
 
+    property real stripeAngle: 45
     property real stripeWidth: 40
     property real stripeSpacing: 40
 
-    property real stripeAngle: 45
-
     property bool animated: false
     property int animationDuration: 2000
+
+    property bool antialiasing: false
 
     ////////
 
@@ -58,7 +57,7 @@ Item {
 
             color: hazardBand.colorStripe
             rotation: hazardBand.stripeAngle
-            antialiasing: true
+            antialiasing: control.antialiasing
         }
     }
 

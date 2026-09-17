@@ -3,7 +3,7 @@ import QtQuick.Effects
 
 import ComponentLibrary
 
-Rectangle {
+Item {
     id: control
 
     anchors.left: parent.left
@@ -12,16 +12,17 @@ Rectangle {
     anchors.rightMargin: Theme.singleColumn ? 0 : Theme.componentMargin
 
     height: Theme.componentHeightXL
-    radius: Theme.singleColumn ? 0 : Theme.componentRadius
     z: 2
 
-    color: Theme.colorForeground
-    border.width: Theme.singleColumn ? 0 : Theme.componentBorderWidth
-    border.color: Theme.colorComponentBorder
-
     // settings
-    property int headerPosition: 64
     property bool shadow: !Theme.singleColumn
+    property int headerPosition: 64
+    property int radius: Theme.singleColumn ? 0 : Theme.componentRadius
+
+    // colors
+    property color backgroundColor: Qt.darker(Theme.colorForeground, Theme.isLight ? 0.72 : 1.24)
+    property color borderColor: Qt.darker(Theme.colorComponentBorder, Theme.isLight ? 1.0 : 1.32)
+    property color shadowColor: Theme.colorComponentShadow
 
     // icon
     property url source
@@ -34,6 +35,25 @@ Rectangle {
     property color textColor: Theme.colorText
     property int textSize: source.length ? Theme.fontSizeContentBig : Theme.fontSizeContentVeryBig
     property bool textBold: false
+
+    ////////////////
+
+    Rectangle { // background
+        anchors.fill: parent
+
+        radius: control.radius
+        color: control.backgroundColor
+        border.width: Theme.singleColumn ? 0 : Theme.componentBorderWidth
+        border.color: control.borderColor
+
+        layer.enabled: control.shadow
+        layer.effect: MultiEffect { // shadow
+            autoPaddingEnabled: true
+            shadowEnabled: true
+            shadowColor: Theme.colorComponentShadow
+            shadowOpacity: 0.66
+        }
+    }
 
     ////////////////
 
@@ -71,16 +91,6 @@ Rectangle {
         color: control.textColor
         wrapMode: Text.WordWrap
         verticalAlignment: Text.AlignVCenter
-    }
-
-    ////////////////
-
-    layer.enabled: control.shadow
-    layer.effect: MultiEffect {
-        autoPaddingEnabled: true
-        shadowEnabled: true
-        shadowOpacity: 0.12
-        shadowColor: control.border.color
     }
 
     ////////////////

@@ -55,7 +55,7 @@ Loader {
 
             topPadding: Theme.componentMarginXL
             bottomPadding: Theme.componentMarginXL
-            spacing: Theme.componentMarginXS
+            spacing: 4
 
             ////////////////
 
@@ -67,9 +67,14 @@ Loader {
 
                 visible: !Theme.isPhone
 
+                colorBackground: Theme.isLight ? "white" : Theme.colorBackground
+                colorForeground: Theme.colorForeground
+
+                logo: Theme.isLight ? "qrc:/assets/logos/logo.png"
+                                    : "qrc:/assets/logos/logo.png"
+
                 description: qsTr("A Qt6 / QML application template, with a full set of visual controls, as well as build and deploy scripts and CI setups.")
 
-                btn_size: isPhone ? 150 : 160
                 link_web: "https://emeric.io/"
                 link_donate: "https://www.paypal.com/paypalme/EmericGrange"
                 link_support: "https://github.com/emericg/QmlAppTemplate/issues"

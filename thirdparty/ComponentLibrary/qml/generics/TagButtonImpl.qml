@@ -23,7 +23,7 @@ T.Button {
     property int radius: Theme.componentRadius
 
     // icon
-    property url source: "qrc:/IconLibrary/material-symbols/add.svg"
+    property url source: "qrc:/ComponentLibraryAssets/icons/add.svg"
     property int sourceSize: 16
 
     // colors

@@ -169,6 +169,20 @@ Loader {
                     }
 
                     ListElement {
+                        title: "Layouts"
+                        text: "Frames, boxes and panes."
+                        icon: "qrc:/IconLibrary/material-symbols/layers.svg"
+                        page: "demo/PageLayouts.qml"
+                    }
+
+                    ListElement {
+                        title: "Cards"
+                        text: "Cards and list elements."
+                        icon: "qrc:/IconLibrary/material-symbols/note_stack.svg"
+                        page: "demo/PageCards.qml"
+                    }
+
+                    ListElement {
                         title: "Dialogs & pickers"
                         text: "Various dialog popups and datetime pickers."
                         icon: "qrc:/IconLibrary/material-icons/duotone/date_range.svg"
@@ -204,21 +218,6 @@ Loader {
                     }
                 }
 
-                Component {
-                    id: listComponent
-
-                    ////////
-
-                    ItemDelegateThemed {
-                        width: screenMobileComponents.width
-
-                        onClicked: {
-                            ListView.currentIndex = index
-                            stackView.push(model.page)
-                        }
-                    }
-                }
-
                 ////////
 
                 ListView {
@@ -229,7 +228,18 @@ Loader {
                     bottomMargin: Theme.componentMargin
 
                     model: pagesModel
-                    delegate: listComponent
+                    delegate: ListElementThemed {
+                        width: stackView.width
+
+                        text: model.title
+                        subtitle: model.text
+                        source: model.icon
+
+                        onClicked: {
+                            ListView.currentIndex = index
+                            stackView.push(model.page)
+                        }
+                    }
                 }
 
                 ////////

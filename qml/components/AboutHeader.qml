@@ -21,16 +21,17 @@ Item {
 
     height: Math.max(256, headerGrid.height)
 
-    clip: true
-
     ////////////////////////////////////////////////////////////////////////////
 
     property color colorLight: "#f6f6f6"
     property color colorDark: "#3a3a3a"
 
-    property int logoSize: 80 // height in %
-    property url logoLight: "qrc:/assets/logos/logo.png"
-    property url logoDark: "qrc:/assets/logos/logo.png"
+    property color colorBackground: Theme.colorBackground
+    property color colorForeground: Theme.colorForeground
+    property color colorShadow: Theme.colorComponentShadow
+
+    property url logo: ""
+    property int logoSize: 80 // width/height in %
 
     property string description: ""
 
@@ -52,7 +53,7 @@ Item {
         anchors.fill: parent
 
         radius: Theme.singleColumn ? 0 : 12
-        color: Theme.colorBackground
+        color: control.colorBackground
         border.width: Theme.singleColumn ? 0 : Theme.componentBorderWidth
         border.color: Theme.colorComponentBorder
 
@@ -60,7 +61,7 @@ Item {
         layer.effect: MultiEffect {
             autoPaddingEnabled: true
             shadowEnabled: true
-            shadowColor: "#11000000"
+            shadowColor: control.colorShadow
         }
     }
 
@@ -86,25 +87,16 @@ Item {
             Layout.margins: Theme.componentBorderWidth
 
             radius: 12
-            color: Theme.isLight ? control.colorLight : control.colorDark
-            border.width: 0 // Theme.componentBorderWidth
-            border.color: Theme.colorSeparator
+            color: control.colorForeground
 
             Image {
                 anchors.centerIn: parent
-                width: parent.width - Theme.componentMarginXL*2
+                width: parent.width * 0.8
                 height: parent.height - Theme.componentMarginXL*2
 
                 fillMode: Image.PreserveAspectFit
-                source: Theme.isLight ? control.logoLight : control.logoDark
+                source: control.logo
                 sourceSize: Qt.size(width*2, height*2)
-            }
-
-            layer.enabled: false
-            layer.effect: MultiEffect {
-                autoPaddingEnabled: true
-                shadowEnabled: true
-                shadowColor: "#11000000"
             }
         }
 
@@ -126,6 +118,8 @@ Item {
                 anchors.rightMargin: Theme.componentMarginL
                 anchors.verticalCenter: parent.verticalCenter
                 spacing: Theme.componentMarginXS
+
+                ////
 
                 Text { // title
                     text: UtilsApp.appName()
@@ -159,6 +153,8 @@ Item {
                 }
 
                 Item { width: 16; height: 16; } // spacer
+
+                ////
 
                 Flow {
                     anchors.left: parent.left
@@ -206,6 +202,8 @@ Item {
                         onClicked: Qt.openUrlExternally(control.link_donate)
                     }
                 }
+
+                ////
             }
         }
 

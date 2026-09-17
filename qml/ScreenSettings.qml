@@ -62,7 +62,7 @@ Loader {
 
             ////////////////
 
-            SectionHeader {
+            ListTitle {
                 anchors.left: parent.left
                 anchors.leftMargin: 0
                 anchors.right: parent.right
@@ -431,7 +431,7 @@ Loader {
 
             ////////////////
 
-            SectionHeader {
+            ListTitle {
                 anchors.left: parent.left
                 anchors.leftMargin: 0
                 anchors.right: parent.right

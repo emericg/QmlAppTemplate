@@ -110,8 +110,14 @@ function contrastColor(c, threshold, darkColor, lightColor) {
  * Same as contrastColor() function, but using ThemeEngine "contrast" colors.
  */
 function contrastColorThemed(c, threshold) {
-    return contrastColor(c, threshold, ComponentLibrary.Theme.colorLowContrast,
-                                       ComponentLibrary.Theme.colorHighContrast)
+    threshold = (threshold === undefined) ? 0.8 : threshold
+
+    var darkColor = ComponentLibrary.Theme.isLight ? ComponentLibrary.Theme.colorHighContrast
+                                                   : ComponentLibrary.Theme.colorLowContrast
+    var lightColor = ComponentLibrary.Theme.isLight ? ComponentLibrary.Theme.colorLowContrast
+                                                    : ComponentLibrary.Theme.colorHighContrast
+
+    return (luminance(c) > threshold) ? darkColor : lightColor
 }
 
 /* ************************************************************************** */

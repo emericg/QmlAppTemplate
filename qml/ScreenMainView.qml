@@ -226,13 +226,13 @@ Loader {
 
         signal clicked()
 
-        width: 320
+        width: 480
         height: 400
         radius: Theme.componentRadius
+        border.width: Theme.componentBorderWidth
+        border.color: Theme.colorSeparator
 
         color: cardArea.containsMouse ? Theme.colorForeground : Theme.colorBackground
-        border.width: Theme.componentBorderWidth
-        border.color: cardArea.containsMouse ? Theme.colorPrimary : Theme.colorSeparator
         Behavior on border.color { ColorAnimation { duration: 133 } }
 
         Rectangle { // top part: gradient banner with the centered icon
@@ -240,11 +240,10 @@ Loader {
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.right: parent.right
-            anchors.margins: card.border.width
-            height: Math.round(card.height * 2 / 3) - card.border.width
+            height: Math.round(card.height * 2 / 3)
 
-            topLeftRadius: card.radius - card.border.width
-            topRightRadius: card.radius - card.border.width
+            topLeftRadius: card.radius
+            topRightRadius: card.radius
 
             gradient: Gradient {
                 GradientStop { position: 0.0; color: Theme.colorPrimary }
@@ -299,6 +298,14 @@ Loader {
             anchors.fill: parent
             hoverEnabled: true
             onClicked: card.clicked()
+        }
+        Rectangle {
+            anchors.fill: parent
+            radius: Theme.componentRadius
+            color: "transparent"
+            opacity: cardArea.containsMouse ? 1 : 0
+            border.width: Theme.componentBorderWidth
+            border.color: Theme.colorPrimary
         }
     }
 

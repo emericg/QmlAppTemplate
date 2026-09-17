@@ -9,7 +9,7 @@ Rectangle {
     anchors.bottom: parent.bottom
 
     z: 10
-    width: isHdpi ? 220 : 256
+    width: isHdpi ? 240 : 300
     color: Theme.colorSidebar
 
     ////////////
@@ -35,7 +35,7 @@ Rectangle {
         anchors.left: parent.left
         anchors.leftMargin: 12
         anchors.right: parent.right
-        anchors.rightMargin: 12
+        anchors.rightMargin: 12 + 2
         spacing: 8
 
         DesktopSidebarMenu {
@@ -45,6 +45,9 @@ Rectangle {
 
             onClicked: screenMainView.loadScreen()
         }
+
+        Item { width: 2; height: 2; } // spacer
+
         DesktopSidebarMenu {
             text: qsTr("Desktop")
             source: "qrc:/IconLibrary/material-symbols/hardware/computer.svg"
@@ -83,7 +86,7 @@ Rectangle {
         anchors.left: parent.left
         anchors.leftMargin: 12
         anchors.right: parent.right
-        anchors.rightMargin: 12
+        anchors.rightMargin: 12 + 2
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 16
         spacing: 8

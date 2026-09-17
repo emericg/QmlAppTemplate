@@ -207,7 +207,7 @@ Item {
     property color colorComponentBorder
     property color colorComponentDown
     property color colorComponentBackground
-    property color colorComponentShadow: isLight ? "#40000000" : "#88000000"
+    property color colorComponentShadow: isLight ? "#33000000" : "#66000000"
 
     property int componentRadius: 4
     property int componentBorderWidth: 2
@@ -568,10 +568,10 @@ Item {
             colorSidebarHighlight       = "#c0c0c0"
 
             colorActionbar              = "#eaeaea"
-            colorActionbarContent       = "#eaeaea"
+            colorActionbarContent       = "black"
             colorActionbarHighlight     = "#dadada"
 
-            colorTabletmenu             = "#ffffff"
+            colorTabletmenu             = "white"
             colorTabletmenuContent      = "#9d9d9d"
             colorTabletmenuHighlight    = "#cfcbcb"
 
@@ -588,7 +588,7 @@ Item {
             colorError                  = colorRed
 
             colorText                   = "#373737"
-            colorSubText                = "#666666"
+            colorSubText                = "#666"
             colorIcon                   = "#373737"
             colorSeparator              = "#e8e8e8"
             colorLowContrast            = "white"
@@ -601,7 +601,7 @@ Item {
             colorComponentDown          = "#dadada"
             colorComponentBackground    = "#fcfcfc"
 
-            componentRadius             = 6
+            componentRadius             = 4
             componentBorderWidth        = 2
 
             // (app)
@@ -635,8 +635,8 @@ Item {
             colorHeaderContent          = "white"
             colorHeaderHighlight        = "#725595"
 
-            colorSidebar                = "#252024"
-            colorSidebarContent         = "#494a5a"
+            colorSidebar                = "#202020"
+            colorSidebarContent         = "#292929"
             colorSidebarHighlight       = "#1f254a"
 
             colorActionbar              = "#252024"
@@ -670,7 +670,7 @@ Item {
             colorComponentDown          = "#595959"
             colorComponentBackground    = "#393939"
 
-            componentRadius             = 6
+            componentRadius             = 4
             componentBorderWidth        = 2
 
             // (app)
@@ -711,7 +711,7 @@ Item {
             colorActionbarContent       = "white"
             colorActionbarHighlight     = "#7ab800"
 
-            colorTabletmenu             = "#ffffff"
+            colorTabletmenu             = "white"
             colorTabletmenuContent      = "#9d9d9d"
             colorTabletmenuHighlight    = "#0079fe"
 
@@ -725,7 +725,7 @@ Item {
             colorError                  = colorRed
 
             colorText                   = "#474747"
-            colorSubText                = "#666666"
+            colorSubText                = "#666"
             colorIcon                   = "#474747"
             colorSeparator              = colorMaterialDarkGrey
             colorLowContrast            = "white"
@@ -783,9 +783,9 @@ Item {
             colorWarning                = colorOrange
             colorError                  = colorRed
 
-            colorText                   = "#333333"
-            colorSubText                = "#666666"
-            colorIcon                   = "#333333"
+            colorText                   = "#333"
+            colorSubText                = "#666"
+            colorIcon                   = "#333"
             colorSeparator              = "#e8e8e8"
             colorLowContrast            = "white"
             colorHighContrast           = "#303030"
@@ -1122,9 +1122,9 @@ Item {
             colorWarning                = "#ffac00"
             colorError                  = "#dc4543"
 
-            colorText                   = "#222222"
-            colorSubText                = "#555555"
-            colorIcon                   = "#333333"
+            colorText                   = "#222"
+            colorSubText                = "#555"
+            colorIcon                   = "#333"
             colorSeparator              = "#e4e4e4"
             colorLowContrast            = "white"
             colorHighContrast           = "black"
@@ -1272,14 +1272,14 @@ Item {
             colorSidebarHighlight       = "#dfdfe1"
 
             colorActionbar              = "#eaeaea"
-            colorActionbarContent       = "#eaeaea"
+            colorActionbarContent       = "#333"
             colorActionbarHighlight     = "#dadada"
 
-            colorTabletmenu             = "#ffffff"
+            colorTabletmenu             = "#fff"
             colorTabletmenuContent      = "#9d9d9d"
             colorTabletmenuHighlight    = "#cfcbcb"
 
-            colorBackground             = "#ffffff"
+            colorBackground             = "#fff"
             colorForeground             = "#f3f3f5"
 
             colorPrimary                = "#9141ac"
@@ -1289,7 +1289,7 @@ Item {
             colorError                  = colorRed
 
             colorText                   = "#373737"
-            colorSubText                = "#666666"
+            colorSubText                = "#666"
             colorIcon                   = "#373737"
             colorSeparator              = "#e8e8e8"
             colorLowContrast            = "white"
@@ -1341,14 +1341,14 @@ Item {
             colorSidebarHighlight       = "#aaaaaa"
 
             colorActionbar              = "#eaeaea"
-            colorActionbarContent       = "#eaeaea"
+            colorActionbarContent       = "#333"
             colorActionbarHighlight     = "#dadada"
 
-            colorTabletmenu             = "#ffffff"
+            colorTabletmenu             = "#fff"
             colorTabletmenuContent      = "#9d9d9d"
             colorTabletmenuHighlight    = "#cfcbcb"
 
-            colorBackground             = "#ffffff"
+            colorBackground             = "#fff"
             colorForeground             = "#f5f5f5"
 
             colorPrimary                = "#1066f5"
@@ -1357,9 +1357,9 @@ Item {
             colorWarning                = colorOrange
             colorError                  = colorRed
 
-            colorText                   = "#222222"
+            colorText                   = "#222"
             colorSubText                = "#828282"
-            colorIcon                   = "#222222"
+            colorIcon                   = "#222"
             colorSeparator              = "#d5d7d6"
             colorLowContrast            = "white"
             colorHighContrast           = "#303030"
@@ -1410,10 +1410,10 @@ Item {
             colorSidebarHighlight       = "#e8e8e8"
 
             colorActionbar              = "#eaeaea"
-            colorActionbarContent       = "#eaeaea"
+            colorActionbarContent       = "#333"
             colorActionbarHighlight     = "#dadada"
 
-            colorTabletmenu             = "#ffffff"
+            colorTabletmenu             = "#fff"
             colorTabletmenuContent      = "#9d9d9d"
             colorTabletmenuHighlight    = "#cfcbcb"
 
@@ -1427,7 +1427,7 @@ Item {
             colorError                  = colorRed
 
             colorText                   = "#373737"
-            colorSubText                = "#666666"
+            colorSubText                = "#666"
             colorIcon                   = "#373737"
             colorSeparator              = "#e8e8e8"
             colorLowContrast            = "white"

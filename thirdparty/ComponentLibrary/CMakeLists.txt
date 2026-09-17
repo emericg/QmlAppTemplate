@@ -97,6 +97,7 @@ list(APPEND MODULE_QML_FILES
     qml/generics/TipLine.qml
 
     qml/layouts/FrameBox.qml
+    qml/layouts/FrameHazard.qml
     qml/layouts/FrameThemed.qml
     qml/layouts/GroupBoxThemed.qml
     qml/layouts/PaneThemed.qml
@@ -108,6 +109,7 @@ list(APPEND MODULE_QML_FILES
     qml/controls/ComboBoxThemed.qml
     qml/controls/DialThemed.qml
     qml/controls/ItemDelegateThemed.qml
+    qml/controls/ListElementThemed.qml
     qml/controls/MiddleSliderArrow.qml
     qml/controls/MiddleSliderThemed.qml
     qml/controls/MiddleSliderValueSolid.qml
@@ -147,6 +149,7 @@ list(APPEND MODULE_QML_FILES
     qml/utils/HazardBand.qml
     qml/utils/MovablePoint.qml
     qml/utils/RectangleDebug.qml
+    qml/utils/RectangleHazard.qml
     qml/utils/SwipeArea.qml
     qml/utils/WindowGeometrySaver.qml
 )
@@ -174,9 +177,10 @@ list(APPEND MODULE_SOURCES
     #
 )
 
-list(APPEND MODULE_ASSETS
+list(APPEND MODULE_ASSETS # embedded icons
     assets/icons/add.svg
     assets/icons/autorenew.svg
+    assets/icons/chevron_right.svg
     assets/icons/circle.svg
     assets/icons/circle-fill.svg
     assets/icons/close.svg
@@ -184,7 +188,7 @@ list(APPEND MODULE_ASSETS
     assets/icons/remove.svg
 )
 
-if(TARGET Qt6::Location) # Mapping components (optional)
+if(TARGET Qt6::Location) # mapping components (optional)
     list(APPEND MODULE_QML_FILES
         qml/maps/MapButton.qml
         qml/maps/MapButtonCompass.qml
@@ -231,8 +235,13 @@ qt_add_qml_module(ComponentLibrary
     DEPENDENCIES QtCore QtQuick
     PLUGIN_TARGET ComponentLibrary_plugin
     QML_FILES ${MODULE_QML_FILES} ${MODULE_JS_FILES}
-    RESOURCES ${MODULE_ASSETS}
     SOURCES ${MODULE_SOURCES}
+)
+
+qt_add_resources(ComponentLibrary "ComponentLibraryAssets"
+    PREFIX "/ComponentLibraryAssets"
+    BASE assets
+    FILES ${MODULE_ASSETS}
 )
 
 target_link_libraries(ComponentLibrary PUBLIC Qt6::Core Qt6::Quick Qt6::QuickControls2)
@@ -241,14 +250,8 @@ target_include_directories(ComponentLibrary PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 ################################################################################
 
-# The library ships its own translations catalog, embedded in its own resources
-# At runtime the host application must install a QTranslator for this catalog:
-#   QTranslator t;
-#   t.load(":/i18n/ComponentLibrary_" + <lang> + ".qm");
-#   qApp->installTranslator(&t);
-
 qt_add_translations(ComponentLibrary
-    SOURCE_TARGETS ComponentLibrary # pins lupdate to this module so it doesn't scan the whole project
+    SOURCE_TARGETS ComponentLibrary # pins lupdate to this module only
     TS_FILE_BASE ComponentLibrary
     TS_FILE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/i18n/
     RESOURCE_PREFIX "/i18n"

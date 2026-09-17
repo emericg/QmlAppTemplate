@@ -46,7 +46,7 @@ Loader {
                 IconSvg {
                     width: 10; height: 10;
                     anchors.centerIn: parent
-                    source: "qrc:/IconLibrary/material-symbols/close.svg"
+                    source: "qrc:/ComponentLibraryAssets/icons/close.svg"
                     opacity: mouseArea.containsMouse ? 0.6 : 0
                     //Behavior on opacity { OpacityAnimator { duration: Theme.animationFastSpeed } }
                 }

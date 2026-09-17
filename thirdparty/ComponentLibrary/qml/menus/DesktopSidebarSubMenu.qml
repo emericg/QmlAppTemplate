@@ -14,7 +14,7 @@ Column {
 
     property string category
     property string text: "submenu"
-    property url source: "qrc:/ComponentLibrary/icons/menu.svg"
+    property url source: "qrc:/ComponentLibraryAssets/icons/menu.svg"
 
     property bool checked: false
     property int selected: 0
@@ -39,14 +39,16 @@ Column {
     Repeater {
         model: sidebarSubMenu.submenus
         delegate: DesktopSidebarMenu {
+            anchors.left: parent.left
+            anchors.leftMargin: 12
             height: Theme.componentHeight
 
             text: modelData.text
             font.bold: checked
             //visible: sidebarSubMenu.checked
 
-            source: checked ? "qrc:/IconLibrary/material-symbols/circle-fill.svg"
-                            : "qrc:/IconLibrary/material-symbols/circle.svg"
+            source: checked ? "qrc:/ComponentLibraryAssets/icons/circle-fill.svg"
+                            : "qrc:/ComponentLibraryAssets/icons/circle.svg"
             sourceSize: 12
 
             checked: sidebarSubMenu.checked && sidebarSubMenu.selected === index
