@@ -10,10 +10,9 @@ Item {
     id: control
 
     anchors.left: parent.left
-    //anchors.leftMargin: Theme.singleColumn ? 0 : Theme.componentMargin
     anchors.right: parent.right
-    //anchors.rightMargin: Theme.singleColumn ? 0 : Theme.componentMargin
 
+    implicitWidth: 1024
     height: Theme.componentHeightXXL
     z: 2
 

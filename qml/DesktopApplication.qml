@@ -121,7 +121,7 @@ ApplicationWindow {
 
         if (appContent.state === "DesktopComponents") state = screenDesktopComponents.backAction()
         if (appContent.state === "MobileComponents") state = screenMobileComponents.backAction()
-        if (appContent.state === "Playground") state = screenPlayground.backAction()
+        if (appContent.state === "Playgrounds") state = screenPlayground.backAction()
         if (appContent.state === "HostInfos") state = screenHostInfos.backAction()
         if (appContent.state === "FontInfos") state = screenFontInfos.backAction()
         if (appContent.state === "ScreenSettings") state = screenSettings.backAction()
@@ -351,7 +351,7 @@ ApplicationWindow {
                 PropertyChanges { target: screenAbout; visible: false; enabled: false; }
             },
             State {
-                name: "Playground"
+                name: "Playgrounds"
                 PropertyChanges { target: screenMainView; visible: false; enabled: false; }
                 PropertyChanges { target: screenDesktopComponents; visible: false; enabled: false; }
                 PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }

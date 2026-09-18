@@ -214,12 +214,6 @@ Rectangle {
 
     ////////////
 
-    CsdWindows { }
-
-    CsdLinux { }
-
-    ////////////
-
     Rectangle { // separator
         anchors.left: parent.left
         anchors.right: parent.right

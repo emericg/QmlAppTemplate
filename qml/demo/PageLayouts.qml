@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls
 
 import ComponentLibrary
+import AppUtils
 
 Flickable {
     contentWidth: -1
@@ -38,7 +39,7 @@ Flickable {
             spacing: Theme.componentMarginXL
 
             FrameThemed {
-                width: 240
+                width: 400
 
                 Column {
                     width: parent.width
@@ -52,7 +53,7 @@ Flickable {
                     }
                     Text {
                         width: parent.width
-                        text: qsTr("A themed container with a rounded border.")
+                        text: LoremIpsum.paragraph
                         color: Theme.colorSubText
                         font.pixelSize: Theme.fontSizeContentSmall
                         wrapMode: Text.WordWrap
@@ -61,7 +62,7 @@ Flickable {
             }
 
             FrameHazard {
-                width: 240
+                width: 400
 
                 Column {
                     width: parent.width
@@ -75,7 +76,7 @@ Flickable {
                     }
                     Text {
                         width: parent.width
-                        text: qsTr("Same, with a striped hazard border.")
+                        text: LoremIpsum.paragraph
                         color: Theme.colorSubText
                         font.pixelSize: Theme.fontSizeContentSmall
                         wrapMode: Text.WordWrap

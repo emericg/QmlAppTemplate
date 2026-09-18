@@ -30,6 +30,7 @@ list(APPEND MODULE_QML_FILES
     qml/menus/ListItemClickable.qml
     qml/menus/ListSeparator.qml
     qml/menus/ListSeparatorPadded.qml
+    qml/menus/ListSpacer.qml
     qml/menus/ListTitle.qml
 
     qml/popups/PopupThemed.qml
@@ -101,7 +102,12 @@ list(APPEND MODULE_QML_FILES
     qml/layouts/FrameThemed.qml
     qml/layouts/GroupBoxThemed.qml
     qml/layouts/PaneThemed.qml
-    qml/layouts/CardBox.qml
+
+    qml/cards/AboutHeader.qml
+    qml/cards/CardBox.qml
+    qml/cards/CardLeftRight.qml
+    qml/cards/CardSimple.qml
+    qml/cards/CardWelcome.qml
 
     qml/controls/ButtonIconThemed.qml
     qml/controls/ButtonThemed.qml

@@ -4,15 +4,17 @@ import ComponentLibrary
 
 Rectangle {
     id: appSidebar
+
     anchors.top: parent.top
     anchors.left: parent.left
     anchors.bottom: parent.bottom
 
+    width: iconsSection.width + menusSection.width
     z: 10
-    width: isHdpi ? 240 : 300
+
     color: Theme.colorSidebar
 
-    ////////////
+    ////////////////
 
     DragHandler {
         // Drag on the sidebar to drag the whole window // Qt 5.15+
@@ -21,100 +23,160 @@ Rectangle {
         target: null
     }
 
-    CsdMac {
+    ////////////////
+
+    Rectangle {
+        id: iconsSection
+
         anchors.top: parent.top
-        anchors.topMargin: 0
-        anchors.horizontalCenter: parent.horizontalCenter
-    }
-
-    ////////////
-
-    Column { // top menu
-        anchors.top: parent.top
-        anchors.topMargin: 16
         anchors.left: parent.left
-        anchors.leftMargin: 12
-        anchors.right: parent.right
-        anchors.rightMargin: 12 + 2
-        spacing: 8
-
-        DesktopSidebarMenu {
-            text: qsTr("Home")
-            source: "qrc:/IconLibrary/material-symbols/home.svg"
-            checked: (appContent.state === "MainView")
-
-            onClicked: screenMainView.loadScreen()
-        }
-
-        Item { width: 2; height: 2; } // spacer
-
-        DesktopSidebarMenu {
-            text: qsTr("Desktop")
-            source: "qrc:/IconLibrary/material-symbols/hardware/computer.svg"
-            checked: (appContent.state === "DesktopComponents")
-
-            onClicked: screenDesktopComponents.loadScreen()
-        }
-        DesktopSidebarMenu {
-            text: qsTr("Mobile")
-            source: "qrc:/IconLibrary/material-symbols/hardware/smartphone-fill.svg"
-            checked: (appContent.state === "MobileComponents")
-
-            onClicked: screenMobileComponents.loadScreen()
-        }
-        DesktopSidebarSubMenu {
-            text: qsTr("Tools")
-            source: "qrc:/IconLibrary/material-symbols/build-fill.svg"
-
-            checked: (appContent.state === "Playground" ||
-                      appContent.state === "HostInfos" ||
-                      appContent.state === "FontInfos")
-
-            submenus: [
-                { text: qsTr("Playground"), onClicked: function() { screenPlayground.loadScreen() } },
-                { text: qsTr("Host info"), onClicked: function() { screenHostInfos.loadScreen() } },
-                { text: qsTr("Fonts info"), onClicked: function() { screenFontInfos.loadScreen() }  }
-            ]
-
-            onClicked: screenPlayground.loadScreen()
-        }
-    }
-
-    ////////////
-
-    Column { // bottom menu
-        anchors.left: parent.left
-        anchors.leftMargin: 12
-        anchors.right: parent.right
-        anchors.rightMargin: 12 + 2
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 16
-        spacing: 8
+        width: 64
 
-        DesktopSidebarMenu {
-            text: qsTr("Settings")
-            source: "qrc:/IconLibrary/material-icons/duotone/tune.svg"
-            checked: (appContent.state === "ScreenSettings")
+        color: Theme.colorSeparator
 
-            onClicked: screenSettings.loadScreen()
-        }
+        Column { // top icons
+            anchors.top: parent.top
+            anchors.left: parent.left
+            anchors.right: parent.right
 
-        DesktopSidebarMenu {
-            text: qsTr("About")
-            source: "qrc:/IconLibrary/material-icons/duotone/info.svg"
-            checked: (appContent.state === "ScreenAbout")
+            topPadding: 16
+            bottomPadding: 16
+            spacing: 8
 
-            onClicked: screenAbout.loadScreen()
-        }
+            DesktopSidebarItem {
+                source: "qrc:/IconLibrary/material-symbols/home.svg"
+                //text: qsTr("Home")
 
-        DesktopSidebarMenu {
-            text: qsTr("Exit")
-            source: "qrc:/IconLibrary/material-icons/duotone/exit_to_app.svg"
-            onClicked: Qt.quit()
+                checked: (appContent.state === "MainView")
+                onClicked: screenMainView.loadScreen()
+            }
+
+            DesktopSidebarItem {
+                source: "qrc:/IconLibrary/material-symbols/hardware/computer.svg"
+                //text: qsTr("Components")
+
+                checked: (appContent.state === "DesktopComponents" ||
+                          appContent.state === "MobileComponents")
+                onClicked: screenDesktopComponents.loadScreen()
+            }
+
+            DesktopSidebarItem {
+                source: "qrc:/IconLibrary/material-symbols/build.svg"
+                //text: qsTr("Tools")
+
+                checked: (appContent.state === "Playgrounds" ||
+                          appContent.state === "HostInfos" ||
+                          appContent.state === "FontInfos")
+                onClicked: screenPlayground.loadScreen()
+            }
         }
     }
 
-    ////////////
+    ////////////////
+
+    Item {
+        id: menusSection
+        anchors.top: parent.top
+        anchors.left: iconsSection.right
+        anchors.bottom: parent.bottom
+        width: isHdpi ? 240 : 300
+
+        ////////
+
+        Column { // top menu
+            anchors.top: parent.top
+            anchors.left: parent.left
+            anchors.leftMargin: 12
+            anchors.right: parent.right
+            anchors.rightMargin: 12 + 2
+
+            topPadding: 16
+            bottomPadding: 16
+            spacing: 8
+
+            DesktopSidebarMenu {
+                source: "qrc:/IconLibrary/material-symbols/home.svg"
+                text: qsTr("Home")
+
+                checked: (appContent.state === "MainView")
+                onClicked: screenMainView.loadScreen()
+            }
+
+            Item { width: 2; height: 2; } // spacer
+
+            DesktopSidebarMenu {
+                source: "qrc:/IconLibrary/material-symbols/hardware/computer.svg"
+                text: qsTr("Desktop")
+
+                checked: (appContent.state === "DesktopComponents")
+                onClicked: screenDesktopComponents.loadScreen()
+            }
+            DesktopSidebarMenu {
+                source: "qrc:/IconLibrary/material-symbols/hardware/smartphone-fill.svg"
+                text: qsTr("Mobile")
+
+                checked: (appContent.state === "MobileComponents")
+                onClicked: screenMobileComponents.loadScreen()
+            }
+            DesktopSidebarSubMenu {
+                source: "qrc:/IconLibrary/material-symbols/build-fill.svg"
+                text: qsTr("Tools")
+
+                checked: (appContent.state === "Playgrounds" ||
+                          appContent.state === "HostInfos" ||
+                          appContent.state === "FontInfos")
+
+                submenus: [
+                    { text: qsTr("Playgrounds"), onClicked: function() { screenPlayground.loadScreen() } },
+                    { text: qsTr("Host info"), onClicked: function() { screenHostInfos.loadScreen() } },
+                    { text: qsTr("Fonts info"), onClicked: function() { screenFontInfos.loadScreen() }  }
+                ]
+
+                onClicked: screenPlayground.loadScreen()
+            }
+        }
+
+        ////////
+
+        Column { // bottom menu
+            anchors.left: parent.left
+            anchors.leftMargin: 12
+            anchors.right: parent.right
+            anchors.rightMargin: 12 + 2
+            anchors.bottom: parent.bottom
+
+            topPadding: 16
+            bottomPadding: 16
+            spacing: 8
+
+            DesktopSidebarMenu {
+                text: qsTr("Settings")
+                source: "qrc:/IconLibrary/material-icons/duotone/tune.svg"
+                checked: (appContent.state === "ScreenSettings")
+
+                onClicked: screenSettings.loadScreen()
+            }
+
+            DesktopSidebarMenu {
+                text: qsTr("About")
+                source: "qrc:/IconLibrary/material-icons/duotone/info.svg"
+                checked: (appContent.state === "ScreenAbout")
+
+                onClicked: screenAbout.loadScreen()
+            }
+
+            DesktopSidebarMenu {
+                text: qsTr("Exit")
+                source: "qrc:/IconLibrary/material-icons/duotone/exit_to_app.svg"
+                onClicked: Qt.quit()
+            }
+        }
+
+        ////////
+    }
+
+    ////////////////
 
     Rectangle { // border
         anchors.top: parent.top
@@ -141,5 +203,5 @@ Rectangle {
         }
     }
 
-    ////////////
+    ////////////////
 }

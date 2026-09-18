@@ -11,19 +11,23 @@ T.Button {
     implicitHeight: 64
 
     width: parent.width // width drive the size of this element
-    height: Math.max(parent.width, contentColumn.height + 24)
+    height: parent.width
 
     focusPolicy: Qt.NoFocus
 
     // settings
     property url source
-    property int sourceSize: 40
+    property int sourceSize: 36
     property int sourceRotation: 0
-    property string highlightMode: "background" // available: background, indicator, circle, content
+
+    property string highlightMode: "background" // available: background, content
+    property int backgroundRadius: 0
 
     // colors
-    property color colorContent: Theme.colorSidebarContent
-    property color colorHighlight: Theme.colorSidebarHighlight
+    property color color: checked ? Theme.colorPrimary : Theme.colorSidebarContent
+    property color colorBackground: Qt.rgba(color.r, color.g, color.b, checked ? 0.2 : 1)
+    property color colorHighlight: checked ? Theme.colorPrimary : Theme.colorSidebarHighlight
+    property color colorContent: checked ? Theme.colorPrimary : Theme.colorText
 
     // indicator
     property bool indicatorVisible: false
@@ -33,33 +37,24 @@ T.Button {
 
     ////////////////////////////////////////////////////////////////////////////
 
-    background: Rectangle {
+    background: Item {
         implicitWidth: 64
         implicitHeight: 64
 
-        width: control.width
-        height: control.height
-        radius: (control.highlightMode === "circle") ? width : 0
+        Rectangle {
+            width: control.width
+            height: control.height
+            radius: control.backgroundRadius
 
-        visible: (control.highlightMode === "background" ||
-                  control.highlightMode === "indicator" ||
-                  control.highlightMode === "circle")
-        color: control.colorHighlight
-        opacity: {
-            if (control.highlighted) return 1
-            if (control.hovered) return 0.5
-            return 0
-        }
-        Behavior on opacity { OpacityAnimator { duration: Theme.animationMediumSpeed } }
-
-        Rectangle { // backgroundIndicator
-            anchors.top: parent.top
-            anchors.left: parent.left
-            anchors.bottom: parent.bottom
-
-            width: 6
-            visible: (control.highlighted && control.highlightMode === "indicator")
-            color: Theme.colorPrimary
+            //visible: (control.highlightMode === "background")
+            color: (control.highlightMode === "background" || control.highlighted)
+                        ? control.colorHighlight : control.colorBackground
+            //opacity: {
+            //    if (control.highlighted) return 1
+            //    if (control.hovered) return 0.5
+            //    return 0
+            //}
+            Behavior on opacity { OpacityAnimator { duration: Theme.animationMediumSpeed } }
         }
     }
 
@@ -67,9 +62,11 @@ T.Button {
 
     ColumnLayout {
         id: contentColumn
+
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
+
         spacing: -4
 
         IconSvg { // contentImage
@@ -125,7 +122,7 @@ T.Button {
             text: control.text
             textFormat: Text.PlainText
             color: (!control.highlighted && control.highlightMode === "content") ? control.colorHighlight : control.colorContent
-            font.pixelSize: Theme.fontSizeContentVerySmall
+            font.pixelSize: Theme.fontSizeContentVeryVerySmall
             font.bold: true
 
             horizontalAlignment: Text.AlignHCenter

@@ -13,7 +13,7 @@ Loader {
         screenPlayground.active = true
 
         // change screen
-        appContent.state = "Playground"
+        appContent.state = "Playgrounds"
     }
 
     function backAction() {
@@ -36,6 +36,47 @@ Loader {
 
         function backAction() {
             return false
+        }
+
+        ////////
+
+        SelectorMenuSunken {
+            id: playgroundSelector
+
+            anchors.top: parent.top
+            anchors.topMargin: 0
+            anchors.left: parent.left
+            anchors.leftMargin: 0
+            height: 32
+
+            colorBackground: Theme.colorBackground
+            colorForeground: Theme.colorPrimary
+
+            model: ListModel {
+                ListElement { idx: 1; txt: "one"; src: ""; sz: 0; }
+                ListElement { idx: 2; txt: "two"; src: ""; sz: 0; }
+                ListElement { idx: 3; txt: "three"; src: ""; sz: 0; }
+            }
+
+            currentSelection: 1
+            onMenuSelected: (index) => { currentSelection = index }
+        }
+
+        ////////
+
+        PlaygroundOne {
+            anchors.fill: parent
+            visible: playgroundSelector.currentSelection === 1
+        }
+
+        PlaygroundTwo {
+            anchors.fill: parent
+            visible: playgroundSelector.currentSelection === 2
+        }
+
+        PlaygroundThree {
+            anchors.fill: parent
+            visible: playgroundSelector.currentSelection === 3
         }
 
         ////////

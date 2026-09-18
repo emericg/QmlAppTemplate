@@ -52,6 +52,8 @@ set(CORE_SOURCES
     # pure c++
     utils_bits.h
     utils_maths.h
+    # others
+    LoremIpsum.h
 )
 
 # Qt optional tools

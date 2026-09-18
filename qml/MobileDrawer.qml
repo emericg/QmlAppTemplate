@@ -96,9 +96,9 @@ DrawerThemed {
                 }
 
                 DrawerItem {
-                    text: qsTr("Playground")
+                    text: qsTr("Playgrounds")
                     source: "qrc:/IconLibrary/material-symbols/build-fill.svg"
-                    highlighted: (appContent.state === "Playground")
+                    highlighted: (appContent.state === "Playgrounds")
 
                     onClicked: {
                         screenPlayground.loadScreen()
