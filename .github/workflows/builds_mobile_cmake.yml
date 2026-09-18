@@ -73,15 +73,14 @@ jobs:
 
       # Java environment (already installed in 'ubuntu-24.04')
       #- name: Setup Java environment
-      #  uses: actions/setup-java@v4
+      #  uses: actions/setup-java@v6
       #  with:
       #    distribution: 'temurin'
       #    java-version: '17'
 
-      # Android environment
+      # Setup Android environment (SDK / NDK / tools)
       - name: Setup Android environment
         uses: android-actions/setup-android@v4
-      - name: Install Android SDK / NDK / tools
         run: |
              sdkmanager "platforms;android-36"
              sdkmanager "ndk;28.2.13676358"
