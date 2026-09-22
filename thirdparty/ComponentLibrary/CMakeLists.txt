@@ -199,6 +199,23 @@ list(APPEND MODULE_ASSETS
     assets/icons/close.svg
     assets/icons/menu.svg
     assets/icons/remove.svg
+    # embedded background patterns
+    assets/patterns/basketweave.svg
+    assets/patterns/chevrons.svg
+    assets/patterns/circles.svg
+    assets/patterns/cubes.svg
+    assets/patterns/cubes-lines.svg
+    assets/patterns/diamonds.svg
+    assets/patterns/dots.svg
+    assets/patterns/hexagons.svg
+    assets/patterns/maze.svg
+    assets/patterns/topography.svg
+    assets/patterns/topography_light.svg
+    assets/patterns/topography_ultralight.svg
+    assets/patterns/triangles.svg
+    assets/patterns/truchet-contours.svg
+    assets/patterns/truchet-ribbons.svg
+    assets/patterns/truchet.svg
 )
 
 if(TARGET Qt6::Location)
