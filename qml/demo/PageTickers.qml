@@ -133,5 +133,7 @@ Flickable {
             anchors.horizontalCenter: parent.horizontalCenter
             value: 50
         }
+
+        ////////////////////////////////////////////////////////////////////////
     }
 }

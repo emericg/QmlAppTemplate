@@ -84,7 +84,7 @@ DrawerThemed {
 
                 ////////
 
-                DrawerItem {
+                DrawerItem_menu {
                     text: qsTr("Components")
                     source: "qrc:/IconLibrary/material-icons/duotone/touch_app.svg"
                     highlighted: (appContent.state === "MobileComponents")
@@ -95,7 +95,7 @@ DrawerThemed {
                     }
                 }
 
-                DrawerItem {
+                DrawerItem_menu {
                     text: qsTr("Playgrounds")
                     source: "qrc:/IconLibrary/material-symbols/build-fill.svg"
                     highlighted: (appContent.state === "Playgrounds")
@@ -106,7 +106,7 @@ DrawerThemed {
                     }
                 }
 
-                DrawerItem {
+                DrawerItem_menu {
                     text: qsTr("Host infos")
                     source: "qrc:/IconLibrary/material-icons/duotone/memory.svg"
                     highlighted: (appContent.state === "HostInfos")
@@ -117,7 +117,7 @@ DrawerThemed {
                     }
                 }
 
-                DrawerItem {
+                DrawerItem_menu {
                     text: qsTr("Font infos")
                     source: "qrc:/IconLibrary/material-icons/duotone/format_size.svg"
                     highlighted: (appContent.state === "FontInfos")
@@ -134,7 +134,7 @@ DrawerThemed {
 
                 ////////
 
-                DrawerItem {
+                DrawerItem_menu {
                     text: qsTr("Settings")
                     source: "qrc:/IconLibrary/material-symbols/settings-fill.svg"
                     highlighted: (appContent.state === "ScreenSettings")
@@ -145,7 +145,7 @@ DrawerThemed {
                     }
                 }
 
-                DrawerItem {
+                DrawerItem_menu {
                     text: qsTr("About")
                     source: "qrc:/IconLibrary/material-symbols/info-fill.svg"
                     highlighted: (appContent.state === "ScreenAbout" ||

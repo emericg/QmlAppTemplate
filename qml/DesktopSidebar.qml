@@ -44,7 +44,7 @@ Rectangle {
             bottomPadding: 16
             spacing: 8
 
-            DesktopSidebarItem {
+            DesktopSidebarItem_icon {
                 source: "qrc:/IconLibrary/material-symbols/home.svg"
                 //text: qsTr("Home")
 
@@ -52,7 +52,7 @@ Rectangle {
                 onClicked: screenMainView.loadScreen()
             }
 
-            DesktopSidebarItem {
+            DesktopSidebarItem_icon {
                 source: "qrc:/IconLibrary/material-symbols/hardware/computer.svg"
                 //text: qsTr("Components")
 
@@ -61,7 +61,7 @@ Rectangle {
                 onClicked: screenDesktopComponents.loadScreen()
             }
 
-            DesktopSidebarItem {
+            DesktopSidebarItem_icon {
                 source: "qrc:/IconLibrary/material-symbols/build.svg"
                 //text: qsTr("Tools")
 

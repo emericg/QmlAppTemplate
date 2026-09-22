@@ -330,7 +330,7 @@ Loader {
                         }
 
                         Component.onCompleted: {
-                            currentIndex = Theme.getThemeIndex(SettingsManager.appTheme)
+                            currentIndex = Theme.getThemeIndex(SettingsManager.appTheme) - 1
                         }
                         onActivated: {
                             if (currentText === "MOBILE LIGHT") SettingsManager.appTheme = "THEME_MOBILE_LIGHT"

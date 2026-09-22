@@ -14,11 +14,13 @@ T.Frame {
     padding: 12
 
     // settings
+    property int stripeWidth: 56
+    property int stripeSpacing: 56
+
+    // colors
     property color colorBackground: Theme.colorBackground
     property color colorForeground: Theme.colorForeground
     property color colorBorder: Theme.colorForeground
-    property int stripeWidth: 56
-    property int stripeSpacing: 56
 
     ////////////////
 

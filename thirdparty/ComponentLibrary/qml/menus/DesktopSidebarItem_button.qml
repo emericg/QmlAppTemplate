@@ -11,5 +11,5 @@ DesktopSidebarMenu {
 
     source: checked ? "qrc:/IconLibrary/material-symbols/circle-fill.svg"
                     : "qrc:/IconLibrary/material-symbols/circle.svg"
-    sourceSize: 16
+    sourceSize: 12
 }

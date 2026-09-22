@@ -155,6 +155,13 @@ Loader {
                     }
 
                     ListElement {
+                        title: "Gradients"
+                        text: "Gradient presets and decorated surfaces."
+                        icon: "qrc:/IconLibrary/material-symbols/media/gradient.svg"
+                        page: "demo/PageGradients.qml"
+                    }
+
+                    ListElement {
                         title: "Buttons"
                         text: "So many buttons..."
                         icon: "qrc:/IconLibrary/material-icons/duotone/touch_app.svg"

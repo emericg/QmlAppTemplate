@@ -91,6 +91,7 @@ qt_add_qml_module(${PROJECT_NAME}
         qml/demo/PageButtons.qml
         qml/demo/PageCards.qml
         qml/demo/PageColors.qml
+        qml/demo/PageGradients.qml
         qml/demo/PageDateTime.qml
         qml/demo/PageDialogs.qml
         qml/demo/PageIndicators.qml

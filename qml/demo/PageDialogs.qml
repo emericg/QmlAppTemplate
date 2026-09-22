@@ -207,5 +207,7 @@ Flickable {
 
             onClicked: popupTime.openTime(savethetime)
         }
+
+        ////////////////////////////////////////////////////////////////////////
     }
 }

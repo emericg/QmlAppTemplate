@@ -14,13 +14,14 @@ Item {
 
     implicitWidth: 1024
     height: _contentShown ? contentArea.height : headerHeight
-    Behavior on height { NumberAnimation { duration: 233 } }
+    Behavior on height { NumberAnimation { duration: Theme.animationSpeedMedium } }
 
     property bool _contentShown: false
 
     // settings
-    property int headerPosition: 64
     property int headerHeight: Theme.componentHeightXXL
+    property int headerPosition: 64
+
     property int radius: Theme.singleColumn ? 0 : 6
     property int borderWidth: Theme.singleColumn ? 0 : Theme.componentBorderWidth
     property bool shadow: !Theme.singleColumn
@@ -64,7 +65,9 @@ Item {
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.margins: control.borderWidth
-            height: control.headerHeight
+            height: control.headerHeight - control.borderWidth*2
+
+            ////
 
             MouseArea {
                 id: mouseArea
@@ -72,12 +75,14 @@ Item {
                 onClicked: control._contentShown = !control._contentShown
             }
 
+            ////
+
             Rectangle { // right button
                 anchors.top: parent.top
                 anchors.right: parent.right
                 anchors.bottom: parent.bottom
 
-                width: Math.max(272, rowExpand.width + Theme.componentMargin*2)
+                width: Math.max(256, rowExpand.width + Theme.componentMargin*2)
                 color: mouseArea.containsPress ?
                            Qt.darker(Theme.isLight ? "#f6f6f6" : "#3a3a3a", 1.05) :
                            Theme.isLight ? "#f6f6f6" : "#3a3a3a"
@@ -108,6 +113,8 @@ Item {
                 }
             }
 
+            ////
+
             layer.enabled: true
             layer.effect: MultiEffect { // mask
                 maskEnabled: true
@@ -125,6 +132,8 @@ Item {
                     }
                 }
             }
+
+            ////
         }
 
         ////////////////

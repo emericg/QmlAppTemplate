@@ -11,6 +11,13 @@ Flickable {
     boundsBehavior: Theme.isDesktop ? Flickable.OvershootBounds : Flickable.DragAndOvershootBounds
     ScrollBar.vertical: ScrollBar { visible: false }
 
+    // Shared demo content
+    readonly property string demoTitle: qsTr("What's new in 0.8")
+    readonly property string demoTag: qsTr("Release 0.8")
+    readonly property string demoDescription: qsTr("A revamped UI and component library, rebuilt and expanded dialogs support.")
+    readonly property string demoPrimary: qsTr("Read notes")
+    readonly property string demoSecondary: qsTr("Dismiss")
+
     Column {
         id: contentColumn
 
@@ -21,9 +28,13 @@ Flickable {
         bottomPadding: Theme.componentMarginXL
         spacing: Theme.componentMarginXL
 
-        ////////////////
+        ListTitle { ////////////////////////////////////////////////////////////
+            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
-        ListTitle {
+            text: qsTr("Media cards")
+            source: ""
+        }
             anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
@@ -95,9 +106,7 @@ Flickable {
             }
         }
 
-        ////////////////
-
-        ListTitle {
+        ListTitle { ////////////////////////////////////////////////////////////
             anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
@@ -146,6 +155,6 @@ Flickable {
             }
         }
 
-        ////////////////
+        ////////////////////////////////////////////////////////////////////////
     }
 }

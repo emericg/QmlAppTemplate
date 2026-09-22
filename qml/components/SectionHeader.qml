@@ -20,6 +20,7 @@ Item {
     property bool shadow: !Theme.singleColumn
     property int headerPosition: 64
     property int radius: Theme.singleColumn ? 0 : 6
+    property int borderWidth: Theme.singleColumn ? 0 : Theme.componentBorderWidth
 
     // colors
     property color backgroundColor: Qt.darker(Theme.colorForeground, Theme.isLight ? 0.72 : 1.24)
@@ -54,39 +55,35 @@ Item {
 
         ////////
 
-        Item {
+        Item { // header
             anchors.fill: parent
             anchors.margins: parent.border.width
 
-            Item {
-                anchors.fill: parent
+            Row {
+                id: rightContentRow
 
-                Row {
-                    id: rightContentRow
+                anchors.top: parent.top
+                anchors.right: parent.right
+                anchors.bottom: parent.bottom
+                spacing: 0
 
-                    anchors.top: parent.top
-                    anchors.right: parent.right
-                    anchors.bottom: parent.bottom
-                    spacing: 0
+                // dynamic content added here
+            }
 
-                    // dynamic content added here
-                }
-
-                layer.enabled: true
-                layer.effect: MultiEffect { // mask
-                    maskEnabled: true
-                    maskInverted: false
-                    maskThresholdMin: 0.5
-                    maskSpreadAtMin: 1.0
-                    maskSpreadAtMax: 0.0
-                    maskSource: ShaderEffectSource {
-                        sourceItem: Rectangle {
-                            x: 0
-                            y: 0
-                            width: background.width
-                            height: background.height
-                            radius: background.radius
-                        }
+            layer.enabled: true
+            layer.effect: MultiEffect { // mask
+                maskEnabled: true
+                maskInverted: false
+                maskThresholdMin: 0.5
+                maskSpreadAtMin: 1.0
+                maskSpreadAtMax: 0.0
+                maskSource: ShaderEffectSource {
+                    sourceItem: Rectangle {
+                        x: 0
+                        y: 0
+                        width: background.width
+                        height: background.height
+                        radius: background.radius
                     }
                 }
             }

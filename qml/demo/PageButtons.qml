@@ -4,6 +4,24 @@ import QtQuick.Controls
 import ComponentLibrary
 
 Item {
+    Column {
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        anchors.margins: Theme.componentMarginXL
+        spacing: Theme.componentMarginXL
+
+        ButtonFab {
+            anchors.right: parent.right
+            source: "qrc:/IconLibrary/material-symbols/add.svg"
+        }
+
+        ButtonFabExtended {
+            anchors.right: parent.right
+            text: "Extended FAB"
+            source: "qrc:/IconLibrary/material-symbols/add.svg"
+        }
+    }
+
     Flickable {
         anchors.fill: parent
 
@@ -23,7 +41,7 @@ Item {
             bottomPadding: Theme.componentMarginXL
             spacing: Theme.componentMarginXL
 
-            ListTitle { ////////////////////////////////////////////////////////////
+            ListTitle { ////////////////////////////////////////////////////////
                 anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
                 anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
@@ -123,7 +141,7 @@ Item {
                 }
             }
 
-            ListTitle { ////////////////////////////////////////////////////////////
+            ListTitle { ////////////////////////////////////////////////////////
                 anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
                 anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
@@ -178,7 +196,7 @@ Item {
                 }
             }
 
-            ListTitle { ////////////////////////////////////////////////////////////
+            ListTitle { ////////////////////////////////////////////////////////
                 anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
                 anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
@@ -218,7 +236,7 @@ Item {
                 }
             }
 
-            ListTitle { ////////////////////////////////////////////////////////////
+            ListTitle { ////////////////////////////////////////////////////////
                 anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
                 anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
@@ -257,24 +275,8 @@ Item {
                     source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
                 }
             }
-        }
-    }
 
-    Column {
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-        anchors.margins: Theme.componentMarginXL
-        spacing: Theme.componentMarginXL
-
-        ButtonFab {
-            anchors.right: parent.right
-            source: "qrc:/IconLibrary/material-symbols/add.svg"
-        }
-
-        ButtonFabExtended {
-            anchors.right: parent.right
-            text: "Extended FAB"
-            source: "qrc:/IconLibrary/material-symbols/add.svg"
+            ////////////////////////////////////////////////////////////////////
         }
     }
 }

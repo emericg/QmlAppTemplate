@@ -2,7 +2,9 @@ pragma Singleton
 
 import QtQuick
 
-Item {
+QtObject {
+    id: themeEngine
+
     ////////////////////////////////////////////////////////////////////////////
 
     enum ThemeNames {
@@ -112,8 +114,9 @@ Item {
 
     ////////////////////////////////////////////////////////////////////////////
 
-    // Base font size (in pixels), inherited from the OS / desktop environment
-
+    /*!
+     * \brief Base font size (in pixels), inherited from the OS / desktop environment.
+     */
     readonly property real fontSizeOS: {
         //console.log("Qt.application.font > " + osfont)
 
@@ -355,6 +358,10 @@ Item {
     onAppThemeAutoChanged: loadTheme(appTheme)
     onAppThemeAutoMethodChanged: loadTheme(appTheme)
 
+    /*!
+     * \brief Theme loader.
+     * \param newTheme The theme name, as listed in \c getThemeIndex().
+     */
     function loadTheme(newTheme) {
         //console.log("Theme.loadTheme(" + newTheme + ")")
 

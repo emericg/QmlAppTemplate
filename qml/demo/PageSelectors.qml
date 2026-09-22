@@ -10,6 +10,26 @@ Flickable {
     boundsBehavior: Theme.isDesktop ? Flickable.OvershootBounds : Flickable.DragAndOvershootBounds
     ScrollBar.vertical: ScrollBar { visible: false }
 
+    // Shared demo content
+    ListModel {
+        id: lmSelectorMenuTxt
+        ListElement { idx: 1; txt: "4/3"; src: ""; sz: 0; }
+        ListElement { idx: 2; txt: "16/9"; src: ""; sz: 0; }
+        ListElement { idx: 3; txt: "21/9"; src: ""; sz: 0; }
+    }
+    ListModel {
+        id: lmSelectorMenuImg
+        ListElement { idx: 1; src: "qrc:/IconLibrary/material-symbols/accessibility.svg"; sz: 20; }
+        ListElement { idx: 2; src: "qrc:/IconLibrary/material-symbols/accessibility.svg"; sz: 26; }
+        ListElement { idx: 3; src: "qrc:/IconLibrary/material-symbols/accessibility.svg"; sz: 32; }
+    }
+    ListModel {
+        id: lmSelectorMenuImgTxt
+        ListElement { idx: 1; txt: "4/3"; src: "qrc:/IconLibrary/material-symbols/accessibility.svg"; sz: 20; }
+        ListElement { idx: 2; txt: "16/9"; src: "qrc:/IconLibrary/material-symbols/accessibility.svg"; sz: 26; }
+        ListElement { idx: 3; txt: "21/9"; src: "qrc:/IconLibrary/material-symbols/accessibility.svg"; sz: 32; }
+    }
+
     Column {
         id: contentColumn
 
@@ -19,29 +39,6 @@ Flickable {
         topPadding: Theme.componentMarginXL
         bottomPadding: Theme.componentMarginXL
         spacing: Theme.componentMarginXL
-
-        ////
-
-        ListModel {
-            id: lmSelectorMenuTxt
-            ListElement { idx: 1; txt: "4/3"; src: ""; sz: 0; }
-            ListElement { idx: 2; txt: "16/9"; src: ""; sz: 0; }
-            ListElement { idx: 3; txt: "21/9"; src: ""; sz: 0; }
-        }
-        ListModel {
-            id: lmSelectorMenuImg
-            ListElement { idx: 1; src: "qrc:/IconLibrary/material-symbols/accessibility.svg"; sz: 20; }
-            ListElement { idx: 2; src: "qrc:/IconLibrary/material-symbols/accessibility.svg"; sz: 26; }
-            ListElement { idx: 3; src: "qrc:/IconLibrary/material-symbols/accessibility.svg"; sz: 32; }
-        }
-        ListModel {
-            id: lmSelectorMenuImgTxt
-            ListElement { idx: 1; txt: "4/3"; src: "qrc:/IconLibrary/material-symbols/accessibility.svg"; sz: 20; }
-            ListElement { idx: 2; txt: "16/9"; src: "qrc:/IconLibrary/material-symbols/accessibility.svg"; sz: 26; }
-            ListElement { idx: 3; txt: "21/9"; src: "qrc:/IconLibrary/material-symbols/accessibility.svg"; sz: 32; }
-        }
-
-        ////
 
         ListTitle { ////////////////////////////////////////////////////////////
             anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
@@ -95,8 +92,6 @@ Flickable {
                 currentSelection = index
             }
         }
-
-        ////
 
         ListTitle { ////////////////////////////////////////////////////////////
             anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
@@ -204,6 +199,6 @@ Flickable {
             }
         }
 
-        ////
+        ////////////////////////////////////////////////////////////////////////
     }
 }

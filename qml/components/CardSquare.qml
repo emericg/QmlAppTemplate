@@ -5,7 +5,7 @@ import QtQuick.Dialogs
 import ComponentLibrary
 
 Rectangle {
-    id: sourceDropTarget
+    id: control
 
     implicitWidth: 480
     implicitHeight: preview.y + preview.height + bottomColumn.height
@@ -13,7 +13,7 @@ Rectangle {
     radius: 2
     color: Theme.colorBackground
     border.width: 2
-    border.color: sourceDropTarget.highlighted ? Theme.colorPrimary : Theme.colorComponentBorder
+    border.color: control.highlighted ? Theme.colorPrimary : Theme.colorComponentBorder
 
     ////////////////////////////////////////////////////////////////////////////
 
@@ -36,7 +36,7 @@ Rectangle {
         anchors.margins: 2
 
         height: Math.min(width, previewImage.height)
-        color: sourceDropTarget.sourceFilled ? "white" : "transparent"
+        color: control.sourceFilled ? "white" : "transparent"
 
         ////////
 
@@ -48,13 +48,13 @@ Rectangle {
             anchors.right: parent.right
 
             height: {
-                const natural = sourceDropTarget.sourceSize
+                const natural = control.sourceSize
                 if (natural.width <= 0 || natural.height <= 0) return width
                 return Math.min(width, Math.round(width * natural.height / natural.width))
             }
 
-            visible: sourceDropTarget.sourceFilled
-            source: sourceDropTarget.shownUrl
+            visible: control.sourceFilled
+            source: control.shownUrl
             sourceSize: Qt.size(width, height)
             fillMode: Image.PreserveAspectFit
 
@@ -69,7 +69,7 @@ Rectangle {
             anchors.centerIn: parent
             width: parent.width - 24
 
-            visible: !sourceDropTarget.sourceFilled
+            visible: !control.sourceFilled
             spacing: 8
 
             IconSvg {
@@ -113,8 +113,7 @@ Rectangle {
             anchors.top: parent.bottom
             height: 2
 
-            color: (dropArea.containsDrag || sourceDropTarget.highlighted) ? Theme.colorPrimary
-                                                                          : Theme.colorComponentBorder
+            color: (control.highlighted) ? Theme.colorPrimary : Theme.colorComponentBorder
         }
     }
 
@@ -147,7 +146,7 @@ Rectangle {
                 anchors.rightMargin: Theme.componentMarginXS
                 anchors.verticalCenter: parent.verticalCenter
 
-                text: sourceDropTarget.title
+                text: control.title
                 textFormat: Text.PlainText
                 elide: Text.ElideRight
                 font.pixelSize: Theme.fontSizeContentBig
@@ -155,13 +154,13 @@ Rectangle {
                 color: Theme.colorText
             }
 
-            Text { // a source that is not needed says so, rather than looking missing
+            Text {
                 id: optionalText
                 anchors.right: parent.right
                 anchors.rightMargin: 16
                 anchors.verticalCenter: titleText.verticalCenter
 
-                visible: !sourceDropTarget.required
+                visible: !control.required
                 text: qsTr("[optional]")
                 textFormat: Text.PlainText
                 font.pixelSize: Theme.fontSizeContentSmall
@@ -178,7 +177,7 @@ Rectangle {
             anchors.right: parent.right
             anchors.rightMargin: 16
 
-            text: sourceDropTarget.description
+            text: control.description
             textFormat: Text.PlainText
             wrapMode: Text.WordWrap
             font.pixelSize: Theme.fontSizeContent
@@ -186,19 +185,9 @@ Rectangle {
         }
 
         ////////
-/*
-        Repeater { // source recommendation: what we would like
-            model: sourceDropTarget.recommendations
-
-            delegate: Rectangle {
-                id: statusBadge
-            }
-        }
-*/
-        ////////
 
         Repeater { // source checks: what is wrong with what fills this source
-            model: sourceDropTarget.checks
+            model: control.checks
 
             delegate: Rectangle {
                 id: statusBadge
@@ -261,13 +250,13 @@ Rectangle {
             ButtonClear {
                 height: Theme.componentHeightS
 
-                visible: (sourceDropTarget.sourceFilled && !sourceDropTarget.required)
+                visible: (control.sourceFilled && !control.required)
 
                 text: qsTr("Clear")
                 source: "qrc:/IconLibrary/material-symbols/delete.svg"
                 color: Theme.colorSubText
 
-                onClicked: sourceDropTarget.cleared()
+                onClicked: control.cleared()
             }
         }
 

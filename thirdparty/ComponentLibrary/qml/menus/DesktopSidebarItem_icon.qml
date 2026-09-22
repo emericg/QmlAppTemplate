@@ -46,14 +46,15 @@ T.Button {
             height: control.height
             radius: control.backgroundRadius
 
-            //visible: (control.highlightMode === "background")
-            color: (control.highlightMode === "background" || control.highlighted)
+            visible: (control.highlightMode === "background")
+            color: (control.highlightMode === "background" || control.checked)
                         ? control.colorHighlight : control.colorBackground
-            //opacity: {
-            //    if (control.highlighted) return 1
-            //    if (control.hovered) return 0.5
-            //    return 0
-            //}
+            opacity: {
+                if (control.highlighted) return 1
+                if (control.checked) return 0.33
+                if (control.hovered) return 0.5
+                return 0
+            }
             Behavior on opacity { OpacityAnimator { duration: Theme.animationMediumSpeed } }
         }
     }

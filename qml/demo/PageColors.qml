@@ -53,8 +53,6 @@ Flickable {
             ColoredSquare { color: Theme.colorGrey }
         }
 
-        //
-
         ListTitle { ////////////////////////////////////////////////////////////
             anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
@@ -140,6 +138,8 @@ Flickable {
                 ColoredSquare { color: modelData }
             }
         }
+
+        ////////////////////////////////////////////////////////////////////////
     }
 
     component ColoredSquare: Rectangle {

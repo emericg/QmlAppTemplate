@@ -21,9 +21,7 @@ Flickable {
         bottomPadding: Theme.componentMarginXL
         spacing: Theme.componentMarginXL
 
-        ////////////////
-
-        ListTitle {
+        ListTitle { ////////////////////////////////////////////////////////////
             anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
@@ -85,9 +83,50 @@ Flickable {
             }
         }
 
-        ////////////////
+        ListTitle { ////////////////////////////////////////////////////////////
+            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
-        ListTitle {
+            text: qsTr("List elements")
+            source: ""
+        }
+
+        Column {
+            anchors.left: parent.left
+            anchors.leftMargin: singleColumn ? 0 : Theme.componentMarginXL
+            anchors.right: parent.right
+            anchors.rightMargin: singleColumn ? 0 : Theme.componentMarginXL
+
+            Repeater {
+                model: ListModel {
+                    ListElement {
+                        title: "Wireless"
+                        subtitle: "Connected"
+                        icon: "qrc:/IconLibrary/material-symbols/link.svg"
+                    }
+                    ListElement {
+                        title: "Storage"
+                        subtitle: "128 GB available"
+                        icon: "qrc:/IconLibrary/material-icons/duotone/speed.svg"
+                    }
+                    ListElement {
+                        title: "Appearance"
+                        subtitle: "Theme and colors"
+                        icon: "qrc:/IconLibrary/material-icons/duotone/style.svg"
+                    }
+                }
+
+                delegate: ListElementThemed {
+                    width: parent.width
+
+                    text: model.title
+                    subtitle: model.subtitle
+                    source: model.icon
+                }
+            }
+        }
+
+        ListTitle { ////////////////////////////////////////////////////////////
             anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
@@ -125,9 +164,7 @@ Flickable {
             }
         }
 
-        ////////////////
-
-        ListTitle {
+        ListTitle { ////////////////////////////////////////////////////////////
             anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
             anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
@@ -182,6 +219,6 @@ Flickable {
             }
         }
 
-        ////////////////
+        ////////////////////////////////////////////////////////////////////////
     }
 }

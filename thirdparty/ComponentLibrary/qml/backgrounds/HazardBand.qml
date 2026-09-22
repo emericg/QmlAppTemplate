@@ -5,6 +5,8 @@ Item {
 
     clip: true
 
+    ////////
+
     property color colorBackground: "#1a1a1a"
     property color colorStripe: "#f2c21a"
 

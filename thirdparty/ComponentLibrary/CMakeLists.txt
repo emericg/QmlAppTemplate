@@ -11,10 +11,11 @@ list(APPEND MODULE_QML_FILES
     qml/ThemeEngine.qml
 
     qml/menus/DesktopHeaderItem.qml
-    qml/menus/DesktopSidebarItem.qml
+    qml/menus/DesktopSidebarItem_icon.qml
+    qml/menus/DesktopSidebarItem_menu.qml
+    qml/menus/DesktopSidebarItem_button.qml
+    qml/menus/DesktopSidebarItem_combobox.qml
     qml/menus/DesktopSidebarMenu.qml
-    qml/menus/DesktopSidebarButton.qml
-    qml/menus/DesktopSidebarCombobox.qml
     qml/menus/DesktopSidebarSubMenu.qml
     qml/menus/MobileMenuItem_horizontal.qml
     qml/menus/MobileMenuItem_vertical.qml
@@ -24,8 +25,8 @@ list(APPEND MODULE_QML_FILES
     qml/menus/ActionMenuItem_switch.qml
     qml/menus/ActionMenuItem_separator.qml
     qml/menus/DrawerThemed.qml
-    qml/menus/DrawerItem.qml
-    qml/menus/DrawerButton.qml
+    qml/menus/DrawerItem_menu.qml
+    qml/menus/DrawerItem_button.qml
     qml/menus/ListItem.qml
     qml/menus/ListItemClickable.qml
     qml/menus/ListSeparator.qml
@@ -97,6 +98,14 @@ list(APPEND MODULE_QML_FILES
     qml/generics/TextSelectable.qml
     qml/generics/TipLine.qml
 
+    qml/backgrounds/GradientPresets.qml
+    qml/backgrounds/GradientComponent.qml
+    qml/backgrounds/GradientRectangle.qml
+    qml/backgrounds/HazardBand.qml
+    qml/backgrounds/RectangleDebug.qml
+    qml/backgrounds/RectangleHazard.qml
+    qml/backgrounds/RectangleGradient.qml
+
     qml/layouts/FrameBox.qml
     qml/layouts/FrameHazard.qml
     qml/layouts/FrameThemed.qml
@@ -152,10 +161,7 @@ list(APPEND MODULE_QML_FILES
     qml/utils/CsdWindows.qml
     qml/utils/CsdLinux.qml
     qml/utils/FpsMonitor.qml
-    qml/utils/HazardBand.qml
     qml/utils/MovablePoint.qml
-    qml/utils/RectangleDebug.qml
-    qml/utils/RectangleHazard.qml
     qml/utils/SwipeArea.qml
     qml/utils/WindowGeometrySaver.qml
 )
@@ -183,7 +189,8 @@ list(APPEND MODULE_SOURCES
     #
 )
 
-list(APPEND MODULE_ASSETS # embedded icons
+list(APPEND MODULE_ASSETS
+    # embedded icons
     assets/icons/add.svg
     assets/icons/autorenew.svg
     assets/icons/chevron_right.svg
@@ -194,8 +201,8 @@ list(APPEND MODULE_ASSETS # embedded icons
     assets/icons/remove.svg
 )
 
-if(TARGET Qt6::Location) # mapping components (optional)
-    list(APPEND MODULE_QML_FILES
+if(TARGET Qt6::Location)
+    list(APPEND MODULE_QML_FILES # mapping components (optional)
         qml/maps/MapButton.qml
         qml/maps/MapButtonCompass.qml
         qml/maps/MapButtonZoom.qml
@@ -203,7 +210,7 @@ if(TARGET Qt6::Location) # mapping components (optional)
         qml/maps/MapMarker.qml
         qml/maps/MapScale.qml
     )
-    list(APPEND MODULE_ASSETS
+    list(APPEND MODULE_ASSETS # mapping assets (optional)
         assets/maps/compass_top.svg
         assets/maps/compass_bottom.svg
         assets/maps/gps_marker.svg
@@ -222,10 +229,14 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     )
 endif()
 
-# Mark ThemeEngine as a singleton
+# Mark ThemeEngine as singleton
 set_source_files_properties(qml/ThemeEngine.qml PROPERTIES
     QT_QML_SINGLETON_TYPE TRUE
     QT_QML_SOURCE_TYPENAME Theme
+)
+# Mark GradientPresets as singleton
+set_source_files_properties(qml/backgrounds/GradientPresets.qml PROPERTIES
+    QT_QML_SINGLETON_TYPE TRUE
 )
 
 ################################################################################

@@ -38,18 +38,8 @@ Column {
 
     Repeater {
         model: sidebarSubMenu.submenus
-        delegate: DesktopSidebarMenu {
-            anchors.left: parent.left
-            anchors.leftMargin: 12
-            height: Theme.componentHeight
-
+        delegate: DesktopSidebarItem_button {
             text: modelData.text
-            font.bold: checked
-            //visible: sidebarSubMenu.checked
-
-            source: checked ? "qrc:/ComponentLibraryAssets/icons/circle-fill.svg"
-                            : "qrc:/ComponentLibraryAssets/icons/circle.svg"
-            sourceSize: 12
 
             checked: sidebarSubMenu.checked && sidebarSubMenu.selected === index
             onClicked: {
