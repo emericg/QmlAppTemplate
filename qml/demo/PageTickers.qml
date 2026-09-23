@@ -8,13 +8,15 @@ Flickable {
     contentHeight: contentColumn.height
 
     boundsBehavior: Theme.isDesktop ? Flickable.OvershootBounds : Flickable.DragAndOvershootBounds
-    ScrollBar.vertical: ScrollBar { visible: false }
+    ScrollBar.vertical: ScrollBarThemed { visible: Theme.isDesktop }
 
     Column {
         id: contentColumn
 
         anchors.left: parent.left
+        anchors.leftMargin: Theme.singleColumn ? 0 : parent.width*0.125
         anchors.right: parent.right
+        anchors.rightMargin: Theme.singleColumn ? 0 : parent.width*0.125
 
         topPadding: Theme.componentMarginXL
         bottomPadding: Theme.componentMarginXL
@@ -63,7 +65,14 @@ Flickable {
             checked: true
         }
 
-        SwitchThemedMobile {
+        SwitchThemedSquare {
+            anchors.horizontalCenter: parent.horizontalCenter
+            text: "Switch square"
+            checked: true
+            radius: 0
+        }
+
+        SwitchThemedSmall {
             anchors.horizontalCenter: parent.horizontalCenter
             text: "Switch mobile"
             checked: true

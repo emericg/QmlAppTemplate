@@ -132,9 +132,7 @@ Loader {
             anchors.top: parent.top
             anchors.topMargin: stackViewHeader.active ? stackViewHeader.height : 0
             anchors.left: parent.left
-            anchors.leftMargin: Theme.singleColumn ? 0 : parent.width*0.125
             anchors.right: parent.right
-            anchors.rightMargin: Theme.singleColumn ? 0 : parent.width*0.125
             anchors.bottom: parent.bottom
 
             initialItem: mainView
@@ -144,107 +142,40 @@ Loader {
             id: mainView
 
             Item {
-                ListModel {
-                    id: pagesModel
-
-                    ListElement {
-                        title: "Colors"
-                        text: "Predefined colors."
-                        icon: "qrc:/IconLibrary/material-icons/duotone/style.svg"
-                        page: "demo/PageColors.qml"
-                    }
-
-                    ListElement {
-                        title: "Gradients"
-                        text: "Gradient presets and decorated surfaces."
-                        icon: "qrc:/IconLibrary/material-symbols/media/gradient.svg"
-                        page: "demo/PageGradients.qml"
-                    }
-
-                    ListElement {
-                        title: "Buttons"
-                        text: "So many buttons..."
-                        icon: "qrc:/IconLibrary/material-icons/duotone/touch_app.svg"
-                        page: "demo/PageButtons.qml"
-                    }
-
-                    ListElement {
-                        title: "Selectors"
-                        text: "Single choice selectors."
-                        icon: "qrc:/IconLibrary/material-symbols/link.svg"
-                        page: "demo/PageSelectors.qml"
-                    }
-
-                    ListElement {
-                        title: "Layouts"
-                        text: "Frames, boxes and panes."
-                        icon: "qrc:/IconLibrary/material-symbols/layers.svg"
-                        page: "demo/PageLayouts.qml"
-                    }
-
-                    ListElement {
-                        title: "Cards"
-                        text: "Cards and list elements."
-                        icon: "qrc:/IconLibrary/material-symbols/note_stack.svg"
-                        page: "demo/PageCards.qml"
-                    }
-
-                    ListElement {
-                        title: "Dialogs & pickers"
-                        text: "Various dialog popups and datetime pickers."
-                        icon: "qrc:/IconLibrary/material-icons/duotone/date_range.svg"
-                        page: "demo/PageDialogs.qml"
-                    }
-
-                    ListElement {
-                        title: "Indicators"
-                        text: "Usually used to indicate."
-                        icon: "qrc:/IconLibrary/material-icons/duotone/speed.svg"
-                        page: "demo/PageIndicators.qml"
-                    }
-
-                    ListElement {
-                        title: "Sliders"
-                        text: "We like sliders. Sliders are cools."
-                        icon: "qrc:/IconLibrary/material-symbols/sort.svg"
-                        page: "demo/PageSliders.qml"
-                    }
-
-                    ListElement {
-                        title: "Text fields"
-                        text: "Various text inputs."
-                        icon: "qrc:/IconLibrary/material-icons/duotone/edit.svg"
-                        page: "demo/PageTextFields.qml"
-                    }
-
-                    ListElement {
-                        title: "Tickers"
-                        text: "Checkboxes, radiobuttons and others."
-                        icon: "qrc:/IconLibrary/material-symbols/flaky.svg"
-                        page: "demo/PageTickers.qml"
-                    }
-                }
+                DemoPagesModel { id: pagesModel }
 
                 ////////
 
                 ListView {
+                    id: pagesView
                     currentIndex: -1
                     anchors.fill: parent
 
                     topMargin: Theme.componentMargin
                     bottomMargin: Theme.componentMargin
 
+                    property real sideMargin: Theme.singleColumn ? 0 : width*0.125
+
                     model: pagesModel
-                    delegate: ListElementThemed {
-                        width: stackView.width
+                    delegate: Item {
+                        width: pagesView.width
+                        height: listElement.height
 
-                        text: model.title
-                        subtitle: model.text
-                        source: model.icon
+                        ListElementThemed {
+                            id: listElement
+                            anchors.left: parent.left
+                            anchors.leftMargin: pagesView.sideMargin
+                            anchors.right: parent.right
+                            anchors.rightMargin: pagesView.sideMargin
 
-                        onClicked: {
-                            ListView.currentIndex = index
-                            stackView.push(model.page)
+                            text: model.title
+                            subtitle: model.text
+                            source: model.icon
+
+                            onClicked: {
+                                pagesView.currentIndex = index
+                                stackView.push(model.page)
+                            }
                         }
                     }
                 }

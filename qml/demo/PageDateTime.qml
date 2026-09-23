@@ -8,7 +8,7 @@ Flickable {
     contentHeight: contentColumn.height
 
     boundsBehavior: Theme.isDesktop ? Flickable.OvershootBounds : Flickable.DragAndOvershootBounds
-    ScrollBar.vertical: ScrollBar { visible: false }
+    ScrollBar.vertical: ScrollBarThemed { visible: Theme.isDesktop }
 
     Column {
         id: contentColumn

@@ -7,12 +7,6 @@ import ComponentLibrary
 Rectangle {
     id: card
 
-    required property string title
-    required property url icon
-    property string hint: ""
-
-    signal clicked()
-
     width: 480
     height: 400
     radius: Theme.componentRadius
@@ -21,6 +15,19 @@ Rectangle {
 
     color: cardArea.containsMouse ? Theme.colorForeground : Theme.colorBackground
     Behavior on border.color { ColorAnimation { duration: 133 } }
+
+    ////////
+
+    required property url icon
+    required property color backgroundColor
+    property color backgroundColorGradient: backgroundColor
+
+    required property string title
+    required property string hint
+
+    signal clicked()
+
+    ////////
 
     Rectangle { // top part: gradient banner with the centered icon
         id: cardBanner
@@ -32,9 +39,11 @@ Rectangle {
         topLeftRadius: card.radius
         topRightRadius: card.radius
 
+        color: card.backgroundColor
+
         gradient: Gradient {
-            GradientStop { position: 0.0; color: Theme.colorPrimary }
-            GradientStop { position: 1.0; color: Qt.darker(Theme.colorPrimary, 1.35) }
+            GradientStop { position: 0.0; color: card.backgroundColor }
+            GradientStop { position: 1.0; color: card.backgroundColorGradient }
         }
 
         IconSvg {
@@ -80,6 +89,8 @@ Rectangle {
         }
     }
 
+    ////////
+
     MouseArea {
         id: cardArea
         anchors.fill: parent
@@ -94,4 +105,15 @@ Rectangle {
         border.width: Theme.componentBorderWidth
         border.color: Theme.colorPrimary
     }
+
+    ////////
+
+    layer.enabled: true
+    layer.effect: MultiEffect { // shadow
+        autoPaddingEnabled: true
+        shadowEnabled: true
+        shadowColor: Theme.isLight ? "#22000000" : "#50000000"
+    }
+
+    ////////
 }

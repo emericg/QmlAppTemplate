@@ -8,7 +8,7 @@ Flickable {
     contentHeight: contentColumn.height
 
     boundsBehavior: Theme.isDesktop ? Flickable.OvershootBounds : Flickable.DragAndOvershootBounds
-    ScrollBar.vertical: ScrollBar { visible: false }
+    ScrollBar.vertical: ScrollBarThemed { visible: Theme.isDesktop }
 
     // Shared demo content
     ListModel {
@@ -34,7 +34,9 @@ Flickable {
         id: contentColumn
 
         anchors.left: parent.left
+        anchors.leftMargin: Theme.singleColumn ? 0 : parent.width*0.125
         anchors.right: parent.right
+        anchors.rightMargin: Theme.singleColumn ? 0 : parent.width*0.125
 
         topPadding: Theme.componentMarginXL
         bottomPadding: Theme.componentMarginXL

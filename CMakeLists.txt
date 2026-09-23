@@ -84,10 +84,12 @@ qt_add_qml_module(${PROJECT_NAME}
         qml/ScreenSettings.qml
         qml/ScreenAbout.qml
 
-        qml/components/CardSquare.qml
-        qml/components/SectionHeader.qml
-        qml/components/SectionExpandable.qml
+        qml/demo/ComponentsOverview.qml
+        qml/demo/PlaygroundOne.qml
+        qml/demo/PlaygroundTwo.qml
+        qml/demo/PlaygroundThree.qml
 
+        qml/demo/DemoPagesModel.qml
         qml/demo/PageButtons.qml
         qml/demo/PageCards.qml
         qml/demo/PageColors.qml
@@ -100,10 +102,6 @@ qt_add_qml_module(${PROJECT_NAME}
         qml/demo/PageSliders.qml
         qml/demo/PageTextFields.qml
         qml/demo/PageTickers.qml
-
-        qml/demo/PlaygroundOne.qml
-        qml/demo/PlaygroundTwo.qml
-        qml/demo/PlaygroundThree.qml
 
         qml/editor/EditorPanel.qml
         qml/editor/EditorElementBool.qml

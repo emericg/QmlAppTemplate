@@ -10,33 +10,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 list(APPEND MODULE_QML_FILES
     qml/ThemeEngine.qml
 
-    qml/menus/DesktopHeaderItem.qml
-    qml/menus/DesktopSidebarItem_icon.qml
-    qml/menus/DesktopSidebarItem_menu.qml
-    qml/menus/DesktopSidebarItem_button.qml
-    qml/menus/DesktopSidebarItem_combobox.qml
-    qml/menus/DesktopSidebarMenu.qml
-    qml/menus/DesktopSidebarSubMenu.qml
-    qml/menus/MobileMenuItem_horizontal.qml
-    qml/menus/MobileMenuItem_vertical.qml
-    qml/menus/ActionMenu_bottom.qml
-    qml/menus/ActionMenu_floating.qml
-    qml/menus/ActionMenuItem_button.qml
-    qml/menus/ActionMenuItem_switch.qml
-    qml/menus/ActionMenuItem_separator.qml
-    qml/menus/DrawerThemed.qml
-    qml/menus/DrawerItem_menu.qml
-    qml/menus/DrawerItem_button.qml
-    qml/menus/ListItem.qml
-    qml/menus/ListItemClickable.qml
-    qml/menus/ListSeparator.qml
-    qml/menus/ListSeparatorPadded.qml
-    qml/menus/ListSpacer.qml
-    qml/menus/ListTitle.qml
-
-    qml/popups/PopupThemed.qml
-    qml/popups/DialogThemed.qml
-
     qml/buttons/ButtonDesktop.qml
     qml/buttons/ButtonOutline.qml
     qml/buttons/ButtonClear.qml
@@ -87,14 +60,6 @@ list(APPEND MODULE_QML_FILES
     qml/generics/SelectorMenuColorfulItem.qml
     qml/generics/SelectorGrid.qml
     qml/generics/SelectorGridItem.qml
-    qml/generics/TagClear.qml
-    qml/generics/TagDesktop.qml
-    qml/generics/TagFlat.qml
-    qml/generics/TagImpl.qml
-    qml/generics/TagButtonClear.qml
-    qml/generics/TagButtonDesktop.qml
-    qml/generics/TagButtonFlat.qml
-    qml/generics/TagButtonImpl.qml
     qml/generics/TextSelectable.qml
     qml/generics/TipLine.qml
 
@@ -106,17 +71,19 @@ list(APPEND MODULE_QML_FILES
     qml/backgrounds/RectangleHazard.qml
     qml/backgrounds/RectangleGradient.qml
 
-    qml/layouts/FrameBox.qml
-    qml/layouts/FrameHazard.qml
-    qml/layouts/FrameThemed.qml
-    qml/layouts/GroupBoxThemed.qml
-    qml/layouts/PaneThemed.qml
-
     qml/cards/AboutHeader.qml
-    qml/cards/CardBox.qml
-    qml/cards/CardLeftRight.qml
-    qml/cards/CardSimple.qml
-    qml/cards/CardWelcome.qml
+    qml/cards/CardActionRow.qml
+    qml/cards/CardSquare.qml
+    qml/cards/MediaCardBackground.qml
+    qml/cards/MediaCardBottom.qml
+    qml/cards/MediaCardCompact.qml
+    qml/cards/MediaCardCompactInset.qml
+    qml/cards/MediaCardLeft.qml
+    qml/cards/MediaCardTop.qml
+    qml/cards/MediaCardTopInset.qml
+    qml/cards/SimpleCardTop.qml
+    qml/cards/SimpleCardLeftRight.qml
+    qml/cards/SimpleCardList.qml
 
     qml/controls/ButtonIconThemed.qml
     qml/controls/ButtonThemed.qml
@@ -146,6 +113,8 @@ list(APPEND MODULE_QML_FILES
     qml/controls/SpinBoxThemedDesktop.qml
     qml/controls/SpinBoxThemedMobile.qml
     qml/controls/SwitchThemed.qml
+    qml/controls/SwitchThemedSmall.qml
+    qml/controls/SwitchThemedSquare.qml
     qml/controls/TextAreaThemed.qml
     qml/controls/TextEditThemed.qml
     qml/controls/TextFieldThemed.qml
@@ -156,6 +125,56 @@ list(APPEND MODULE_QML_FILES
     qml/complex/DatePicker.qml
     qml/complex/FileInputArea.qml
     qml/complex/FolderInputArea.qml
+
+    qml/layouts/FrameBox.qml
+    qml/layouts/FrameHazard.qml
+    qml/layouts/FrameSolid.qml
+    qml/layouts/FrameStack.qml
+    qml/layouts/FrameStackItem.qml
+    qml/layouts/FrameThemed.qml
+    qml/layouts/GroupBoxThemed.qml
+    qml/layouts/ListItem.qml
+    qml/layouts/ListItemClickable.qml
+    qml/layouts/ListSeparator.qml
+    qml/layouts/ListSeparatorPadded.qml
+    qml/layouts/ListSpacer.qml
+    qml/layouts/ListTitle.qml
+    qml/layouts/PaneThemed.qml
+    qml/layouts/SectionHeader.qml
+    qml/layouts/SectionExpandable.qml
+
+    qml/menus/DesktopHeaderItem.qml
+    qml/menus/DesktopSidebarItem_icon.qml
+    qml/menus/DesktopSidebarItem_menu.qml
+    qml/menus/DesktopSidebarItem_button.qml
+    qml/menus/DesktopSidebarItem_combobox.qml
+    qml/menus/DesktopSidebarItem_header.qml
+    qml/menus/DesktopSidebarMenu.qml
+    qml/menus/DesktopSidebarSubMenu.qml
+    qml/menus/MobileMenuItem_horizontal.qml
+    qml/menus/MobileMenuItem_vertical.qml
+    qml/menus/ActionMenu_bottom.qml
+    qml/menus/ActionMenu_floating.qml
+    qml/menus/ActionMenuItem_button.qml
+    qml/menus/ActionMenuItem_switch.qml
+    qml/menus/ActionMenuItem_separator.qml
+    qml/menus/DrawerThemed.qml
+    qml/menus/DrawerItem_menu.qml
+    qml/menus/DrawerItem_button.qml
+
+    qml/popups/PopupThemed.qml
+    qml/popups/DialogThemed.qml
+
+    qml/tags/CardTagLabel.qml
+    qml/tags/CardTagClearIcon.qml
+    qml/tags/TagClear.qml
+    qml/tags/TagDesktop.qml
+    qml/tags/TagFlat.qml
+    qml/tags/TagImpl.qml
+    qml/tags/TagButtonClear.qml
+    qml/tags/TagButtonDesktop.qml
+    qml/tags/TagButtonFlat.qml
+    qml/tags/TagButtonImpl.qml
 
     qml/utils/CsdMac.qml
     qml/utils/CsdWindows.qml
@@ -171,7 +190,6 @@ list(APPEND MODULE_QML_FILES # DEPRECATED
     qml/deprecated/ButtonText.qml
     #qml/deprecated/RoundButtonIcon.qml
     #qml/deprecated/RoundButtonText.qml
-    qml/deprecated/SwitchThemedMobile.qml
 )
 list(APPEND MODULE_QML_FILES # WIP
     #
@@ -192,27 +210,42 @@ list(APPEND MODULE_SOURCES
 list(APPEND MODULE_ASSETS
     # embedded icons
     assets/icons/add.svg
+    assets/icons/arrow_right.svg
     assets/icons/autorenew.svg
+    assets/icons/check.svg
     assets/icons/chevron_right.svg
     assets/icons/circle.svg
     assets/icons/circle-fill.svg
     assets/icons/close.svg
+    assets/icons/label.svg
     assets/icons/menu.svg
     assets/icons/remove.svg
     # embedded background patterns
     assets/patterns/basketweave.svg
     assets/patterns/chevrons.svg
     assets/patterns/circles.svg
+    assets/patterns/circles-concentric.svg
     assets/patterns/cubes.svg
     assets/patterns/cubes-lines.svg
     assets/patterns/diamonds.svg
     assets/patterns/dots.svg
+    assets/patterns/grid.svg
+    assets/patterns/grid-diagonal.svg
     assets/patterns/hexagons.svg
+    assets/patterns/hexagons-maze.svg
+    assets/patterns/honeycomb.svg
+    assets/patterns/labyrinth.svg
     assets/patterns/maze.svg
+    assets/patterns/peaks.svg
+    assets/patterns/squares-grid.svg
+    assets/patterns/squares-mosaic.svg
+    assets/patterns/stripes.svg
     assets/patterns/topography.svg
     assets/patterns/topography_light.svg
     assets/patterns/topography_ultralight.svg
     assets/patterns/triangles.svg
+    assets/patterns/triangles-grid.svg
+    assets/patterns/triangles-mosaic.svg
     assets/patterns/truchet-contours.svg
     assets/patterns/truchet-ribbons.svg
     assets/patterns/truchet.svg

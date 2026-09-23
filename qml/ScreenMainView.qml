@@ -35,7 +35,7 @@ Loader {
         contentHeight: contentColumn.height
 
         boundsBehavior: Theme.isDesktop ? Flickable.OvershootBounds : Flickable.DragAndOvershootBounds
-        ScrollBar.vertical: ScrollBar { visible: false }
+        ScrollBar.vertical: ScrollBarThemed { visible: Theme.isDesktop }
 
         ////////
 
@@ -99,112 +99,121 @@ Loader {
 
             ////////////////
 
-            Flow { // primary
-                anchors.horizontalCenter: parent.horizontalCenter
-                //width: Math.min(implicitWidth, parent.width)
-
+            Flow { // galleries
+                id: galleries
+                anchors.left: parent.left
+                anchors.leftMargin: Theme.componentMarginXL
+                anchors.right: parent.right
+                anchors.rightMargin: Theme.componentMarginXL
                 spacing: Theme.componentMargin
 
-                CardWelcome {
-                    visible: Theme.isDesktop // the mobile app has no desktop components screen
+                readonly property int cardCount: Theme.isDesktop ? 3 : 2
+                readonly property int columns: Math.max(1, Math.min(cardCount, Math.floor((width + spacing) / (280 + spacing))))
+
+                readonly property real cardWidth: (width - (columns - 1) * spacing) / columns
+                readonly property real cardHeight: 440
+
+                MediaCardTop {
+                    width: galleries.cardWidth
+                    height: galleries.cardHeight
+
+                    mediaHeight: galleries.cardHeight * 0.54
+                    gradientStops: GradientPresets.ocean
+                    pattern: "circles-concentric"
+                    patternTileSize: 64
+                    iconSource: "qrc:/IconLibrary/material-symbols/hardware/computer.svg"
+
+                    tagText: qsTr("Gallery")
+                    tagColor: Theme.colorMaterialBlue
                     title: qsTr("Desktop components")
-                    hint: qsTr("One screen for many components.")
-                    icon: "qrc:/IconLibrary/material-symbols/hardware/computer.svg"
+                    description: qsTr("One screen for many components.")
+
+                    primaryText: qsTr("Explore")
+                    onPrimaryClicked: screenDesktopComponents.loadScreen()
                     onClicked: screenDesktopComponents.loadScreen()
                 }
 
-                CardWelcome {
+                MediaCardTop {
+                    width: galleries.cardWidth
+                    height: galleries.cardHeight
+
+                    mediaHeight: galleries.cardHeight * 0.54
+                    gradientStops: GradientPresets.grape
+                    pattern: "grid-diagonal"
+                    patternTileSize: 64
+                    iconSource: "qrc:/IconLibrary/material-symbols/hardware/smartphone-fill.svg"
+
+                    tagText: qsTr("Gallery")
+                    tagColor: Theme.colorMaterialPurple
                     title: qsTr("Mobile components")
-                    hint: qsTr("Controls and layouts tuned for mobile navigation.")
-                    icon: "qrc:/IconLibrary/material-symbols/hardware/smartphone-fill.svg"
+                    description: qsTr("Controls and layouts tuned for mobile navigation.")
+
+                    primaryText: qsTr("Explore")
+                    onPrimaryClicked: screenMobileComponents.loadScreen()
                     onClicked: screenMobileComponents.loadScreen()
+                }
+
+                MediaCardTop {
+                    width: galleries.cardWidth
+                    height: galleries.cardHeight
+
+                    mediaHeight: galleries.cardHeight * 0.54
+                    gradientStops: GradientPresets.ember
+                    pattern: "maze"
+                    patternTileSize: 512
+                    iconSource: "qrc:/IconLibrary/material-symbols/build-fill.svg"
+
+                    tagText: qsTr("Sandbox")
+                    tagColor: Theme.colorMaterialOrange
+                    title: qsTr("Playgrounds")
+                    description: qsTr("A scratch area to experiment.")
+
+                    primaryText: qsTr("Open")
+                    onPrimaryClicked: screenPlayground.loadScreen()
+                    onClicked: screenPlayground.loadScreen()
                 }
             }
 
             ////////////////
 
-            Flow { // secondary
+            Flow { // tools
+                id: tools
                 anchors.left: parent.left
                 anchors.leftMargin: Theme.componentMarginXL
                 anchors.right: parent.right
                 anchors.rightMargin: Theme.componentMarginXL
                 spacing: Theme.componentMarginS
 
-                // Shuffled once at creation, so each card gets a distinct accent color.
-                readonly property var accents: {
-                    let p = [Theme.colorMaterialRed, Theme.colorMaterialPink,
-                             Theme.colorMaterialPurple, Theme.colorMaterialIndigo,
-                             Theme.colorMaterialBlue, Theme.colorMaterialTeal,
-                             Theme.colorMaterialGreen, Theme.colorMaterialOrange,
-                             Theme.colorMaterialDeepOrange, Theme.colorMaterialBrown]
-                    for (let i = p.length - 1; i > 0; i--) {
-                        let j = Math.floor(Math.random() * (i + 1))
-                        let t = p[i]; p[i] = p[j]; p[j] = t
-                    }
-                    return p
-                }
+                readonly property int columns: Math.max(1, Math.floor((width + spacing) / (320 + spacing)))
+                readonly property real cardWidth: (width - (columns - 1) * spacing) / columns
 
-                CardSimple {
-                    width: Math.min(400, parent.width)
-
-                    accentColor: parent.accents[0]
-                    title: qsTr("Playgrounds")
-                    subtitle: qsTr("A scratch area to experiment.")
-                    icon: "qrc:/IconLibrary/material-symbols/build-fill.svg"
-                    onClicked: screenPlayground.loadScreen()
-                }
-                CardSimple {
-                    width: Math.min(400, parent.width)
-
-                    accentColor: parent.accents[1]
+                SimpleCardList {
+                    width: tools.cardWidth
+                    accentColor: Theme.colorMaterialTeal
                     title: qsTr("Host info")
                     subtitle: qsTr("Details about the current device.")
                     icon: "qrc:/IconLibrary/material-icons/duotone/info.svg"
                     onClicked: screenHostInfos.loadScreen()
                 }
-                CardSimple {
-                    width: Math.min(400, parent.width)
-
-                    accentColor: parent.accents[2]
+                SimpleCardList {
+                    width: tools.cardWidth
+                    accentColor: Theme.colorMaterialIndigo
                     title: qsTr("Fonts info")
                     subtitle: qsTr("Preview the bundled font families.")
                     icon: "qrc:/IconLibrary/material-icons/duotone/info.svg"
                     onClicked: screenFontInfos.loadScreen()
                 }
-            }
-
-            Flow { // tertiary
-                anchors.left: parent.left
-                anchors.leftMargin: Theme.componentMarginXL
-                anchors.right: parent.right
-                anchors.rightMargin: Theme.componentMarginXL
-                spacing: Theme.componentMarginS
-
-                readonly property var accents: {
-                    let p = [Theme.colorMaterialRed, Theme.colorMaterialPink,
-                             Theme.colorMaterialPurple, Theme.colorMaterialIndigo,
-                             Theme.colorMaterialBlue, Theme.colorMaterialTeal,
-                             Theme.colorMaterialGreen, Theme.colorMaterialOrange,
-                             Theme.colorMaterialDeepOrange, Theme.colorMaterialBrown]
-                    for (let i = p.length - 1; i > 0; i--) {
-                        let j = Math.floor(Math.random() * (i + 1))
-                        let t = p[i]; p[i] = p[j]; p[j] = t
-                    }
-                    return p
-                }
-                CardSimple {
-                    width: Math.min(400, parent.width)
-
-                    accentColor: parent.accents[3]
+                SimpleCardList {
+                    width: tools.cardWidth
+                    accentColor: Theme.colorMaterialGreen
                     title: qsTr("Settings")
                     subtitle: qsTr("Theme, language and preferences.")
                     icon: "qrc:/IconLibrary/material-icons/duotone/tune.svg"
                     onClicked: screenSettings.loadScreen()
                 }
-                CardSimple {
-                    width: Math.min(400, parent.width)
-
-                    accentColor: parent.accents[4]
+                SimpleCardList {
+                    width: tools.cardWidth
+                    accentColor: Theme.colorMaterialBrown
                     title: qsTr("About")
                     subtitle: qsTr("Version, credits and links.")
                     icon: "qrc:/IconLibrary/material-icons/duotone/info.svg"

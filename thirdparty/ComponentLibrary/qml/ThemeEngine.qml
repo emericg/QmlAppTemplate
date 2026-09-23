@@ -190,6 +190,10 @@ QtObject {
     readonly property int animationMediumSpeed: 233
     readonly property int animationSlowSpeed: 333
 
+    readonly property int animationSpeedFast: 133
+    readonly property int animationSpeedMedium: 233
+    readonly property int animationSpeedSlow: 333
+
     // Fonts sizes (in pixel)
 
     readonly property int fontSizeTitle: Math.round(fontSizeOS * (isMobile ? 1.55 : 1.80))
@@ -210,19 +214,36 @@ QtObject {
     property color colorComponentBorder
     property color colorComponentDown
     property color colorComponentBackground
-    property color colorComponentShadow: isLight ? "#33000000" : "#66000000"
+    property color colorComponentShadow: isLight ? "#30000000" : "#60000000"
 
     property int componentRadius: 4
     property int componentBorderWidth: 2
 
     property int componentFontSize: Math.round(fontSizeOS)
 
+    property int componentMarginXXS: 4
     property int componentMarginXS: isHdpi ? 4 : 8
     property int componentMarginS: isHdpi ? 8 : 12
     property int componentMargin: isHdpi ? 12 : 16
     property int componentMarginL: isHdpi ? 16 : 20
     property int componentMarginXL: isHdpi ? 20 : 24
+    property int componentMarginXXL: isHdpi ? 28 : 32
 
+    property int componentHeightXXS: {
+        if (isDesktop && isHdpi) return 20
+        if (isDesktop) return 22
+        return 24
+    }
+    property int componentHeightXS: {
+        if (isDesktop && isHdpi) return 24
+        if (isDesktop) return 26
+        return 28
+    }
+    property int componentHeightS: {
+        if (isDesktop && isHdpi) return 28
+        if (isDesktop) return 30
+        return 32
+    }
     property int componentHeight: {
         if (isDesktop && isHdpi) return 34
         if (isDesktop) return 38
@@ -237,6 +258,11 @@ QtObject {
         if (isDesktop && isHdpi) return 44
         if (isDesktop) return 48
         return 52
+    }
+    property int componentHeightXXL: {
+        if (isDesktop && isHdpi) return 56
+        if (isDesktop) return 64
+        return 64
     }
 
     ////////////////////////////////////////////////////////////////////////////

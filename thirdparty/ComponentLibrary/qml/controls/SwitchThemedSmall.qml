@@ -16,6 +16,12 @@ T.Switch {
 
     font.pixelSize: Theme.componentFontSize
 
+    property int www: 40
+    property int hhh: 16
+
+    property color colorText: Theme.colorText
+    property color colorSubText: Theme.colorSubText
+
     ////////////////
 
     indicator: Rectangle {
@@ -57,15 +63,17 @@ T.Switch {
     }
 
     contentItem: Text {
-        leftPadding: control.indicator.width + control.spacing
-        verticalAlignment: Text.AlignVCenter
+        leftPadding: !control.mirrored ? control.indicator.width + control.spacing : 0
+        rightPadding: control.mirrored ? control.indicator.width + control.spacing : 0
+
+        opacity: control.enabled ? 1 : 0.66
+        color: control.checked ? control.colorText : control.colorSubText
 
         text: control.text
         textFormat: Text.PlainText
         font: control.font
-
-        color: control.checked ? Theme.colorText : Theme.colorSubText
-        opacity: control.enabled ? 1 : 0.66
+        elide: Text.ElideRight
+        verticalAlignment: Text.AlignVCenter
     }
 
     ////////////////

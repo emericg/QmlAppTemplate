@@ -94,6 +94,7 @@ Rectangle {
             topPadding: 16
             bottomPadding: 16
             spacing: 8
+            ////
 
             DesktopSidebarMenu {
                 source: "qrc:/IconLibrary/material-symbols/home.svg"
@@ -135,6 +136,8 @@ Rectangle {
 
                 onClicked: screenPlayground.loadScreen()
             }
+
+            ////
         }
 
         ////////
@@ -149,6 +152,8 @@ Rectangle {
             topPadding: 16
             bottomPadding: 16
             spacing: 8
+
+            ////
 
             DesktopSidebarMenu {
                 text: qsTr("Settings")
@@ -171,6 +176,8 @@ Rectangle {
                 source: "qrc:/IconLibrary/material-icons/duotone/exit_to_app.svg"
                 onClicked: Qt.quit()
             }
+
+            ////
         }
 
         ////////

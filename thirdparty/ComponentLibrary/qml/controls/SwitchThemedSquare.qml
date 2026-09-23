@@ -22,6 +22,7 @@ T.Switch {
 
     property int www: 48
     property int hhh: 24
+    property int radius: Theme.componentRadius
 
     property color colorText: Theme.colorText
     property color colorSubText: Theme.colorSubText
@@ -39,7 +40,7 @@ T.Switch {
 
         width: control.www
         height: control.hhh
-        radius: control.hhh
+        radius: control.radius
 
         color: Theme.colorComponentBackground
         border.color: Theme.colorComponentBorder
@@ -52,7 +53,7 @@ T.Switch {
             Behavior on x { NumberAnimation { duration: Theme.animationFastSpeed } }
             width: 24
             height: width
-            radius: (width / 2)
+            radius: control.radius
             anchors.verticalCenter: parent.verticalCenter
 
             color: (control.checked && control.enabled) ? Theme.colorPrimary : Theme.colorComponentBorder
@@ -61,7 +62,7 @@ T.Switch {
                 anchors.fill: parent
                 anchors.margins: -10
                 z: -1
-                radius: (width / 2)
+                radius: control.radius + 4
                 color: parent.color
                 opacity: (control.enabled && control.checkable && (control.pressed || control.hovered || control.visualFocus)) ?
                              (control.checked ? 0.16 : 0.32) : 0

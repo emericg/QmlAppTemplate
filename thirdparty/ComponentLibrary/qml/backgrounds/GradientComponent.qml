@@ -26,11 +26,15 @@ Item {
     property real radius: 0
 
     // Tileable texture overlay (optional)
-    property url texture
+    property url texture: {
+        if (texturePattern.length <= 0) return ""
+        return "qrc:/ComponentLibraryAssets/patterns/" + texturePattern + ".svg"
+    }
+    property string texturePattern
     property int textureFillMode: Image.Tile
     property int textureTileSize: 48
     property real textureOpacity: 0.12
-    property color textureColor: "transparent"
+    property color textureColor: "white"
 
     // Content overlay (optional)
     default property alias content: contentContainer.data

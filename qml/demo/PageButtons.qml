@@ -6,8 +6,9 @@ import ComponentLibrary
 Item {
     Column {
         anchors.right: parent.right
+        anchors.rightMargin: Theme.componentMarginXL + (Theme.singleColumn ? 0 : parent.width*0.125)
         anchors.bottom: parent.bottom
-        anchors.margins: Theme.componentMarginXL
+        anchors.bottomMargin: Theme.componentMarginXL
         spacing: Theme.componentMarginXL
 
         ButtonFab {
@@ -29,13 +30,15 @@ Item {
         contentHeight: contentColumn.height
 
         boundsBehavior: Theme.isDesktop ? Flickable.OvershootBounds : Flickable.DragAndOvershootBounds
-        ScrollBar.vertical: ScrollBar { visible: false }
+        ScrollBar.vertical: ScrollBarThemed { visible: Theme.isDesktop }
 
         Column {
             id: contentColumn
 
             anchors.left: parent.left
+            anchors.leftMargin: Theme.singleColumn ? 0 : parent.width*0.125
             anchors.right: parent.right
+            anchors.rightMargin: Theme.singleColumn ? 0 : parent.width*0.125
 
             topPadding: Theme.componentMarginXL
             bottomPadding: Theme.componentMarginXL
@@ -141,11 +144,29 @@ Item {
                 }
             }
 
+            Flow {
+                anchors.left: parent.left
+                anchors.leftMargin: Theme.componentMarginXL
+                anchors.right: parent.right
+                anchors.rightMargin: Theme.componentMarginXL
+                spacing: 24
+
+                ButtonSunken {
+                    text: "ButtonSunken"
+                }
+
+                ButtonSunken {
+                    //width: 128
+                    text: "ButtonSunken"
+                    source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
+                }
+            }
+
             ListTitle { ////////////////////////////////////////////////////////
                 anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
                 anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
-                text: qsTr("Buttons")
+                text: qsTr("Other buttons")
                 source: ""
             }
 
@@ -194,45 +215,9 @@ Item {
                 ButtonText {
                     text: "ButtonText"
                 }
-            }
 
-            ListTitle { ////////////////////////////////////////////////////////
-                anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
-                anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
-
-                text: qsTr("Square buttons")
-                source: ""
-            }
-
-            Row {
-                anchors.horizontalCenter: parent.horizontalCenter
-                height: 48
-                spacing: 16
-
-                SquareButtonSunken {
-                    width: 48
-                    height: 48
-
-                    source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
-                }
-                SquareButtonClear {
-                    width: 48
-                    height: 48
-
-                    source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
-                }
-                SquareButtonFlat {
-                    width: 48
-                    height: 48
-
-                    source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
-                }
-                SquareButtonDesktop {
-                    width: 48
-                    height: 48
-
-                    colorIconHighlight: "red"
-                    source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
+                ButtonSimple {
+                    text: "ButtonSimple"
                 }
             }
 
@@ -240,39 +225,75 @@ Item {
                 anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
                 anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
 
-                text: qsTr("Round buttons")
+                text: qsTr("Round & Square buttons")
                 source: ""
             }
 
-            Row {
+            Flow {
                 anchors.horizontalCenter: parent.horizontalCenter
                 height: 48
-                spacing: 16
+                spacing: 48
 
-                RoundButtonSunken {
-                    width: 48
+                Row {
                     height: 48
+                    spacing: 16
 
-                    source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
+                    RoundButtonSunken {
+                        width: 48
+                        height: 48
+
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
+                    }
+                    RoundButtonClear {
+                        width: 48
+                        height: 48
+
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
+                    }
+                    RoundButtonFlat {
+                        width: 48
+                        height: 48
+
+                        colorIconHighlight: "red"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
+                    }
+                    RoundButtonDesktop {
+                        width: 48
+                        height: 48
+
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
+                    }
                 }
-                RoundButtonClear {
-                    width: 48
-                    height: 48
 
-                    source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
-                }
-                RoundButtonFlat {
-                    width: 48
+                Row {
                     height: 48
+                    spacing: 16
 
-                    colorIconHighlight: "red"
-                    source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
-                }
-                RoundButtonDesktop {
-                    width: 48
-                    height: 48
+                    SquareButtonSunken {
+                        width: 48
+                        height: 48
 
-                    source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
+                    }
+                    SquareButtonClear {
+                        width: 48
+                        height: 48
+
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
+                    }
+                    SquareButtonFlat {
+                        width: 48
+                        height: 48
+
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
+                    }
+                    SquareButtonDesktop {
+                        width: 48
+                        height: 48
+
+                        colorIconHighlight: "red"
+                        source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
+                    }
                 }
             }
 
