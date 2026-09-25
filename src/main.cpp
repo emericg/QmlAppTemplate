@@ -1,5 +1,6 @@
 
 #include "SettingsManager.h"
+#include "MenubarManager.h"
 
 #include <utils_app.h>
 #include <utils_screen.h>
@@ -11,6 +12,10 @@
 #include <QtGlobal>
 #include <QLibraryInfo>
 #include <QVersionNumber>
+
+#if defined(Q_OS_MACOS)
+#include <QApplication>
+#endif
 
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
@@ -40,7 +45,11 @@ int main(int argc, char *argv[])
 
     // GUI application /////////////////////////////////////////////////////////
 
+#if defined(Q_OS_MACOS)
+    QApplication app(argc, argv, true); // QtWidgets is required for the native menu bar
+#else
     QGuiApplication app(argc, argv, true);
+#endif
 
     // Application name
     app.setApplicationName("QmlAppTemplate");
@@ -106,6 +115,9 @@ int main(int argc, char *argv[])
     if (!window) return EXIT_FAILURE;
 
 #if defined(Q_OS_MACOS)
+    // macOS menu
+    MenubarManager::getInstance()->setupMenubar(window);
+
     // macOS dock
     MacOSDockHandler *dockIconHandler = MacOSDockHandler::getInstance();
     QObject::connect(dockIconHandler, &MacOSDockHandler::dockIconClicked, window, &QQuickWindow::show);

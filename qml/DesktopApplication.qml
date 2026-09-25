@@ -88,6 +88,21 @@ ApplicationWindow {
     }
 
     Connections {
+        target: MenubarManager
+
+        function onSettingsClicked() { screenSettings.loadScreen() }
+        function onAboutClicked() { screenAbout.loadScreen() }
+        function onExportClicked() { }
+        function onClearClicked() { }
+        function onViewClicked(screen) {
+            if (screen === 0) screenMainView.loadScreen()
+            else if (screen === 1) screenDesktopComponents.loadScreen()
+            else if (screen === 2) screenMobileComponents.loadScreen()
+            else if (screen === 3) screenPlayground.loadScreen()
+        }
+    }
+
+    Connections {
         target: Qt.application
         function onStateChanged() {
             switch (Qt.application.state) {
@@ -313,7 +328,12 @@ ApplicationWindow {
 
         state: ""
         onStateChanged: {
-            //
+            // Reflect the active screen as a checkmark in the macOS View menu
+            if (state === "MainView") MenubarManager.setCurrentView(0)
+            else if (state === "DesktopComponents") MenubarManager.setCurrentView(1)
+            else if (state === "MobileComponents") MenubarManager.setCurrentView(2)
+            else if (state === "Playgrounds" || state === "HostInfos" || state === "FontInfos") MenubarManager.setCurrentView(3)
+            else MenubarManager.setCurrentView(-1)
         }
 
         states: [

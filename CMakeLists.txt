@@ -118,6 +118,7 @@ qt_add_qml_module(${PROJECT_NAME}
 
     SOURCES
         src/SettingsManager.cpp src/SettingsManager.h
+        src/MenubarManager.cpp src/MenubarManager.h
 )
 
 qt_add_translations(${PROJECT_NAME}
@@ -214,8 +215,9 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     #set(CMAKE_OSX_ARCHITECTURES "x86_64;arm64")
     set(CMAKE_OSX_DEPLOYMENT_TARGET "12.0")
 
-    set(app_icon_macos "${PROJECT_SOURCE_DIR}/platforms/macos/${PROJECT_NAME}.icns")
-    set_source_files_properties(${app_icon_macos} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
+    # menu bar support
+    find_package(Qt6 REQUIRED COMPONENTS Widgets)
+    target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Widgets)
 
     set_target_properties(${PROJECT_NAME} PROPERTIES
         MACOSX_BUNDLE ON
