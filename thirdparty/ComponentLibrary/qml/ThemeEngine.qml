@@ -611,9 +611,11 @@ QtObject {
             colorBackground             = "#fcfbfa"
             colorForeground             = "#f5f4f3"
 
-            colorPrimary                = "#7b74cf" // purple
+            colorPrimary                = "#6640d8" // purple
             colorSecondary              = "#ffeb00"
             //colorPrimary                = "#ffc900" // yellow
+            //colorSecondary              = "#ffeb00"
+            //colorPrimary                = "#27ba72" // green
             //colorSecondary              = "#ffeb00"
 
             colorSuccess                = colorGreen
@@ -627,12 +629,12 @@ QtObject {
             colorLowContrast            = "white"
             colorHighContrast           = "#303030"
 
-            colorComponent              = "#eaeaea"
+            colorComponent              = "#ededed"
             colorComponentText          = "black"
             colorComponentContent       = "black"
-            colorComponentBorder        = "#ddd"
-            colorComponentDown          = "#dadada"
-            colorComponentBackground    = "#fcfcfc"
+            colorComponentBorder        = "#e0e0e0"
+            colorComponentDown          = "#eee"
+            colorComponentBackground    = "#fff"
 
             componentRadius             = 4
             componentBorderWidth        = 2

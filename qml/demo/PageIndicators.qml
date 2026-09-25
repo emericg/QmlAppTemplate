@@ -105,7 +105,7 @@ Flickable {
             source: ""
         }
 
-        Column {
+        Flow {
             anchors.left: parent.left
             anchors.leftMargin: Theme.componentMarginXL
             anchors.right: parent.right
@@ -160,15 +160,27 @@ Flickable {
             anchors.rightMargin: Theme.componentMarginXL
             spacing: Theme.componentMarginXL
 
-            ItemLicenseBadge {
-                width: 128
-                legend: "license"
-                text: "LGPL 3"
-                onClicked: Qt.openUrlExternally("https://www.gnu.org/licenses/lgpl-3.0.html")
+            Row {
+                spacing: Theme.componentMargin
+
+                ItemLicenseBadge {
+                    width: 128
+                    legend: "license"
+                    text: "LGPL 3"
+                    onClicked: Qt.openUrlExternally("https://www.gnu.org/licenses/lgpl-3.0.html")
+                }
+
+                CardTagClearIcon {
+                    text: "license"
+                }
+
+                CardTagLabel {
+                    text: "license"
+                }
             }
 
             Row {
-                spacing: 8
+                spacing: Theme.componentMargin
 
                 TagButtonClear {
                     text: "TAG"
@@ -182,7 +194,7 @@ Flickable {
             }
 
             Row {
-                spacing: 8
+                spacing: Theme.componentMargin
 
                 ItemBadge {
                     text: "4"

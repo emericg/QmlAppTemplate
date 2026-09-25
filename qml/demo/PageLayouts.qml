@@ -268,7 +268,7 @@ Flickable {
             Repeater {
                 model: [ false, true ]
 
-                delegate: FrameStack {
+                delegate: FrameStackColumn {
                     required property bool modelData
 
                     width: Math.min(440, contentColumn.width - Theme.componentMarginXL * 2)

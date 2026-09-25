@@ -60,7 +60,7 @@ T.Button {
                     return control.colorBackground
                 }
                 opacity: (mousearea.containsMouse) ? 1 : 0
-                Behavior on opacity { NumberAnimation { duration: Theme.animationFastSpeed } }
+                Behavior on opacity { NumberAnimation { duration: Theme.animationSpeedFast } }
             }
 
             Rectangle { // vertical separator

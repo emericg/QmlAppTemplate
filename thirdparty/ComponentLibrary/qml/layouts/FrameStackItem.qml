@@ -4,7 +4,7 @@ import QtQuick.Layouts
 import ComponentLibrary
 
 /*!
- * \brief A padded row for FrameStack, with an optional title and text.
+ * \brief A padded item for FrameStackColumn and FrameStackRow, with an optional title and text.
  *
  * Extra children are appended below the title and text.
  * In a FrameStackRow, items share the available width equally and fill the height.

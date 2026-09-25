@@ -132,14 +132,14 @@ Window {
                 if (mobileExit.enabled) {
                     if (mobileExit.timerRunning)
                         Qt.quit()
-                    else
-                        mobileExit.timerStart()
+                else
+                    mobileExit.timerStart()
                 } else {
                     MobileUI.backToHomeScreen()
                 }
             }
         }
-        else if (appContent.state === "Playground") state = screenPlayground.backAction()
+        else if (appContent.state === "Playgrounds") state = screenPlayground.backAction()
         else if (appContent.state === "HostInfos") state = screenHostInfos.backAction()
         else if (appContent.state === "FontInfos") state = screenFontInfos.backAction()
         else if (appContent.state === "ScreenSettings") state = screenSettings.backAction()
@@ -233,8 +233,8 @@ Window {
                 PropertyChanges { target: screenAboutPermissions; visible: false; enabled: false; }
             },
             State {
-                name: "Playground"
-                PropertyChanges { target: appHeader; headerTitle: "Playground"; }
+                name: "Playgrounds"
+                PropertyChanges { target: appHeader; headerTitle: "Playgrounds"; }
                 PropertyChanges { target: screenMobileComponents; visible: false; enabled: false; }
                 PropertyChanges { target: screenPlayground; visible: true; enabled: true; }
                 PropertyChanges { target: screenFontInfos; visible: false; enabled: false; }

@@ -129,8 +129,10 @@ list(APPEND MODULE_QML_FILES
     qml/layouts/FrameBox.qml
     qml/layouts/FrameHazard.qml
     qml/layouts/FrameSolid.qml
-    qml/layouts/FrameStack.qml
+    qml/layouts/FrameStackColumn.qml
+    qml/layouts/FrameStackDecorations.qml
     qml/layouts/FrameStackItem.qml
+    qml/layouts/FrameStackRow.qml
     qml/layouts/FrameThemed.qml
     qml/layouts/GroupBoxThemed.qml
     qml/layouts/ListItem.qml
@@ -161,6 +163,8 @@ list(APPEND MODULE_QML_FILES
     qml/menus/DrawerThemed.qml
     qml/menus/DrawerItem_menu.qml
     qml/menus/DrawerItem_button.qml
+    qml/menus/TabBarThemed.qml
+    qml/menus/TabButtonThemed.qml
 
     qml/popups/PopupThemed.qml
     qml/popups/DialogThemed.qml

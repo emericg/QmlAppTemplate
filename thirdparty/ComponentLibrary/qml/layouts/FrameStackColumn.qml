@@ -1,5 +1,3 @@
-pragma ComponentBehavior: Bound
-
 import QtQuick
 import QtQuick.Templates as T
 
@@ -31,7 +29,7 @@ T.Frame {
     // colors
     property color colorTray: Theme.colorForeground
     property color colorTrayBorder: Theme.colorSeparator
-    property color colorCard: Theme.colorComponentBackground
+    property color colorCard: Theme.colorBackground
     property color colorCardBorder: Theme.colorComponentBorder
     property color colorSeparator: Theme.colorComponentBorder
 
@@ -52,50 +50,15 @@ T.Frame {
         implicitWidth: column.implicitWidth
         implicitHeight: column.implicitHeight
 
-        Rectangle { // joined card
-            width: column.width
-            height: column.height
-            visible: control.joined
+        FrameStackDecorations {
+            container: column
+            orientation: Qt.Vertical
 
+            joined: control.joined
             radius: control.innerRadius
-            color: control.colorCard
-            border.width: 1
-            border.color: control.colorCardBorder
-        }
-
-        Repeater { // per child decorations
-            model: column.children
-
-            delegate: Item {
-                id: deco
-
-                required property Item modelData
-
-                readonly property bool shown: modelData.visible &&
-                                              modelData.width > 0 && modelData.height > 0
-
-                y: modelData.y
-                width: column.width
-                height: modelData.height
-                visible: shown
-
-                Rectangle { // separated card
-                    anchors.fill: parent
-                    visible: !control.joined
-
-                    radius: control.innerRadius
-                    color: control.colorCard
-                    border.width: 1
-                    border.color: control.colorCardBorder
-                }
-
-                Rectangle { // joined separator
-                    width: parent.width
-                    height: 1
-                    visible: control.joined && deco.modelData.y > 0
-                    color: control.colorSeparator
-                }
-            }
+            colorCard: control.colorCard
+            colorCardBorder: control.colorCardBorder
+            colorSeparator: control.colorSeparator
         }
 
         Column {

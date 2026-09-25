@@ -50,16 +50,20 @@ Item {
         { "name": "componentRadius",      "from": 0, "to": 64 },
         { "name": "componentBorderWidth", "from": 0, "to": 16 },
         { "name": "componentFontSize",    "from": 8, "to": 40 },
+        { "name": "componentMarginXXS",   "from": 0, "to": 64 },
         { "name": "componentMarginXS",    "from": 0, "to": 64 },
         { "name": "componentMarginS",     "from": 0, "to": 64 },
         { "name": "componentMargin",      "from": 0, "to": 64 },
         { "name": "componentMarginL",     "from": 0, "to": 64 },
         { "name": "componentMarginXL",    "from": 0, "to": 64 },
+        { "name": "componentMarginXXL",   "from": 0, "to": 64 },
+        { "name": "componentHeightXXS",   "from": 0, "to": 96 },
         { "name": "componentHeightXS",    "from": 0, "to": 96 },
         { "name": "componentHeightS",     "from": 0, "to": 96 },
         { "name": "componentHeight",      "from": 0, "to": 96 },
         { "name": "componentHeightL",     "from": 0, "to": 96 },
         { "name": "componentHeightXL",    "from": 0, "to": 96 },
+        { "name": "componentHeightXXL",   "from": 0, "to": 96 },
     ]
     readonly property var fontSizes: [
         "fontSizeOS",
@@ -108,23 +112,6 @@ Item {
         return lines.join("\n") + "\n"
     }
 
-    FileDialog {
-        id: exportDialog
-
-        title: qsTr("Export theme")
-        fileMode: FileDialog.SaveFile
-        nameFilters: [ qsTr("Text files") + " (*.txt)", qsTr("All files") + " (*)" ]
-        defaultSuffix: "txt"
-
-        currentFolder: StandardPaths.writableLocation(StandardPaths.HomeLocation)
-        selectedFile: currentFolder + "/theme.txt"
-
-        onAccepted: {
-            ThemeExporter.saveText(exportDialog.selectedFile,
-                                   editorPanel.themeToBlock())
-        }
-    }
-
     ////////////////////////////////////////////////////////////////////////////
 
     Loader {
@@ -142,79 +129,94 @@ Item {
 
             Rectangle { // separator
                 anchors.top: parent.top
-                anchors.bottom: parent.bottom
                 anchors.left: parent.left
-                width: 1
+                anchors.bottom: parent.bottom
+                width: Theme.componentBorderWidth
                 color: Theme.colorSeparator
             }
 
             ////////////////////////////////////////////////////////////////////
 
-            Rectangle {
+            FileDialog {
+                id: exportDialog
+
+                title: qsTr("Export theme")
+                fileMode: FileDialog.SaveFile
+                nameFilters: [ qsTr("Text files") + " (*.txt)", qsTr("All files") + " (*)" ]
+                defaultSuffix: "txt"
+
+                currentFolder: StandardPaths.writableLocation(StandardPaths.HomeLocation)
+                selectedFile: currentFolder + "/theme.txt"
+
+                onAccepted: {
+                    ThemeExporter.saveText(exportDialog.selectedFile, editorPanel.themeToBlock())
+                }
+            }
+
+            ////////////////////////////////////////////////////////////////////
+
+            TabBarThemed {
                 id: tabBar
 
                 anchors.top: parent.top
                 anchors.left: parent.left
-                anchors.leftMargin: 1
+                anchors.leftMargin: Theme.componentBorderWidth
                 anchors.right: parent.right
 
-                height: Theme.componentHeightXL + Theme.componentMarginS
-                color: Theme.colorForeground
-                z: 10
+                contentHeight: Theme.componentHeightXL + Theme.componentMarginS
+                rightPadding: tabBarRight.width
 
-                Row {
-                    anchors.left: parent.left
+                colorBackground: Theme.colorSeparator
+                colorSeparator: Theme.colorSeparator
 
-                    Repeater {
-                        model: [qsTr("Status"), qsTr("Colors"), qsTr("Components"), qsTr("Fonts")]
+                currentIndex: editorPanel.currentTab
+                onCurrentIndexChanged: editorPanel.currentTab = currentIndex
 
-                        ButtonSimple {
-                            height: tabBar.height
+                Repeater {
+                    model: [
+                        qsTr("Status"),
+                        qsTr("Colors"),
+                        qsTr("Components"),
+                        qsTr("Fonts")
+                    ]
 
-                            required property int index
-                            required property string modelData
-
-                            text: modelData
-
-                            colorBackground: (editorPanel.currentTab === index) ? Theme.colorPrimary : "transparent"
-                            colorText: (editorPanel.currentTab === index) ? "white" : Theme.colorText
-
-                            onClicked: editorPanel.currentTab = index
-                        }
+                    TabButtonThemed {
+                        width: implicitWidth
+                        colorBackground: tabBar.colorBackground
+                        required property string modelData
+                        text: modelData
                     }
                 }
+            }
+
+            Row {
+                id: tabBarRight
+
+                anchors.top: parent.top
+                anchors.right: parent.right
 
                 ButtonSimple { // export button
-                    anchors.right: parent.right
-                    anchors.rightMargin: tabBar.height
-                    width: tabBar.height
-                    height: tabBar.height
+                    width: tabBar.contentHeight
+                    height: tabBar.contentHeight
 
                     source: "qrc:/IconLibrary/material-icons/duotone/save_alt.svg"
-                    colorBackground: "transparent"
+                    colorBackground: tabBar.colorBackground
+                    colorHighlight: Theme.colorPrimary
                     colorText: Theme.colorSubText
 
                     onClicked: exportDialog.open()
                 }
 
                 ButtonSimple { // close button
-                    anchors.right: parent.right
-                    width: tabBar.height
-                    height: tabBar.height
+                    width: tabBar.contentHeight
+                    height: tabBar.contentHeight
 
                     text: "✕"
-                    colorBackground: "transparent"
+                    colorBackground: tabBar.colorBackground
+                    colorHighlight: Theme.colorPrimary
                     colorText: Theme.colorSubText
 
                     onClicked: editorPanel.opened = false
-                }
-
-                Rectangle {
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    anchors.bottom: parent.bottom
-                    height: 1
-                    color: Theme.colorSeparator
                 }
             }
 
@@ -224,9 +226,9 @@ Item {
                 id: tabContent
                 anchors.top: tabBar.bottom
                 anchors.left: parent.left
-                anchors.leftMargin: 1 // keep the left separator visible
+                anchors.leftMargin: Theme.componentBorderWidth
                 anchors.right: parent.right
-                anchors.bottom: parent.bottom
+                anchors.bottom: themeBar.top
 
                 // Status tab //////////////////////////////////////////////////
 
@@ -261,9 +263,9 @@ Item {
 
                         SectionHeader { text: qsTr("Animations") }
 
-                        StatusRow { label: qsTr("Fast"); value: Theme.animationFastSpeed + " ms" }
-                        StatusRow { label: qsTr("Medium"); value: Theme.animationMediumSpeed + " ms" }
-                        StatusRow { label: qsTr("Slow"); value: Theme.animationSlowSpeed + " ms" }
+                        StatusRow { label: qsTr("Fast"); value: Theme.animationSpeedFast + " ms" }
+                        StatusRow { label: qsTr("Medium"); value: Theme.animationSpeedMedium + " ms" }
+                        StatusRow { label: qsTr("Slow"); value: Theme.animationSpeedSlow + " ms" }
                     }
                 }
 
@@ -380,6 +382,30 @@ Item {
 
                 ////////////////////////////////////////////////////////////////
             }
+
+            ////////////////////////////////////////////////////////////////////
+
+            Rectangle {
+                id: themeBar
+
+                anchors.left: parent.left
+                anchors.leftMargin: Theme.componentBorderWidth
+                anchors.right: parent.right
+                anchors.bottom: parent.bottom
+
+                height: Theme.componentHeightXXL
+                color: Theme.colorForeground
+
+                ComboBoxThemeSelector {
+                    anchors.left: parent.left
+                    anchors.leftMargin: Theme.componentMargin
+                    anchors.right: parent.right
+                    anchors.rightMargin: Theme.componentMargin
+                    anchors.verticalCenter: parent.verticalCenter
+                }
+            }
+
+            ////////////////////////////////////////////////////////////////////
         }
     }
 

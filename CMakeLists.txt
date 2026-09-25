@@ -43,19 +43,18 @@ qt_policy(SET QTP0002 NEW)
 qt_policy(SET QTP0003 NEW)
 qt_policy(SET QTP0004 NEW)
 
-# Set app desktop icons
+# Set per platform sources / resources
 if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
-    set(app_icon_windows "${PROJECT_SOURCE_DIR}/platforms/windows/${PROJECT_NAME}.rc")
+    set(platform_assets "${PROJECT_SOURCE_DIR}/platforms/windows/${PROJECT_NAME}.rc")
 elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
-    set(app_icon_macos "${PROJECT_SOURCE_DIR}/platforms/macos/${PROJECT_NAME}.icns")
+    set(platform_assets "${PROJECT_SOURCE_DIR}/platforms/macos/${PROJECT_NAME}.icns")
 endif()
 
 qt_add_executable(${PROJECT_NAME}
     src/main.cpp
 
     assets/assets.qrc
-    ${app_icon_macos}
-    ${app_icon_windows}
+    ${platform_assets}
 
     thirdparty/IconLibrary/IconLibrary_material.qrc
 )
@@ -103,6 +102,7 @@ qt_add_qml_module(${PROJECT_NAME}
         qml/demo/PageTextFields.qml
         qml/demo/PageTickers.qml
 
+        qml/editor/ComboBoxThemeSelector.qml
         qml/editor/EditorPanel.qml
         qml/editor/EditorElementBool.qml
         qml/editor/EditorElementColor.qml

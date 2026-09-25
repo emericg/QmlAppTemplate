@@ -4,24 +4,7 @@ import QtQuick.Controls
 import ComponentLibrary
 
 Item {
-    Column {
-        anchors.right: parent.right
-        anchors.rightMargin: Theme.componentMarginXL + (Theme.singleColumn ? 0 : parent.width*0.125)
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: Theme.componentMarginXL
-        spacing: Theme.componentMarginXL
-
-        ButtonFab {
-            anchors.right: parent.right
-            source: "qrc:/IconLibrary/material-symbols/add.svg"
-        }
-
-        ButtonFabExtended {
-            anchors.right: parent.right
-            text: "Extended FAB"
-            source: "qrc:/IconLibrary/material-symbols/add.svg"
-        }
-    }
+    ////////
 
     Flickable {
         anchors.fill: parent
@@ -300,4 +283,27 @@ Item {
             ////////////////////////////////////////////////////////////////////
         }
     }
+
+    ////////
+
+    Column {
+        anchors.right: parent.right
+        anchors.rightMargin: Theme.componentMarginXL + (Theme.singleColumn ? 0 : parent.width*0.125)
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: Theme.componentMarginXL
+        spacing: Theme.componentMarginXL
+
+        ButtonFab {
+            anchors.right: parent.right
+            source: "qrc:/IconLibrary/material-symbols/add.svg"
+        }
+
+        ButtonFabExtended {
+            anchors.right: parent.right
+            text: "Extended FAB"
+            source: "qrc:/IconLibrary/material-symbols/add.svg"
+        }
+    }
+
+    ////////
 }
