@@ -97,7 +97,7 @@ jobs:
         uses: jurplel/install-qt-action@v4
         with:
           version: ${{ env.QT_VERSION }}
-          host: 'linux'
+          host: 'all_os'
           target: 'android'
           arch: 'android_armv7'
 
@@ -105,7 +105,7 @@ jobs:
         uses: jurplel/install-qt-action@v4
         with:
           version: ${{ env.QT_VERSION }}
-          host: 'linux'
+          host: 'all_os'
           target: 'android'
           arch: 'android_arm64_v8a'
 
@@ -113,7 +113,7 @@ jobs:
         uses: jurplel/install-qt-action@v4
         with:
           version: ${{ env.QT_VERSION }}
-          host: 'linux'
+          host: 'all_os'
           target: 'android'
           arch: 'android_x86'
 
@@ -121,14 +121,14 @@ jobs:
         uses: jurplel/install-qt-action@v4
         with:
           version: ${{ env.QT_VERSION }}
-          host: 'linux'
+          host: 'all_os'
           target: 'android'
           arch: 'android_x86_64'
 
       # Install dependencies (from package manager)
-      - name: Install dependencies (from package manager)
-        run: |
-             sudo apt-get install cmake ninja-build -y;
+      #- name: Install dependencies (from package manager)
+      #  run: |
+      #       sudo apt-get install cmake ninja-build -y;
 
       # Setup env
       - name: Setup env
