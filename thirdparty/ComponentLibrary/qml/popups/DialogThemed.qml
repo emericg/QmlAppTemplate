@@ -7,9 +7,9 @@ import ComponentLibrary
 Dialog {
     id: control
 
-    x: Theme.singleColumn ? 0 : (Theme.appWidth / 2) - (width / 2)
+    x: Theme.singleColumn ? 0 : Math.round((Theme.appWidth / 2) - (width / 2))
     y: Theme.singleColumn ? (Theme.appHeight - height)
-                          : ((Theme.appHeight / 2) - (height / 2))
+                          : Math.round((Theme.appHeight / 2) - (height / 2))
 
     width: {
         if (Theme.singleColumn) return Theme.appWidth
@@ -29,8 +29,8 @@ Dialog {
 
     ////////////////////////////////////////////////////////////////////////////
 
-    enter: Transition { NumberAnimation { property: "opacity"; from: 0.5; to: 1.0; duration: Theme.animationFastSpeed; } }
-    //exit: Transition { NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; duration: Theme.animationMediumSpeed; } }
+    enter: Transition { NumberAnimation { property: "opacity"; from: 0.5; to: 1.0; duration: Theme.animationSpeedFast; } }
+    //exit: Transition { NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; duration: Theme.animationSpeedMedium; } }
 
     Overlay.modal: Item {
         Rectangle {

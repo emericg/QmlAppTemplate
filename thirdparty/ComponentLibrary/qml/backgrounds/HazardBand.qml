@@ -1,7 +1,7 @@
 import QtQuick
 
 Item {
-    id: hazardBand
+    id: control
 
     clip: true
 
@@ -21,44 +21,44 @@ Item {
 
     ////////
 
-    readonly property real pitch: hazardBand.stripeWidth + hazardBand.stripeSpacing
+    readonly property real pitch: control.stripeWidth + control.stripeSpacing
 
-    readonly property real stripeThickness: Math.max(1, hazardBand.stripeWidth * Math.cos(Math.min(Math.abs(hazardBand.stripeAngle), 80) * Math.PI / 180))
+    readonly property real stripeThickness: Math.max(1, control.stripeWidth * Math.cos(Math.min(Math.abs(control.stripeAngle), 80) * Math.PI / 180))
 
-    readonly property real overhang: hazardBand.height * 2
+    readonly property real overhang: control.height * 2
 
-    readonly property int stripeCount: Math.ceil((hazardBand.width + 2 * hazardBand.overhang) / hazardBand.pitch) + 1
+    readonly property int stripeCount: Math.ceil((control.width + 2 * control.overhang) / control.pitch) + 1
 
     property real stripeOffset: 0
 
     NumberAnimation on stripeOffset {
-        running: hazardBand.animated && hazardBand.visible
+        running: control.animated && control.visible
         loops: Animation.Infinite
 
         from: 0
-        to: hazardBand.pitch
-        duration: hazardBand.animationDuration
+        to: control.pitch
+        duration: control.animationDuration
     }
 
     ////////
 
     Rectangle {
         anchors.fill: parent
-        color: hazardBand.colorBackground
+        color: control.colorBackground
     }
 
     Repeater {
-        model: hazardBand.stripeCount
+        model: control.stripeCount
 
         Rectangle {
-            x: index * hazardBand.pitch - hazardBand.overhang + hazardBand.stripeOffset
-            y: (hazardBand.height - height) / 2
+            x: index * control.pitch - control.overhang + control.stripeOffset
+            y: (control.height - height) / 2
 
-            width: hazardBand.stripeThickness
-            height: hazardBand.height * 3
+            width: control.stripeThickness
+            height: control.height * 3
 
-            color: hazardBand.colorStripe
-            rotation: hazardBand.stripeAngle
+            color: control.colorStripe
+            rotation: control.stripeAngle
             antialiasing: control.antialiasing
         }
     }

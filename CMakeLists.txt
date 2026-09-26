@@ -110,12 +110,6 @@ qt_add_qml_module(${PROJECT_NAME}
         qml/editor/EditorElementSpinBox.qml
         qml/editor/EditorElementString.qml
 
-        qml/popups/PopupMessage.qml
-        qml/popups/PopupChoice.qml
-        qml/popups/PopupBirthDate.qml
-        qml/popups/PopupDate.qml
-        qml/popups/PopupTime.qml
-
     SOURCES
         src/SettingsManager.cpp src/SettingsManager.h
         src/MenubarManager.cpp src/MenubarManager.h

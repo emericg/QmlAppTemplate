@@ -122,7 +122,6 @@ list(APPEND MODULE_QML_FILES
     qml/controls/ToolTipThemed.qml
     qml/controls/TumblerThemed.qml
 
-    qml/complex/DatePicker.qml
     qml/complex/FileInputArea.qml
     qml/complex/FolderInputArea.qml
 
@@ -166,7 +165,34 @@ list(APPEND MODULE_QML_FILES
     qml/menus/TabBarThemed.qml
     qml/menus/TabButtonThemed.qml
 
+    qml/pickers/ColorPicker.qml
+    qml/pickers/DatePicker.qml
+    qml/pickers/DatePickerNavigator.qml
+    qml/pickers/DateTimePicker.qml
+    qml/pickers/TimePicker.qml
+    qml/pickers/surfaces/ColorCheckerBoard.qml
+    qml/pickers/surfaces/ColorHueConicalGradient.qml
+    qml/pickers/surfaces/ColorHueGradient.qml
+    qml/pickers/surfaces/ColorSurface.qml
+    qml/pickers/surfaces/ColorSurfaceArea.qml
+    qml/pickers/surfaces/ColorSurfaceHandle.qml
+    qml/pickers/surfaces/ColorSurfaceRingSquare.qml
+    qml/pickers/surfaces/ColorSurfaceSlider.qml
+    qml/pickers/surfaces/ColorSurfaceSliders.qml
+    qml/pickers/surfaces/ColorSurfaceSquare.qml
+    qml/pickers/surfaces/ColorSurfaceSVSquare.qml
+    qml/pickers/surfaces/ColorSurfaceWheel.qml
+    qml/pickers/surfaces/DateSurfaceMonth.qml
+    qml/pickers/surfaces/DateSurfaceMonthYear.qml
+    qml/pickers/surfaces/TimeSurfaceTumbler.qml
+
     qml/popups/PopupThemed.qml
+    qml/popups/PopupMessage.qml
+    qml/popups/PopupChoice.qml
+    qml/popups/PopupDate.qml
+    qml/popups/PopupDateTime.qml
+    qml/popups/PopupTime.qml
+    qml/popups/PopupColors.qml
     qml/popups/DialogThemed.qml
 
     qml/tags/CardTagLabel.qml
