@@ -15,7 +15,7 @@ Item {
     property int currentTab: 0 // 0: status, 1: colors, 2: components, 3: fonts
 
     width: opened ? panelWidth : 0
-    Behavior on width { NumberAnimation { duration: Theme.animationMediumSpeed; easing.type: Easing.OutQuad } }
+    Behavior on width { NumberAnimation { duration: Theme.animationSpeedMedium; easing.type: Easing.OutQuad } }
 
     function toggle() {
         if (!opened) {

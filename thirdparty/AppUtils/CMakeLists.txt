@@ -5,7 +5,6 @@ project(AppUtils LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_FIND_PACKAGE_TARGETS_GLOBAL ON)
-
 set(QT_NO_PRIVATE_MODULE_WARNING ON)
 
 ################################################################################
