@@ -15,7 +15,7 @@ on:
 env:
   APP_NAME: "QmlAppTemplate"
   APP_VERSION: "0.9"
-  QT_VERSION: "6.10.3"
+  QT_VERSION: "6.12.0"
 
 #-------------------------------------------------------------------------------
 # SECRETS
@@ -280,9 +280,3 @@ jobs:
                -DCMAKE_XCODE_ATTRIBUTE_DEVELOPMENT_TEAM="${{ secrets.APPLE_TEAM_ID }}" \
                -DCMAKE_XCODE_ATTRIBUTE_PROVISIONING_PROFILE="a8ac7ee1-5f4e-4e9c-a0f2-be05df16c179"
              cmake --build build/ --config Release
-
-      # Recap stuff
-      #- name: Recap stuff
-      #  continue-on-error: true
-      #  run: |
-      #       ls build/
