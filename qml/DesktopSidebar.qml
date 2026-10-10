@@ -80,7 +80,7 @@ Rectangle {
         anchors.top: parent.top
         anchors.left: iconsSection.right
         anchors.bottom: parent.bottom
-        width: isHdpi ? 240 : 300
+        width: Theme.isHdpi ? 240 : 300
 
         ////////
 

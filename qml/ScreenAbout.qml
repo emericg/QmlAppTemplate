@@ -138,7 +138,7 @@ Loader {
                     spacing: Theme.componentMargin
 
                     ButtonSolid {
-                        width: isPhone ? 150 : 160
+                        width: Theme.isPhone ? 150 : 160
 
                         text: qsTr("WEBSITE")
                         source: "qrc:/IconLibrary/material-symbols/link.svg"
@@ -147,7 +147,7 @@ Loader {
                     }
 
                     ButtonSolid {
-                        width: isPhone ? 150 : 160
+                        width: Theme.isPhone ? 150 : 160
 
                         text: qsTr("SUPPORT")
                         source: "qrc:/IconLibrary/material-symbols/support.svg"
@@ -156,7 +156,7 @@ Loader {
                     }
 
                     ButtonSolid {
-                        width: isPhone ? 150 : 160
+                        width: Theme.isPhone ? 150 : 160
                         visible: (appWindow.width > 800)
 
                         text: qsTr("GitHub")
@@ -171,7 +171,7 @@ Loader {
                     anchors.right: parent.right
                     anchors.bottom: parent.bottom
                     height: 2
-                    visible: isDesktop
+                    visible: Theme.isDesktop
                     border.color: Theme.colorSeparator
                 }
             }

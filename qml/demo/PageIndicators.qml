@@ -35,8 +35,8 @@ Flickable {
         }
 
         ListTitle { ////////////////////////////////////////////////////////////
-            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
-            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.leftMargin: Theme.singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: Theme.singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Progress bars")
             source: ""
@@ -58,8 +58,8 @@ Flickable {
         }
 
         ListTitle { ////////////////////////////////////////////////////////////
-            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
-            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.leftMargin: Theme.singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: Theme.singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Data bars")
             source: ""
@@ -98,8 +98,8 @@ Flickable {
         }
 
         ListTitle { ////////////////////////////////////////////////////////////
-            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
-            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.leftMargin: Theme.singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: Theme.singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Other indicators")
             source: ""
@@ -146,8 +146,8 @@ Flickable {
         }
 
         ListTitle { ////////////////////////////////////////////////////////////
-            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
-            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.leftMargin: Theme.singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: Theme.singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Other stuff")
             source: ""

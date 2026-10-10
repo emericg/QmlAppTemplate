@@ -4,9 +4,9 @@ runtime-version: '26.08'
 sdk: org.freedesktop.Sdk
 
 command: QmlAppTemplate
+rename-icon: QmlAppTemplate
 rename-desktop-file: QmlAppTemplate.desktop
 rename-appdata-file: QmlAppTemplate.appdata.xml
-rename-icon: QmlAppTemplate
 
 finish-args:
   # Our UI is GPU accelerated
@@ -42,8 +42,8 @@ modules:
       - -DINPUT_openssl=linked
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.10/6.10.3/single/qt-everywhere-src-6.10.3.tar.xz
-        sha256: cbc81e726b0ff3c0cdb0219bf74545e91cec013c4a8503c20f93f83d73dff5d2
+        url: https://download.qt.io/archive/qt/6.12/6.12.0/single/qt-everywhere-src-6.12.0.tar.xz
+        sha256: 98ff4f44bac6ec3e1e62ee2a4316ae0e3d15badb015d753cc0268a20db52f165
         x-checker-data:
           type: anitya
           project-id: 7927

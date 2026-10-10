@@ -28,8 +28,8 @@ Flickable {
         spacing: Theme.componentMarginXL
 
         ListTitle { ////////////////////////////////////////////////////////////
-            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
-            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.leftMargin: Theme.singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: Theme.singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Dialogs")
             source: ""
@@ -191,8 +191,8 @@ Flickable {
         }
 
         ListTitle { ////////////////////////////////////////////////////////////
-            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
-            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.leftMargin: Theme.singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: Theme.singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Color pickers")
             source: ""
@@ -235,8 +235,8 @@ Flickable {
         }
 
         ListTitle { ////////////////////////////////////////////////////////////
-            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
-            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.leftMargin: Theme.singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: Theme.singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Date & time pickers")
             source: ""
@@ -312,8 +312,8 @@ Flickable {
         }
 
         ListTitle { ////////////////////////////////////////////////////////////
-            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
-            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.leftMargin: Theme.singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: Theme.singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Inline pickers")
             source: ""

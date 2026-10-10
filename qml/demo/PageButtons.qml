@@ -28,8 +28,8 @@ Item {
             spacing: Theme.componentMarginXL
 
             ListTitle { ////////////////////////////////////////////////////////
-                anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
-                anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
+                anchors.leftMargin: Theme.singleColumn ? 0 : Theme.componentMargin
+                anchors.rightMargin: Theme.singleColumn ? 0 : Theme.componentMargin
 
                 text: qsTr("Buttons")
                 source: ""
@@ -146,8 +146,8 @@ Item {
             }
 
             ListTitle { ////////////////////////////////////////////////////////
-                anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
-                anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
+                anchors.leftMargin: Theme.singleColumn ? 0 : Theme.componentMargin
+                anchors.rightMargin: Theme.singleColumn ? 0 : Theme.componentMargin
 
                 text: qsTr("Other buttons")
                 source: ""
@@ -205,8 +205,8 @@ Item {
             }
 
             ListTitle { ////////////////////////////////////////////////////////
-                anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
-                anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
+                anchors.leftMargin: Theme.singleColumn ? 0 : Theme.componentMargin
+                anchors.rightMargin: Theme.singleColumn ? 0 : Theme.componentMargin
 
                 text: qsTr("Round & Square buttons")
                 source: ""

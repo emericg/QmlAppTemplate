@@ -57,7 +57,7 @@ Loader {
             height: 56
             z: 10
 
-            active: isDesktop
+            active: Theme.isDesktop
             asynchronous: true
 
             sourceComponent: Rectangle {

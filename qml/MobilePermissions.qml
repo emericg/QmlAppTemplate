@@ -26,13 +26,17 @@ Item {
         loadScreen()
     }
 
+    function backAction() {
+        screenAbout.loadScreen()
+    }
+
     function refreshPermissions() {
         // Refresh permissions
     }
 
     Timer {
         id: retryPermissions
-        interval: 1000
+        interval: 333
         repeat: false
         onTriggered: screenPermissions.refreshPermissions()
     }

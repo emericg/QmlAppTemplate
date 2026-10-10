@@ -135,7 +135,7 @@ Item {
 
         z: 5
         color: Theme.colorHighContrast
-        visible: isDesktop
+        visible: Theme.isDesktop
 
         Column {
             id: palette
@@ -236,7 +236,7 @@ Item {
         contentHeight: contentColumn.height
 
         boundsBehavior: Theme.isDesktop ? Flickable.OvershootBounds : Flickable.DragAndOvershootBounds
-        ScrollBar.vertical: ScrollBarThemed { visible: isDesktop }
+        ScrollBar.vertical: ScrollBarThemed { visible: Theme.isDesktop }
 
         Column {
             id: contentColumn
@@ -258,7 +258,7 @@ Item {
 
                 Text {
                     anchors.verticalCenter: parent.verticalCenter
-                    visible: isDesktop
+                    visible: Theme.isDesktop
 
                     text: "Application theme"
                     font.pixelSize: Theme.fontSizeContent

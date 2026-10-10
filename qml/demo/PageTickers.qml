@@ -23,8 +23,8 @@ Flickable {
         spacing: Theme.componentMarginXL
 
         ListTitle { ////////////////////////////////////////////////////////////
-            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
-            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.leftMargin: Theme.singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: Theme.singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Buttons")
             source: ""
@@ -52,8 +52,8 @@ Flickable {
         }
 
         ListTitle { ////////////////////////////////////////////////////////////
-            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
-            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.leftMargin: Theme.singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: Theme.singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Switches")
             source: ""
@@ -79,8 +79,8 @@ Flickable {
         }
 
         ListTitle { ////////////////////////////////////////////////////////////
-            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
-            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.leftMargin: Theme.singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: Theme.singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("SpinBoxes")
             source: ""
@@ -104,8 +104,8 @@ Flickable {
         }
 
         ListTitle { ////////////////////////////////////////////////////////////
-            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
-            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.leftMargin: Theme.singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: Theme.singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Qt Quick Controls")
             source: ""

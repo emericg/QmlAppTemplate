@@ -24,8 +24,8 @@ Flickable {
         spacing: Theme.componentMarginXL
 
         ListTitle { ////////////////////////////////////////////////////////////
-            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
-            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.leftMargin: Theme.singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: Theme.singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Frames")
             source: ""
@@ -86,8 +86,8 @@ Flickable {
         }
 
         ListTitle { ////////////////////////////////////////////////////////////
-            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
-            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.leftMargin: Theme.singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: Theme.singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("FrameSolid")
             source: ""
@@ -213,8 +213,8 @@ Flickable {
         }
 
         ListTitle { ////////////////////////////////////////////////////////////
-            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
-            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.leftMargin: Theme.singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: Theme.singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Boxes")
             source: ""
@@ -251,8 +251,8 @@ Flickable {
         }
 
         ListTitle { ////////////////////////////////////////////////////////////
-            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
-            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.leftMargin: Theme.singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: Theme.singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("FrameStack")
             source: ""
@@ -319,8 +319,8 @@ Flickable {
         }
 
         ListTitle { ////////////////////////////////////////////////////////////
-            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
-            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.leftMargin: Theme.singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: Theme.singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("List elements")
             source: ""
@@ -328,9 +328,9 @@ Flickable {
 
         Column {
             anchors.left: parent.left
-            anchors.leftMargin: singleColumn ? 0 : Theme.componentMarginXL
+            anchors.leftMargin: Theme.singleColumn ? 0 : Theme.componentMarginXL
             anchors.right: parent.right
-            anchors.rightMargin: singleColumn ? 0 : Theme.componentMarginXL
+            anchors.rightMargin: Theme.singleColumn ? 0 : Theme.componentMarginXL
 
             Repeater {
                 model: ListModel {
@@ -362,8 +362,8 @@ Flickable {
         }
 
         ListTitle { ////////////////////////////////////////////////////////////
-            anchors.leftMargin: singleColumn ? 0 : Theme.componentMargin
-            anchors.rightMargin: singleColumn ? 0 : Theme.componentMargin
+            anchors.leftMargin: Theme.singleColumn ? 0 : Theme.componentMargin
+            anchors.rightMargin: Theme.singleColumn ? 0 : Theme.componentMargin
 
             text: qsTr("Group box & pane")
             source: ""
