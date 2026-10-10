@@ -16,6 +16,7 @@ env:
   APP_NAME: "QmlAppTemplate"
   APP_VERSION: "0.9"
   QT_VERSION: "6.12.0"
+  QT_VERSION_WIN: "6.10.3"
 
 #-------------------------------------------------------------------------------
 # SECRETS
@@ -255,7 +256,7 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
-          version: ${{ env.QT_VERSION }}
+          version: ${{ env.QT_VERSION_WIN }}
           host: ${{ matrix.qt_host }}
           arch: ${{ matrix.qt_arch }}
 
