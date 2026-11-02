@@ -9,14 +9,13 @@ Item {
     anchors.right: parent.right
     anchors.bottom: parent.bottom
 
-    property int hhh: 56
-    property int hhi: (hhh * 0.4)
-    property int hhv: visible ? hhh : 0
+    property int hhh: (Theme.isPhone ? 52 : 48)
+    property int hhi: (Theme.isPhone ? 26 : (hhh * 0.5))
     property int www: 80
 
-    z: 10
-    height: (appWindow.screenOrientation === Qt.PortraitOrientation)
-                ? hhh + Math.max(Theme.screenPaddingNavbar, Theme.screenPaddingBottom) : 0
+    property int contentHeight: visible ? hhh : 0
+    height: (Theme.screenOrientation === Qt.PortraitOrientation)
+                ? contentHeight + Math.max(Theme.screenPaddingNavbar, Theme.screenPaddingBottom) : 0
 
     // prevent clicks below this area
     MouseArea { anchors.fill: parent; acceptedButtons: Qt.AllButtons; }
@@ -25,17 +24,19 @@ Item {
 
     Rectangle { // menubar background area
         anchors.fill: parent
+
         opacity: 0.95
         color: Theme.colorTabletmenu
 
-        Rectangle {
+        Rectangle { // separator
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.right: parent.right
             height: 1
-            opacity: 0.8
-            visible: !appWindow.isPhone
+
+            visible: !Theme.isPhone
             color: Theme.colorTabletmenuContent
+            opacity: 0.8
         }
     }
 
@@ -55,7 +56,7 @@ Item {
 
     ////////////////////////////////////////////////////////////////////////////
 
-    Item { // buttons area
+    Item { // menubar area
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.right: parent.right

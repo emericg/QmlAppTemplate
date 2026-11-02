@@ -91,12 +91,14 @@ Loader {
                     height: Math.max(fontsize.contentHeight, 20)
                     spacing: Theme.componentMargin
 
+                    required property var modelData
+
                     Text {
                         id: legend
                         Layout.preferredWidth: Theme.isDesktop ? 192 : parent.width*0.33
                         Layout.alignment: Qt.AlignBaseline
 
-                        text: model.text
+                        text: modelData.text
                         textFormat: Text.PlainText
                         horizontalAlignment: Text.AlignRight
                         verticalAlignment: Text.AlignBottom
@@ -108,9 +110,9 @@ Loader {
                         Layout.fillWidth: true
                         Layout.alignment: Qt.AlignBaseline
 
-                        text: model.text + " (" + model.value + "px)"
+                        text: modelData.text + " (" + modelData.value + "px)"
                         textFormat: Text.PlainText
-                        font.pixelSize: model.value
+                        font.pixelSize: modelData.value
                         color: Theme.colorText
                     }
                 }
@@ -145,14 +147,17 @@ Loader {
 
                 model: Qt.fontFamilies()
                 delegate: Rectangle {
-                    height: 28
                     width: ListView.view.width
+                    height: 28
 
-                    color: (index % 2) ? Theme.colorForeground :Theme.colorBackground
+                    required property int index
+                    required property string modelData
+
+                    color: (index % 2) ? Theme.colorForeground : Theme.colorBackground
 
                     Text {
                         anchors.left: parent.left
-                        anchors.leftMargin: screenPaddingLeft + Theme.componentMargin
+                        anchors.leftMargin: Theme.screenPaddingLeft + Theme.componentMargin
                         anchors.verticalCenter: parent.verticalCenter
 
                         text: modelData

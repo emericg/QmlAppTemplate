@@ -144,7 +144,7 @@ Loader {
             Item {
                 DemoPagesModel { id: pagesModel }
 
-                ////////
+                ////
 
                 ListView {
                     id: pagesView
@@ -161,6 +161,9 @@ Loader {
                         width: pagesView.width
                         height: listElement.height
 
+                        required property int index
+                        required property var modelData
+
                         ListElementThemed {
                             id: listElement
                             anchors.left: parent.left
@@ -168,21 +171,23 @@ Loader {
                             anchors.right: parent.right
                             anchors.rightMargin: pagesView.sideMargin
 
-                            text: model.title
-                            subtitle: model.text
-                            source: model.icon
+                            text: modelData.title
+                            subtitle: modelData.text
+                            source: modelData.icon
 
                             onClicked: {
                                 pagesView.currentIndex = index
-                                stackView.push(model.page)
+                                stackView.push(modelData.page)
                             }
                         }
                     }
                 }
 
-                ////////
+                ////
             }
         }
+
+        ////////
     }
 
     ////////////////////////////////////////////////////////////////////////////

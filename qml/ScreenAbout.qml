@@ -61,9 +61,9 @@ Loader {
 
             AboutHeader { // header area (desktop)
                 anchors.left: parent.left
-                anchors.leftMargin: -screenPaddingLeft
+                anchors.leftMargin: -Theme.screenPaddingLeft
                 anchors.right: parent.right
-                anchors.rightMargin: -screenPaddingRight
+                anchors.rightMargin: -Theme.screenPaddingRight
 
                 visible: !Theme.isPhone
 
@@ -86,9 +86,9 @@ Loader {
 
             Rectangle { // header area (phone)
                 anchors.left: parent.left
-                anchors.leftMargin: -screenPaddingLeft
+                anchors.leftMargin: -Theme.screenPaddingLeft
                 anchors.right: parent.right
-                anchors.rightMargin: -screenPaddingRight
+                anchors.rightMargin: -Theme.screenPaddingRight
 
                 height: 96
                 visible: Theme.isPhone
@@ -96,7 +96,7 @@ Loader {
 
                 Row {
                     anchors.left: parent.left
-                    anchors.leftMargin: screenPaddingLeft + Theme.componentMargin
+                    anchors.leftMargin: Theme.screenPaddingLeft + Theme.componentMargin
                     anchors.verticalCenter: parent.verticalCenter
 
                     z: 2
@@ -131,7 +131,7 @@ Loader {
 
                 Row {
                     anchors.right: parent.right
-                    anchors.rightMargin: screenPaddingRight + Theme.componentMargin
+                    anchors.rightMargin: Theme.screenPaddingRight + Theme.componentMargin
                     anchors.verticalCenter: parent.verticalCenter
 
                     visible: Theme.wideWideMode
@@ -338,6 +338,8 @@ Loader {
                             anchors.left: parent.left
                             anchors.right: parent.right
 
+                            required property string modelData
+
                             text: "- " + modelData
                             textFormat: Text.PlainText
                             color: Theme.colorSubText
@@ -406,6 +408,8 @@ Loader {
                         delegate: Text {
                             anchors.left: parent.left
                             anchors.right: parent.right
+
+                            required property string modelData
 
                             text: "- " + modelData
                             textFormat: Text.PlainText

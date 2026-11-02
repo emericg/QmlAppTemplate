@@ -21,7 +21,7 @@ DrawerThemed {
                 anchors.right: parent.right
                 anchors.rightMargin: -1
 
-                height: Math.max(screenPaddingTop, screenPaddingStatusbar)
+                height: Math.max(Theme.screenPaddingTop, Theme.screenPaddingStatusbar)
                 color: Theme.colorStatusbar
             }
 
@@ -78,7 +78,8 @@ DrawerThemed {
                 anchors.left: parent.left
                 anchors.right: parent.right
 
-                ////////
+                topPadding: 0
+                bottomPadding: Math.max(Theme.screenPaddingNavbar, Theme.screenPaddingBottom)
 
                 ListSeparatorPadded { }
 
@@ -132,8 +133,6 @@ DrawerThemed {
 
                 ListSeparatorPadded { }
 
-                ////////
-
                 DrawerItem_menu {
                     text: qsTr("Settings")
                     source: "qrc:/IconLibrary/material-symbols/settings-fill.svg"
@@ -156,8 +155,6 @@ DrawerThemed {
                         appDrawer.close()
                     }
                 }
-
-                ////////
 
                 ListSeparatorPadded { }
 

@@ -291,9 +291,10 @@ Item {
                                 id: sectionCol
                                 width: colorsColumn.width
 
+                                required property var modelData
+
                                 SectionHeader { text: sectionCol.modelData.section }
 
-                                required property var modelData
                                 Repeater {
                                     model: sectionCol.modelData.names
 
@@ -342,10 +343,11 @@ Item {
 
                             EditorElementSpinBox {
                                 width: componentColumn.width
+
+                                required property var modelData
                                 propertyName: modelData.name
                                 from: modelData.from
                                 to: modelData.to
-                                required property var modelData
                             }
                         }
                     }

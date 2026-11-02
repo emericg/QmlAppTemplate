@@ -2,7 +2,6 @@ import QtQuick
 import QtQuick.Layouts
 
 import ComponentLibrary
-import MobileUI
 import AppUtils
 
 Item {
@@ -55,188 +54,27 @@ Item {
             anchors.left: parent.left
             anchors.right: parent.right
 
-            topPadding: Theme.componentMarginXL
-            bottomPadding: Theme.componentMarginXL
-            spacing: Theme.componentMarginXL
+            topPadding: Theme.componentMarginXXL
+            bottomPadding: Theme.componentMarginXXL
+            spacing: Theme.componentMarginL
 
-            ////////
+            ListSeparator { } //////////////////////////////////////////////////
 
-            Column {
-                id: element_location
+            Column { // element_network
                 anchors.left: parent.left
-                anchors.leftMargin: 16
                 anchors.right: parent.right
-                anchors.rightMargin: Theme.componentMargin
-                spacing: 8
 
                 Row {
-                    height: 24
-                    spacing: 16
-
-                    RoundButtonFlat {
-                        id: button_location_test
-                        width: 32
-                        height: 32
-                        anchors.verticalCenter: parent.verticalCenter
-
-                        property bool validperm: false
-
-                        source: (validperm) ? "qrc:/IconLibrary/material-symbols/check.svg" : "qrc:/IconLibrary/material-symbols/close.svg"
-                        color: (validperm) ? Theme.colorPrimary : Theme.colorSubText
-                        colorIcon: (validperm) ? "white" : "white"
-
-                        onClicked: {
-                            MobileUI.hapticFeedback()
-                            //validperm = UtilsApp.getMobileBleLocationPermission()
-                            //retryPermissions.start()
-                        }
-                    }
-
-                    Text {
-                        id: text_location
-                        anchors.verticalCenter: parent.verticalCenter
-
-                        text: qsTr("Location")
-                        textFormat: Text.PlainText
-                        wrapMode: Text.WordWrap
-                        font.pixelSize: Theme.fontSizeContentBig
-                        color: Theme.colorText
-                    }
-                }
-
-                Text {
-                    id: legend_location
                     anchors.left: parent.left
-                    anchors.leftMargin: 48
+                    anchors.leftMargin: Theme.componentMarginL
                     anchors.right: parent.right
-
-                    textFormat: Text.StyledText
-                    text: qsTr("The operating system requires applications to ask for device location permission in order to scan for nearby Bluetooth Low Energy sensors.") + "<br>" +
-                          qsTr("This permission is only needed while scanning for new sensors.") + "<br>" +
-                          qsTr("This application doesn't use, store nor communicate your location to anyone or anything.")
-
-                    wrapMode: Text.WordWrap
-                    color: Theme.colorSubText
-                    font.pixelSize: Theme.fontSizeContentSmall
-                }
-
-                ButtonWireframe {
-                    anchors.left: parent.left
-                    anchors.leftMargin: 48
-                    height: 38
-
-                    colorBackground: Theme.colorForeground
-
-                    text: qsTr("Official information")
-                    source: "qrc:/IconLibrary/material-icons/duotone/launch.svg"
-                    sourceSize: 20
-
-                    onClicked: Qt.openUrlExternally("https://developer.android.com/guide/topics/connectivity/bluetooth/permissions#declare-android11-or-lower")
-                }
-            }
-
-            ////////
-
-            ListSeparator { }
-
-            ////////
-
-            Column {
-                id: element_gps
-                anchors.left: parent.left
-                anchors.leftMargin: 16
-                anchors.right: parent.right
-                anchors.rightMargin: Theme.componentMargin
-                spacing: 8
-
-                Row {
-                    height: 24
-                    spacing: 16
+                    anchors.rightMargin: Theme.componentMarginL
+                    spacing: Theme.componentMarginL
 
                     RoundButtonFlat {
-                        id: button_gps_test
+                        anchors.verticalCenter: parent.verticalCenter
                         width: 32
                         height: 32
-                        anchors.verticalCenter: parent.verticalCenter
-
-                        property bool validperm: false
-
-                        source: (validperm) ? "qrc:/IconLibrary/material-symbols/check.svg" : "qrc:/IconLibrary/material-symbols/close.svg"
-                        color: (validperm) ? Theme.colorPrimary : Theme.colorSubText
-                        colorIcon: (validperm) ? "white" : "white"
-
-                        onClicked: {
-                            MobileUI.hapticFeedback()
-                            //validperm = UtilsApp.isMobileGpsEnabled()
-                            //retryPermissions.start()
-                        }
-                    }
-
-                    Text {
-                        id: text_gps
-                        anchors.verticalCenter: parent.verticalCenter
-
-                        text: qsTr("GPS")
-                        textFormat: Text.PlainText
-                        wrapMode: Text.WordWrap
-                        font.pixelSize: Theme.fontSizeContentBig
-                        color: Theme.colorText
-                    }
-                }
-
-                Text {
-                    id: legend_gps
-                    anchors.left: parent.left
-                    anchors.leftMargin: 48
-                    anchors.right: parent.right
-
-                    textFormat: Text.StyledText
-                    text: qsTr("Some Android devices also require the GPS to be turned on.") + "<br>" +
-                          qsTr("This permission is only needed while scanning for new sensors.")
-
-                    wrapMode: Text.WordWrap
-                    color: Theme.colorSubText
-                    font.pixelSize: Theme.fontSizeContentSmall
-                }
-
-                ButtonWireframe {
-                    anchors.left: parent.left
-                    anchors.leftMargin: 48
-                    height: 38
-
-                    colorBackground: Theme.colorForeground
-
-                    text: qsTr("Location info")
-                    source: "qrc:/IconLibrary/material-icons/duotone/tune.svg"
-                    sourceSize: 20
-
-                    onClicked: UtilsApp.openAndroidLocationSettings()
-                }
-            }
-
-            ////////
-
-            ListSeparator { }
-
-            ////////
-
-            Column {
-                id: element_bluetooth
-                anchors.left: parent.left
-                anchors.leftMargin: 16
-                anchors.right: parent.right
-                anchors.rightMargin: Theme.componentMargin
-                spacing: 8
-
-                Row {
-                    height: 24
-                    spacing: 16
-
-                    RoundButtonFlat {
-                        id: button_bluetooth_test
-                        width: 32
-                        height: 32
-                        anchors.verticalCenter: parent.verticalCenter
 
                         property bool validperm: true
 
@@ -246,24 +84,24 @@ Item {
                     }
 
                     Text {
-                        id: text_bluetooth
                         anchors.verticalCenter: parent.verticalCenter
 
-                        text: qsTr("Bluetooth control")
+                        text: qsTr("Internet access")
                         textFormat: Text.PlainText
                         wrapMode: Text.WordWrap
                         font.pixelSize: Theme.fontSizeContentBig
                         color: Theme.colorText
+                        verticalAlignment: Text.AlignVCenter
                     }
                 }
 
-                Text {
-                    id: legend_bluetooth
+                Text { // legend_network
                     anchors.left: parent.left
-                    anchors.leftMargin: 48
+                    anchors.leftMargin: 32 + Theme.componentMarginL*2
                     anchors.right: parent.right
+                    anchors.rightMargin: Theme.componentMarginL
 
-                    text: qsTr("This application can activate your device's Bluetooth in order to operate.")
+                    text: qsTr("Internet access is used to send kitten pictures around the world map.")
                     textFormat: Text.PlainText
                     wrapMode: Text.WordWrap
                     color: Theme.colorSubText
@@ -271,29 +109,139 @@ Item {
                 }
             }
 
-            ////////
+            ListSeparator { } //////////////////////////////////////////////////
 
-            ListSeparator { }
-
-            ////////
-
-            Column {
-                id: element_infos
+            Column { // element_camera
                 anchors.left: parent.left
-                anchors.leftMargin: Theme.componentMargin
                 anchors.right: parent.right
-                anchors.rightMargin: Theme.componentMargin
-                spacing: 8
+
+                Row {
+                    anchors.left: parent.left
+                    anchors.leftMargin: Theme.componentMarginL
+                    anchors.right: parent.right
+                    anchors.rightMargin: Theme.componentMarginL
+                    spacing: Theme.componentMarginL
+
+                    RoundButtonFlat {
+                        id: button_camera_test
+                        anchors.verticalCenter: parent.verticalCenter
+                        width: 32
+                        height: 32
+
+                        property bool validperm: false
+
+                        source: (validperm) ? "qrc:/IconLibrary/material-symbols/check.svg" : "qrc:/IconLibrary/material-symbols/close.svg"
+                        color: (validperm) ? Theme.colorPrimary : Theme.colorSubText
+                        colorIcon: (validperm) ? "white" : "white"
+
+                        onClicked: {
+                            UtilsOS.hapticFeedback()
+                            UtilsOS.getMobileCameraPermission()
+                            retryPermissions.start()
+                        }
+                    }
+
+                    Text {
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        text: qsTr("Camera")
+                        textFormat: Text.PlainText
+                        wrapMode: Text.WordWrap
+                        font.pixelSize: Theme.fontSizeContentBig
+                        color: Theme.colorText
+                        verticalAlignment: Text.AlignVCenter
+                    }
+                }
+
+                Text { // legend_camera
+                    anchors.left: parent.left
+                    anchors.leftMargin: 32 + Theme.componentMarginL*2
+                    anchors.right: parent.right
+                    anchors.rightMargin: Theme.componentMarginL
+
+                    text: qsTr("Camera is used to take kittens photos.")
+                    textFormat: Text.PlainText
+                    wrapMode: Text.WordWrap
+                    color: Theme.colorSubText
+                    font.pixelSize: Theme.fontSizeContentSmall
+                }
+            }
+
+            ListSeparator { } //////////////////////////////////////////////////
+
+            Column { // element_position
+                anchors.left: parent.left
+                anchors.right: parent.right
+
+                Row {
+                    anchors.left: parent.left
+                    anchors.leftMargin: Theme.componentMarginL
+                    anchors.right: parent.right
+                    anchors.rightMargin: Theme.componentMarginL
+                    spacing: Theme.componentMarginL
+
+                    RoundButtonFlat {
+                        id: button_location_test
+                        anchors.verticalCenter: parent.verticalCenter
+                        width: 32
+                        height: 32
+
+                        property bool validperm: true
+
+                        source: (validperm) ? "qrc:/IconLibrary/material-symbols/check.svg" : "qrc:/IconLibrary/material-symbols/close.svg"
+                        color: (validperm) ? Theme.colorPrimary : Theme.colorSubText
+                        colorIcon: (validperm) ? "white" : "white"
+
+                        onClicked: {
+                            UtilsOS.hapticFeedback()
+                            UtilsOS.getMobileLocationPermission()
+                            retryPermissions.start()
+                        }
+                    }
+
+                    Text {
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        text: qsTr("Position (GPS)")
+                        textFormat: Text.PlainText
+                        wrapMode: Text.WordWrap
+                        font.pixelSize: Theme.fontSizeContentBig
+                        color: Theme.colorText
+                        verticalAlignment: Text.AlignVCenter
+                    }
+                }
+
+                Text { // legend_position
+                    anchors.left: parent.left
+                    anchors.leftMargin: 32 + Theme.componentMarginL*2
+                    anchors.right: parent.right
+                    anchors.rightMargin: Theme.componentMarginL
+
+                    text: qsTr("You can save GPS position of all the kittens you saw.")
+                    textFormat: Text.PlainText
+                    wrapMode: Text.WordWrap
+                    color: Theme.colorSubText
+                    font.pixelSize: Theme.fontSizeContentSmall
+                }
+            }
+
+            ListSeparator { } //////////////////////////////////////////////////
+
+            Column { // element_infos
+                anchors.left: parent.left
+                anchors.right: parent.right
+                spacing: Theme.componentMargin
 
                 RowLayout {
                     anchors.left: parent.left
+                    anchors.leftMargin: Theme.componentMarginL
                     anchors.right: parent.right
-                    height: 36
-                    spacing: Theme.componentMargin
+                    anchors.rightMargin: Theme.componentMarginL
+                    spacing: Theme.componentMarginL
 
                     IconSvg {
-                        Layout.preferredWidth: 36
-                        Layout.preferredHeight: 36
+                        Layout.preferredWidth: 32
+                        Layout.preferredHeight: 32
                         Layout.alignment: Qt.AlignVCenter
 
                         source: "qrc:/IconLibrary/material-icons/duotone/info.svg"
@@ -312,10 +260,11 @@ Item {
                     }
                 }
 
-                Text {
+                Text { // legend
                     anchors.left: parent.left
-                    anchors.leftMargin: 48
+                    anchors.leftMargin: 32 + Theme.componentMarginL*2
                     anchors.right: parent.right
+                    anchors.rightMargin: Theme.componentMarginL
 
                     text: qsTr("If it has no effect, you may have previously refused a permission and clicked on \"don't ask again\".") + "<br>" +
                           qsTr("You can go to the Android \"application info\" panel to change a permission manually.")
@@ -325,22 +274,22 @@ Item {
                     font.pixelSize: Theme.fontSizeContentSmall
                 }
 
-                ButtonWireframe {
+                ButtonWireframe { // button
                     anchors.left: parent.left
-                    anchors.leftMargin: 48
-                    height: 38
+                    anchors.leftMargin: 32 + Theme.componentMarginL*2
+                    anchors.right: parent.right
+                    anchors.rightMargin: Theme.componentMarginL
 
+                    layoutAlignment: Qt.AlignLeft
                     colorBackground: Theme.colorForeground
 
                     text: qsTr("Application info")
                     source: "qrc:/IconLibrary/material-icons/duotone/tune.svg"
-                    sourceSize: 20
-
-                    onClicked: UtilsApp.openAndroidAppInfo("io.emeric.qmlapptemplate")
+                    onClicked: UtilsApp.openAndroidAppInfo("io.emeric.learnylearn")
                 }
             }
 
-            ////////
+            ////////////////////////////////////////////////////////////////////
         }
     }
 

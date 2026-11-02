@@ -17,8 +17,7 @@ Rectangle {
     ////////////////
 
     DragHandler {
-        // Drag on the sidebar to drag the whole window // Qt 5.15+
-        // Also, prevent clicks below this area
+        // Drag on the sidebar to drag the whole window // Prevent clicks below this area
         onActiveChanged: if (active) appWindow.startSystemMove()
         target: null
     }

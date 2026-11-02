@@ -13,9 +13,14 @@ Rectangle {
     clip: false
     z: 10
 
-    property string headerTitle: "QmlAppTemplate"
-    property int headerHeight: 64
-    property int headerPosition: 64
+    property string headerTitle: UtilsApp.appName()
+    property string headerSubTitle: ""
+
+    property int headerHeight: 64 // vertical
+    property int headerPosition: 64 // horizontal
+
+    property bool headerCompact: false
+    property bool headerUnicolor: false
 
     property bool componentsEnabled: true
     property bool componentsMirrored: false
@@ -32,8 +37,7 @@ Rectangle {
     ////////////////////////////////////////////////////////////////////////////
 
     DragHandler {
-        // Drag on the sidebar to drag the whole window // Qt 5.15+
-        // Also, prevent clicks below this area
+        // Drag on the sidebar to drag the whole window // Prevent clicks below this area
         onActiveChanged: if (active) appWindow.startSystemMove()
         target: null
     }
@@ -52,7 +56,7 @@ Rectangle {
         colorIcon: Theme.colorHeaderContent
 
         source: "qrc:/IconLibrary/material-symbols/arrow_back.svg"
-        onClicked: backButtonClicked()
+        onClicked: appHeader.backButtonClicked()
     }
 
     Text { // title
@@ -109,8 +113,8 @@ Rectangle {
 
                 color: Theme.colorHeaderHighlight
 
-                text: componentsEnabled ? qsTr("Disable components") : qsTr("Enable components")
-                onClicked: componentsEnabled = !componentsEnabled
+                text: appHeader.componentsEnabled ? qsTr("Disable components") : qsTr("Enable components")
+                onClicked: appHeader.componentsEnabled = !appHeader.componentsEnabled
             }
 
             ////////////
@@ -183,7 +187,7 @@ Rectangle {
 
                 highlighted: (appContent.state === "DesktopComponents")
                 source: "qrc:/IconLibrary/material-icons/duotone/touch_app.svg"
-                onClicked: menuComponentsClicked()
+                onClicked: appHeader.menuComponentsClicked()
             }
             DesktopHeaderItem {
                 id: menuSettings
@@ -195,7 +199,7 @@ Rectangle {
 
                 highlighted: (appContent.state === "ScreenSettings")
                 source: "qrc:/IconLibrary/material-icons/duotone/tune.svg"
-                onClicked: menuSettingsClicked()
+                onClicked: appHeader.menuSettingsClicked()
             }
             DesktopHeaderItem {
                 id: menuAbout
@@ -207,7 +211,7 @@ Rectangle {
 
                 highlighted: (appContent.state === "ScreenAbout")
                 source: "qrc:/IconLibrary/material-icons/duotone/info.svg"
-                onClicked: menuAboutClicked()
+                onClicked: appHeader.menuAboutClicked()
             }
         }
     }
@@ -219,7 +223,7 @@ Rectangle {
         anchors.right: parent.right
         anchors.bottom: parent.bottom
 
-        visible: !headerUnicolor
+        visible: !appHeader.headerUnicolor
         height: 2
         opacity: 0.5
         color: Theme.colorHeaderHighlight

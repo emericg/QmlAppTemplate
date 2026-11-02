@@ -237,10 +237,11 @@ Flickable {
                     width: 640
                     height: 480
 
-                    text: model.cardText
-                    subtext: model.cardSubtext
-                    source: model.icon
-                    btnText: model.btn
+                    required property var modelData
+                    text: modelData.cardText
+                    subtext: modelData.cardSubtext
+                    source: modelData.icon
+                    btnText: modelData.btn
                 }
             }
         }

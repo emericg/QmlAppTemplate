@@ -11,13 +11,6 @@ ApplicationWindow {
     flags: Qt.Window
     color: Theme.colorBackground
 
-    // Helpers
-    property bool isHdpi: (UtilsScreen.screenDpi >= 128 || UtilsScreen.screenPar >= 2.0)
-    property bool isDesktop: true
-    property bool isMobile: false
-    property bool isPhone: false
-    property bool isTablet: false
-
     // Setup ThemeEngine
     Binding { target: Theme; property: "appTheme";               value: SettingsManager.appTheme }
     Binding { target: Theme; property: "appThemeAuto";           value: SettingsManager.appThemeAuto }
@@ -60,15 +53,21 @@ ApplicationWindow {
 
     // Mobile stuff ////////////////////////////////////////////////////////////
 
-    property int screenOrientation: Screen.primaryOrientation
-    property int screenOrientationFull: Screen.orientation
+    Item { // compatibility
+        id: appHeader
 
-    property int screenPaddingStatusbar: 0
-    property int screenPaddingNavbar: 0
-    property int screenPaddingTop: 0
-    property int screenPaddingLeft: 0
-    property int screenPaddingRight: 0
-    property int screenPaddingBottom: 0
+        anchors.top: parent.top
+        anchors.left: appSidebar.right
+        anchors.right: parent.right
+        height: 0
+
+        property int headerPosition: 64
+        signal backButtonClicked()
+        signal rightMenuClicked()
+        signal menuComponentsClicked()
+        signal menuSettingsClicked()
+        signal menuAboutClicked()
+    }
 
     // Events handling /////////////////////////////////////////////////////////
 
@@ -209,41 +208,18 @@ ApplicationWindow {
         onActivated: themeEditor.toggle()
     }
 
-    // UI sizes ////////////////////////////////////////////////////////////////
+    // QML /////////////////////////////////////////////////////////////////////
 
     property bool headerUnicolor: (Theme.colorHeader === Theme.colorBackground)
     property bool sidebarUnicolor: (Theme.colorSidebar === Theme.colorBackground)
 
-    property bool singleColumn: {
-        if (isMobile) {
-            if (screenOrientation === Qt.PortraitOrientation ||
-                (isTablet && width < 480)) { // can be a 2/3 split screen on tablet
-                return true
-            } else {
-                return false
-            }
-        } else {
-            return (appWindow.width < appWindow.height)
-        }
+    Component.onCompleted: {
+        screenMainView.loadScreen()
     }
 
-    // QML (disabled) //////////////////////////////////////////////////////////
-/*
-    menuBar: MenuBar {
-        id: appMenubar
-        Menu {
-            title: qsTr("File")
-            MenuItem {
-                text: qsTr("Do nothing")
-                onTriggered: console.log("Do nothing action triggered");
-            }
-            MenuItem {
-                text: qsTr("&Exit")
-                onTriggered: appWindow.cleanExit()
-            }
-        }
+    onActiveFocusItemChanged: { // DEBUG
+        //console.log("activeFocusItem:" + activeFocusItem)
     }
-*/
 /*
     DesktopHeader {
         id: appHeader
@@ -253,33 +229,6 @@ ApplicationWindow {
         anchors.right: parent.right
     }
 */
-    Item { // compat
-        id: appHeader
-
-        anchors.top: parent.top
-        anchors.left: appSidebar.right
-        anchors.right: parent.right
-        height: 0
-
-        // compat
-        property int headerPosition: 64
-        signal backButtonClicked()
-        signal rightMenuClicked()
-        signal menuComponentsClicked()
-        signal menuSettingsClicked()
-        signal menuAboutClicked()
-    }
-
-    // QML /////////////////////////////////////////////////////////////////////
-
-    Component.onCompleted: {
-        screenMainView.loadScreen()
-    }
-
-    onActiveFocusItemChanged: { // DEBUG
-        //console.log("activeFocusItem:" + activeFocusItem)
-    }
-
     DesktopSidebar {
         id: appSidebar
         z: 2

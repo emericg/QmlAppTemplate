@@ -15,13 +15,6 @@ Window {
     color: Theme.colorBackground
     visible: true
 
-    // Helpers
-    property bool isHdpi: (UtilsScreen.screenDpi >= 128 || UtilsScreen.screenPar >= 2.0)
-    property bool isDesktop: (Qt.platform.os !== "ios" && Qt.platform.os !== "android")
-    property bool isMobile: (Qt.platform.os === "ios" || Qt.platform.os === "android")
-    property bool isPhone: ((Qt.platform.os === "ios" || Qt.platform.os === "android") && (UtilsScreen.screenSize < 7.0))
-    property bool isTablet: ((Qt.platform.os === "ios" || Qt.platform.os === "android") && (UtilsScreen.screenSize >= 7.0))
-
     // Setup ThemeEngine
     Binding { target: Theme; property: "appTheme";               value: SettingsManager.appTheme }
     Binding { target: Theme; property: "appThemeAuto";           value: SettingsManager.appThemeAuto }
@@ -46,19 +39,6 @@ Window {
     Binding { target: MobileUI; property: "navbarContentColor";     value: Theme.colorTabletmenu }
 
     // Mobile stuff ////////////////////////////////////////////////////////////
-
-    // 1 = Qt.PortraitOrientation, 2 = Qt.LandscapeOrientation
-    // 4 = Qt.InvertedPortraitOrientation, 8 = Qt.InvertedLandscapeOrientation
-    property int screenOrientation: Screen.primaryOrientation
-    property int screenOrientationFull: Screen.orientation
-
-    property int screenPaddingStatusbar: MobileUI.statusbarHeight
-    property int screenPaddingNavbar: MobileUI.navbarHeight
-
-    property int screenPaddingTop: MobileUI.safeAreaTop
-    property int screenPaddingLeft: MobileUI.safeAreaLeft
-    property int screenPaddingRight: MobileUI.safeAreaRight
-    property int screenPaddingBottom: MobileUI.safeAreaBottom
 
     MobileHeader {
         id: appHeader
@@ -156,21 +136,6 @@ Window {
         // nothing
     }
 
-    // UI sizes ////////////////////////////////////////////////////////////////
-
-    property bool singleColumn: {
-        if (isMobile) {
-            if ((isPhone && screenOrientation === Qt.PortraitOrientation) ||
-                (isTablet && width < 512)) { // can be a 2/3 split screen on tablet
-                return true
-            } else {
-                return false
-            }
-        } else {
-            return (appWindow.width < appWindow.height)
-        }
-    }
-
     // QML /////////////////////////////////////////////////////////////////////
 
     onActiveFocusItemChanged: { // DEBUG
@@ -182,9 +147,9 @@ Window {
 
         anchors.top: appHeader.bottom
         anchors.left: parent.left
-        anchors.leftMargin: screenPaddingLeft
+        anchors.leftMargin: Theme.screenPaddingLeft
         anchors.right: parent.right
-        anchors.rightMargin: screenPaddingRight
+        anchors.rightMargin: Theme.screenPaddingRight
         anchors.bottom: mobileMenu.top
 
         focus: true
@@ -301,7 +266,7 @@ Window {
         ]
     }
 
-    ////////////////
+    ////////////////////////////////////////////////////////////////////////////
 
     MobileExit {
         id: mobileExit

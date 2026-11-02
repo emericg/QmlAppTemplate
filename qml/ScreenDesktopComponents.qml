@@ -70,7 +70,7 @@ Loader {
 
                 DemoPagesModel { id: pagesModel }
 
-                ////////
+                ////
 
                 Flow {
                     id: pagesGrid
@@ -121,25 +121,31 @@ Loader {
                             width: pagesGrid.cardWidth
                             height: implicitHeight
 
-                            mediaWidth: pagesGrid.cardWidth * 0.40
-                            iconSource: model.icon
+                            required property var modelData
 
-                            title: model.title
-                            description: model.text
-                            gradientStops: GradientPresets[model.gradient]
+                            mediaWidth: pagesGrid.cardWidth * 0.40
+                            iconSource: modelData.icon
+
+                            title: modelData.title
+                            description: modelData.text
+                            gradientStops: GradientPresets[modelData.gradient]
 
                             primaryText: qsTr("Open")
                             primaryStyle: CardActionRow.ButtonStyle.Clear
                             primarySource: "qrc:/IconLibrary/material-symbols/chevron_right.svg"
                             actionAlignment: Qt.AlignRight
 
-                            onClicked: stackView.push(model.page)
-                            onPrimaryClicked: stackView.push(model.page)
+                            onClicked: stackView.push(modelData.page)
+                            onPrimaryClicked: stackView.push(modelData.page)
                         }
                     }
                 }
+
+                ////
             }
         }
+
+        ////////
     }
 
     ////////////////////////////////////////////////////////////////////////////

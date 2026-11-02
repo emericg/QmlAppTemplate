@@ -354,9 +354,10 @@ Flickable {
                 delegate: ListElementThemed {
                     width: parent.width
 
-                    text: model.title
-                    subtitle: model.subtitle
-                    source: model.icon
+                    required property var modelData
+                    text: modelData.title
+                    subtitle: modelData.subtitle
+                    source: modelData.icon
                 }
             }
         }
