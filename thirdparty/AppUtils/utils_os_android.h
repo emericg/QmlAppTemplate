@@ -79,16 +79,6 @@ public:
     static bool getPermission_camera();
 
     /*!
-     * \return True if POST_NOTIFICATIONS permission has been previously obtained.
-     */
-    static bool checkPermission_notification();
-
-    /*!
-     * \return True if POST_NOTIFICATIONS permission has been explicitly obtained.
-     */
-    static bool getPermission_notification();
-
-    /*!
      * \return True if Bluetooth permission has been previously obtained.
      */
     static bool checkPermission_bluetooth();

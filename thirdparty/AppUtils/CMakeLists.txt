@@ -21,7 +21,6 @@ option(UTILS_DOCK_ENABLED "macOS dock utils" OFF)
 
 # Optional stuff (for iOS)
 option(UTILS_WIFI_ENABLED "iOS WiFi SSID reading" OFF)
-option(UTILS_NOTIFICATIONS_ENABLED "iOS notification handling" OFF)
 
 ################################################################################
 
@@ -96,6 +95,8 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
 endif()
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+    enable_language(OBJCXX)
+
     set(PLATFORM_SOURCES ${PLATFORM_SOURCES}
         utils_os_macos.mm
         utils_os_macos.h)
@@ -105,24 +106,18 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
             utils_os_macos_dock.mm
             utils_os_macos_dock.h)
         set(PLATFORM_LIBRARIES ${PLATFORM_LIBRARIES}
-            "-framework AppKit") # dock control
+            "-framework AppKit")                                                # dock control
     endif()
 endif()
 
 if(CMAKE_SYSTEM_NAME STREQUAL "iOS")
+    enable_language(OBJCXX)
+
     set(PLATFORM_SOURCES ${PLATFORM_SOURCES}
         utils_os_ios.mm
         utils_os_ios.h)
     set(PLATFORM_LIBRARIES ${PLATFORM_LIBRARIES}
         "-framework UIKit")
-
-    if(UTILS_NOTIFICATIONS_ENABLED)
-        set(PLATFORM_SOURCES ${PLATFORM_SOURCES}
-            utils_os_ios_notif.mm
-            utils_os_ios_notif.h)
-        set(PLATFORM_LIBRARIES ${PLATFORM_LIBRARIES}
-            "-framework UserNotifications")                                     # show notifications
-    endif()
 
     if(UTILS_WIFI_ENABLED)
         set(PLATFORM_SOURCES ${PLATFORM_SOURCES}
