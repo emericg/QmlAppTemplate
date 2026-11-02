@@ -90,6 +90,9 @@ list(APPEND MODULE_QML_FILES
     qml/controls/ButtonIconThemed.qml
     qml/controls/ButtonThemed.qml
     qml/controls/CheckBoxThemed.qml
+    qml/controls/ComboBoxBar.qml
+    qml/controls/ComboBoxColorful.qml
+    qml/controls/ComboBoxMenuBar.qml
     qml/controls/ComboBoxThemed.qml
     qml/controls/DialThemed.qml
     qml/controls/ItemDelegateThemed.qml
@@ -104,7 +107,6 @@ list(APPEND MODULE_QML_FILES
     qml/controls/RangeSliderThemed.qml
     qml/controls/RangeSliderValue.qml
     qml/controls/RangeSliderValueSolid.qml
-    qml/controls/RippleCustom.qml
     qml/controls/RippleThemed.qml
     qml/controls/RoundButtonThemed.qml
     qml/controls/RoundButtonIconThemed.qml
@@ -120,6 +122,7 @@ list(APPEND MODULE_QML_FILES
     qml/controls/SwitchThemedSquare.qml
     qml/controls/TextAreaThemed.qml
     qml/controls/TextEditThemed.qml
+    qml/controls/TextFieldColorful.qml
     qml/controls/TextFieldThemed.qml
     qml/controls/ToolTipFlat.qml
     qml/controls/ToolTipThemed.qml

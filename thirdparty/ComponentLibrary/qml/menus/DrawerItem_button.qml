@@ -40,12 +40,7 @@ T.ItemDelegate {
             RippleThemed {
                 anchors.fill: parent
                 anchor: control
-                clip: true
                 clipRadius: Theme.componentRadius
-
-                pressed: control.pressed
-                active: control.enabled && (control.down || control.visualFocus || control.hovered)
-                color: Qt.rgba(Theme.colorForeground.r, Theme.colorForeground.g, Theme.colorForeground.b, 0.5)
             }
         }
     }
