@@ -15,7 +15,7 @@ You will need a C++17 compiler and Qt 6.8+.
 
 For macOS and iOS builds, you'll need Xcode (15+) installed.  
 For Windows builds, you'll need MSVC 2022 installed.  
-For Android builds, you'll need the appropriates JDK (17) SDK (28+) and NDK (28+). You can customize Android build environment using the `assets/android/gradle.properties` file.  
+For Android builds, you'll need the appropriates JDK (17) SDK (28+) and NDK (28+).  
 
 > https://doc.qt.io/qt-6.8/supported-platforms.html
 
@@ -24,8 +24,9 @@ For Android builds, you'll need the appropriates JDK (17) SDK (28+) and NDK (28+
 - Linux (Ubuntu 22.04+)
 - macOS 12+
 - Windows 10+
-- Android 9+
+
 - iOS 16+
+- Android 9+
 
 #### Recent changes
 

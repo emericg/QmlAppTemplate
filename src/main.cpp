@@ -81,7 +81,7 @@ int main(int argc, char *argv[])
 
     // Force QtQuick components style? // Some styles are only available on target OS
     // Basic // Fusion // Imagine // macOS // iOS // Material // Universal // Windows
-    //QQuickStyle::setStyle("Universal");
+    //QQuickStyle::setStyle("Basic");
 
     QQmlApplicationEngine engine;
 

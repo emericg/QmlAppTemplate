@@ -354,9 +354,12 @@ Loader {
                         ListElement { text: "Español"; }
                         ListElement { text: "Français"; }
                         ListElement { text: "Frysk"; }
+                        ListElement { text: "Hungarian"; }
+                        ListElement { text: "Italiano"; }
                         ListElement { text: "Nederlands"; }
                         ListElement { text: "Norsk (Bokmål)"; }
                         ListElement { text: "Norsk (Nynorsk)"; }
+                        ListElement { text: "Polski"; }
                         ListElement { text: "Pусский"; }
                     }
 

@@ -41,4 +41,4 @@ Translate by editing the .ts file using Qt Linguist.
 
 Send the file(s) back to the project, using email or a GitHub pull request.  
 If you want to be credited in the application (and in this file) please be sure to mention it, and provide a name/pseudo, and wished an email/GitHub page.  
-It's useful in case a person wants to contact you about the translation, or if you want to be contacted when a new version of the project will be released and a translation update is needed.
+It's useful in case a person wants to contact you about the translation, or if you want to be contacted when a new version of the project will be released and a translation update is needed.  

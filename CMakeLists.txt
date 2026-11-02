@@ -147,11 +147,11 @@ add_other_files(${PROJECT_NAME}
 # AppUtils
 set(UTILS_QT_RHI ON)
 set(UTILS_DOCK_ENABLED ON)
-add_subdirectory(thirdparty/AppUtils)
+add_subdirectory(thirdparty/AppUtils/)
 target_link_libraries(${PROJECT_NAME} PRIVATE AppUtils AppUtils_plugin)
 
 # MobileUI
-add_subdirectory(thirdparty/MobileUI)
+add_subdirectory(thirdparty/MobileUI/)
 target_link_libraries(${PROJECT_NAME} PRIVATE MobileUI MobileUI_plugin)
 
 # ComponentLibrary
@@ -175,8 +175,8 @@ target_include_directories(${PROJECT_NAME} PRIVATE thirdparty/)
 set(QML_IMPORT_PATH
     "${CMAKE_BINARY_DIR}/"
     "${CMAKE_BINARY_DIR}/thirdparty/"
-    "${CMAKE_BINARY_DIR}/thirdparty/MobileUI"
-    "${CMAKE_BINARY_DIR}/thirdparty/ComponentLibrary"
+    "${CMAKE_BINARY_DIR}/thirdparty/MobileUI/"
+    "${CMAKE_BINARY_DIR}/thirdparty/ComponentLibrary/"
     CACHE STRING "QML Modules import paths" FORCE)
 
 # Qt official hacks...
@@ -222,6 +222,7 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
         XCODE_ATTRIBUTE_CURRENT_PROJECT_VERSION             ${PROJECT_VERSION}
         XCODE_ATTRIBUTE_MARKETING_VERSION                   ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
         XCODE_ATTRIBUTE_CODE_SIGN_ENTITLEMENTS             "${PROJECT_SOURCE_DIR}/platforms/macos/${PROJECT_NAME}.entitlements"
+        XCODE_ATTRIBUTE_DEBUG_INFORMATION_FORMAT[variant=Release] "dwarf-with-dsym"
     )
 endif()
 
@@ -237,17 +238,32 @@ endif()
 ## Android
 if(CMAKE_SYSTEM_NAME STREQUAL "Android")
     set_target_properties(${PROJECT_NAME} PROPERTIES
+        QT_ANDROID_PACKAGE_NAME "io.emeric.qmlapptemplate"
         #QT_ANDROID_ABIS "armeabi-v7a;arm64-v8a;x86;x86_64"
         #QT_ANDROID_BUILD_ALL_ABIS ON
         QT_ANDROID_MIN_SDK_VERSION 28
         QT_ANDROID_TARGET_SDK_VERSION 36
+        QT_ANDROID_COMPILE_SDK_VERSION 36
+        QT_ANDROID_SDK_BUILD_TOOLS_REVISION 36.1.0
         QT_ANDROID_PACKAGE_SOURCE_DIR "${PROJECT_SOURCE_DIR}/platforms/android/"
     )
+
+    # Android NDK (selected by the Qt Creator kit, or ANDROID_NDK_ROOT on the CI)
+    set(ANDROID_NDK_VERSION_EXPECTED 28.2)
+    if(CMAKE_ANDROID_NDK_VERSION AND NOT CMAKE_ANDROID_NDK_VERSION VERSION_EQUAL ANDROID_NDK_VERSION_EXPECTED)
+        message(WARNING "Android NDK ${ANDROID_NDK_VERSION_EXPECTED} expected, building with NDK ${CMAKE_ANDROID_NDK_VERSION}")
+    endif()
 
     # Support 16 KB page sizes / pre NDK28
     target_link_options(${PROJECT_NAME} PRIVATE "-Wl,-z,max-page-size=16384")
 
-    ## Download SSL Libraries
+    # Qt plugins deployed into the APK (disable because: very specific to your target application)
+    #qt_import_plugins(${PROJECT_NAME}
+    #    INCLUDE_BY_TYPE imageformats Qt::QSvgPlugin
+    #    EXCLUDE_BY_TYPE iconengines networkinformation tls platforminputcontexts qmltooling
+    #)
+
+    ## Download SSL Libraries (disable because: you might not need it)
     #include(FetchContent)
     #FetchContent_Declare(
     #    android_openssl
@@ -263,6 +279,9 @@ endif()
 
 ## iOS
 if(CMAKE_SYSTEM_NAME STREQUAL "iOS")
+    set(CMAKE_OSX_DEPLOYMENT_TARGET "16.0")
+
+    # Icons
     #set(app_icon_ios "${PROJECT_SOURCE_DIR}/platforms/ios/Assets.xcassets")
     #set_source_files_properties(${app_icon_ios} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
 
@@ -280,6 +299,7 @@ if(CMAKE_SYSTEM_NAME STREQUAL "iOS")
         XCODE_ATTRIBUTE_TARGETED_DEVICE_FAMILY              "1,2" # iPhone,iPad
         XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME  "AppIcon"
         XCODE_ATTRIBUTE_GCC_GENERATE_DEBUGGING_SYMBOLS      "YES"
+        XCODE_ATTRIBUTE_DEBUG_INFORMATION_FORMAT[variant=Release] "dwarf-with-dsym"
     )
 endif()
 
@@ -287,7 +307,8 @@ endif()
 
 # Output (build)
 set_target_properties(${PROJECT_NAME} PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin"
+    #RUNTIME_OUTPUT_DIRECTORY "${CMAKE_INSTALL_BINDIR}"     # write binary in kit directory
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin"      # write binary in the project's build/ directory
 )
 
 # Output (install)
@@ -297,7 +318,7 @@ install(TARGETS ${PROJECT_NAME}
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
 
-# Output (automatic deployment, similar to running linuxdeploy / macdeployqt / windeployqt)
+# Output (automatic deployment) (similar to running linuxdeploy / macdeployqt / windeployqt)
 #qt_generate_deploy_qml_app_script(
 #    TARGET ${PROJECT_NAME}
 #    OUTPUT_SCRIPT deploy_script

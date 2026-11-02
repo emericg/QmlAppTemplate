@@ -163,7 +163,7 @@ if [[ $create_package = true ]] ; then
   #cp $QT_ROOT_DIR/lib/libQMapLibreLocation.so.$MAPLIBRE_VERSION    bin/$APP_NAME/libQMapLibreLocation.so.4
 
   #echo '---- WebEngine deployment hack'
-  #export QT_VERSION=6.10.3
+  #export QT_VERSION=6.12.0
   #mkdir -p bin/$APP_NAME/plugins/webview
   #cp $QT_ROOT_DIR/plugins/webview/libqtwebview_webengine.so  bin/$APP_NAME/plugins/webview/libqtwebview_webengine.so
   #cp $QT_ROOT_DIR/lib/libQt6WebEngineCore.so.$QT_VERSION     bin/$APP_NAME/libQt6WebEngineCore.so.6
