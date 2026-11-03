@@ -9,6 +9,7 @@ DrawerThemed {
 
         Column {
             id: headerColumn
+
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.right: parent.right
@@ -31,7 +32,7 @@ DrawerThemed {
                 anchors.left: parent.left
                 anchors.right: parent.right
 
-                height: 80
+                height: appHeader.hideInLandscape ? 0 : 80
                 color: Theme.colorBackground
 
                 Image {
@@ -43,7 +44,7 @@ DrawerThemed {
                     width: 40
                     height: 40
                     source: "qrc:/assets/logos/logo.svg"
-                    sourceSize: Qt.size(width, height)
+                    sourceSize: Qt.size(width*2, height*2)
                 }
                 Text {
                     id: textHeader
@@ -68,7 +69,7 @@ DrawerThemed {
             anchors.top: headerColumn.bottom
             anchors.left: parent.left
             anchors.right: parent.right
-            anchors.bottom: parent.bottom
+            anchors.bottom: footerColumn.top
 
             contentWidth: -1
             contentHeight: contentColumn.height
@@ -159,6 +160,27 @@ DrawerThemed {
                 ListSeparatorPadded { }
 
                 ////////
+            }
+        }
+
+        ////////////////
+
+        Column {
+            id: footerColumn
+
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
+            z: 5
+
+            Rectangle { // navbar area
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.rightMargin: -1
+
+                height: Math.max(Theme.screenPaddingNavbar, Theme.screenPaddingBottom)
+                color: Theme.colorTabletmenu
+                opacity: 0.95
             }
         }
 

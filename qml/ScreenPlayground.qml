@@ -40,7 +40,7 @@ Loader {
 
         ////////
 
-        SelectorMenuSunken {
+        SelectorMenuColorful {
             id: playgroundSelector
 
             anchors.top: parent.top
@@ -48,9 +48,6 @@ Loader {
             anchors.left: parent.left
             anchors.leftMargin: 0
             height: 32
-
-            colorBackground: Theme.colorBackground
-            colorForeground: Theme.colorPrimary
 
             model: ListModel {
                 ListElement { idx: 1; txt: "one"; src: ""; sz: 0; }

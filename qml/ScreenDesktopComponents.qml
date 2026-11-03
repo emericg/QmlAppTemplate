@@ -76,9 +76,9 @@ Loader {
                     id: pagesGrid
 
                     anchors.left: parent.left
-                    anchors.leftMargin: Theme.componentMarginXL + (Theme.singleColumn ? 0 : parent.width*0.125)
+                    anchors.leftMargin: Theme.componentMarginXL + ((Theme.isPhone || Theme.singleColumn) ? 0 : parent.width*0.125)
                     anchors.right: parent.right
-                    anchors.rightMargin: Theme.componentMarginXL + (Theme.singleColumn ? 0 : parent.width*0.125)
+                    anchors.rightMargin: Theme.componentMarginXL + ((Theme.isPhone || Theme.singleColumn) ? 0 : parent.width*0.125)
 
                     topPadding: Theme.componentMarginXL
                     bottomPadding: Theme.componentMarginXL

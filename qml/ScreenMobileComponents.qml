@@ -154,7 +154,7 @@ Loader {
                     topMargin: Theme.componentMargin
                     bottomMargin: Theme.componentMargin
 
-                    property real sideMargin: Theme.singleColumn ? 0 : width*0.125
+                    property real sideMargins: (Theme.isPhone || Theme.singleColumn) ? 0 : width*0.125
 
                     model: pagesModel
                     delegate: Item {
@@ -167,9 +167,9 @@ Loader {
                         ListElementThemed {
                             id: listElement
                             anchors.left: parent.left
-                            anchors.leftMargin: pagesView.sideMargin
+                            anchors.leftMargin: pagesView.sideMargins
                             anchors.right: parent.right
-                            anchors.rightMargin: pagesView.sideMargin
+                            anchors.rightMargin: pagesView.sideMargins
 
                             text: modelData.title
                             subtitle: modelData.text

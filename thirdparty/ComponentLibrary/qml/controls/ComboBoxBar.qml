@@ -11,12 +11,17 @@ import ComponentLibrary
  *
  * \property edge The screen edge the bar is along: Qt.TopEdge (default), opening its list below it,
  *           or Qt.BottomEdge, opening it above it. Any other edge is handled as Qt.TopEdge.
+ * \property leftSafeArea, rightSafeArea Width of the screen safe areas beside the control, in pixels:
+ *           its background and its list extend under them, their content stays clear of them.
  */
 ComboBoxThemed {
     id: control
 
     leftPadding: Theme.componentMarginXL
     rightPadding: Theme.componentMarginXL
+
+    leftInset: -leftSafeArea
+    rightInset: -rightSafeArea
 
     radius: 0
 
@@ -25,6 +30,9 @@ ComboBoxThemed {
 
     property int edge: Qt.TopEdge
     indicator.rotation: (popup.visible === (edge !== Qt.BottomEdge)) ? 180 : 0
+
+    property real leftSafeArea: 0
+    property real rightSafeArea: 0
 
     ////////////////
 
@@ -52,10 +60,13 @@ ComboBoxThemed {
     ////////////////
 
     popup: T.Popup {
+        x: -control.leftSafeArea
         y: (control.edge !== Qt.BottomEdge) ? control.height : -height
-        width: control.width
+        width: control.leftSafeArea + control.width + control.rightSafeArea
         height: contentItem.implicitHeight ? contentItem.implicitHeight + 2 : 0
         padding: 1
+        leftPadding: padding + control.leftSafeArea
+        rightPadding: padding + control.rightSafeArea
 
         topMargin: Math.max(Theme.screenPaddingStatusbar, Theme.screenPaddingTop)
         bottomMargin: Math.max(Theme.screenPaddingNavbar, Theme.screenPaddingBottom)
@@ -70,7 +81,7 @@ ComboBoxThemed {
         background: Rectangle {
             color: Theme.colorComponentBackground
 
-            Rectangle { // separator, on the side away from the control
+            Rectangle { // separator
                 y: (control.edge !== Qt.BottomEdge) ? (parent.height - height) : 0
                 width: parent.width
                 height: 1

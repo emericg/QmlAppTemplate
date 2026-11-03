@@ -4,13 +4,6 @@ import QtQuick.Templates as T
 
 import ComponentLibrary
 
-/*!
- * \brief A ComboBoxThemed in the SelectorMenuColorful style.
- *
- * A pill with a border, the current item shown as a highlighted pill (primary color) filling it,
- * and a popup with pill shaped items.
- * Works as a compact replacement of a SelectorMenuColorful when it does not fit.
- */
 ComboBoxThemed {
     id: control
 

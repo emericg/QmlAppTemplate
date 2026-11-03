@@ -152,7 +152,7 @@ Item {
                     color: Theme.colorText
                 }
 
-                Item { width: 16; height: 16; } // spacer
+                ListSpacer { space: 16 }
 
                 ////
 

@@ -30,9 +30,6 @@ set(CORE_LIBRARIES Qt6::Core Qt6::Gui Qt6::Qml Qt6::Quick)
 
 # Generic sources
 set(CORE_SOURCES
-    # PermissionManager
-    PermissionManager.cpp PermissionManager.h
-    PermissionManager_AndroidHelper.cpp PermissionManager_AndroidHelper.h
     # app utils
     utils_app.cpp utils_app.h
     utils_log.cpp utils_log.h
@@ -47,8 +44,16 @@ set(CORE_SOURCES
     # pure c++
     utils_bits.h
     utils_maths.h
+
     # others
     LoremIpsum.h
+
+    # PermissionManager
+    PermissionManager.cpp PermissionManager.h
+    PermissionManager_AndroidHelper.cpp PermissionManager_AndroidHelper.h
+
+    # FpsMonitor
+    FpsMonitor.cpp FpsMonitor.h
 )
 
 # Qt optional tools
@@ -56,7 +61,7 @@ if(UTILS_QT_RHI)
     add_definitions(-DUTILS_QT_RHI)
 
     if(Qt6Gui_VERSION VERSION_GREATER_EQUAL 6.10.0)
-        find_package(Qt6 REQUIRED COMPONENTS GuiPrivate)
+        find_package(Qt6 REQUIRED COMPONENTS GuiPrivate)                        # RHI infos
         set(CORE_LIBRARIES ${CORE_LIBRARIES} Qt6::GuiPrivate)
     else()
         find_package(Qt6 REQUIRED COMPONENTS Gui)
@@ -71,7 +76,7 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
         utils_os_linux.h)
 
     find_package(Qt6 REQUIRED COMPONENTS DBus)
-    set(PLATFORM_LIBRARIES ${PLATFORM_LIBRARIES} Qt6::DBus)
+    set(PLATFORM_LIBRARIES ${PLATFORM_LIBRARIES} Qt6::DBus)                     # screensaver control
 endif()
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Android")

@@ -82,7 +82,7 @@ Rectangle {
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.bottom: parent.bottom
-        width: 64
+        width: Theme.isHdpi ? 56 : 64
         z: 5
 
         color: Theme.colorSeparator
@@ -102,7 +102,8 @@ Rectangle {
 
             DesktopSidebarItem_icon {
                 //text: qsTr("Home")
-                source: "qrc:/IconLibrary/material-symbols/home.svg"
+                source: checked ? "qrc:/IconLibrary/material-symbols/home-fill.svg"
+                                : "qrc:/IconLibrary/material-symbols/home.svg"
 
                 checked: (appContent.state === "MainView")
                 onClicked: screenMainView.loadScreen()
@@ -112,7 +113,8 @@ Rectangle {
 
             DesktopSidebarItem_icon {
                 //text: qsTr("Components")
-                source: "qrc:/IconLibrary/material-symbols/hardware/computer.svg"
+                source: checked ? "qrc:/IconLibrary/material-symbols/hardware/computer-fill.svg"
+                                : "qrc:/IconLibrary/material-symbols/hardware/computer.svg"
 
                 checked: (appContent.state === "DesktopComponents" ||
                           appContent.state === "MobileComponents")
@@ -123,7 +125,8 @@ Rectangle {
 
             DesktopSidebarItem_icon {
                 //text: qsTr("Tools")
-                source: "qrc:/IconLibrary/material-symbols/build.svg"
+                source: checked ? "qrc:/IconLibrary/material-symbols/build-fill.svg"
+                                : "qrc:/IconLibrary/material-symbols/build.svg"
 
                 checked: (appContent.state === "Playgrounds" ||
                           appContent.state === "HostInfos" ||
@@ -238,7 +241,7 @@ Rectangle {
                 }
             }
 
-            Item { width: 2; height: 2; } // spacer
+            ListSpacer { space: 2 }
 */
             ////
 
@@ -250,7 +253,7 @@ Rectangle {
                 onClicked: screenMainView.loadScreen()
             }
 
-            Item { width: 2; height: 2; } // spacer
+            ListSpacer { space: 2 }
 
             DesktopSidebarMenu {
                 source: "qrc:/IconLibrary/material-symbols/hardware/computer.svg"
@@ -267,7 +270,7 @@ Rectangle {
                 onClicked: screenMobileComponents.loadScreen()
             }
             DesktopSidebarSubMenu {
-                source: "qrc:/IconLibrary/material-symbols/build-fill.svg"
+                source: "qrc:/IconLibrary/material-symbols/build.svg"
                 text: qsTr("Tools")
 
                 checked: (appContent.state === "Playgrounds" ||

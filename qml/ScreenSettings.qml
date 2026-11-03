@@ -49,16 +49,13 @@ Loader {
             id: contentColumn
 
             anchors.left: parent.left
-            anchors.leftMargin: Theme.singleColumn ? 0 : parent.width*0.125
+            anchors.leftMargin: (Theme.isPhone || Theme.singleColumn) ? 0 : parent.width*0.125
             anchors.right: parent.right
-            anchors.rightMargin: Theme.singleColumn ? 0 : parent.width*0.125
+            anchors.rightMargin: (Theme.isPhone || Theme.singleColumn) ? 0 : parent.width*0.125
 
             topPadding: Theme.componentMarginXL
             bottomPadding: Theme.componentMarginXL
             spacing: Theme.isPhone ? Theme.componentMarginXS : Theme.componentMarginXL
-
-            property int padIcon: Theme.singleColumn ? Theme.componentMarginL : Theme.componentMarginL
-            property int padText: appHeader.headerPosition
 
             ////////////////
 
@@ -74,49 +71,20 @@ Loader {
 
             ////////////////
 
-            Item { // element_appTheme
+            ListItemSetting { // element_appTheme
                 anchors.left: parent.left
                 anchors.right: parent.right
-                height: Theme.componentHeightXL
 
-                IconSvg {
-                    anchors.left: parent.left
-                    anchors.leftMargin: contentColumn.padIcon
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    width: 24
-                    height: 24
-                    color: Theme.colorIcon
-                    source: "qrc:/IconLibrary/material-icons/duotone/style.svg"
-                }
-
-                Text {
-                    anchors.left: parent.left
-                    anchors.leftMargin: contentColumn.padText
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    text: qsTr("Theme")
-                    textFormat: Text.PlainText
-                    font.pixelSize: Theme.fontSizeContent
-                    color: Theme.colorText
-                    wrapMode: Text.WordWrap
-                    verticalAlignment: Text.AlignVCenter
-                }
-
-                ////
+                source: "qrc:/IconLibrary/material-icons/duotone/style.svg"
+                text: qsTr("Theme")
 /*
                 Row {
                     id: appTheme_selector
-                    anchors.right: parent.right
-                    anchors.rightMargin: Theme.componentMargin
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    z: 1
                     spacing: Theme.componentMargin
 
                     ThemeSwatch {
                         anchors.verticalCenter: parent.verticalCenter
-                        width: Theme.wide ? 80 : 32
+                        width: Theme.wideMode ? 80 : 32
 
                         themeId: Theme.THEME_MOBILE_LIGHT
                         themeName: "THEME_MOBILE_LIGHT"
@@ -126,7 +94,7 @@ Loader {
                     }
                     ThemeSwatch {
                         anchors.verticalCenter: parent.verticalCenter
-                        width: Theme.wide ? 80 : 32
+                        width: Theme.wideMode ? 80 : 32
 
                         themeId: Theme.THEME_MOBILE_DARK
                         themeName: "THEME_MOBILE_DARK"
@@ -139,10 +107,6 @@ Loader {
                 ////
 
                 ComboBoxThemeSelector {
-                    anchors.right: parent.right
-                    anchors.rightMargin: Theme.componentMargin
-                    anchors.verticalCenter: parent.verticalCenter
-
                     visible: Theme.isPhone
                 }
 
@@ -151,7 +115,7 @@ Loader {
 
             Flow { // element_appThemeFlow
                 anchors.left: parent.left
-                anchors.leftMargin: contentColumn.padIcon
+                anchors.leftMargin: Theme.componentMargin
                 anchors.right: parent.right
                 anchors.rightMargin: Theme.componentMargin
 
@@ -235,43 +199,18 @@ Loader {
 
             ////////
 
-            Item { // element_appThemeAuto
+            ListItemSetting { // element_appThemeAuto
                 anchors.left: parent.left
                 anchors.right: parent.right
-                height: Theme.componentHeightXL
 
-                IconSvg {
-                    anchors.left: parent.left
-                    anchors.leftMargin: contentColumn.padIcon
-                    anchors.verticalCenter: parent.verticalCenter
+                source: "qrc:/IconLibrary/material-icons/duotone/brightness_4.svg"
+                text: qsTr("Automatic dark mode")
+                legend: qsTr("Dark mode will switch on automatically between 9 PM and 9 AM.")
 
-                    width: 24
-                    height: 24
-                    color: Theme.colorIcon
-                    source: "qrc:/IconLibrary/material-icons/duotone/brightness_4.svg"
-                }
-
-                Text {
-                    anchors.left: parent.left
-                    anchors.leftMargin: contentColumn.padText
-                    anchors.right: switch_appThemeAuto.left
-                    anchors.rightMargin: Theme.componentMargin
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    text: qsTr("Automatic dark mode")
-                    textFormat: Text.PlainText
-                    font.pixelSize: Theme.fontSizeContent
-                    color: Theme.colorText
-                    wrapMode: Text.WordWrap
-                    verticalAlignment: Text.AlignVCenter
-                }
+                onClicked: switch_appThemeAuto.click()
 
                 SwitchThemed {
                     id: switch_appThemeAuto
-                    anchors.right: parent.right
-                    anchors.rightMargin: Theme.componentMargin
-                    anchors.verticalCenter: parent.verticalCenter
-                    z: 1
 
                     checked: SettingsManager.appThemeAuto
                     onClicked: {
@@ -280,72 +219,25 @@ Loader {
                     }
                 }
             }
-            Text { // legend_appThemeAuto
-                anchors.left: parent.left
-                anchors.leftMargin: contentColumn.padText
-                anchors.right: parent.right
-                anchors.rightMargin: Theme.componentMargin
-
-                topPadding: -12
-                bottomPadding: 0
-
-                text: qsTr("Dark mode will switch on automatically between 9 PM and 9 AM.")
-                textFormat: Text.PlainText
-                wrapMode: Text.WordWrap
-                color: Theme.colorSubText
-                font.pixelSize: Theme.fontSizeContentSmall
-            }
 
             ////////
 
             ListSeparator { }
 
-            Item { // element_language
+            ListItemSetting { // element_language
                 anchors.left: parent.left
                 anchors.right: parent.right
-                height: Theme.componentHeightXL
 
-                IconSvg {
-                    anchors.left: parent.left
-                    anchors.leftMargin: contentColumn.padIcon
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    width: 24
-                    height: 24
-                    color: Theme.colorIcon
-                    source: "qrc:/IconLibrary/material-icons/duotone/translate.svg"
-                }
-
-                Text {
-                    anchors.left: parent.left
-                    anchors.leftMargin: contentColumn.padText
-                    anchors.right: combobox_language.left
-                    anchors.rightMargin: Theme.componentMargin
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    text: qsTr("Language")
-                    textFormat: Text.PlainText
-                    font.pixelSize: Theme.fontSizeContent
-                    color: Theme.colorText
-                    wrapMode: Text.WordWrap
-                    verticalAlignment: Text.AlignVCenter
-                }
+                source: "qrc:/IconLibrary/material-icons/duotone/translate.svg"
+                text: qsTr("Language")
 
                 ComboBoxThemed {
                     id: combobox_language
-                    width: Theme.wideMode ? 256 : 160
-                    anchors.right: parent.right
-                    anchors.rightMargin: Theme.componentMargin
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    z: 1
-                    wheelEnabled: false
+                    width: Theme.wideMode ? 256 : 180
 
                     model: ListModel {
                         id: cbAppLanguage
-                        ListElement {
-                            text: qsTr("auto", "short for automatic");
-                        }
+                        ListElement { text: qsTr("auto", "short for automatic"); }
                         ListElement { text: "Chinese (traditional)"; }
                         ListElement { text: "Chinese (simplified)"; }
                         ListElement { text: "Dansk"; }
@@ -364,7 +256,7 @@ Loader {
                     }
 
                     Component.onCompleted: {
-                        for (var i = 0; i < cbAppLanguage.count; i++) {
+                        for (let i = 0; i < cbAppLanguage.count; i++) {
                             if (cbAppLanguage.get(i).text === SettingsManager.appLanguage) {
                                 currentIndex = i
                             }
@@ -374,6 +266,33 @@ Loader {
                         UtilsLanguage.loadLanguage(cbAppLanguage.get(currentIndex).text)
                         SettingsManager.appLanguage = cbAppLanguage.get(currentIndex).text
                     }
+                }
+            }
+
+            ListSeparator { }
+
+            ////////
+
+            ListItemSetting { // element_unitSystem
+                anchors.left: parent.left
+                anchors.right: parent.right
+
+                source: "qrc:/IconLibrary/material-symbols/straighten.svg"
+                text: qsTr("Unit system")
+
+                SelectorMenuColorful {
+                    id: selector_unitSystem
+                    height: 32
+
+                    // QLocale::MeasurementSystem values
+                    model: ListModel {
+                        ListElement { idx: 0; txt: qsTr("Metric") }
+                        ListElement { idx: 1; txt: qsTr("Imperial (US)") }
+                        ListElement { idx: 2; txt: qsTr("Imperial (UK)") }
+                    }
+
+                    currentSelection: SettingsManager.appUnitSystem
+                    onMenuSelected: (index) => SettingsManager.appUnitSystem = index
                 }
             }
 
@@ -391,85 +310,31 @@ Loader {
 
             ////////////////
 
-            Item {
+            ListItemSetting {
                 anchors.left: parent.left
                 anchors.right: parent.right
-                height: Theme.componentHeightXL
 
-                IconSvg {
-                    anchors.left: parent.left
-                    anchors.leftMargin: contentColumn.padIcon
-                    anchors.verticalCenter: parent.verticalCenter
+                source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
+                text: qsTr("A desktop switch")
 
-                    width: 24
-                    height: 24
-                    color: Theme.colorIcon
-                    source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
-                }
-
-                Text {
-                    anchors.left: parent.left
-                    anchors.leftMargin: contentColumn.padText
-                    anchors.right: switch_aaa.left
-                    anchors.rightMargin: Theme.componentMargin
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    text: qsTr("A desktop switch")
-                    textFormat: Text.PlainText
-                    font.pixelSize: Theme.fontSizeContent
-                    color: Theme.colorText
-                    wrapMode: Text.WordWrap
-                    verticalAlignment: Text.AlignVCenter
-                }
+                onClicked: switch_aaa.click()
 
                 SwitchThemed {
                     id: switch_aaa
-                    anchors.right: parent.right
-                    anchors.rightMargin: Theme.componentMargin
-                    anchors.verticalCenter: parent.verticalCenter
-                    z: 1
                 }
             }
 
             ////////////////
 
-            Item {
+            ListItemSetting {
                 anchors.left: parent.left
                 anchors.right: parent.right
-                height: Theme.componentHeightXL
 
-                IconSvg {
-                    anchors.left: parent.left
-                    anchors.leftMargin: contentColumn.padIcon
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    width: 24
-                    height: 24
-                    color: Theme.colorIcon
-                    source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
-                }
-
-                Text {
-                    anchors.left: parent.left
-                    anchors.leftMargin: contentColumn.padText
-                    anchors.right: spinbox_bbb.left
-                    anchors.rightMargin: Theme.componentMargin
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    text: qsTr("A spinbox with a legend!")
-                    textFormat: Text.PlainText
-                    font.pixelSize: Theme.fontSizeContent
-                    color: Theme.colorText
-                    wrapMode: Text.WordWrap
-                    verticalAlignment: Text.AlignVCenter
-                }
+                source: "qrc:/IconLibrary/material-symbols/accessibility.svg"
+                text: qsTr("A spinbox with a legend!")
 
                 SpinBoxThemedMobile {
                     id: spinbox_bbb
-                    anchors.right: parent.right
-                    anchors.rightMargin: Theme.componentMargin
-                    anchors.verticalCenter: parent.verticalCenter
-                    z: 1
 
                     from: 1
                     to: 10
@@ -478,11 +343,7 @@ Loader {
                 }
             }
 
-            ////////////////
-
-            ListSeparator {
-                //
-            }
+            ListSeparator { }
 
             ////////////////
         }

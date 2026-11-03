@@ -29,6 +29,7 @@ Loader {
     asynchronous: false
 
     sourceComponent: Flickable {
+        id: aboutFlickable
         anchors.fill: parent
 
         contentWidth: -1
@@ -49,11 +50,11 @@ Loader {
             id: contentColumn
 
             anchors.left: parent.left
-            anchors.leftMargin: Theme.singleColumn ? 0 : parent.width*0.125
+            anchors.leftMargin: (Theme.isPhone || Theme.singleColumn) ? 0 : parent.width*0.125
             anchors.right: parent.right
-            anchors.rightMargin: Theme.singleColumn ? 0 : parent.width*0.125
+            anchors.rightMargin: (Theme.isPhone || Theme.singleColumn) ? 0 : parent.width*0.125
 
-            topPadding: Theme.componentMarginXL
+            topPadding: Theme.isPhone ? 0 : Theme.componentMarginXL
             bottomPadding: Theme.componentMarginXL
             spacing: 4
 
@@ -89,27 +90,36 @@ Loader {
                 anchors.leftMargin: -Theme.screenPaddingLeft
                 anchors.right: parent.right
                 anchors.rightMargin: -Theme.screenPaddingRight
+                height: 128
 
-                height: 96
                 visible: Theme.isPhone
                 color: Theme.colorForeground
 
+                Rectangle { // overshoot area, above the band
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.bottom: parent.top
+
+                    height: Math.max(0, -aboutFlickable.contentY)
+                    color: parent.color
+                }
+
                 Row {
                     anchors.left: parent.left
-                    anchors.leftMargin: Theme.screenPaddingLeft + Theme.componentMargin
+                    anchors.leftMargin: Theme.screenPaddingLeft + Theme.componentMarginXL
                     anchors.verticalCenter: parent.verticalCenter
 
                     z: 2
-                    height: 96
-                    spacing: Theme.componentMargin
+                    height: parent.height
+                    spacing: Theme.componentMarginXL
 
                     Image { // logo
                         width: 80
                         height: 80
                         anchors.verticalCenter: parent.verticalCenter
 
-                        source: "qrc:/assets/logos/logo.svg"
-                        sourceSize: Qt.size(width, height)
+                        source: "qrc:/assets/logos/logo.png"
+                        sourceSize: Qt.size(width*2, height*2)
                     }
 
                     Column {
@@ -117,7 +127,7 @@ Loader {
                         anchors.verticalCenterOffset: -2
 
                         Text {
-                            text: "QmlAppTemplate"
+                            text: UtilsApp.appName()
                             color: Theme.colorText
                             font.pixelSize: Theme.fontSizeTitle
                         }
@@ -131,7 +141,7 @@ Loader {
 
                 Row {
                     anchors.right: parent.right
-                    anchors.rightMargin: Theme.screenPaddingRight + Theme.componentMargin
+                    anchors.rightMargin: Theme.screenPaddingRight + Theme.componentMarginXL
                     anchors.verticalCenter: parent.verticalCenter
 
                     visible: Theme.wideWideMode
@@ -182,9 +192,9 @@ Loader {
                 height: 72
 
                 anchors.left: parent.left
-                anchors.leftMargin: screenPaddingLeft + Theme.componentMargin
+                anchors.leftMargin: Theme.screenPaddingLeft + Theme.componentMargin
                 anchors.right: parent.right
-                anchors.rightMargin: screenPaddingRight + Theme.componentMargin
+                anchors.rightMargin: Theme.screenPaddingRight + Theme.componentMargin
 
                 visible: !Theme.wideWideMode
                 spacing: Theme.componentMargin
@@ -212,7 +222,7 @@ Loader {
 */
             ////////////////
 
-            Item { width: 16; height: 16; } // spacer
+            ListSpacer { space: 16 }
 
             ////////////////
 
@@ -432,7 +442,7 @@ Loader {
                 anchors.rightMargin: Theme.componentMargin
 
                 height: 32 + debugColumn.height
-                visible: UtilsApp.isDebugBuild()
+                //visible: UtilsApp.isDebugBuild()
 
                 IconSvg {
                     anchors.top: debugColumn.top
@@ -492,10 +502,40 @@ Loader {
                         textFormat: Text.PlainText
                         font.pixelSize: Theme.fontSizeContent
                     }
+                    Text {
+                        color: Theme.colorSubText
+                        text: "Qt architecture: " + UtilsApp.qtArchitecture()
+                        textFormat: Text.PlainText
+                        font.pixelSize: Theme.fontSizeContent
+                    }
+
+                    Text {
+                        color: Theme.colorSubText
+                        text: {
+                            var txt = ""
+
+                            txt += "OS: " + UtilsSysInfo.getOsName()
+                            if (UtilsSysInfo.getOsVersion() !== "unknown")
+                            {
+                                if (txt.length) txt += " "
+                                txt += UtilsSysInfo.getOsVersion()
+                            }
+
+                            if (txt.length) txt += " / "
+                            txt += UtilsSysInfo.getOsDisplayServer()
+
+                            if (txt.length) txt += " / "
+                            txt += UtilsApp.qtRhiBackend()
+
+                            return txt
+                        }
+                        textFormat: Text.PlainText
+                        font.pixelSize: Theme.fontSizeContent
+                    }
                 }
             }
 
-            ListSeparator { visible: UtilsApp.isDebugBuild() }
+            ListSeparator { /*visible: UtilsApp.isDebugBuild()*/ }
 
             ////////
         }

@@ -17,12 +17,17 @@ import ComponentLibrary
  * \property menuButtonVisible Show the menu button, ex: false for a view without a menu.
  * \property edge The screen edge the bar is along: Qt.TopEdge (default), opening the list and the menu below it,
  *           or Qt.BottomEdge, opening them above it. Any other edge is handled as Qt.TopEdge.
+ * \property leftSafeArea, rightSafeArea Width of the screen safe areas beside the control, in pixels:
+ *           its background, its list and its menu extend under them, their content stays clear of them.
  */
 ComboBoxThemed {
     id: control
 
     leftPadding: Theme.componentMarginXL
     rightPadding: Theme.componentMarginXL + (menuButton.visible ? menuButton.width : 0)
+
+    leftInset: -leftSafeArea
+    rightInset: -rightSafeArea
 
     radius: 0
 
@@ -37,20 +42,21 @@ ComboBoxThemed {
     property int edge: Qt.TopEdge
     indicator.rotation: (popup.visible === (edge !== Qt.BottomEdge)) ? 180 : 0
 
-    /*!
-     * \brief A popup spanning the control width below it, sliding down when opened,
-     *        or above it, sliding up, along the bottom edge.
-     *
-     * Its height follows its content, scaled by 'revealed' during the enter and exit transitions.
-     */
+    property real leftSafeArea: 0
+    property real rightSafeArea: 0
+
+    // A popup spanning the control width below it, sliding up/down when opened.
     component SlidingPopup: T.Popup {
         id: sliding
 
         property real revealed: 0
         property color colorBorder: Theme.colorSeparator
 
+        x: -control.leftSafeArea
         y: (control.edge !== Qt.BottomEdge) ? control.height : -height
-        width: parent ? parent.width : 0
+        width: control.leftSafeArea + (parent ? parent.width : 0) + control.rightSafeArea
+        leftPadding: padding + control.leftSafeArea
+        rightPadding: padding + control.rightSafeArea
         implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                                  implicitContentHeight + topPadding + bottomPadding)
         height: implicitHeight * revealed
@@ -80,7 +86,7 @@ ComboBoxThemed {
         background: Rectangle {
             color: Theme.colorComponentBackground
 
-            Rectangle { // separator, on the side away from the control
+            Rectangle { // separator
                 y: (control.edge !== Qt.BottomEdge) ? (parent.height - height) : 0
                 width: parent.width
                 height: 1

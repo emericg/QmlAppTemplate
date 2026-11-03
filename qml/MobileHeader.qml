@@ -10,7 +10,8 @@ Rectangle {
     anchors.left: parent.left
     anchors.right: parent.right
 
-    height: (headerHeight + Math.max(Theme.screenPaddingStatusbar, Theme.screenPaddingTop) - (headerCompact ? 12 : 0))
+    height: (statusbarHeight + contentHeight)
+
     color: Theme.colorHeader
     clip: true
     z: 10
@@ -23,8 +24,13 @@ Rectangle {
     property int headerHeight: 56 // vertical
     property int headerPosition: 56 // horizontal
 
-    property bool headerCompact: true // headerUnicolor
+    property bool headerCompact: headerUnicolor
     property bool headerUnicolor: (Theme.colorHeader === Theme.colorStatusbar)
+
+    readonly property bool hideInLandscape: (Theme.isPhone && Theme.screenOrientation !== Qt.PortraitOrientation)
+
+    readonly property int contentHeight: hideInLandscape ? 0 : (headerHeight - (headerCompact ? 12 : 0))
+    readonly property int statusbarHeight: Math.max(Theme.screenPaddingStatusbar, Theme.screenPaddingTop)
 
     ////////////////////////////////////////////////////////////////////////////
 
@@ -68,7 +74,7 @@ Rectangle {
         anchors.left: parent.left
         anchors.right: parent.right
 
-        height: Math.max(Theme.screenPaddingStatusbar, Theme.screenPaddingTop)
+        height: appHeader.statusbarHeight
         color: Theme.colorStatusbar
         visible: !appHeader.headerCompact
     }
@@ -82,13 +88,13 @@ Rectangle {
         anchors.bottomMargin: appHeader.headerCompact ? -4 : 0
 
         height: appHeader.headerHeight
+        visible: !appHeader.hideInLandscape
 
         ////////////
 
         Row { // left area
             anchors.top: parent.top
             anchors.left: parent.left
-            anchors.leftMargin: 4
             anchors.bottom: parent.bottom
 
             spacing: 4
@@ -106,9 +112,8 @@ Rectangle {
                     anchors.fill: parent
                     anchor: parent
 
-                    pressed: parent.pressed
                     //active: enabled && parent.containsPress
-                    color: Qt.rgba(Theme.colorHeaderHighlight.r, Theme.colorHeaderHighlight.g, Theme.colorHeaderHighlight.b, 0.33)
+                    color: Qt.alpha(Theme.colorHeaderHighlight, 0.33)
                 }
 
                 IconSvg {
@@ -150,7 +155,6 @@ Rectangle {
             id: rightArea
             anchors.top: parent.top
             anchors.right: parent.right
-            anchors.rightMargin: 4
             anchors.bottom: parent.bottom
 
             spacing: 4
@@ -212,9 +216,8 @@ Rectangle {
                     anchors.fill: parent
                     anchor: parent
 
-                    pressed: parent.pressed
                     //active: enabled && parent.containsPress
-                    color: Qt.rgba(Theme.colorHeaderHighlight.r, Theme.colorHeaderHighlight.g, Theme.colorHeaderHighlight.b, 0.33)
+                    color: Qt.alpha(Theme.colorHeaderHighlight, 0.33)
                 }
 
                 IconSvg {

@@ -93,6 +93,7 @@ list(APPEND MODULE_QML_FILES
     qml/controls/ComboBoxBar.qml
     qml/controls/ComboBoxColorful.qml
     qml/controls/ComboBoxMenuBar.qml
+    qml/controls/ComboBoxSunken.qml
     qml/controls/ComboBoxThemed.qml
     qml/controls/DialThemed.qml
     qml/controls/ItemDelegateThemed.qml
@@ -142,6 +143,9 @@ list(APPEND MODULE_QML_FILES
     qml/layouts/GroupBoxThemed.qml
     qml/layouts/ListItem.qml
     qml/layouts/ListItemClickable.qml
+    qml/layouts/ListItemPermission.qml
+    qml/layouts/ListItemPermissionInfo.qml
+    qml/layouts/ListItemSetting.qml
     qml/layouts/ListSeparator.qml
     qml/layouts/ListSeparatorPadded.qml
     qml/layouts/ListSpacer.qml

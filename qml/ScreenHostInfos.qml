@@ -57,9 +57,9 @@ Loader {
             id: contentFlow
 
             anchors.left: parent.left
-            anchors.leftMargin: Theme.singleColumn ? 0 : parent.width*0.125
+            anchors.leftMargin: (Theme.isPhone || Theme.singleColumn) ? 0 : parent.width*0.125
             anchors.right: parent.right
-            anchors.rightMargin: Theme.singleColumn ? 0 : parent.width*0.125
+            anchors.rightMargin: (Theme.isPhone || Theme.singleColumn) ? 0 : parent.width*0.125
 
             height: Theme.singleColumn ? maxheight : screenHostInfos.height
             property int maxheight: topPadding + bottomPadding + 5*spacing +
