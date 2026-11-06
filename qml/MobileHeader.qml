@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Layouts
 
 import ComponentLibrary
 import AppUtils
@@ -133,20 +134,49 @@ Rectangle {
             ////
         }
 
-        Text { // header title
+        RowLayout {
             anchors.left: parent.left
             anchors.leftMargin: appHeader.headerPosition
             anchors.right: rightArea.left
             anchors.rightMargin: 8
             anchors.verticalCenter: parent.verticalCenter
 
-            text: appHeader.headerTitle
-            textFormat: Text.PlainText
-            color: Theme.colorHeaderContent
-            font.bold: true
-            font.pixelSize: Theme.fontSizeHeader
-            font.capitalization: Font.Capitalize
-            verticalAlignment: Text.AlignVCenter
+            Text { // header title
+                Layout.alignment: Qt.AlignVCenter
+
+                text: appHeader.headerTitle
+                textFormat: Text.PlainText
+                font.bold: false
+                font.pixelSize: Theme.fontSizeHeader
+                color: Theme.colorHeaderContent
+                elide: Text.ElideRight
+            }
+
+            Text { // separator
+                Layout.alignment: Qt.AlignVCenter
+
+                visible: appHeader.headerSubTitle
+
+                text: "/"
+                textFormat: Text.PlainText
+                font.pixelSize: Theme.fontSizeHeader - 2
+                color: Theme.colorHeaderContent
+                opacity: 0.66
+            }
+
+            Text { // header subtitle
+                Layout.fillWidth: true
+                Layout.alignment: Qt.AlignVCenter
+
+                visible: appHeader.headerSubTitle
+
+                text: appHeader.headerSubTitle
+                textFormat: Text.PlainText
+                font.pixelSize: Theme.fontSizeHeader - 2
+                color: Theme.colorHeaderContent
+                opacity: 0.88
+                elide: Text.ElideRight
+            }
         }
 
         ////////////
@@ -163,9 +193,9 @@ Rectangle {
 
             Item { // right indicator
                 anchors.verticalCenter: parent.verticalCenter
+                width: appHeader.headerHeight
+                height: appHeader.headerHeight
 
-                width: parent.height
-                height: width
                 visible: (appContent.state === "MobileComponents")
 
                 IconSvg {

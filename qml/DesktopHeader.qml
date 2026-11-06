@@ -4,6 +4,7 @@ import ComponentLibrary
 
 Rectangle {
     id: appHeader
+
     anchors.top: parent.top
     anchors.left: parent.left
     anchors.right: parent.right
@@ -12,6 +13,8 @@ Rectangle {
     color: Theme.colorHeader
     clip: false
     z: 10
+
+    ////////////////////////////////////////////////////////////////////////////
 
     property string headerTitle: UtilsApp.appName()
     property string headerSubTitle: ""
@@ -218,7 +221,7 @@ Rectangle {
 
     ////////////
 
-    Rectangle { // separator
+    Rectangle { // bottom separator
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
@@ -245,5 +248,5 @@ Rectangle {
         }
     }
 
-    ////////////
+    ////////////////////////////////////////////////////////////////////////////
 }

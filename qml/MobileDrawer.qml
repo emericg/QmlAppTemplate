@@ -1,6 +1,7 @@
 import QtQuick
 
 import ComponentLibrary
+import AppUtils
 
 DrawerThemed {
     contentItem: Item {
@@ -23,7 +24,7 @@ DrawerThemed {
                 anchors.rightMargin: -1
 
                 height: Math.max(Theme.screenPaddingTop, Theme.screenPaddingStatusbar)
-                color: Theme.colorStatusbar
+                color: Theme.colorStatusbar // to be able to read statusbar content
             }
 
             ////////
@@ -53,7 +54,8 @@ DrawerThemed {
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.verticalCenterOffset: 0
 
-                    text: "QmlAppTemplate"
+                    text: UtilsApp.appName()
+                    textFormat: Text.PlainText
                     color: Theme.colorText
                     font.bold: true
                     font.pixelSize: Theme.fontSizeTitle

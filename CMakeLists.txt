@@ -147,11 +147,11 @@ add_other_files(${PROJECT_NAME}
 # AppUtils
 set(UTILS_QT_RHI ON)
 set(UTILS_DOCK_ENABLED ON)
-add_subdirectory(thirdparty/AppUtils/)
+add_subdirectory(thirdparty/AppUtils)
 target_link_libraries(${PROJECT_NAME} PRIVATE AppUtils AppUtils_plugin)
 
 # MobileUI
-add_subdirectory(thirdparty/MobileUI/)
+add_subdirectory(thirdparty/MobileUI)
 target_link_libraries(${PROJECT_NAME} PRIVATE MobileUI MobileUI_plugin)
 
 # ComponentLibrary
@@ -175,6 +175,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE thirdparty/)
 set(QML_IMPORT_PATH
     "${CMAKE_BINARY_DIR}/"
     "${CMAKE_BINARY_DIR}/thirdparty/"
+    "${CMAKE_BINARY_DIR}/thirdparty/AppUtils/"
     "${CMAKE_BINARY_DIR}/thirdparty/MobileUI/"
     "${CMAKE_BINARY_DIR}/thirdparty/ComponentLibrary/"
     CACHE STRING "QML Modules import paths" FORCE)
@@ -248,9 +249,9 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Android")
         QT_ANDROID_PACKAGE_SOURCE_DIR "${PROJECT_SOURCE_DIR}/platforms/android/"
     )
 
-    # Android NDK (selected by the Qt Creator kit, or ANDROID_NDK_ROOT on the CI)
+    # Android NDK check (selected by the Qt Creator kit, or ANDROID_NDK_ROOT on the CI)
     set(ANDROID_NDK_VERSION_EXPECTED 28.2)
-    if(CMAKE_ANDROID_NDK_VERSION AND NOT CMAKE_ANDROID_NDK_VERSION VERSION_EQUAL ANDROID_NDK_VERSION_EXPECTED)
+    if(CMAKE_ANDROID_NDK_VERSION AND CMAKE_ANDROID_NDK_VERSION VERSION_LESS ANDROID_NDK_VERSION_EXPECTED)
         message(WARNING "Android NDK ${ANDROID_NDK_VERSION_EXPECTED} expected, building with NDK ${CMAKE_ANDROID_NDK_VERSION}")
     endif()
 
@@ -307,8 +308,8 @@ endif()
 
 # Output (build)
 set_target_properties(${PROJECT_NAME} PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/bin"    # write binary in the project's build/ directory
     #RUNTIME_OUTPUT_DIRECTORY "${CMAKE_INSTALL_BINDIR}"     # write binary in kit directory
-    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin"      # write binary in the project's build/ directory
 )
 
 # Output (install)
