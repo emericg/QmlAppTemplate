@@ -32,9 +32,8 @@ set(CORE_LIBRARIES Qt6::Core Qt6::Gui Qt6::Qml Qt6::Quick)
 set(CORE_SOURCES
     # app utils
     utils_app.cpp utils_app.h
-    utils_log.cpp utils_log.h
     utils_clipboard.cpp utils_clipboard.h
-    utils_fpsmonitor.cpp utils_fpsmonitor.h
+    utils_log.cpp utils_log.h
     utils_language.cpp utils_language.h
     # system utils
     utils_os.cpp utils_os.h
@@ -48,12 +47,12 @@ set(CORE_SOURCES
     # others
     LoremIpsum.h
 
+    # FpsMonitor
+    FpsMonitor.cpp FpsMonitor.h
+    
     # PermissionManager
     PermissionManager.cpp PermissionManager.h
     PermissionManager_AndroidHelper.cpp PermissionManager_AndroidHelper.h
-
-    # FpsMonitor
-    FpsMonitor.cpp FpsMonitor.h
 )
 
 # Qt optional tools

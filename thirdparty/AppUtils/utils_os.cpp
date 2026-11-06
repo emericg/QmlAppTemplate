@@ -113,6 +113,41 @@ void UtilsOS::hapticFeedback(const HapticFeedback type)
 /* ************************************************************************** */
 /* ************************************************************************** */
 
+void UtilsOS::openAppInfo(const QString &packageName)
+{
+#if defined(Q_OS_ANDROID)
+    return UtilsAndroid::openApplicationInfo(packageName);
+#elif defined(Q_OS_IOS)
+    Q_UNUSED(packageName)
+    return UtilsIOS::openApplicationInfo();
+#else
+    Q_UNUSED(packageName)
+#endif
+}
+
+/* ************************************************************************** */
+
+QString UtilsOS::getMobileDeviceModel()
+{
+#if defined(Q_OS_ANDROID)
+    return UtilsAndroid::getDeviceModel();
+#endif
+
+    return QString();
+}
+
+QString UtilsOS::getMobileDeviceSerial()
+{
+#if defined(Q_OS_ANDROID)
+    return UtilsAndroid::getDeviceSerial();
+#endif
+
+    return QString();
+}
+
+/* ************************************************************************** */
+/* ************************************************************************** */
+
 bool UtilsOS::checkMobileBluetoothPermission()
 {
 #if defined(Q_OS_ANDROID)
@@ -345,26 +380,6 @@ void UtilsOS::forceMobileGpsEnabled()
 #if defined(Q_OS_ANDROID)
     UtilsAndroid::gpsutils_forceGpsEnabled();
 #endif
-}
-
-/* ************************************************************************** */
-
-QString UtilsOS::getMobileDeviceModel()
-{
-#if defined(Q_OS_ANDROID)
-    return UtilsAndroid::getDeviceModel();
-#endif
-
-    return QString();
-}
-
-QString UtilsOS::getMobileDeviceSerial()
-{
-#if defined(Q_OS_ANDROID)
-    return UtilsAndroid::getDeviceSerial();
-#endif
-
-    return QString();
 }
 
 /* ************************************************************************** */

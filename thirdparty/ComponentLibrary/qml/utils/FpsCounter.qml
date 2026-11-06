@@ -1,6 +1,7 @@
 import QtQuick
 
 import ComponentLibrary
+import AppUtils
 
 Item {
     id: control
@@ -85,9 +86,9 @@ Item {
 
             text: {
                 var txt = ""
-                if (typeof utilsFpsMonitor !== "undefined" && utilsFpsMonitor) {
-                    // FPS from utilsFpsMonitor
-                    txt += utilsFpsMonitor.fps.toString().padStart(control.digits, "0") + " FPS"
+                if (typeof FpsMonitor !== "undefined" && FpsMonitor) {
+                    // FPS from FpsMonitor
+                    txt += FpsMonitor.fps.toString().padStart(control.digits, "0") + " FPS"
                 } else {
                     // FPS from the UI animation
                     //txt += "Ø " + control.fpsAvg.toString().padStart(control.digits, "0")
